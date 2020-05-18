@@ -1,38 +1,23 @@
-import { get, has } from 'lodash';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
-import {
-  findContentfulEntry,
-  isCampaignClosed,
-  shouldShowLandingPage,
-} from '../../../helpers';
+import { isCampaignClosed } from '../../../helpers';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = (state, ownProps) => {
-  let entryContent = null;
-
-  if (has(ownProps, 'match.params', null)) {
-    const { id, slug } = ownProps.match.params;
-
-    // @TODO: temporary retrieval of single campaign page (quiz) based on matched id or slug.
-    entryContent = findContentfulEntry(state, id || slug);
-  }
+  // If we're on a nested quiz route (/campaigns/:slug/quiz/:slug),
+  // try and find the associated quiz in state.
+  const quizEntry = state.campaign.quizzes.find(
+    quiz => quiz.fields.slug === ownProps.match.params.slug,
+  );
 
   return {
-    campaignEndDate: state.campaign.endDate,
-    entryContent,
     isCampaignClosed: isCampaignClosed(state.campaign.endDate),
-    landingPage: get(state.campaign, 'landingPage', null),
-    noun: get(state.campaign.additionalContent, 'noun'),
     pages: state.campaign.pages,
+    quizEntry,
     shouldShowAffirmation: state.signups.shouldShowAffirmation,
-    shouldShowLandingPage: shouldShowLandingPage(state, entryContent),
-    tagline: get(state.campaign.additionalContent, 'tagline'),
-    title: state.campaign.title,
-    verb: get(state.campaign.additionalContent, 'verb'),
   };
 };
 

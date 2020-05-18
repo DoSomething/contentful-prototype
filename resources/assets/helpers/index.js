@@ -20,7 +20,6 @@ import {
 
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
-import { isSignedUp } from '../selectors/signup';
 import tailwindVariables from '../../../tailwind.variables';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
@@ -501,30 +500,6 @@ export function isWithinMinutes(date, minutes = 2) {
     start: Date.now() - minutes * 60 * 1000,
     end: Date.now(),
   });
-}
-
-/**
- * Check if the Landing Page should be shown for campaign.
- *
- * @param  {Object}  state
- * @param  {Boolean} ignoreLandingPage - optional additional boolean to ignore landing page.
- * @return {Boolean}
- */
-export function shouldShowLandingPage(state, ignoreLandingPage) {
-  const hasLandingPage = state.campaign.landingPage !== null;
-
-  const shouldIgnoreLandingPage =
-    state.admin.shouldShowActionPage || ignoreLandingPage;
-  let shouldShow = false;
-
-  if (state.admin.shouldShowLandingPage) {
-    shouldShow = true;
-  } else if (hasLandingPage && !shouldIgnoreLandingPage) {
-    shouldShow =
-      !isSignedUp(state) && !isCampaignClosed(state.campaign.endDate);
-  }
-
-  return shouldShow;
 }
 
 /**

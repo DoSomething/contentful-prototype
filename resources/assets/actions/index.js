@@ -28,9 +28,5 @@ export * from './event';
 export const NEXT_SLIDE = 'NEXT_SLIDE';
 export * from './slideshow';
 
-export const SHOW_LANDING_PAGE = 'SHOW_LANDING_PAGE';
-export const SHOW_ACTION_PAGE = 'SHOW_ACTION_PAGE';
-export * from './admin';
-
 // Post Creators
 export * from './post';

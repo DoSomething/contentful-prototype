@@ -1,27 +1,29 @@
 import React from 'react';
 import { find } from 'lodash';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { isCampaignClosed } from '../../../helpers';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import AlphaVoterRegistrationDrivePageContainer from '../VoterRegistrationDrivePage/Alpha/AlphaPageContainer';
 
 const CampaignPageContent = props => {
-  const { campaignEndDate, match, pages, shouldShowAffirmation } = props;
+  const { isCampaignClosed, match, pages, shouldShowAffirmation } = props;
 
   const subPage = find(pages, page =>
     page.type === 'page' ? page.fields.slug.endsWith(match.params.slug) : false,
   );
 
   if (!subPage) {
-    return <NotFound />;
+    return (
+      <div className="base-12-grid">
+        <NotFound className="col-span-4 md:col-span-8 lg:col-start-2" />
+      </div>
+    );
   }
-
-  const isClosed = isCampaignClosed(campaignEndDate);
 
   const { content, sidebar, blocks } = subPage.fields;
 
@@ -30,8 +32,9 @@ const CampaignPageContent = props => {
     '/us/campaigns/online-registration-drive/action';
 
   return (
-    <div className="campaign-page__content" id={subPage.id}>
+    <div className="leading-normal text-base" id={subPage.id}>
       <ScrollConcierge trigger={!shouldShowAffirmation} />
+
       {content ? (
         <div className="base-12-grid py-3 md:py-6">
           <div className="grid-wide-7/10">
@@ -74,7 +77,7 @@ const CampaignPageContent = props => {
         </div>
       ) : null}
 
-      {isClosed ? null : (
+      {isCampaignClosed ? null : (
         <CallToActionContainer
           className="text-xl"
           useCampaignTagline
@@ -87,15 +90,9 @@ const CampaignPageContent = props => {
 };
 
 CampaignPageContent.propTypes = {
-  campaignEndDate: PropTypes.string,
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-  }),
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      slug: PropTypes.string.isRequired,
-    }).isRequired,
-  }),
+  isCampaignClosed: PropTypes.bool.isRequired,
+  location: ReactRouterPropTypes.location,
+  match: ReactRouterPropTypes.match,
   pages: PropTypes.arrayOf(
     PropTypes.shape({
       fields: PropTypes.shape({
@@ -110,7 +107,6 @@ CampaignPageContent.propTypes = {
 };
 
 CampaignPageContent.defaultProps = {
-  campaignEndDate: null,
   location: {},
   pages: [],
   match: {

@@ -5,10 +5,6 @@
  * @type {Object}
  */
 const initialState = {
-  admin: {
-    shouldShowLandingPage: false,
-    shouldShowActionPage: false,
-  },
   campaign: {},
   events: {
     queue: [],
