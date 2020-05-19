@@ -35,7 +35,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
   return (
     <>
       <Card
-        attributes={{ 'data-test': 'voter-registration-form-card' }}
+        attributes={{ 'data-testid': 'voter-registration-form-card' }}
         className="md:w-3/5 bordered rounded"
         title="Register online to vote"
       >
@@ -51,7 +51,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
             type="hidden"
             name="source"
             value={urlSourceDetails}
-            data-id="voter-registration-source-details"
+            data-testid="voter-registration-source-details"
           />
 
           <div className="form-item stretched">
@@ -64,7 +64,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 name="email_address"
                 value={email}
                 onChange={handleChange}
-                data-id="voter-registration-email-field"
+                data-testid="voter-registration-email-field"
               />
             </label>
           </div>
@@ -80,13 +80,13 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 onChange={handleChange}
                 required
                 pattern="^\s*?\d{5}(?:[-\s]\d{4})?\s*?$"
-                data-id="voter-registration-zip-field"
+                data-testid="voter-registration-zip-field"
               />
             </label>
           </div>
 
           <PrimaryButton
-            attributes={{ 'data-test': 'voter-registration-submit-button' }}
+            attributes={{ 'data-testid': 'voter-registration-submit-button' }}
             className="w-full"
             isDisabled={isDisabled}
             text="Start Your Registration"

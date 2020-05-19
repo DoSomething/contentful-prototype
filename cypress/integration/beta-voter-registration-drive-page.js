@@ -43,6 +43,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     });
   });
 
+  /** @test */
   it('Beta OVRD page displays NotFoundPage if referrer user ID not present', () => {
     cy.visit(betaPagePath);
 
@@ -53,6 +54,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
+  /** @test */
   it('Beta OVRD page displays NotFoundPage if referrer user not found', () => {
     const user = userFactory();
 
@@ -70,6 +72,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
+  /** @test */
   it('Beta OVRD HeroSection displays a cover image', () => {
     const user = userFactory();
 
@@ -86,6 +89,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
+  /** @test */
   it('Beta OVRD HeroSection displays referrer first name if referrer user found', () => {
     const user = userFactory();
 
@@ -106,6 +110,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
+  /** @test */
   it('Beta OVRD HeroSection displays scholarhship info if it is provided', () => {
     const user = userFactory();
 
@@ -127,6 +132,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.contains(`April 25th, 2022`);
   });
 
+  /** @test */
   it('Beta OVRD quote displays default if no voting-reasons query parameter found', () => {
     const user = userFactory();
 
@@ -147,6 +153,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     ).contains(`- ${user.firstName}`);
   });
 
+  /** @test */
   it('Beta OVRD quote displays one voting reason when found in voting-reasons query', () => {
     const user = userFactory();
 
@@ -167,6 +174,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     ).contains(`- ${user.firstName}`);
   });
 
+  /** @test */
   it('Beta OVRD quote displays two voting reasons when found in voting-reasons query', () => {
     const user = userFactory();
 
@@ -191,6 +199,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     ).contains(`- ${user.firstName}`);
   });
 
+  /** @test */
   it('Beta OVRD quote displays three or more voting reasons when found in voting-reasons query', () => {
     const user = userFactory();
 
@@ -215,6 +224,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     ).contains(`- ${user.firstName}`);
   });
 
+  /** @test */
   it('Beta OVRD HeroSection displays scholarship info in blurb', () => {
     const user = userFactory();
 
@@ -230,6 +240,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
+  /** @test */
   it('Beta OVRD displays campaign href, expects href to match GraphQL URL returned from query', () => {
     const user = userFactory();
 
@@ -246,6 +257,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
       .should('have.attr', 'href', mockUrl);
   });
 
+  /** @test */
   it('Beta OVRD Step One register to vote section displays as expected', () => {
     const user = userFactory();
 
@@ -256,12 +268,13 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=voter-registration-form-card]').should('have.length', 1);
-    cy.get('[data-test=voter-registration-form-card] > header > h1').contains(
+    cy.findByTestId('voter-registration-form-card').should('have.length', 1);
+    cy.findByTestId('voter-registration-form-card').findByText(
       'Register online to vote',
     );
   });
 
+  /** @test */
   it('Beta OVRD Step One register to vote section button is disabled when form is empty', () => {
     const user = userFactory();
 
@@ -272,11 +285,10 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=voter-registration-submit-button]').should(
-      'be.disabled',
-    );
+    cy.findByTestId('voter-registration-submit-button').should('be.disabled');
   });
 
+  /** @test */
   it('Beta OVRD Step One register to vote section button is enabled when form is filled in', () => {
     const user = userFactory();
 
@@ -287,16 +299,17 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-id=voter-registration-email-field]').type('text@test.com');
-    cy.get('[data-id=voter-registration-zip-field]').type('12345');
-    cy.get('[data-id=voter-registration-source-details]').should(
+    cy.findByTestId('voter-registration-email-field').type('text@test.com');
+    cy.findByTestId('voter-registration-zip-field').type('12345');
+    cy.findByTestId('voter-registration-source-details').should(
       'have.value',
       `user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
     );
 
-    cy.get('[data-test=voter-registration-submit-button]').should('be.enabled');
+    cy.findByTestId('voter-registration-submit-button').should('be.enabled');
   });
 
+  /** @test */
   it('Beta OVRD <meta> tag has a title and description', () => {
     cy.get('head meta[property="og:title"]').should(
       'have.attr',
