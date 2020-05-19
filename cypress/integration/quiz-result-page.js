@@ -23,6 +23,7 @@ const linkBlock = {
 describe('Quiz Result Page', () => {
   beforeEach(() => cy.configureMocks());
 
+  /** @test */
   it('Renders NotFound if GraphQL query does not return a block', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: null,
@@ -34,6 +35,7 @@ describe('Quiz Result Page', () => {
     cy.findByTestId('quiz-result-page').should('have.length', 0);
   });
 
+  /** @test */
   it('Renders placeholder content if preview query is not passed', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
@@ -48,6 +50,7 @@ describe('Quiz Result Page', () => {
     );
   });
 
+  /** @test */
   it('Renders GraphQL content if preview query parameter is passed', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
@@ -59,6 +62,7 @@ describe('Quiz Result Page', () => {
     cy.findByTestId('quiz-result-page').contains(linkBlock.content);
   });
 
+  /** @test */
   it('Sets up the correct source details for the RTV redirect URL', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
