@@ -9,7 +9,7 @@ const NotFoundPage = ({ id }) => (
   <>
     <SiteNavigationContainer />
 
-    <main className="px-3 py-20" data-test="not-found-page">
+    <main className="px-3 py-20" data-testid="not-found-page">
       <NotFound id={id} className="max-w-xl mx-auto mb-8" />
     </main>
 

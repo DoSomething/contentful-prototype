@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 
 import ErrorPage from '../ErrorPage';
-import { gqlVariables, placeholderContent } from './config';
 import NotFoundPage from '../NotFoundPage';
 import Placeholder from '../../utilities/Placeholder';
 import { isDevEnvironment, query } from '../../../helpers';
@@ -13,8 +12,10 @@ import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import ContentfulAsset from '../../utilities/ContentfulAsset/ContentfulAsset';
+import { gqlVariables, placeholderContent, sourceDetailPrefix } from './config';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
+import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
 
 const QUIZ_RESULT_PAGE_QUERY = gql`
   query QuizResultPageQuery($id: String!) {
@@ -51,6 +52,7 @@ const QuizResultPage = ({ id }) => {
     : gqlVariables.production;
   const { linkBlockTitle } = data.block;
   const assetId = get(config, `results.${id}.assetId`, null);
+  const sourceDetail = get(config, `results.${id}.sourceDetail`, null);
   // Use placeholder for development until we're ready to enable Quiz Result Page feature.
   const content = query('preview') ? data.block.content : placeholderContent;
 
@@ -59,7 +61,7 @@ const QuizResultPage = ({ id }) => {
       <SiteNavigationContainer />
 
       <main>
-        <article data-test="quiz-result-page">
+        <article data-testid="quiz-result-page">
           <header
             role="banner"
             className="base-12-grid py-3 md:py-6 bg-blurple-500"
@@ -81,6 +83,13 @@ const QuizResultPage = ({ id }) => {
               id={config.galleryBlockId}
               className="grid-full"
             />
+
+            <div className="grid-full mx-auto py-3 md:py-6">
+              <StartVoterRegistrationForm
+                contextSource="voter-registration-quiz-results-page"
+                sourceDetail={sourceDetail || `${sourceDetailPrefix}default`}
+              />
+            </div>
           </div>
         </article>
       </main>

@@ -1,18 +1,25 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
+import Card from '../Card/Card';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
-} from '../../../../helpers/analytics';
-import Card from '../../../utilities/Card/Card';
-import PrimaryButton from '../../../utilities/Button/PrimaryButton';
+} from '../../../helpers/analytics';
+import PrimaryButton from '../Button/PrimaryButton';
 
-const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
+const StartVoterRegistrationForm = ({
+  campaignId,
+  contextSource,
+  referrerUserId,
+  sourceDetail,
+}) => {
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
 
-  const urlSourceDetails = `user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`;
+  const urlSourceDetails = referrerUserId
+    ? `user:${referrerUserId},source:web,source_details:${sourceDetail},referral=true`
+    : `r=source:web,source_details:${sourceDetail}`;
   const isDisabled = !zip || !email;
 
   const handleChange = event => {
@@ -27,7 +34,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
       label: 'voter_registration',
       context: {
         campaignId,
-        contextSource: 'beta-voter-registration-drive-page',
+        contextSource,
       },
     });
   };
@@ -99,8 +106,15 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
 };
 
 StartVoterRegistrationForm.propTypes = {
-  campaignId: PropTypes.number.isRequired,
-  referrerUserId: PropTypes.string.isRequired,
+  campaignId: PropTypes.number,
+  contextSource: PropTypes.string.isRequired,
+  referrerUserId: PropTypes.string,
+  sourceDetail: PropTypes.string.isRequired,
+};
+
+StartVoterRegistrationForm.defaultProps = {
+  campaignId: null,
+  referrerUserId: null,
 };
 
 export default StartVoterRegistrationForm;
