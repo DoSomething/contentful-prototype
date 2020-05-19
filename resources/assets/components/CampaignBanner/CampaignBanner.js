@@ -58,7 +58,10 @@ const CampaignBanner = ({
         <div className="base-12-grid py-3 md:py-6">
           <HeroBanner title={title} subtitle={subtitle} />
 
-          <div className="grid-wide-7/10 mb-6">
+          <div
+            data-testid="campaign-banner-primary-content"
+            className="grid-wide-7/10 mb-6"
+          >
             <TextContent>{content}</TextContent>
             {affiliateSponsors.length ? (
               <AffiliatePromotion
@@ -71,9 +74,13 @@ const CampaignBanner = ({
             ) : null}
           </div>
 
-          <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
+          <div
+            data-testid="campaign-banner-secondary-content"
+            className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3"
+          >
             {!isAffiliated ? (
               <div
+                data-testid="campaign-banner-signup-button"
                 className="bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:p-0 fixed md:static w-full md:w-auto z-10 md:z-auto"
                 css={css`
                   border-top: 1px solid tailwind('colors.gray.200');
