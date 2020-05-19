@@ -2,7 +2,6 @@
 
 import faker from 'faker';
 
-const quizResultPagePath = '/us/quiz-results/';
 const quizResultId = '347iYsbykgQe6KqeGceMUk';
 
 /**
@@ -58,5 +57,19 @@ describe('Quiz Result Page', () => {
 
     cy.get('h1').should('contain', linkBlock.title);
     cy.get('[data-test=quiz-result-page]').contains(linkBlock.content);
+  });
+
+  it('Sets up the correct source details for the RTV redirect URL', () => {
+    cy.mockGraphqlOp('QuizResultPageQuery', {
+      block: linkBlock,
+    });
+
+    cy.visit(getQuizResultPath(quizResultId));
+
+    cy.get('[data-test=quiz-result-page]').should('have.length', 1);
+    cy.findByTestId('voter-registration-source-details').should(
+      'have.value',
+      'r=source:web,source_details:VoterRegQuiz_completed_default',
+    );
   });
 });

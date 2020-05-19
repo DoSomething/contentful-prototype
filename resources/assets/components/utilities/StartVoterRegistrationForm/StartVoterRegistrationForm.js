@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
+import Card from '../Card/Card';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
-import Card from '../Card/Card';
 import PrimaryButton from '../Button/PrimaryButton';
 
 const StartVoterRegistrationForm = ({
