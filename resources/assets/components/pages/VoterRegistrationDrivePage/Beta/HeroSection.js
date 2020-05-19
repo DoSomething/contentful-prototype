@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { votingReasons } from './config';
 import { query } from '../../../../helpers';
+import HeroBanner from '../../../utilities/HeroBanner';
 import CoverImage from '../../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 
@@ -68,12 +69,11 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
       />
       <div className="clearfix bg-gray-100">
         <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
-          <header role="banner" className="hero-banner">
-            <h1 className="hero-banner__headline-title">{title}</h1>
-            <h2 className="hero-banner__headline-subtitle">
-              {firstName} wants you to register to vote!
-            </h2>
-          </header>
+          <HeroBanner
+            title={title}
+            subtitle={`${firstName} wants you to register to vote!`}
+          />
+
           <div className="grid-wide-7/10 primary markdown">
             <blockquote>
               <p data-test="beta-voter-registration-drive-page-quote-text">

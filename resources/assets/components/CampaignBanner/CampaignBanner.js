@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import React, { useState, useEffect } from 'react';
 
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
+import HeroBanner from '../utilities/HeroBanner';
 import CoverImage from '../utilities/CoverImage/CoverImage';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
@@ -14,6 +16,7 @@ import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptI
 import {
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
+  tailwind,
 } from '../../helpers';
 
 import './campaign-banner.scss';
@@ -60,10 +63,7 @@ const CampaignBanner = ({
         <CoverImage coverImage={coverImage} />
         <div className="clearfix bg-gray-100">
           <div className="base-12-grid py-3 md:py-6">
-            <header role="banner" className="hero-banner">
-              <h1 className="hero-banner__headline-title">{title}</h1>
-              <h2 className="hero-banner__headline-subtitle">{subtitle}</h2>
-            </header>
+            <HeroBanner title={title} subtitle={subtitle} />
 
             <div className="grid-wide-7/10 primary">
               <TextContent>{content}</TextContent>
