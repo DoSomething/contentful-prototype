@@ -17,7 +17,7 @@ const CoverImage = ({ attributes, coverImage }) => {
       {...attributes}
     >
       <img
-        className="grid-wide"
+        className="grid-wide w-full"
         alt={
           get(coverImage, 'description') ||
           `large decorative image for campaign`

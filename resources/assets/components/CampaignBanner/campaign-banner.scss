@@ -1,12 +1,6 @@
 @import '../../scss/next-toolbox.scss';
 
 .hero-landing-page {
-  .cover-image {
-    img {
-      width: 100%;
-    }
-  }
-
   .hero-banner {
     margin-bottom: theme('spacing.3');
     grid-column: full-start / full-end;
