@@ -47,7 +47,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
   it('Beta OVRD page displays NotFoundPage if referrer user ID not present', () => {
     cy.visit(betaPagePath);
 
-    cy.get('[data-test=not-found-page]').should('have.length', 1);
+    cy.findByTestId('not-found-page').should('have.length', 1);
     cy.get('[data-test=beta-voter-registration-drive-page]').should(
       'have.length',
       0,
@@ -65,7 +65,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=not-found-page]').should('have.length', 1);
+    cy.findByTestId('not-found-page').should('have.length', 1);
     cy.get('[data-test=beta-voter-registration-drive-page]').should(
       'have.length',
       0,
@@ -100,7 +100,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=not-found-page]').should('have.length', 0);
+    cy.findByTestId('not-found-page').should('have.length', 0);
     cy.get('[data-test=beta-voter-registration-drive-page]').should(
       'have.length',
       1,

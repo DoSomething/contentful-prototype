@@ -61,7 +61,7 @@ const QuizResultPage = ({ id }) => {
       <SiteNavigationContainer />
 
       <main>
-        <article data-test="quiz-result-page">
+        <article data-testid="quiz-result-page">
           <header
             role="banner"
             className="base-12-grid py-3 md:py-6 bg-blurple-500"

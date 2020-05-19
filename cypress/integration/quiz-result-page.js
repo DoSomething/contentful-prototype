@@ -30,8 +30,8 @@ describe('Quiz Result Page', () => {
 
     cy.visit(getQuizResultPath('55767606a59dbf3c7a8b4571'));
 
-    cy.get('[data-test=not-found-page]').should('have.length', 1);
-    cy.get('[data-test=quiz-result-page]').should('have.length', 0);
+    cy.findByTestId('not-found-page').should('have.length', 1);
+    cy.findByTestId('quiz-result-page').should('have.length', 0);
   });
 
   it('Renders placeholder content if preview query is not passed', () => {
@@ -41,9 +41,9 @@ describe('Quiz Result Page', () => {
 
     cy.visit(getQuizResultPath(quizResultId));
 
-    cy.get('[data-test=quiz-result-page]').should('have.length', 1);
+    cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.get('h1').should('contain', linkBlock.title);
-    cy.get('[data-test=quiz-result-page]').contains(
+    cy.findByTestId('quiz-result-page').contains(
       'Saepe cupiditate non. Facere velit vitae corporis.',
     );
   });
@@ -56,7 +56,7 @@ describe('Quiz Result Page', () => {
     cy.visit(`${getQuizResultPath(quizResultId)}?preview=true`);
 
     cy.get('h1').should('contain', linkBlock.title);
-    cy.get('[data-test=quiz-result-page]').contains(linkBlock.content);
+    cy.findByTestId('quiz-result-page').contains(linkBlock.content);
   });
 
   it('Sets up the correct source details for the RTV redirect URL', () => {
@@ -66,7 +66,7 @@ describe('Quiz Result Page', () => {
 
     cy.visit(getQuizResultPath(quizResultId));
 
-    cy.get('[data-test=quiz-result-page]').should('have.length', 1);
+    cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.findByTestId('voter-registration-source-details').should(
       'have.value',
       'r=source:web,source_details:VoterRegQuiz_completed_default',
