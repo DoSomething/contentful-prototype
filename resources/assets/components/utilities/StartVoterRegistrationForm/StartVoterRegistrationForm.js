@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
-} from '../../../../helpers/analytics';
-import Card from '../../../utilities/Card/Card';
-import PrimaryButton from '../../../utilities/Button/PrimaryButton';
+} from '../../../helpers/analytics';
+import Card from '../Card/Card';
+import PrimaryButton from '../Button/PrimaryButton';
 
 const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
   const [email, setEmail] = useState('');
