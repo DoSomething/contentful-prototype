@@ -80,7 +80,16 @@ const CampaignBanner = ({
 
             <div className="grid-wide-3/10 secondary">
               {!isAffiliated ? (
-                <div className="hero-signup-button">
+                <div
+                  className="bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:p-0 fixed md:static w-full md:w-auto z-10 md:z-auto"
+                  css={css`
+                    border-top: 1px solid tailwind('colors.gray.200');
+
+                    @media (min-width: ${tailwind('screens.medium')}) {
+                      background-color: none;
+                    }
+                  `}
+                >
                   <SignupButtonContainer
                     className="block md:mb-3 p-6 text-lg w-full"
                     text={
