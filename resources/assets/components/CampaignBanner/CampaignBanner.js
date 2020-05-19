@@ -1,24 +1,24 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 
-import Modal from '../../utilities/Modal/Modal';
-import ContentfulEntry from '../../ContentfulEntry';
-import CoverImage from '../../utilities/CoverImage/CoverImage';
-import TextContent from '../../utilities/TextContent/TextContent';
-import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../constants';
-import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
-import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
-import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
-import ScholarshipInfoBlock from '../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
-import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
+import Modal from '../utilities/Modal/Modal';
+import ContentfulEntry from '../ContentfulEntry';
+import CoverImage from '../utilities/CoverImage/CoverImage';
+import TextContent from '../utilities/TextContent/TextContent';
+import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
+import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
+import CampaignInfoBlock from '../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
+import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
+import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
-} from '../../../helpers';
+} from '../../helpers';
 
-import './hero-lede-banner.scss';
+import './campaign-banner.scss';
 
-const HeroTemplate = ({
+const CampaignBanner = ({
   actionIdToDisplay,
   affiliateCreditText,
   affiliateSponsors,
@@ -156,7 +156,7 @@ const HeroTemplate = ({
   );
 };
 
-HeroTemplate.propTypes = {
+CampaignBanner.propTypes = {
   actionIdToDisplay: PropTypes.number,
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
@@ -179,7 +179,7 @@ HeroTemplate.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-HeroTemplate.defaultProps = {
+CampaignBanner.defaultProps = {
   actionIdToDisplay: null,
   affiliateCreditText: undefined,
   affiliateSponsors: [],
@@ -194,4 +194,4 @@ HeroTemplate.defaultProps = {
   scholarshipDescription: null,
 };
 
-export default HeroTemplate;
+export default CampaignBanner;

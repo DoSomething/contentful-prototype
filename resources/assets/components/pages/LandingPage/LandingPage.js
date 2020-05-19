@@ -7,7 +7,7 @@ import { css } from '@emotion/core';
 
 import { tailwind } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
-import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import CampaignBannerContainer from '../../CampaignBanner/CampaignBannerContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 
 // @TODO: Implement this as a custom (rich text) renderer per https://git.io/JfGlf.
@@ -23,7 +23,7 @@ const landingPageHeadingOneStyle = css`
 
 const LandingPage = ({ content }) => (
   <>
-    <LedeBannerContainer />
+    <CampaignBannerContainer />
 
     {content ? (
       <div
