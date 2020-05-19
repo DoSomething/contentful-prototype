@@ -65,7 +65,7 @@ const CampaignBanner = ({
           <div className="base-12-grid py-3 md:py-6">
             <HeroBanner title={title} subtitle={subtitle} />
 
-            <div className="grid-wide-7/10 primary">
+            <div className="grid-wide-7/10 mb-6">
               <TextContent>{content}</TextContent>
               {affiliateSponsors.length ? (
                 <AffiliatePromotion

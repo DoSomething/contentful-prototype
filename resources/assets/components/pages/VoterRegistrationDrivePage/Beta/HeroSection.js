@@ -74,7 +74,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
             subtitle={`${firstName} wants you to register to vote!`}
           />
 
-          <div className="grid-wide-7/10 primary markdown">
+          <div className="grid-wide-7/10 mb-6 markdown">
             <blockquote>
               <p data-test="beta-voter-registration-drive-page-quote-text">
                 Voting is one of the most impactful ways to make a difference on
