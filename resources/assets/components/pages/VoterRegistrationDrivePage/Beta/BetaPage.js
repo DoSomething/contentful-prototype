@@ -107,8 +107,9 @@ const BetaVoterRegistrationDrivePage = () => {
             />
             <div className="pb-6">
               <StartVoterRegistrationForm
-                referrerUserId={referrerUserId}
                 campaignId={campaignId}
+                contextSource="beta-voter-registration-drive-page"
+                referrerUserId={referrerUserId}
                 sourceDetail="onlinedrivereferral"
               />
             </div>

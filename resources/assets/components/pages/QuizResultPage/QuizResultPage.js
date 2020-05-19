@@ -85,6 +85,7 @@ const QuizResultPage = ({ id }) => {
             />
             <div className="grid-full flex justify-center py-3 md:py-6">
               <StartVoterRegistrationForm
+                contextSource="voter-registration-quiz-results-page"
                 sourceDetail={sourceDetail || `${sourceDetailPrefix}default`}
               />
             </div>

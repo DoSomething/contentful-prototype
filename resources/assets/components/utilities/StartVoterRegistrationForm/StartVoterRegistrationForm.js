@@ -10,6 +10,7 @@ import PrimaryButton from '../Button/PrimaryButton';
 
 const StartVoterRegistrationForm = ({
   campaignId,
+  contextSource,
   referrerUserId,
   sourceDetail,
 }) => {
@@ -33,7 +34,7 @@ const StartVoterRegistrationForm = ({
       label: 'voter_registration',
       context: {
         campaignId,
-        contextSource: 'voter-registration-pages',
+        contextSource,
       },
     });
   };
@@ -106,6 +107,7 @@ const StartVoterRegistrationForm = ({
 
 StartVoterRegistrationForm.propTypes = {
   campaignId: PropTypes.number,
+  contextSource: PropTypes.string.isRequired,
   referrerUserId: PropTypes.string,
   sourceDetail: PropTypes.string.isRequired,
 };
