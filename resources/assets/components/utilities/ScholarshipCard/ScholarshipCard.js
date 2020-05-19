@@ -84,7 +84,7 @@ const ScholarshipCard = ({ campaign }) => {
           </div>
         </div>
 
-        <SecondaryButton className="w-full" href={url} text="Get Started" />
+        <SecondaryButton className="w-full" href={url} text="Apply Now" />
       </div>
     </article>
   );

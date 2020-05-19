@@ -44,8 +44,7 @@ export const GalleryBlockFragment = gql`
 `;
 
 const renderBlock = (blockType, block, imageAlignment, imageFit) => {
-  // blockType is used to determine what kind of gallery this is going to be
-  // Person, Campaign, Page, Scholarship, Content Block (External)
+  // @TODO: Update the old PHP typing and swap out with prop version.
 
   // GraphQL ('Showcasable' interface) and Phoenix-backend (legacy) queried blocks.
   const fields = withoutNulls(block);
@@ -129,8 +128,8 @@ const GalleryBlock = props => {
       <Gallery type={galleryType} className="-mx-3 mt-3">
         {blocks.map(block =>
           renderBlock(
-            // Baby hack to allow scholarship galleries to overwrite the initial blocktype
-            // until a script is run to assign types to all galleries.
+            // @TODO: Remove the block.__typename hack after we are able to
+            // properly source blockType from the entry
             blockType || block.__typename,
             block,
             imageAlignment.toLowerCase(),
@@ -154,7 +153,7 @@ GalleryBlock.propTypes = {
 GalleryBlock.defaultProps = {
   title: null,
   imageFit: 'FILL',
-  blockType: null,
+  blockType: 'scholarship',
 };
 
 export default GalleryBlock;
