@@ -8,7 +8,7 @@ import ErrorPage from '../ErrorPage';
 import NotFoundPage from '../NotFoundPage';
 import Placeholder from '../../utilities/Placeholder';
 import { isDevEnvironment, query } from '../../../helpers';
-import { gqlVariables, placeholderContent } from './config';
+import { gqlVariables, placeholderContent, sourceDetailPrefix } from './config';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
@@ -52,6 +52,7 @@ const QuizResultPage = ({ id }) => {
     : gqlVariables.production;
   const { linkBlockTitle } = data.block;
   const assetId = get(config, `results.${id}.assetId`, null);
+  const sourceDetail = get(config, `results.${id}.sourceDetail`, null);
   // Use placeholder for development until we're ready to enable Quiz Result Page feature.
   const content = query('preview') ? data.block.content : placeholderContent;
 
@@ -83,7 +84,9 @@ const QuizResultPage = ({ id }) => {
               className="grid-full"
             />
             <div className="grid-full flex justify-center py-3 md:py-6">
-              <StartVoterRegistrationForm sourceDetail="onlinedrivereferral" />
+              <StartVoterRegistrationForm
+                sourceDetail={sourceDetail || `${sourceDetailPrefix}default`}
+              />
             </div>
           </div>
         </article>

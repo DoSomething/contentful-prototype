@@ -16,7 +16,9 @@ const StartVoterRegistrationForm = ({
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
 
-  const urlSourceDetails = `user:${referrerUserId},source:web,source_details:${sourceDetail},referral=true`;
+  const urlSourceDetails = referrerUserId
+    ? `user:${referrerUserId},source:web,source_details:${sourceDetail},referral=true`
+    : `r=source:web,source_details:${sourceDetail}`;
   const isDisabled = !zip || !email;
 
   const handleChange = event => {
@@ -31,7 +33,7 @@ const StartVoterRegistrationForm = ({
       label: 'voter_registration',
       context: {
         campaignId,
-        contextSource: 'beta-voter-registration-drive-page',
+        contextSource: 'voter-registration-pages',
       },
     });
   };
