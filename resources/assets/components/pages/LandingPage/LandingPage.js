@@ -26,13 +26,15 @@ const LandingPage = ({ content }) => (
     <LedeBannerContainer />
 
     {content ? (
-      <div className="bg-white">
-        <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
-          <div className="campaign-page__content clearfix">
-            <div className="primary" css={landingPageHeadingOneStyle}>
-              <TextContent>{content}</TextContent>
-            </div>
-          </div>
+      <div
+        data-test="landing-page-content"
+        className="bg-white base-12-grid py-6"
+      >
+        <div
+          className="col-span-4 md:col-span-6 lg:col-start-2 lg:col-span-8 xl:col-start-2 xl:col-span-7 leading-normal text-base"
+          css={landingPageHeadingOneStyle}
+        >
+          <TextContent>{content}</TextContent>
         </div>
       </div>
     ) : null}

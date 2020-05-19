@@ -20,13 +20,13 @@ describe('Campaign Signup', () => {
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();
 
-    // Visit the campaign pitch page:
+    // Visit the campaign landing page:
     cy.anonVisitCampaign(exampleCampaign);
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
     cy.contains(exampleBlurb);
-    cy.get('.pitch-landing-page').should('have.length', 1);
+    cy.get('[data-test=landing-page-content]').should('have.length', 1);
 
     // Mock the responses we'll be expecting once we hit "Join Now":
     cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
@@ -45,13 +45,13 @@ describe('Campaign Signup', () => {
   it('Create signup, as an authenticated user', () => {
     const user = userFactory();
 
-    // Log in & visit the campaign pitch page:
+    // Log in & visit the campaign landing page:
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
     cy.contains(exampleBlurb);
-    cy.get('.pitch-landing-page').should('have.length', 1);
+    cy.get('[data-test=landing-page-content]').should('have.length', 1);
 
     // Mock the response we'll be expecting once we hit "Join Now":
     cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
@@ -116,13 +116,13 @@ describe('Campaign Signup', () => {
   it('Visit with existing signup, as an authenticated user', () => {
     const user = userFactory();
 
-    // Log in & visit the campaign pitch page:
+    // Log in & visit the campaign landing page:
     cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
     cy.contains(exampleBlurb);
-    cy.get('.pitch-landing-page').should('not.exist');
+    cy.get('[data-test=landing-page-content]').should('not.exist');
 
     // We shouldn't see the "Join Now" button or affiramation modal,
     // since the user is already signed up for this campaign:
