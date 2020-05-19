@@ -83,7 +83,8 @@ const QuizResultPage = ({ id }) => {
               id={config.galleryBlockId}
               className="grid-full"
             />
-            <div className="grid-full flex justify-center py-3 md:py-6">
+
+            <div className="grid-full mx-auto py-3 md:py-6">
               <StartVoterRegistrationForm
                 contextSource="voter-registration-quiz-results-page"
                 sourceDetail={sourceDetail || `${sourceDetailPrefix}default`}
