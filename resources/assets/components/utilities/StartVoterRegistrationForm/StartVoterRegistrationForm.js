@@ -8,11 +8,15 @@ import {
 import Card from '../Card/Card';
 import PrimaryButton from '../Button/PrimaryButton';
 
-const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
+const StartVoterRegistrationForm = ({
+  campaignId,
+  referrerUserId,
+  sourceDetail,
+}) => {
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
 
-  const urlSourceDetails = `user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`;
+  const urlSourceDetails = `user:${referrerUserId},source:web,source_details:${sourceDetail},referral=true`;
   const isDisabled = !zip || !email;
 
   const handleChange = event => {
@@ -99,8 +103,14 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
 };
 
 StartVoterRegistrationForm.propTypes = {
-  campaignId: PropTypes.number.isRequired,
-  referrerUserId: PropTypes.string.isRequired,
+  campaignId: PropTypes.number,
+  referrerUserId: PropTypes.string,
+  sourceDetail: PropTypes.string.isRequired,
+};
+
+StartVoterRegistrationForm.defaultProps = {
+  campaignId: null,
+  referrerUserId: null,
 };
 
 export default StartVoterRegistrationForm;

@@ -109,6 +109,7 @@ const BetaVoterRegistrationDrivePage = () => {
               <StartVoterRegistrationForm
                 referrerUserId={referrerUserId}
                 campaignId={campaignId}
+                sourceDetail="onlinedrivereferral"
               />
             </div>
             <ContentfulEntryLoader

@@ -5,16 +5,17 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 
 import ErrorPage from '../ErrorPage';
-import { gqlVariables, placeholderContent } from './config';
 import NotFoundPage from '../NotFoundPage';
 import Placeholder from '../../utilities/Placeholder';
 import { isDevEnvironment, query } from '../../../helpers';
+import { gqlVariables, placeholderContent } from './config';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import ContentfulAsset from '../../utilities/ContentfulAsset/ContentfulAsset';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
+import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
 
 const QUIZ_RESULT_PAGE_QUERY = gql`
   query QuizResultPageQuery($id: String!) {
@@ -81,6 +82,9 @@ const QuizResultPage = ({ id }) => {
               id={config.galleryBlockId}
               className="grid-full"
             />
+            <div className="grid-full flex justify-center py-3 md:py-6">
+              <StartVoterRegistrationForm sourceDetail="onlinedrivereferral" />
+            </div>
           </div>
         </article>
       </main>
