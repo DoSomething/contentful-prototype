@@ -32,15 +32,4 @@
     width: auto;
     z-index: auto;
   }
-
-  .button {
-    display: block;
-    margin: 0 auto;
-    max-width: 450px;
-    padding: theme('spacing.6');
-
-    @include media($medium) {
-      margin: 0 auto theme('spacing.3');
-    }
-  }
 }
