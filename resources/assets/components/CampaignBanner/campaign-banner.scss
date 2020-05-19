@@ -1,36 +1,6 @@
 @import '../../scss/next-toolbox.scss';
 
 .hero-landing-page {
-  .hero-banner {
-    margin-bottom: theme('spacing.3');
-    grid-column: full-start / full-end;
-
-    @include media($large) {
-      grid-column: wide-start / wide-end;
-    }
-
-    @include media($largest) {
-      grid-column: wide-start / span 7;
-    }
-  }
-
-  .hero-banner__headline-title {
-    text-transform: uppercase;
-    font-size: $font-large;
-    color: theme('colors.blurple.700');
-  }
-
-  .hero-banner__headline-subtitle {
-    text-transform: uppercase;
-    font-size: theme('fontSize.3xl');
-    font-family: theme('fontFamily.league-gothic');
-    font-weight: $weight-normal;
-
-    @include media($medium) {
-      font-size: theme('fontSize.4xl');
-    }
-  }
-
   .primary {
     margin-bottom: theme('spacing.6');
   }
