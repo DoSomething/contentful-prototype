@@ -53,110 +53,104 @@ const CampaignBanner = ({
 
   return (
     <>
-      {/*
-        @TODO: hero-landing-page class was added to help differentiate styling from mosaic template.
-        Should eventually be removed and use Tailwind. This will also help clean up the element hierarchy.
-      */}
-      <div className="hero-landing-page">
-        <CoverImage coverImage={coverImage} />
-        <div className="clearfix bg-gray-100">
-          <div className="base-12-grid py-3 md:py-6">
-            <HeroBanner title={title} subtitle={subtitle} />
+      <CoverImage coverImage={coverImage} />
+      <div className="clearfix bg-gray-100">
+        <div className="base-12-grid py-3 md:py-6">
+          <HeroBanner title={title} subtitle={subtitle} />
 
-            <div className="grid-wide-7/10 mb-6">
-              <TextContent>{content}</TextContent>
-              {affiliateSponsors.length ? (
-                <AffiliatePromotion
-                  className="mt-3"
-                  imgUrl={affiliateSponsors[0].fields.logo.url}
-                  text={affiliateCreditText}
-                  textClassName="text-gray-600"
-                  title={affiliateSponsors[0].fields.logo.title}
-                />
-              ) : null}
-            </div>
-
-            <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
-              {!isAffiliated ? (
-                <div
-                  className="bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:p-0 fixed md:static w-full md:w-auto z-10 md:z-auto"
-                  css={css`
-                    border-top: 1px solid tailwind('colors.gray.200');
-
-                    @media (min-width: ${tailwind('screens.medium')}) {
-                      background-color: none;
-                    }
-                  `}
-                >
-                  <SignupButtonContainer
-                    className="block md:mb-3 p-6 text-lg w-full"
-                    text={
-                      isScholarshipAffiliateReferral()
-                        ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
-                        : undefined
-                    }
-                    contextSource="campaign_landing_page"
-                  />
-                  {affiliateOptInContent ? (
-                    <AffiliateOptInToggleContainer
-                      affiliateOptInContent={affiliateOptInContent}
-                    />
-                  ) : null}
-                </div>
-              ) : null}
-
-              <CampaignInfoBlock
-                campaignId={numCampaignId}
-                scholarshipAmount={scholarshipAmount}
-                scholarshipDeadline={scholarshipDeadline}
-                showModal={() => setShowScholarshipModal(true)}
-                actionIdToDisplay={actionIdToDisplay}
+          <div className="grid-wide-7/10 mb-6">
+            <TextContent>{content}</TextContent>
+            {affiliateSponsors.length ? (
+              <AffiliatePromotion
+                className="mt-3"
+                imgUrl={affiliateSponsors[0].fields.logo.url}
+                text={affiliateCreditText}
+                textClassName="text-gray-600"
+                title={affiliateSponsors[0].fields.logo.title}
               />
-            </div>
+            ) : null}
           </div>
-        </div>
 
-        {(showReferralScholarshipModal && !isAffiliated) ||
-        showScholarshipModal ? (
-          <Modal
-            className="-inverted -scholarship__info"
-            onClose={() => {
-              setShowScholarshipModal(false);
-              setShowReferralScholarshipModal(false);
-            }}
-            trackingId="SCHOLARSHIP_MODAL"
-          >
-            <ScholarshipInfoBlock
-              actionIdToDisplay={actionIdToDisplay}
-              affiliateSponsors={affiliateSponsors}
-              attributes={{
-                'data-test': 'campaign-info-block-scholarship-details',
-              }}
+          <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
+            {!isAffiliated ? (
+              <div
+                className="bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:p-0 fixed md:static w-full md:w-auto z-10 md:z-auto"
+                css={css`
+                  border-top: 1px solid tailwind('colors.gray.200');
+
+                  @media (min-width: ${tailwind('screens.medium')}) {
+                    background-color: none;
+                  }
+                `}
+              >
+                <SignupButtonContainer
+                  className="block md:mb-3 p-6 text-lg w-full"
+                  text={
+                    isScholarshipAffiliateReferral()
+                      ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+                      : undefined
+                  }
+                  contextSource="campaign_landing_page"
+                />
+                {affiliateOptInContent ? (
+                  <AffiliateOptInToggleContainer
+                    affiliateOptInContent={affiliateOptInContent}
+                  />
+                ) : null}
+              </div>
+            ) : null}
+
+            <CampaignInfoBlock
               campaignId={numCampaignId}
               scholarshipAmount={scholarshipAmount}
-              scholarshipCallToAction={scholarshipCallToAction || undefined}
               scholarshipDeadline={scholarshipDeadline}
-              scholarshipDescription={scholarshipDescription}
-              numberOfScholarships={numberOfScholarships}
-              utmLabel={
-                scholarshipAffiliateLabel
-                  ? scholarshipAffiliateLabel.toLowerCase()
-                  : null
-              }
-            >
-              {!isAffiliated ? (
-                <div className="pt-6 w-2/3 sm:w-1/2">
-                  <SignupButtonContainer
-                    className="w-full md:px-2"
-                    text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
-                    contextSource="scholarship_modal"
-                  />
-                </div>
-              ) : null}
-            </ScholarshipInfoBlock>
-          </Modal>
-        ) : null}
+              showModal={() => setShowScholarshipModal(true)}
+              actionIdToDisplay={actionIdToDisplay}
+            />
+          </div>
+        </div>
       </div>
+
+      {(showReferralScholarshipModal && !isAffiliated) ||
+      showScholarshipModal ? (
+        <Modal
+          className="-inverted -scholarship__info"
+          onClose={() => {
+            setShowScholarshipModal(false);
+            setShowReferralScholarshipModal(false);
+          }}
+          trackingId="SCHOLARSHIP_MODAL"
+        >
+          <ScholarshipInfoBlock
+            actionIdToDisplay={actionIdToDisplay}
+            affiliateSponsors={affiliateSponsors}
+            attributes={{
+              'data-test': 'campaign-info-block-scholarship-details',
+            }}
+            campaignId={numCampaignId}
+            scholarshipAmount={scholarshipAmount}
+            scholarshipCallToAction={scholarshipCallToAction || undefined}
+            scholarshipDeadline={scholarshipDeadline}
+            scholarshipDescription={scholarshipDescription}
+            numberOfScholarships={numberOfScholarships}
+            utmLabel={
+              scholarshipAffiliateLabel
+                ? scholarshipAffiliateLabel.toLowerCase()
+                : null
+            }
+          >
+            {!isAffiliated ? (
+              <div className="pt-6 w-2/3 sm:w-1/2">
+                <SignupButtonContainer
+                  className="w-full md:px-2"
+                  text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
+                  contextSource="scholarship_modal"
+                />
+              </div>
+            ) : null}
+          </ScholarshipInfoBlock>
+        </Modal>
+      ) : null}
 
       {dashboard ? <ContentfulEntry json={dashboard} /> : null}
     </>

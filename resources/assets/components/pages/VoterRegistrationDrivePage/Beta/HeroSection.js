@@ -60,7 +60,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
   };
 
   return (
-    <div className="hero-landing-page">
+    <>
       <CoverImage
         attributes={{
           'data-test': 'beta-voter-registration-drive-page-cover-image',
@@ -104,7 +104,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
