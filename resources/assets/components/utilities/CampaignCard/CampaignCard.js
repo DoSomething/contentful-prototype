@@ -15,11 +15,11 @@ export const campaignCardFragment = gql`
     ... on CampaignWebsite {
       id
       staffPick
-      url
+      path
     }
     ... on StoryPageWebsite {
       id
-      url
+      path
     }
   }
 `;
@@ -30,7 +30,7 @@ const CampaignCard = ({ campaign }) => {
     showcaseImage,
     showcaseTitle,
     staffPick,
-    url,
+    path,
   } = campaign;
 
   const srcset = contentfulImageSrcset(showcaseImage.url, [
@@ -41,7 +41,7 @@ const CampaignCard = ({ campaign }) => {
 
   return (
     <article className="flex flex-col h-full relative text-left">
-      <a className="block" href={url}>
+      <a className="block" href={path}>
         <img
           alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
           srcSet={srcset}
@@ -57,7 +57,7 @@ const CampaignCard = ({ campaign }) => {
         ) : null}
 
         <h1 className="font-bold mb-2 text-base">
-          <a className="text-blurple-500 hover:text-blurple-300" href={url}>
+          <a className="text-blurple-500 hover:text-blurple-300" href={path}>
             {showcaseTitle}
           </a>
         </h1>
@@ -66,7 +66,7 @@ const CampaignCard = ({ campaign }) => {
 
         <SecondaryButton
           className="mt-4 w-full"
-          href={url}
+          href={path}
           text="Get Started"
         />
       </div>

@@ -20,17 +20,17 @@ export const campaignCardFeaturedFragment = gql`
     ... on CampaignWebsite {
       id
       staffPick
-      url
+      path
     }
     ... on StoryPageWebsite {
       id
-      url
+      path
     }
   }
 `;
 
 const CampaignCardFeatured = ({ campaign }) => {
-  const { showcaseDescription, showcaseImage, showcaseTitle, url } = campaign;
+  const { showcaseDescription, showcaseImage, showcaseTitle, path } = campaign;
 
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
@@ -65,7 +65,7 @@ const CampaignCardFeatured = ({ campaign }) => {
           }
         `}
       >
-        <a className="block" href={url}>
+        <a className="block" href={path}>
           <img
             alt={
               showcaseImage.description || `Cover photo for ${showcaseTitle}`
@@ -90,7 +90,7 @@ const CampaignCardFeatured = ({ campaign }) => {
 
         <PrimaryButton
           className="mt-4 xxl:mt-8 p-4 xxl:px-8 text-lg w-full xxl:w-auto"
-          href={url}
+          href={path}
           text="Get Started"
         />
       </div>
