@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { get } from 'lodash';
 
 import SignupButton from './SignupButton';
 import { storeCampaignSignup } from '../../actions/signup';
@@ -14,7 +13,6 @@ const mapStateToProps = state => ({
   campaignTitle: state.campaign.title,
   endDate: state.campaign.endDate,
   pageId: state.campaign.id || state.page.id,
-  disableSignup: get(state.campaign, 'additionalContent.disableSignup', false),
 });
 
 /**

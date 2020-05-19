@@ -14,7 +14,6 @@ const SignupButton = props => {
     campaignTitle,
     className,
     contextSource,
-    disableSignup,
     endDate,
     pageId,
     storeCampaignSignup,
@@ -56,11 +55,6 @@ const SignupButton = props => {
     });
   };
 
-  // Have signups been disabled for this campaign?
-  if (disableSignup) {
-    return null;
-  }
-
   // In descending priority: button-specific text prop,
   // campaign action text override, or standard "Take Action" copy.
   const buttonCopy = text || campaignActionText;
@@ -81,7 +75,6 @@ SignupButton.propTypes = {
   campaignTitle: PropTypes.string,
   className: PropTypes.string,
   contextSource: PropTypes.string,
-  disableSignup: PropTypes.bool,
   endDate: PropTypes.string,
   pageId: PropTypes.string.isRequired,
   storeCampaignSignup: PropTypes.func.isRequired,
@@ -94,7 +87,6 @@ SignupButton.defaultProps = {
   campaignTitle: null,
   className: null,
   contextSource: null,
-  disableSignup: false,
   endDate: null,
   text: null,
 };

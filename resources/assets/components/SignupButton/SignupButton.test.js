@@ -18,12 +18,6 @@ describe('The SignupButton component', () => {
     expect(wrapper.find('PrimaryButton')).toHaveLength(1);
   });
 
-  it("doesn't render the Button if the signup is disabled", () => {
-    const wrapper = mount(<SignupButton {...props} disableSignup />);
-
-    expect(wrapper.find('PrimaryButton')).toHaveLength(0);
-  });
-
   it('invokes the storeCampaignSignup function when the button is clicked', () => {
     const wrapper = mount(<SignupButton {...props} />);
 
