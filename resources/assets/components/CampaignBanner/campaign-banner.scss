@@ -2,8 +2,6 @@
 
 .hero-landing-page {
   .secondary {
-    margin-bottom: theme('spacing.6');
-
     @include media($largest) {
       // @TODO: if primary content is short and this only spans 2, then grid rows are spread
       // to reach bottom of this secondary area, and the content is spread out vertically.
