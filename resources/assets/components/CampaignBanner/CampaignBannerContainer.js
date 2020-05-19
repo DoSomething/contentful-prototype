@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import { connect } from 'react-redux';
 
-import LedeBanner from './LedeBanner';
+import CampaignBanner from './CampaignBanner';
 import { isSignedUp } from '../../selectors/signup';
 
 /**
@@ -40,4 +40,4 @@ const mapStateToProps = (state, props) => ({
 });
 
 // Export the container component.
-export default connect(mapStateToProps)(LedeBanner);
+export default connect(mapStateToProps)(CampaignBanner);

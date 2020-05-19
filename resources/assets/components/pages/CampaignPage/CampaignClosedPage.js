@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import CampaignBannerContainer from '../../CampaignBanner/CampaignBannerContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 import { getHumanFriendlyDate } from '../../../helpers';
 
@@ -11,7 +11,7 @@ const CampaignClosedPage = props => {
   return (
     <>
       <article className="campaign-closed-page pb-6">
-        <LedeBannerContainer />
+        <CampaignBannerContainer />
 
         <div className="md:w-3/4 mx-auto my-6 px-3">
           <h1>Great work!</h1>

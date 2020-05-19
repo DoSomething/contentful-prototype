@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
-import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import CampaignBannerContainer from '../../CampaignBanner/CampaignBannerContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
@@ -14,7 +14,7 @@ const CampaignPage = props => {
   return (
     <>
       <article className="campaign-page bg-white">
-        <LedeBannerContainer />
+        <CampaignBannerContainer />
 
         <div className="clearfix relative">
           {quizEntry ? (
