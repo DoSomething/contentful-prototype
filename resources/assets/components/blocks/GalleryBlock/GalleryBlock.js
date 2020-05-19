@@ -14,6 +14,7 @@ import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalle
 export const GalleryBlockFragment = gql`
   fragment GalleryBlockFragment on GalleryBlock {
     title
+    # galleryType
     imageAlignment
     imageFit
     itemsPerRow
@@ -46,15 +47,17 @@ export const GalleryBlockFragment = gql`
 const renderBlock = (blockType, block, imageAlignment, imageFit) => {
   // @TODO: Update the old PHP typing and swap out with prop version.
 
+  // PERSON SCHOLARSHIP
+
   // GraphQL ('Showcasable' interface) and Phoenix-backend (legacy) queried blocks.
   const fields = withoutNulls(block);
 
   switch (blockType) {
-    case 'person':
+    case 'PERSON':
     case 'PersonBlock':
       return <Person key={block.id} {...fields} />;
 
-    case 'campaign':
+    case 'CAMPAIGN':
     case 'CampaignWebsite':
       // @TODO: Replace with Campaign Card
       return (
@@ -67,10 +70,10 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
         />
       );
 
-    case 'scholarship':
+    case 'SCHOLARSHIP':
       return <ScholarshipCard key={block.id} campaign={block} />;
 
-    case 'page':
+    case 'PAGE':
     case 'Page':
       // @TODO: Replace with Page Card
       return (
@@ -102,7 +105,7 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
   }
 };
 
-const galleryTypes = {
+const galleryLayouts = {
   '2': 'duo',
   '3': 'triad',
   '4': 'quartet',
@@ -112,25 +115,25 @@ const galleryTypes = {
 const GalleryBlock = props => {
   const {
     title,
-    blockType,
+    galleryType,
     blocks,
     itemsPerRow,
     imageAlignment,
     imageFit,
   } = props;
 
-  const galleryType = galleryTypes[itemsPerRow];
+  const galleryLayout = galleryLayouts[itemsPerRow];
 
   return (
     <div className="gallery-block">
       {title ? <SectionHeader underlined title={title} /> : null}
 
-      <Gallery type={galleryType} className="-mx-3 mt-3">
+      <Gallery type={galleryLayout} className="-mx-3 mt-3">
         {blocks.map(block =>
           renderBlock(
             // @TODO: Remove the block.__typename hack after we are able to
             // properly source blockType from the entry
-            blockType || block.__typename,
+            galleryType || block.__typename,
             block,
             imageAlignment.toLowerCase(),
             imageFit.toLowerCase(),
@@ -143,7 +146,13 @@ const GalleryBlock = props => {
 
 GalleryBlock.propTypes = {
   title: PropTypes.string,
-  blockType: PropTypes.string,
+  galleryType: PropTypes.oneOf([
+    'PERSON',
+    'CAMPAIGN',
+    'SCHOLARSHIP',
+    'PAGE',
+    'EXTERNAL_LINK',
+  ]),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
   imageAlignment: PropTypes.oneOf(['TOP', 'LEFT']).isRequired,
@@ -153,7 +162,7 @@ GalleryBlock.propTypes = {
 GalleryBlock.defaultProps = {
   title: null,
   imageFit: 'FILL',
-  blockType: 'scholarship',
+  galleryType: null,
 };
 
 export default GalleryBlock;
