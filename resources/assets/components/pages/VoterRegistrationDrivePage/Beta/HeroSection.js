@@ -93,7 +93,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
           </div>
           <div
             data-test="beta-voter-registration-drive-page-campaign-info-block"
-            className="grid-wide-3/10 mb-6 secondary"
+            className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3"
           >
             <CampaignInfoBlock
               campaignId={campaignId}

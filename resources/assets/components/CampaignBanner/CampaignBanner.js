@@ -19,8 +19,6 @@ import {
   tailwind,
 } from '../../helpers';
 
-import './campaign-banner.scss';
-
 const CampaignBanner = ({
   actionIdToDisplay,
   affiliateCreditText,
@@ -78,7 +76,7 @@ const CampaignBanner = ({
               ) : null}
             </div>
 
-            <div className="grid-wide-3/10 mb-6 secondary">
+            <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
               {!isAffiliated ? (
                 <div
                   className="bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:p-0 fixed md:static w-full md:w-auto z-10 md:z-auto"
