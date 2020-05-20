@@ -105,7 +105,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
       'have.length',
       1,
     );
-    cy.findByTestId('hero-banner-subtitle').contains(
+    cy.findByTestId('campaign-header-subtitle').contains(
       `${user.firstName} wants you to register to vote!`,
     );
   });

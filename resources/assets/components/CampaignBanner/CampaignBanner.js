@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
-import HeroBanner from '../utilities/HeroBanner';
+import CampaignHeader from '../utilities/CampaignHeader';
 import CoverImage from '../utilities/CoverImage/CoverImage';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
@@ -56,7 +56,7 @@ const CampaignBanner = ({
       <CoverImage coverImage={coverImage} />
       <div className="clearfix bg-gray-100">
         <div className="base-12-grid py-3 md:py-6">
-          <HeroBanner title={title} subtitle={subtitle} />
+          <CampaignHeader title={title} subtitle={subtitle} />
 
           <div
             data-testid="campaign-banner-primary-content"
@@ -132,7 +132,7 @@ const CampaignBanner = ({
             actionIdToDisplay={actionIdToDisplay}
             affiliateSponsors={affiliateSponsors}
             attributes={{
-              'data-test': 'campaign-info-block-scholarship-details',
+              'data-testid': 'campaign-info-block-scholarship-details',
             }}
             campaignId={numCampaignId}
             scholarshipAmount={scholarshipAmount}
