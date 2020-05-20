@@ -2,6 +2,8 @@
 
 import faker from 'faker';
 
+import { userFactory } from '../fixtures/user';
+
 const quizResultId = '347iYsbykgQe6KqeGceMUk';
 
 /**
@@ -63,7 +65,7 @@ describe('Quiz Result Page', () => {
   });
 
   /** @test */
-  it('Sets up the correct source details for the RTV redirect URL', () => {
+  it('Sets up the correct source details for the RTV redirect URL for an unauthenticated user', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
     });
@@ -74,6 +76,24 @@ describe('Quiz Result Page', () => {
     cy.findByTestId('voter-registration-source-details').should(
       'have.value',
       'r=source:web,source_details:VoterRegQuiz_completed_default',
+    );
+  });
+
+  /** @test */
+  it('Sets up the correct source details for the RTV redirect URL for an authenticated user', () => {
+    cy.mockGraphqlOp('QuizResultPageQuery', {
+      block: linkBlock,
+    });
+
+    const user = userFactory();
+
+    // Log in & visit the campaign pitch page:
+    cy.login(user).visit(getQuizResultPath(quizResultId));
+
+    cy.findByTestId('quiz-result-page').should('have.length', 1);
+    cy.findByTestId('voter-registration-source-details').should(
+      'have.value',
+      `r=user:${user.id},source:web,source_details:VoterRegQuiz_completed_default`,
     );
   });
 });

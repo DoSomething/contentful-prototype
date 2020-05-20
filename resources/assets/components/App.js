@@ -17,7 +17,6 @@ import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import {
-  appendToQuery,
   env,
   featureFlag,
   getVoterRegistrationTrackingSource,
@@ -38,10 +37,6 @@ import BetaVoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/B
 
 const App = ({ store, history }) => {
   initializeStore(store);
-  console.log(
-    'is the trackingsource getting written correctly',
-    getVoterRegistrationTrackingSource('hellobar'),
-  );
   return (
     <ReduxProvider store={store}>
       <ErrorBoundary FallbackComponent={ErrorPage}>
