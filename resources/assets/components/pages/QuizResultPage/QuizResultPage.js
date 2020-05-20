@@ -4,11 +4,12 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 
+import triangle from './triangle.svg';
 import ErrorPage from '../ErrorPage';
-import { gqlVariables, placeholderContent } from './config';
 import NotFoundPage from '../NotFoundPage';
 import Placeholder from '../../utilities/Placeholder';
 import { isDevEnvironment, query } from '../../../helpers';
+import { gqlVariables, placeholderContent } from './config';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
@@ -64,17 +65,22 @@ const QuizResultPage = ({ id }) => {
             role="banner"
             className="base-12-grid py-3 md:py-6 bg-blurple-500"
           >
-            <div className="my-6 grid-full">
-              <h1 className="my-3 font-normal font-league-gothic color-white uppercase">
-                {linkBlockTitle}
-              </h1>
-              {assetId ? (
-                <ContentfulAsset id={assetId} width={400} height={300} />
-              ) : null}
-              <TextContent className="grid-full text-white">
-                {content}
-              </TextContent>
+            <div className="flex my-6 grid-full mx-auto p-8">
+              <div>
+                {assetId ? (
+                  <ContentfulAsset id={assetId} width={400} height={300} />
+                ) : null}
+              </div>
+              <div>
+                <h1 className="grid-wide clearfix wrapper pb-3 .border-b-4 bg-yellow-400">
+                  {linkBlockTitle}
+                </h1>
+                <TextContent className="mr-4 grid-full text-white">
+                  {content}
+                </TextContent>
+              </div>
             </div>
+            <img className="content-center" src={triangle} alt="triangle" />
           </header>
           <div className="bg-white base-12-grid py-3 md:py-6">
             <ContentfulEntryLoader
