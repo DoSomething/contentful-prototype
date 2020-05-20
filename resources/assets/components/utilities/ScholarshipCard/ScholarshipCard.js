@@ -51,7 +51,7 @@ const ScholarshipCard = ({ campaign }) => {
 
   return (
     <article className="flex flex-col h-full relative text-left">
-      <a className="block" href={url}>
+      <a className="block cursor-pointer" href={url}>
         <img
           alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
           srcSet={srcset}
@@ -67,7 +67,10 @@ const ScholarshipCard = ({ campaign }) => {
         ) : null}
 
         <h1 className="font-bold mb-2 text-base">
-          <a className="text-blurple-500 hover:text-blurple-300" href={url}>
+          <a
+            className="text-blurple-500 hover:text-blurple-300 cursor-pointer"
+            href={url}
+          >
             {showcaseTitle}
           </a>
         </h1>
