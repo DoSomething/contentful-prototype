@@ -67,6 +67,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
         }}
         coverImage={coverImage}
       />
+
       <div className="clearfix bg-gray-100">
         <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
           <CampaignHeader
@@ -81,16 +82,19 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
                 the causes that matter to us{formatQuote()}. Take 2 minutes and
                 register to vote today!
               </p>
+
               <p data-test="beta-voter-registration-drive-page-quote-byline">
                 - {firstName}
               </p>
             </blockquote>
+
             <p data-test="beta-voter-registration-drive-page-blurb">
               150,000+ young people have registered to vote via DoSomething.
               After you register, share with your friends to enter to win a $
               {`${scholarshipAmount.toLocaleString()}`} scholarship!
             </p>
           </div>
+
           <div
             data-test="beta-voter-registration-drive-page-campaign-info-block"
             className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3"
