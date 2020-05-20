@@ -64,6 +64,7 @@ const CampaignBanner = ({
             className="grid-wide-7/10 mb-6"
           >
             <TextContent>{content}</TextContent>
+
             {affiliateSponsors.length ? (
               <AffiliatePromotion
                 className="mt-3"
