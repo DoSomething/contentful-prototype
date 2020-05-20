@@ -55,12 +55,9 @@ const App = ({ store, history }) => {
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}
               handleComplete={handleComplete}
-              link={
-                appendToQuery(
-                  getVoterRegistrationTrackingSource('hellobar'),
-                  'https://vote.dosomething.org/',
-                ).href
-              }
+              link={`https://vote.dosomething.org/?${getVoterRegistrationTrackingSource(
+                'hellobar',
+              )}`}
             />
           )}
         />
