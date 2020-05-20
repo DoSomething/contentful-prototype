@@ -6,6 +6,11 @@ import { ApolloProvider } from '@apollo/react-common';
 import { Provider as ReduxProvider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 
+import {
+  env,
+  featureFlag,
+  getVoterRegistrationTrackingSource,
+} from '../helpers';
 import graphqlClient from '../graphql';
 import ErrorPage from './pages/ErrorPage';
 import { initializeStore } from '../store/store';
@@ -16,11 +21,6 @@ import CausePage from './pages/CausePage/CausePage';
 import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
-import {
-  env,
-  featureFlag,
-  getVoterRegistrationTrackingSource,
-} from '../helpers';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
