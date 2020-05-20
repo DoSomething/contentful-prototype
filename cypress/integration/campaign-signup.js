@@ -17,6 +17,7 @@ describe('Campaign Signup', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
 
+  /** @test */
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();
 
@@ -43,6 +44,7 @@ describe('Campaign Signup', () => {
     cy.get('.card.affirmation').should('not.exist');
   });
 
+  /** @test */
   it('Create signup, as an authenticated user', () => {
     const user = userFactory();
 
@@ -66,6 +68,7 @@ describe('Campaign Signup', () => {
   });
 
   context('Campaign ID configured as referral campaign', () => {
+    /** @test */
     it('Display Referral Page Banner CTA in affirmation for configured campaign & feature flagged user', () => {
       const user = userFactory();
 
@@ -91,6 +94,7 @@ describe('Campaign Signup', () => {
   });
 
   context('Campaign ID not configured as referral campaign', () => {
+    /** @test */
     it("Doesn't display Referral Page Banner CTA in affirmation for non configured campaign", () => {
       const user = userFactory();
 
@@ -115,6 +119,7 @@ describe('Campaign Signup', () => {
     });
   });
 
+  /** @test */
   it('Visit with existing signup, as an authenticated user', () => {
     const user = userFactory();
 

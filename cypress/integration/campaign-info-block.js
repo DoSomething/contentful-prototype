@@ -32,6 +32,7 @@ describe('Campaign Info Block', () => {
 
   beforeEach(() => cy.configureMocks());
 
+  /** @test */
   it('Displays the reportback & scholarship action data', () => {
     cy.mockGraphqlOp('CampaignInfoQuery', {
       campaign: (root, { campaignId }) => ({
@@ -53,6 +54,7 @@ describe('Campaign Info Block', () => {
     });
   });
 
+  /** @test */
   it('defaults to the first reportback action if there is no scholarship', () => {
     cy.mockGraphqlOp('CampaignInfoQuery', {
       campaign: (root, { campaignId }) => ({
@@ -69,6 +71,7 @@ describe('Campaign Info Block', () => {
     });
   });
 
+  /** @test */
   it('Displays a Scholarship Amount if there is one for the campaign', () => {
     cy.mockGraphqlOp('CampaignInfoQuery', {
       campaign: (root, { campaignId }) => ({
@@ -86,6 +89,7 @@ describe('Campaign Info Block', () => {
   });
 
   describe('Displays the Volunteer Credit value', () => {
+    /** @test */
     it('Displays Yes when the action earns volunteer credit', () => {
       cy.mockGraphqlOp('CampaignInfoQuery', {
         campaign: (root, { campaignId }) => ({
@@ -110,6 +114,7 @@ describe('Campaign Info Block', () => {
       });
     });
 
+    /** @test */
     it('Displays No when the action does not earn volunteer credit', () => {
       cy.mockGraphqlOp('CampaignInfoQuery', {
         campaign: (root, { campaignId }) => ({
@@ -135,6 +140,7 @@ describe('Campaign Info Block', () => {
     });
   });
 
+  /** @test */
   it('Opens the scholarship modal when "View Scholarship Details" is clicked, and closes it when the X button is clicked.', () => {
     cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
 
