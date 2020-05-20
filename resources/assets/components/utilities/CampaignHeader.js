@@ -12,6 +12,7 @@ const CampaignHeader = ({ title, subtitle }) => (
     >
       {title}
     </h1>
+
     <h2
       data-testid="campaign-header-subtitle"
       className="uppercase text-3xl md:text-4xl font-league-gothic font-normal"
