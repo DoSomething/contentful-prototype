@@ -1036,18 +1036,18 @@ export function getMillisecondsFromDays(days) {
  *
  * @param {String} referrerUserId
  * @param {String} sourceDetails
- * @param {String} userId
  */
 
 export function getVoterRegistrationTrackingSource(
   sourceDetails,
   referrerUserId = '',
-  userId = '',
 ) {
+  const userId = window.AUTH.id ? `${window.AUTH.id}` : '';
+
   if (referrerUserId || userId) {
     return referrerUserId
       ? `r=user:${referrerUserId},source:web,source_details:${sourceDetails},referral=true`
-      : `r=user:${referrerUserId},source:web,source_details:${sourceDetails}`;
+      : `r=user:${userId},source:web,source_details:${sourceDetails}`;
   }
 
   return `r=source:web,source_details:${sourceDetails}`;

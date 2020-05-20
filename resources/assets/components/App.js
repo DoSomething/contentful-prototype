@@ -16,7 +16,12 @@ import CausePage from './pages/CausePage/CausePage';
 import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
-import { env, featureFlag, buildVoterRegUrl } from '../helpers';
+import {
+  appendToQuery,
+  env,
+  featureFlag,
+  getVoterRegistrationTrackingSource,
+} from '../helpers';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
@@ -33,7 +38,10 @@ import BetaVoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/B
 
 const App = ({ store, history }) => {
   initializeStore(store);
-
+  console.log(
+    'is the trackingsource getting written correctly',
+    getVoterRegistrationTrackingSource('hellobar'),
+  );
   return (
     <ReduxProvider store={store}>
       <ErrorBoundary FallbackComponent={ErrorPage}>
@@ -47,7 +55,12 @@ const App = ({ store, history }) => {
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}
               handleComplete={handleComplete}
-              link={buildVoterRegUrl('web', 'hellobar')}
+              link={
+                appendToQuery(
+                  getVoterRegistrationTrackingSource('hellobar'),
+                  'https://vote.dosomething.org/',
+                ).href
+              }
             />
           )}
         />

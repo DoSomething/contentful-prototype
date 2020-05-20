@@ -25,6 +25,7 @@ const SitewideBannerContent = ({
       context: { contextSource: 'voter_registration' },
     });
   };
+  console.log('what is the link', link);
   return (
     <div
       className="w-full md:flex md:justify-center bg-yellow-500 p-8 pb-4 md:pt-4 sm:px-10 z-50"
