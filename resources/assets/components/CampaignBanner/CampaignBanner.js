@@ -101,6 +101,7 @@ const CampaignBanner = ({
                   }
                   contextSource="campaign_landing_page"
                 />
+
                 {affiliateOptInContent ? (
                   <AffiliateOptInToggleContainer
                     affiliateOptInContent={affiliateOptInContent}
