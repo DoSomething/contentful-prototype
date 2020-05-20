@@ -1052,19 +1052,3 @@ export function getVoterRegistrationTrackingSource(
 
   return `r=source:web,source_details:${sourceDetails}`;
 }
-
-/**
- * Build URL with UTMs for Voter Registration Content
- *
- * keeping this around although we aren't using it at the moment so that we can
- *
- * @param {String} source
- * @param {String} sourceDetails
- */
-
-export function buildVoterRegUrl(source = 'web', sourceDetails) {
-  const baseUrl = 'https://vote.dosomething.org/';
-  const userId = window.AUTH.id ? `user:${window.AUTH.id},` : '';
-
-  return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails}`;
-}
