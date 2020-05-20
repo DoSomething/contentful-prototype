@@ -14,7 +14,7 @@ import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalle
 export const GalleryBlockFragment = gql`
   fragment GalleryBlockFragment on GalleryBlock {
     title
-    # galleryType
+    galleryType
     imageAlignment
     imageFit
     itemsPerRow
@@ -45,10 +45,6 @@ export const GalleryBlockFragment = gql`
 `;
 
 const renderBlock = (blockType, block, imageAlignment, imageFit) => {
-  // @TODO: Update the old PHP typing and swap out with prop version.
-
-  // PERSON SCHOLARSHIP
-
   // GraphQL ('Showcasable' interface) and Phoenix-backend (legacy) queried blocks.
   const fields = withoutNulls(block);
 
