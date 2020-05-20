@@ -86,7 +86,7 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
         />
       );
 
-    case 'contentBlock':
+    case 'EXTERNAL_LINK':
     case 'ContentBlock':
       return (
         <ContentBlockGalleryItem
