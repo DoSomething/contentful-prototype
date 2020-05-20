@@ -129,7 +129,7 @@ describe('Campaign Signup', () => {
 
     // We shouldn't see the "Join Now" button or affiramation modal,
     // since the user is already signed up for this campaign:
-    cy.get('mosaic-lede-banner__signup').should('not.exist');
+    cy.findByTestId('campaign-banner-signup-button').should('not.exist');
     cy.get('.card.affirmation').should('not.exist');
   });
 });
