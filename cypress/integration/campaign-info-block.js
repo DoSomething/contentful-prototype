@@ -46,7 +46,7 @@ describe('Campaign Info Block', () => {
       }),
     });
 
-    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
+    cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('campaign-info-block-container').within(() => {
       cy.contains('Sign a Petition');
@@ -63,7 +63,7 @@ describe('Campaign Info Block', () => {
       }),
     });
 
-    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
+    cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('campaign-info-block-container').within(() => {
       cy.contains('Share Something');
@@ -80,7 +80,7 @@ describe('Campaign Info Block', () => {
       }),
     });
 
-    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
+    cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('campaign-info-block-container').within(() => {
       cy.contains('$5,000');
@@ -103,9 +103,9 @@ describe('Campaign Info Block', () => {
         }),
       });
 
-      cy.withFeatureFlags({ volunteer_credits: true })
-        .withState(exampleCampaign)
-        .visit('/us/campaigns/test-example-campaign');
+      cy.withFeatureFlags({ volunteer_credits: true }).anonVisitCampaign(
+        exampleCampaign,
+      );
 
       cy.findByTestId('campaign-info-block-container').within(() => {
         cy.contains('Volunteer Credit');
@@ -128,9 +128,9 @@ describe('Campaign Info Block', () => {
         }),
       });
 
-      cy.withFeatureFlags({ volunteer_credits: true })
-        .withState(exampleCampaign)
-        .visit('/us/campaigns/test-example-campaign');
+      cy.withFeatureFlags({ volunteer_credits: true }).anonVisitCampaign(
+        exampleCampaign,
+      );
 
       cy.findByTestId('campaign-info-block-container').within(() => {
         cy.contains('Volunteer Credit');
@@ -142,7 +142,7 @@ describe('Campaign Info Block', () => {
 
   /** @test */
   it('Opens the scholarship modal when "View Scholarship Details" is clicked, and closes it when the X button is clicked.', () => {
-    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
+    cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('campaign-info-block-container').within(() => {
       cy.contains('button', 'View Scholarship Details').click();
