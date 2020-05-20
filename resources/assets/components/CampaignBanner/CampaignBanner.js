@@ -54,6 +54,7 @@ const CampaignBanner = ({
   return (
     <>
       <CoverImage coverImage={coverImage} />
+
       <div className="clearfix bg-gray-100">
         <div className="base-12-grid py-3 md:py-6">
           <CampaignHeader title={title} subtitle={subtitle} />
