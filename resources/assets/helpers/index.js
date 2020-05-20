@@ -1032,6 +1032,28 @@ export function getMillisecondsFromDays(days) {
 }
 
 /**
+ * Build UTMs for Voter Registration URLs
+ *
+ * @param {String} referrerUserId
+ * @param {String} sourceDetails
+ * @param {String} userId
+ */
+
+export function getVoterRegistrationTrackingSource(
+  sourceDetails,
+  referrerUserId = '',
+  userId = '',
+) {
+  if (referrerUserId || userId) {
+    return referrerUserId
+      ? `r=user:${referrerUserId},source:web,source_details:${sourceDetails},referral=true`
+      : `r=user:${referrerUserId},source:web,source_details:${sourceDetails}`;
+  }
+
+  return `r=source:web,source_details:${sourceDetails}`;
+}
+
+/**
  * Build URL with UTMs for Voter Registration Content
  *
  * @param {String} source
