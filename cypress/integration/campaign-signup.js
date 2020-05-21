@@ -137,4 +137,17 @@ describe('Campaign Signup', () => {
     cy.findByTestId('campaign-banner-signup-button').should('not.exist');
     cy.get('.card.affirmation').should('not.exist');
   });
+
+  /** @test */
+  it('Visits a campaign page from scholarship partner, as an unauthenticated user', () => {
+    //Visit the campaign pitch page
+    cy.withState(exampleCampaign).visit(
+      '/us/campaigns/test-example-campaign?utm_campaign=fastweb&utm_source=scholarship',
+    );
+    //We should see the Apply Now button in the modal
+    cy.findByTestId('campaign-info-block-scholarship-details').contains(
+      'button',
+      'Apply Now',
+    );
+  });
 });
