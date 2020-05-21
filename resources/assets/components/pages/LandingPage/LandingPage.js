@@ -27,7 +27,7 @@ const LandingPage = ({ content }) => (
 
     {content ? (
       <div
-        data-test="landing-page-content"
+        data-testid="landing-page-content"
         className="bg-white base-12-grid py-6"
       >
         <div

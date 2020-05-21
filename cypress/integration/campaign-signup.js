@@ -17,6 +17,7 @@ describe('Campaign Signup', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
 
+  /** @test */
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();
 
@@ -26,7 +27,8 @@ describe('Campaign Signup', () => {
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
     cy.contains(exampleBlurb);
-    cy.get('[data-test=landing-page-content]').should('have.length', 1);
+    cy.findByTestId('campaign-info-block-container').should('have.length', 1);
+    cy.findByTestId('landing-page-content').should('have.length', 1);
 
     // Mock the responses we'll be expecting once we hit "Join Now":
     cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
@@ -42,6 +44,7 @@ describe('Campaign Signup', () => {
     cy.get('.card.affirmation').should('not.exist');
   });
 
+  /** @test */
   it('Create signup, as an authenticated user', () => {
     const user = userFactory();
 
@@ -51,7 +54,8 @@ describe('Campaign Signup', () => {
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
     cy.contains(exampleBlurb);
-    cy.get('[data-test=landing-page-content]').should('have.length', 1);
+    cy.findByTestId('campaign-info-block-container').should('have.length', 1);
+    cy.findByTestId('landing-page-content').should('have.length', 1);
 
     // Mock the response we'll be expecting once we hit "Join Now":
     cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
@@ -64,6 +68,7 @@ describe('Campaign Signup', () => {
   });
 
   context('Campaign ID configured as referral campaign', () => {
+    /** @test */
     it('Display Referral Page Banner CTA in affirmation for configured campaign & feature flagged user', () => {
       const user = userFactory();
 
@@ -89,6 +94,7 @@ describe('Campaign Signup', () => {
   });
 
   context('Campaign ID not configured as referral campaign', () => {
+    /** @test */
     it("Doesn't display Referral Page Banner CTA in affirmation for non configured campaign", () => {
       const user = userFactory();
 
@@ -113,6 +119,7 @@ describe('Campaign Signup', () => {
     });
   });
 
+  /** @test */
   it('Visit with existing signup, as an authenticated user', () => {
     const user = userFactory();
 
@@ -122,11 +129,12 @@ describe('Campaign Signup', () => {
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
     cy.contains(exampleBlurb);
-    cy.get('[data-test=landing-page-content]').should('not.exist');
+    cy.findByTestId('campaign-info-block-container').should('have.length', 1);
+    cy.findByTestId('landing-page-content').should('not.exist');
 
     // We shouldn't see the "Join Now" button or affiramation modal,
     // since the user is already signed up for this campaign:
-    cy.get('mosaic-lede-banner__signup').should('not.exist');
+    cy.findByTestId('campaign-banner-signup-button').should('not.exist');
     cy.get('.card.affirmation').should('not.exist');
   });
 });

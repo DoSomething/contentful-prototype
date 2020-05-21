@@ -135,7 +135,7 @@ const CampaignBanner = ({
             actionIdToDisplay={actionIdToDisplay}
             affiliateSponsors={affiliateSponsors}
             attributes={{
-              'data-test': 'campaign-info-block-scholarship-details',
+              'data-testid': 'campaign-info-block-scholarship-details',
             }}
             campaignId={numCampaignId}
             scholarshipAmount={scholarshipAmount}
