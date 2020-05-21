@@ -65,7 +65,7 @@ describe('Quiz Result Page', () => {
   });
 
   /** @test */
-  it('Sets up the correct source details for the RTV redirect URL for an unauthenticated user', () => {
+  it('Sets up the correct tracking source for the RTV redirect URL for an unauthenticated user', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
     });
@@ -80,7 +80,7 @@ describe('Quiz Result Page', () => {
   });
 
   /** @test */
-  it('Sets up the correct source details for the RTV redirect URL for an authenticated user', () => {
+  it('Sets up the correct tracking source for the RTV redirect URL for an authenticated user', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
     });

@@ -1042,15 +1042,11 @@ export function getVoterRegistrationTrackingSource(
   sourceDetails,
   referrerUserId = '',
 ) {
-  const userId = window.AUTH.id || '';
+  const result = `source:web,source_details:${sourceDetails}`;
 
-  let result = `source:web,source_details:${sourceDetails}`;
-
-  if (referrerUserId || userId) {
-    return referrerUserId
-      ? (result = `user:${referrerUserId},${result},referral=true`)
-      : (result = `user:${userId},${result}`);
+  if (referrerUserId) {
+    return `user:${referrerUserId},${result},referral=true`;
   }
 
-  return result;
+  return window.AUTH.id ? `user:${window.AUTH.id},${result}` : result;
 }
