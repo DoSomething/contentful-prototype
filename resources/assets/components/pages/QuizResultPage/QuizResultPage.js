@@ -84,9 +84,10 @@ const QuizResultPage = ({ id }) => {
               className="grid-full"
             />
 
-            <div className="grid-full mx-auto py-3 md:py-6">
+            <div className="grid-full py-3 md:py-6">
               <StartVoterRegistrationForm
                 contextSource="voter-registration-quiz-results-page"
+                className="md:mx-auto md:w-2/3 xl:w-1/2"
                 sourceDetail={sourceDetail || `${sourceDetailPrefix}default`}
               />
             </div>

@@ -58,4 +58,31 @@ describe('Site Wide Banner', () => {
       0,
     );
   });
+
+  /** @test */
+  it('The Site Wide Banner CTA URL is correct for an unauthenticated user', () => {
+    cy.anonVisitCampaign(exampleCampaign);
+
+    cy.findByTestId('sitewide-banner-button').should('have.length', 1);
+    cy.findByTestId('sitewide-banner-button').should(
+      'have.attr',
+      'href',
+      'https://vote.dosomething.org/?r=source:web,source_details:hellobar',
+    );
+  });
+
+  /** @test */
+  it('Sets up the correct tracking source for the RTV redirect URL for an authenticated user', () => {
+    const user = userFactory();
+
+    // Log in & visit the campaign pitch page:
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+
+    cy.findByTestId('sitewide-banner-button').should('have.length', 1);
+    cy.findByTestId('sitewide-banner-button').should(
+      'have.attr',
+      'href',
+      `https://vote.dosomething.org/?r=user:${user.id},source:web,source_details:hellobar`,
+    );
+  });
 });

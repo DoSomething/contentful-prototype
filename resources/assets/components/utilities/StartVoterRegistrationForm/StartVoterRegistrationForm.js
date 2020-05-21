@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import React, { useState } from 'react';
 
 import Card from '../Card/Card';
@@ -7,9 +8,11 @@ import {
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 import PrimaryButton from '../Button/PrimaryButton';
+import { getVoterRegistrationTrackingSource } from '../../../helpers';
 
 const StartVoterRegistrationForm = ({
   campaignId,
+  className,
   contextSource,
   referrerUserId,
   sourceDetail,
@@ -17,9 +20,10 @@ const StartVoterRegistrationForm = ({
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
 
-  const urlSourceDetails = referrerUserId
-    ? `user:${referrerUserId},source:web,source_details:${sourceDetail},referral=true`
-    : `r=source:web,source_details:${sourceDetail}`;
+  const trackingSource = getVoterRegistrationTrackingSource(
+    sourceDetail,
+    referrerUserId,
+  );
   const isDisabled = !zip || !email;
 
   const handleChange = event => {
@@ -43,7 +47,7 @@ const StartVoterRegistrationForm = ({
     <>
       <Card
         attributes={{ 'data-testid': 'voter-registration-form-card' }}
-        className="md:w-3/5 bordered rounded"
+        className={classnames(className, 'bordered rounded')}
         title="Register online to vote"
       >
         <form
@@ -57,8 +61,8 @@ const StartVoterRegistrationForm = ({
           <input
             type="hidden"
             name="source"
-            value={urlSourceDetails}
-            data-testid="voter-registration-source-details"
+            value={trackingSource}
+            data-testid="voter-registration-tracking-source"
           />
 
           <div className="form-item stretched">
@@ -107,6 +111,7 @@ const StartVoterRegistrationForm = ({
 
 StartVoterRegistrationForm.propTypes = {
   campaignId: PropTypes.number,
+  className: PropTypes.string,
   contextSource: PropTypes.string.isRequired,
   referrerUserId: PropTypes.string,
   sourceDetail: PropTypes.string.isRequired,
@@ -114,6 +119,7 @@ StartVoterRegistrationForm.propTypes = {
 
 StartVoterRegistrationForm.defaultProps = {
   campaignId: null,
+  className: null,
   referrerUserId: null,
 };
 

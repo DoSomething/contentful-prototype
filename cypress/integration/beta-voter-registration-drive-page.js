@@ -301,7 +301,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.findByTestId('voter-registration-email-field').type('text@test.com');
     cy.findByTestId('voter-registration-zip-field').type('12345');
-    cy.findByTestId('voter-registration-source-details').should(
+    cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
       `user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
     );

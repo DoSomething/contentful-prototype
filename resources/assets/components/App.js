@@ -6,6 +6,11 @@ import { ApolloProvider } from '@apollo/react-common';
 import { Provider as ReduxProvider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 
+import {
+  env,
+  featureFlag,
+  getVoterRegistrationTrackingSource,
+} from '../helpers';
 import graphqlClient from '../graphql';
 import ErrorPage from './pages/ErrorPage';
 import { initializeStore } from '../store/store';
@@ -16,7 +21,6 @@ import CausePage from './pages/CausePage/CausePage';
 import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
-import { env, featureFlag, buildVoterRegUrl } from '../helpers';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
@@ -33,7 +37,6 @@ import BetaVoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/B
 
 const App = ({ store, history }) => {
   initializeStore(store);
-
   return (
     <ReduxProvider store={store}>
       <ErrorBoundary FallbackComponent={ErrorPage}>
@@ -47,7 +50,9 @@ const App = ({ store, history }) => {
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}
               handleComplete={handleComplete}
-              link={buildVoterRegUrl('web', 'hellobar')}
+              link={`https://vote.dosomething.org/?r=${getVoterRegistrationTrackingSource(
+                'hellobar',
+              )}`}
             />
           )}
         />

@@ -1032,15 +1032,21 @@ export function getMillisecondsFromDays(days) {
 }
 
 /**
- * Build URL with UTMs for Voter Registration Content
+ * Build UTMs for Voter Registration URLs
  *
- * @param {String} source
+ * @param {String} referrerUserId
  * @param {String} sourceDetails
  */
 
-export function buildVoterRegUrl(source = 'web', sourceDetails) {
-  const baseUrl = 'https://vote.dosomething.org/';
-  const userId = window.AUTH.id ? `user:${window.AUTH.id},` : '';
+export function getVoterRegistrationTrackingSource(
+  sourceDetails,
+  referrerUserId = '',
+) {
+  const result = `source:web,source_details:${sourceDetails}`;
 
-  return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails}`;
+  if (referrerUserId) {
+    return `user:${referrerUserId},${result},referral=true`;
+  }
+
+  return window.AUTH.id ? `user:${window.AUTH.id},${result}` : result;
 }
