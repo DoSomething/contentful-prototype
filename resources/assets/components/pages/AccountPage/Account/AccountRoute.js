@@ -42,7 +42,12 @@ const AccountRoute = props => (
         path="/us/account/refer-friends"
         render={() => (
           <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-12">
-            <h1>🚧 Refer a Friend coming soon! 🚧</h1>
+            <h1>
+              <span role="img" aria-label="construction emoji">
+                🚧
+              </span>{' '}
+              Refer a Friend coming soon!
+            </h1>
           </div>
         )}
       />
