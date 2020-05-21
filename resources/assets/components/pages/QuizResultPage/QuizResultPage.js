@@ -13,6 +13,7 @@ import { gqlVariables, placeholderContent } from './config';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
+import SectionHeader from './../../utilities/SectionHeader/SectionHeader';
 import ContentfulAsset from '../../utilities/ContentfulAsset/ContentfulAsset';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
@@ -61,28 +62,27 @@ const QuizResultPage = ({ id }) => {
 
       <main>
         <article data-test="quiz-result-page">
-          <header
-            role="banner"
-            className="base-12-grid py-3 md:py-6 bg-blurple-500"
-          >
-            <div className="flex my-6 grid-full mx-auto p-8">
-              <div>
+          <header role="banner" className="bg-blurple-500">
+            <div className="mx-auto p-4 md:p-0">
+              <div className=" bg-bottom ">
                 {assetId ? (
                   <ContentfulAsset id={assetId} width={400} height={300} />
                 ) : null}
               </div>
-              <div>
-                <h1 className="grid-wide clearfix wrapper pb-3 .border-b-4 bg-yellow-400">
-                  {linkBlockTitle}
-                </h1>
-                <TextContent className="mr-4 grid-full text-white">
-                  {content}
-                </TextContent>
+
+              <div className="text-white">
+                <SectionHeader
+                  underlined
+                  title
+                  text-white
+                  title={linkBlockTitle}
+                />
+                <TextContent>{content}</TextContent>
               </div>
             </div>
-            <img className="content-center" src={triangle} alt="triangle" />
+            <img className="m-auto" src={triangle} alt="triangle" />
           </header>
-          <div className="bg-white base-12-grid py-3 md:py-6">
+          <div className="bg-white py-3 md:py-6">
             <ContentfulEntryLoader
               id={config.galleryBlockId}
               className="grid-full"
