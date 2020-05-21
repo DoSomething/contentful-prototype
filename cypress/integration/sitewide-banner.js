@@ -72,7 +72,7 @@ describe('Site Wide Banner', () => {
   });
 
   /** @test */
-  it('Sets up the correct source details for the RTV redirect URL for an authenticated user', () => {
+  it('Sets up the correct tracking source for the RTV redirect URL for an authenticated user', () => {
     const user = userFactory();
 
     // Log in & visit the campaign pitch page:

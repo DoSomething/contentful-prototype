@@ -20,7 +20,7 @@ const StartVoterRegistrationForm = ({
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
 
-  const urlSourceDetails = getVoterRegistrationTrackingSource(
+  const trackingSource = getVoterRegistrationTrackingSource(
     sourceDetail,
     referrerUserId,
   );
@@ -61,8 +61,8 @@ const StartVoterRegistrationForm = ({
           <input
             type="hidden"
             name="source"
-            value={urlSourceDetails}
-            data-testid="voter-registration-source-details"
+            value={trackingSource}
+            data-testid="voter-registration-tracking-source"
           />
 
           <div className="form-item stretched">

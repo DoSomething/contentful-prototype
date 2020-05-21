@@ -50,7 +50,7 @@ const App = ({ store, history }) => {
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}
               handleComplete={handleComplete}
-              link={`https://vote.dosomething.org/?${getVoterRegistrationTrackingSource(
+              link={`https://vote.dosomething.org/?r=${getVoterRegistrationTrackingSource(
                 'hellobar',
               )}`}
             />

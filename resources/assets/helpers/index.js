@@ -1042,13 +1042,15 @@ export function getVoterRegistrationTrackingSource(
   sourceDetails,
   referrerUserId = '',
 ) {
-  const userId = window.AUTH.id ? `${window.AUTH.id}` : '';
+  const userId = window.AUTH.id || '';
+
+  let result = `source:web,source_details:${sourceDetails}`;
 
   if (referrerUserId || userId) {
     return referrerUserId
-      ? `r=user:${referrerUserId},source:web,source_details:${sourceDetails},referral=true`
-      : `r=user:${userId},source:web,source_details:${sourceDetails}`;
+      ? (result = `user:${referrerUserId},${result},referral=true`)
+      : (result = `user:${userId},${result}`);
   }
 
-  return `r=source:web,source_details:${sourceDetails}`;
+  return result;
 }

@@ -73,9 +73,9 @@ describe('Quiz Result Page', () => {
     cy.visit(getQuizResultPath(quizResultId));
 
     cy.findByTestId('quiz-result-page').should('have.length', 1);
-    cy.findByTestId('voter-registration-source-details').should(
+    cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
-      'r=source:web,source_details:VoterRegQuiz_completed_default',
+      'source:web,source_details:VoterRegQuiz_completed_default',
     );
   });
 
@@ -91,9 +91,9 @@ describe('Quiz Result Page', () => {
     cy.login(user).visit(getQuizResultPath(quizResultId));
 
     cy.findByTestId('quiz-result-page').should('have.length', 1);
-    cy.findByTestId('voter-registration-source-details').should(
+    cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
-      `r=user:${user.id},source:web,source_details:VoterRegQuiz_completed_default`,
+      `user:${user.id},source:web,source_details:VoterRegQuiz_completed_default`,
     );
   });
 });
