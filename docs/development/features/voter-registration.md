@@ -8,7 +8,7 @@ We're able to pre-populate the user's email address and zip via `email_address` 
 
 Example:
 
-`https://register.rockthevote.com.rockthevote.com/registrants/new?partner=37187&source=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true&email_address=aschachter@dosomething.org&home_zip_code=94116`
+> https://register.rockthevote.com.rockthevote.com/registrants/new?partner=37187&source=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true&email_address=aschachter@dosomething.org&home_zip_code=94116
 
 ## Import
 
