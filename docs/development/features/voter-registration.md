@@ -50,13 +50,17 @@ Example:
 
 ### Influencers
 
-We host customized voter registration drives for influencers on our Instapage, by creating pages like https://vote.dosomething.org/NoorAldayeh on Instapage and including a relevant tracking source:
+We host customized voter registration drives for influencers on our Instapage, by creating pages like https://vote.dosomething.org/NoorAldayeh on Instapage and passing a relevant tracking source when redirecting to the RTV registration site:
 
 > source:influencer,source_details:noor_aldayeh
 
 ## Voter Registration Action
 
-The `VoterRegistrationAction` content type can be used to display a call to action button that redirects a user to our vote.dosomething.org portal.
+The [`VoterRegistrationAction` content type](development/content-types/voter-registration-action.md) can be used to display a call to action button that redirects a user to our vote.dosomething.org portal.
+
+## Start Voter Registration Form
+
+The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the OVRD [alpha page](#alpha-page) and [Quiz Result page](#quiz-result-page).
 
 ## Online Drives
 
