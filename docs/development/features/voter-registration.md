@@ -28,9 +28,13 @@ This tracking source value is saved within the serialized `details` field of the
 
 - `user` - This is the Northstar user ID of either the authenticated user registering to vote, or the referring alpha user for a beta registration, when the `referral` key is present.
 
-- `source` - This is similar to a `utm_source`. Example values: `web`, `sms`, `email`
+- `source` - This is similar to a `utm_source`.
 
-- `source_detail` - This is similar to a `utm_campaign`. Example values: `hellobar`, `broadcastID_4YOiqwTVOOVklZFARAFd4h`, `VoterRegQuiz_completed_votebymail`, `onlinedrivereferral`
+  - Examples: `web`, `sms`, `email`
+
+- `source_detail` - This is similar to a `utm_campaign`.
+
+  - Example values: `hellobar`, `broadcastID_4YOiqwTVOOVklZFARAFd4h`, `VoterRegQuiz_completed_votebymail`, `onlinedrivereferral`
 
 - `referral` - If this is set, the `user` parameter should be used as the `referrer_user_id` on the `voter-reg` post.
 
