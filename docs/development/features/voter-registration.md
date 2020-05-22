@@ -36,13 +36,19 @@ This tracking source value is saved within the serialized `details` field of the
 
 ## Voting Portal
 
-We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It prompts user for their email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
+We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It displays a form that prompts for email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
 
 When constructing a URL for the voting portal, we pass along the tracking source via a `r` query parameter, which will be passed as a `source` parameter when the email/zip form is submitted and the user is redirected to the RTV registration site.
 
 Example:
 
 > vote.dosomething.org/covid19?r=campaignID:8017,campaignRunID:8022,source:web,source_details:VoterRegQuiz_completed_notsure
+
+### Influencers
+
+We host customized voter registration drives for influencers on our Instapage, by creating pages like https://vote.dosomething.org/NoorAldayeh on Instapage and including a relevant tracking source:
+
+> source:influencer,source_details:noor_aldayeh
 
 ## Voter Registration Action
 
@@ -112,7 +118,11 @@ Content:
 
 **Notes:**
 
-- The initial version of OVRD beta page was hosted on Instapage - https://vote.dosomething.org/member-drives. Example URL: `https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`. This page had inline JS that would query Northstar to find a user's first name based on the `userId` query parameter passed.
+The initial version of OVRD beta page was hosted on Instapage - https://vote.dosomething.org/member-drives. Example URL:
+
+> vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true
+
+This page had inline JS that would query Northstar to find a user's first name based on the `userId` query parameter passed.
 
 ## Quiz
 
