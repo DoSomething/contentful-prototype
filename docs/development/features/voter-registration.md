@@ -64,7 +64,7 @@ The [`VoterRegistrationAction` content type](development/content-types/voter-reg
 
 ## Start Voter Registration Form
 
-The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the OVRD [alpha page](#alpha-page) and [Quiz Result page](#quiz-result-page).
+The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the [OVRD alpha page](#alpha-page) and [Quiz Result page](#quiz-result-page).
 
 ## Online Drives
 
@@ -160,12 +160,12 @@ Gallery Block: 78WaGsvDEzAxnreEvNx3Za
 
 Quiz Results:
 
-| id                     | title               | internalTitle      | assetId                |
-| ---------------------- | ------------------- | ------------------ | ---------------------- |
-| p7hqjSP4Y1U6ad0UDz4iS  | Shell-tered Voter   | Vote By Mail       | 49Y4ucuGbJbgZL7IDDfxG0 |
-| 1giTEF3B2hO2CyccmhlVDm | Hare Who Dares      | In-Person Voting   | 2f2kgaHl9w5VtdswKkaBWT |
-| 21PDBge2bKCTWMe5f9eo1H | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
-| 14KfeAs265httjNMf1jwTw | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
+| id                                                                                           | title               | internalTitle      | assetId                |
+| -------------------------------------------------------------------------------------------- | ------------------- | ------------------ | ---------------------- |
+| [p7hqjSP4Y1U6ad0UDz4iS](https://www.dosomething.org/us/quiz/results/p7hqjSP4Y1U6ad0UDz4iS)   | Shell-tered Voter   | Vote By Mail       | 49Y4ucuGbJbgZL7IDDfxG0 |
+| [1giTEF3B2hO2CyccmhlVDm](https://www.dosomething.org/us/quiz/results/1giTEF3B2hO2CyccmhlVDm) | Hare Who Dares      | In-Person Voting   | 2f2kgaHl9w5VtdswKkaBWT |
+| [21PDBge2bKCTWMe5f9eo1H](https://www.dosomething.org/us/quiz/results/21PDBge2bKCTWMe5f9eo1H) | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
+| [14KfeAs265httjNMf1jwTw](https://www.dosomething.org/us/quiz/results/14KfeAs265httjNMf1jwTw) | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
 
 **Dev:**
 
