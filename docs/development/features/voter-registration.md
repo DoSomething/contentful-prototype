@@ -2,7 +2,13 @@
 
 ## Overview
 
-We partner with [Rock The Vote](https://www.rockthevote.org) to register young people to vote on behalf of DoSomething.org, by redirecting to them to the Rock The Vote (RTV) registration website and appending our partner ID: `https://register.rockthevote.com/registrants/new?partner=37187`
+We partner with [Rock The Vote](https://www.rockthevote.org) to register young people to vote on behalf of DoSomething.org, by redirecting to them to the Rock The Vote (RTV) registration website and appending our partner ID: `https://register.rockthevote.com/registrants/new?partner=37187`.
+
+We're able to pre-populate the user's email address and zip via `email_address` and `home_zip_code` query parameters, which we often include when redirecting an authenticated user on the web, e.g:
+
+```
+https://register.rockthevote.com.rockthevote.com/registrants/new?partner=37187&source=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true&email_address=aschachter@dosomething.org&home_zip_code=94116
+```
 
 ## Import
 
@@ -13,6 +19,12 @@ Our importer app, [Chompy](https://www.github.com/dosomething/chompy) downloads 
 When we redirect to the RTV registration form, we include a `source` query parameter. Per the [RTV docs](https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/partner-ovr-tool-faqs/partner-ovr-tool-faqs/), a source parameter is used to:
 
 > track the success of various campaigns, affiliates, social media posts, and more using just one tool.
+
+We pass a `source` query parameter that contains multiple properties, comma separated by `key:value` substrings. Example:
+
+```
+https://register.rockthevote.com.rockthevote.com/registrants/new?partner=37187&source=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true&email_address=aschachter@dosomething.org&home_zip_code=94116
+```
 
 ## Voting Portal
 
