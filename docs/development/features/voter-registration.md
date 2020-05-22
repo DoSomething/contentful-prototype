@@ -46,7 +46,7 @@ This tracking source value is saved within the serialized `details` field of the
 
 We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It displays a form that prompts for email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
 
-When constructing a URL for the voting portal, we pass along the tracking source via a `r` query parameter, which will be passed as a `source` parameter when the email/zip form is submitted and the user is redirected to the RTV registration site.
+When constructing a URL for the voting portal, we include the tracking source via a `r` query parameter, which is then added as a `source` parameter when redirecting the user to the RTV registration site after they enter their email and zip (handled via JS on Instapage).
 
 Example:
 
