@@ -38,6 +38,10 @@ This tracking source value is saved within the serialized `details` field of the
 
 - `referral` - If this is set, the `user` parameter should be used as the `referrer_user_id` on the `voter-reg` post.
 
+**Notes**
+
+- Some older voter registration URLs may contain `campaignID` and `campaignRunID` keys within their tracking source. These have long been deprecated by the import: when we first started on voter registration, we used multiple campaigns. The import would update the `campaignID` and `campaignRunID` values on the `voter-reg` post if present within the tracking source. See [#171090116](https://www.pivotaltracker.com/story/show/171090116) for details.
+
 ## Voting Portal
 
 We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It displays a form that prompts for email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
