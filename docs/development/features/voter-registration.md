@@ -20,11 +20,11 @@ When we redirect to the RTV registration form, we include a `source` query param
 
 > track the success of various campaigns, affiliates, social media posts, and more using just one tool.
 
-We pass a `source` query parameter that contains multiple properties, comma separated by `key:value` substrings. Example:
+When we download the RTV reports, each registration contains the `source` query parameter that was present when the user began their registration. We construct the value to pass for the `source` by comma-separating `key:value` substrings. Example:
 
 > user:5547be89469c64ec7d8b518d,source:web,source_details:VoterRegQuiz_completed_notsure
 
-The following parameters can be passed:
+The tracking source value is saved within the serialized `details` field of the `voter-reg` post. The following key/values are parsed from the tracking source value, used either by the Chompy import or Looker:
 
 - `user` - This is the Northstar user ID of either the authenticated user registering to vote, or the referring user, if the `referral` key is present
 
@@ -39,6 +39,12 @@ The following parameters can be passed:
 ## Voting Portal
 
 We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It prompts user for their email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
+
+When constructing a URL for the voting portal, we pass along the tracking source via a `r` query parameter -- which will be passed as a `source` parameter when the email/zip form is submitted and the user is redirected to the RTV registration site.
+
+Example:
+
+> vote.dosomething.org/covid19?r=campaignID:8017,campaignRunID:8022,source:web,source_details:VoterRegQuiz_completed_notsure
 
 ## Voter Registration Action
 
