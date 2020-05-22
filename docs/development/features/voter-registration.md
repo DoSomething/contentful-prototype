@@ -2,17 +2,17 @@
 
 ## Overview
 
-We partner with [Rock The Vote](https://www.rockthevote.org) to register young people to vote on behalf of DoSomething.org, by redirecting to them to the Rock The Vote (RTV) registration website and appending our partner ID: `https://register.rockthevote.com/registrants/new?partner=37187`.
+We partner with [Rock The Vote](https://www.rockthevote.org) to register young people to vote on behalf of DoSomething.org, by redirecting to them to the Rock The Vote (RTV) registration website and appending our partner ID:
 
-We can pre-populate the voter registration email address and zip via `email_address` and `home_zip_code` query parameters, which we often include when redirecting an authenticated user on the web.
+> register.rockthevote.com/registrants/new?partner=37187
 
-Example:
+We can pre-populate the voter registration email address and zip via `email_address` and `home_zip_code` query parameters, which we often include when redirecting an authenticated user on the web:
 
-> register.rockthevote.com.rockthevote.com/registrants/new?partner=37187&source=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true&email_address=puppet.sloth@dosomething.org&home_zip_code=94116
+> rockthevote.com/registrants/new?partner=37187&source=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true&email_address=puppet.sloth@dosomething.org&home_zip_code=94116
 
 ## Import
 
-Our importer app, [Chompy](https://www.github.com/dosomething/chompy) downloads all voter registrations created with our partner ID, and imports them as `voter-reg` posts by posting to the Rogue API. See [import docs](https://github.com/DoSomething/chompy/blob/master/docs/imports#rock-the-vote).
+Our importer app, [Chompy](https://www.github.com/dosomething/chompy) downloads all voter registrations created with our partner ID, and imports them as `voter-reg` posts by posting to the Rogue API. See [import docs](https://github.com/DoSomething/chompy/blob/master/docs/imports#rock-the-vote) for details.
 
 ### Tracking Source
 
@@ -20,13 +20,13 @@ When we redirect to the RTV registration form, we include a `source` query param
 
 > track the success of various campaigns, affiliates, social media posts, and more using just one tool.
 
-When we download the RTV reports, each registration contains the `source` query parameter that was present when the user began their registration. We construct the value to pass for the `source` by comma-separating `key:value` substrings. Example:
+When we download the RTV reports, each registration contains the `source` query parameter that was present when the user began their registration. The expected values to pass for the `source` are comma-separated `key:value` substrings:
 
 > user:5547be89469c64ec7d8b518d,source:web,source_details:VoterRegQuiz_completed_notsure
 
-The tracking source value is saved within the serialized `details` field of the `voter-reg` post. The following key/values are parsed from the tracking source value, used either by the Chompy import or Looker:
+This tracking source value is saved within the serialized `details` field of the `voter-reg` post, and is utilized by both the Chompy import and Looker:
 
-- `user` - This is the Northstar user ID of either the authenticated user registering to vote, or the referring user, if the `referral` key is present
+- `user` - This is the Northstar user ID of either the authenticated user registering to vote, or the referring alpha user for a beta registration, when the `referral` key is present.
 
 - `source` - This is similar to a `utm_source`. Example values: `web`, `sms`, `email`
 
@@ -34,13 +34,11 @@ The tracking source value is saved within the serialized `details` field of the 
 
 - `referral` - If this is set, the `user` parameter should be used as the `referrer_user_id` on the `voter-reg` post.
 
-```
-
 ## Voting Portal
 
 We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It prompts user for their email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
 
-When constructing a URL for the voting portal, we pass along the tracking source via a `r` query parameter -- which will be passed as a `source` parameter when the email/zip form is submitted and the user is redirected to the RTV registration site.
+When constructing a URL for the voting portal, we pass along the tracking source via a `r` query parameter, which will be passed as a `source` parameter when the email/zip form is submitted and the user is redirected to the RTV registration site.
 
 Example:
 
@@ -50,7 +48,7 @@ Example:
 
 The `VoterRegistrationAction` content type can be used to display a call to action button that redirects a user to our vote.dosomething.org portal.
 
-## Online Registration Drives
+## Online Drives
 
 The call to action in the [Ready, Set, Vote campaign](https://www.dosomething.org/us/campaigns/online-registration-drive/) asks a member (the alpha) to get their friends to register to vote, by providing them with a custom URL to their own Online Voter Registration Drive (OVRD) that they can share with their friends (the betas).
 
@@ -175,4 +173,7 @@ Quiz Results:
 This is because the current content in Contentful for our result entries contains the banner image inline (so they are displayed twice, once within the header and a second time within the copy). When we're ready to go live, we'll have the campaigns team edit the content and remove the requirement to include the `preview` query.
 
 - Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
+
+```
+
 ```
