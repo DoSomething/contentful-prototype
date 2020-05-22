@@ -2,19 +2,75 @@
 
 ## Overview
 
-We partner with [Rock The Vote](https://www.rockthevote.org) to register young people to vote on behalf of DoSomething.org, by redirecting to them to the Rock The Vote (RTV) registration website and appending our partner ID: `https://register.rockthevote.com/registrants/new?partner=37187`
+We partner with [Rock The Vote](https://www.rockthevote.org) to register young people to vote on behalf of DoSomething.org, by redirecting to them to the Rock The Vote (RTV) registration website and appending our partner ID:
 
-Our importer app, [Chompy](https://www.github.com/dosomething/chompy) downloads all voter registrations created with our partner ID, and imports them as `voter-reg` posts by posting to the Rogue API. See [import docs](https://github.com/DoSomething/chompy/blob/master/docs/imports/rock-the-vote.md).
+> register.rockthevote.com/registrants/new?partner=37187
+
+We can pre-populate the voter registration email address and zip via `email_address` and `home_zip_code` query parameters, which we often include when redirecting an authenticated user on the web:
+
+> rockthevote.com/registrants/new?partner=37187&source=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true&email_address=puppet.sloth@dosomething.org&home_zip_code=94116
+
+## Import
+
+Our importer app, [Chompy](https://www.github.com/dosomething/chompy) downloads all voter registrations created with our partner ID, and imports them as `voter-reg` posts by posting to the Rogue API. See [import docs](https://github.com/DoSomething/chompy/blob/master/docs/imports#rock-the-vote) for details.
+
+### Tracking Source
+
+When we redirect to the RTV registration form, we include a `source` query parameter. Per the [RTV docs](https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/partner-ovr-tool-faqs/partner-ovr-tool-faqs/), a source parameter is used to:
+
+> track the success of various campaigns, affiliates, social media posts, and more using just one tool.
+
+When we download the RTV reports, each registration contains the `source` query parameter that was present when the user began their registration. The expected values to pass for the `source` are comma-separated `key:value` substrings:
+
+> user:5547be89469c64ec7d8b518d,source:web,source_details:VoterRegQuiz_completed_notsure
+
+This tracking source value is saved within the serialized `details` field of the `voter-reg` post, and is utilized by both the Chompy import and Looker:
+
+- `user` - This is the Northstar user ID of either the authenticated user registering to vote, or the referring alpha user for a beta registration, when the `referral` key is present.
+
+- `source` - This is similar to a `utm_source`.
+
+  - Examples: `web`, `sms`, `email`
+
+- `source_detail` - This is similar to a `utm_campaign`.
+
+  - Examples: [`hellobar`](<(development/features/sitewide-banner.md)>), `broadcastID_4YOiqwTVOOVklZFARAFd4h`, `VoterRegQuiz_completed_votebymail`, `onlinedrivereferral`
+
+- `referral` - If this is set, the `user` parameter should be used as the `referrer_user_id` on the `voter-reg` post.
+
+**Notes**
+
+- Some older voter registration URLs may contain `campaignID` and `campaignRunID` keys within their tracking source. These have long been deprecated by the import: when we first started on voter registration, we used multiple campaigns. The import would update the `campaignID` and `campaignRunID` values on the `voter-reg` post if present within the tracking source. See [#171090116](https://www.pivotaltracker.com/story/show/171090116) for details.
 
 ## Voting Portal
 
-We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It prompts user for their email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
+We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It displays a form that prompts for email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
+
+When constructing a URL for the voting portal, we include the tracking source via a `r` query parameter, which is then added as a `source` parameter when redirecting the user to the RTV registration site after they enter their email and zip (handled via JS on Instapage).
+
+Example:
+
+> vote.dosomething.org/covid19?r=campaignID:8017,campaignRunID:8022,source:web,source_details:VoterRegQuiz_completed_notsure
+
+### Influencers
+
+We host customized voter registration drives for influencers on our Instapage, by creating pages like https://vote.dosomething.org/NoorAldayeh on Instapage and passing a relevant tracking source when redirecting to the RTV registration site:
+
+> source:influencer,source_details:noor_aldayeh
 
 ## Voter Registration Action
 
-The `VoterRegistrationAction` content type can be used to display a call to action button that redirects a user to our vote.dosomething.org portal.
+The [`VoterRegistrationAction` content type](development/content-types/voter-registration-action.md) can be used to display a call to action button that redirects a user to our vote.dosomething.org portal.
 
-## Online Registration Drives
+A `clicked_voter_registration_action` analytics event is fired when the user clicks on the CTA to visit the voter registration portal.
+
+## Start Voter Registration Form
+
+The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the [OVRD alpha page](#alpha-page) and [Quiz Result page](#quiz-result-page).
+
+A `clicked_voter_registration_action` analytics event is fired when the user submits the form to continue their voter registration on the RTV registration site.
+
+## Online Drives
 
 The call to action in the [Ready, Set, Vote campaign](https://www.dosomething.org/us/campaigns/online-registration-drive/) asks a member (the alpha) to get their friends to register to vote, by providing them with a custom URL to their own Online Voter Registration Drive (OVRD) that they can share with their friends (the betas).
 
@@ -76,13 +132,13 @@ Content:
 - [FAQ ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3cXc0RPMVNeE4surEqFujL) - 3cXc0RPMVNeE4surEqFujL
 - [OVRD Campaign Link ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3p2qz2JPCvgVitgRVBoMFz) - 3p2qz2JPCvgVitgRVBoMFz
 
-### Notes
+**Notes:**
 
-- The initial version of beta page was on Instapage - https://vote.dosomething.org/member-drives. Example URL: `https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`
+The initial version of OVRD beta page was hosted on Instapage - https://vote.dosomething.org/member-drives. Example URL:
 
-## Tracking Source
+> vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true
 
-TODO: Document how the `r` query parameter is used by the Chompy import.
+This page had inline JS that would query Northstar to find a user's first name based on the `userId` query parameter passed.
 
 ## Quiz
 
@@ -102,38 +158,38 @@ The page displays a new `QuizResultPage` component, and expects the `:id` route 
 
 The `QuizResultPage` displays a static `GalleryBlock` for all of the different result ID's.
 
-**Production**
+**Production:**
 
 Gallery Block: 78WaGsvDEzAxnreEvNx3Za
 
 Quiz Results:
 
-| id                     | title               | internalTitle      | assetId                |
-| ---------------------- | ------------------- | ------------------ | ---------------------- |
-| p7hqjSP4Y1U6ad0UDz4iS  | Shell-tered Voter   | Vote By Mail       | 49Y4ucuGbJbgZL7IDDfxG0 |
-| 1giTEF3B2hO2CyccmhlVDm | Hare Who Dares      | In-Person Voting   | 2f2kgaHl9w5VtdswKkaBWT |
-| 21PDBge2bKCTWMe5f9eo1H | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
-| 14KfeAs265httjNMf1jwTw | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
+| id                                                                                           | title               | internalTitle      | assetId                |
+| -------------------------------------------------------------------------------------------- | ------------------- | ------------------ | ---------------------- |
+| [p7hqjSP4Y1U6ad0UDz4iS](https://www.dosomething.org/us/quiz-results/p7hqjSP4Y1U6ad0UDz4iS)   | Shell-tered Voter   | Vote By Mail       | 49Y4ucuGbJbgZL7IDDfxG0 |
+| [1giTEF3B2hO2CyccmhlVDm](https://www.dosomething.org/us/quiz-results/1giTEF3B2hO2CyccmhlVDm) | Hare Who Dares      | In-Person Voting   | 2f2kgaHl9w5VtdswKkaBWT |
+| [21PDBge2bKCTWMe5f9eo1H](https://www.dosomething.org/us/quiz-results/21PDBge2bKCTWMe5f9eo1H) | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
+| [14KfeAs265httjNMf1jwTw](https://www.dosomething.org/us/quiz-results/14KfeAs265httjNMf1jwTw) | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
 
-**Dev**
+**Dev:**
 
 Gallery Block: 2VGFq3XBcqCfKOA8mC5mP4
 
 Quiz Results:
 
-| id                     | title               | internalTitle    | assetId                |
-| ---------------------- | ------------------- | ---------------- | ---------------------- |
-| 347iYsbykgQe6KqeGceMUk | Moral Support Panda | Super Motivated  | 6J13jUL4YGGC1fyYMNEfbc |
-| 1lvJHhlJqQSgKgwIwUymQ8 | Shell-tered Voter   | Social Voter     | 3iLKsRlFQ1k9ddQbRb3RN8 |
-| 2KfkCOTi7u4CqAyyCuGyci | Hare Who Dares      | Election Dabbler | 3uB88eZmTNEaoFxV9pZ8hX |
+| id                                                                                           | title               | internalTitle    | assetId                |
+| -------------------------------------------------------------------------------------------- | ------------------- | ---------------- | ---------------------- |
+| [347iYsbykgQe6KqeGceMUk](https://dev.dosomething.org/us/quiz-results/347iYsbykgQe6KqeGceMUk) | Moral Support Panda | Super Motivated  | 6J13jUL4YGGC1fyYMNEfbc |
+| [1lvJHhlJqQSgKgwIwUymQ8](https://dev.dosomething.org/us/quiz-results/1lvJHhlJqQSgKgwIwUymQ8) | Shell-tered Voter   | Social Voter     | 3iLKsRlFQ1k9ddQbRb3RN8 |
+| [2KfkCOTi7u4CqAyyCuGyci](https://dev.dosomething.org/us/quiz-results/2KfkCOTi7u4CqAyyCuGyci) | Hare Who Dares      | Election Dabbler | 3uB88eZmTNEaoFxV9pZ8hX |
 
-**Related links**
+**Related links:**
 
 - [User Flows For Voting Quiz](https://docs.google.com/spreadsheets/d/10uIZNghJTMKWR0lk5_y-q9-NwabDKYyrf8Vxlj17S9c/edit#gid=1453114542)
 
 - [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the Campaign Playbook.
 
-**Notes**
+**Notes:**
 
 - While we're still developing this component, we're displaying placeholder copy for the Link Action content unless a `preview=true` query parameter is present. Examples:
 
