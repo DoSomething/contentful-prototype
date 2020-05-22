@@ -4,7 +4,15 @@
 
 We partner with [Rock The Vote](https://www.rockthevote.org) to register young people to vote on behalf of DoSomething.org, by redirecting to them to the Rock The Vote (RTV) registration website and appending our partner ID: `https://register.rockthevote.com/registrants/new?partner=37187`
 
-Our importer app, [Chompy](https://www.github.com/dosomething/chompy) downloads all voter registrations created with our partner ID, and imports them as `voter-reg` posts by posting to the Rogue API. See [import docs](https://github.com/DoSomething/chompy/blob/master/docs/imports/rock-the-vote.md).
+## Import
+
+Our importer app, [Chompy](https://www.github.com/dosomething/chompy) downloads all voter registrations created with our partner ID, and imports them as `voter-reg` posts by posting to the Rogue API. See [import docs](https://github.com/DoSomething/chompy/blob/master/docs/imports#rock-the-vote).
+
+### Tracking Source
+
+When we redirect to the RTV registration form, we include a `source` query parameter. Per the [RTV docs](https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/partner-ovr-tool-faqs/partner-ovr-tool-faqs/), a source parameter is used to:
+
+> track the success of various campaigns, affiliates, social media posts, and more using just one tool.
 
 ## Voting Portal
 
@@ -79,10 +87,6 @@ Content:
 ### Notes
 
 - The initial version of beta page was on Instapage - https://vote.dosomething.org/member-drives. Example URL: `https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`
-
-## Tracking Source
-
-TODO: Document how the `r` query parameter is used by the Chompy import.
 
 ## Quiz
 
