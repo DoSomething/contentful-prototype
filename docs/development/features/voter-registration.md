@@ -110,9 +110,9 @@ Content:
 - [FAQ ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3cXc0RPMVNeE4surEqFujL) - 3cXc0RPMVNeE4surEqFujL
 - [OVRD Campaign Link ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3p2qz2JPCvgVitgRVBoMFz) - 3p2qz2JPCvgVitgRVBoMFz
 
-### Notes
+**Notes:**
 
-- The initial version of beta page was on Instapage - https://vote.dosomething.org/member-drives. Example URL: `https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`
+- The initial version of OVRD beta page was hosted on Instapage - https://vote.dosomething.org/member-drives. Example URL: `https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`. This page had inline JS that would query Northstar to find a user's first name based on the `userId` query parameter passed.
 
 ## Quiz
 
@@ -132,7 +132,7 @@ The page displays a new `QuizResultPage` component, and expects the `:id` route 
 
 The `QuizResultPage` displays a static `GalleryBlock` for all of the different result ID's.
 
-**Production**
+**Production:**
 
 Gallery Block: 78WaGsvDEzAxnreEvNx3Za
 
@@ -145,7 +145,7 @@ Quiz Results:
 | 21PDBge2bKCTWMe5f9eo1H | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
 | 14KfeAs265httjNMf1jwTw | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
 
-**Dev**
+**Dev:**
 
 Gallery Block: 2VGFq3XBcqCfKOA8mC5mP4
 
@@ -157,13 +157,13 @@ Quiz Results:
 | 1lvJHhlJqQSgKgwIwUymQ8 | Shell-tered Voter   | Social Voter     | 3iLKsRlFQ1k9ddQbRb3RN8 |
 | 2KfkCOTi7u4CqAyyCuGyci | Hare Who Dares      | Election Dabbler | 3uB88eZmTNEaoFxV9pZ8hX |
 
-**Related links**
+**Related links:**
 
 - [User Flows For Voting Quiz](https://docs.google.com/spreadsheets/d/10uIZNghJTMKWR0lk5_y-q9-NwabDKYyrf8Vxlj17S9c/edit#gid=1453114542)
 
 - [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the Campaign Playbook.
 
-**Notes**
+**Notes:**
 
 - While we're still developing this component, we're displaying placeholder copy for the Link Action content unless a `preview=true` query parameter is present. Examples:
 
@@ -173,7 +173,3 @@ Quiz Results:
 This is because the current content in Contentful for our result entries contains the banner image inline (so they are displayed twice, once within the header and a second time within the copy). When we're ready to go live, we'll have the campaigns team edit the content and remove the requirement to include the `preview` query.
 
 - Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
-
-```
-
-```
