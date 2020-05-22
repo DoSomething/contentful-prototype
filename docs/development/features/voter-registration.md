@@ -68,7 +68,7 @@ A `clicked_voter_registration_action` analytics event is fired when the user cli
 
 The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the [OVRD alpha page](#alpha-page) and [Quiz Result page](#quiz-result-page).
 
-A `clicked_voter_registration_action` analytics event is fired when the user clicks on the CTA to continue their voter registration on the RTV registration site.
+A `clicked_voter_registration_action` analytics event is fired when the user submits the form to continue their voter registration on the RTV registration site.
 
 ## Online Drives
 
