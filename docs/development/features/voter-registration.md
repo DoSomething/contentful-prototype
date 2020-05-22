@@ -162,10 +162,10 @@ Quiz Results:
 
 | id                                                                                           | title               | internalTitle      | assetId                |
 | -------------------------------------------------------------------------------------------- | ------------------- | ------------------ | ---------------------- |
-| [p7hqjSP4Y1U6ad0UDz4iS](https://www.dosomething.org/us/quiz/results/p7hqjSP4Y1U6ad0UDz4iS)   | Shell-tered Voter   | Vote By Mail       | 49Y4ucuGbJbgZL7IDDfxG0 |
-| [1giTEF3B2hO2CyccmhlVDm](https://www.dosomething.org/us/quiz/results/1giTEF3B2hO2CyccmhlVDm) | Hare Who Dares      | In-Person Voting   | 2f2kgaHl9w5VtdswKkaBWT |
-| [21PDBge2bKCTWMe5f9eo1H](https://www.dosomething.org/us/quiz/results/21PDBge2bKCTWMe5f9eo1H) | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
-| [14KfeAs265httjNMf1jwTw](https://www.dosomething.org/us/quiz/results/14KfeAs265httjNMf1jwTw) | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
+| [p7hqjSP4Y1U6ad0UDz4iS](https://www.dosomething.org/us/quiz-results/p7hqjSP4Y1U6ad0UDz4iS)   | Shell-tered Voter   | Vote By Mail       | 49Y4ucuGbJbgZL7IDDfxG0 |
+| [1giTEF3B2hO2CyccmhlVDm](https://www.dosomething.org/us/quiz-results/1giTEF3B2hO2CyccmhlVDm) | Hare Who Dares      | In-Person Voting   | 2f2kgaHl9w5VtdswKkaBWT |
+| [21PDBge2bKCTWMe5f9eo1H](https://www.dosomething.org/us/quiz-results/21PDBge2bKCTWMe5f9eo1H) | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
+| [14KfeAs265httjNMf1jwTw](https://www.dosomething.org/us/quiz-results/14KfeAs265httjNMf1jwTw) | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
 
 **Dev:**
 
@@ -173,11 +173,11 @@ Gallery Block: 2VGFq3XBcqCfKOA8mC5mP4
 
 Quiz Results:
 
-| id                     | title               | internalTitle    | assetId                |
-| ---------------------- | ------------------- | ---------------- | ---------------------- |
-| 347iYsbykgQe6KqeGceMUk | Moral Support Panda | Super Motivated  | 6J13jUL4YGGC1fyYMNEfbc |
-| 1lvJHhlJqQSgKgwIwUymQ8 | Shell-tered Voter   | Social Voter     | 3iLKsRlFQ1k9ddQbRb3RN8 |
-| 2KfkCOTi7u4CqAyyCuGyci | Hare Who Dares      | Election Dabbler | 3uB88eZmTNEaoFxV9pZ8hX |
+| id                                                                                           | title               | internalTitle    | assetId                |
+| -------------------------------------------------------------------------------------------- | ------------------- | ---------------- | ---------------------- |
+| [347iYsbykgQe6KqeGceMUk](https://dev.dosomething.org/us/quiz-results/347iYsbykgQe6KqeGceMUk) | Moral Support Panda | Super Motivated  | 6J13jUL4YGGC1fyYMNEfbc |
+| [1lvJHhlJqQSgKgwIwUymQ8](https://dev.dosomething.org/us/quiz-results/1lvJHhlJqQSgKgwIwUymQ8) | Shell-tered Voter   | Social Voter     | 3iLKsRlFQ1k9ddQbRb3RN8 |
+| [2KfkCOTi7u4CqAyyCuGyci](https://dev.dosomething.org/us/quiz-results/2KfkCOTi7u4CqAyyCuGyci) | Hare Who Dares      | Election Dabbler | 3uB88eZmTNEaoFxV9pZ8hX |
 
 **Related links:**
 
