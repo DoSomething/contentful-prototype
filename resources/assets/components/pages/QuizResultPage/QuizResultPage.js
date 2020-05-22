@@ -13,7 +13,6 @@ import { gqlVariables, placeholderContent } from './config';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
-import SectionHeader from './../../utilities/SectionHeader/SectionHeader';
 import ContentfulAsset from '../../utilities/ContentfulAsset/ContentfulAsset';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
@@ -63,19 +62,24 @@ const QuizResultPage = ({ id }) => {
       <main>
         <article data-test="quiz-result-page">
           <header role="banner" className="bg-blurple-500">
-            <div className=" flex">
+            <div className=" md:flex my-auto p-8">
               <div className=" bg-bottom ">
                 {assetId ? (
-                  <ContentfulAsset id={assetId} width={400} height={300} />
+                  <ContentfulAsset
+                    id={assetId}
+                    width={400}
+                    height={300}
+                    className=""
+                  />
                 ) : null}
               </div>
               <div className="text-white">
-                <div>
-                  <h1 className=" font-normal font-league-gothic color-white uppercase border-b-8  border-solid">
+                <h1 className=" font-normal font-league-gothic color-white uppercase ">
+                  <span className="border-b-8  border-solid">
                     {linkBlockTitle}
-                  </h1>
-                </div>
-                <div>
+                  </span>
+                </h1>
+                <div className="">
                   <TextContent>{content}</TextContent>
                 </div>
                 >
