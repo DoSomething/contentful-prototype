@@ -25,6 +25,7 @@ import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
 import TypeFormEmbed from './utilities/TypeFormEmbed/TypeFormEmbed';
+import AlphaReferralPage from './pages/ReferralPage/Alpha/AlphaPage';
 import DelayedElement from './utilities/DelayedElement/DelayedElement';
 import SitewideBanner from './utilities/SitewideBanner/SitewideBanner';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
@@ -32,7 +33,6 @@ import AccountContainer from './pages/AccountPage/Account/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
-import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 import BetaVoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/Beta/BetaPage';
 
 const App = ({ store, history }) => {
@@ -138,10 +138,7 @@ const App = ({ store, history }) => {
                 component={BetaVoterRegistrationDrivePage}
               />
 
-              <Route
-                path="/us/refer-friends"
-                component={AlphaReferralPageContainer}
-              />
+              <Route path="/us/refer-friends" component={AlphaReferralPage} />
 
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
