@@ -17,6 +17,7 @@ describe('PhotoSubmissionAction component', () => {
       pageId={id}
       resetPostSubmissionItem={jest.fn()}
       storeCampaignPost={jest.fn()}
+      storePost={jest.fn()}
       submissions={{
         isPending: false,
         items: {},
