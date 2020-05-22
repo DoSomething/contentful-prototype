@@ -4,11 +4,11 @@
 
 We partner with [Rock The Vote](https://www.rockthevote.org) to register young people to vote on behalf of DoSomething.org, by redirecting to them to the Rock The Vote (RTV) registration website and appending our partner ID: `https://register.rockthevote.com/registrants/new?partner=37187`.
 
-We're able to pre-populate the user's email address and zip via `email_address` and `home_zip_code` query parameters, which we often include when redirecting an authenticated user on the web.
+We can pre-populate the voter registration email address and zip via `email_address` and `home_zip_code` query parameters, which we often include when redirecting an authenticated user on the web.
 
 Example:
 
-> https://register.rockthevote.com.rockthevote.com/registrants/new?partner=37187&source=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true&email_address=puppet.sloth@dosomething.org&home_zip_code=94116
+> register.rockthevote.com.rockthevote.com/registrants/new?partner=37187&source=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true&email_address=puppet.sloth@dosomething.org&home_zip_code=94116
 
 ## Import
 
@@ -22,8 +22,18 @@ When we redirect to the RTV registration form, we include a `source` query param
 
 We pass a `source` query parameter that contains multiple properties, comma separated by `key:value` substrings. Example:
 
-```
-https://register.rockthevote.com.rockthevote.com/registrants/new?partner=37187&source=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true&email_address=aschachter@dosomething.org&home_zip_code=94116
+> user:5547be89469c64ec7d8b518d,source:web,source_details:VoterRegQuiz_completed_notsure
+
+The following parameters can be passed:
+
+- `user` - This is the Northstar user ID of either the authenticated user registering to vote, or the referring user, if the `referral` key is present
+
+- `source` - This is similar to a `utm_source`. Example values: `web`, `sms`, `email`
+
+- `source_detail` - This is similar to a `utm_campaign`. Example values: `hellobar`, `broadcastID_4YOiqwTVOOVklZFARAFd4h`, `VoterRegQuiz_completed_votebymail`, `onlinedrivereferral`
+
+- `referral` - If this is set, the `user` parameter should be used as the `referrer_user_id` on the `voter-reg` post.
+
 ```
 
 ## Voting Portal
@@ -159,3 +169,4 @@ Quiz Results:
 This is because the current content in Contentful for our result entries contains the banner image inline (so they are displayed twice, once within the header and a second time within the copy). When we're ready to go live, we'll have the campaigns team edit the content and remove the requirement to include the `preview` query.
 
 - Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
+```
