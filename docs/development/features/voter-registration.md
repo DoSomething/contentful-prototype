@@ -62,9 +62,13 @@ We host customized voter registration drives for influencers on our Instapage, b
 
 The [`VoterRegistrationAction` content type](development/content-types/voter-registration-action.md) can be used to display a call to action button that redirects a user to our vote.dosomething.org portal.
 
+A `clicked_voter_registration_action` analytics event is fired when the user clicks on the CTA to visit the voter registration portal.
+
 ## Start Voter Registration Form
 
 The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the [OVRD alpha page](#alpha-page) and [Quiz Result page](#quiz-result-page).
+
+A `clicked_voter_registration_action` analytics event is fired when the user clicks on the CTA to continue their voter registration on the RTV registration site.
 
 ## Online Drives
 
