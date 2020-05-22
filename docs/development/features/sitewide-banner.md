@@ -6,7 +6,7 @@ This is a banner feature that is displayed site wide when turned on. In the past
 
 We use this feature to display important info to our users in a prominent banner across the top of the site. It is currently hardcoded to link to our [voter registration portal](/development/features/voter-registration.md#voting-portal).
 
-The `SitewideBanner` can be used in conjunction with a `DissmissableElement` or other wrapper components.
+The `SitewideBanner` can be used in conjunction with a `DismissableElement` or other wrapper components.
 
 ## Suppressing from Pages
 
