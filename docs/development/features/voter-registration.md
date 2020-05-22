@@ -34,7 +34,7 @@ This tracking source value is saved within the serialized `details` field of the
 
 - `source_detail` - This is similar to a `utm_campaign`.
 
-  - Example values: `hellobar`, `broadcastID_4YOiqwTVOOVklZFARAFd4h`, `VoterRegQuiz_completed_votebymail`, `onlinedrivereferral`
+  - Examples: `hellobar`, `broadcastID_4YOiqwTVOOVklZFARAFd4h`, `VoterRegQuiz_completed_votebymail`, `onlinedrivereferral`
 
 - `referral` - If this is set, the `user` parameter should be used as the `referrer_user_id` on the `voter-reg` post.
 
