@@ -1066,5 +1066,5 @@ export function getVoterRegistrationTrackingSource(
     return `user:${referrerUserId},${result},referral=true`;
   }
 
-  return window.AUTH.id ? `user:${window.AUTH.id},${result}` : result;
+  return getUserId() ? `user:${getUserId()},${result}` : result;
 }
