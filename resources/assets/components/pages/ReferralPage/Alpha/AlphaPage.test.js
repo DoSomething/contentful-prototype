@@ -5,7 +5,7 @@ import AlphaPage from './AlphaPage';
 import * as helpers from '../../../../helpers';
 
 describe('AlphaPage component', () => {
-  test('is rendered as an ErrorPage if getReferralCampaignId is null', () => {
+  test('is rendered as an ErrorPage if referral link is not generated', () => {
     helpers.getReferFriendsLink = jest.fn().mockReturnValue(undefined);
 
     const wrapper = shallow(<AlphaPage />);
@@ -13,7 +13,7 @@ describe('AlphaPage component', () => {
     expect(wrapper.find('ErrorPage').length).toEqual(1);
   });
 
-  test('is rendered with a main.alpha-referral-page if getReferralCampaignId returns an id', () => {
+  test('is rendered with a main.alpha-referral-page if referral link is generated', () => {
     helpers.getReferFriendsLink = jest
       .fn()
       .mockReturnValue('http://refer.friends');
