@@ -1,3 +1,4 @@
+import { PHOENIX_URL } from '../constants';
 import {
   makeHash,
   modifiers,
@@ -5,6 +6,7 @@ import {
   makeShareLink,
   dynamicString,
   contentfulImageUrl,
+  getReferFriendsLink,
 } from './index';
 
 /**
@@ -151,4 +153,38 @@ test('pluralizes words', () => {
   expect(pluralize(0, 'item', 'items')).toEqual('items');
   expect(pluralize(1, 'item', 'items')).toEqual('item');
   expect(pluralize(2, 'item', 'items')).toEqual('items');
+});
+
+describe('getReferFriendsLink', () => {
+  const userId = '123';
+  const referralCampaignId = '456';
+
+  jsdom.reconfigure({
+    url: `http://phoenix.test/join?campaign_id=${referralCampaignId}`,
+  });
+
+  global.AUTH = { id: userId };
+
+  /** @test */
+  it('returns referral link when user is autenticated & campaign ID query param is present', () => {
+    expect(getReferFriendsLink()).toEqual(
+      `${PHOENIX_URL}/us/join?user_id=${userId}&campaign_id=${referralCampaignId}`,
+    );
+  });
+
+  /** @test */
+  it('returns undefined if there is no user ID', () => {
+    global.AUTH = {};
+
+    expect(getReferFriendsLink()).toEqual(undefined);
+  });
+
+  /** @test */
+  it('returns undefined if there is no campaign ID query param', () => {
+    jsdom.reconfigure({
+      url: `http://phoenix.test/join`,
+    });
+
+    expect(getReferFriendsLink()).toEqual(undefined);
+  });
 });
