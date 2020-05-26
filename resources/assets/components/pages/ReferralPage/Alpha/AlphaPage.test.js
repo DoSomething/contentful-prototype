@@ -2,11 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import AlphaPage from './AlphaPage';
-import * as helpers from '../../../../helpers';
+import * as referFriendsHelpers from '../../../../helpers/refer-friends';
 
 describe('AlphaPage component', () => {
   test('is rendered as an ErrorPage if referral link is not generated', () => {
-    helpers.getReferFriendsLink = jest.fn().mockReturnValue(undefined);
+    referFriendsHelpers.getReferFriendsLink = jest
+      .fn()
+      .mockReturnValue(undefined);
 
     const wrapper = shallow(<AlphaPage />);
 
@@ -14,7 +16,7 @@ describe('AlphaPage component', () => {
   });
 
   test('is rendered with a main.alpha-referral-page if referral link is generated', () => {
-    helpers.getReferFriendsLink = jest
+    referFriendsHelpers.getReferFriendsLink = jest
       .fn()
       .mockReturnValue('http://refer.friends');
 

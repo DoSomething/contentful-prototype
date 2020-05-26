@@ -1,9 +1,9 @@
 import React from 'react';
 
 import ErrorPage from '../../ErrorPage';
-import { getReferFriendsLink } from '../../../../helpers';
 import ArticleHeader from '../../../utilities/ArticleHeader';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
+import { getReferFriendsLink } from '../../../../helpers/refer-friends';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
