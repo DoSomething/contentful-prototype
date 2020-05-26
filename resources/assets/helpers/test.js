@@ -159,7 +159,7 @@ describe('getReferFriendsLink', () => {
   const userId = '123';
   const referralCampaignId = '456';
 
-  jsdom.reconfigure({
+  window.jsdom.reconfigure({
     url: `http://phoenix.test/join?campaign_id=${referralCampaignId}`,
   });
 
