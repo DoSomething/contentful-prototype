@@ -14,7 +14,7 @@ const props = {
     url: 'http://image.com',
     description: 'cool image of http://image.com',
   },
-  imageAlignment: 'right',
+  imageAlignment: 'RIGHT',
 };
 
 describe('ContentBlock component', () => {

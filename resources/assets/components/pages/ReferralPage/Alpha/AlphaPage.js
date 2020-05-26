@@ -1,16 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import ErrorPage from '../../ErrorPage';
-import { PHOENIX_URL } from '../../../../constants';
-import { getReferralCampaignId } from '../../../../helpers';
+import { getReferFriendsLink } from '../../../../helpers';
 import ArticleHeader from '../../../utilities/ArticleHeader';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
-const AlphaPage = ({ userId }) =>
-  getReferralCampaignId() ? (
+const AlphaPage = () =>
+  getReferFriendsLink() ? (
     <>
       <SiteNavigationContainer />
 
@@ -21,8 +19,7 @@ const AlphaPage = ({ userId }) =>
             <SocialDriveActionContainer
               shareCardDescription="Invite your friends to join DoSomething. When your friend completes this campaign, you'll both increase your chances of winning the campaign scholarship! Every friend you refer earns you an additional shot at winning the scholarship. (Psst...there's no limit on how many you can refer!)"
               shareCardTitle="Refer A Friend"
-              link={`${PHOENIX_URL}/us/join?user_id=${userId}&campaign_id=${getReferralCampaignId()}`}
-              hidePageViews
+              link={getReferFriendsLink()}
               fullWidth
             />
           </div>
@@ -62,9 +59,5 @@ const AlphaPage = ({ userId }) =>
   ) : (
     <ErrorPage />
   );
-
-AlphaPage.propTypes = {
-  userId: PropTypes.string.isRequired,
-};
 
 export default AlphaPage;

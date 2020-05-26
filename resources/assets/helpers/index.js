@@ -18,8 +18,10 @@ import {
   omitBy,
 } from 'lodash';
 
+import { getUserId } from './auth';
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
+import { PHOENIX_URL } from '../constants';
 import tailwindVariables from '../../../tailwind.variables';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
@@ -572,6 +574,22 @@ export function getReferralCampaignId() {
 }
 
 /**
+ * Get refer-a-friend share URL.
+ *
+ * @return {String|Undefined}
+ */
+export function getReferFriendsLink() {
+  const userId = getUserId();
+  const referralCampaignId = getReferralCampaignId();
+
+  if (!userId || !referralCampaignId) {
+    return undefined;
+  }
+
+  return `${PHOENIX_URL}/us/join?user_id=${userId}&campaign_id=${referralCampaignId}`;
+}
+
+/**
  * Load and return the Facebook SDK.
  */
 export function loadFacebookSDK() {
@@ -1048,5 +1066,5 @@ export function getVoterRegistrationTrackingSource(
     return `user:${referrerUserId},${result},referral=true`;
   }
 
-  return window.AUTH.id ? `user:${window.AUTH.id},${result}` : result;
+  return getUserId() ? `user:${getUserId()},${result}` : result;
 }
