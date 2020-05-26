@@ -63,38 +63,25 @@ const QuizResultPage = ({ id }) => {
       <main>
         <article data-test="quiz-result-page">
           <header role="banner" className="bg-blurple-500">
-            <div className=" md:flex my-auto p-8">
-              <div className=" bg-bottom ">
+            <div className="md:flex my-auto p-8">
+              <div className="md:w-1/4 flex-grow md:flex-col bg-bottom ">
                 {assetId ? (
-                  <ContentfulAsset
-                    id={assetId}
-                    width={400}
-                    height={300}
-                    className=""
-                  />
+                  <ContentfulAsset id={assetId} width={400} height={300} />
                 ) : null}
               </div>
-              <div>
-                <h1
-                  className=" font-normal font-league-gothic color-white uppercase leading-10"
-                  css={css`
-                    ::after {
-                      content: '';
-                      background-color: yellow;
-                    }
-                  `}
-                >
-                  <span className="border-b-4 border-solid border-yellow-400">
+              <div className="md:w-3/4">
+                <h1 className=" font-normal font-league-gothic color-white uppercase leading-10">
+                  <span className="border-b-4 border-solid border-yellow-400 inline-block">
                     {linkBlockTitle}
                   </span>
                 </h1>
-                <div className="">
+                <div className="color-white">
                   <TextContent>{content}</TextContent>
                 </div>
               </div>
             </div>
           </header>
-          <div className="bg-transparent">
+          <div className="bg-white">
             <img className="m-auto" src={triangle} alt="triangle" />
           </div>
           <div className="bg-white py-3 md:py-6">
