@@ -181,7 +181,7 @@ describe('getReferFriendsLink', () => {
 
   /** @test */
   it('returns undefined if there is no campaign ID query param', () => {
-    jsdom.reconfigure({
+    window.jsdom.reconfigure({
       url: `http://phoenix.test/join`,
     });
 
