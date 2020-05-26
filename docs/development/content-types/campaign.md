@@ -12,7 +12,7 @@ Configures a [campaign](https://github.com/DoSomething/rogue/blob/master/docs/en
 
 - **Display Referral Page** : Whether to display the [Referral Page Banner](development/features/referral-pages.md) in the signup Affirmation.
 
-- **Blurb** : Long text displayed in the LedeBanner.
+- **Blurb** : Long text displayed in the CampaignBanner.
 
 - **Landing Page** : Reference to a [Landing Page](development/content-types/landing-page.md) or Sixpack Experiment entry ([currently broken](https://www.pivotaltracker.com/n/projects/2401401/stories/170964251)), displayed when the current user has not signed up for the campaign.
 

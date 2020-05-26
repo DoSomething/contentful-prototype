@@ -18,8 +18,10 @@ import {
   omitBy,
 } from 'lodash';
 
+import { getUserId } from './auth';
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
+import { PHOENIX_URL } from '../constants';
 import tailwindVariables from '../../../tailwind.variables';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
@@ -572,6 +574,22 @@ export function getReferralCampaignId() {
 }
 
 /**
+ * Get refer-a-friend share URL.
+ *
+ * @return {String|Undefined}
+ */
+export function getReferFriendsLink() {
+  const userId = getUserId();
+  const referralCampaignId = getReferralCampaignId();
+
+  if (!userId || !referralCampaignId) {
+    return undefined;
+  }
+
+  return `${PHOENIX_URL}/us/join?user_id=${userId}&campaign_id=${referralCampaignId}`;
+}
+
+/**
  * Load and return the Facebook SDK.
  */
 export function loadFacebookSDK() {
@@ -1032,15 +1050,21 @@ export function getMillisecondsFromDays(days) {
 }
 
 /**
- * Build URL with UTMs for Voter Registration Content
+ * Build UTMs for Voter Registration URLs
  *
- * @param {String} source
+ * @param {String} referrerUserId
  * @param {String} sourceDetails
  */
 
-export function buildVoterRegUrl(source = 'web', sourceDetails) {
-  const baseUrl = 'https://vote.dosomething.org/';
-  const userId = window.AUTH.id ? `user:${window.AUTH.id},` : '';
+export function getVoterRegistrationTrackingSource(
+  sourceDetails,
+  referrerUserId = '',
+) {
+  const result = `source:web,source_details:${sourceDetails}`;
 
-  return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails}`;
+  if (referrerUserId) {
+    return `user:${referrerUserId},${result},referral=true`;
+  }
+
+  return getUserId() ? `user:${getUserId()},${result}` : result;
 }

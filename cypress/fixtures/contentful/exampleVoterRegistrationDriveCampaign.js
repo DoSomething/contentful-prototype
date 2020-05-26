@@ -128,14 +128,6 @@ export default {
       },
     },
     socialOverride: null,
-    additionalContent: {
-      referralRB: true,
-      sourceActionText: {
-        niche: 'Apply Now!',
-        partner: 'Apply Now!',
-      },
-      signupArrowContent: 'Win a $5,000 Scholarship',
-    },
     allowExperiments: true,
     actionText: 'Join Us',
     staffPick: true,

@@ -41,7 +41,11 @@ const SitewideBannerContent = ({
         </h1>
 
         <PrimaryButton
-          attributes={{ rel: 'noopener noreferrer', target: '_blank' }}
+          attributes={{
+            rel: 'noopener noreferrer',
+            target: '_blank',
+            'data-testid': 'sitewide-banner-button',
+          }}
           className="py-2 px-4"
           href={link}
           onClick={handleCompleteWithTracking}

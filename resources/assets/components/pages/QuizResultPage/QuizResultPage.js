@@ -14,8 +14,10 @@ import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import ContentfulAsset from '../../utilities/ContentfulAsset/ContentfulAsset';
+import { gqlVariables, placeholderContent, sourceDetailPrefix } from './config';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
+import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
 
 const QUIZ_RESULT_PAGE_QUERY = gql`
   query QuizResultPageQuery($id: String!) {
@@ -52,6 +54,7 @@ const QuizResultPage = ({ id }) => {
     : gqlVariables.production;
   const { linkBlockTitle } = data.block;
   const assetId = get(config, `results.${id}.assetId`, null);
+  const sourceDetail = get(config, `results.${id}.sourceDetail`, null);
   // Use placeholder for development until we're ready to enable Quiz Result Page feature.
   const content = query('preview') ? data.block.content : placeholderContent;
 
@@ -60,6 +63,7 @@ const QuizResultPage = ({ id }) => {
       <SiteNavigationContainer />
 
       <main>
+
         <article data-test="quiz-result-page">
           <header role="banner" className="bg-blurple-500">
             <div className="md:flex my-auto p-8">
@@ -78,6 +82,7 @@ const QuizResultPage = ({ id }) => {
                   <TextContent>{content}</TextContent>
                 </div>
               </div>
+
             </div>
           </header>
           <div className="bg-white">
@@ -88,6 +93,14 @@ const QuizResultPage = ({ id }) => {
               id={config.galleryBlockId}
               className="grid-full"
             />
+
+            <div className="grid-full py-3 md:py-6">
+              <StartVoterRegistrationForm
+                contextSource="voter-registration-quiz-results-page"
+                className="md:mx-auto md:w-2/3 xl:w-1/2"
+                sourceDetail={sourceDetail || `${sourceDetailPrefix}default`}
+              />
+            </div>
           </div>
         </article>
       </main>

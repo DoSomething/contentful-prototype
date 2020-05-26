@@ -25,15 +25,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  socialDriveAction
-    .createField('hidePageViews')
-    .name('Hide Page Views')
-    .type('Boolean')
-    .localized(false)
-    .required(false)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
   socialDriveAction.changeFieldControl(
     'internalTitle',
     'builtin',
@@ -41,11 +32,4 @@ module.exports = function(migration) {
     {},
   );
   socialDriveAction.changeFieldControl('link', 'builtin', 'singleLine', {});
-
-  socialDriveAction.changeFieldControl('hidePageViews', 'builtin', 'boolean', {
-    helpText:
-      "By default, we'll display the page views for the provided Bertly link in an info card adjacent to the Social Drive Action. You can toggle this off here!",
-    trueLabel: 'Yes',
-    falseLabel: 'No',
-  });
 };

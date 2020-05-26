@@ -42,7 +42,7 @@ const CampaignInfoBlock = ({
   actionIdToDisplay,
 }) => (
   <Card
-    attributes={{ 'data-test': 'campaign-info-block-container' }}
+    attributes={{ 'data-testid': 'campaign-info-block-container' }}
     className="bordered p-3 rounded campaign-info"
   >
     <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
@@ -102,7 +102,7 @@ const CampaignInfoBlock = ({
                   {!hideScholarshipDetails ? (
                     <div>
                       <button
-                        data-test="campaign-info-block-scholarship-details-link"
+                        data-testid="campaign-info-block-scholarship-details-link"
                         className="text-blue-500 pb-4"
                         type="button"
                         onClick={handleViewMoreLinkSelect}
@@ -136,7 +136,7 @@ const CampaignInfoBlock = ({
               {featureFlag('volunteer_credits') && actionItem ? (
                 <>
                   <dt>Volunteer Credit</dt>
-                  <dd data-test="volunteer-credit-value">
+                  <dd data-testid="volunteer-credit-value">
                     {actionItem.volunteerCredit ? 'Yes' : 'No'}
                   </dd>
                 </>

@@ -24,6 +24,7 @@
   - [Page](development/content-types/page.md)
   - [Selection Submission Action](development/content-types/selection-submission-action.md)
   - [Social Drive Action](development/content-types/social-drive-action.md)
+  - [Voter Registration Action](development/content-types/voter-registration-action.md)
 - [Features](development/features/README.md)
   - [Affiliate Opt In](development/features/affiliate-opt-in.md)
   - [Affiliate Scholarship Block](development/features/affiliate-scholarship-block.md)

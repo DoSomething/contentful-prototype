@@ -3,6 +3,8 @@ import { mount } from 'enzyme';
 
 import SignupButton from './SignupButton';
 
+jest.mock('../../helpers/analytics');
+
 const storeCampaignSignup = jest.fn();
 
 const props = {

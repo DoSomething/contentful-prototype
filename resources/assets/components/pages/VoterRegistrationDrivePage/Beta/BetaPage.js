@@ -11,10 +11,10 @@ import Placeholder from '../../../utilities/Placeholder';
 import { isDevEnvironment, query } from '../../../../helpers';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
-import StartVoterRegistrationForm from './StartVoterRegistrationForm';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
+import StartVoterRegistrationForm from '../../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
 
 const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
   query BetaVoterRegistrationDrivePageQuery(
@@ -107,8 +107,11 @@ const BetaVoterRegistrationDrivePage = () => {
             />
             <div className="pb-6">
               <StartVoterRegistrationForm
-                referrerUserId={referrerUserId}
                 campaignId={campaignId}
+                className="md:w-3/5"
+                contextSource="beta-voter-registration-drive-page"
+                referrerUserId={referrerUserId}
+                sourceDetail="onlinedrivereferral"
               />
             </div>
             <ContentfulEntryLoader

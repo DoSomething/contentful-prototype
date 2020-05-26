@@ -47,7 +47,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
   it('Beta OVRD page displays NotFoundPage if referrer user ID not present', () => {
     cy.visit(betaPagePath);
 
-    cy.get('[data-test=not-found-page]').should('have.length', 1);
+    cy.findByTestId('not-found-page').should('have.length', 1);
     cy.get('[data-test=beta-voter-registration-drive-page]').should(
       'have.length',
       0,
@@ -65,7 +65,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=not-found-page]').should('have.length', 1);
+    cy.findByTestId('not-found-page').should('have.length', 1);
     cy.get('[data-test=beta-voter-registration-drive-page]').should(
       'have.length',
       0,
@@ -100,12 +100,12 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=not-found-page]').should('have.length', 0);
+    cy.findByTestId('not-found-page').should('have.length', 0);
     cy.get('[data-test=beta-voter-registration-drive-page]').should(
       'have.length',
       1,
     );
-    cy.get('.hero-banner__headline-subtitle').contains(
+    cy.findByTestId('campaign-header-subtitle').contains(
       `${user.firstName} wants you to register to vote!`,
     );
   });
@@ -301,7 +301,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.findByTestId('voter-registration-email-field').type('text@test.com');
     cy.findByTestId('voter-registration-zip-field').type('12345');
-    cy.findByTestId('voter-registration-source-details').should(
+    cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
       `user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
     );

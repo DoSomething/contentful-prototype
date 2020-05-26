@@ -6,6 +6,11 @@ import { ApolloProvider } from '@apollo/react-common';
 import { Provider as ReduxProvider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 
+import {
+  env,
+  featureFlag,
+  getVoterRegistrationTrackingSource,
+} from '../helpers';
 import graphqlClient from '../graphql';
 import ErrorPage from './pages/ErrorPage';
 import { initializeStore } from '../store/store';
@@ -16,11 +21,11 @@ import CausePage from './pages/CausePage/CausePage';
 import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
-import { env, featureFlag, buildVoterRegUrl } from '../helpers';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
 import TypeFormEmbed from './utilities/TypeFormEmbed/TypeFormEmbed';
+import AlphaReferralPage from './pages/ReferralPage/Alpha/AlphaPage';
 import DelayedElement from './utilities/DelayedElement/DelayedElement';
 import SitewideBanner from './utilities/SitewideBanner/SitewideBanner';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
@@ -28,12 +33,10 @@ import AccountContainer from './pages/AccountPage/Account/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
-import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 import BetaVoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/Beta/BetaPage';
 
 const App = ({ store, history }) => {
   initializeStore(store);
-
   return (
     <ReduxProvider store={store}>
       <ErrorBoundary FallbackComponent={ErrorPage}>
@@ -47,7 +50,9 @@ const App = ({ store, history }) => {
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}
               handleComplete={handleComplete}
-              link={buildVoterRegUrl('web', 'hellobar')}
+              link={`https://vote.dosomething.org/?r=${getVoterRegistrationTrackingSource(
+                'hellobar',
+              )}`}
             />
           )}
         />
@@ -133,10 +138,7 @@ const App = ({ store, history }) => {
                 component={BetaVoterRegistrationDrivePage}
               />
 
-              <Route
-                path="/us/refer-friends"
-                component={AlphaReferralPageContainer}
-              />
+              <Route path="/us/refer-friends" component={AlphaReferralPage} />
 
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
