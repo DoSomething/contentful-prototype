@@ -2,7 +2,6 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 import { useQuery } from 'react-apollo';
 
 import triangle from './triangle.svg';
