@@ -9,7 +9,6 @@ import ErrorPage from '../ErrorPage';
 import NotFoundPage from '../NotFoundPage';
 import Placeholder from '../../utilities/Placeholder';
 import { isDevEnvironment, query } from '../../../helpers';
-import { gqlVariables, placeholderContent } from './config';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
@@ -63,7 +62,6 @@ const QuizResultPage = ({ id }) => {
       <SiteNavigationContainer />
 
       <main>
-
         <article data-test="quiz-result-page">
           <header role="banner" className="bg-blurple-500">
             <div className="md:flex my-auto p-8">
@@ -82,7 +80,6 @@ const QuizResultPage = ({ id }) => {
                   <TextContent>{content}</TextContent>
                 </div>
               </div>
-
             </div>
           </header>
           <div className="bg-white">
