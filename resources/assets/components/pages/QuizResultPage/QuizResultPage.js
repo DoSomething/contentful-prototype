@@ -2,6 +2,7 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import { useQuery } from 'react-apollo';
 
 import triangle from './triangle.svg';
@@ -73,16 +74,23 @@ const QuizResultPage = ({ id }) => {
                   />
                 ) : null}
               </div>
-              <div className="text-white">
-                <h1 className=" font-normal font-league-gothic color-white uppercase ">
-                  <span className="border-b-8  border-solid">
+              <div>
+                <h1
+                  className=" font-normal font-league-gothic color-white uppercase leading-10"
+                  css={css`
+                    ::after {
+                      content: '';
+                      background-color: yellow;
+                    }
+                  `}
+                >
+                  <span className="border-b-4 border-solid border-yellow-400">
                     {linkBlockTitle}
                   </span>
                 </h1>
                 <div className="">
                   <TextContent>{content}</TextContent>
                 </div>
-                >
               </div>
             </div>
           </header>
