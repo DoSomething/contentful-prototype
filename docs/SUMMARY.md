@@ -46,6 +46,7 @@
 - [Contentful](development/contentful/README.md)
   - [Workflow](development/contentful/workflow.md)
   - [Content Management API Scripts](development/contentful/content-management-api-scripts.md)
+- [Helpers](development/helpers/README.md)
 
 ## Phoenix API
 
