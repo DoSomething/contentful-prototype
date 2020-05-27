@@ -66,9 +66,7 @@ const QuizResultPage = ({ id }) => {
           <header role="banner" className="bg-blurple-500">
             <div className="md:flex my-auto p-8">
               <div className="md:w-1/4 flex-grow md:flex-col bg-bottom ">
-                {assetId ? (
-                  <ContentfulAsset id={assetId} width={400} height={300} />
-                ) : null}
+                {assetId ? <ContentfulAsset id={assetId} width={375} /> : null}
               </div>
               <div className="md:w-3/4">
                 <h1 className=" font-normal font-league-gothic color-white uppercase leading-10">
