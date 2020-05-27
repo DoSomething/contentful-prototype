@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 
+import triangle from './triangle.svg';
 import ErrorPage from '../ErrorPage';
 import NotFoundPage from '../NotFoundPage';
 import Placeholder from '../../utilities/Placeholder';
@@ -62,23 +63,27 @@ const QuizResultPage = ({ id }) => {
 
       <main>
         <article data-testid="quiz-result-page">
-          <header
-            role="banner"
-            className="base-12-grid py-3 md:py-6 bg-blurple-500"
-          >
-            <div className="my-6 grid-full">
-              <h1 className="my-3 font-normal font-league-gothic color-white uppercase">
-                {linkBlockTitle}
-              </h1>
-              {assetId ? (
-                <ContentfulAsset id={assetId} width={400} height={300} />
-              ) : null}
-              <TextContent className="grid-full text-white">
-                {content}
-              </TextContent>
+          <header role="banner" className="bg-blurple-500">
+            <div className="md:flex my-auto p-8">
+              <div className="md:w-1/4 flex-grow md:flex-col bg-bottom ">
+                {assetId ? <ContentfulAsset id={assetId} width={375} /> : null}
+              </div>
+              <div className="md:w-3/4">
+                <h1 className=" font-normal font-league-gothic color-white uppercase leading-10">
+                  <span className="border-b-4 border-solid border-yellow-400 inline-block">
+                    {linkBlockTitle}
+                  </span>
+                </h1>
+                <div className="color-white">
+                  <TextContent>{content}</TextContent>
+                </div>
+              </div>
             </div>
           </header>
-          <div className="bg-white base-12-grid py-3 md:py-6">
+          <div className="bg-white">
+            <img className="m-auto" src={triangle} alt="triangle" />
+          </div>
+          <div className="bg-white py-3 md:py-6">
             <ContentfulEntryLoader
               id={config.galleryBlockId}
               className="grid-full"
