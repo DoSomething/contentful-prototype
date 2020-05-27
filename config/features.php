@@ -19,6 +19,5 @@ return [
     'cause_preferences' => env('DS_ENABLE_CAUSE_INTERESTS_PAGE', false),
     'quiz_result_page' =>  env('DS_ENABLE_QUIZ_RESULT_PAGE', false),
     'sitewide_nps_survey' => env('DS_ENABLE_SITEWIDE_NPS_SURVEY', false),
-    'voter_reg_beta_page' => env('DS_ENABLE_VOTER_REG_BETA_PAGE', false),
     'refer_friends_v2' => env('DS_ENABLE_REFER_FRIENDS_V2', false),
 ];
