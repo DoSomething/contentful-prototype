@@ -5,6 +5,7 @@ import SocialDriveActionContainer from '../../../actions/SocialDriveAction/Socia
 
 const ReferFriendsTab = () => (
   <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6">
+    {/* @TODO Update all reward related copy once we have the updates from product. */}
     <SectionHeader underlined title="Enter to Win A $10 Gift Card" />
 
     <SocialDriveActionContainer
