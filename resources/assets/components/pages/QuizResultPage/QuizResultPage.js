@@ -13,7 +13,7 @@ import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import ContentfulAsset from '../../utilities/ContentfulAsset/ContentfulAsset';
-import { gqlVariables, placeholderContent, sourceDetailPrefix } from './config';
+import { gqlVariables, placeholderContent } from './config';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
@@ -93,7 +93,7 @@ const QuizResultPage = ({ id }) => {
                 <StartVoterRegistrationForm
                   contextSource="voter-registration-quiz-results-page"
                   className="md:mx-auto md:w-2/3 xl:w-1/2"
-                  sourceDetail={sourceDetail || `${sourceDetailPrefix}default`}
+                  sourceDetail={sourceDetail}
                 />
               </div>
             ) : null}
