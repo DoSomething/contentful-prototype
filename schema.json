@@ -4275,17 +4275,25 @@
             "deprecationReason": null
           },
           {
-            "name": "url",
-            "description": "The URL for this campaign website.",
+            "name": "path",
+            "description": "The root-relative path to this campaign. Use when linking internally.",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": "The full absolute URL to this campaign. Use when linking cross-domain.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "AbsoluteUrl",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -4500,6 +4508,11 @@
           {
             "kind": "INTERFACE",
             "name": "Showcasable",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Routable",
             "ofType": null
           }
         ],
@@ -4765,6 +4778,52 @@
           }
         ],
         "possibleTypes": null
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "Routable",
+        "description": null,
+        "fields": [
+          {
+            "name": "path",
+            "description": "The root-relative path to this resource. Use when linking internally.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": "The full absolute URL to this resource. Use when linking cross-domain.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "AbsoluteUrl",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "CampaignWebsite",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "StoryPageWebsite",
+            "ofType": null
+          }
+        ]
       },
       {
         "kind": "INTERFACE",
@@ -7587,17 +7646,25 @@
             "deprecationReason": null
           },
           {
-            "name": "url",
-            "description": "The URL for this story campaign.",
+            "name": "path",
+            "description": "The root-relative path to this story page. Use when linking internally.",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": "The full absolute URL to this story page. Use when linking cross-domain.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "AbsoluteUrl",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -7760,6 +7827,11 @@
           {
             "kind": "INTERFACE",
             "name": "Showcasable",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Routable",
             "ofType": null
           }
         ],
@@ -8222,6 +8294,51 @@
               {
                 "name": "subscribed",
                 "description": "The new subscription status.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updateEmailSubscriptionStatus",
+            "description": "Update the user's email subscription status.",
+            "args": [
+              {
+                "name": "id",
+                "description": "The user to update.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "emailSubscriptionStatus",
+                "description": "The new email subscription status.",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -11631,6 +11748,22 @@
             "deprecationReason": null
           },
           {
+            "name": "galleryType",
+            "description": "The type of blocks to be rendered in the gallery.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "GalleryTypeOption",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "blocks",
             "description": "Blocks to display or preview in the Gallery.",
             "args": [],
@@ -11746,6 +11879,47 @@
           },
           {
             "name": "LEFT",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "GalleryTypeOption",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "PERSON",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CAMPAIGN",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SCHOLARSHIP",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PAGE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EXTERNAL_LINK",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -14057,18 +14231,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "AbsoluteUrl",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "hidePageViews",
-            "description": "Toggles the display of the page views info card adjacent to the block",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
               "ofType": null
             },
             "isDeprecated": false,

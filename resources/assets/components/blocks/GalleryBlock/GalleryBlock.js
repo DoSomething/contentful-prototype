@@ -6,6 +6,7 @@ import { withoutNulls } from '../../../helpers';
 import Person from '../../utilities/Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
+import ScholarshipCard from '../../utilities/ScholarshipCard/ScholarshipCard';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItem';
@@ -13,6 +14,7 @@ import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalle
 export const GalleryBlockFragment = gql`
   fragment GalleryBlockFragment on GalleryBlock {
     title
+    galleryType
     imageAlignment
     imageFit
     itemsPerRow
@@ -31,6 +33,8 @@ export const GalleryBlockFragment = gql`
         twitterId
       }
       ... on CampaignWebsite {
+        scholarshipAmount
+        scholarshipDeadline
         slug
       }
       ... on Page {
@@ -40,22 +44,18 @@ export const GalleryBlockFragment = gql`
   }
 `;
 
-const renderBlock = (block, imageAlignment, imageFit) => {
-  // We finesse the block type and fields to support both
+const renderBlock = (blockType, block, imageAlignment, imageFit) => {
   // GraphQL ('Showcasable' interface) and Phoenix-backend (legacy) queried blocks.
-  const blockType = block.__typename || block.type;
-  const fields =
-    block.__typename || block.type === 'campaign'
-      ? withoutNulls(block)
-      : withoutNulls(block.fields);
+  const fields = withoutNulls(block);
 
   switch (blockType) {
-    case 'person':
+    case 'PERSON':
     case 'PersonBlock':
       return <Person key={block.id} {...fields} />;
 
-    case 'campaign':
+    case 'CAMPAIGN':
     case 'CampaignWebsite':
+      // @TODO: Replace with Campaign Card
       return (
         <CampaignGalleryItem
           key={block.id}
@@ -66,8 +66,12 @@ const renderBlock = (block, imageAlignment, imageFit) => {
         />
       );
 
-    case 'page':
+    case 'SCHOLARSHIP':
+      return <ScholarshipCard key={block.id} campaign={block} />;
+
+    case 'PAGE':
     case 'Page':
+      // @TODO: Replace with Page Card
       return (
         <PageGalleryItem
           key={block.id}
@@ -78,7 +82,7 @@ const renderBlock = (block, imageAlignment, imageFit) => {
         />
       );
 
-    case 'contentBlock':
+    case 'EXTERNAL_LINK':
     case 'ContentBlock':
       return (
         <ContentBlockGalleryItem
@@ -97,7 +101,7 @@ const renderBlock = (block, imageAlignment, imageFit) => {
   }
 };
 
-const galleryTypes = {
+const galleryLayouts = {
   '2': 'duo',
   '3': 'triad',
   '4': 'quartet',
@@ -105,16 +109,27 @@ const galleryTypes = {
 };
 
 const GalleryBlock = props => {
-  const { title, blocks, itemsPerRow, imageAlignment, imageFit } = props;
+  const {
+    title,
+    galleryType,
+    blocks,
+    itemsPerRow,
+    imageAlignment,
+    imageFit,
+  } = props;
 
-  const galleryType = galleryTypes[itemsPerRow];
+  const galleryLayout = galleryLayouts[itemsPerRow];
 
   return (
     <div className="gallery-block">
       {title ? <SectionHeader underlined title={title} /> : null}
-      <Gallery type={galleryType} className="-mx-3 mt-3">
+
+      <Gallery type={galleryLayout} className="-mx-3 mt-3">
         {blocks.map(block =>
           renderBlock(
+            // @TODO: Remove the block.__typename hack after we are able to
+            // properly source blockType from the entry
+            galleryType || block.__typename,
             block,
             imageAlignment.toLowerCase(),
             imageFit.toLowerCase(),
@@ -127,6 +142,13 @@ const GalleryBlock = props => {
 
 GalleryBlock.propTypes = {
   title: PropTypes.string,
+  galleryType: PropTypes.oneOf([
+    'PERSON',
+    'CAMPAIGN',
+    'SCHOLARSHIP',
+    'PAGE',
+    'EXTERNAL_LINK',
+  ]),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
   imageAlignment: PropTypes.oneOf(['TOP', 'LEFT']).isRequired,
@@ -136,6 +158,7 @@ GalleryBlock.propTypes = {
 GalleryBlock.defaultProps = {
   title: null,
   imageFit: 'FILL',
+  galleryType: null,
 };
 
 export default GalleryBlock;
