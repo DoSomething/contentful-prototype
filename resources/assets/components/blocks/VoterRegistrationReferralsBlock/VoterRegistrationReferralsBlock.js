@@ -1,14 +1,14 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import pluralize from 'pluralize';
-import PropTypes from 'prop-types';
 
-import Query from '../../../../Query';
+import Query from '../../Query';
+import { getUserId } from '../../../helpers/auth';
+import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import VoterRegistrationReferralsList from './VoterRegistrationReferralsList';
-import SectionHeader from '../../../../utilities/SectionHeader/SectionHeader';
 
-const ALPHA_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
-  query AlphaVoterRegistrationReferrals($referrerUserId: String!) {
+const VOTER_REGISTRATION_REFERRALS_QUERY = gql`
+  query VoterRegistrationReferrals($referrerUserId: String!) {
     posts(
       referrerUserId: $referrerUserId
       type: "voter-reg"
@@ -22,12 +22,12 @@ const ALPHA_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   }
 `;
 
-const VoterRegistrationReferrals = ({ referrerUserId }) => (
+const VoterRegistrationReferralsBlock = () => (
   <div className="grid-wide clearfix wrapper pb-6">
     <SectionHeader underlined title="Get 3 friends to register!" />
     <Query
-      query={ALPHA_VOTER_REGISTRATION_REFERRALS_QUERY}
-      variables={{ referrerUserId }}
+      query={VOTER_REGISTRATION_REFERRALS_QUERY}
+      variables={{ referrerUserId: getUserId() }}
     >
       {data => {
         const numberOfReferrals = data.posts.length;
@@ -66,8 +66,4 @@ const VoterRegistrationReferrals = ({ referrerUserId }) => (
   </div>
 );
 
-VoterRegistrationReferrals.propTypes = {
-  referrerUserId: PropTypes.string.isRequired,
-};
-
-export default VoterRegistrationReferrals;
+export default VoterRegistrationReferralsBlock;

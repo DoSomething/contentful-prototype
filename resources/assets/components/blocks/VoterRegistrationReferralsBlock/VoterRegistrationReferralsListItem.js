@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { BaseFigure } from '../../utilities/Figure/Figure';
 import EmptyRegistrationImage from './empty-registration.svg';
-import { BaseFigure } from '../../../../utilities/Figure/Figure';
 import CompletedRegistrationImage from './completed-registration.svg';
 
 const VoterRegistrationReferralsListItem = props => {
