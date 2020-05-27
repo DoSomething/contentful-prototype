@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { development, production } from './config';
 import { isDevEnvironment } from '../../../../helpers';
@@ -7,7 +6,7 @@ import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/Cont
 import VoterRegistrationDriveAction from '../../../actions/VoterRegistrationDriveAction/VoterRegistrationDriveAction';
 import VoterRegistrationReferralsBlock from '../../../blocks/VoterRegistrationReferralsBlock/VoterRegistrationReferralsBlock';
 
-const AlphaPage = ({ userId }) => {
+const AlphaPage = () => {
   const config = isDevEnvironment() ? development : production;
 
   return (
@@ -29,10 +28,6 @@ const AlphaPage = ({ userId }) => {
       />
     </div>
   );
-};
-
-AlphaPage.propTypes = {
-  userId: PropTypes.string.isRequired,
 };
 
 export default AlphaPage;

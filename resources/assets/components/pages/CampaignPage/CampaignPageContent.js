@@ -8,7 +8,7 @@ import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
-import AlphaVoterRegistrationDrivePageContainer from '../VoterRegistrationDrivePage/Alpha/AlphaPageContainer';
+import AlphaVoterRegistrationDrivePage from '../VoterRegistrationDrivePage/Alpha/AlphaPage';
 
 const CampaignPageContent = props => {
   const { isCampaignClosed, match, pages, shouldShowAffirmation } = props;
@@ -53,7 +53,7 @@ const CampaignPageContent = props => {
       ) : null}
 
       {isAlphaVoterRegistrationDrivePage ? (
-        <AlphaVoterRegistrationDrivePageContainer />
+        <AlphaVoterRegistrationDrivePage />
       ) : null}
 
       {blocks.length && !isAlphaVoterRegistrationDrivePage ? (
