@@ -51,6 +51,10 @@ They run in the following scenarios:
 
 We use [StyleCI](https://styleci.io/repos/75642790) service to lint our PHP code when a new pull request is made for the respository.
 
+## Helper Methods
+
+[See here](../developments/helpers/README.md) for some information on developing with our suite of helper methods.
+
 ## Services
 
 There are a couple of other third-party services that you will want access to for development:

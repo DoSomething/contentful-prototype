@@ -21,7 +21,6 @@ import {
 import { getUserId } from './auth';
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
-import { PHOENIX_URL } from '../constants';
 import tailwindVariables from '../../../tailwind.variables';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
@@ -562,31 +561,6 @@ export function query(key, url = window.location) {
   const search = queryString.parse(url.search);
 
   return search[key];
-}
-
-/**
- * Get referral campaign ID for refer-a-friend share URL.
- *
- * @return {string}
- */
-export function getReferralCampaignId() {
-  return query('campaign_id');
-}
-
-/**
- * Get refer-a-friend share URL.
- *
- * @return {String|Undefined}
- */
-export function getReferFriendsLink() {
-  const userId = getUserId();
-  const referralCampaignId = getReferralCampaignId();
-
-  if (!userId || !referralCampaignId) {
-    return undefined;
-  }
-
-  return `${PHOENIX_URL}/us/join?user_id=${userId}&campaign_id=${referralCampaignId}`;
 }
 
 /**

@@ -3,10 +3,11 @@ import gql from 'graphql-tag';
 
 import Query from '../../../Query';
 import ErrorPage from '../../ErrorPage';
+import { query } from '../../../../helpers';
 import MoneyHandImage from './money-hand.svg';
 import CampaignLink from './BetaPageCampaignLink';
 import ArticleHeader from '../../../utilities/ArticleHeader';
-import { getReferralCampaignId, query } from '../../../../helpers';
+import { getReferralCampaignId } from '../../../../helpers/refer-friends';
 
 const REFERRAL_PAGE_USER = gql`
   query ReferralPageUserQuery($id: String!) {
