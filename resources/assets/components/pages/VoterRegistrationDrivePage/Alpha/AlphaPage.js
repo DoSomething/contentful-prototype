@@ -5,9 +5,9 @@ import { gqlVariables } from './config';
 import { PHOENIX_URL } from '../../../../constants';
 import { featureFlag, isDevEnvironment } from '../../../../helpers';
 import VotingReasonsQueryOptions from './VotingReasonsQueryOptions';
-import VoterRegistrationReferrals from './VoterRegistrationReferrals/VoterRegistrationReferrals';
 import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
+import VoterRegistrationReferralsBlock from '../../../blocks/VoterRegistrationReferralsBlock/VoterRegistrationReferralsBlock';
 
 const AlphaPage = ({ userId }) => {
   const config = isDevEnvironment()
@@ -20,7 +20,7 @@ const AlphaPage = ({ userId }) => {
       className="base-12-grid clear-both py-3 md:py-6"
       data-test="alpha-voter-registration-drive-page"
     >
-      <VoterRegistrationReferrals referrerUserId={userId} />
+      <VoterRegistrationReferralsBlock referrerUserId={userId} />
       <ContentfulEntryLoader
         id={config.shareLink.contentBlockId}
         className="grid-wide clearfix wrapper pb-3"

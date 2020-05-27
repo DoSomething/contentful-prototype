@@ -3,9 +3,9 @@ import gql from 'graphql-tag';
 import pluralize from 'pluralize';
 import PropTypes from 'prop-types';
 
-import Query from '../../../../Query';
+import Query from '../../Query';
 import VoterRegistrationReferralsList from './VoterRegistrationReferralsList';
-import SectionHeader from '../../../../utilities/SectionHeader/SectionHeader';
+import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 
 const ALPHA_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query AlphaVoterRegistrationReferrals($referrerUserId: String!) {
@@ -22,7 +22,7 @@ const ALPHA_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   }
 `;
 
-const VoterRegistrationReferrals = ({ referrerUserId }) => (
+const VoterRegistrationReferralsBlock = ({ referrerUserId }) => (
   <div className="grid-wide clearfix wrapper pb-6">
     <SectionHeader underlined title="Get 3 friends to register!" />
     <Query
@@ -66,8 +66,8 @@ const VoterRegistrationReferrals = ({ referrerUserId }) => (
   </div>
 );
 
-VoterRegistrationReferrals.propTypes = {
+VoterRegistrationReferralsBlock.propTypes = {
   referrerUserId: PropTypes.string.isRequired,
 };
 
-export default VoterRegistrationReferrals;
+export default VoterRegistrationReferralsBlock;
