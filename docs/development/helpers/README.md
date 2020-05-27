@@ -13,7 +13,7 @@ We also have a large amount of miscellaneous or otherwise uncategorized methods 
 
 ##### Using/Creating Helper Methods
 
-When a piece of repeatable contained logic (e.g. [a method](https://github.com/DoSomething/phoenix-next/blob/4a5f24f5832d701c586f7b06db4483e4b0256676/resources/assets/helpers/index.js#L425-L433) to generate a user friendly representation of a Contentful Date), our rule of thumb is to first peruse our suite of helpers to see if this functionality already exists as a method (or if our logic can at least utilize an existing one). Otherwise, if a new helper method is necessary (such as when this logic has already been applied elsewhere and can be abstracted), add the new helper method to the appropriate categorized file, or create a new category file (`helpers/[new-category].js`).
+When building a piece of repeatable contained logic (e.g. [a method](https://github.com/DoSomething/phoenix-next/blob/4a5f24f5832d701c586f7b06db4483e4b0256676/resources/assets/helpers/index.js#L425-L433) to generate a user friendly representation of a Contentful Date), our rule of thumb is to first peruse our suite of helpers to see if this functionality already exists as a method (or if our logic can at least _utilize_ an existing helper). Otherwise, if a new helper method is necessary (such as when this logic has already been applied elsewhere and can be abstracted), add the new helper method to the appropriate categorized file, or create a new category file (`helpers/[new-category].js`).
 
 ## Clean up
 
