@@ -4,8 +4,8 @@ import pluralize from 'pluralize';
 
 import Query from '../../Query';
 import { getUserId } from '../../../helpers/auth';
-import VoterRegistrationReferralsList from './VoterRegistrationReferralsList';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
+import VoterRegistrationReferralsList from './VoterRegistrationReferralsList';
 
 const VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query VoterRegistrationReferrals($referrerUserId: String!) {

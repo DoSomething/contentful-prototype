@@ -60,7 +60,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
   it('Alpha OVRD page displays three empty icons if user has no referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('AlphaVoterRegistrationReferrals', {
+    cy.mockGraphqlOp('VoterRegistrationReferrals', {
       posts: [],
     });
 
@@ -74,7 +74,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
   it('Alpha OVRD page displays 2 completed icons if user has 2 referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('AlphaVoterRegistrationReferrals', {
+    cy.mockGraphqlOp('VoterRegistrationReferrals', {
       posts: [fakePost('Jesus Q.'), fakePost('Walter S.')],
     });
 
@@ -94,7 +94,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
   it('Alpha OVRD page displays 3 completed icons and additional count if user has 5 referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('AlphaVoterRegistrationReferrals', {
+    cy.mockGraphqlOp('VoterRegistrationReferrals', {
       posts: [
         fakePost('Sarah C.'),
         fakePost('Kyle R.'),

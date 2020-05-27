@@ -20,7 +20,7 @@ const AlphaPage = ({ userId }) => {
       className="base-12-grid clear-both py-3 md:py-6"
       data-test="alpha-voter-registration-drive-page"
     >
-      <VoterRegistrationReferralsBlock referrerUserId={userId} />
+      <VoterRegistrationReferralsBlock />
       <ContentfulEntryLoader
         id={config.shareLink.contentBlockId}
         className="grid-wide clearfix wrapper pb-3"
