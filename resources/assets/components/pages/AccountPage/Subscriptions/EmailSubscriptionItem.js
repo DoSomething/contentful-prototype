@@ -31,7 +31,13 @@ const EMAIL_SUBSCRIPTION_MUTATION = gql`
     }
   }
 `;
-const EmailSubscriptionItem = ({ topic, name, image, description }) => {
+const EmailSubscriptionItem = ({
+  topic,
+  name,
+  image,
+  description,
+  descriptionHeader,
+}) => {
   const options = { variables: { userId: window.AUTH.id } };
 
   // Make the initial query to get the user's subscriptions
@@ -58,6 +64,9 @@ const EmailSubscriptionItem = ({ topic, name, image, description }) => {
 
         <div className="p-4 flex flex-col flex-grow">
           <h3 className="text-base">{name}</h3>
+
+          <h4 className="text-base italic">{descriptionHeader}</h4>
+          <br />
 
           <p className="flex-grow">{description}</p>
 
@@ -92,6 +101,7 @@ EmailSubscriptionItem.propTypes = {
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  descriptionHeader: PropTypes.string.isRequired,
 };
 
 export default EmailSubscriptionItem;
