@@ -79,11 +79,21 @@ const ScholarshipCard = ({ campaign }) => {
         <div className="pt-4">
           <div className="float-left pr-8">
             <h4 className="font-bold uppercase text-gray-600">Amount</h4>
-            <p className="">{`$${scholarshipAmount.toLocaleString()}`}</p>
+            <p className="">
+              {scholarshipAmount
+                ? `$${scholarshipAmount.toLocaleString()}`
+                : 'N/A'}
+            </p>
+            {/* <p className="">{`$${scholarshipAmount.toLocaleString()}`}</p> */}
           </div>
           <div className="float-left pr-8">
             <h4 className="font-bold uppercase text-gray-600">Deadline</h4>
-            <p className="pb-4">{getHumanFriendlyDate(scholarshipDeadline)}</p>
+            <p className="pb-4">
+              {scholarshipDeadline
+                ? getHumanFriendlyDate(scholarshipDeadline)
+                : 'N/A'}
+            </p>
+            {/* <p className="pb-4">{getHumanFriendlyDate(scholarshipDeadline)}</p> */}
           </div>
         </div>
 
