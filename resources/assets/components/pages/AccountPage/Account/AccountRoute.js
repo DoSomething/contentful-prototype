@@ -10,6 +10,7 @@ import { featureFlag } from '../../../../helpers';
 import UserPostsQuery from '../Campaigns/UserPostsQuery';
 import DeleteAccountTab from '../Profile/DeleteAccountTab';
 import Subscriptions from '../Subscriptions/Subscriptions';
+import ReferFriendsTab from '../ReferFriends/ReferFriendsTab';
 
 const AccountRoute = props => (
   <Switch>
@@ -38,19 +39,7 @@ const AccountRoute = props => (
       render={() => <DeleteAccountTab {...props} />}
     />
     {featureFlag('refer_friends_v2') ? (
-      <Route
-        path="/us/account/refer-friends"
-        render={() => (
-          <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-12">
-            <h1>
-              <span role="img" aria-label="construction emoji">
-                🚧
-              </span>{' '}
-              Refer a Friend coming soon!
-            </h1>
-          </div>
-        )}
-      />
+      <Route path="/us/account/refer-friends" component={ReferFriendsTab} />
     ) : null}
     <Route path="/us/account" render={() => <Profile {...props} />} />
   </Switch>
