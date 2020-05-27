@@ -62,7 +62,7 @@ const QuizResultPage = ({ id }) => {
       <SiteNavigationContainer />
 
       <main>
-        <article data-test="quiz-result-page">
+        <article data-testid="quiz-result-page">
           <header role="banner" className="bg-blurple-500">
             <div className="md:flex my-auto p-8">
               <div className="md:w-1/4 flex-grow md:flex-col bg-bottom ">
