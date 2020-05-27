@@ -12,7 +12,7 @@ const votingReasons = {
   healthcare: 'Healthcare',
 };
 
-const VotingReasonsQueryOptions = ({ onChange }) => {
+const QueryOptions = ({ onChange }) => {
   const [selectedVotingReasons, setSelectedVotingReasons] = useState([]);
 
   useEffect(() => {
@@ -54,12 +54,12 @@ const VotingReasonsQueryOptions = ({ onChange }) => {
   );
 };
 
-VotingReasonsQueryOptions.propTypes = {
+QueryOptions.propTypes = {
   onChange: PropTypes.func,
 };
 
-VotingReasonsQueryOptions.defaultProps = {
+QueryOptions.defaultProps = {
   onChange: () => {},
 };
 
-export default VotingReasonsQueryOptions;
+export default QueryOptions;
