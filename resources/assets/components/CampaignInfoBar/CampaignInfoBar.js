@@ -11,7 +11,7 @@ const CampaignInfoBar = ({
   affiliateCreditText,
   affiliateSponsors,
   affiliatePartners,
-  campaignTitle,
+  pageTitle,
   contactEmail,
 }) => {
   const [showZendeskModal, setShowZendeskModal] = useState(false);
@@ -45,7 +45,7 @@ const CampaignInfoBar = ({
           ) : (
             <a
               href={encodeURI(
-                `mailto:${contactEmail}?subject=Question About ${campaignTitle}`,
+                `mailto:${contactEmail}?subject=Question About ${pageTitle}`,
               )}
             >
               Email Us
@@ -61,7 +61,7 @@ CampaignInfoBar.propTypes = {
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliatePartners: PropTypes.arrayOf(PropTypes.object),
-  campaignTitle: PropTypes.string,
+  pageTitle: PropTypes.string.isRequired,
   contactEmail: PropTypes.string,
 };
 
@@ -69,7 +69,6 @@ CampaignInfoBar.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliatePartners: [],
-  campaignTitle: 'Campaign',
   contactEmail: 'campaignhelp@dosomething.org',
 };
 
