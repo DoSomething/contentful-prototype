@@ -65,6 +65,18 @@ describe('Quiz Result Page', () => {
   });
 
   /** @test */
+  it('Does Not Render the registration form if there is no source detail provided', () => {
+    cy.mockGraphqlOp('QuizResultPageQuery', {
+      block: linkBlock,
+    });
+
+    cy.visit(getQuizResultPath(quizResultId));
+
+    cy.findByTestId('quiz-result-page').should('have.length', 1);
+    cy.findByTestId('voter-registration-form-card').should('have.length', 0);
+  });
+
+  /** @test */
   it('Sets up the correct tracking source for the RTV redirect URL for an unauthenticated user', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
@@ -75,7 +87,7 @@ describe('Quiz Result Page', () => {
     cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
-      'source:web,source_details:VoterRegQuiz_completed_default',
+      'source:web,source_details:VoterRegQuiz_completed_notsure',
     );
   });
 
@@ -93,7 +105,7 @@ describe('Quiz Result Page', () => {
     cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
-      `user:${user.id},source:web,source_details:VoterRegQuiz_completed_default`,
+      `user:${user.id},source:web,source_details:VoterRegQuiz_completed_notsure`,
     );
   });
 });
