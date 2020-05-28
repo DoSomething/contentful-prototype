@@ -52,7 +52,7 @@ const ZendeskForm = ({ campaignId, campaignName, faqLink, token }) => {
               We&apos;re sorry you&apos;re having a problem! Get your questions
               answered right away by first{' '}
               <a
-                data-testid="zendesk-form__faq-link"
+                data-testid="zendesk-form-faq-link"
                 href={faqLink}
                 target="_blank"
                 rel="noopener noreferrer"
