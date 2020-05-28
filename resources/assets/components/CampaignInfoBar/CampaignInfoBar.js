@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import Modal from '../utilities/Modal/Modal';
 import { isAuthenticated } from '../../helpers/auth';
+import { getCampaign } from '../../helpers/campaign';
 import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 import ZendeskFormContainer from '../utilities/ZendeskForm/ZendeskFormContainer';
 
@@ -32,7 +33,8 @@ const CampaignInfoBar = ({
 
         <div className="info-bar__secondary">
           Questions?{' '}
-          {isAuthenticated() ? (
+          {/*The Zendesk form will only work for authenticated users on a campaign page. */}
+          {isAuthenticated() && getCampaign() ? (
             <button
               type="button"
               className="underline"
