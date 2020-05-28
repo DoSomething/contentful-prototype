@@ -39,7 +39,7 @@ describe('Quiz Result Page', () => {
   });
 
   /** @test */
-  it('Renders placeholder content if preview query is not passed', () => {
+  it('Renders GraphQL content if preview query is not passed', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
     });
@@ -48,9 +48,7 @@ describe('Quiz Result Page', () => {
 
     cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.get('h1').should('contain', linkBlock.title);
-    cy.findByTestId('quiz-result-page').contains(
-      'Saepe cupiditate non. Facere velit vitae corporis.',
-    );
+    cy.findByTestId('quiz-result-page').contains(linkBlock.content);
   });
 
   /** @test */

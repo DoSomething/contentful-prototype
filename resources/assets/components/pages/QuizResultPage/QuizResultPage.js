@@ -89,12 +89,12 @@ const QuizResultPage = ({ id }) => {
               className="grid-full"
             />
             {sourceDetail ? (
-              <div className="grid-full py-3 md:py-6">
-                <h2 className="mx-auto text-center mb-3">
-                  <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
+              <div className="grid-full grid-main py-3 md:py-6">
+                <h1 className="mx-auto text-center mb-3">
+                  <span className="font-normal font-league-gothic uppercase text-4xl pb-3">
                     What&rsquo;s Next? Register to Vote
                   </span>
-                </h2>
+                </h1>
 
                 <p className="mb-3 text-lg text-center">
                   Paying attention to how our government is handling the
@@ -106,7 +106,7 @@ const QuizResultPage = ({ id }) => {
                 </p>
                 <StartVoterRegistrationForm
                   contextSource="voter-registration-quiz-results-page"
-                  className="md:mx-auto md:w-2/3 xl:w-1/2"
+                  className="md:mx-auto xl:w-4/5"
                   sourceDetail={sourceDetail}
                 />
               </div>
