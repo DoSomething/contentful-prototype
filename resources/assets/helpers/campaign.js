@@ -26,18 +26,18 @@ export function prepareCampaignPageSlug(campaignSlug, pageSlug) {
 export const getCampaign = () => get(window.STATE, 'campaign');
 
 /**
- * Get path to Campaign FAQs page.
+ * Get path to Campaign FAQ page.
  *
  * @return {String|Undefined}
  */
-export function getCampaignFaqsPath() {
+export function getCampaignFaqPath() {
   const campaign = getCampaign();
 
   if (!campaign) {
     return undefined;
   }
 
-  // Find the FAQs page & grab its slug value.
+  // Find the FAQ page & grab its slug value.
   const faqsSlug = get(
     campaign.pages.find(page => get(page, 'fields.slug', '').match(/faqs?$/)),
     'fields.slug',
