@@ -1,4 +1,5 @@
 import { join } from 'path';
+import get from 'lodash/get';
 
 /**
  * Prepare a campaign subpage's slug.
@@ -16,5 +17,12 @@ export function prepareCampaignPageSlug(campaignSlug, pageSlug) {
 
   return join('/us/campaigns', pageSlug);
 }
+
+/**
+ * Get the Campaign.
+ *
+ * @return {String|Undefined}
+ */
+export const getCampaign = () => get(window.STATE, 'campaign');
 
 export default null;

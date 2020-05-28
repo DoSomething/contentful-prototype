@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import Modal from '../utilities/Modal/Modal';
 import { isAuthenticated } from '../../helpers/auth';
+import { getCampaign } from '../../helpers/campaign';
 import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 import ZendeskFormContainer from '../utilities/ZendeskForm/ZendeskFormContainer';
 
@@ -10,7 +11,7 @@ const CampaignInfoBar = ({
   affiliateCreditText,
   affiliateSponsors,
   affiliatePartners,
-  campaignTitle,
+  pageTitle,
   contactEmail,
 }) => {
   const [showZendeskModal, setShowZendeskModal] = useState(false);
@@ -32,7 +33,8 @@ const CampaignInfoBar = ({
 
         <div className="info-bar__secondary">
           Questions?{' '}
-          {isAuthenticated() ? (
+          {/* The Zendesk form will only work for authenticated users on a campaign page. */}
+          {isAuthenticated() && getCampaign() ? (
             <button
               type="button"
               className="underline"
@@ -43,7 +45,7 @@ const CampaignInfoBar = ({
           ) : (
             <a
               href={encodeURI(
-                `mailto:${contactEmail}?subject=Question About ${campaignTitle}`,
+                `mailto:${contactEmail}?subject=Question About ${pageTitle}`,
               )}
             >
               Email Us
@@ -59,7 +61,7 @@ CampaignInfoBar.propTypes = {
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliatePartners: PropTypes.arrayOf(PropTypes.object),
-  campaignTitle: PropTypes.string,
+  pageTitle: PropTypes.string.isRequired,
   contactEmail: PropTypes.string,
 };
 
@@ -67,7 +69,6 @@ CampaignInfoBar.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliatePartners: [],
-  campaignTitle: 'Campaign',
   contactEmail: 'campaignhelp@dosomething.org',
 };
 
