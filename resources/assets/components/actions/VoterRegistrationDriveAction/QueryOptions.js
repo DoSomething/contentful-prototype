@@ -2,9 +2,17 @@ import { without } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
-import { votingReasons } from './config';
+const votingReasons = {
+  'climate-change': 'Climate Change',
+  'gun-violence': 'Gun Violence',
+  'mental-health': 'Mental Health',
+  'student-debt': 'Student Debt',
+  'covid-relief': 'COVID-19 Relief',
+  'immigration-reform': 'Immigration Reform',
+  healthcare: 'Healthcare',
+};
 
-const VotingReasonsQueryOptions = ({ onChange }) => {
+const QueryOptions = ({ onChange }) => {
   const [selectedVotingReasons, setSelectedVotingReasons] = useState([]);
 
   useEffect(() => {
@@ -46,12 +54,12 @@ const VotingReasonsQueryOptions = ({ onChange }) => {
   );
 };
 
-VotingReasonsQueryOptions.propTypes = {
+QueryOptions.propTypes = {
   onChange: PropTypes.func,
 };
 
-VotingReasonsQueryOptions.defaultProps = {
+QueryOptions.defaultProps = {
   onChange: () => {},
 };
 
-export default VotingReasonsQueryOptions;
+export default QueryOptions;
