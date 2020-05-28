@@ -4,16 +4,16 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 
-import triangle from './triangle.svg';
 import ErrorPage from '../ErrorPage';
+import triangle from './triangle.svg';
+import { gqlVariables } from './config';
 import NotFoundPage from '../NotFoundPage';
+import { isDevEnvironment } from '../../../helpers';
 import Placeholder from '../../utilities/Placeholder';
-import { isDevEnvironment, query } from '../../../helpers';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import ContentfulAsset from '../../utilities/ContentfulAsset/ContentfulAsset';
-import { gqlVariables, placeholderContent, sourceDetailPrefix } from './config';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
@@ -54,8 +54,6 @@ const QuizResultPage = ({ id }) => {
   const { linkBlockTitle } = data.block;
   const assetId = get(config, `results.${id}.assetId`, null);
   const sourceDetail = get(config, `results.${id}.sourceDetail`, null);
-  // Use placeholder for development until we're ready to enable Quiz Result Page feature.
-  const content = query('preview') ? data.block.content : placeholderContent;
 
   return (
     <>
@@ -75,7 +73,7 @@ const QuizResultPage = ({ id }) => {
                   </span>
                 </h1>
                 <div className="color-white">
-                  <TextContent>{content}</TextContent>
+                  <TextContent>{data.block.content}</TextContent>
                 </div>
               </div>
             </div>
@@ -88,14 +86,29 @@ const QuizResultPage = ({ id }) => {
               id={config.galleryBlockId}
               className="grid-full"
             />
+            {sourceDetail ? (
+              <div className="grid-full grid-main py-3 md:py-6">
+                <h1 className="mx-auto text-center mb-3">
+                  <span className="font-normal font-league-gothic uppercase text-4xl pb-3">
+                    What&rsquo;s Next? Register to Vote
+                  </span>
+                </h1>
 
-            <div className="grid-full py-3 md:py-6">
-              <StartVoterRegistrationForm
-                contextSource="voter-registration-quiz-results-page"
-                className="md:mx-auto md:w-2/3 xl:w-1/2"
-                sourceDetail={sourceDetail || `${sourceDetailPrefix}default`}
-              />
-            </div>
+                <p className="mb-3 text-lg text-center">
+                  Paying attention to how our government is handling the
+                  COVID-19 outbreak? Your vote is your way of making an impact
+                  on the decisions our government makes.
+                </p>
+                <p className="mb-6 text-lg text-center">
+                  Take 2 minutes and register online now with your state.
+                </p>
+                <StartVoterRegistrationForm
+                  contextSource="voter-registration-quiz-results-page"
+                  className="md:mx-auto xl:w-4/5"
+                  sourceDetail={sourceDetail}
+                />
+              </div>
+            ) : null}
           </div>
         </article>
       </main>

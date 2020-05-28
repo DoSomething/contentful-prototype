@@ -4,7 +4,8 @@ import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
 
-const quizResultId = '347iYsbykgQe6KqeGceMUk';
+const quizResultId = 'p7hqjSP4Y1U6ad0UDz4iS';
+const ineligibleQuizResultId = '14KfeAs265httjNMf1jwTw';
 
 /**
  * @param String id
@@ -38,7 +39,7 @@ describe('Quiz Result Page', () => {
   });
 
   /** @test */
-  it('Renders placeholder content if preview query is not passed', () => {
+  it('Renders GraphQL title and content', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
     });
@@ -47,21 +48,19 @@ describe('Quiz Result Page', () => {
 
     cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.get('h1').should('contain', linkBlock.title);
-    cy.findByTestId('quiz-result-page').contains(
-      'Saepe cupiditate non. Facere velit vitae corporis.',
-    );
+    cy.findByTestId('quiz-result-page').contains(linkBlock.content);
   });
 
   /** @test */
-  it('Renders GraphQL content if preview query parameter is passed', () => {
+  it('Does Not Render the registration form if there is no source detail provided', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
     });
 
-    cy.visit(`${getQuizResultPath(quizResultId)}?preview=true`);
+    cy.visit(getQuizResultPath(ineligibleQuizResultId));
 
-    cy.get('h1').should('contain', linkBlock.title);
-    cy.findByTestId('quiz-result-page').contains(linkBlock.content);
+    cy.findByTestId('quiz-result-page').should('have.length', 1);
+    cy.findByTestId('voter-registration-form-card').should('have.length', 0);
   });
 
   /** @test */
@@ -75,7 +74,7 @@ describe('Quiz Result Page', () => {
     cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
-      'source:web,source_details:VoterRegQuiz_completed_default',
+      'source:web,source_details:VoterRegQuiz_completed_votebymail',
     );
   });
 
@@ -93,7 +92,7 @@ describe('Quiz Result Page', () => {
     cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
-      `user:${user.id},source:web,source_details:VoterRegQuiz_completed_default`,
+      `user:${user.id},source:web,source_details:VoterRegQuiz_completed_votebymail`,
     );
   });
 });
