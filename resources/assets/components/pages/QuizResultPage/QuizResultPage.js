@@ -68,7 +68,7 @@ const QuizResultPage = ({ id }) => {
               </div>
               <div className="md:w-3/4">
                 <h1 className=" font-normal font-league-gothic color-white uppercase leading-10">
-                  <span className="border-b-4 border-solid border-yellow-400 inline-block">
+                  <span className="border-b-4 border-solid border-yellow-400 inline-block text-4xl">
                     {linkBlockTitle}
                   </span>
                 </h1>
