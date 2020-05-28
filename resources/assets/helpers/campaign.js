@@ -39,7 +39,11 @@ export function getCampaignFaqPath() {
 
   // Find the FAQ page & grab its slug value.
   const faqsSlug = get(
-    campaign.pages.find(page => get(page, 'fields.slug', '').match(/faqs?$/)),
+    campaign.pages.find(page =>
+      get(page, 'fields.slug', '')
+        // Matches a page with an ".../faq" or ".../faqs" slug.
+        .match(/faqs?$/),
+    ),
     'fields.slug',
   );
 
