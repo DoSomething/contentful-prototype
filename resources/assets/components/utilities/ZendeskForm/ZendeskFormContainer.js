@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
   token: getUserToken(state),
   campaignId: state.campaign.campaignId,
   campaignName: state.campaign.title,
-  faqsLink: getCampaignFaqPath(),
+  faqLink: getCampaignFaqPath(),
 });
 
 // Export the container component.

@@ -2,7 +2,7 @@
 
 The `ZendeskForm` component presents a form interface for campaign-affiliated users to submit questions to our Zendesk helpdesk.
 
-It'll also present a link to the Campaign's FAQs page if available, or our Help center otherwise.
+It'll also present a link to the Campaign's FAQ page if available, or our Help center otherwise.
 
 The form submits via the internal `api/v2/zendesk-tickets` API which creates a new Zendesk Ticket for the user.
 
