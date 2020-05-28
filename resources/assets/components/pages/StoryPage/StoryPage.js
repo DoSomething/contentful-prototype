@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 
 import ContentfulEntry from '../../ContentfulEntry';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import CampaignInfoBar from '../../CampaignInfoBar/CampaignInfoBar';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
-import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 
 import './story-page.scss';
 
@@ -66,7 +66,7 @@ const StoryPage = props => {
           ))}
         </article>
 
-        <CampaignInfoBarContainer />
+        <CampaignInfoBar pageTitle={title} />
       </main>
 
       <SiteFooter />
