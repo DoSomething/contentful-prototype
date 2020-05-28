@@ -57,7 +57,7 @@ const ZendeskForm = ({ campaignId, campaignName, faqLink, token }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                checking our FAQ
+                checking our FAQs
               </a>{' '}
               which are updated regularly. If you still have questions, please
               complete the form below.
