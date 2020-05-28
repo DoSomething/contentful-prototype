@@ -83,7 +83,7 @@ const QuizResultPage = ({ id }) => {
           <div className="bg-white">
             <img className="m-auto" src={triangle} alt="triangle" />
           </div>
-          <div className="bg-white py-3 md:py-6">
+          <div className="bg-white base-12-grid py-3 md:py-6">
             <ContentfulEntryLoader
               id={config.galleryBlockId}
               className="grid-full"
