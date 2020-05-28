@@ -13,7 +13,7 @@ const mapStateToProps = state => {
     affiliateSponsors: state.campaign.affiliateSponsors,
     affiliatePartners: state.campaign.affiliatePartners,
     contactEmail: get(state, 'campaign.campaignLead.fields.email', undefined),
-    campaignTitle: get(state, 'campaign.title', 'Campaign'),
+    pageTitle: get(state, 'campaign.title', 'Campaign'),
   };
 };
 

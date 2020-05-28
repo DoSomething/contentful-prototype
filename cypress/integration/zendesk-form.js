@@ -16,7 +16,7 @@ describe('Zendesk Modal', () => {
       .click();
 
     cy.get('.modal .zendesk-form').contains('h1', 'Contact Us');
-    cy.get('a.zendesk-form__faqs-link')
+    cy.findByTestId('zendesk-form-faq-link')
       .should('have.attr', 'href')
       .and('include', `/us/campaigns/${exampleCampaign.campaign.slug}/faqs`);
   });

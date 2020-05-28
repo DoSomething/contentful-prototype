@@ -8,7 +8,7 @@ import { postRequest } from '../../../helpers/api';
 import PrimaryButton from '../Button/PrimaryButton';
 import { HELP_LINK, HELP_REQUEST_LINK } from '../../../constants';
 
-const ZendeskForm = ({ campaignId, campaignName, faqsLink, token }) => {
+const ZendeskForm = ({ campaignId, campaignName, faqLink, token }) => {
   const [question, setQuestion] = useState('');
   const [status, setStatus] = useState({
     loading: false,
@@ -52,8 +52,8 @@ const ZendeskForm = ({ campaignId, campaignName, faqsLink, token }) => {
               We&apos;re sorry you&apos;re having a problem! Get your questions
               answered right away by first{' '}
               <a
-                className="zendesk-form__faqs-link"
-                href={faqsLink}
+                data-testid="zendesk-form-faq-link"
+                href={faqLink}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -117,11 +117,11 @@ ZendeskForm.propTypes = {
   campaignId: PropTypes.string.isRequired,
   campaignName: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
-  faqsLink: PropTypes.string,
+  faqLink: PropTypes.string,
 };
 
 ZendeskForm.defaultProps = {
-  faqsLink: HELP_LINK,
+  faqLink: HELP_LINK,
 };
 
 export default ZendeskForm;
