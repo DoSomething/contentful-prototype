@@ -8,8 +8,8 @@ import triangle from './triangle.svg';
 import ErrorPage from '../ErrorPage';
 import NotFoundPage from '../NotFoundPage';
 import Placeholder from '../../utilities/Placeholder';
-import { isDevEnvironment, query } from '../../../helpers';
-import { gqlVariables, placeholderContent } from './config';
+import { isDevEnvironment } from '../../../helpers';
+import { gqlVariables } from './config';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
@@ -55,7 +55,7 @@ const QuizResultPage = ({ id }) => {
   const assetId = get(config, `results.${id}.assetId`, null);
   const sourceDetail = get(config, `results.${id}.sourceDetail`, null);
   // Use placeholder for development until we're ready to enable Quiz Result Page feature.
-  const content = query('preview') ? data.block.content : placeholderContent;
+  const content = data.block.content;
 
   return (
     <>
@@ -90,6 +90,20 @@ const QuizResultPage = ({ id }) => {
             />
             {sourceDetail ? (
               <div className="grid-full py-3 md:py-6">
+                <h2 className="mx-auto text-center mb-3">
+                  <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
+                    What&rsquo;s Next? Register to Vote
+                  </span>
+                </h2>
+
+                <p className="mb-3 text-lg text-center">
+                  Paying attention to how our government is handling the
+                  COVID-19 outbreak? Your vote is your way of making an impact
+                  on the decisions our government makes.
+                </p>
+                <p className="mb-6 text-lg text-center">
+                  Take 2 minutes and register online now with your state.
+                </p>
                 <StartVoterRegistrationForm
                   contextSource="voter-registration-quiz-results-page"
                   className="md:mx-auto md:w-2/3 xl:w-1/2"
