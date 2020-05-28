@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
+import PageInfoBarContainer from '../../PageInfoBar/PageInfoBarContainer';
 import CampaignBannerContainer from '../../CampaignBanner/CampaignBannerContainer';
-import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
@@ -40,7 +40,7 @@ const CampaignPage = props => {
         </div>
       </article>
 
-      <CampaignInfoBarContainer />
+      <PageInfoBarContainer />
     </>
   );
 };

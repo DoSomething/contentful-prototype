@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CampaignBannerContainer from '../../CampaignBanner/CampaignBannerContainer';
-import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 import { getHumanFriendlyDate } from '../../../helpers';
+import PageInfoBarContainer from '../../PageInfoBar/PageInfoBarContainer';
+import CampaignBannerContainer from '../../CampaignBanner/CampaignBannerContainer';
 
 const CampaignClosedPage = props => {
   const { endDate } = props;
@@ -23,7 +23,7 @@ const CampaignClosedPage = props => {
         </div>
       </article>
 
-      <CampaignInfoBarContainer />
+      <PageInfoBarContainer />
     </>
   );
 };

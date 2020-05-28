@@ -7,7 +7,7 @@ import { getCampaign } from '../../helpers/campaign';
 import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 import ZendeskFormContainer from '../utilities/ZendeskForm/ZendeskFormContainer';
 
-const CampaignInfoBar = ({
+const PageInfoBar = ({
   affiliateCreditText,
   affiliateSponsors,
   affiliatePartners,
@@ -57,7 +57,7 @@ const CampaignInfoBar = ({
   );
 };
 
-CampaignInfoBar.propTypes = {
+PageInfoBar.propTypes = {
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliatePartners: PropTypes.arrayOf(PropTypes.object),
@@ -65,11 +65,11 @@ CampaignInfoBar.propTypes = {
   contactEmail: PropTypes.string,
 };
 
-CampaignInfoBar.defaultProps = {
+PageInfoBar.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliatePartners: [],
   contactEmail: 'campaignhelp@dosomething.org',
 };
 
-export default CampaignInfoBar;
+export default PageInfoBar;
