@@ -4,12 +4,12 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 
-import triangle from './triangle.svg';
 import ErrorPage from '../ErrorPage';
-import NotFoundPage from '../NotFoundPage';
-import Placeholder from '../../utilities/Placeholder';
-import { isDevEnvironment } from '../../../helpers';
+import triangle from './triangle.svg';
 import { gqlVariables } from './config';
+import NotFoundPage from '../NotFoundPage';
+import { isDevEnvironment } from '../../../helpers';
+import Placeholder from '../../utilities/Placeholder';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
