@@ -54,8 +54,6 @@ const QuizResultPage = ({ id }) => {
   const { linkBlockTitle } = data.block;
   const assetId = get(config, `results.${id}.assetId`, null);
   const sourceDetail = get(config, `results.${id}.sourceDetail`, null);
-  // Use placeholder for development until we're ready to enable Quiz Result Page feature.
-  const content = data.block.content;
 
   return (
     <>
@@ -75,7 +73,7 @@ const QuizResultPage = ({ id }) => {
                   </span>
                 </h1>
                 <div className="color-white">
-                  <TextContent>{content}</TextContent>
+                  <TextContent>{data.block.content}</TextContent>
                 </div>
               </div>
             </div>

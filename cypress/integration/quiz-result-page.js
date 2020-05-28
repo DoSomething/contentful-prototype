@@ -39,7 +39,7 @@ describe('Quiz Result Page', () => {
   });
 
   /** @test */
-  it('Renders GraphQL content if preview query is not passed', () => {
+  it('Renders GraphQL title and content', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block: linkBlock,
     });
@@ -47,18 +47,6 @@ describe('Quiz Result Page', () => {
     cy.visit(getQuizResultPath(quizResultId));
 
     cy.findByTestId('quiz-result-page').should('have.length', 1);
-    cy.get('h1').should('contain', linkBlock.title);
-    cy.findByTestId('quiz-result-page').contains(linkBlock.content);
-  });
-
-  /** @test */
-  it('Renders GraphQL content if preview query parameter is passed', () => {
-    cy.mockGraphqlOp('QuizResultPageQuery', {
-      block: linkBlock,
-    });
-
-    cy.visit(`${getQuizResultPath(quizResultId)}?preview=true`);
-
     cy.get('h1').should('contain', linkBlock.title);
     cy.findByTestId('quiz-result-page').contains(linkBlock.content);
   });
