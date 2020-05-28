@@ -33,7 +33,7 @@ const CampaignInfoBar = ({
 
         <div className="info-bar__secondary">
           Questions?{' '}
-          {/*The Zendesk form will only work for authenticated users on a campaign page. */}
+          {/* The Zendesk form will only work for authenticated users on a campaign page. */}
           {isAuthenticated() && getCampaign() ? (
             <button
               type="button"
