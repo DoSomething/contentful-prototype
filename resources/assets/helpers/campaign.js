@@ -38,7 +38,7 @@ export function getCampaignFaqPath() {
   }
 
   // Find the FAQ page & grab its slug value.
-  const faqsSlug = get(
+  const faqSlug = get(
     campaign.pages.find(page =>
       get(page, 'fields.slug', '')
         // Matches a page with an ".../faq" or ".../faqs" slug.
@@ -47,8 +47,8 @@ export function getCampaignFaqPath() {
     'fields.slug',
   );
 
-  // If found, return fully formed path to the FAQs page.
-  return faqsSlug ? `/us/campaigns/${faqsSlug}` : undefined;
+  // If found, return fully formed path to the FAQ page.
+  return faqSlug ? `/us/campaigns/${faqSlug}` : undefined;
 }
 
 export default null;
