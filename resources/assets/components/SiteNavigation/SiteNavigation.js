@@ -666,7 +666,7 @@ class SiteNavigation extends React.Component {
 
                         <li>
                           <a
-                            href="us/collections/corona-virus-campaigns"
+                            href="/us/collections/corona-virus-campaigns"
                             onClick={() =>
                               this.analyzeEvent({
                                 name: 'clicked_subnav_link_covid_top_search',
