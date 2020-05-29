@@ -22,11 +22,11 @@ export const scholarshipCardFragment = gql`
       scholarshipAmount
       scholarshipDeadline
       staffPick
-      url
+      path
     }
     ... on StoryPageWebsite {
       id
-      url
+      path
     }
   }
 `;
@@ -40,7 +40,7 @@ const ScholarshipCard = ({ campaign }) => {
     scholarshipDeadline,
     showcaseImage,
     staffPick,
-    url,
+    path,
   } = campaign;
 
   const srcset = contentfulImageSrcset(showcaseImage.url, [
@@ -51,7 +51,7 @@ const ScholarshipCard = ({ campaign }) => {
 
   return (
     <article className="flex flex-col h-full relative text-left">
-      <a className="block cursor-pointer" href={url}>
+      <a className="block cursor-pointer" href={path}>
         <img
           alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
           srcSet={srcset}
@@ -69,7 +69,7 @@ const ScholarshipCard = ({ campaign }) => {
         <h1 className="font-bold mb-2 text-base">
           <a
             className="text-blurple-500 hover:text-blurple-300 cursor-pointer"
-            href={url}
+            href={path}
           >
             {showcaseTitle}
           </a>
@@ -80,7 +80,9 @@ const ScholarshipCard = ({ campaign }) => {
           <div className="float-left pr-8">
             <h4 className="font-bold uppercase text-gray-600">Amount</h4>
             <p className="">
-              {scholarshipAmount ? scholarshipAmount.toLocaleString() : 'N/A'}
+              {scholarshipAmount
+                ? `$${scholarshipAmount.toLocaleString()}`
+                : 'N/A'}
             </p>
           </div>
           <div className="float-left pr-8">
@@ -93,7 +95,7 @@ const ScholarshipCard = ({ campaign }) => {
           </div>
         </div>
 
-        <SecondaryButton className="w-full" href={url} text="Apply Now" />
+        <SecondaryButton className="w-full" href={path} text="Apply Now" />
       </div>
     </article>
   );
