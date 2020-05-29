@@ -30,7 +30,7 @@ const VoterRegistrationDriveAction = ({
     link={`${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${getUserId()}`}
     queryOptions={<QueryOptions />}
     shareCardDescription={description}
-    shareCardTitle={title || 'Share with your friends'}
+    shareCardTitle={title}
   />
 );
 
