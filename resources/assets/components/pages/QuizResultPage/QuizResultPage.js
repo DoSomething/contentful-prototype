@@ -61,20 +61,18 @@ const QuizResultPage = ({ id }) => {
 
       <main>
         <article data-testid="quiz-result-page">
-          <header role="banner" className="bg-blurple-500">
-            <div className="md:flex my-auto p-8">
-              <div className="md:w-1/4 flex-grow md:flex-col bg-bottom ">
-                {assetId ? <ContentfulAsset id={assetId} width={375} /> : null}
-              </div>
-              <div className="md:w-3/4">
-                <h1 className=" font-normal font-league-gothic color-white uppercase leading-10">
-                  <span className="border-b-4 border-solid border-yellow-400 inline-block text-4xl">
-                    {linkBlockTitle}
-                  </span>
-                </h1>
-                <div className="color-white">
-                  <TextContent>{data.block.content}</TextContent>
-                </div>
+          <header role="banner" className="base-12-grid bg-blurple-500">
+            <div className="col-span-3 bg-bottom md:col-start-2">
+              {assetId ? <ContentfulAsset id={assetId} width={375} /> : null}
+            </div>
+            <div className="col-span-7 md:my-auto">
+              <h1 className=" font-normal font-league-gothic color-white uppercase">
+                <span className="border-b-4 border-solid border-yellow-400 inline-block text-4xl">
+                  {linkBlockTitle}
+                </span>
+              </h1>
+              <div className="color-white">
+                <TextContent>{data.block.content}</TextContent>
               </div>
             </div>
           </header>
