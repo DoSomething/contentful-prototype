@@ -669,18 +669,17 @@ class SiteNavigation extends React.Component {
 
                         <li>
                           <a
-                            href="/us/facts/11-facts-about-cyber-bullying"
+                            href="/us/collections/corona-virus-campaigns"
                             onClick={() =>
                               this.analyzeEvent({
-                                name:
-                                  'clicked_subnav_link_cyberbullying_top_search',
+                                name: 'clicked_subnav_link_covid_top_search',
                                 action: 'link_clicked',
                                 category: EVENT_CATEGORIES.navigation,
-                                label: 'cyberbullying_top_search',
+                                label: 'covid_top_search',
                               })
                             }
                           >
-                            cyberbullying
+                            covid
                           </a>
                         </li>
 
