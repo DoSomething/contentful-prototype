@@ -11,7 +11,7 @@ import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 // import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo'; // @TODO: uncomment this line on July 1st, 2020
-import RainbowLogo from '../utilities/DoSomethingLogo/RainbowLogo'; // @TODO: delete this line on July 1st, 2020
+import RainbowLogo from '../utilities/DoSomethingLogo/RainbowLogo'; // @TODO: delete this line on July 1st, 2020 - https://www.pivotaltracker.com/story/show/173086102
 import {
   EVENT_CATEGORIES,
   getUtmContext,
@@ -186,6 +186,7 @@ class SiteNavigation extends React.Component {
               }
             >
               {/* @TODO: change back to <DosomethingLogo /> on July 1, 2020 */}
+              {/* https://www.pivotaltracker.com/story/show/173086102 */}
               <RainbowLogo />
             </a>
           </div>
