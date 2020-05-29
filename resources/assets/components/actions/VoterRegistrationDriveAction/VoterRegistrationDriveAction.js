@@ -24,7 +24,9 @@ const VoterRegistrationDriveAction = ({
 }) => (
   <SocialDriveActionContainer
     approvedPostCountActionId={approvedPostCountActionId}
-    approvedPostCountLabel={approvedPostCountLabel}
+    approvedPostCountLabel={
+      approvedPostCountLabel || 'Total scholarship entries'
+    }
     link={`${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${getUserId()}`}
     queryOptions={<QueryOptions />}
     shareCardDescription={description}

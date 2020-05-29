@@ -41,12 +41,8 @@ const TotalAcceptedQuantity = ({ actionId, label, userId }) => {
 
 TotalAcceptedQuantity.propTypes = {
   actionId: PropTypes.number.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
-};
-
-TotalAcceptedQuantity.defaultProps = {
-  label: 'Total scholarship entries',
 };
 
 export default TotalAcceptedQuantity;
