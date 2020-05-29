@@ -35,7 +35,7 @@ $ contentful space generate migration -s $SPACE_ID -e dev -c currentSchoolBlock 
 Upon success, you'll see:
 
 ```bash
-$ contentful space generate migration -s $SPACE_ID -e dev -c galleryBlock -f contentful/content-types/currentSchoolBlock.js
+$ contentful space generate migration -s $SPACE_ID -e dev -c currentSchoolBlock -f contentful/content-types/currentSchoolBlock.js
 
 Fetching content model
 Creating migration for content type: 'currentSchoolBlock'
@@ -61,7 +61,7 @@ For updates to existing Content types, make the corresponding changes via the Co
 For brand new Content types, it’s easiest to run the CLI [migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/import) command to add new content types to the `qa` and `master` environments:
 
 ```bash
-$ contentful space migration --s $SPACE_ID --e qa --content-file contentful/content-types/currentSchoolBlock.js
+$ contentful space migration --s $SPACE_ID --e qa contentful/content-types/currentSchoolBlock.js
 ```
 
 Upon success, you'll see:
