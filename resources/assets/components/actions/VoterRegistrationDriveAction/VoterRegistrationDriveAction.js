@@ -30,7 +30,7 @@ const VoterRegistrationDriveAction = ({
     link={`${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${getUserId()}`}
     queryOptions={<QueryOptions />}
     shareCardDescription={description}
-    shareCardTitle={title}
+    shareCardTitle={title || 'Share with your friends'}
   />
 );
 
@@ -45,7 +45,7 @@ VoterRegistrationDriveAction.defaultProps = {
   approvedPostCountActionId: null,
   approvedPostCountLabel: null,
   description: null,
-  title: 'Share with your friends',
+  title: null,
 };
 
 export default VoterRegistrationDriveAction;
