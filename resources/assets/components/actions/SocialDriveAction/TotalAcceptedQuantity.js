@@ -14,7 +14,7 @@ const USER_ACCEPTED_POSTS_FOR_ACTION_QUERY = gql`
   }
 `;
 
-const TotalAcceptedQuantity = ({ actionId, userId }) => {
+const TotalAcceptedQuantity = ({ actionId, label, userId }) => {
   return (
     <div
       data-test="total-accepted-quantity"
@@ -22,9 +22,7 @@ const TotalAcceptedQuantity = ({ actionId, userId }) => {
     >
       <Card className="bordered rounded" title="More info">
         <div className="p-3">
-          <span className="font-bold uppercase text-gray-600">
-            Total scholarship entries
-          </span>
+          <span className="font-bold uppercase text-gray-600">{label}</span>
           <Query
             query={USER_ACCEPTED_POSTS_FOR_ACTION_QUERY}
             variables={{ actionId, userId }}
@@ -43,7 +41,12 @@ const TotalAcceptedQuantity = ({ actionId, userId }) => {
 
 TotalAcceptedQuantity.propTypes = {
   actionId: PropTypes.number.isRequired,
+  label: PropTypes.string,
   userId: PropTypes.string.isRequired,
+};
+
+TotalAcceptedQuantity.defaultProps = {
+  label: 'Total scholarship entries',
 };
 
 export default TotalAcceptedQuantity;

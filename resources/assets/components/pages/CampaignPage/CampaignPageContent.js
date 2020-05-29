@@ -8,7 +8,6 @@ import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
-import AlphaVoterRegistrationDrivePage from '../VoterRegistrationDrivePage/Alpha/AlphaPage';
 
 const CampaignPageContent = props => {
   const { isCampaignClosed, match, pages, shouldShowAffirmation } = props;
@@ -26,10 +25,6 @@ const CampaignPageContent = props => {
   }
 
   const { content, sidebar, blocks } = subPage.fields;
-
-  const isAlphaVoterRegistrationDrivePage =
-    props.location.pathname ===
-    '/us/campaigns/online-registration-drive/action';
 
   return (
     <div className="leading-normal text-base" id={subPage.id}>
@@ -52,11 +47,7 @@ const CampaignPageContent = props => {
         </div>
       ) : null}
 
-      {isAlphaVoterRegistrationDrivePage ? (
-        <AlphaVoterRegistrationDrivePage />
-      ) : null}
-
-      {blocks.length && !isAlphaVoterRegistrationDrivePage ? (
+      {blocks.length ? (
         <div className="base-12-grid clear-both py-3 md:py-6">
           {blocks.map(block => (
             <ContentfulEntryLoader
@@ -71,6 +62,7 @@ const CampaignPageContent = props => {
                 PhotoSubmissionBlock: 'grid-wide',
                 QuizBlock: 'grid-wide',
                 SocialDriveBlock: 'grid-wide',
+                VoterRegistrationDriveBlock: 'grid-wide',
               }}
             />
           ))}
@@ -91,7 +83,6 @@ const CampaignPageContent = props => {
 
 CampaignPageContent.propTypes = {
   isCampaignClosed: PropTypes.bool.isRequired,
-  location: ReactRouterPropTypes.location,
   match: ReactRouterPropTypes.match,
   pages: PropTypes.arrayOf(
     PropTypes.shape({
@@ -107,7 +98,6 @@ CampaignPageContent.propTypes = {
 };
 
 CampaignPageContent.defaultProps = {
-  location: {},
   pages: [],
   match: {
     params: {},

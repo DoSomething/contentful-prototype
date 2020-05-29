@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import QueryOptions from './QueryOptions';
@@ -6,18 +7,43 @@ import { PHOENIX_URL } from '../../../constants';
 import { getUserId } from '../../../helpers/auth';
 import SocialDriveActionContainer from '../SocialDriveAction/SocialDriveActionContainer';
 
-const VoterRegistrationDriveAction = ({ actionId }) => (
+export const VoterRegistrationDriveBlockFragment = gql`
+  fragment VoterRegistrationDriveBlockFragment on VoterRegistrationDriveBlock {
+    approvedPostCountActionId
+    approvedPostCountLabel
+    description
+    title
+  }
+`;
+
+const VoterRegistrationDriveAction = ({
+  approvedPostCountActionId,
+  approvedPostCountLabel,
+  description,
+  title,
+}) => (
   <SocialDriveActionContainer
-    actionId={actionId}
+    approvedPostCountActionId={approvedPostCountActionId}
+    approvedPostCountLabel={approvedPostCountLabel}
     link={`${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${getUserId()}`}
     queryOptions={<QueryOptions />}
-    shareCardDescription="Urge your friend to vote based on the causes you care about most. The causes you choose will be mentioned on your custom page."
-    shareCardTitle="Share with your friends"
+    shareCardDescription={description}
+    shareCardTitle={title}
   />
 );
 
 VoterRegistrationDriveAction.propTypes = {
-  actionId: PropTypes.number.isRequired,
+  approvedPostCountActionId: PropTypes.number,
+  approvedPostCountLabel: PropTypes.string,
+  description: PropTypes.string,
+  title: PropTypes.string,
+};
+
+VoterRegistrationDriveAction.defaultProps = {
+  approvedPostCountActionId: null,
+  approvedPostCountLabel: null,
+  description: null,
+  title: 'Share with your friends',
 };
 
 export default VoterRegistrationDriveAction;

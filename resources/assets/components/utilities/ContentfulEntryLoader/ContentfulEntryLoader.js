@@ -30,6 +30,8 @@ import { PhotoSubmissionBlockFragment } from '../../actions/PhotoSubmissionActio
 import { VoterRegistrationBlockFragment } from '../../actions/VoterRegistrationAction/VoterRegistrationAction';
 import { PetitionSubmissionBlockFragment } from '../../actions/PetitionSubmissioncAction/PetitionSubmissionAction';
 import { SelectionSubmissionBlockFragment } from '../../actions/SelectionSubmissionAction/SelectionSubmissionAction';
+import { VoterRegistrationDriveBlockFragment } from '../../actions/VoterRegistrationDriveAction/VoterRegistrationDriveAction';
+import { VoterRegistrationReferralsBlockFragment } from '../../blocks/VoterRegistrationReferralsBlock/VoterRegistrationReferralsBlock';
 
 const CONTENTFUL_BLOCK_QUERY = gql`
   query ContentfulBlockQuery($id: String!, $preview: Boolean!) {
@@ -95,6 +97,12 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ... on SelectionSubmissionBlock {
         ...SelectionSubmissionBlockFragment
       }
+      ... on VoterRegistrationDriveBlock {
+        ...VoterRegistrationDriveBlockFragment
+      }
+      ... on VoterRegistrationReferralsBlock {
+        ...VoterRegistrationReferralsBlockFragment
+      }
     }
   }
 
@@ -118,6 +126,8 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${VoterRegistrationBlockFragment}
   ${PetitionSubmissionBlockFragment}
   ${SelectionSubmissionBlockFragment}
+  ${VoterRegistrationDriveBlockFragment}
+  ${VoterRegistrationReferralsBlockFragment}
 `;
 
 const ContentfulEntryLoader = ({

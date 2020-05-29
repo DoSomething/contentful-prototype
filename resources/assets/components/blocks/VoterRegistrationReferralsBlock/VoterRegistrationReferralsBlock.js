@@ -1,11 +1,18 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import pluralize from 'pluralize';
+import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import { getUserId } from '../../../helpers/auth';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import VoterRegistrationReferralsList from './VoterRegistrationReferralsList';
+
+export const VoterRegistrationReferralsBlockFragment = gql`
+  fragment VoterRegistrationReferralsBlockFragment on VoterRegistrationReferralsBlock {
+    title
+  }
+`;
 
 const VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query VoterRegistrationReferrals($referrerUserId: String!) {
@@ -22,9 +29,9 @@ const VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   }
 `;
 
-const VoterRegistrationReferralsBlock = () => (
+const VoterRegistrationReferralsBlock = ({ title }) => (
   <div className="grid-wide clearfix wrapper pb-6">
-    <SectionHeader underlined title="Get 3 friends to register!" />
+    <SectionHeader underlined title={title} />
     <Query
       query={VOTER_REGISTRATION_REFERRALS_QUERY}
       variables={{ referrerUserId: getUserId() }}
@@ -65,5 +72,13 @@ const VoterRegistrationReferralsBlock = () => (
     </Query>
   </div>
 );
+
+VoterRegistrationReferralsBlock.propTypes = {
+  title: PropTypes.string,
+};
+
+VoterRegistrationReferralsBlock.defaultProps = {
+  title: 'Get 3 friends to register!',
+};
 
 export default VoterRegistrationReferralsBlock;
