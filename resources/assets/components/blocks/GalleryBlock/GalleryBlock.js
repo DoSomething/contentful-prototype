@@ -36,6 +36,10 @@ export const GalleryBlockFragment = gql`
         scholarshipAmount
         scholarshipDeadline
         slug
+        path
+      }
+      ... on StoryPageWebsite {
+        path
       }
       ... on Page {
         slug
