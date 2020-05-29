@@ -35,7 +35,7 @@ $ contentful space generate migration -s $SPACE_ID -e dev -c currentSchoolBlock 
 Upon success, you'll see:
 
 ```bash
-$ contentful space generate migration -s $SPACE_ID -e dev -c galleryBlock -f contentful/content-types/currentSchoolBlock.js
+$ contentful space generate migration -s $SPACE_ID -e dev -c currentSchoolBlock -f contentful/content-types/currentSchoolBlock.js
 
 Fetching content model
 Creating migration for content type: 'currentSchoolBlock'
