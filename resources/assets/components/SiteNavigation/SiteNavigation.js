@@ -10,7 +10,8 @@ import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
 import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
-import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
+// import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo'; // @TODO: uncomment this line on July 1st, 2020
+import RainbowLogo from '../utilities/DoSomethingLogo/RainbowLogo'; // @TODO: delete this line on July 1st, 2020
 import {
   EVENT_CATEGORIES,
   getUtmContext,
@@ -184,7 +185,8 @@ class SiteNavigation extends React.Component {
                 })
               }
             >
-              <DoSomethingLogo />
+              {/* @TODO: change back to <DosomethingLogo /> on July 1, 2020 */}
+              <RainbowLogo />
             </a>
           </div>
 
