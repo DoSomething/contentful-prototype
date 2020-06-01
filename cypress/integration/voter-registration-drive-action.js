@@ -43,7 +43,6 @@ describe('Voter Registration Drive Action', () => {
 
   it('Renders sum of quantity if approved posts query returns results', () => {
     const user = userFactory();
-    const actionId = faker.random.number();
 
     cy.mockGraphqlOp('UserAcceptedPostsForAction', {
       posts: [{ quantity: 10 }, { quantity: 20 }, { quantity: 30 }],
@@ -56,7 +55,6 @@ describe('Voter Registration Drive Action', () => {
 
   it('Renders 0 if approved posts query does not return any results', () => {
     const user = userFactory();
-    const actionId = faker.random.number();
 
     cy.mockGraphqlOp('UserAcceptedPostsForAction', {
       posts: [],
