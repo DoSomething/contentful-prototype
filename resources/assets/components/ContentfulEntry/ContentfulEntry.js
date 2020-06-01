@@ -24,8 +24,10 @@ import CurrentSchoolBlockContainer from '../blocks/CurrentSchoolBlock/CurrentSch
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
+import VoterRegistrationDriveAction from '../actions/VoterRegistrationDriveAction/VoterRegistrationDriveAction';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
+import VoterRegistrationReferralsBlock from '../blocks/VoterRegistrationReferralsBlock/VoterRegistrationReferralsBlock';
 import SelectionSubmissionActionContainer from '../actions/SelectionSubmissionAction/SelectionSubmissionActionContainer';
 
 // If no block is passed, just render an empty "placeholder".
@@ -219,6 +221,12 @@ class ContentfulEntry extends React.Component {
 
       case 'VoterRegistrationBlock':
         return <VoterRegistrationActionContainer blockId={json.id} {...json} />;
+
+      case 'VoterRegistrationDriveBlock':
+        return <VoterRegistrationDriveAction {...json} />;
+
+      case 'VoterRegistrationReferralsBlock':
+        return <VoterRegistrationReferralsBlock {...json} />;
 
       default:
         return (

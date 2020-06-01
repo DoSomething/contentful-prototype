@@ -113,7 +113,8 @@ class SocialDriveAction extends React.Component {
 
   render() {
     const {
-      actionId,
+      approvedPostCountActionId,
+      approvedPostCountLabel,
       fullWidth,
       link,
       queryOptions,
@@ -127,7 +128,7 @@ class SocialDriveAction extends React.Component {
     return (
       <div
         className={classNames('clearfix pb-6', {
-          'lg:flex': actionId !== null,
+          'lg:flex': approvedPostCountActionId !== null,
         })}
       >
         <div
@@ -203,8 +204,12 @@ class SocialDriveAction extends React.Component {
           </Card>
         </div>
 
-        {actionId ? (
-          <TotalAcceptedQuantity userId={userId} actionId={actionId} />
+        {approvedPostCountActionId ? (
+          <TotalAcceptedQuantity
+            actionId={approvedPostCountActionId}
+            label={approvedPostCountLabel}
+            userId={userId}
+          />
         ) : null}
       </div>
     );
@@ -212,7 +217,8 @@ class SocialDriveAction extends React.Component {
 }
 
 SocialDriveAction.propTypes = {
-  actionId: PropTypes.number,
+  approvedPostCountActionId: PropTypes.number,
+  approvedPostCountLabel: PropTypes.string,
   campaignId: PropTypes.string,
   /**
    * This prop allows us to force the "main" block to fill the width of the container.
@@ -233,7 +239,8 @@ SocialDriveAction.propTypes = {
 };
 
 SocialDriveAction.defaultProps = {
-  actionId: null,
+  approvedPostCountActionId: null,
+  approvedPostCountLabel: null,
   campaignId: null,
   fullWidth: false,
   pageId: null,

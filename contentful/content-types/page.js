@@ -200,6 +200,8 @@ module.exports = function(migration) {
             'softEdgeWidgetAction',
             'textSubmissionAction',
             'voterRegistrationAction',
+            'voterRegistrationDriveAction',
+            'voterRegistrationReferralsBlock',
           ],
         },
       ],
@@ -265,10 +267,13 @@ module.exports = function(migration) {
   });
 
   page.changeFieldControl('metadata', 'builtin', 'entryLinkEditor', {});
-  page.changeFieldControl('authors', 'builtin', 'entryLinksEditor', {});
+
+  page.changeFieldControl('authors', 'builtin', 'entryLinksEditor', {
+    bulkEditing: false,
+  });
 
   page.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
-    helpText: 'The cover image will display on the page before the content',
+    helpText: 'The cover image will display on the page before the content.',
   });
 
   page.changeFieldControl('content', 'builtin', 'markdown', {});
@@ -280,6 +285,8 @@ module.exports = function(migration) {
 
   page.changeFieldControl('blocks', 'builtin', 'entryLinksEditor', {
     bulkEditing: false,
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
   });
 
   page.changeFieldControl('displaySocialShare', 'builtin', 'boolean', {
