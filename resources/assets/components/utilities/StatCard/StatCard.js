@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FactCard = ({ backgroundColor, title, number, link }) => (
+const StatCard = ({ backgroundColor, title, number, link }) => (
   <div
     className="rounded p-3"
     style={{ backgroundColor }}
-    data-testid="fact-card"
+    data-testid="stat-card"
   >
     <p className="text-white text-lg font-bold uppercase">{title}</p>
 
@@ -22,7 +22,7 @@ const FactCard = ({ backgroundColor, title, number, link }) => (
   </div>
 );
 
-FactCard.propTypes = {
+StatCard.propTypes = {
   backgroundColor: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
@@ -32,4 +32,4 @@ FactCard.propTypes = {
   }).isRequired,
 };
 
-export default FactCard;
+export default StatCard;

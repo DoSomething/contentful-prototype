@@ -47,7 +47,7 @@ describe('Cause Page', () => {
   });
 
   /** @test */
-  it('Displays list of facts in the banner', () => {
+  it('Displays list of stats in the banner', () => {
     cy.mockGraphqlOp('CausePageQuery', {
       causePageBySlug: {
         superTitle: 'Super Title',
@@ -89,8 +89,8 @@ describe('Cause Page', () => {
 
     cy.visit('/us/causes/education');
 
-    cy.findByTestId('cause-page-facts');
-    cy.findAllByTestId('fact-card').should('have.length', 3);
+    cy.findByTestId('cause-page-stats');
+    cy.findAllByTestId('stat-card').should('have.length', 3);
   });
 
   /** @test */

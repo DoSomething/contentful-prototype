@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
-import FactCard from '../../utilities/FactCard/FactCard';
+import StatCard from '../../utilities/StatCard/StatCard';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
@@ -77,10 +77,10 @@ const CausePageTemplate = ({
             {stats && statsBackgroundColor ? (
               <div
                 className="grid-full grid md:grid-cols-3 md:col-gap-5 row-gap-3"
-                data-testid="cause-page-facts"
+                data-testid="cause-page-stats"
               >
                 {stats.map(stat => (
-                  <FactCard
+                  <StatCard
                     key={stat.title}
                     backgroundColor={statsBackgroundColor}
                     title={stat.title}
