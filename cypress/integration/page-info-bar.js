@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
 import { userFactory } from '../fixtures/user';
+import exampleStoryPage from '../fixtures/contentful/exampleStoryPage';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 import { CAMPAIGN_HELP_CONTACT_EMAIL } from '../../resources/assets/constants';
 
@@ -45,6 +46,41 @@ describe('Page Info Bar', () => {
           .click();
 
         cy.get('.modal .zendesk-form').contains('h1', 'Contact Us');
+      });
+    });
+  });
+
+  context('On a Story Page', () => {
+    const assertMailtoLink = () => {
+      const expectedSubject = encodeURIComponent(
+        `Question About ${exampleStoryPage.page.fields.title}`,
+      );
+
+      cy.get('.info-bar .info-bar__secondary a')
+        .should('have.attr', 'href')
+        .and('include', `mailto:${CAMPAIGN_HELP_CONTACT_EMAIL}`)
+        .and('include', `?subject=${expectedSubject}`);
+    };
+
+    context('Unauthenticated users', () => {
+      it('Displays a mailto link to the default help address with the story page title as the subject', () => {
+        cy.visit(`/us/${exampleStoryPage.page.fields.slug}`).withState(
+          exampleStoryPage,
+        );
+
+        assertMailtoLink();
+      });
+    });
+
+    context('Authenticated users', () => {
+      const user = userFactory();
+
+      it('Displays a mailto link to the default help address with the story page title as the subject', () => {
+        cy.login(user)
+          .visit(`/us/${exampleStoryPage.page.fields.slug}`)
+          .withState(exampleStoryPage);
+
+        assertMailtoLink();
       });
     });
   });
