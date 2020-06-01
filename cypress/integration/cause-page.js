@@ -5,6 +5,7 @@ describe('Cause Page', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
 
+  /** @test */
   it('Visit a non existent cause page', () => {
     cy.mockGraphqlOp('CausePageQuery', {
       causePageBySlug: null,
@@ -15,6 +16,7 @@ describe('Cause Page', () => {
     cy.contains('Not Found');
   });
 
+  /** @test */
   it('Visit a cause page with a triggered GraphQL error', () => {
     cy.mockGraphqlOp('CausePageQuery', {
       causePageBySlug: new GraphQLError('Oops!... I Did It Again'),
@@ -25,6 +27,7 @@ describe('Cause Page', () => {
     cy.contains('Something went wrong');
   });
 
+  /** @test */
   it('Visit a working cause page', () => {
     const superTitle = "Let's do something about the";
     const title = 'Environment';
@@ -43,6 +46,7 @@ describe('Cause Page', () => {
     cy.contains('h1', title);
   });
 
+  /** @test */
   it('Displays list of facts in the banner', () => {
     cy.mockGraphqlOp('CausePageQuery', {
       causePageBySlug: {
@@ -89,6 +93,7 @@ describe('Cause Page', () => {
     cy.findAllByTestId('fact-card').should('have.length', 3);
   });
 
+  /** @test */
   it('Displays paginated campaign gallery', () => {
     cy.mockGraphqlOp('CausePageQuery', {
       causePageBySlug: {
