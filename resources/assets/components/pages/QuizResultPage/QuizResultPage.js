@@ -61,12 +61,12 @@ const QuizResultPage = ({ id }) => {
 
       <main>
         <article data-testid="quiz-result-page">
-          <header role="banner" className="base-12-grid bg-blurple-500">
-            <div className="col-span-3 bg-bottom md:col-start-2">
+          <header role="banner" className="base-12-grid bg-blurple-500 py-3">
+            <div className="col-span-4 md:col-span-3 bg-bottom md:col-start-2">
               {assetId ? <ContentfulAsset id={assetId} width={375} /> : null}
             </div>
-            <div className="col-span-7 md:my-auto">
-              <h1 className=" font-normal font-league-gothic color-white uppercase">
+            <div className="col-span-4 md:col-span-7 md:my-auto">
+              <h1 className="font-normal font-league-gothic color-white uppercase">
                 <span className="border-b-4 border-solid border-yellow-400 inline-block text-4xl">
                   {linkBlockTitle}
                 </span>
