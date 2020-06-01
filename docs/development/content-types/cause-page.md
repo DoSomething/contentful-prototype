@@ -22,7 +22,7 @@ Displays a collection of (optional) stats, campaigns and article content revolvi
 
 - **Content**: The Rich Text content of the page. This can be content in markdown format, embedded Assets, or valid embedded entry blocks (preferabely Gallery Blocks).
 
-- **Additional Content** _(optional)_: Displays stat cards in the banner under the description. The stats nead their own distinct color in hexidecimal format aling with an array of three stats. Each stat should contain a _title_, some _text_, and a stat _number_. It should also contain a _link_ to the associated Campaign for this stats with a _url_ and link _text_. Example:
+- **Additional Content** _(optional)_: Supports displaying a triad gallery of 'Facts' under the **Description** in the Cause Page banner. Facts are rendered in a triad gallery of [`FactCard`s](../features/fact-card.md). There should be at least three Facts. The properties necessary for the `FactCard`s are required in an array of `stats` (the field name was assigned before we formalized these as Fact Cards), along with a `statsBackgroundColor` to be assigned their `backgroundColor` CSS property. Example:
 
 ```json
 {
@@ -56,7 +56,6 @@ Displays a collection of (optional) stats, campaigns and article content revolvi
 }
 ```
 
-Which yields:
 ![Cause page stats example](../../.gitbook/assets/cause-page-stats.png)
 
 ## Campaign Gallery
