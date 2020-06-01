@@ -1,7 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import PageQuery from '../PageQuery';
 import FactCard from '../../utilities/FactCard/FactCard';
@@ -77,7 +76,7 @@ const CausePageTemplate = ({
 
             {stats && statsBackgroundColor ? (
               <div className="grid-full grid md:grid-cols-3 md:col-gap-5 row-gap-3">
-                {stats.map((stat, index) => (
+                {stats.map(stat => (
                   <FactCard
                     key={stat.title}
                     backgroundColor={statsBackgroundColor}
