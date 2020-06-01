@@ -43,6 +43,52 @@ describe('Cause Page', () => {
     cy.contains('h1', title);
   });
 
+  it('Displays list of facts in the banner', () => {
+    cy.mockGraphqlOp('CausePageQuery', {
+      causePageBySlug: {
+        superTitle: 'Super Title',
+        title: 'Title',
+        slug: 'education',
+        additionalContent: {
+          statsBackgroundColor: '#3D9CB1',
+          stats: [
+            {
+              link: {
+                url:
+                  'https://www.dosomething.org/us/campaigns/company-student-debt',
+                text: 'Invest In Us',
+              },
+              title: 'actions taken about student debt',
+              number: 59077,
+            },
+            {
+              link: {
+                url:
+                  'https://www.dosomething.org/us/stories/legacy-donor-admissions',
+                text: 'Merit Over Money',
+              },
+              title: 'signatures for fairer admissions',
+              number: 27711,
+            },
+            {
+              link: {
+                url: 'https://www.dosomething.org/us/campaigns/fed/community',
+                text: 'Fed Up',
+              },
+              title: 'votes for better school lunches',
+              number: 576846,
+            },
+          ],
+        },
+      },
+    });
+
+    cy.visit('/us/causes/education');
+
+    cy.findByTestId('cause-page-facts');
+    cy.findAllByTestId('fact-card').should('have.length', 3);
+  });
+
   it('Displays paginated campaign gallery', () => {
     cy.mockGraphqlOp('CausePageQuery', {
       causePageBySlug: {

@@ -75,7 +75,10 @@ const CausePageTemplate = ({
             </div>
 
             {stats && statsBackgroundColor ? (
-              <div className="grid-full grid md:grid-cols-3 md:col-gap-5 row-gap-3">
+              <div
+                className="grid-full grid md:grid-cols-3 md:col-gap-5 row-gap-3"
+                data-testid="cause-page-facts"
+              >
                 {stats.map(stat => (
                   <FactCard
                     key={stat.title}

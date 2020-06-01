@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FactCard = ({ backgroundColor, title, number, link }) => (
-  <div className="rounded p-3" style={{ backgroundColor }}>
+  <div
+    className="rounded p-3"
+    style={{ backgroundColor }}
+    data-testid="fact-card"
+  >
     <p className="text-white text-lg font-bold uppercase">{title}</p>
 
     <p className="text-white text-5xl font-league-gothic -mt-3">
