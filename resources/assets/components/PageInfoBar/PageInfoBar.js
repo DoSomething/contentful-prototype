@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Modal from '../utilities/Modal/Modal';
 import { isAuthenticated } from '../../helpers/auth';
 import { getCampaign } from '../../helpers/campaign';
+import { CAMPAIGN_HELP_CONTACT_EMAIL } from '../../constants';
 import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 import ZendeskFormContainer from '../utilities/ZendeskForm/ZendeskFormContainer';
 
@@ -69,7 +70,7 @@ PageInfoBar.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliatePartners: [],
-  contactEmail: 'campaignhelp@dosomething.org',
+  contactEmail: CAMPAIGN_HELP_CONTACT_EMAIL,
 };
 
 export default PageInfoBar;
