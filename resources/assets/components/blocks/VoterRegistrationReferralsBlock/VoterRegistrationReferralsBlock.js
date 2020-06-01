@@ -31,7 +31,7 @@ const VOTER_REGISTRATION_REFERRALS_QUERY = gql`
 
 const VoterRegistrationReferralsBlock = ({ title }) => (
   <div className="grid-wide clearfix wrapper pb-6">
-    <SectionHeader underlined title={title} />
+    {title ? <SectionHeader underlined title={title} /> : null}
     <Query
       query={VOTER_REGISTRATION_REFERRALS_QUERY}
       variables={{ referrerUserId: getUserId() }}
@@ -78,7 +78,7 @@ VoterRegistrationReferralsBlock.propTypes = {
 };
 
 VoterRegistrationReferralsBlock.defaultProps = {
-  title: 'Get 3 friends to register!',
+  title: null,
 };
 
 export default VoterRegistrationReferralsBlock;
