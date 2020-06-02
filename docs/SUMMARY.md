@@ -31,6 +31,7 @@
   - [Analytics Waypoint](development/features/analytics-waypoint.md)
   - [Delayed Element](development/features/delayed-element.md)
   - [Dismissable Element](development/features/delayed-element.md)
+  - [Stat Card](development/features/stat-card.md)
   - [General Buttons](development/features/general-buttons.md)
   - [Paginated Campaign Gallery](development/features/paginated-campaign-gallery.md)
   - [Refer A Friend](development/features/referral-pages.md)

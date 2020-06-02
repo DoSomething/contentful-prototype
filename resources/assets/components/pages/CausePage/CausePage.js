@@ -1,9 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import PageQuery from '../PageQuery';
+import StatCard from '../../utilities/StatCard/StatCard';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
@@ -75,30 +75,18 @@ const CausePageTemplate = ({
             </div>
 
             {stats && statsBackgroundColor ? (
-              <div className="grid-full md:flex">
-                {stats.map((stat, index) => (
-                  <div
+              <div
+                className="grid-full grid md:grid-cols-3 md:col-gap-5 row-gap-3"
+                data-testid="cause-page-stats"
+              >
+                {stats.map(stat => (
+                  <StatCard
                     key={stat.title}
-                    className={classnames('stat rounded mt-3 p-3 md:w-1/3', {
-                      'md:mr-5': index < stats.length - 1,
-                    })}
-                    style={{ backgroundColor: statsBackgroundColor }}
-                  >
-                    <p className="text-white text-lg font-bold uppercase">
-                      {stat.title}
-                    </p>
-
-                    <p className="text-white text-5xl font-league-gothic -mt-3">
-                      {stat.number.toLocaleString()}
-                    </p>
-
-                    <a
-                      className="text-white hover:text-white font-normal underline cursor-pointer"
-                      href={stat.link.url}
-                    >
-                      {stat.link.text}
-                    </a>
-                  </div>
+                    backgroundColor={statsBackgroundColor}
+                    title={stat.title}
+                    number={stat.number}
+                    link={stat.link}
+                  />
                 ))}
               </div>
             ) : null}

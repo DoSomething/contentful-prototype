@@ -5,6 +5,7 @@ describe('Cause Page', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
 
+  /** @test */
   it('Visit a non existent cause page', () => {
     cy.mockGraphqlOp('CausePageQuery', {
       causePageBySlug: null,
@@ -15,6 +16,7 @@ describe('Cause Page', () => {
     cy.contains('Not Found');
   });
 
+  /** @test */
   it('Visit a cause page with a triggered GraphQL error', () => {
     cy.mockGraphqlOp('CausePageQuery', {
       causePageBySlug: new GraphQLError('Oops!... I Did It Again'),
@@ -25,6 +27,7 @@ describe('Cause Page', () => {
     cy.contains('Something went wrong');
   });
 
+  /** @test */
   it('Visit a working cause page', () => {
     const superTitle = "Let's do something about the";
     const title = 'Environment';
@@ -43,6 +46,54 @@ describe('Cause Page', () => {
     cy.contains('h1', title);
   });
 
+  /** @test */
+  it('Displays list of stats in the banner', () => {
+    cy.mockGraphqlOp('CausePageQuery', {
+      causePageBySlug: {
+        superTitle: 'Super Title',
+        title: 'Title',
+        slug: 'education',
+        additionalContent: {
+          statsBackgroundColor: '#3D9CB1',
+          stats: [
+            {
+              link: {
+                url:
+                  'https://www.dosomething.org/us/campaigns/company-student-debt',
+                text: 'Invest In Us',
+              },
+              title: 'actions taken about student debt',
+              number: 59077,
+            },
+            {
+              link: {
+                url:
+                  'https://www.dosomething.org/us/stories/legacy-donor-admissions',
+                text: 'Merit Over Money',
+              },
+              title: 'signatures for fairer admissions',
+              number: 27711,
+            },
+            {
+              link: {
+                url: 'https://www.dosomething.org/us/campaigns/fed/community',
+                text: 'Fed Up',
+              },
+              title: 'votes for better school lunches',
+              number: 576846,
+            },
+          ],
+        },
+      },
+    });
+
+    cy.visit('/us/causes/education');
+
+    cy.findByTestId('cause-page-stats');
+    cy.findAllByTestId('stat-card').should('have.length', 3);
+  });
+
+  /** @test */
   it('Displays paginated campaign gallery', () => {
     cy.mockGraphqlOp('CausePageQuery', {
       causePageBySlug: {
