@@ -4,21 +4,17 @@ import React, { useRef, useEffect } from 'react';
 import excludedPaths from './config';
 import SitewideBannerContent from './SitewideBannerContent';
 
-const checkExcludedPathname = pathname => {
-  for (let i = 0; i < excludedPaths.length; i += 1) {
-    if (excludedPaths[i] === pathname) {
-      return true;
+const isExcludedPath = pathname => {
+  return excludedPaths.find(excludedPath => {
+    if (excludedPath.includes('*')) {
+      return (
+        pathname.includes(excludedPath.slice(0, -1)) &&
+        pathname.length > excludedPath.length
+      );
     }
-    if (excludedPaths[i].includes('*')) {
-      if (
-        pathname.includes(excludedPaths[i].slice(0, -1)) &&
-        pathname.length > excludedPaths[i].length
-      ) {
-        return true;
-      }
-    }
-  }
-  return false;
+
+    return excludedPath === pathname;
+  });
 };
 
 const SitewideBanner = props => {
@@ -39,7 +35,7 @@ const SitewideBanner = props => {
 
   const target = usePortal('banner-portal');
 
-  return !checkExcludedPathname(window.location.pathname)
+  return !isExcludedPath(window.location.pathname)
     ? createPortal(children, target)
     : null;
 };

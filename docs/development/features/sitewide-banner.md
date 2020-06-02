@@ -13,3 +13,10 @@ The `SitewideBanner` can be used in conjunction with a `DismissableElement` or o
 In certain cases, you may want to hide the sitewide banner on specific pages of the site. If that's the case, you'll simply need to add the URL path as a _string_ to `components/utilities/SiteWideBanner/config`
 
 Before the banner renders on the page, we check the config for any pages that should be suppressed.
+
+If you want to suppress the banner from a page that may have multiple sub paths but share the same base path, you'll need to add a `*` to the end of the pathname.
+
+### Pathnames Currently Excluded:
+
+- `/us/my-voter-registration-drive`
+- `/us/quiz-results/*`
