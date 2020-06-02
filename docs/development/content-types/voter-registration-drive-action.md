@@ -1,6 +1,6 @@
 # Voter Registration Drive Action
 
-This block type will display a `SocialDriveAction` that links to the current user's Online Voter Registration Drive (OVRD) Page.
+This block type will display a [`SocialDriveAction`](development/content-types/social-drive-action.md) that links to the current user's Online Voter Registration Drive (OVRD) Page.
 
 ![Voter Registration Drive Action](../../.gitbook/assets/voter-registration-drive-action.png)
 
