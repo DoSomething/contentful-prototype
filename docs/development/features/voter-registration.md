@@ -76,7 +76,7 @@ A `clicked_voter_registration_action` analytics event is fired when the user sub
 
 ## Online Drives
 
-The call to action in the Online Voter Registration Drive (OVRD) campaign, currently titled [Ready, Set, Vote!](https://www.dosomething.org/us/campaigns/online-registration-drive/) asks a member (the alpha) to get their friends to register to vote, by providing them with a [custom OVRD page URL to share with their friends](development/content-types/voter-registration-drive-action.md) (the betas).
+The call to action in the [Online Voter Registration Drive (OVRD) campaign](https://www.dosomething.org/us/campaigns/online-registration-drive/) asks a member (the alpha) to get their friends to register to vote, by providing them with a [custom OVRD page URL to share with their friends](development/content-types/voter-registration-drive-action.md) (the betas).
 
 ### Voter Registration Drive Page
 
