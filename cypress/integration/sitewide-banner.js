@@ -60,6 +60,29 @@ describe('Site Wide Banner', () => {
   });
 
   /** @test */
+  it('The Site Wide Banner is not displayed on voter registration quiz results page', () => {
+    const quizResultId = 'p7hqjSP4Y1U6ad0UDz4iS';
+
+    const linkBlock = {
+      id: quizResultId,
+      __typename: 'LinkBlock',
+      title: faker.company.bsBuzz(),
+      content: faker.lorem.sentence(),
+    };
+
+    cy.mockGraphqlOp('QuizResultPageQuery', {
+      block: linkBlock,
+    });
+
+    cy.visit(`/us/quiz-results/${quizResultId}`);
+
+    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
+      'have.length',
+      0,
+    );
+  });
+
+  /** @test */
   it('The Site Wide Banner CTA URL is correct for an unauthenticated user', () => {
     cy.anonVisitCampaign(exampleCampaign);
 
