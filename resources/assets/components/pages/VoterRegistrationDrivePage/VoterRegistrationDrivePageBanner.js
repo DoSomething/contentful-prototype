@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { votingReasons } from './config';
-import { query } from '../../../../helpers';
-import CampaignHeader from '../../../utilities/CampaignHeader';
-import CoverImage from '../../../utilities/CoverImage/CoverImage';
-import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import { query } from '../../../helpers';
+import CampaignHeader from '../../utilities/CampaignHeader';
+import CoverImage from '../../utilities/CoverImage/CoverImage';
+import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 
 const HeroSection = ({ user, campaignInfo, modalToggle }) => {
   const { firstName } = user;

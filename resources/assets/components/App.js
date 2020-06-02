@@ -33,7 +33,7 @@ import AccountContainer from './pages/AccountPage/Account/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
-import BetaVoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/Beta/BetaPage';
+import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/VoterRegistrationDrivePage';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -135,7 +135,7 @@ const App = ({ store, history }) => {
 
               <Route
                 path="/us/my-voter-registration-drive"
-                component={BetaVoterRegistrationDrivePage}
+                component={VoterRegistrationDrivePage}
               />
 
               <Route path="/us/refer-friends" component={AlphaReferralPage} />
