@@ -1,7 +1,7 @@
 import { get } from 'lodash';
 import { connect } from 'react-redux';
 
-import CampaignInfoBar from './CampaignInfoBar';
+import PageInfoBar from './PageInfoBar';
 
 const mapStateToProps = state => {
   return {
@@ -17,4 +17,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(CampaignInfoBar);
+export default connect(mapStateToProps)(PageInfoBar);

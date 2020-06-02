@@ -28,6 +28,7 @@ const blocks = {
   '6lOSmXMObu8M8Ug6GSK6gs': 'GalleryBlock',
   '7qT9bG21eOhu9svaFL3rJ6': 'LinkAction',
   o9Le9daUHn0McdCdTRMMq: 'ContentBlock',
+  '4ti6d4kQ80JRrkAmvltkm': 'PostGalleryBlock',
 };
 
 /**

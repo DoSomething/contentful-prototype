@@ -42,3 +42,6 @@ export const HELP_LINK = 'https://help.dosomething.org/hc/en-us';
 
 // Help center - new ticket view URL:
 export const HELP_REQUEST_LINK = `${HELP_LINK}/requests/new`;
+
+// Campaign/story page help contact email.
+export const CAMPAIGN_HELP_CONTACT_EMAIL = 'campaignhelp@dosomething.org';
