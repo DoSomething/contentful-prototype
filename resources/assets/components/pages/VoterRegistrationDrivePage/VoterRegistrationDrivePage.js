@@ -3,21 +3,21 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 
 import { gqlVariables } from './config';
-import ErrorPage from '../../ErrorPage';
-import HeroSection from './HeroSection';
-import NotFoundPage from '../../NotFoundPage';
-import Modal from '../../../utilities/Modal/Modal';
-import Placeholder from '../../../utilities/Placeholder';
-import { isDevEnvironment, query } from '../../../../helpers';
-import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
-import PrimaryButton from '../../../utilities/Button/PrimaryButton';
-import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
-import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
-import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
-import StartVoterRegistrationForm from '../../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
+import ErrorPage from '../ErrorPage';
+import NotFoundPage from '../NotFoundPage';
+import Modal from '../../utilities/Modal/Modal';
+import Placeholder from '../../utilities/Placeholder';
+import { isDevEnvironment, query } from '../../../helpers';
+import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import VoterRegistrationDrivePageBanner from './VoterRegistrationDrivePageBanner';
+import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import ScholarshipInfoBlock from '../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
+import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
+import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
 
-const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
-  query BetaVoterRegistrationDrivePageQuery(
+const VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
+  query VoterRegistrationDrivePageQuery(
     $referrerUserId: String!
     $voterRegistrationDriveCampaignWebsiteId: String!
   ) {
@@ -41,12 +41,13 @@ const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
   }
 `;
 
-const BetaVoterRegistrationDrivePage = () => {
+const VoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
 
   const config = isDevEnvironment()
     ? gqlVariables.development
     : gqlVariables.production;
+
   /**
    * The CampaignWebsite ID is the same across all Contentful environments for OVRD.
    * @see /docs/development/features/voter-registration
@@ -61,7 +62,7 @@ const BetaVoterRegistrationDrivePage = () => {
   }
 
   const { loading, error, data } = useQuery(
-    BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY,
+    VOTER_REGISTRATION_DRIVE_PAGE_QUERY,
     {
       variables: {
         referrerUserId,
@@ -93,8 +94,8 @@ const BetaVoterRegistrationDrivePage = () => {
   return (
     <>
       <SiteNavigationContainer />
-      <main data-test="beta-voter-registration-drive-page">
-        <HeroSection
+      <main data-test="voter-registration-drive-page">
+        <VoterRegistrationDrivePageBanner
           user={data.user}
           campaignInfo={data.campaignWebsite}
           modalToggle={modalToggle}
@@ -153,4 +154,4 @@ const BetaVoterRegistrationDrivePage = () => {
   );
 };
 
-export default BetaVoterRegistrationDrivePage;
+export default VoterRegistrationDrivePage;
