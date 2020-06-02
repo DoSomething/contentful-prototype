@@ -8,7 +8,7 @@ This block type displays the current user's latest three completed voter registr
 
 - **Internal Title**
 
-- **Title**: Optional `SectionHeader` text, e.g. "Get 3 friends registered"
+- **Title**: Optional `SectionHeader` text, e.g. "Get 3 friends to register!"
 
 ## Notes
 
