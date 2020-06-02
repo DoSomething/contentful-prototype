@@ -60,11 +60,11 @@ We host customized voter registration drives for influencers on our Instapage, b
 
 ## Content types
 
-- [`VoterRegistrationAction` ](development/content-types/voter-registration-action.md) - Links to a voting portal page. A `clicked_voter_registration_action` analytics event is fired when the user clicks on the CTA to visit the voter registration portal.
+- [`VoterRegistrationAction`](development/content-types/voter-registration-action.md) - Links to a voting portal page. A `clicked_voter_registration_action` analytics event is fired when the user clicks on the CTA to visit the voter registration portal.
 
-- [`VoterRegistrationDriveAction` ](development/content-types/voter-registration-drive-action.md) - Used in [OVRD campaigns](#online-drives)
+- [`VoterRegistrationDriveAction`](development/content-types/voter-registration-drive-action.md) - Used in [OVRD campaigns](#online-drives)
 
-- [`VoterRegistrationReferralsBlock` ](development/content-types/voter-registration-drive-action.md) - Used in [OVRD campaigns](#online-drives)
+- [`VoterRegistrationReferralsBlock`](development/content-types/voter-registration-drive-action.md) - Used in [OVRD campaigns](#online-drives)
 
 ## Utilities
 
