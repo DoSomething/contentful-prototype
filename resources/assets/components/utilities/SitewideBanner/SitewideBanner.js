@@ -4,6 +4,19 @@ import React, { useRef, useEffect } from 'react';
 import excludedPaths from './config';
 import SitewideBannerContent from './SitewideBannerContent';
 
+const isExcludedPath = pathname => {
+  return excludedPaths.find(excludedPath => {
+    if (excludedPath.includes('*')) {
+      return (
+        pathname.includes(excludedPath.slice(0, -1)) &&
+        pathname.length > excludedPath.length
+      );
+    }
+
+    return excludedPath === pathname;
+  });
+};
+
 const SitewideBanner = props => {
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
@@ -22,7 +35,7 @@ const SitewideBanner = props => {
 
   const target = usePortal('banner-portal');
 
-  return !excludedPaths.includes(window.location.pathname)
+  return !isExcludedPath(window.location.pathname)
     ? createPortal(children, target)
     : null;
 };
