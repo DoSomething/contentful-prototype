@@ -69,7 +69,7 @@ const CuratedPageBanner = ({
       {stats && statsBackgroundColor ? (
         <div
           className="grid-full grid md:grid-cols-3 md:col-gap-5 row-gap-3"
-          data-testid="cause-page-stats"
+          data-testid="curated-page-banner-stats"
         >
           {stats.map(stat => (
             <StatCard

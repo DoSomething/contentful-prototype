@@ -89,7 +89,7 @@ describe('Cause Page', () => {
 
     cy.visit('/us/causes/education');
 
-    cy.findByTestId('cause-page-stats');
+    cy.findByTestId('curated-page-banner-stats');
     cy.findAllByTestId('stat-card').should('have.length', 3);
   });
 
