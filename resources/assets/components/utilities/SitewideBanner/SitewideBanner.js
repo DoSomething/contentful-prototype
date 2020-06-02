@@ -10,7 +10,10 @@ const checkExcludedPathname = pathname => {
       return true;
     }
     if (excludedPaths[i].includes('*')) {
-      if (pathname.includes('/us/quiz-results/')) {
+      if (
+        pathname.includes(excludedPaths[i].slice(0, -1)) &&
+        pathname.length > excludedPaths[i].length
+      ) {
         return true;
       }
     }
