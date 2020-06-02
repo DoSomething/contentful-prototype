@@ -25,6 +25,8 @@
   - [Selection Submission Action](development/content-types/selection-submission-action.md)
   - [Social Drive Action](development/content-types/social-drive-action.md)
   - [Voter Registration Action](development/content-types/voter-registration-action.md)
+  - [Voter Registration Drive Action](development/content-types/voter-registration-drive-action.md)
+  - [Voter Registration Referrals Block](development/content-types/voter-registration-referrals-block.md)
 - [Features](development/features/README.md)
   - [Affiliate Opt In](development/features/affiliate-opt-in.md)
   - [Affiliate Scholarship Block](development/features/affiliate-scholarship-block.md)
