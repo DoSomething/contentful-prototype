@@ -22,14 +22,18 @@ const StatCard = ({ backgroundColor, title, number, link }) => (
   </div>
 );
 
-StatCard.propTypes = {
-  backgroundColor: PropTypes.string.isRequired,
+export const STAT_PROPS = {
   title: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
   link: PropTypes.shape({
     url: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
   }).isRequired,
+};
+
+StatCard.propTypes = {
+  backgroundColor: PropTypes.string.isRequired,
+  ...STAT_PROPS,
 };
 
 export default StatCard;
