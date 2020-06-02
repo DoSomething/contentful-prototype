@@ -28,13 +28,20 @@ const CuratedPageBanner = ({
     <header
       role="banner"
       className="base-12-grid bg-center bg-no-repeat bg-cover py-3 md:py-6"
+      data-testid="curated-page-banner"
       style={{ backgroundImage }}
     >
       <div className="col-span-4 md:col-span-8 lg:col-span-7 my-6">
-        <h2 className="my-3 uppercase color-white text-lg">{superTitle}</h2>
+        <h2
+          className="my-3 uppercase color-white text-lg"
+          data-testid="curated-page-banner-supertitle"
+        >
+          {superTitle}
+        </h2>
 
         <h1
           className="leading-none my-3 font-normal font-league-gothic color-white uppercase"
+          data-testid="curated-page-banner-title"
           css={css`
             font-size: 96px;
 
