@@ -58,11 +58,15 @@ We host customized voter registration drives for influencers on our Instapage, b
 
 > source:influencer,source_details:noor_aldayeh
 
-## Voter Registration Action
+## Content types
 
-The [`VoterRegistrationAction` content type](development/content-types/voter-registration-action.md) can be used to display a call to action button that redirects a user to our vote.dosomething.org portal.
+- [`VoterRegistrationAction` ](development/content-types/voter-registration-action.md) - Links to a voting portal page. A `clicked_voter_registration_action` analytics event is fired when the user clicks on the CTA to visit the voter registration portal.
 
-A `clicked_voter_registration_action` analytics event is fired when the user clicks on the CTA to visit the voter registration portal.
+- [`VoterRegistrationDriveAction` ](development/content-types/voter-registration-drive-action.md) - Used in [OVRD campaigns](#online-drives)
+
+- [`VoterRegistrationReferralsBlock` ](development/content-types/voter-registration-drive-action.md) - Used in [OVRD campaigns](#online-drives)
+
+### Utilities
 
 ## Start Voter Registration Form
 
@@ -72,49 +76,15 @@ A `clicked_voter_registration_action` analytics event is fired when the user sub
 
 ## Online Drives
 
-The call to action in the [Ready, Set, Vote campaign](https://www.dosomething.org/us/campaigns/online-registration-drive/) asks a member (the alpha) to get their friends to register to vote, by providing them with a custom URL to their own Online Voter Registration Drive (OVRD) that they can share with their friends (the betas).
+OVRD = Online Voter Registration Drive
 
-### Alpha page
+The call to action in the [OVRD campaign](https://www.dosomething.org/us/campaigns/online-registration-drive/) asks a member (the alpha) to get their friends to register to vote, by providing them with a [custom OVRD page URL to share with their friends]((development/content-types/voter-registration-drive-action.md) (the betas).
 
-The OVRD (Ready Set Vote) campaign action page renders a hardcoded component instead of its Contentful blocks field. This is hardcoded because it displays one-off features:
+### Voter Registration Drive Page
 
-- A list of voter registration referrals (beta's that the alpha has gotten to register to vote via their OVRD)
+The `VoterRegistrationDrivePage` is a hardcoded component, displayed on path `/us/my-voter-registration-drive?referrer_user_id=58e68d5da0bfad4c3b4cd722` (where the `referrer_user_id` is our alpha's user ID).
 
-- A custom [`SocialDriveAction`](development/content-types/social-drive-action.md):
-
-  - Allows the alpha to customize their voting reasons on their beta page
-
-  - Displays the total accepted post count for the related photo action for sharing your link and submitting a screenshot
-
-We hardcode specific configuration `ContentBlock` ID's and Action ID's:
-
-**Production:**
-
-Content:
-
-- [How To Share ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/entries/3fj7mXlyrcJZ3mUKXqco1R) - 3fj7mXlyrcJZ3mUKXqco1R
-- [FAQ ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/entries/1nLV3YUhLzJdlcGrd2Mq9N) - 1nLV3YUhLzJdlcGrd2Mq9N
-
-Total scholarship entries:
-
-- [Share Photo Post Action](https://activity.dosomething.org/actions/1025) - 1025
-
-**Dev:**
-
-Content:
-
-- [How To Share ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/1xcG1CTinKwn3Iyxtcc0f4) - 1xcG1CTinKwn3Iyxtcc0f4
-- [FAQ ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/6H22Y1wmICy05pM9twIGGR) - 6H22Y1wmICy05pM9twIGGR
-
-Total scholarship entries:
-
-- [Share Photo Post Action](https://activity-dev.dosomething.org/actions/27) - 27
-
-### Beta page
-
-The beta page is also a hardcoded component, displayed on path `/us/my-voter-registration-drive?referrer_user_id=58e68d5da0bfad4c3b4cd722` (where the `referrer_user_id` is our alpha's user ID).
-
-This beta page component shares some components with the OVRD campaign template, like its `CoverImage` and scholarship information. The OVRD campaign's contentful ID, `3pwxnRZxociqMaQCMcGOyc`, is the same in all of our `dev`, `qa` and `production` spaces. Usually this isn't the case -- our Contentful ID's don't match between our `dev` and `production` spaces -- but this entry was created before we introduced different Contentful environments to our Phoenix space. Because of this, we're able to hardcode this Contentful ID to use in both `dev` and `production` environments.
+This beta page shares some components with the OVRD campaign pages, like its `CoverImage` and scholarship information. The OVRD campaign's contentful ID, `3pwxnRZxociqMaQCMcGOyc`, is the same in all of our `dev`, `qa` and `production` spaces. Usually this isn't the case -- our Contentful ID's don't match between our `dev` and `production` spaces -- but this entry was created before we introduced different Contentful environments to our Phoenix space. Because of this, we're able to hardcode this Contentful ID to use in both `dev` and `production` environments.
 
 We hardcode specific configuration `ContentBlock` ID's:
 
