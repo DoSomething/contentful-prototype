@@ -64,6 +64,7 @@ const CuratedPageBanner = ({
             </p>
 
             <img
+              data-testid="curated-page-banner-affiliate-logo"
               className="mt-2"
               style={{ maxHeight: '50px' }}
               src={affiliate.logo.url}
