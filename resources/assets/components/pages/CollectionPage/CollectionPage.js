@@ -3,12 +3,11 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
+import { withoutNulls } from '../../../helpers';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import CuratedPageBanner from '../../utilities/CuratedPageBanner';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
-
-import './collection-page.scss';
 
 export const COLLECTION_PAGE_QUERY = gql`
   query CollectionPageQuery($slug: String!, $preview: Boolean!) {
@@ -42,57 +41,22 @@ const CollectionPageTemplate = ({
   affiliates,
   content,
 }) => {
-  // @TODO: Update this with image dimension logic to serve properly sized files to different screen sizes
-  const backgroundImage = coverImage
-    ? `url(${contentfulImageUrl(coverImage.url, '1440', '610', 'fill')})`
-    : null;
-
-  const styles = {
-    backgroundImage,
-  };
-
-  // We currently only support a single affiliate.
-  const affiliate = affiliates[0];
-
   return (
     <>
       <SiteNavigationContainer />
 
       <main>
         <article className="collection-page">
-          <header
-            role="banner"
-            className="lede-banner base-12-grid py-3 md:py-6"
-            style={withoutNulls(styles)}
-          >
-            <div className="title-lockup my-6">
-              <h2 className="my-3 uppercase color-white text-lg">
-                {superTitle}
-              </h2>
-
-              <h1 className="lede-banner__headline-title my-3 font-normal font-league-gothic color-white uppercase">
-                {title}
-              </h1>
-
-              <TextContent styles={{ textColor: '#FFF', fontSize: '21px' }}>
-                {description}
-              </TextContent>
-
-              {affiliate ? (
-                <div className="mt-6">
-                  <p className="font-bold font-size-base text-gray-500 uppercase">
-                    {affiliatePrefix}
-                  </p>
-
-                  <img
-                    className="mt-2 affiliate-logo"
-                    src={affiliate.logo.url}
-                    alt={affiliate.logo.description || affiliate.title}
-                  />
-                </div>
-              ) : null}
-            </div>
-          </header>
+          <CuratedPageBanner
+            {...withoutNulls({
+              coverImage,
+              superTitle,
+              title,
+              description,
+              affiliates,
+              affiliatePrefix,
+            })}
+          />
 
           <TextContent
             className="base-12-grid py-3 md:py-6"
@@ -125,8 +89,8 @@ CollectionPageTemplate.propTypes = {
 };
 
 CollectionPageTemplate.defaultProps = {
-  affiliatePrefix: 'In partnership with',
-  affiliates: [],
+  affiliatePrefix: null,
+  affiliates: null,
 };
 
 const CollectionPage = ({ slug }) => (
