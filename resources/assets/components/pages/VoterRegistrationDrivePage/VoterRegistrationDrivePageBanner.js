@@ -7,7 +7,11 @@ import CampaignHeader from '../../utilities/CampaignHeader';
 import CoverImage from '../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 
-const HeroSection = ({ user, campaignInfo, modalToggle }) => {
+const VoterRegistrationDrivePageBanner = ({
+  user,
+  campaignInfo,
+  modalToggle,
+}) => {
   const { firstName } = user;
   const {
     campaignId,
@@ -22,7 +26,6 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
    *
    * @return {String}
    */
-
   const formatQuote = () => {
     const votingReasonsQuery = query('voting-reasons');
 
@@ -112,9 +115,9 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
   );
 };
 
-export default HeroSection;
+export default VoterRegistrationDrivePageBanner;
 
-HeroSection.propTypes = {
+VoterRegistrationDrivePageBanner.propTypes = {
   user: PropTypes.object.isRequired,
   campaignInfo: PropTypes.object.isRequired,
   modalToggle: PropTypes.func.isRequired,
