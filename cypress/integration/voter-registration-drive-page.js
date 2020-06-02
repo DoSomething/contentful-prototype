@@ -4,9 +4,9 @@ import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
 
-const betaPagePath = '/us/my-voter-registration-drive';
+const ovrdPathPage = '/us/my-voter-registration-drive';
 const mockUrl = faker.image.imageUrl();
-// Mock response for the campaignWebsite query within our BetaVoterRegistrationDrivePageQuery.
+// Mock response for the campaignWebsite query within our VoterRegistrationDrivePageQuery.
 const campaignWebsite = {
   campaignId: faker.random.number(),
   title: faker.company.catchPhraseDescriptor(),
@@ -24,11 +24,11 @@ const campaignWebsite = {
  * @param Object user
  * @return String
  */
-function getBetaPagePathForUser(user) {
-  return `${betaPagePath}?referrer_user_id=${user.id}`;
+function getOvrdPagePathForUser(user) {
+  return `${ovrdPathPage}?referrer_user_id=${user.id}`;
 }
 
-describe('Beta Voter Registration Drive (OVRD) Page', () => {
+describe('Voter Registration Drive (OVRD) Page', () => {
   beforeEach(() => {
     cy.configureMocks();
     // Mock the ContentBlock queries used for various sections on the beta OVRD page.
@@ -44,64 +44,64 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('Beta OVRD page displays NotFoundPage if referrer user ID not present', () => {
-    cy.visit(betaPagePath);
+  it('OVRD page displays NotFoundPage if referrer user ID not present', () => {
+    cy.visit(ovrdPathPage);
 
     cy.findByTestId('not-found-page').should('have.length', 1);
-    cy.get('[data-test=beta-voter-registration-drive-page]').should(
+    cy.get('[data-test=voter-registration-drive-page]').should(
       'have.length',
       0,
     );
   });
 
   /** @test */
-  it('Beta OVRD page displays NotFoundPage if referrer user not found', () => {
+  it('OVRD page displays NotFoundPage if referrer user not found', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user: null,
       campaignWebsite,
     });
 
-    cy.visit(getBetaPagePathForUser(user));
+    cy.visit(getOvrdPagePathForUser(user));
 
     cy.findByTestId('not-found-page').should('have.length', 1);
-    cy.get('[data-test=beta-voter-registration-drive-page]').should(
+    cy.get('[data-test=voter-registration-drive-page]').should(
       'have.length',
       0,
     );
   });
 
   /** @test */
-  it('Beta OVRD HeroSection displays a cover image', () => {
+  it('OVRD HeroSection displays a cover image', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
-    cy.visit(getBetaPagePathForUser(user));
+    cy.visit(getOvrdPagePathForUser(user));
 
-    cy.get('[data-test=beta-voter-registration-drive-page-cover-image]').should(
+    cy.get('[data-test=voter-registration-drive-page-cover-image]').should(
       'have.length',
       1,
     );
   });
 
   /** @test */
-  it('Beta OVRD HeroSection displays referrer first name if referrer user found', () => {
+  it('OVRD HeroSection displays referrer first name if referrer user found', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
-    cy.visit(getBetaPagePathForUser(user));
+    cy.visit(getOvrdPagePathForUser(user));
 
     cy.findByTestId('not-found-page').should('have.length', 0);
-    cy.get('[data-test=beta-voter-registration-drive-page]').should(
+    cy.get('[data-test=voter-registration-drive-page]').should(
       'have.length',
       1,
     );
@@ -111,145 +111,137 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('Beta OVRD HeroSection displays scholarhship info if it is provided', () => {
+  it('OVRD HeroSection displays scholarhship info if it is provided', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
-    cy.visit(getBetaPagePathForUser(user));
+    cy.visit(getOvrdPagePathForUser(user));
 
     cy.get(
-      '[data-test=beta-voter-registration-drive-page-campaign-info-block]',
+      '[data-test=voter-registration-drive-page-campaign-info-block]',
     ).should('have.length', 1);
     cy.contains('Win A Scholarship');
     cy.get(
-      '[data-test=beta-voter-registration-drive-page-campaign-info-block] > article > dl > dd.campaign-info__scholarship',
+      '[data-test=voter-registration-drive-page-campaign-info-block] > article > dl > dd.campaign-info__scholarship',
     ).contains(`$1,500`);
     cy.contains('button', 'View Scholarship Details');
     cy.contains(`April 25th, 2022`);
   });
 
   /** @test */
-  it('Beta OVRD quote displays default if no voting-reasons query parameter found', () => {
+  it('OVRD quote displays default if no voting-reasons query parameter found', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
-    cy.visit(getBetaPagePathForUser(user));
+    cy.visit(getOvrdPagePathForUser(user));
 
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-quote-text]',
-    ).contains(
+    cy.get('[data-test=voter-registration-drive-page-quote-text]').contains(
       'Voting is one of the most impactful ways to make a difference on the causes that matter to us. Take 2 minutes and register to vote today!',
     );
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-quote-byline]',
-    ).contains(`- ${user.firstName}`);
+    cy.get('[data-test=voter-registration-drive-page-quote-byline]').contains(
+      `- ${user.firstName}`,
+    );
   });
 
   /** @test */
-  it('Beta OVRD quote displays one voting reason when found in voting-reasons query', () => {
+  it('OVRD quote displays one voting reason when found in voting-reasons query', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
-    cy.visit(`${getBetaPagePathForUser(user)}&voting-reasons=student-debt`);
+    cy.visit(`${getOvrdPagePathForUser(user)}&voting-reasons=student-debt`);
 
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-quote-text]',
-    ).contains(
+    cy.get('[data-test=voter-registration-drive-page-quote-text]').contains(
       'Voting is one of the most impactful ways to make a difference on the causes that matter to us, like student debt. Take 2 minutes and register to vote today!',
     );
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-quote-byline]',
-    ).contains(`- ${user.firstName}`);
+    cy.get('[data-test=voter-registration-drive-page-quote-byline]').contains(
+      `- ${user.firstName}`,
+    );
   });
 
   /** @test */
-  it('Beta OVRD quote displays two voting reasons when found in voting-reasons query', () => {
+  it('OVRD quote displays two voting reasons when found in voting-reasons query', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
     cy.visit(
-      `${getBetaPagePathForUser(
+      `${getOvrdPagePathForUser(
         user,
       )}&voting-reasons=covid-relief,climate-change`,
     );
 
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-quote-text]',
-    ).contains(
+    cy.get('[data-test=voter-registration-drive-page-quote-text]').contains(
       'Voting is one of the most impactful ways to make a difference on the causes that matter to us, like COVID-19 relief and climate change. Take 2 minutes and register to vote today!',
     );
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-quote-byline]',
-    ).contains(`- ${user.firstName}`);
+    cy.get('[data-test=voter-registration-drive-page-quote-byline]').contains(
+      `- ${user.firstName}`,
+    );
   });
 
   /** @test */
-  it('Beta OVRD quote displays three or more voting reasons when found in voting-reasons query', () => {
+  it('OVRD quote displays three or more voting reasons when found in voting-reasons query', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
     cy.visit(
-      `${getBetaPagePathForUser(
+      `${getOvrdPagePathForUser(
         user,
       )}&voting-reasons=mental-health,climate-change,healthcare,covid-relief`,
     );
 
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-quote-text]',
-    ).contains(
+    cy.get('[data-test=voter-registration-drive-page-quote-text]').contains(
       'Voting is one of the most impactful ways to make a difference on the causes that matter to us, like mental health, climate change, healthcare, and COVID-19 relief. Take 2 minutes and register to vote today!',
     );
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-quote-byline]',
-    ).contains(`- ${user.firstName}`);
+    cy.get('[data-test=voter-registration-drive-page-quote-byline]').contains(
+      `- ${user.firstName}`,
+    );
   });
 
   /** @test */
-  it('Beta OVRD HeroSection displays scholarship info in blurb', () => {
+  it('OVRD HeroSection displays scholarship info in blurb', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
-    cy.visit(getBetaPagePathForUser(user));
+    cy.visit(getOvrdPagePathForUser(user));
 
-    cy.get('[data-test=beta-voter-registration-drive-page-blurb]').contains(
+    cy.get('[data-test=voter-registration-drive-page-blurb]').contains(
       `150,000+ young people have registered to vote via DoSomething. After you register, share with your friends to enter to win a $1,500 scholarship!`,
     );
   });
 
   /** @test */
-  it('Beta OVRD displays campaign href, expects href to match GraphQL URL returned from query', () => {
+  it('OVRD displays campaign href, expects href to match GraphQL URL returned from query', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
-    cy.visit(getBetaPagePathForUser(user));
+    cy.visit(getOvrdPagePathForUser(user));
 
     // Assert button href is present and contains correct url:
     cy.get('[data-test=visit-voter-registration-campaign-button]')
@@ -258,15 +250,15 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('Beta OVRD Step One register to vote section displays as expected', () => {
+  it('OVRD Step One register to vote section displays as expected', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
-    cy.visit(getBetaPagePathForUser(user));
+    cy.visit(getOvrdPagePathForUser(user));
 
     cy.findByTestId('voter-registration-form-card').should('have.length', 1);
     cy.findByTestId('voter-registration-form-card').findByText(
@@ -275,29 +267,29 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('Beta OVRD Step One register to vote section button is disabled when form is empty', () => {
+  it('OVRD Step One register to vote section button is disabled when form is empty', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
-    cy.visit(getBetaPagePathForUser(user));
+    cy.visit(getOvrdPagePathForUser(user));
 
     cy.findByTestId('voter-registration-submit-button').should('be.disabled');
   });
 
   /** @test */
-  it('Beta OVRD Step One register to vote section button is enabled when form is filled in', () => {
+  it('OVRD Step One register to vote section button is enabled when form is filled in', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
     });
 
-    cy.visit(getBetaPagePathForUser(user));
+    cy.visit(getOvrdPagePathForUser(user));
 
     cy.findByTestId('voter-registration-email-field').type('text@test.com');
     cy.findByTestId('voter-registration-zip-field').type('12345');
@@ -310,7 +302,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('Beta OVRD <meta> tag has a title and description', () => {
+  it('OVRD <meta> tag has a title and description', () => {
     cy.get('head meta[property="og:title"]').should(
       'have.attr',
       'content',

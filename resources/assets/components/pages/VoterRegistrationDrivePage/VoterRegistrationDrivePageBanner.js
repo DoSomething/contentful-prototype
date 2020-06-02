@@ -63,7 +63,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
     <>
       <CoverImage
         attributes={{
-          'data-test': 'beta-voter-registration-drive-page-cover-image',
+          'data-test': 'voter-registration-drive-page-cover-image',
         }}
         coverImage={coverImage}
       />
@@ -77,18 +77,18 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
 
           <div className="grid-wide-7/10 mb-6 markdown">
             <blockquote>
-              <p data-test="beta-voter-registration-drive-page-quote-text">
+              <p data-test="voter-registration-drive-page-quote-text">
                 Voting is one of the most impactful ways to make a difference on
                 the causes that matter to us{formatQuote()}. Take 2 minutes and
                 register to vote today!
               </p>
 
-              <p data-test="beta-voter-registration-drive-page-quote-byline">
+              <p data-test="voter-registration-drive-page-quote-byline">
                 - {firstName}
               </p>
             </blockquote>
 
-            <p data-test="beta-voter-registration-drive-page-blurb">
+            <p data-test="voter-registration-drive-page-blurb">
               150,000+ young people have registered to vote via DoSomething.
               After you register, share with your friends to enter to win a $
               {`${scholarshipAmount.toLocaleString()}`} scholarship!
@@ -96,7 +96,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
           </div>
 
           <div
-            data-test="beta-voter-registration-drive-page-campaign-info-block"
+            data-test="voter-registration-drive-page-campaign-info-block"
             className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3"
           >
             <CampaignInfoBlock

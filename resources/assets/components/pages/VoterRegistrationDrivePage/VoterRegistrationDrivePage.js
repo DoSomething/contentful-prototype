@@ -94,7 +94,7 @@ const VoterRegistrationDrivePage = () => {
   return (
     <>
       <SiteNavigationContainer />
-      <main data-test="beta-voter-registration-drive-page">
+      <main data-test="voter-registration-drive-page">
         <VoterRegistrationDrivePageBanner
           user={data.user}
           campaignInfo={data.campaignWebsite}
