@@ -70,7 +70,7 @@ We host customized voter registration drives for influencers on our Instapage, b
 
 ### Start Voter Registration Form
 
-The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the [OVRD alpha page](#alpha-page) and [Quiz Result page](#quiz-result-page).
+The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the [Voter Registration Drive Page](#voter-registration-drive-page) and the [Quiz Result Page](#quiz-result-page) components.
 
 A `clicked_voter_registration_action` analytics event is fired when the user submits the form to continue their voter registration on the RTV registration site.
 
@@ -120,9 +120,9 @@ Our Voting Quiz campaign (`/us/campaigns/ready-vote`) uses the legacy Quiz conte
 
 ### Quiz Result Page
 
-We're working on a new release to redirect users to `/us/quiz-results/:id` to view their quiz result if the `DS_ENABLE_QUIZ_RESULT_PAGE` configuration variable is set to `true`.
+When the `DS_ENABLE_QUIZ_RESULT_PAGE` configuration variable is set to `true`, the current user is redirected to `/us/quiz-results/:id` to see their quiz result.
 
-The page displays a new `QuizResultPage` component, and expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field.
+The `QuizResultPage` component expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field.
 
 The `QuizResultPage` displays a static `GalleryBlock` for all of the different result ID's.
 
