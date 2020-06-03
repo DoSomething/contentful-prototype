@@ -28,6 +28,7 @@ export const COLLECTION_PAGE_QUERY = gql`
         }
       }
       content
+      additionalContent
     }
   }
 `;
@@ -40,7 +41,10 @@ const CollectionPageTemplate = ({
   affiliatePrefix,
   affiliates,
   content,
+  additionalContent,
 }) => {
+  const { stats, statsBackgroundColor } = additionalContent || {};
+
   return (
     <>
       <SiteNavigationContainer />
@@ -55,6 +59,8 @@ const CollectionPageTemplate = ({
               description,
               affiliates,
               affiliatePrefix,
+              stats,
+              statsBackgroundColor,
             })}
           />
 
@@ -86,11 +92,16 @@ CollectionPageTemplate.propTypes = {
   affiliatePrefix: PropTypes.string,
   affiliates: PropTypes.arrayOf(PropTypes.object),
   content: PropTypes.object.isRequired,
+  additionalContent: PropTypes.shape({
+    stats: PropTypes.array,
+    statsBackgroundColor: PropTypes.string,
+  }),
 };
 
 CollectionPageTemplate.defaultProps = {
   affiliatePrefix: null,
   affiliates: null,
+  additionalContent: {},
 };
 
 const CollectionPage = ({ slug }) => (
