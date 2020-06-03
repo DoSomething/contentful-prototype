@@ -63,6 +63,7 @@ const CampaignPageContent = props => {
                 QuizBlock: 'grid-wide',
                 SocialDriveBlock: 'grid-wide',
                 VoterRegistrationDriveBlock: 'grid-wide',
+                VoterRegistrationReferralsBlock: 'grid-wide',
               }}
             />
           ))}
