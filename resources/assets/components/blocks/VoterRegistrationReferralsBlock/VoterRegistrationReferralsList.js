@@ -21,11 +21,6 @@ const VoterRegistrationReferralsList = ({ referralPosts }) => {
     );
   }
 
-  /**
-   * We're using clearfix and float-left for non-small screens instead of flex, because the Figure
-   * component within our VoterRegistrationReferralsListItem doesn't align left.
-   * @see https://www.pivotaltracker.com/n/projects/2441250/stories/172608156
-   */
   return <ul className="flex justify-around">{items}</ul>;
 };
 
