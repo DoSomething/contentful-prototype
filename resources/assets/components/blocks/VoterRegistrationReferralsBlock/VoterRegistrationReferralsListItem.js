@@ -10,6 +10,7 @@ const VoterRegistrationReferralsListItem = props => {
 
   return (
     <div
+      /* @TODO: Update to data-testid. */
       data-test={`referral-list-item-${!isEmpty ? 'completed' : 'empty'}`}
       className="text-center w-20 xs:w-24 sm:w-32 md:w-40"
     >
