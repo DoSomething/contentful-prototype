@@ -20,7 +20,12 @@ const VoterRegistrationReferralsListItem = props => {
           !isEmpty ? 'Completed voter registration icon' : 'Empty circle icon'
         }
       />
-      <p className={isEmpty ? 'text-gray-500' : null}>{label}</p>
+      <p
+        data-testid="referral-list-item-label"
+        className={isEmpty ? 'text-gray-500' : null}
+      >
+        {label}
+      </p>
     </div>
   );
 };
