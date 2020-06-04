@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import { getUserId } from '../../../helpers/auth';
+import EmptyRegistrationImage from './empty-registration.svg';
+import CompletedRegistrationImage from './completed-registration.svg';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import VoterRegistrationReferralsList from './VoterRegistrationReferralsList';
 
@@ -56,10 +58,14 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
               </div>
             )}
             <div className="md:flex">
-              <VoterRegistrationReferralsList referralPosts={data.posts} />
+              <VoterRegistrationReferralsList
+                referralPosts={data.posts}
+                referralIcon={CompletedRegistrationImage}
+                placeholderIcon={EmptyRegistrationImage}
+              />
               {numberOfReferrals > 3 ? (
                 <div
-                  data-test="additional-referrals-count"
+                  data-testid="additional-referrals-count"
                   className="text-center md:text-left pt-8 md:pt-16 font-bold uppercase text-gray-600"
                 >
                   {`+ ${numberOfReferrals - 3} more`}
