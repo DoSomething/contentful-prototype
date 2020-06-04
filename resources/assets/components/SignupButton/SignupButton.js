@@ -1,6 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
+import GroupSelect from './GroupSelect';
 import { getUtms } from '../../helpers/utm';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
 import { isCampaignClosed, query, withoutNulls } from '../../helpers';
@@ -59,12 +60,23 @@ const SignupButton = props => {
   // campaign action text override, or standard "Take Action" copy.
   const buttonCopy = text || campaignActionText;
 
+  const isGroupsCampaign = query('groups');
+  const [groupId, setGroupId] = useState(null);
+
   return (
-    <PrimaryButton
-      className={className}
-      onClick={handleSignup}
-      text={isCampaignClosed(endDate) ? 'Notify Me' : buttonCopy}
-    />
+    <>
+      {isGroupsCampaign ? (
+        <div className="mt-3">
+          <GroupSelect onChange={selected => setGroupId(selected.value)} />
+        </div>
+      ) : null}
+      <PrimaryButton
+        className={className}
+        isDisabled={isGroupsCampaign ? groupId === null : false}
+        onClick={handleSignup}
+        text={isCampaignClosed(endDate) ? 'Notify Me' : buttonCopy}
+      />
+    </>
   );
 };
 
