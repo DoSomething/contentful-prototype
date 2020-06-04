@@ -25,7 +25,6 @@ import {
 } from '../../../helpers/forms';
 import {
   EVENT_CATEGORIES,
-  getUtmContext,
   getPageContext,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
