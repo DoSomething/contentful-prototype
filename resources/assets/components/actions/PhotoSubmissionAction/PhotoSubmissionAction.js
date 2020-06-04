@@ -319,7 +319,7 @@ class PhotoSubmissionAction extends PostForm {
                   href={this.props.authRegisterUrl}
                   text="Add Photo"
                   onClick={() =>
-                    trackAnalyticsEvent('phoenix_clicked_button_log_in', {
+                    trackAnalyticsEvent('clicked_button_log_in', {
                       action: 'button_clicked',
                       category: EVENT_CATEGORIES.authentication,
                       label: 'block_auth',
