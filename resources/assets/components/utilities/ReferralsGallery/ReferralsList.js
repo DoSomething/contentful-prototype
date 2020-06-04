@@ -2,9 +2,9 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import VoterRegistrationReferralsListItem from './VoterRegistrationReferralsListItem';
+import ReferralsListItem from './ReferralsListItem';
 
-const VoterRegistrationReferralsList = props => {
+const ReferralsList = props => {
   const items = [];
 
   /**
@@ -14,7 +14,7 @@ const VoterRegistrationReferralsList = props => {
   for (let i = 0; i < 3; i += 1) {
     items.push(
       <li key={i} className="md:pr-6">
-        <VoterRegistrationReferralsListItem
+        <ReferralsListItem
           label={get(props.referralPosts[i], 'user.displayName')}
           referralIcon={props.referralIcon}
           placeholderIcon={props.placeholderIcon}
@@ -26,10 +26,10 @@ const VoterRegistrationReferralsList = props => {
   return <ul className="flex justify-around">{items}</ul>;
 };
 
-VoterRegistrationReferralsList.propTypes = {
+ReferralsList.propTypes = {
   placeholderIcon: PropTypes.string.isRequired,
   referralIcon: PropTypes.string.isRequired,
   referralPosts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default VoterRegistrationReferralsList;
+export default ReferralsList;
