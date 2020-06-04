@@ -326,7 +326,6 @@ class PhotoSubmissionAction extends PostForm {
                       label: 'block_auth',
                       context: {
                         ...getPageContext(),
-                        ...getUtmContext(),
                         referrer: document.referrer,
                       },
                     })
