@@ -59,7 +59,7 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
             )}
 
             <ReferralsGallery
-              referralPosts={data.posts}
+              referrals={data.posts.map(post => post.user)}
               referralIcon={CompletedRegistrationImage}
               placeholderIcon={EmptyRegistrationImage}
             />

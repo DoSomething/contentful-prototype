@@ -3,31 +3,27 @@ import PropTypes from 'prop-types';
 
 import ReferralsList from './ReferralsList';
 
-const ReferralsGallery = ({ referralPosts, placeholderIcon, referralIcon }) => (
+const ReferralsGallery = ({ referrals, placeholderIcon, referralIcon }) => (
   <div className="md:flex" data-testid="referrals-gallery">
     <ReferralsList
-      referralPosts={referralPosts}
+      referrals={referrals}
       referralIcon={referralIcon}
       placeholderIcon={placeholderIcon}
     />
-    {referralPosts.length > 3 ? (
+    {referrals.length > 3 ? (
       <div
         data-testid="additional-referrals-count"
         className="text-center md:text-left pt-8 md:pt-16 font-bold uppercase text-gray-600"
       >
-        {`+ ${referralPosts.length - 3} more`}
+        {`+ ${referrals.length - 3} more`}
       </div>
     ) : null}
   </div>
 );
 
 ReferralsGallery.propTypes = {
-  referralPosts: PropTypes.arrayOf(
-    PropTypes.shape({
-      user: PropTypes.shape({
-        displayName: PropTypes.string.isRequired,
-      }).isRequired,
-    }),
+  referrals: PropTypes.arrayOf(
+    PropTypes.shape({ displayName: PropTypes.string.isRequired }),
   ).isRequired,
   placeholderIcon: PropTypes.string.isRequired,
   referralIcon: PropTypes.string.isRequired,

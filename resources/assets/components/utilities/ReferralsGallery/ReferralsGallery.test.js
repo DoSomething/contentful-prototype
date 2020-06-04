@@ -3,10 +3,10 @@ import { render, screen, within } from '@testing-library/react';
 
 import ReferralsGallery from './ReferralsGallery';
 
-const renderReferralsGallery = posts =>
+const renderReferralsGallery = referrals =>
   render(
     <ReferralsGallery
-      referralPosts={posts}
+      referrals={referrals}
       placeholderIcon={faker.image.dataUri()}
       referralIcon={faker.image.dataUri()}
     />,
@@ -25,8 +25,8 @@ describe('ReferralGallery component', () => {
   /** @test */
   it('Displays 2 completed icons there are 2 referrals', () => {
     renderReferralsGallery([
-      { user: { displayName: 'Jesus Q.' } },
-      { user: { displayName: 'Walter S.' } },
+      { displayName: 'Jesus Q.' },
+      { displayName: 'Walter S.' },
     ]);
 
     const referralItems = screen.getAllByTestId('referral-list-item-completed');
@@ -50,11 +50,11 @@ describe('ReferralGallery component', () => {
   /** @test */
   it('Displays 3 completed icons and additional count if user has 5 referrals', () => {
     renderReferralsGallery([
-      { user: { displayName: 'Sarah C.' } },
-      { user: { displayName: 'Kyle R.' } },
-      { user: { displayName: 'John C.' } },
-      { user: { displayName: 'Miles D.' } },
-      { user: { displayName: 'Tarissa D.' } },
+      { displayName: 'Sarah C.' },
+      { displayName: 'Kyle R.' },
+      { displayName: 'John C.' },
+      { displayName: 'Miles D.' },
+      { displayName: 'Tarissa D.' },
     ]);
 
     const referralItems = screen.getAllByTestId('referral-list-item-completed');

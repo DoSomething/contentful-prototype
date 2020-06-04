@@ -15,7 +15,7 @@ const ReferralsList = props => {
     items.push(
       <li key={i} className="md:pr-6">
         <ReferralsListItem
-          label={get(props.referralPosts[i], 'user.displayName')}
+          label={get(props.referrals[i], 'displayName')}
           referralIcon={props.referralIcon}
           placeholderIcon={props.placeholderIcon}
         />
@@ -29,7 +29,7 @@ const ReferralsList = props => {
 ReferralsList.propTypes = {
   placeholderIcon: PropTypes.string.isRequired,
   referralIcon: PropTypes.string.isRequired,
-  referralPosts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  referrals: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ReferralsList;
