@@ -2,6 +2,8 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
+import EmptyRegistrationImage from './empty-registration.svg';
+import CompletedRegistrationImage from './completed-registration.svg';
 import VoterRegistrationReferralsListItem from './VoterRegistrationReferralsListItem';
 
 const VoterRegistrationReferralsList = ({ referralPosts }) => {
@@ -16,6 +18,8 @@ const VoterRegistrationReferralsList = ({ referralPosts }) => {
       <li key={i} className="md:pr-6">
         <VoterRegistrationReferralsListItem
           label={get(referralPosts[i], 'user.displayName')}
+          referralIcon={CompletedRegistrationImage}
+          placeholderIcon={EmptyRegistrationImage}
         />
       </li>,
     );
