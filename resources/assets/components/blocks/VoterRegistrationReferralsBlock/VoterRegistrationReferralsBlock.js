@@ -65,7 +65,7 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
               />
               {numberOfReferrals > 3 ? (
                 <div
-                  data-test="additional-referrals-count"
+                  data-testid="additional-referrals-count"
                   className="text-center md:text-left pt-8 md:pt-16 font-bold uppercase text-gray-600"
                 >
                   {`+ ${numberOfReferrals - 3} more`}

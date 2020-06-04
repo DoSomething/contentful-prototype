@@ -39,9 +39,9 @@ describe('Voter Registration Referrals Block', () => {
 
     cy.authVisitBlockPermalink(user, blockId);
 
-    cy.get('[data-test=referral-list-item-empty]').should('have.length', 3);
-    cy.get('[data-test=referral-list-item-completed]').should('have.length', 0);
-    cy.get('[data-test=additional-referrals-count]').should('have.length', 0);
+    cy.findAllByTestId('referral-list-item-empty').should('have.length', 3);
+    cy.findAllByTestId('referral-list-item-completed').should('have.length', 0);
+    cy.findByTestId('additional-referrals-count').should('have.length', 0);
   });
 
   it('Displays 2 completed icons if user has 2 referrals', () => {
@@ -53,15 +53,15 @@ describe('Voter Registration Referrals Block', () => {
 
     cy.authVisitBlockPermalink(user, blockId);
 
-    cy.get('[data-test=referral-list-item-completed]').should('have.length', 2);
-    cy.nth('[data-test=referral-list-item-completed]', 0).within(() => {
+    cy.findAllByTestId('referral-list-item-completed').should('have.length', 2);
+    cy.nth('[data-testid=referral-list-item-completed]', 0).within(() => {
       cy.findByTestId('referral-list-item-label').contains('Jesus Q.');
     });
-    cy.nth('[data-test=referral-list-item-completed]', 1).within(() => {
+    cy.nth('[data-testid=referral-list-item-completed]', 1).within(() => {
       cy.findByTestId('referral-list-item-label').contains('Walter S.');
     });
-    cy.get('[data-test=referral-list-item-empty]').should('have.length', 1);
-    cy.get('[data-test=additional-referrals-count]').should('have.length', 0);
+    cy.findAllByTestId('referral-list-item-empty').should('have.length', 1);
+    cy.findByTestId('additional-referrals-count').should('have.length', 0);
   });
 
   it('Displays 3 completed icons and additional count if user has 5 referrals', () => {
@@ -79,17 +79,17 @@ describe('Voter Registration Referrals Block', () => {
 
     cy.authVisitBlockPermalink(user, blockId);
 
-    cy.get('[data-test=referral-list-item-completed]').should('have.length', 3);
-    cy.nth('[data-test=referral-list-item-completed]', 0).within(() => {
-      cy.get('p').contains('Sarah C.');
+    cy.findAllByTestId('referral-list-item-completed').should('have.length', 3);
+    cy.nth('[data-testid=referral-list-item-completed]', 0).within(() => {
+      cy.findByTestId('referral-list-item-label').contains('Sarah C.');
     });
-    cy.nth('[data-test=referral-list-item-completed]', 1).within(() => {
+    cy.nth('[data-testid=referral-list-item-completed]', 1).within(() => {
       cy.findByTestId('referral-list-item-label').contains('Kyle R.');
     });
-    cy.nth('[data-test=referral-list-item-completed]', 2).within(() => {
+    cy.nth('[data-testid=referral-list-item-completed]', 2).within(() => {
       cy.findByTestId('referral-list-item-label').contains('John C.');
     });
-    cy.get('[data-test=referral-list-item-empty]').should('have.length', 0);
-    cy.get('[data-test=additional-referrals-count]').contains('+ 2 more');
+    cy.findAllByTestId('referral-list-item-empty').should('have.length', 0);
+    cy.findByTestId('additional-referrals-count').contains('+ 2 more');
   });
 });
