@@ -23,6 +23,12 @@ import {
   getFieldErrors,
   formatPostPayload,
 } from '../../../helpers/forms';
+import {
+  EVENT_CATEGORIES,
+  getUtmContext,
+  getPageContext,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 import './photo-submission-action.scss';
 
@@ -313,6 +319,18 @@ class PhotoSubmissionAction extends PostForm {
                   className="block text-lg w-full"
                   href={this.props.authRegisterUrl}
                   text="Add Photo"
+                  onClick={() =>
+                    trackAnalyticsEvent('phoenix_clicked_button_log_in', {
+                      action: 'button_clicked',
+                      category: EVENT_CATEGORIES.authentication,
+                      label: 'block_auth',
+                      context: {
+                        ...getPageContext(),
+                        ...getUtmContext(),
+                        referrer: document.referrer,
+                      },
+                    })
+                  }
                 />
               </div>
             </Card>
