@@ -8,7 +8,7 @@ import { getUserId } from '../../../helpers/auth';
 import EmptyRegistrationImage from './empty-registration.svg';
 import CompletedRegistrationImage from './completed-registration.svg';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
-import ReferralsList from '../../utilities/ReferralsGallery/ReferralsList';
+import ReferralsGallery from '../../utilities/ReferralsGallery/ReferralsGallery';
 
 export const VoterRegistrationReferralsBlockFragment = gql`
   fragment VoterRegistrationReferralsBlockFragment on VoterRegistrationReferralsBlock {
@@ -57,21 +57,12 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
                 get started!
               </div>
             )}
-            <div className="md:flex">
-              <ReferralsList
-                referralPosts={data.posts}
-                referralIcon={CompletedRegistrationImage}
-                placeholderIcon={EmptyRegistrationImage}
-              />
-              {numberOfReferrals > 3 ? (
-                <div
-                  data-testid="additional-referrals-count"
-                  className="text-center md:text-left pt-8 md:pt-16 font-bold uppercase text-gray-600"
-                >
-                  {`+ ${numberOfReferrals - 3} more`}
-                </div>
-              ) : null}
-            </div>
+
+            <ReferralsGallery
+              referralPosts={data.posts}
+              referralIcon={CompletedRegistrationImage}
+              placeholderIcon={EmptyRegistrationImage}
+            />
           </>
         );
       }}
