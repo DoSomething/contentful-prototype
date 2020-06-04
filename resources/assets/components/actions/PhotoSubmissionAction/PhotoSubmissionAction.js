@@ -23,6 +23,11 @@ import {
   getFieldErrors,
   formatPostPayload,
 } from '../../../helpers/forms';
+import {
+  EVENT_CATEGORIES,
+  getPageContext,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 import './photo-submission-action.scss';
 
@@ -313,6 +318,16 @@ class PhotoSubmissionAction extends PostForm {
                   className="block text-lg w-full"
                   href={this.props.authRegisterUrl}
                   text="Add Photo"
+                  onClick={() =>
+                    trackAnalyticsEvent('phoenix_clicked_button_log_in', {
+                      action: 'button_clicked',
+                      category: EVENT_CATEGORIES.authentication,
+                      label: 'block_auth',
+                      context: {
+                        ...getPageContext(),
+                      },
+                    })
+                  }
                 />
               </div>
             </Card>
@@ -547,7 +562,7 @@ PhotoSubmissionAction.propTypes = {
     items: PropTypes.object,
   }).isRequired,
   title: PropTypes.string,
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.string,
   whyParticipatedFieldLabel: PropTypes.string,
   whyParticipatedFieldPlaceholder: PropTypes.string,
 };
@@ -569,6 +584,7 @@ PhotoSubmissionAction.defaultProps = {
   quantityFieldPlaceholder: 'Quantity # (e.g. 300)',
   showQuantityField: true,
   title: 'Submit your photo',
+  userId: null,
   whyParticipatedFieldLabel: 'Why is this campaign important to you?',
   whyParticipatedFieldPlaceholder:
     "No need to write an essay, but we'd love to see why this matters to you!",
