@@ -1,5 +1,6 @@
 import React from 'react';
 
+import SignupReferralsGallery from './SignupReferralsGallery';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
@@ -15,6 +16,8 @@ const ReferFriendsTab = () => (
       link="https://dosomething.org/us/campaigns/senior-homies"
       fullWidth
     />
+
+    <SignupReferralsGallery />
   </div>
 );
 
