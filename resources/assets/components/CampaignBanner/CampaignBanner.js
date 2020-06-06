@@ -46,7 +46,7 @@ const CampaignBanner = ({
   ] = useState(false);
   const numCampaignId = Number(campaignId);
   // TODO: This is a hack, we'll need to query GraphQL to see if campaignId has a groupTypeId set.
-  const campaignGroupTypeId = query('group_type_id');
+  const campaignGroupTypeId = Number(query('group_type_id'));
 
   useEffect(() => {
     if (scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline) {

@@ -70,7 +70,10 @@ const SignupButton = props => {
     <>
       {campaignGroupTypeId ? (
         <div className="mt-3">
-          <GroupSelect onChange={selected => setGroupId(selected.value)} />
+          <GroupSelect
+            groupTypeId={campaignGroupTypeId}
+            onChange={selected => setGroupId(selected.value)}
+          />
         </div>
       ) : null}
       <PrimaryButton
