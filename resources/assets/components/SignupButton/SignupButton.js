@@ -64,7 +64,13 @@ const SignupButton = props => {
 
   // In descending priority: button-specific text prop,
   // campaign action text override, or standard "Take Action" copy.
-  const buttonCopy = text || campaignActionText;
+  let buttonCopy = text || campaignActionText;
+
+  if (isCampaignClosed(endDate)) {
+    buttonCopy = 'Notify Me';
+  } else if (campaignGroupTypeId) {
+    buttonCopy = 'Join Group';
+  }
 
   return (
     <>
@@ -80,7 +86,7 @@ const SignupButton = props => {
         className={className}
         isDisabled={campaignGroupTypeId ? !groupId : false}
         onClick={handleSignup}
-        text={isCampaignClosed(endDate) ? 'Notify Me' : buttonCopy}
+        text={buttonCopy}
       />
     </>
   );
