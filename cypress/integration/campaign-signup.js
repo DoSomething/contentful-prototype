@@ -140,14 +140,37 @@ describe('Campaign Signup', () => {
 
   /** @test */
   it('Visits a campaign page from scholarship partner, as an unauthenticated user', () => {
-    //Visit the campaign pitch page
+    // Visit the campaign pitch page
     cy.withState(exampleCampaign).visit(
       '/us/campaigns/test-example-campaign?utm_campaign=fastweb&utm_source=scholarship',
     );
-    //We should see the Apply Now button in the modal
+
+    // We should see the Apply Now button in the modal
     cy.findByTestId('campaign-info-block-scholarship-details').contains(
       'button',
       'Apply Now',
     );
+  });
+
+  /** @test */
+  it('Visits a groups campaign page, as an unauthenticated user', () => {
+    cy.mockGraphqlOp('SearchGroupsQuery', {
+      groups: [
+        { id: 1, name: 'New York' },
+        { id: 2, name: 'Philadelphia' },
+        { id: 3, name: 'San Francisco' },
+      ],
+    });
+
+    // Visit the campaign pitch page
+    cy.withState(exampleCampaign).visit(
+      '/us/campaigns/test-example-campaign?group_type_id=1',
+    );
+
+    cy.findByTestId('campaign-banner-signup-button').contains(
+      'button',
+      'Join Group',
+    );
+    //cy.findByTestId('campaign-banner-signup-button').should('be.disabled');
   });
 });
