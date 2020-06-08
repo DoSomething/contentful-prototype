@@ -153,9 +153,12 @@ const CampaignBanner = ({
                 : null
             }
           >
-            {/* TODO: If campaignGroupTypeId, render as full width within ScholarshipInfoBlock */}
             {!isAffiliated ? (
-              <div className="pt-6 w-2/3 sm:w-1/2">
+              <div
+                className={`pt-6 ${
+                  !campaignGroupTypeId ? 'w-2/3 sm:w-1/2' : null
+                }`}
+              >
                 <SignupButtonContainer
                   campaignGroupTypeId={campaignGroupTypeId}
                   className="w-full md:px-2"
