@@ -33,6 +33,10 @@ const GroupSelect = ({ groupTypeId, onChange }) => {
     return <ErrorBlock error={error} />;
   }
 
+  /**
+   * Passing id and instanceId props to the Select for use in our Cypress tests.
+   * @see https://react-select.com/props#select-props
+   */
   return (
     <Select
       id="select-group-dropdown"
