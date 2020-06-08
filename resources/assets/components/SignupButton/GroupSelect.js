@@ -35,6 +35,8 @@ const GroupSelect = ({ groupTypeId, onChange }) => {
 
   return (
     <Select
+      id="select-group-dropdown"
+      instanceId="select-group-"
       onChange={onChange}
       options={data.groups.map(group => ({
         value: group.id,

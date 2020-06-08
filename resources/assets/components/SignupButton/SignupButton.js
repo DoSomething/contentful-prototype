@@ -89,6 +89,7 @@ const SignupButton = props => {
             />
           </div>
           <PrimaryButton
+            attributes={{ 'data-testid': 'join-group-signup-button' }}
             className={className}
             isDisabled={!groupId}
             onClick={handleSignup}

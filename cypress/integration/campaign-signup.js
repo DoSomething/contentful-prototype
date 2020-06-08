@@ -132,9 +132,9 @@ describe('Campaign Signup', () => {
     cy.findByTestId('campaign-info-block-container').should('have.length', 1);
     cy.findByTestId('landing-page-content').should('not.exist');
 
-    // We shouldn't see the "Join Now" button or affiramation modal,
+    // We shouldn't see the "Join Now" button or affirmation modal,
     // since the user is already signed up for this campaign:
-    cy.findByTestId('campaign-banner-signup-button').should('not.exist');
+    cy.findByTestId('campaign-banner-signup-form').should('not.exist');
     cy.get('.card.affirmation').should('not.exist');
   });
 
@@ -150,27 +150,5 @@ describe('Campaign Signup', () => {
       'button',
       'Apply Now',
     );
-  });
-
-  /** @test */
-  it('Visits a groups campaign page, as an unauthenticated user', () => {
-    cy.mockGraphqlOp('SearchGroupsQuery', {
-      groups: [
-        { id: 1, name: 'New York' },
-        { id: 2, name: 'Philadelphia' },
-        { id: 3, name: 'San Francisco' },
-      ],
-    });
-
-    // Visit the campaign pitch page
-    cy.withState(exampleCampaign).visit(
-      '/us/campaigns/test-example-campaign?group_type_id=1',
-    );
-
-    cy.findByTestId('campaign-banner-signup-button').contains(
-      'button',
-      'Join Group',
-    );
-    //cy.findByTestId('campaign-banner-signup-button').should('be.disabled');
   });
 });
