@@ -8,9 +8,10 @@ const isExcludedPath = pathname => {
   return excludedPaths.find(excludedPath => {
     if (excludedPath.includes('*')) {
       const pathWithoutAsterisk = excludedPath.slice(0, -1);
+
       return (
-        pathname.includes(excludedPath.slice(0, -1)) &&
-        pathname.length >= pathWithoutAsterisk.length
+        pathname.includes(pathWithoutAsterisk) &&
+        pathname.length > pathWithoutAsterisk.length
       );
     }
 
