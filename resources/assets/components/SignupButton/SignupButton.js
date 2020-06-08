@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import GroupSelect from './GroupSelect';
+import Card from '../utilities/Card/Card';
 import { getUtms } from '../../helpers/utm';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
 import { isCampaignClosed, query, withoutNulls } from '../../helpers';
@@ -49,11 +50,11 @@ const SignupButton = props => {
       body: {
         details: JSON.stringify(details),
         group_id: groupId,
-        referrer_user_id: query('referrer_user_id'),
+        // TODO: When should get this uncommented?
+        // referrer_user_id: query('referrer_user_id'),
         source_details: JSON.stringify(
           withoutNulls({
             contentful_id: pageId,
-            // TODO: When should we deprecate this?
             referrer_user_id: query('referrer_user_id'),
             ...getUtms(),
           }),
@@ -64,31 +65,38 @@ const SignupButton = props => {
 
   // In descending priority: button-specific text prop,
   // campaign action text override, or standard "Take Action" copy.
-  let buttonCopy = text || campaignActionText;
+  const buttonCopy = text || campaignActionText;
+  const closedCampaign = isCampaignClosed(endDate);
 
-  if (isCampaignClosed(endDate)) {
-    buttonCopy = 'Notify Me';
-  } else if (campaignGroupTypeId) {
-    buttonCopy = 'Join Group';
+  if (!campaignGroupTypeId || closedCampaign) {
+    return (
+      <PrimaryButton
+        className={className}
+        onClick={handleSignup}
+        text={closedCampaign ? 'Notify Me' : buttonCopy}
+      />
+    );
   }
 
   return (
-    <>
-      {campaignGroupTypeId ? (
-        <div className="mt-3">
-          <GroupSelect
-            groupTypeId={campaignGroupTypeId}
-            onChange={selected => setGroupId(selected.value)}
+    <div className="mt-3 mb-3">
+      <Card title="Join a group" className="rounded bordered">
+        <div className="p-3">
+          <div className="pb-3">
+            <GroupSelect
+              groupTypeId={campaignGroupTypeId}
+              onChange={selected => setGroupId(selected.value)}
+            />
+          </div>
+          <PrimaryButton
+            className={className}
+            isDisabled={!groupId}
+            onClick={handleSignup}
+            text="Join Group"
           />
         </div>
-      ) : null}
-      <PrimaryButton
-        className={className}
-        isDisabled={campaignGroupTypeId ? !groupId : false}
-        onClick={handleSignup}
-        text={buttonCopy}
-      />
-    </>
+      </Card>
+    </div>
   );
 };
 

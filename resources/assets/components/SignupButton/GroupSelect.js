@@ -4,7 +4,6 @@ import Select from 'react-select';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
-import Card from '../utilities/Card/Card';
 import Placeholder from '../utilities/Placeholder';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
@@ -35,17 +34,13 @@ const GroupSelect = ({ groupTypeId, onChange }) => {
   }
 
   return (
-    <Card title="Join a group" className="rounded bordered">
-      <div className="p-3">
-        <Select
-          onChange={onChange}
-          options={data.groups.map(group => ({
-            value: group.id,
-            label: group.name,
-          }))}
-        />
-      </div>
-    </Card>
+    <Select
+      onChange={onChange}
+      options={data.groups.map(group => ({
+        value: group.id,
+        label: group.name,
+      }))}
+    />
   );
 };
 
