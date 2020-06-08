@@ -26,7 +26,7 @@ const GroupSelect = ({ groupTypeId, onChange }) => {
   });
 
   if (loading) {
-    return <Placeholder />;
+    return <Placeholder needsMinHeight={false} />;
   }
 
   if (error) {

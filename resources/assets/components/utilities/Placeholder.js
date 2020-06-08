@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 import Spinner from '../artifacts/Spinner/Spinner';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
-const Placeholder = ({ error }) => {
+const Placeholder = ({ error, needsMinHeight }) => {
   if (error) {
     return <ErrorBlock />;
   }
 
   return (
-    <div className="placeholder h-56 w-full" style={{ minHeight: '70vh' }}>
+    <div
+      className="placeholder h-56 w-full"
+      style={needsMinHeight ? { minHeight: '70vh' } : null}
+    >
       <Spinner className="flex h-full items-center justify-center" />
     </div>
   );
@@ -18,10 +21,12 @@ const Placeholder = ({ error }) => {
 
 Placeholder.propTypes = {
   error: PropTypes.bool,
+  needsMinHeight: PropTypes.bool,
 };
 
 Placeholder.defaultProps = {
   error: false,
+  needsMinHeight: true,
 };
 
 export default Placeholder;
