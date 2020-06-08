@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 
 import ReferralsListItem from './ReferralsListItem';
 
-const ReferralsList = props => {
+const ReferralsList = ({
+  expanded,
+  placeholderIcon,
+  referralIcon,
+  referrals,
+}) => {
   const items = [];
 
   /**
@@ -13,13 +18,13 @@ const ReferralsList = props => {
    *
    * If the gallery is expanded - which implies that we have more than three referrals - we'll simply display them all.
    */
-  for (let i = 0; i < (expanded ? props.referrals.length : 3); i += 1) {
+  for (let i = 0; i < (expanded ? referrals.length : 3); i += 1) {
     items.push(
       <li key={i} className="pr-3 md:pr-6 mt-3">
         <ReferralsListItem
-          label={get(props.referrals[i], 'displayName')}
-          referralIcon={props.referralIcon}
-          placeholderIcon={props.placeholderIcon}
+          label={get(referrals[i], 'displayName')}
+          referralIcon={referralIcon}
+          placeholderIcon={placeholderIcon}
         />
       </li>,
     );
