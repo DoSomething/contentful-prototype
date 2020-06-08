@@ -79,7 +79,7 @@ const SignupButton = props => {
   }
 
   return (
-    <div className="mt-3 mb-3" data-testid="join-group-signup-form">
+    <div className="my-3" data-testid="join-group-signup-form">
       <Card title="Join a group" className="rounded bordered">
         <div className="p-3">
           <div className="pb-3">
