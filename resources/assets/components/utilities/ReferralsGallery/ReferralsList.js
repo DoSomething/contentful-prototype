@@ -1,5 +1,4 @@
 import React from 'react';
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -9,7 +8,7 @@ const ReferralsList = ({
   expanded,
   placeholderIcon,
   referralIcon,
-  referrals,
+  referralLabels,
 }) => {
   const items = [];
 
@@ -19,11 +18,11 @@ const ReferralsList = ({
    *
    * If the gallery is expanded - which implies that we have more than three referrals - we'll simply display them all.
    */
-  for (let i = 0; i < (expanded ? referrals.length : 3); i += 1) {
+  for (let i = 0; i < (expanded ? referralLabels.length : 3); i += 1) {
     items.push(
       <li key={i} className={classNames({ 'md:w-40': !expanded })}>
         <ReferralsListItem
-          label={get(referrals[i], 'displayName')}
+          label={referralLabels[i]}
           referralIcon={referralIcon}
           placeholderIcon={placeholderIcon}
         />
@@ -46,7 +45,7 @@ ReferralsList.propTypes = {
   expanded: PropTypes.bool,
   placeholderIcon: PropTypes.string.isRequired,
   referralIcon: PropTypes.string.isRequired,
-  referrals: PropTypes.arrayOf(PropTypes.object).isRequired,
+  referralLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 ReferralsList.defaultProps = {
