@@ -1,6 +1,6 @@
 import faker from 'faker';
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 
 import ReferralsGallery from './ReferralsGallery';
 
@@ -77,6 +77,35 @@ describe('ReferralGallery component', () => {
     ).toBe('John C.');
 
     expect(screen.queryByTestId('referral-list-item-empty')).toBeNull();
+    expect(screen.getByTestId('additional-referrals-count').textContent).toBe(
+      '+ 2 more',
+    );
+  });
+
+  /** @test */
+  it('Expands/collapses the gallery when the additional count link is clicked', () => {
+    renderReferralsGallery([
+      { displayName: 'Sarah C.' },
+      { displayName: 'Kyle R.' },
+      { displayName: 'John C.' },
+      { displayName: 'Miles D.' },
+      { displayName: 'Tarissa D.' },
+    ]);
+
+    fireEvent.click(screen.getByTestId('additional-referrals-count'));
+
+    let referralItems = screen.getAllByTestId('referral-list-item-completed');
+    expect(referralItems).toHaveLength(5);
+
+    expect(screen.getByTestId('additional-referrals-count').textContent).toBe(
+      '- show less',
+    );
+
+    fireEvent.click(screen.getByTestId('additional-referrals-count'));
+
+    referralItems = screen.getAllByTestId('referral-list-item-completed');
+    expect(referralItems).toHaveLength(3);
+
     expect(screen.getByTestId('additional-referrals-count').textContent).toBe(
       '+ 2 more',
     );
