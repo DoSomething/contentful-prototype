@@ -17,8 +17,6 @@ const ReferFriendsTab = () => (
         link="https://dosomething.org/us/campaigns/senior-homies"
         fullWidth
       />
-
-      <SignupReferralsGallery />
     </div>
 
     <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-11 xxl:col-start-2 xxl:col-span-10">
