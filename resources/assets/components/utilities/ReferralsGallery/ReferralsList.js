@@ -1,6 +1,7 @@
 import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import ReferralsListItem from './ReferralsListItem';
 
@@ -20,7 +21,7 @@ const ReferralsList = ({
    */
   for (let i = 0; i < (expanded ? referrals.length : 3); i += 1) {
     items.push(
-      <li key={i} className="pr-3 md:pr-6 mt-3">
+      <li key={i} className={classNames({ 'md:w-40': !expanded })}>
         <ReferralsListItem
           label={get(referrals[i], 'displayName')}
           referralIcon={referralIcon}
@@ -30,7 +31,15 @@ const ReferralsList = ({
     );
   }
 
-  return <ul className="flex flex-wrap">{items}</ul>;
+  return (
+    <ul
+      className={classNames('grid gap-3 grid-cols-3', {
+        'md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6': expanded,
+      })}
+    >
+      {items}
+    </ul>
+  );
 };
 
 ReferralsList.propTypes = {

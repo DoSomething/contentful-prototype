@@ -8,7 +8,8 @@ const ReferralsListItem = props => {
   return (
     <div
       data-testid={`referral-list-item-${!isEmpty ? 'completed' : 'empty'}`}
-      className="text-center w-20 xs:w-24 sm:w-32 md:w-40"
+      className="text-center"
+      style={{ maxWidth: 200 }}
     >
       <img
         className="mb-3"
