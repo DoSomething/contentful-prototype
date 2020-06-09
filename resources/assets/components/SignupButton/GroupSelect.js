@@ -4,7 +4,7 @@ import Select from 'react-select';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
-import Placeholder from '../utilities/Placeholder';
+import Spinner from '../artifacts/Spinner/Spinner';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
 /**
@@ -26,7 +26,7 @@ const GroupSelect = ({ groupTypeId, onChange }) => {
   });
 
   if (loading) {
-    return <Placeholder />;
+    return <Spinner className="flex justify-center p-3" />;
   }
 
   if (error) {
