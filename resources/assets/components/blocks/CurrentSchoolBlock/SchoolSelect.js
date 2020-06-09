@@ -1,7 +1,7 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
 import AsyncSelect from 'react-select/async';
 import { useApolloClient } from '@apollo/react-hooks';
 

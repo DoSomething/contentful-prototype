@@ -7,9 +7,11 @@ import SitewideBannerContent from './SitewideBannerContent';
 const isExcludedPath = pathname => {
   return excludedPaths.find(excludedPath => {
     if (excludedPath.includes('*')) {
+      const pathWithoutAsterisk = excludedPath.slice(0, -1);
+
       return (
-        pathname.includes(excludedPath.slice(0, -1)) &&
-        pathname.length > excludedPath.length
+        pathname.includes(pathWithoutAsterisk) &&
+        pathname.length > pathWithoutAsterisk.length
       );
     }
 

@@ -16,6 +16,7 @@ import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptI
 import {
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
+  query,
   tailwind,
 } from '../../helpers';
 
@@ -44,6 +45,8 @@ const CampaignBanner = ({
     setShowReferralScholarshipModal,
   ] = useState(false);
   const numCampaignId = Number(campaignId);
+  // TODO: This is a hack, we'll need to query GraphQL to see if campaignId has a groupTypeId set.
+  const campaignGroupTypeId = Number(query('group_type_id'));
 
   useEffect(() => {
     if (scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline) {
@@ -93,6 +96,7 @@ const CampaignBanner = ({
                 `}
               >
                 <SignupButtonContainer
+                  campaignGroupTypeId={campaignGroupTypeId}
                   className="block md:mb-3 p-6 text-lg w-full"
                   text={
                     isScholarshipAffiliateReferral()
@@ -150,8 +154,13 @@ const CampaignBanner = ({
             }
           >
             {!isAffiliated ? (
-              <div className="pt-6 w-2/3 sm:w-1/2">
+              <div
+                className={`pt-6 ${
+                  !campaignGroupTypeId ? 'w-2/3 sm:w-1/2' : null
+                }`}
+              >
                 <SignupButtonContainer
+                  campaignGroupTypeId={campaignGroupTypeId}
                   className="w-full md:px-2"
                   text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
                   contextSource="scholarship_modal"

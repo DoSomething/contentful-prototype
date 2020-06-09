@@ -56,6 +56,7 @@ describe('Campaign Signup', () => {
     cy.contains(exampleBlurb);
     cy.findByTestId('campaign-info-block-container').should('have.length', 1);
     cy.findByTestId('landing-page-content').should('have.length', 1);
+    cy.findByTestId('join-group-signup-form').should('not.exist');
 
     // Mock the response we'll be expecting once we hit "Join Now":
     cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
@@ -132,7 +133,7 @@ describe('Campaign Signup', () => {
     cy.findByTestId('campaign-info-block-container').should('have.length', 1);
     cy.findByTestId('landing-page-content').should('not.exist');
 
-    // We shouldn't see the "Join Now" button or affiramation modal,
+    // We shouldn't see the "Join Now" button or affirmation modal,
     // since the user is already signed up for this campaign:
     cy.findByTestId('campaign-banner-signup-button').should('not.exist');
     cy.get('.card.affirmation').should('not.exist');
@@ -140,14 +141,41 @@ describe('Campaign Signup', () => {
 
   /** @test */
   it('Visits a campaign page from scholarship partner, as an unauthenticated user', () => {
-    //Visit the campaign pitch page
+    // Visit the campaign pitch page
     cy.withState(exampleCampaign).visit(
       '/us/campaigns/test-example-campaign?utm_campaign=fastweb&utm_source=scholarship',
     );
-    //We should see the Apply Now button in the modal
+
+    // We should see the Apply Now button in the modal
     cy.findByTestId('campaign-info-block-scholarship-details').contains(
       'button',
       'Apply Now',
     );
+  });
+
+  /** @test */
+  it('Visits a groups campaign page, as an unauthenticated user', () => {
+    cy.mockGraphqlOp('SearchGroupsQuery', {
+      groups: [
+        { id: 1, name: 'New York' },
+        { id: 2, name: 'Philadelphia' },
+        { id: 3, name: 'San Francisco' },
+      ],
+    });
+
+    // Visit the campaign pitch page
+    cy.withState(exampleCampaign).visit(
+      '/us/campaigns/test-example-campaign?group_type_id=1',
+    );
+
+    cy.findByTestId('join-group-signup-form').should('have.length', 1);
+    cy.findByTestId('campaign-banner-signup-button').contains(
+      'button',
+      'Join Group',
+    );
+    cy.findByTestId('join-group-signup-button').should('be.disabled');
+    cy.get('#select-group-dropdown').click();
+    cy.get('#react-select-select-group--option-0').click();
+    cy.findByTestId('join-group-signup-button').should('be.enabled');
   });
 });
