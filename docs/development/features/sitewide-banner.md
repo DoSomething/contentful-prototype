@@ -18,5 +18,6 @@ If you want to suppress the banner from a page that may have multiple sub paths 
 
 ### Pathnames Currently Excluded:
 
+- `/us/campaigns/ready-vote*`
 - `/us/my-voter-registration-drive`
 - `/us/quiz-results/*`

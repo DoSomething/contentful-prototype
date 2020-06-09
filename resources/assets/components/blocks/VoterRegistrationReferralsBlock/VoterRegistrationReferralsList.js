@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import VoterRegistrationReferralsListItem from './VoterRegistrationReferralsListItem';
 
-const VoterRegistrationReferralsList = ({ referralPosts }) => {
+const VoterRegistrationReferralsList = props => {
   const items = [];
 
   /**
@@ -15,7 +15,9 @@ const VoterRegistrationReferralsList = ({ referralPosts }) => {
     items.push(
       <li key={i} className="md:pr-6">
         <VoterRegistrationReferralsListItem
-          label={get(referralPosts[i], 'user.displayName')}
+          label={get(props.referralPosts[i], 'user.displayName')}
+          referralIcon={props.referralIcon}
+          placeholderIcon={props.placeholderIcon}
         />
       </li>,
     );
@@ -25,6 +27,8 @@ const VoterRegistrationReferralsList = ({ referralPosts }) => {
 };
 
 VoterRegistrationReferralsList.propTypes = {
+  placeholderIcon: PropTypes.string.isRequired,
+  referralIcon: PropTypes.string.isRequired,
   referralPosts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
