@@ -29,7 +29,7 @@ export const gqlVariables = {
  * e.g. /my-voter-registration-page?voting-reasons=gun-violence,immigration-reform&referrer_user_id=583d...
  */
 export const votingReasons = {
-  'racial-justice': 'Racial Justice',
+  'racial-justice': 'racial justice',
   'climate-change': 'climate change',
   'gun-violence': 'gun violence',
   'mental-health': 'mental health',
