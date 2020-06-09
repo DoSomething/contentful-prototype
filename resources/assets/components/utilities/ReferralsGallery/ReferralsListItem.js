@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const VoterRegistrationReferralsListItem = props => {
+const ReferralsListItem = props => {
   const { label, placeholderIcon, referralIcon } = props;
   const isEmpty = label === '???';
 
@@ -25,14 +25,14 @@ const VoterRegistrationReferralsListItem = props => {
   );
 };
 
-VoterRegistrationReferralsListItem.propTypes = {
+ReferralsListItem.propTypes = {
   label: PropTypes.string,
   placeholderIcon: PropTypes.string.isRequired,
   referralIcon: PropTypes.string.isRequired,
 };
 
-VoterRegistrationReferralsListItem.defaultProps = {
+ReferralsListItem.defaultProps = {
   label: '???',
 };
 
-export default VoterRegistrationReferralsListItem;
+export default ReferralsListItem;
