@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
 const votingReasons = {
+  'racial-justice': 'Racial Justice',
   'climate-change': 'Climate Change',
   'gun-violence': 'Gun Violence',
   'mental-health': 'Mental Health',
