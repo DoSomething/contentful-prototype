@@ -135,7 +135,7 @@ describe('Campaign Signup', () => {
 
     // We shouldn't see the "Join Now" button or affirmation modal,
     // since the user is already signed up for this campaign:
-    cy.findByTestId('campaign-banner-signup-form').should('not.exist');
+    cy.findByTestId('campaign-banner-signup-button').should('not.exist');
     cy.get('.card.affirmation').should('not.exist');
   });
 
@@ -169,7 +169,7 @@ describe('Campaign Signup', () => {
     );
 
     cy.findByTestId('join-group-signup-form').should('have.length', 1);
-    cy.findByTestId('campaign-banner-signup-form').contains(
+    cy.findByTestId('campaign-banner-signup-button').contains(
       'button',
       'Join Group',
     );

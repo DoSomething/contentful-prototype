@@ -85,7 +85,7 @@ const CampaignBanner = ({
           >
             {!isAffiliated ? (
               <div
-                data-testid="campaign-banner-signup-form"
+                data-testid="campaign-banner-signup-button"
                 className="bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:p-0 fixed md:static w-full md:w-auto z-10 md:z-auto"
                 css={css`
                   border-top: 1px solid tailwind('colors.gray.200');
