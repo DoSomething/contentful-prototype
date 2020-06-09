@@ -21,7 +21,7 @@ const ReferralsGallery = ({ referrals, placeholderIcon, referralIcon }) => {
       {referrals.length > 3 ? (
         <div
           className={classNames('text-center pt-6', {
-            'md:pt-16 md:pl-6': !isExpanded,
+            'md:pl-6 md:self-center md:pt-0': !isExpanded,
           })}
         >
           <button
