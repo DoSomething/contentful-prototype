@@ -1,6 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
+import GroupSelect from './GroupSelect';
+import Card from '../utilities/Card/Card';
 import { getUtms } from '../../helpers/utm';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
 import { isCampaignClosed, query, withoutNulls } from '../../helpers';
@@ -10,6 +12,7 @@ const SignupButton = props => {
   const {
     affiliateMessagingOptIn,
     campaignActionText,
+    campaignGroupTypeId,
     campaignId,
     campaignTitle,
     className,
@@ -19,6 +22,8 @@ const SignupButton = props => {
     storeCampaignSignup,
     text,
   } = props;
+
+  const [groupId, setGroupId] = useState(null);
 
   // Decorate click handler for A/B tests & analytics.
   const handleSignup = () => {
@@ -44,6 +49,12 @@ const SignupButton = props => {
     storeCampaignSignup(campaignId, {
       body: {
         details: JSON.stringify(details),
+        group_id: groupId,
+        /**
+         * Uncomment line below when we're ready to start storing signup.referrer_user_id.
+         * @see https://www.pivotaltracker.com/story/show/172747771
+         */
+        // referrer_user_id: query('referrer_user_id'),
         source_details: JSON.stringify(
           withoutNulls({
             contentful_id: pageId,
@@ -58,19 +69,45 @@ const SignupButton = props => {
   // In descending priority: button-specific text prop,
   // campaign action text override, or standard "Take Action" copy.
   const buttonCopy = text || campaignActionText;
+  const closedCampaign = isCampaignClosed(endDate);
+
+  if (!campaignGroupTypeId || closedCampaign) {
+    return (
+      <PrimaryButton
+        className={className}
+        onClick={handleSignup}
+        text={closedCampaign ? 'Notify Me' : buttonCopy}
+      />
+    );
+  }
 
   return (
-    <PrimaryButton
-      className={className}
-      onClick={handleSignup}
-      text={isCampaignClosed(endDate) ? 'Notify Me' : buttonCopy}
-    />
+    <div className="my-3" data-testid="join-group-signup-form">
+      <Card title="Join a group" className="rounded bordered">
+        <div className="p-3">
+          <div className="pb-3">
+            <GroupSelect
+              groupTypeId={campaignGroupTypeId}
+              onChange={selected => setGroupId(selected.value)}
+            />
+          </div>
+          <PrimaryButton
+            attributes={{ 'data-testid': 'join-group-signup-button' }}
+            className={className}
+            isDisabled={!groupId}
+            onClick={handleSignup}
+            text="Join Group"
+          />
+        </div>
+      </Card>
+    </div>
   );
 };
 
 SignupButton.propTypes = {
   affiliateMessagingOptIn: PropTypes.bool,
   campaignActionText: PropTypes.string,
+  campaignGroupTypeId: PropTypes.number,
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
   className: PropTypes.string,
@@ -84,6 +121,7 @@ SignupButton.propTypes = {
 SignupButton.defaultProps = {
   affiliateMessagingOptIn: false,
   campaignActionText: 'Take Action',
+  campaignGroupTypeId: null,
   campaignTitle: null,
   className: null,
   contextSource: null,
