@@ -20,14 +20,18 @@ const ReferralsGallery = ({ referrals, placeholderIcon, referralIcon }) => {
       />
       {referrals.length > 3 ? (
         <div
-          data-testid="additional-referrals-count"
-          className={classNames(
-            'text-center pt-8 font-bold uppercase text-blurple-500 underline cursor-pointer',
-            { 'md:text-left md:pt-16': !isExpanded },
-          )}
-          onClick={() => setIsExpanded(!isExpanded)}
+          className={classNames('text-center pt-6', {
+            'md:pt-16 md:pl-6': !isExpanded,
+          })}
         >
-          {!isExpanded ? `+ ${referrals.length - 3} more` : '- show less'}
+          <button
+            type="button"
+            data-testid="additional-referrals-count"
+            className="font-bold uppercase text-blurple-500 underline"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            {!isExpanded ? `+ ${referrals.length - 3} more` : '- show less'}
+          </button>
         </div>
       ) : null}
     </div>
