@@ -4,10 +4,10 @@ import { fireEvent, render, screen, within } from '@testing-library/react';
 
 import ReferralsGallery from './ReferralsGallery';
 
-const renderReferralsGallery = referrals =>
+const renderReferralsGallery = referralLabels =>
   render(
     <ReferralsGallery
-      referrals={referrals}
+      referralLabels={referralLabels}
       placeholderIcon={faker.image.dataUri()}
       referralIcon={faker.image.dataUri()}
     />,
@@ -25,10 +25,7 @@ describe('ReferralGallery component', () => {
 
   /** @test */
   it('Displays 2 completed icons there are 2 referrals', () => {
-    renderReferralsGallery([
-      { displayName: 'Jesus Q.' },
-      { displayName: 'Walter S.' },
-    ]);
+    renderReferralsGallery(['Jesus Q.', 'Walter S.']);
 
     const referralItems = screen.getAllByTestId('referral-list-item-completed');
 
@@ -51,11 +48,11 @@ describe('ReferralGallery component', () => {
   /** @test */
   it('Displays 3 completed icons and additional count if user has 5 referrals', () => {
     renderReferralsGallery([
-      { displayName: 'Sarah C.' },
-      { displayName: 'Kyle R.' },
-      { displayName: 'John C.' },
-      { displayName: 'Miles D.' },
-      { displayName: 'Tarissa D.' },
+      'Sarah C.',
+      'Kyle R.',
+      'John C.',
+      'Miles D.',
+      'Tarissa D.',
     ]);
 
     const referralItems = screen.getAllByTestId('referral-list-item-completed');
@@ -85,11 +82,11 @@ describe('ReferralGallery component', () => {
   /** @test */
   it('Expands/collapses the gallery when the additional count link is clicked', () => {
     renderReferralsGallery([
-      { displayName: 'Sarah C.' },
-      { displayName: 'Kyle R.' },
-      { displayName: 'John C.' },
-      { displayName: 'Miles D.' },
-      { displayName: 'Tarissa D.' },
+      'Sarah C.',
+      'Kyle R.',
+      'John C.',
+      'Miles D.',
+      'Tarissa D.',
     ]);
 
     fireEvent.click(screen.getByTestId('additional-referrals-count'));

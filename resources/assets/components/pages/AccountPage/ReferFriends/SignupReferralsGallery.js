@@ -45,7 +45,9 @@ const SignupReferralsGallery = () => (
             <ReferralsGallery
               referralIcon={CompletedReferralIcon}
               placeholderIcon={EmptyReferralIcon}
-              referrals={data.signups.map(signup => signup.user)}
+              referralLabels={data.signups.map(
+                signup => signup.user.displayName,
+              )}
             />
           </>
         );

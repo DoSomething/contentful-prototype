@@ -4,7 +4,11 @@ import React, { useState } from 'react';
 
 import ReferralsList from './ReferralsList';
 
-const ReferralsGallery = ({ referrals, placeholderIcon, referralIcon }) => {
+const ReferralsGallery = ({
+  referralLabels,
+  placeholderIcon,
+  referralIcon,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -14,11 +18,11 @@ const ReferralsGallery = ({ referrals, placeholderIcon, referralIcon }) => {
     >
       <ReferralsList
         expanded={isExpanded}
-        referrals={referrals}
+        referralLabels={referralLabels}
         referralIcon={referralIcon}
         placeholderIcon={placeholderIcon}
       />
-      {referrals.length > 3 ? (
+      {referralLabels.length > 3 ? (
         <div
           className={classNames('text-center pt-6', {
             'md:pl-6 md:self-center md:pt-0': !isExpanded,
@@ -30,7 +34,9 @@ const ReferralsGallery = ({ referrals, placeholderIcon, referralIcon }) => {
             className="font-bold uppercase text-blurple-500 underline"
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            {!isExpanded ? `+ ${referrals.length - 3} more` : '- show less'}
+            {!isExpanded
+              ? `+ ${referralLabels.length - 3} more`
+              : '- show less'}
           </button>
         </div>
       ) : null}
@@ -39,9 +45,7 @@ const ReferralsGallery = ({ referrals, placeholderIcon, referralIcon }) => {
 };
 
 ReferralsGallery.propTypes = {
-  referrals: PropTypes.arrayOf(
-    PropTypes.shape({ displayName: PropTypes.string.isRequired }),
-  ).isRequired,
+  referralLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
   placeholderIcon: PropTypes.string.isRequired,
   referralIcon: PropTypes.string.isRequired,
 };
