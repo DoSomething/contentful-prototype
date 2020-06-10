@@ -28,6 +28,8 @@ This tracking source value is saved within the serialized `details` field of the
 
 - `user` - This is the Northstar user ID of either the authenticated user registering to vote, or the referring alpha user for a beta registration, when the `referral` key is present.
 
+- `group_id` - This is the Rogue group ID stored on the campaign signup, if user is sharing their link from a group OVRD campaign (docs coming soon).
+
 - `source` - This is similar to a `utm_source`.
 
   - Examples: `web`, `sms`, `email`
