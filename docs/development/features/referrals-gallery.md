@@ -31,7 +31,7 @@ const signupReferrals = [
 ];
 
 <ReferralsGallery
-  referralLabels={referrals.map(referral => referral.user.displayName)}
+  referralLabels={signupReferrals.map(referral => referral.user.displayName)}
   referralIcon={ReferralIcon}
   placeholderIcon={PlaceholderIcon}
 />;
