@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `ReferralsGallery` utility component displays a - truncated but expandable - gallery of labeled icons pertaining to a users referrals.
+The `ReferralsGallery` utility component displays a - truncated but expandable - gallery of labeled icons pertaining to the current user's referrals.
 
 In our business logic, this means fetching a list of either posts or signups where the `referrer_user_id` matches the current user, parsing out the referred users' **Display name** values, and passing that list as the `referralLabels` prop to the Referrals Gallery.
 
