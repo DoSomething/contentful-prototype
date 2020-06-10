@@ -4,6 +4,7 @@ import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
 import { PHOENIX_URL } from '../../resources/assets/constants';
+import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const blockId = '7un2ZfYO3mrpARy6ZzaUZC';
 
@@ -47,8 +48,11 @@ describe('Voter Registration Drive Action', () => {
     cy.mockGraphqlOp('UserAcceptedPostsForAction', {
       posts: [{ quantity: 10 }, { quantity: 20 }, { quantity: 30 }],
     });
+    cy.mockGraphqlOp('CampaignSignup', {
+      signups: [{ id: 11122019, group: null }],
+    });
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.get('[data-test=total-accepted-quantity-value]').contains('60');
   });
@@ -59,8 +63,11 @@ describe('Voter Registration Drive Action', () => {
     cy.mockGraphqlOp('UserAcceptedPostsForAction', {
       posts: [],
     });
+    cy.mockGraphqlOp('CampaignSignup', {
+      signups: [{ id: 11122019, group: null }],
+    });
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.get('[data-test=total-accepted-quantity-value]').contains('0');
   });
@@ -68,7 +75,11 @@ describe('Voter Registration Drive Action', () => {
   it('Links to /us/my-voter-registration-drive', () => {
     const user = userFactory();
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.mockGraphqlOp('CampaignSignup', {
+      signups: [{ id: 11122019, group: null }],
+    });
+
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.get('.social-drive-action h1').contains(
       contentfulBlockQueryResult.block.title,
@@ -88,7 +99,11 @@ describe('Voter Registration Drive Action', () => {
     const user = userFactory();
     const longUrl = `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`;
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.mockGraphqlOp('CampaignSignup', {
+      signups: [{ id: 11122019, group: null }],
+    });
+
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.get('#mental-health').check();
     cy.get('.link-bar input').should(

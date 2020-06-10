@@ -204,6 +204,18 @@ Cypress.Commands.add('authVisitCampaignWithoutSignup', function(
  *
  * @param {Object} state
  */
-Cypress.Commands.add('authVisitBlockPermalink', function(user, blockId) {
-  cy.login(user).visit(`us/blocks/${blockId}`);
+Cypress.Commands.add('authVisitBlockPermalink', function(
+  user,
+  blockId,
+  contentfulCampaign,
+) {
+  const path = `us/blocks/${blockId}`;
+
+  if (contentfulCampaign) {
+    cy.login(user)
+      .withState(contentfulCampaign)
+      .visit(path);
+  }
+
+  cy.login(user).visit(path);
 });
