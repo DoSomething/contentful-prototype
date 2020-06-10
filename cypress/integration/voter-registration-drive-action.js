@@ -49,7 +49,7 @@ describe('Voter Registration Drive Action', () => {
       posts: [{ quantity: 10 }, { quantity: 20 }, { quantity: 30 }],
     });
     cy.mockGraphqlOp('CampaignSignup', {
-      signups: [{ id: 11122019, group: null }],
+      signups: [{ id: 11122016, group: null }],
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
@@ -64,7 +64,7 @@ describe('Voter Registration Drive Action', () => {
       posts: [],
     });
     cy.mockGraphqlOp('CampaignSignup', {
-      signups: [{ id: 11122019, group: null }],
+      signups: [{ id: 11122016, group: null }],
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
@@ -76,7 +76,7 @@ describe('Voter Registration Drive Action', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('CampaignSignup', {
-      signups: [{ id: 11122019, group: null }],
+      signups: [{ id: 11122016, group: null }],
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
@@ -99,7 +99,7 @@ describe('Voter Registration Drive Action', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('CampaignSignup', {
-      signups: [{ id: 11122019, group: { id: 7 } }],
+      signups: [{ id: 11122016, group: { id: 7 } }],
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
@@ -123,7 +123,7 @@ describe('Voter Registration Drive Action', () => {
     const longUrl = `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`;
 
     cy.mockGraphqlOp('CampaignSignup', {
-      signups: [{ id: 11122019, group: null }],
+      signups: [{ id: 11122016, group: null }],
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
