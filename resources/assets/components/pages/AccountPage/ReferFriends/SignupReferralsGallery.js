@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import pluralize from 'pluralize';
-import groupBy from 'lodash/groupBy';
+import { groupBy } from 'lodash';
 
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
