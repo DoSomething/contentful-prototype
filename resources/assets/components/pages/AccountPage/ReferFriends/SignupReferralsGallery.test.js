@@ -1,8 +1,7 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import { MockedProvider } from '@apollo/react-testing';
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import SignupReferralsGallery, {
   SIGNUP_REFERRALS_QUERY,
