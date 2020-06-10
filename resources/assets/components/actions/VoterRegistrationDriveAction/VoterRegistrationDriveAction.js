@@ -8,8 +8,8 @@ import { PHOENIX_URL } from '../../../constants';
 import { appendToQuery } from '../../../helpers';
 import { getUserId } from '../../../helpers/auth';
 import {
-  campaignSignupGqlQuery,
-  getCampaignSignupGqlQueryVariables,
+  CAMPAIGN_SIGNUP_QUERY,
+  getCampaignSignupQueryVariables,
 } from '../../../helpers/campaign';
 import SocialDriveActionContainer from '../SocialDriveAction/SocialDriveActionContainer';
 import Placeholder from '../../utilities/Placeholder';
@@ -30,8 +30,8 @@ const VoterRegistrationDriveAction = ({
   description,
   title,
 }) => {
-  const { loading, error, data } = useQuery(campaignSignupGqlQuery, {
-    variables: getCampaignSignupGqlQueryVariables(),
+  const { loading, error, data } = useQuery(CAMPAIGN_SIGNUP_QUERY, {
+    variables: getCampaignSignupQueryVariables(),
   });
 
   if (loading) {

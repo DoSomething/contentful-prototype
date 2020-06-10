@@ -54,7 +54,7 @@ export function getCampaignFaqPath() {
   return faqSlug ? `/us/campaigns/${faqSlug}` : undefined;
 }
 
-export const campaignSignupGqlQuery = gql`
+export const CAMPAIGN_SIGNUP_QUERY = gql`
   query CampaignSignup($userId: String!, $campaignId: String!) {
     signups(userId: $userId, campaignId: $campaignId) {
       id
@@ -66,7 +66,7 @@ export const campaignSignupGqlQuery = gql`
   }
 `;
 
-export function getCampaignSignupGqlQueryVariables() {
+export function getCampaignSignupQueryVariables() {
   return {
     userId: getUserId(),
     campaignId: getCampaign().campaignId,
