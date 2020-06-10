@@ -9,11 +9,12 @@ import CompletedReferralIcon from './completed-referral.svg';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 import ReferralsGallery from '../../../utilities/ReferralsGallery/ReferralsGallery';
 
-const SIGNUP_REFERRALS_QUERY = gql`
+export const SIGNUP_REFERRALS_QUERY = gql`
   query SignupReferrals($referrerUserId: String!) {
     signups(referrerUserId: $referrerUserId) {
       id
       user {
+        id
         displayName
       }
     }
