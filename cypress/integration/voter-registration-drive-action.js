@@ -72,7 +72,7 @@ describe('Voter Registration Drive Action', () => {
     cy.get('[data-test=total-accepted-quantity-value]').contains('0');
   });
 
-  it('Links to /us/my-voter-registration-drive', () => {
+  it('Links to /us/my-voter-registration-drive with referrer_user_id query', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('CampaignSignup', {
@@ -90,6 +90,29 @@ describe('Voter Registration Drive Action', () => {
     cy.get('.link-bar input').should(
       'contain.value',
       `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`,
+    );
+    cy.get('[data-test=voting-reasons-query-options]').should('have.length', 1);
+    cy.get('[data-test=social-share-tray-title]').should('have.length', 0);
+  });
+
+  it('Appends group_id query to link if signed up with group', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('CampaignSignup', {
+      signups: [{ id: 11122019, group: { id: 7 } }],
+    });
+
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
+
+    cy.get('.social-drive-action h1').contains(
+      contentfulBlockQueryResult.block.title,
+    );
+    cy.get('.social-drive-action').contains(
+      contentfulBlockQueryResult.block.description,
+    );
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `${PHOENIX_URL}/us/my-voter-registration-drive?group_id=7&referrer_user_id=${user.id}`,
     );
     cy.get('[data-test=voting-reasons-query-options]').should('have.length', 1);
     cy.get('[data-test=social-share-tray-title]').should('have.length', 0);
