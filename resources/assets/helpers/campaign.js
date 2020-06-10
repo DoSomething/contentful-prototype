@@ -1,7 +1,6 @@
 import { join } from 'path';
 import get from 'lodash/get';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
 
 import { getUserId } from './auth';
 

@@ -43,10 +43,7 @@ const VoterRegistrationDriveAction = ({
   }
 
   const signup = data.signups[0];
-
-  const queryParams = {
-    referrer_user_id: getUserId(),
-  };
+  const queryParams = { referrer_user_id: getUserId() };
 
   if (signup.group) {
     queryParams.group_id = signup.group.id;
