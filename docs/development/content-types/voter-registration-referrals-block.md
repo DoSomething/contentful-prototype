@@ -1,6 +1,6 @@
 # Voter Registration Referrals Block
 
-This block type displays the current user's latest three completed voter registration referrals (and indicates how many more there are, if there are more than 3).
+This block type displays the current user's completed voter registration referrals in a [`ReferralsGallery`](../features/referrals-gallery.md).
 
 ![Voter Registration Referrals Block](../../.gitbook/assets/voter-registration-referrals-block.png)
 
