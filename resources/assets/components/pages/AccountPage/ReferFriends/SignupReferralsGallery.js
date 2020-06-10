@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import pluralize from 'pluralize';
+import groupBy from 'lodash/groupBy';
 
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
@@ -30,7 +31,18 @@ const SignupReferralsGallery = () => (
       variables={{ referrerUserId: getUserId() }}
     >
       {data => {
-        const numberOfReferrals = data.signups.length;
+        /**
+         *`We group the signups by User ID to avoid passing duplicate referrals (multiple referral signups
+         * from the same user) to the referrals gallery.
+         */
+        const referralsGroupedByUserId = groupBy(
+          data.signups,
+          signup => signup.user.id,
+        );
+        const referralLabels = Object.values(referralsGroupedByUserId).map(
+          signups => signups[0].user.displayName,
+        );
+        const numberOfReferrals = referralLabels.length;
 
         return (
           <>
@@ -46,9 +58,7 @@ const SignupReferralsGallery = () => (
             <ReferralsGallery
               referralIcon={CompletedReferralIcon}
               placeholderIcon={EmptyReferralIcon}
-              referralLabels={data.signups.map(
-                signup => signup.user.displayName,
-              )}
+              referralLabels={referralLabels}
             />
           </>
         );
