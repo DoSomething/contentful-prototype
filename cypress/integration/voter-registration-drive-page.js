@@ -97,7 +97,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
-  it('OVRD page displays voter-registration-drive-page component if group is found', () => {
+  it('OVRD page displays expected component if group is found', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
@@ -131,6 +131,16 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.get('[data-test=voter-registration-drive-page]').should(
       'have.length',
       1,
+    );
+    cy.get('head meta[property="og:title"]').should(
+      'have.attr',
+      'content',
+      'Register to vote with me!',
+    );
+    cy.get('head meta[property="og:description"]').should(
+      'have.attr',
+      'content',
+      "You can register to vote online... literally right now! It's fast, easy, and requires only basic information like your street address. Let's Do This!",
     );
     cy.findByTestId('campaign-header-subtitle').contains(
       `${user.firstName} wants you to register to vote!`,
@@ -313,30 +323,6 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
       `user:${user.id},source:web,source_details:onlinedrivereferral,group_id=${group.id},referral=true`,
-    );
-  });
-
-  /** @test */
-  it('OVRD <meta> tag has a title and description', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
-      user,
-      campaignWebsite,
-      group,
-    });
-
-    cy.visit(getOvrdPagePathForUser(user, group));
-
-    cy.get('head meta[property="og:title"]').should(
-      'have.attr',
-      'content',
-      'Register to vote with me!',
-    );
-    cy.get('head meta[property="og:description"]').should(
-      'have.attr',
-      'content',
-      "You can register to vote online... literally right now! It's fast, easy, and requires only basic information like your street address. Let's Do This!",
     );
   });
 });
