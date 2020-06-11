@@ -11,6 +11,7 @@ import {
   StyleSheet,
 } from '@react-pdf/renderer';
 
+import signature from './signature.png';
 import doSomethingLogo from './dosomething-logo.jpg';
 import leagueGothic from '../../../../fonts/leaguegothic-regular.woff';
 import certificateTitle from './volunteer-credit-certificate-title.jpg';
@@ -238,7 +239,10 @@ const CertificateTemplate = ({ certificatePost }) => {
           <View style={{ fontSize: 10, marginTop: 20, lineHeight: 1.1 }}>
             <View style={styles.flex}>
               <View style={{ width: '50%' }}>
-                <Text>[signature]</Text>
+                <Image
+                  src={signature}
+                  style={{ width: 60, marginVertical: -12, marginLeft: -3 }}
+                />
               </View>
 
               <View style={{ width: '50%' }}>
