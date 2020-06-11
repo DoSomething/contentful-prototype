@@ -49,7 +49,7 @@ const VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
 
 const VoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
-  const groupId = query('group_id');
+  const groupId = Number(query('group_id'));
 
   const config = isDevEnvironment()
     ? gqlVariables.development
@@ -75,7 +75,7 @@ const VoterRegistrationDrivePage = () => {
         referrerUserId,
         voterRegistrationDriveCampaignWebsiteId,
         // This is a hack to avoid passing a null groupId, which is required for the query.
-        groupId: Number(groupId) || 0,
+        groupId: groupId || 0,
       },
     },
   );
@@ -93,7 +93,7 @@ const VoterRegistrationDrivePage = () => {
   }
 
   if (groupId && !data.group) {
-    return <NotFoundPage id={groupId} />;
+    return <NotFoundPage id={`${groupId}`} />;
   }
 
   const {

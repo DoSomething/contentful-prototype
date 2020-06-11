@@ -14,6 +14,7 @@ const StartVoterRegistrationForm = ({
   campaignId,
   className,
   contextSource,
+  groupId,
   referrerUserId,
   sourceDetail,
 }) => {
@@ -23,6 +24,7 @@ const StartVoterRegistrationForm = ({
   const trackingSource = getVoterRegistrationTrackingSource(
     sourceDetail,
     referrerUserId,
+    groupId,
   );
   const isDisabled = !zip || !email;
 
@@ -113,6 +115,7 @@ StartVoterRegistrationForm.propTypes = {
   campaignId: PropTypes.number,
   className: PropTypes.string,
   contextSource: PropTypes.string.isRequired,
+  groupId: PropTypes.number,
   referrerUserId: PropTypes.string,
   sourceDetail: PropTypes.string.isRequired,
 };
@@ -120,6 +123,7 @@ StartVoterRegistrationForm.propTypes = {
 StartVoterRegistrationForm.defaultProps = {
   campaignId: null,
   className: null,
+  groupId: null,
   referrerUserId: null,
 };
 
