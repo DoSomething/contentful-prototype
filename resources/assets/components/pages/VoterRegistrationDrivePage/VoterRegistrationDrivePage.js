@@ -20,6 +20,7 @@ const VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
   query VoterRegistrationDrivePageQuery(
     $referrerUserId: String!
     $voterRegistrationDriveCampaignWebsiteId: String!
+    $groupId: Int!
   ) {
     user(id: $referrerUserId) {
       id
@@ -38,11 +39,17 @@ const VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
       title
       url
     }
+
+    group(id: $groupId) {
+      id
+      name
+    }
   }
 `;
 
 const VoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
+  const groupId = query('group_id');
 
   const config = isDevEnvironment()
     ? gqlVariables.development
@@ -67,6 +74,8 @@ const VoterRegistrationDrivePage = () => {
       variables: {
         referrerUserId,
         voterRegistrationDriveCampaignWebsiteId,
+        // This is a hack to avoid passing a null groupId, which is required for the query.
+        groupId: Number(groupId) || 0,
       },
     },
   );
@@ -81,6 +90,10 @@ const VoterRegistrationDrivePage = () => {
 
   if (!data.user) {
     return <NotFoundPage id={referrerUserId} />;
+  }
+
+  if (groupId && !data.group) {
+    return <NotFoundPage id={groupId} />;
   }
 
   const {
@@ -111,6 +124,7 @@ const VoterRegistrationDrivePage = () => {
                 campaignId={campaignId}
                 className="md:w-3/5"
                 contextSource="beta-voter-registration-drive-page"
+                groupId={groupId}
                 referrerUserId={referrerUserId}
                 sourceDetail="onlinedrivereferral"
               />
