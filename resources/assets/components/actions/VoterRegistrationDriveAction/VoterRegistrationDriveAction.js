@@ -3,17 +3,17 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
-import QueryOptions from './QueryOptions';
-import { PHOENIX_URL } from '../../../constants';
-import { appendToQuery } from '../../../helpers';
-import { getUserId } from '../../../helpers/auth';
 import {
   CAMPAIGN_SIGNUP_QUERY,
   getCampaignSignupQueryVariables,
 } from '../../../helpers/campaign';
-import SocialDriveActionContainer from '../SocialDriveAction/SocialDriveActionContainer';
+import QueryOptions from './QueryOptions';
+import { PHOENIX_URL } from '../../../constants';
+import { appendToQuery } from '../../../helpers';
+import { getUserId } from '../../../helpers/auth';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
+import SocialDriveActionContainer from '../SocialDriveAction/SocialDriveActionContainer';
 
 export const VoterRegistrationDriveBlockFragment = gql`
   fragment VoterRegistrationDriveBlockFragment on VoterRegistrationDriveBlock {
