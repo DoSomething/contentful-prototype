@@ -1,5 +1,8 @@
 import { join } from 'path';
 import get from 'lodash/get';
+import gql from 'graphql-tag';
+
+import { getUserId } from './auth';
 
 /**
  * Prepare a campaign subpage's slug.
@@ -49,6 +52,27 @@ export function getCampaignFaqPath() {
 
   // If found, return fully formed path to the FAQ page.
   return faqSlug ? `/us/campaigns/${faqSlug}` : undefined;
+}
+
+export const CAMPAIGN_SIGNUP_QUERY = gql`
+  query CampaignSignup($userId: String!, $campaignId: String!) {
+    signups(userId: $userId, campaignId: $campaignId) {
+      id
+      group {
+        id
+      }
+    }
+  }
+`;
+
+/**
+ * @return {Object}
+ */
+export function getCampaignSignupQueryVariables() {
+  return {
+    userId: getUserId(),
+    campaignId: getCampaign().campaignId,
+  };
 }
 
 export default null;

@@ -7,7 +7,10 @@ import QueryOptions from './QueryOptions';
 import { PHOENIX_URL } from '../../../constants';
 import { appendToQuery } from '../../../helpers';
 import { getUserId } from '../../../helpers/auth';
-import { getCampaign } from '../../../helpers/campaign';
+import {
+  CAMPAIGN_SIGNUP_QUERY,
+  getCampaignSignupQueryVariables,
+} from '../../../helpers/campaign';
 import SocialDriveActionContainer from '../SocialDriveAction/SocialDriveActionContainer';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
@@ -21,27 +24,14 @@ export const VoterRegistrationDriveBlockFragment = gql`
   }
 `;
 
-const CAMPAIGN_SIGNUP_QUERY = gql`
-  query CampaignSignup($userId: String!, $campaignId: String!) {
-    signups(userId: $userId, campaignId: $campaignId) {
-      id
-      group {
-        id
-      }
-    }
-  }
-`;
-
 const VoterRegistrationDriveAction = ({
   approvedPostCountActionId,
   approvedPostCountLabel,
   description,
   title,
 }) => {
-  const userId = getUserId();
-
   const { loading, error, data } = useQuery(CAMPAIGN_SIGNUP_QUERY, {
-    variables: { userId, campaignId: getCampaign().campaignId },
+    variables: getCampaignSignupQueryVariables(),
   });
 
   if (loading) {
@@ -53,7 +43,7 @@ const VoterRegistrationDriveAction = ({
   }
 
   const signup = data.signups[0];
-  const queryParams = { referrer_user_id: userId };
+  const queryParams = { referrer_user_id: getUserId() };
 
   if (signup.group) {
     queryParams.group_id = signup.group.id;
