@@ -1,6 +1,7 @@
 import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
+import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const blockId = '5APr82PRUm6WHtHF8cwa7K';
 
@@ -33,11 +34,14 @@ describe('Voter Registration Referrals Block', () => {
   it('Displays three empty icons if user has no referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('VoterRegistrationReferrals', {
+    cy.mockGraphqlOp('CampaignSignup', {
+      signups: [{ id: 11122016, group: null }],
+    });
+    cy.mockGraphqlOp('IndividualVoterRegistrationReferrals', {
       posts: [],
     });
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.findAllByTestId('referral-list-item-empty').should('have.length', 3);
     cy.findAllByTestId('referral-list-item-completed').should('have.length', 0);
@@ -47,11 +51,14 @@ describe('Voter Registration Referrals Block', () => {
   it('Displays 2 completed icons if user has 2 referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('VoterRegistrationReferrals', {
+    cy.mockGraphqlOp('CampaignSignup', {
+      signups: [{ id: 11122016, group: null }],
+    });
+    cy.mockGraphqlOp('IndividualVoterRegistrationReferrals', {
       posts: [fakePost('Jesus Q.'), fakePost('Walter S.')],
     });
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.findAllByTestId('referral-list-item-completed').should('have.length', 2);
     cy.nth('[data-testid=referral-list-item-completed]', 0).within(() => {
@@ -67,7 +74,10 @@ describe('Voter Registration Referrals Block', () => {
   it('Displays 3 completed icons and additional count if user has 5 referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('VoterRegistrationReferrals', {
+    cy.mockGraphqlOp('CampaignSignup', {
+      signups: [{ id: 11122016, group: null }],
+    });
+    cy.mockGraphqlOp('IndividualVoterRegistrationReferrals', {
       posts: [
         fakePost('Sarah C.'),
         fakePost('Kyle R.'),
@@ -77,7 +87,7 @@ describe('Voter Registration Referrals Block', () => {
       ],
     });
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.findAllByTestId('referral-list-item-completed').should('have.length', 3);
     cy.nth('[data-testid=referral-list-item-completed]', 0).within(() => {
