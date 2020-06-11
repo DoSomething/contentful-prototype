@@ -7,7 +7,7 @@ import { getUserId } from '../../../../helpers/auth';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
-  query GroupVoterRegistrationReferrals(
+  query GroupVoterRegistrationReferralsQuery(
     $groupId: Int!
     $referrerUserId: String!
   ) {
