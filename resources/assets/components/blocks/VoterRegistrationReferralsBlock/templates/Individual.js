@@ -11,7 +11,7 @@ import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 import ReferralsGallery from '../../../utilities/ReferralsGallery/ReferralsGallery';
 
 const INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
-  query VoterRegistrationReferrals($referrerUserId: String!) {
+  query IndividualVoterRegistrationReferrals($referrerUserId: String!) {
     posts(
       referrerUserId: $referrerUserId
       type: "voter-reg"
