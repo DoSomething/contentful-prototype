@@ -112,22 +112,22 @@ describe('Voter Registration Referrals Block', () => {
       signups: [{ id: 11122016, group }],
     });
     cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
-      groupReferrals: () => [
+      // TODO: How can we mock aliases, to test against the two different queries?
+      posts: [
         fakePost('Sarah C.'),
         fakePost('Kyle R.'),
         fakePost('John C.'),
         fakePost('Miles D.'),
         fakePost('Tarissa D.'),
       ],
-      individualReferrals: () => [fakePost('Sarah C.')],
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.findAllByTestId('group-goal').contains(group.goal);
-    // TODO: This should be 5. Is it possible to mock aliased queries?
-    // cy.findAllByTestId('group-total').contains(5);
-    // cy.findAllByTestId('individual-total').contains(1);
+
+    cy.findAllByTestId('group-total').contains(5);
+    cy.findAllByTestId('individual-total').contains(5);
   });
 
   it('Group displays group goal as 50 if not set on group', () => {
