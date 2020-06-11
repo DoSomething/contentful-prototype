@@ -241,7 +241,7 @@ const CertificateTemplate = ({ certificatePost }) => {
               <View style={{ width: '50%' }}>
                 <Image
                   src={signature}
-                  style={{ width: 60, marginVertical: -10 }}
+                  style={{ width: 60, marginVertical: -12 }}
                 />
               </View>
 
