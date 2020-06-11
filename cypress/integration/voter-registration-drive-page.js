@@ -19,6 +19,9 @@ const campaignWebsite = {
   additionalContent: null,
   url: mockUrl,
 };
+const group = {
+  id: faker.random.number(),
+};
 
 /**
  * @param Object user
@@ -73,24 +76,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('OVRD banner displays a cover image', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
-      user,
-      campaignWebsite,
-    });
-
-    cy.visit(getOvrdPagePathForUser(user));
-
-    cy.get('[data-test=voter-registration-drive-page-cover-image]').should(
-      'have.length',
-      1,
-    );
-  });
-
-  /** @test */
-  it('OVRD banner displays referrer first name if referrer user found', () => {
+  it('OVRD banner displays expected info if referrer user found', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
@@ -108,19 +94,10 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.findByTestId('campaign-header-subtitle').contains(
       `${user.firstName} wants you to register to vote!`,
     );
-  });
-
-  /** @test */
-  it('OVRD banner displays scholarship info if it is provided', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
-      user,
-      campaignWebsite,
-    });
-
-    cy.visit(getOvrdPagePathForUser(user));
-
+    cy.get('[data-test=voter-registration-drive-page-cover-image]').should(
+      'have.length',
+      1,
+    );
     cy.get(
       '[data-test=voter-registration-drive-page-campaign-info-block]',
     ).should('have.length', 1);
@@ -132,6 +109,10 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.contains(`April 25th, 2022`);
     cy.get('[data-test=voter-registration-drive-page-blurb]').contains(
       `150,000+ young people have registered to vote via DoSomething. After you register, share with your friends to enter to win a $1,500 scholarship!`,
+    );
+    cy.findByTestId('voter-registration-form-card').should('have.length', 1);
+    cy.findByTestId('voter-registration-form-card').findByText(
+      'Register online to vote',
     );
   });
 
@@ -237,24 +218,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('OVRD Step One register to vote section displays as expected', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
-      user,
-      campaignWebsite,
-    });
-
-    cy.visit(getOvrdPagePathForUser(user));
-
-    cy.findByTestId('voter-registration-form-card').should('have.length', 1);
-    cy.findByTestId('voter-registration-form-card').findByText(
-      'Register online to vote',
-    );
-  });
-
-  /** @test */
-  it('OVRD Step One register to vote section button is disabled when form is empty', () => {
+  it('OVRD Start VR Form button is disabled when form is empty', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
@@ -268,7 +232,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('OVRD Step One register to vote section button is enabled when form is filled in', () => {
+  it('OVRD Start VR Form button is enabled when form is filled in', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
@@ -280,12 +244,42 @@ describe('Voter Registration Drive (OVRD) Page', () => {
 
     cy.findByTestId('voter-registration-email-field').type('text@test.com');
     cy.findByTestId('voter-registration-zip-field').type('12345');
+    cy.findByTestId('voter-registration-submit-button').should('be.enabled');
+  });
+
+  /** @test */
+  it('OVRD Start VR Form tracking source contains user and referral key values', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getOvrdPagePathForUser(user));
+
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
       `user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
     );
+  });
 
-    cy.findByTestId('voter-registration-submit-button').should('be.enabled');
+  /** @test */
+  it('OVRD Start VR Form tracking source contains group_id key value if valid group_id', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+      group,
+    });
+
+    cy.visit(`${getOvrdPagePathForUser(user)}&group_id=${group.id}`);
+
+    cy.findByTestId('voter-registration-tracking-source').should(
+      'have.value',
+      `user:${user.id},source:web,source_details:onlinedrivereferral,group_id=${group.id},referral=true`,
+    );
   });
 
   /** @test */
