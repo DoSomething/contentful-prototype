@@ -1,6 +1,7 @@
 import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
+import { groupFactory } from '../fixtures/group';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const blockId = '5APr82PRUm6WHtHF8cwa7K';
@@ -31,7 +32,7 @@ describe('Voter Registration Referrals Block', () => {
     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
   });
 
-  it('Displays three empty icons if user has no referrals', () => {
+  it('Individual displays three empty icons if user has no referrals', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('CampaignSignup', {
@@ -48,7 +49,7 @@ describe('Voter Registration Referrals Block', () => {
     cy.findByTestId('additional-referrals-count').should('have.length', 0);
   });
 
-  it('Displays 2 completed icons if user has 2 referrals', () => {
+  it('Individual displays 2 completed icons if user has 2 referrals', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('CampaignSignup', {
@@ -71,7 +72,7 @@ describe('Voter Registration Referrals Block', () => {
     cy.findByTestId('additional-referrals-count').should('have.length', 0);
   });
 
-  it('Displays 3 completed icons and additional count if user has 5 referrals', () => {
+  it('Individual displays 3 completed icons and additional count if user has 5 referrals', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('CampaignSignup', {
@@ -101,5 +102,51 @@ describe('Voter Registration Referrals Block', () => {
     });
     cy.findAllByTestId('referral-list-item-empty').should('have.length', 0);
     cy.findByTestId('additional-referrals-count').contains('+ 2 more');
+  });
+
+  it('Group displays group goal, group referrals count, and individual referrals count', () => {
+    const user = userFactory();
+    const group = groupFactory();
+
+    cy.mockGraphqlOp('CampaignSignup', {
+      signups: [{ id: 11122016, group }],
+    });
+    cy.mockGraphqlOp('GroupVoterRegistrationReferrals', {
+      posts: [
+        fakePost('Sarah C.'),
+        fakePost('Kyle R.'),
+        fakePost('John C.'),
+        fakePost('Miles D.'),
+        fakePost('Tarissa D.'),
+      ],
+      posts: [fakePost('Sarah C.')],
+    });
+
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
+
+    cy.findAllByTestId('group-goal').contains(group.goal);
+    // TODO: This should be 5. Is it possible to mock aliased queries?
+    cy.findAllByTestId('group-total').contains(1);
+    cy.findAllByTestId('individual-total').contains(1);
+  });
+
+  it('Group displays group goal as 50 if not set on group', () => {
+    const user = userFactory();
+    const group = groupFactory();
+    group.goal = null;
+
+    cy.mockGraphqlOp('CampaignSignup', {
+      signups: [{ id: 11122016, group }],
+    });
+    cy.mockGraphqlOp('GroupVoterRegistrationReferrals', {
+      posts: [],
+      posts: [],
+    });
+
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
+
+    cy.findAllByTestId('group-goal').contains(50);
+    //cy.findAllByTestId('group-total').contains(0);
+    //cy.findAllByTestId('individual-total').contains(0);
   });
 });

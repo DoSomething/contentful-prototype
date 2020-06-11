@@ -28,16 +28,22 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   }
 `;
 
-const StatBlock = ({ label, amount }) => (
+const StatBlock = ({ amount, label, testId }) => (
   <div className="pt-3">
     <span className="font-bold uppercase text-gray-600">{label}</span>
-    <h1 className="font-normal font-league-gothic text-3xl">{amount}</h1>
+    <h1
+      data-testid={testId}
+      className="font-normal font-league-gothic text-3xl"
+    >
+      {amount}
+    </h1>
   </div>
 );
 
 StatBlock.propTypes = {
-  label: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+  testId: PropTypes.string.isRequired,
 };
 
 const GroupTemplate = ({ group }) => {
@@ -52,16 +58,19 @@ const GroupTemplate = ({ group }) => {
         {data => (
           <>
             <StatBlock
-              label="Your group’s registration goal"
               amount={group.goal || 50}
+              label="Your group’s registration goal"
+              testId="group-goal"
             />
             <StatBlock
-              label="People your group has registered"
               amount={data.groupReferrals.length}
+              label="People your group has registered"
+              testId="group-total"
             />
             <StatBlock
-              label="People you have registered"
               amount={data.individualReferrals.length}
+              label="People you have registered"
+              testId="individual-total"
             />
           </>
         )}
