@@ -73,7 +73,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('OVRD HeroSection displays a cover image', () => {
+  it('OVRD banner displays a cover image', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
@@ -90,7 +90,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('OVRD HeroSection displays referrer first name if referrer user found', () => {
+  it('OVRD banner displays referrer first name if referrer user found', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
@@ -111,7 +111,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('OVRD HeroSection displays scholarhship info if it is provided', () => {
+  it('OVRD banner displays scholarship info if it is provided', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
@@ -130,6 +130,9 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     ).contains(`$1,500`);
     cy.contains('button', 'View Scholarship Details');
     cy.contains(`April 25th, 2022`);
+    cy.get('[data-test=voter-registration-drive-page-blurb]').contains(
+      `150,000+ young people have registered to vote via DoSomething. After you register, share with your friends to enter to win a $1,500 scholarship!`,
+    );
   });
 
   /** @test */
@@ -213,22 +216,6 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     );
     cy.get('[data-test=voter-registration-drive-page-quote-byline]').contains(
       `- ${user.firstName}`,
-    );
-  });
-
-  /** @test */
-  it('OVRD HeroSection displays scholarship info in blurb', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
-      user,
-      campaignWebsite,
-    });
-
-    cy.visit(getOvrdPagePathForUser(user));
-
-    cy.get('[data-test=voter-registration-drive-page-blurb]').contains(
-      `150,000+ young people have registered to vote via DoSomething. After you register, share with your friends to enter to win a $1,500 scholarship!`,
     );
   });
 

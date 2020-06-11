@@ -93,7 +93,7 @@ const VoterRegistrationDrivePage = () => {
   }
 
   if (groupId && !data.group) {
-    return <NotFoundPage id={`${groupId}`} />;
+    return <NotFoundPage id={query('group_id')} />;
   }
 
   const {

@@ -1037,7 +1037,7 @@ export function getVoterRegistrationTrackingSource(
   groupId,
 ) {
   const result = `source:web,source_details:${sourceDetails}${
-    groupId ? `,group_id=${groupId}` : null
+    groupId ? `,group_id=${groupId}` : ''
   }`;
 
   if (referrerUserId) {
