@@ -55,7 +55,7 @@ export function getCampaignFaqPath() {
 }
 
 export const CAMPAIGN_SIGNUP_QUERY = gql`
-  query CampaignSignup($userId: String!, $campaignId: String!) {
+  query CampaignSignupQuery($userId: String!, $campaignId: String!) {
     signups(userId: $userId, campaignId: $campaignId) {
       id
       group {

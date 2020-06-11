@@ -48,7 +48,7 @@ describe('Voter Registration Drive Action', () => {
     cy.mockGraphqlOp('UserAcceptedPostsForAction', {
       posts: [{ quantity: 10 }, { quantity: 20 }, { quantity: 30 }],
     });
-    cy.mockGraphqlOp('CampaignSignup', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group: null }],
     });
 
@@ -63,7 +63,7 @@ describe('Voter Registration Drive Action', () => {
     cy.mockGraphqlOp('UserAcceptedPostsForAction', {
       posts: [],
     });
-    cy.mockGraphqlOp('CampaignSignup', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group: null }],
     });
 
@@ -75,7 +75,7 @@ describe('Voter Registration Drive Action', () => {
   it('Links to /us/my-voter-registration-drive with referrer_user_id query', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('CampaignSignup', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group: null }],
     });
 
@@ -98,7 +98,7 @@ describe('Voter Registration Drive Action', () => {
   it('Appends group_id query to link if signed up with group', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('CampaignSignup', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group: { id: 7 } }],
     });
 
@@ -122,7 +122,7 @@ describe('Voter Registration Drive Action', () => {
     const user = userFactory();
     const longUrl = `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`;
 
-    cy.mockGraphqlOp('CampaignSignup', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group: null }],
     });
 

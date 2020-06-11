@@ -35,7 +35,7 @@ describe('Voter Registration Referrals Block', () => {
   it('Individual displays three empty icons if user has no referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('CampaignSignup', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group: null }],
     });
     cy.mockGraphqlOp('IndividualVoterRegistrationReferralsQuery', {
@@ -52,7 +52,7 @@ describe('Voter Registration Referrals Block', () => {
   it('Individual displays 2 completed icons if user has 2 referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('CampaignSignup', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group: null }],
     });
     cy.mockGraphqlOp('IndividualVoterRegistrationReferralsQuery', {
@@ -75,7 +75,7 @@ describe('Voter Registration Referrals Block', () => {
   it('Individual displays 3 completed icons and additional count if user has 5 referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('CampaignSignup', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group: null }],
     });
     cy.mockGraphqlOp('IndividualVoterRegistrationReferralsQuery', {
@@ -108,7 +108,7 @@ describe('Voter Registration Referrals Block', () => {
     const user = userFactory();
     const group = groupFactory();
 
-    cy.mockGraphqlOp('CampaignSignup', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group }],
     });
     cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
@@ -135,7 +135,7 @@ describe('Voter Registration Referrals Block', () => {
     const group = groupFactory();
     group.goal = null;
 
-    cy.mockGraphqlOp('CampaignSignup', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group }],
     });
     // TODO: Fix me (same as test above).
