@@ -114,6 +114,9 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.findByTestId('voter-registration-form-card').findByText(
       'Register online to vote',
     );
+    cy.get('[data-test=visit-voter-registration-campaign-button]')
+      .should('have.length', 1)
+      .should('have.attr', 'href', mockUrl);
   });
 
   /** @test */
@@ -198,23 +201,6 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.get('[data-test=voter-registration-drive-page-quote-byline]').contains(
       `- ${user.firstName}`,
     );
-  });
-
-  /** @test */
-  it('OVRD displays campaign href, expects href to match GraphQL URL returned from query', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
-      user,
-      campaignWebsite,
-    });
-
-    cy.visit(getOvrdPagePathForUser(user));
-
-    // Assert button href is present and contains correct url:
-    cy.get('[data-test=visit-voter-registration-campaign-button]')
-      .should('have.length', 1)
-      .should('have.attr', 'href', mockUrl);
   });
 
   /** @test */
