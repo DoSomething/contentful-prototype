@@ -22,13 +22,15 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
       query={CAMPAIGN_SIGNUP_QUERY}
       variables={getCampaignSignupQueryVariables()}
     >
-      {data =>
-        data.signups[0] && data.signups[0].group ? (
-          <GroupTemplate group={data.signups[0].group} />
+      {data => {
+        const signup = data.signups[0];
+
+        return signup && signup.group ? (
+          <GroupTemplate group={signup.group} />
         ) : (
           <IndividualTemplate title={title} />
-        )
-      }
+        );
+      }}
     </Query>
   </div>
 );

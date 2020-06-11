@@ -11,15 +11,15 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
     $groupId: Int!
     $referrerUserId: String!
   ) {
-    individualReferrals: posts(
-      referrerUserId: $referrerUserId
+    groupReferrals: posts(
+      groupId: $groupId
       type: "voter-reg"
       status: [REGISTER_FORM, REGISTER_OVR]
     ) {
       id
     }
-    groupReferrals: posts(
-      groupId: $groupId
+    individualReferrals: posts(
+      referrerUserId: $referrerUserId
       type: "voter-reg"
       status: [REGISTER_FORM, REGISTER_OVR]
     ) {
