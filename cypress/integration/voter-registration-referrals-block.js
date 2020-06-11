@@ -44,6 +44,9 @@ describe('Voter Registration Referrals Block', () => {
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
+    cy.get('.section-header__title').contains(
+      contentfulBlockQueryResult.block.title,
+    );
     cy.findAllByTestId('referral-list-item-empty').should('have.length', 3);
     cy.findAllByTestId('referral-list-item-completed').should('have.length', 0);
     cy.findByTestId('additional-referrals-count').should('have.length', 0);
@@ -124,8 +127,10 @@ describe('Voter Registration Referrals Block', () => {
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
+    cy.get('.section-header__title').contains(
+      `${group.groupType.name}: ${group.name}`,
+    );
     cy.findAllByTestId('group-goal').contains(group.goal);
-
     cy.findAllByTestId('group-total').contains(5);
     cy.findAllByTestId('individual-total').contains(5);
   });
