@@ -63,10 +63,9 @@ const EmailSubscriptionItem = ({
         />
 
         <div className="p-4 flex flex-col flex-grow">
-          <h3 className="text-base">{name}</h3>
+          <h3 className="mb-1 text-base">{name}</h3>
 
-          <h4 className="text-base italic">{descriptionHeader}</h4>
-          <br />
+          <h4 className="italic mb-6 text-base">{descriptionHeader}</h4>
 
           <p className="flex-grow">{description}</p>
 
