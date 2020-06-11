@@ -1,14 +1,16 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import pluralize from 'pluralize';
 import PropTypes from 'prop-types';
+import { useQuery } from '@apollo/react-hooks';
 
-import Query from '../../Query';
-import { getUserId } from '../../../helpers/auth';
-import EmptyRegistrationImage from './empty-registration.svg';
-import CompletedRegistrationImage from './completed-registration.svg';
-import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
-import ReferralsGallery from '../../utilities/ReferralsGallery/ReferralsGallery';
+import {
+  CAMPAIGN_SIGNUP_QUERY,
+  getCampaignSignupQueryVariables,
+} from '../../../helpers/campaign';
+import GroupTemplate from './templates/Group';
+import IndividualTemplate from './templates/Individual';
+import Placeholder from '../../utilities/Placeholder';
+import ErrorBlock from '../ErrorBlock/ErrorBlock';
 
 export const VoterRegistrationReferralsBlockFragment = gql`
   fragment VoterRegistrationReferralsBlockFragment on VoterRegistrationReferralsBlock {
@@ -16,61 +18,31 @@ export const VoterRegistrationReferralsBlockFragment = gql`
   }
 `;
 
-const VOTER_REGISTRATION_REFERRALS_QUERY = gql`
-  query VoterRegistrationReferrals($referrerUserId: String!) {
-    posts(
-      referrerUserId: $referrerUserId
-      type: "voter-reg"
-      status: [REGISTER_FORM, REGISTER_OVR]
-    ) {
-      id
-      user {
-        displayName
-      }
-    }
+const VoterRegistrationReferralsBlock = ({ title }) => {
+  const { loading, error, data } = useQuery(CAMPAIGN_SIGNUP_QUERY, {
+    variables: getCampaignSignupQueryVariables(),
+  });
+
+  if (loading) {
+    return <Placeholder />;
   }
-`;
 
-const VoterRegistrationReferralsBlock = ({ title }) => (
-  <div className="grid-wide clearfix wrapper pb-6">
-    {title ? <SectionHeader underlined title={title} /> : null}
-    <Query
-      query={VOTER_REGISTRATION_REFERRALS_QUERY}
-      variables={{ referrerUserId: getUserId() }}
-    >
-      {data => {
-        const numberOfReferrals = data.posts.length;
+  if (error) {
+    return <ErrorBlock error={error} />;
+  }
 
-        return (
-          <>
-            {numberOfReferrals ? (
-              <div className="pb-3 md:pb-6">
-                You have registered{' '}
-                <strong>
-                  {numberOfReferrals} {pluralize('person', numberOfReferrals)}
-                </strong>{' '}
-                so far.
-              </div>
-            ) : (
-              <div className="pb-3 md:pb-6">
-                You haven’t helped anyone register to vote yet. Scroll down to
-                get started!
-              </div>
-            )}
+  const signup = data.signups[0];
 
-            <ReferralsGallery
-              referralLabels={data.posts.map(
-                referral => referral.user.displayName,
-              )}
-              referralIcon={CompletedRegistrationImage}
-              placeholderIcon={EmptyRegistrationImage}
-            />
-          </>
-        );
-      }}
-    </Query>
-  </div>
-);
+  return (
+    <div className="grid-wide clearfix wrapper pb-6">
+      {signup.group ? (
+        <GroupTemplate group={signup.group} />
+      ) : (
+        <IndividualTemplate title={title} />
+      )}
+    </div>
+  );
+};
 
 VoterRegistrationReferralsBlock.propTypes = {
   title: PropTypes.string,

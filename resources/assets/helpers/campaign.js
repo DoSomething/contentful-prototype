@@ -60,6 +60,11 @@ export const CAMPAIGN_SIGNUP_QUERY = gql`
       id
       group {
         id
+        name
+        groupTypeId
+        groupType {
+          name
+        }
       }
     }
   }
