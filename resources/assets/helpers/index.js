@@ -1024,7 +1024,8 @@ export function getMillisecondsFromDays(days) {
 }
 
 /**
- * Build UTMs for Voter Registration URLs
+ * Returns tracking source query value to send for Voter Registration URLs.
+ * @see /docs/development/features/voter-registration#tracking-source
  *
  * @param {String} sourceDetails
  * @param {String} referrerUserId

@@ -24,11 +24,14 @@ const group = {
 };
 
 /**
- * @param Object user
- * @return String
+ * @param {Object} user
+ * @param {Object} group
+ * @return {String}
  */
-function getOvrdPagePathForUser(user) {
-  return `${ovrdPathPage}?referrer_user_id=${user.id}`;
+function getOvrdPagePathForUser(user, group) {
+  return `${ovrdPathPage}?referrer_user_id=${user.id}${
+    group ? `&group_id=${group.id}` : ''
+  }`;
 }
 
 describe('Voter Registration Drive (OVRD) Page', () => {
@@ -64,6 +67,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user: null,
       campaignWebsite,
+      group: null,
     });
 
     cy.visit(getOvrdPagePathForUser(user));
@@ -75,6 +79,42 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
+  it('OVRD page displays NotFoundPage if group is not found', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+      group: null,
+    });
+
+    cy.visit(getOvrdPagePathForUser(user, group));
+
+    cy.findByTestId('not-found-page').should('have.length', 1);
+    cy.get('[data-test=voter-registration-drive-page]').should(
+      'have.length',
+      0,
+    );
+  });
+
+  it('OVRD page displays voter-registration-drive-page component if group is found', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+      group,
+    });
+
+    cy.visit(getOvrdPagePathForUser(user, group));
+
+    cy.findByTestId('not-found-page').should('have.length', 0);
+    cy.get('[data-test=voter-registration-drive-page]').should(
+      'have.length',
+      1,
+    );
+  });
+
   /** @test */
   it('OVRD banner displays expected info if referrer user found', () => {
     const user = userFactory();
@@ -82,6 +122,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
+      group: null,
     });
 
     cy.visit(getOvrdPagePathForUser(user));
@@ -126,6 +167,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
+      group: null,
     });
 
     cy.visit(getOvrdPagePathForUser(user));
@@ -145,6 +187,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
+      group: null,
     });
 
     cy.visit(`${getOvrdPagePathForUser(user)}&voting-reasons=student-debt`);
@@ -164,6 +207,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
+      group: null,
     });
 
     cy.visit(
@@ -187,6 +231,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
+      group: null,
     });
 
     cy.visit(
@@ -210,6 +255,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
+      group: null,
     });
 
     cy.visit(getOvrdPagePathForUser(user));
@@ -224,6 +270,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
+      group: null,
     });
 
     cy.visit(getOvrdPagePathForUser(user));
@@ -240,6 +287,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
+      group: null,
     });
 
     cy.visit(getOvrdPagePathForUser(user));
@@ -260,7 +308,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       group,
     });
 
-    cy.visit(`${getOvrdPagePathForUser(user)}&group_id=${group.id}`);
+    cy.visit(getOvrdPagePathForUser(user, group));
 
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
@@ -270,6 +318,16 @@ describe('Voter Registration Drive (OVRD) Page', () => {
 
   /** @test */
   it('OVRD <meta> tag has a title and description', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+      group,
+    });
+
+    cy.visit(getOvrdPagePathForUser(user, group));
+
     cy.get('head meta[property="og:title"]').should(
       'have.attr',
       'content',
