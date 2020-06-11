@@ -35,6 +35,11 @@ const StatBlock = ({ label, amount }) => (
   </div>
 );
 
+StatBlock.propTypes = {
+  label: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+};
+
 const GroupTemplate = ({ group }) => {
   return (
     <>
