@@ -235,7 +235,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('OVRD quote displays three or more voting reasons when found in voting-reasons query', () => {
+  it('OVRD quote joins voting reasons with comma when 3 or more found in voting-reasons query', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
@@ -259,7 +259,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('OVRD Start VR Form button is disabled when form is empty', () => {
+  it('OVRD Start VR Form button is disabled when form is empty, and enabled when completed', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
@@ -271,20 +271,6 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.visit(getOvrdPagePathForUser(user));
 
     cy.findByTestId('voter-registration-submit-button').should('be.disabled');
-  });
-
-  /** @test */
-  it('OVRD Start VR Form button is enabled when form is filled in', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
-      user,
-      campaignWebsite,
-      group: null,
-    });
-
-    cy.visit(getOvrdPagePathForUser(user));
-
     cy.findByTestId('voter-registration-email-field').type('text@test.com');
     cy.findByTestId('voter-registration-zip-field').type('12345');
     cy.findByTestId('voter-registration-submit-button').should('be.enabled');
