@@ -30,7 +30,7 @@ const CancelEmailSubscription = () => {
   const options = { variables: { userId: window.ondurationchange.id } };
 
   const { data, loading, error } = useQuery(EMAIL_SUBSCRIPTION_STATUS, options);
-  const [updateEmailSubscriptionStatus, { loading: modifying }] = useMutation(
+  const updateEmailSubscriptionStatus = useMutation(
     EMAIL_SUBSCRIPTION_STATUS_MUTATION,
     options,
   );
@@ -42,8 +42,22 @@ const CancelEmailSubscription = () => {
   return (
     <div>
       <p>
-        "Need a break? Unsubscribe <LinkButton /> from all newsletters and
-        account notification emails"
+        "Need a break?
+        <LinkButton
+          attributes={attributes}
+          className={classes}
+          href=""
+          onClick={() =>
+            updateEmailSubscriptionStatus({
+              variables: {
+                userId,
+                subscribed: false,
+              },
+            })
+          }
+          text="Unsubscribe"
+        />
+        from all newsletters and account notification emails"
       </p>
     </div>
   );
