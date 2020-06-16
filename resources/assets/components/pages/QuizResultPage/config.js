@@ -51,11 +51,15 @@ const gqlVariables = {
         assetId: '3iLKsRlFQ1k9ddQbRb3RN8',
         sourceDetail: `${sourceDetailPrefix}votebymail`,
       },
-      // Election Dabbler
+      /**
+       * This quiz result is intentionally missing a sourceDetail for sake of testing.
+       * A previous iteration of the quiz had one result where we didn't want to display the start
+       * voter registration form (for users who are ineligible to vote), so we didn't include a
+       * sourceDetail.
+       */
       '2KfkCOTi7u4CqAyyCuGyci': {
         // Rabbit:
         assetId: '3uB88eZmTNEaoFxV9pZ8hX',
-        sourceDetail: `${sourceDetailPrefix}inperson`,
       },
     },
   },
