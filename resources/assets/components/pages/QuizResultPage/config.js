@@ -26,6 +26,8 @@ export const gqlVariables = {
       // Ineligible to vote / Panda
       '14KfeAs265httjNMf1jwTw': {
         assetId: '3WjT0QGNnJEPPz2yMd3inj',
+        // @see https://dosomething.slack.com/archives/CTVPG6L4R/p1592329248450700?thread_ts=1592328663.448100&cid=CTVPG6L4R
+        sourceDetail: `${sourceDetailPrefix}housing`,
       },
     },
   },
