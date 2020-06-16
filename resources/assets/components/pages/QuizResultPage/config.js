@@ -4,7 +4,7 @@
  */
 const sourceDetailPrefix = 'VoterRegQuiz_completed_';
 
-export const gqlVariables = {
+const gqlVariables = {
   production: {
     galleryBlockId: '78WaGsvDEzAxnreEvNx3Za',
     results: {
@@ -61,9 +61,4 @@ export const gqlVariables = {
   },
 };
 
-export const placeholderContent = `Saepe cupiditate non. Facere velit vitae corporis. Voluptatum illo inventore quasi earum.
-
-  **Necessitatibus odio nam.** Repudiandae commodi fugit. Placeat consequuntur autem dignissimos ducimus excepturi quis neque. Qui maiores voluptas illum et est laborum quia veniam. 
-
-  Dicta quia quas impedit. Laborum id eius molestias eveniet temporibus. Rerum tempora id eos officiis omnis nam. Eveniet quod quam et hic eligendi ab et. Tempora qui consequatur dolor laudantium voluptate magnam soluta. Eaque saepe quisquam similique voluptatum error.
-`;
+export { gqlVariables as default };

@@ -6,7 +6,7 @@ import { useQuery } from 'react-apollo';
 
 import ErrorPage from '../ErrorPage';
 import triangle from './triangle.svg';
-import { gqlVariables } from './config';
+import gqlVariables from './config';
 import NotFoundPage from '../NotFoundPage';
 import { isDevEnvironment } from '../../../helpers';
 import Placeholder from '../../utilities/Placeholder';
