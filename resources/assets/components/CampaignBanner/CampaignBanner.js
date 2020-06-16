@@ -184,12 +184,16 @@ const CampaignBanner = ({
                   !campaignGroupTypeId ? 'w-2/3 sm:w-1/2' : null
                 }`}
               >
-                <SignupButtonContainer
-                  campaignGroupTypeId={campaignGroupTypeId}
-                  className="w-full md:px-2"
-                  text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
-                  contextSource="scholarship_modal"
-                />
+                {!loading ? (
+                  <SignupButtonContainer
+                    campaignGroupTypeId={campaignGroupTypeId}
+                    className="w-full md:px-2"
+                    text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
+                    contextSource="scholarship_modal"
+                  />
+                ) : (
+                  <Placeholder />
+                )}
               </div>
             ) : null}
           </ScholarshipInfoBlock>
