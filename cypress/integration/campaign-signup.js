@@ -21,6 +21,13 @@ describe('Campaign Signup', () => {
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();
 
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        id: campaignId,
+        groupTypeId: null,
+      },
+    });
+
     // Visit the campaign landing page:
     cy.anonVisitCampaign(exampleCampaign);
 
@@ -47,7 +54,12 @@ describe('Campaign Signup', () => {
   /** @test */
   it('Create signup, as an authenticated user', () => {
     const user = userFactory();
-
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        id: campaignId,
+        groupTypeId: null,
+      },
+    });
     // Log in & visit the campaign landing page:
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
@@ -72,7 +84,12 @@ describe('Campaign Signup', () => {
     /** @test */
     it('Display Referral Page Banner CTA in affirmation for configured campaign & feature flagged user', () => {
       const user = userFactory();
-
+      cy.mockGraphqlOp('CampaignBannerQuery', {
+        campaign: {
+          id: campaignId,
+          groupTypeId: null,
+        },
+      });
       // Log in & visit the campaign pitch page:
       cy.authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
 
@@ -98,6 +115,13 @@ describe('Campaign Signup', () => {
     /** @test */
     it("Doesn't display Referral Page Banner CTA in affirmation for non configured campaign", () => {
       const user = userFactory();
+
+      cy.mockGraphqlOp('CampaignBannerQuery', {
+        campaign: {
+          id: campaignId,
+          groupTypeId: null,
+        },
+      });
 
       // Log in & visit the campaign pitch page:
       cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
@@ -141,6 +165,13 @@ describe('Campaign Signup', () => {
 
   /** @test */
   it('Visits a campaign page from scholarship partner, as an unauthenticated user', () => {
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        id: campaignId,
+        groupTypeId: null,
+      },
+    });
+
     // Visit the campaign pitch page
     cy.withState(exampleCampaign).visit(
       '/us/campaigns/test-example-campaign?utm_campaign=fastweb&utm_source=scholarship',

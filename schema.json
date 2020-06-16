@@ -232,6 +232,16 @@
                 "defaultValue": null
               },
               {
+                "name": "groupTypeId",
+                "description": "Only return campaigns containing this group type id.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "orderBy",
                 "description": "How to order the results (e.g. 'id,desc').",
                 "type": {
@@ -309,6 +319,16 @@
                     "name": "String",
                     "ofType": null
                   }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "groupTypeId",
+                "description": "Only return campaigns containing this group type id.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
                 },
                 "defaultValue": null
               },
@@ -4336,6 +4356,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupTypeId",
+            "description": "The group type id associated with this campaign.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
               "ofType": null
             },
             "isDeprecated": false,

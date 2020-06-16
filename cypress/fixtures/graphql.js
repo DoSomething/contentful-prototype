@@ -107,7 +107,6 @@ export const mocks = {
   Campaign: () => ({
     endDate: () => addMonths(new Date(), 1).toISOString(),
     isOpen: true,
-    groupTypeId: null,
   }),
   // For blocks, we'll either use the provided '__typename' from the operation
   // mock, or we'll use our hardcoded IDs, above (for PHP interoperability).
