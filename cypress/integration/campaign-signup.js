@@ -163,10 +163,15 @@ describe('Campaign Signup', () => {
       ],
     });
 
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        id: campaignId,
+        groupTypeId: 1,
+      },
+    });
+
     // Visit the campaign pitch page
-    cy.withState(exampleCampaign).visit(
-      '/us/campaigns/test-example-campaign?group_type_id=1',
-    );
+    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
 
     cy.findByTestId('join-group-signup-form').should('have.length', 1);
     cy.findByTestId('campaign-banner-signup-button').contains(

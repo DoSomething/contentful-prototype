@@ -1,9 +1,14 @@
+import { get } from 'lodash';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
+import ErrorPage from '../pages/ErrorPage';
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
+import Placeholder from '../utilities/Placeholder';
 import CampaignHeader from '../utilities/CampaignHeader';
 import CoverImage from '../utilities/CoverImage/CoverImage';
 import TextContent from '../utilities/TextContent/TextContent';
@@ -16,9 +21,17 @@ import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptI
 import {
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
-  query,
   tailwind,
 } from '../../helpers';
+
+const CAMPAIGN_BANNER_QUERY = gql`
+  query CampaignBannerQuery($id: Int!) {
+    campaign(id: $id) {
+      id
+      groupTypeId
+    }
+  }
+`;
 
 const CampaignBanner = ({
   actionIdToDisplay,
@@ -45,14 +58,22 @@ const CampaignBanner = ({
     setShowReferralScholarshipModal,
   ] = useState(false);
   const numCampaignId = Number(campaignId);
-  // TODO: This is a hack, we'll need to query GraphQL to see if campaignId has a groupTypeId set.
-  const campaignGroupTypeId = Number(query('group_type_id'));
 
   useEffect(() => {
     if (scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline) {
       setShowReferralScholarshipModal(true);
     }
   }, []);
+
+  const { loading, error, data } = useQuery(CAMPAIGN_BANNER_QUERY, {
+    variables: { id: numCampaignId },
+  });
+
+  if (error) {
+    return <ErrorPage error={error} />;
+  }
+
+  const campaignGroupTypeId = get(data, 'campaign.groupTypeId', null);
 
   return (
     <>
@@ -95,16 +116,20 @@ const CampaignBanner = ({
                   }
                 `}
               >
-                <SignupButtonContainer
-                  campaignGroupTypeId={campaignGroupTypeId}
-                  className="block md:mb-3 p-6 text-lg w-full"
-                  text={
-                    isScholarshipAffiliateReferral()
-                      ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
-                      : undefined
-                  }
-                  contextSource="campaign_landing_page"
-                />
+                {!loading ? (
+                  <SignupButtonContainer
+                    campaignGroupTypeId={campaignGroupTypeId}
+                    className="block md:mb-3 p-6 text-lg w-full"
+                    text={
+                      isScholarshipAffiliateReferral()
+                        ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+                        : undefined
+                    }
+                    contextSource="campaign_landing_page"
+                  />
+                ) : (
+                  <Placeholder />
+                )}
 
                 {affiliateOptInContent ? (
                   <AffiliateOptInToggleContainer
