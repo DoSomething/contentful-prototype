@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 
 import errorIcon from './error_icon.svg';
 import { report } from '../../../helpers';
@@ -24,11 +24,7 @@ const ErrorBlock = ({ error }) => {
 };
 
 ErrorBlock.propTypes = {
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-};
-
-ErrorBlock.defaultProps = {
-  error: null,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
 };
 
 export default ErrorBlock;
