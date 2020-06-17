@@ -57,7 +57,7 @@ const AlphaPage = () =>
       <SiteFooter />
     </>
   ) : (
-    <ErrorPage />
+    <ErrorPage error="Unable to generate referral link." />
   );
 
 export default AlphaPage;

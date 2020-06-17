@@ -23,7 +23,7 @@ const BetaPage = () => {
   const campaignId = getReferralCampaignId();
 
   if (!userId || !campaignId) {
-    return <ErrorPage />;
+    return <ErrorPage error="Missing User ID or Campaign ID." />;
   }
 
   return (
@@ -31,7 +31,7 @@ const BetaPage = () => {
     <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
       {data => {
         if (!data.user) {
-          return <ErrorPage />;
+          return <ErrorPage error={`User not found for ID: ${userId}.`} />;
         }
 
         const firstName = data.user.firstName;
