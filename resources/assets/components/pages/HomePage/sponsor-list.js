@@ -45,11 +45,6 @@ const sponsorList = [
       'https://images.ctfassets.net/81iqaqpfd8fy/2HQ3xouauciK8oUwgEqyaE/e5c554e7eff7a98e7051ccfe59a050fd/chevy_0.png',
   },
   {
-    name: 'Taco Bell Foundation',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/1tx8p40l2ogSwMysomY2Ao/f393029ef44c96f895ab072384b01d40/7376214-logo.png',
-  },
-  {
     name: 'TikTok',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/2GK6h58sbKGs6QoU46WI6o/784177ae056173ae17e11bd55f660518/tiktok_logo.jpg',
