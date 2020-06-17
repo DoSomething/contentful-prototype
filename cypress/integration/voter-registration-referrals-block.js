@@ -1,6 +1,8 @@
 import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
+import { groupFactory } from '../fixtures/group';
+import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const blockId = '5APr82PRUm6WHtHF8cwa7K';
 
@@ -30,28 +32,37 @@ describe('Voter Registration Referrals Block', () => {
     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
   });
 
-  it('Displays three empty icons if user has no referrals', () => {
+  it('Individual displays three empty icons if user has no referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('VoterRegistrationReferrals', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
+      signups: [{ id: 11122016, group: null }],
+    });
+    cy.mockGraphqlOp('IndividualVoterRegistrationReferralsQuery', {
       posts: [],
     });
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
+    cy.get('.section-header__title').contains(
+      contentfulBlockQueryResult.block.title,
+    );
     cy.findAllByTestId('referral-list-item-empty').should('have.length', 3);
     cy.findAllByTestId('referral-list-item-completed').should('have.length', 0);
     cy.findByTestId('additional-referrals-count').should('have.length', 0);
   });
 
-  it('Displays 2 completed icons if user has 2 referrals', () => {
+  it('Individual displays 2 completed icons if user has 2 referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('VoterRegistrationReferrals', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
+      signups: [{ id: 11122016, group: null }],
+    });
+    cy.mockGraphqlOp('IndividualVoterRegistrationReferralsQuery', {
       posts: [fakePost('Jesus Q.'), fakePost('Walter S.')],
     });
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.findAllByTestId('referral-list-item-completed').should('have.length', 2);
     cy.nth('[data-testid=referral-list-item-completed]', 0).within(() => {
@@ -64,10 +75,13 @@ describe('Voter Registration Referrals Block', () => {
     cy.findByTestId('additional-referrals-count').should('have.length', 0);
   });
 
-  it('Displays 3 completed icons and additional count if user has 5 referrals', () => {
+  it('Individual displays 3 completed icons and additional count if user has 5 referrals', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('VoterRegistrationReferrals', {
+    cy.mockGraphqlOp('CampaignSignupQuery', {
+      signups: [{ id: 11122016, group: null }],
+    });
+    cy.mockGraphqlOp('IndividualVoterRegistrationReferralsQuery', {
       posts: [
         fakePost('Sarah C.'),
         fakePost('Kyle R.'),
@@ -77,7 +91,7 @@ describe('Voter Registration Referrals Block', () => {
       ],
     });
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.findAllByTestId('referral-list-item-completed').should('have.length', 3);
     cy.nth('[data-testid=referral-list-item-completed]', 0).within(() => {
@@ -91,5 +105,53 @@ describe('Voter Registration Referrals Block', () => {
     });
     cy.findAllByTestId('referral-list-item-empty').should('have.length', 0);
     cy.findByTestId('additional-referrals-count').contains('+ 2 more');
+  });
+
+  it('Group displays group goal, group referrals count, and individual referrals count', () => {
+    const user = userFactory();
+    const group = groupFactory();
+
+    cy.mockGraphqlOp('CampaignSignupQuery', {
+      signups: [{ id: 11122016, group }],
+    });
+    cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
+      // TODO: How can we mock aliases, to test against the two different queries?
+      posts: [
+        fakePost('Sarah C.'),
+        fakePost('Kyle R.'),
+        fakePost('John C.'),
+        fakePost('Miles D.'),
+        fakePost('Tarissa D.'),
+      ],
+    });
+
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
+
+    cy.get('.section-header__title').contains(
+      `${group.groupType.name}: ${group.name}`,
+    );
+    cy.findAllByTestId('group-goal').contains(group.goal);
+    cy.findAllByTestId('group-total').contains(5);
+    cy.findAllByTestId('individual-total').contains(5);
+  });
+
+  it('Group displays group goal as 50 if not set on group', () => {
+    const user = userFactory();
+    const group = groupFactory();
+    group.goal = null;
+
+    cy.mockGraphqlOp('CampaignSignupQuery', {
+      signups: [{ id: 11122016, group }],
+    });
+    // TODO: Fix me (same as test above).
+    cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
+      posts: [],
+    });
+
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
+
+    cy.findAllByTestId('group-goal').contains(50);
+    cy.findAllByTestId('group-total').contains(0);
+    cy.findAllByTestId('individual-total').contains(0);
   });
 });
