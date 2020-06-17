@@ -1024,17 +1024,22 @@ export function getMillisecondsFromDays(days) {
 }
 
 /**
- * Build UTMs for Voter Registration URLs
+ * Returns tracking source query value to send for Voter Registration URLs.
+ * @see /docs/development/features/voter-registration#tracking-source
  *
- * @param {String} referrerUserId
  * @param {String} sourceDetails
+ * @param {String} referrerUserId
+ * @param {Number} groupId
+ * @return {String}
  */
-
 export function getVoterRegistrationTrackingSource(
   sourceDetails,
-  referrerUserId = '',
+  referrerUserId,
+  groupId,
 ) {
-  const result = `source:web,source_details:${sourceDetails}`;
+  const result = `source:web,source_details:${sourceDetails}${
+    groupId ? `,group_id=${groupId}` : ''
+  }`;
 
   if (referrerUserId) {
     return `user:${referrerUserId},${result},referral=true`;
