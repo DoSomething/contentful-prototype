@@ -27,8 +27,8 @@ const mocks = [
           // There are two signups from the same user.
           {
             id: 1100,
+            userId: '55767606a59dbf3c7a8b4571',
             user: {
-              id: '55767606a59dbf3c7a8b4571',
               displayName: 'Aaron S.',
               __typename: 'User',
             },
@@ -36,8 +36,8 @@ const mocks = [
           },
           {
             id: 589,
+            userId: '55767606a59dbf3c7a8b4571',
             user: {
-              id: '55767606a59dbf3c7a8b4571',
               displayName: 'Aaron S.',
               __typename: 'User',
             },
@@ -45,8 +45,8 @@ const mocks = [
           },
           {
             id: 992,
+            userId: '5589c991a59dbfa93d8b45ae',
             user: {
-              id: '5589c991a59dbfa93d8b45ae',
               displayName: 'Chloe L.',
               __typename: 'User',
             },
