@@ -67,6 +67,7 @@ describe('SignupReferralsGallery component', () => {
     );
 
     // This pushes us past the 'first tick' over to when the GraphQL query actually loads.
+    // @TODO: Simplify to use 'waitfor' once jsdom issues are resolved per https://git.io/JfdEd.
     await act(async () => new Promise(resolve => setTimeout(resolve)));
 
     // This user has two referred signups, but we should only see them once in the gallery.
