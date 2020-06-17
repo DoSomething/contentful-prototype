@@ -13,6 +13,7 @@ Cypress.on('window:before:load', window => {
 
   // Custom ENV variables for the testing environment.
   window.ENV = {
+    APP_ENV: 'development',
     FEATURE_FLAGS: {
       nps_survey: false,
     },

@@ -6,7 +6,7 @@ import { useQuery } from 'react-apollo';
 
 import ErrorPage from '../ErrorPage';
 import triangle from './triangle.svg';
-import { gqlVariables } from './config';
+import gqlVariables from './config';
 import NotFoundPage from '../NotFoundPage';
 import { isDevEnvironment } from '../../../helpers';
 import Placeholder from '../../utilities/Placeholder';
@@ -93,9 +93,9 @@ const QuizResultPage = ({ id }) => {
                 </h1>
 
                 <p className="mb-3 text-lg text-center">
-                  Paying attention to how our government is handling the
-                  COVID-19 outbreak? Your vote is your way of making an impact
-                  on the decisions our government makes.
+                  75% of young people say that the most important thing we can
+                  do to fight for racial justice is vote. Your vote is your way
+                  of making an impact on the decisions our government makes.
                 </p>
                 <p className="mb-6 text-lg text-center">
                   Take 2 minutes and register online now with your state.

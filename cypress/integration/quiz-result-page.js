@@ -4,8 +4,7 @@ import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
 
-const quizResultId = 'p7hqjSP4Y1U6ad0UDz4iS';
-const ineligibleQuizResultId = '14KfeAs265httjNMf1jwTw';
+const quizResultId = '347iYsbykgQe6KqeGceMUk';
 
 /**
  * @param String id
@@ -57,7 +56,7 @@ describe('Quiz Result Page', () => {
       block: linkBlock,
     });
 
-    cy.visit(getQuizResultPath(ineligibleQuizResultId));
+    cy.visit(getQuizResultPath('2KfkCOTi7u4CqAyyCuGyci'));
 
     cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.findByTestId('voter-registration-form-card').should('have.length', 0);
@@ -74,7 +73,7 @@ describe('Quiz Result Page', () => {
     cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
-      'source:web,source_details:VoterRegQuiz_completed_votebymail',
+      'source:web,source_details:VoterRegQuiz_completed_notsure',
     );
   });
 
@@ -92,7 +91,7 @@ describe('Quiz Result Page', () => {
     cy.findByTestId('quiz-result-page').should('have.length', 1);
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
-      `user:${user.id},source:web,source_details:VoterRegQuiz_completed_votebymail`,
+      `user:${user.id},source:web,source_details:VoterRegQuiz_completed_notsure`,
     );
   });
 });

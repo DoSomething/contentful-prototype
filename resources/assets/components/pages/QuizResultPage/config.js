@@ -4,7 +4,7 @@
  */
 const sourceDetailPrefix = 'VoterRegQuiz_completed_';
 
-export const gqlVariables = {
+const gqlVariables = {
   production: {
     galleryBlockId: '78WaGsvDEzAxnreEvNx3Za',
     results: {
@@ -26,6 +26,8 @@ export const gqlVariables = {
       // Ineligible to vote / Panda
       '14KfeAs265httjNMf1jwTw': {
         assetId: '3WjT0QGNnJEPPz2yMd3inj',
+        // @see https://dosomething.slack.com/archives/CTVPG6L4R/p1592329248450700?thread_ts=1592328663.448100&cid=CTVPG6L4R
+        sourceDetail: `${sourceDetailPrefix}housing`,
       },
     },
   },
@@ -49,19 +51,18 @@ export const gqlVariables = {
         assetId: '3iLKsRlFQ1k9ddQbRb3RN8',
         sourceDetail: `${sourceDetailPrefix}votebymail`,
       },
-      // Election Dabbler
+      /**
+       * This quiz result is intentionally missing a sourceDetail for sake of testing.
+       * A previous iteration of the quiz had one result where we didn't want to display the start
+       * voter registration form (for users who are ineligible to vote), so we didn't include a
+       * sourceDetail.
+       */
       '2KfkCOTi7u4CqAyyCuGyci': {
         // Rabbit:
         assetId: '3uB88eZmTNEaoFxV9pZ8hX',
-        sourceDetail: `${sourceDetailPrefix}inperson`,
       },
     },
   },
 };
 
-export const placeholderContent = `Saepe cupiditate non. Facere velit vitae corporis. Voluptatum illo inventore quasi earum.
-
-  **Necessitatibus odio nam.** Repudiandae commodi fugit. Placeat consequuntur autem dignissimos ducimus excepturi quis neque. Qui maiores voluptas illum et est laborum quia veniam. 
-
-  Dicta quia quas impedit. Laborum id eius molestias eveniet temporibus. Rerum tempora id eos officiis omnis nam. Eveniet quod quam et hic eligendi ab et. Tempora qui consequatur dolor laudantium voluptate magnam soluta. Eaque saepe quisquam similique voluptatum error.
-`;
+export { gqlVariables as default };
