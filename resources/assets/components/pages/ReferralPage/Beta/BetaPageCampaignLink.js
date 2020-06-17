@@ -28,7 +28,11 @@ const ReferralPageCampaignLink = ({ campaignId, userId }) => (
       const data = res.campaignWebsiteByCampaignId;
 
       if (!data) {
-        return <ErrorBlock />;
+        return (
+          <ErrorBlock
+            error={`Referral Page Campaign Link could not find Campaign Website for Campaign ID: ${campaignId}`}
+          />
+        );
       }
 
       return (

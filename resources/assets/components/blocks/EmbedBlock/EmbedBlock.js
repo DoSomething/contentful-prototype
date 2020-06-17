@@ -34,7 +34,11 @@ const EmbedBlock = props => {
       return <CartoTemplate {...props} />;
 
     default:
-      return <ErrorBlock />;
+      return (
+        <ErrorBlock
+          error={`Embed Block URL contains a non permitted hostname. Hostname: ${hostname}`}
+        />
+      );
   }
 };
 

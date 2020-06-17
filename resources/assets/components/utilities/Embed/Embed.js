@@ -64,7 +64,7 @@ const Embed = props => {
           const embed = get(data, 'embed', {});
 
           if (error) {
-            return <ErrorBlock />;
+            return <ErrorBlock error={error} />;
           }
 
           // If an <iframe> code snippet is provided, use that.

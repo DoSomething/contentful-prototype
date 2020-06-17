@@ -39,7 +39,11 @@ const ContentfulAsset = ({ id, width, height }) => (
       }
 
       if (error || !data.asset) {
-        return <ErrorBlock />;
+        return (
+          <ErrorBlock
+            error={error || `Could not load Contentful Asset for ID: ${id}.`}
+          />
+        );
       }
 
       const { url, description } = data.asset;
