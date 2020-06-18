@@ -5,11 +5,11 @@ import { css } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
-import ErrorPage from '../pages/ErrorPage';
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
 import Placeholder from '../utilities/Placeholder';
 import CampaignHeader from '../utilities/CampaignHeader';
+import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import CoverImage from '../utilities/CoverImage/CoverImage';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
@@ -70,7 +70,7 @@ const CampaignBanner = ({
   });
 
   if (error) {
-    return <ErrorPage error={error} />;
+    return <ErrorBlock error={error} />;
   }
 
   const campaignGroupTypeId = get(data, 'campaign.groupTypeId', null);
