@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 
 import { report } from '../../helpers';
 import ErrorDetails from '../utilities/ErrorDetails';
@@ -43,11 +43,7 @@ const ErrorPage = ({ error }) => {
 };
 
 ErrorPage.propTypes = {
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-};
-
-ErrorPage.defaultProps = {
-  error: null,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
 };
 
 export default ErrorPage;

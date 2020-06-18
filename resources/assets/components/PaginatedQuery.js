@@ -23,7 +23,7 @@ const PaginatedQuery = ({ query, queryName, variables, count, children }) => (
 
       if (result.error) {
         console.error(`${queryName} ERROR: ${result.error}`);
-        return <ErrorBlock />;
+        return <ErrorBlock error={result.error} />;
       }
 
       return children({

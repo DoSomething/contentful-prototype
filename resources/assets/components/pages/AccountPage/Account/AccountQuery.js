@@ -33,7 +33,7 @@ const AccountQuery = ({ userId }) => {
   }
 
   if (error) {
-    return <ErrorPage />;
+    return <ErrorPage error={error} />;
   }
 
   if (!data.user) {

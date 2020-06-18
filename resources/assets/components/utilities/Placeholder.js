@@ -6,7 +6,7 @@ import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
 const Placeholder = ({ error }) => {
   if (error) {
-    return <ErrorBlock />;
+    return <ErrorBlock error={error} />;
   }
 
   return (

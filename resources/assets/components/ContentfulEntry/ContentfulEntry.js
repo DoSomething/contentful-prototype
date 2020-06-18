@@ -35,18 +35,18 @@ const DEFAULT_BLOCK = { fields: { type: null } };
 
 class ContentfulEntry extends React.Component {
   state = {
-    hasError: false,
+    error: null,
   };
 
   componentDidCatch(error) {
-    this.setState({ hasError: true });
+    this.setState({ error });
     report(error);
   }
 
   render() {
     // Did we hit an error? :(
-    if (this.state.hasError) {
-      return <ErrorBlock />;
+    if (this.state.error) {
+      return <ErrorBlock error={this.state.error} />;
     }
 
     // Otherwise, find the corresponding component & render it!
