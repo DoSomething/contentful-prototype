@@ -8,6 +8,7 @@ import {
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 import PrimaryButton from '../Button/PrimaryButton';
+import Spinner from '../../artifacts/Spinner/Spinner';
 import { getVoterRegistrationTrackingSource } from '../../../helpers';
 
 const StartVoterRegistrationForm = ({
@@ -20,6 +21,7 @@ const StartVoterRegistrationForm = ({
 }) => {
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   const trackingSource = getVoterRegistrationTrackingSource(
     sourceDetail,
@@ -34,6 +36,8 @@ const StartVoterRegistrationForm = ({
   };
 
   const handleSubmit = () => {
+    setSubmitted(true);
+
     trackAnalyticsEvent('clicked_voter_registration_action', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.campaignAction,
@@ -102,7 +106,16 @@ const StartVoterRegistrationForm = ({
             attributes={{ 'data-testid': 'voter-registration-submit-button' }}
             className="w-full"
             isDisabled={isDisabled}
-            text="Start Your Registration"
+            text={
+              submitted ? (
+                <div className="flex justify-center">
+                  <Spinner />
+                  <span className="pl-1 pt-1">Processing...</span>
+                </div>
+              ) : (
+                'Start Your Registration'
+              )
+            }
             type="submit"
           />
         </form>
