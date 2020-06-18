@@ -109,6 +109,7 @@ module.exports = function(migration) {
           'embedded-entry-block': [
             {
               linkContentType: [
+                'callToAction',
                 'contentBlock',
                 'galleryBlock',
                 'imagesBlock',
