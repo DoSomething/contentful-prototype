@@ -46,6 +46,27 @@ StatBlock.propTypes = {
   testId: PropTypes.string.isRequired,
 };
 
+const ProgressBar = ({ goalTotal, goalProgess, testId }) => {
+  const percentCompleted = (goalProgess / goalTotal) * 100;
+  return (
+    <div className="pt-3">
+      <span className="font-bold uppercase text-gray-600">{`${percentCompleted}% To Your Goal!`}</span>
+      <h1
+        data-testid={testId}
+        className="font-normal font-league-gothic text-3xl"
+      >
+        {percentCompleted}
+      </h1>
+    </div>
+  );
+};
+
+ProgressBar.propTypes = {
+  goalProgess: PropTypes.number.isRequired,
+  goalTotal: PropTypes.number.isRequired,
+  testId: PropTypes.string.isRequired,
+};
+
 const GroupTemplate = ({ group }) => {
   return (
     <>
@@ -57,6 +78,11 @@ const GroupTemplate = ({ group }) => {
       >
         {data => (
           <>
+            <ProgressBar
+              goalProgess={data.groupReferrals.length || 5}
+              goalTotal={group.goal || 50}
+              testId="group-progress"
+            />
             <StatBlock
               amount={group.goal || 50}
               label="Your group’s registration goal"
