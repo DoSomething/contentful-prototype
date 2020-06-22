@@ -1,11 +1,10 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 
 import Query from '../../../Query';
-import { tailwind } from '../../../../helpers';
 import { getUserId } from '../../../../helpers/auth';
+import ProgressBar from '../../../utilities/ProgressBar/ProgressBar';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
@@ -48,45 +47,6 @@ StatBlock.propTypes = {
   testId: PropTypes.string.isRequired,
 };
 
-const ProgressBar = ({ goalTotal, goalProgess, testId }) => {
-  const percentCompleted = (goalProgess / goalTotal) * 100;
-
-  const tailwindYellow = tailwind('colors.yellow');
-  const tailwindGray = tailwind('colors.gray');
-  const progressBarContainer = css`
-    position: relative;
-    background: ${tailwindGray['200']};
-    height: 20px;
-    width: 350px;
-    border-radius: 50px;
-    border: 1px solid #fff;
-  `;
-  const progressBar = css`
-    background: ${tailwindYellow['500']};
-    height: 100%;
-    border-radius: inherit;
-    transition: width 5s ease-in;
-  `;
-  const label =
-    percentCompleted > 100
-      ? "You're over your goal!"
-      : `${percentCompleted}% To Your Goal!`;
-  return (
-    <div data-testid={testId} className="pt-3">
-      <span className="font-bold uppercase text-gray-600">{label}</span>
-      <div css={progressBarContainer}>
-        <div css={progressBar} style={{ width: `${percentCompleted}%` }} />
-      </div>
-    </div>
-  );
-};
-
-ProgressBar.propTypes = {
-  goalProgess: PropTypes.number.isRequired,
-  goalTotal: PropTypes.number.isRequired,
-  testId: PropTypes.string.isRequired,
-};
-
 const GroupTemplate = ({ group }) => {
   return (
     <>
@@ -99,7 +59,7 @@ const GroupTemplate = ({ group }) => {
         {data => (
           <>
             <ProgressBar
-              goalProgess={data.groupReferrals.length || 60}
+              goalProgess={data.groupReferrals.length || 35}
               goalTotal={group.goal || 50}
               testId="group-progress"
             />
