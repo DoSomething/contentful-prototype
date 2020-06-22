@@ -174,7 +174,7 @@ class SocialDriveAction extends React.Component {
                 </div>
               ) : null}
 
-              <div className="link-bar">
+              <div className="link-bar h-10">
                 <input
                   readOnly
                   type="text"
@@ -185,7 +185,7 @@ class SocialDriveAction extends React.Component {
                 />
                 <button
                   type="button"
-                  className="text-field link-copy-button"
+                  className="text-field link-copy-button py-2"
                   onClick={this.handleCopyLinkClick}
                   disabled={loading}
                 >
