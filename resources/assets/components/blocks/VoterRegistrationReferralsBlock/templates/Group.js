@@ -59,7 +59,7 @@ const GroupTemplate = ({ group }) => {
         {data => (
           <>
             <ProgressBar
-              goalProgess={data.groupReferrals.length || 35}
+              goalProgess={data.groupReferrals.length}
               goalTotal={group.goal || 50}
               testId="group-progress"
             />
