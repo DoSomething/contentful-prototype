@@ -36,12 +36,10 @@ const GroupSelect = ({ groupTypeId, onChange }) => {
    */
   return (
     <AsyncSelect
-      defaultOptions
       getOptionLabel={group => group.name}
       getOptionValue={group => group.id}
       id="select-group-dropdown"
       instanceId="select-group-"
-      isClearable
       loadOptions={(input, callback) => {
         if (!input) {
           return Promise.resolve([]);
