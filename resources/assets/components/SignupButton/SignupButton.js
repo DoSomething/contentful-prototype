@@ -96,7 +96,7 @@ const SignupButton = props => {
           <div className="pb-3">
             <GroupSelect
               groupTypeId={campaignGroupTypeId}
-              onChange={selected => setGroupId(selected.value)}
+              onChange={selected => setGroupId(selected.id)}
               onFocus={onFocus}
             />
           </div>
