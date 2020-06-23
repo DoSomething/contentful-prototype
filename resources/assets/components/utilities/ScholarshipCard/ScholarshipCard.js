@@ -7,7 +7,6 @@ import {
   contentfulImageSrcset,
   contentfulImageUrl,
   getHumanFriendlyDate,
-  handleScholarshipCardShareClick,
 } from '../../../helpers';
 
 // Write a graphql query to get campaign information for a specific id
