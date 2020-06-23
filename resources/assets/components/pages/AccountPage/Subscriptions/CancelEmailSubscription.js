@@ -2,7 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-import LinkButton from '.../utilities/Button/LinkButton';
+import LinkButton from '../../../utilities/Button/LinkButton';
+import Spinner from '../../../artifacts/Spinner/Spinner';
 
 const EMAIL_SUBSCRIPTION_STATUS = gql`
   query EmailSubscriptionStatus($userId: String!) {
@@ -39,26 +40,28 @@ const CancelEmailSubscription = () => {
     return <p>Something went wrong!</p>;
   }
 
+  if (loading) {
+    return Spinner;
+  }
   return (
     <div>
-      <p>
-        "Need a break?
-        <LinkButton
-          attributes={attributes}
-          className={classes}
-          href=""
-          onClick={() =>
-            updateEmailSubscriptionStatus({
-              variables: {
-                userId,
-                subscribed: false,
-              },
-            })
-          }
-          text="Unsubscribe"
-        />
-        from all newsletters and account notification emails"
-      </p>
+      {data.user.EMAIL_SUBSCRIPTION_STATUS === true ? (
+        <p>
+          Need a break?
+          <LinkButton
+            onClick={() =>
+              updateEmailSubscriptionStatus({
+                variables: {
+                  userId,
+                  subscribed: false,
+                },
+              })
+            }
+            text="Unsubscribe"
+          />
+          from all newsletters and account notification emails
+        </p>
+      ) : null}
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import EmailSubscriptions from './EmailSubscriptions';
+import CancelEmailSubscription from './CancelEmailSubscription';
 
 const Subscriptions = props => (
   <div className="grid-wide">
@@ -12,6 +13,7 @@ const Subscriptions = props => (
     </p>
 
     <EmailSubscriptions {...props} />
+    <CancelEmailSubscription userId={props.user.userId} />
   </div>
 );
 
