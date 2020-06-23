@@ -14,7 +14,7 @@ const SEARCH_GROUPS_QUERY = gql`
   }
 `;
 
-const GroupSelect = ({ groupTypeId, onChange }) => {
+const GroupSelect = ({ groupTypeId, onChange, onFocus }) => {
   /**
    * This is copied by example from the blocks/CurrentSchoolBlock/SchoolSelect, which has comments
    * detailing debouncing the useApolloClient hook (AsyncSelect loadOptions expects a Promise).
@@ -52,6 +52,7 @@ const GroupSelect = ({ groupTypeId, onChange }) => {
       }}
       noOptionsMessage={() => 'Enter your chapter name'}
       onChange={onChange}
+      onFocus={onFocus}
     />
   );
 };
