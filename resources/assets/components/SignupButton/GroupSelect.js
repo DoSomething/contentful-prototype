@@ -59,6 +59,7 @@ const GroupSelect = ({ groupTypeId, onChange }) => {
 GroupSelect.propTypes = {
   groupTypeId: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
 };
 
 export default GroupSelect;

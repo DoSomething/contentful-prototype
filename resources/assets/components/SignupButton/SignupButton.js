@@ -61,6 +61,18 @@ const SignupButton = props => {
     });
   };
 
+  const onFocus = () => {
+    trackAnalyticsEvent('clicked_group_finder', {
+      action: 'form_clicked',
+      category: EVENT_CATEGORIES.campaignAction,
+      label: 'group_finder',
+      context: {
+        campaignId,
+        pageId,
+      },
+    });
+  };
+
   // In descending priority: button-specific text prop,
   // campaign action text override, or standard "Take Action" copy.
   const buttonCopy = text || campaignActionText;
@@ -83,7 +95,8 @@ const SignupButton = props => {
           <div className="pb-3">
             <GroupSelect
               groupTypeId={campaignGroupTypeId}
-              onChange={selected => setGroupId(selected.id)}
+              onChange={selected => setGroupId(selected.value)}
+              onFocus={onFocus}
             />
           </div>
           <PrimaryButton
