@@ -1,5 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import { uniqBy } from 'lodash';
 import pluralize from 'pluralize';
 
 import Query from '../../../Query';
@@ -9,10 +10,11 @@ import CompletedReferralIcon from './completed-referral.svg';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 import ReferralsGallery from '../../../utilities/ReferralsGallery/ReferralsGallery';
 
-const SIGNUP_REFERRALS_QUERY = gql`
+export const SIGNUP_REFERRALS_QUERY = gql`
   query SignupReferrals($referrerUserId: String!) {
     signups(referrerUserId: $referrerUserId) {
       id
+      userId
       user {
         displayName
       }
@@ -29,7 +31,11 @@ const SignupReferralsGallery = () => (
       variables={{ referrerUserId: getUserId() }}
     >
       {data => {
-        const numberOfReferrals = data.signups.length;
+        // Avoid passing duplicate referrals (multiple referral signups from the same user) to the referrals gallery.
+        const referralLabels = uniqBy(data.signups, 'userId').map(
+          signup => signup.user.displayName,
+        );
+        const numberOfReferrals = referralLabels.length;
 
         return (
           <>
@@ -45,9 +51,7 @@ const SignupReferralsGallery = () => (
             <ReferralsGallery
               referralIcon={CompletedReferralIcon}
               placeholderIcon={EmptyReferralIcon}
-              referralLabels={data.signups.map(
-                signup => signup.user.displayName,
-              )}
+              referralLabels={referralLabels}
             />
           </>
         );
