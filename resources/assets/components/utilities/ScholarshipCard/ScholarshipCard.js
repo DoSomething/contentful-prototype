@@ -7,6 +7,7 @@ import {
   contentfulImageSrcset,
   contentfulImageUrl,
   getHumanFriendlyDate,
+  handleScholarshipCardShareClick,
 } from '../../../helpers';
 
 // Write a graphql query to get campaign information for a specific id
@@ -48,6 +49,14 @@ const ScholarshipCard = ({ campaign }) => {
     { height: 410, width: 730 },
     { height: 820, width: 1460 },
   ]);
+
+  const handleScholarshipCardShareClick = () => {
+    trackAnalyticsEvent('clicked_scholarshipCard_action', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.siteAction,
+      label: 'scholarship_gallery_card',
+    });
+  };
 
   return (
     <article className="flex flex-col h-full relative text-left">
@@ -95,7 +104,12 @@ const ScholarshipCard = ({ campaign }) => {
           </div>
         </div>
 
-        <SecondaryButton className="w-full" href={path} text="Apply Now" />
+        <SecondaryButton
+          className="w-full"
+          href={path}
+          text="Apply Now"
+          onClick={handleScholarshipCardShareClick}
+        />
       </div>
     </article>
   );
