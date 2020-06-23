@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
+import ProgressBar from '../../../utilities/ProgressBar/ProgressBar';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
@@ -57,6 +58,11 @@ const GroupTemplate = ({ group }) => {
       >
         {data => (
           <>
+            <ProgressBar
+              completed={data.groupReferrals.length}
+              target={group.goal || 50}
+              testId="group-progress"
+            />
             <StatBlock
               amount={group.goal || 50}
               label="Your group’s registration goal"
