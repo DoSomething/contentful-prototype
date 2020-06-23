@@ -26,7 +26,7 @@ const GroupSelect = ({ groupTypeId, onChange }) => {
           name: searchString,
         },
       })
-      .then(result => callback(result.data.groups.length))
+      .then(result => callback(result.data.groups))
       .catch(error => callback(error));
   }, 250);
 
