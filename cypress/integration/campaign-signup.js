@@ -211,6 +211,7 @@ describe('Campaign Signup', () => {
     );
     cy.findByTestId('join-group-signup-button').should('be.disabled');
     cy.get('#select-group-dropdown').click();
+    cy.get('#react-select-select-group--input').type('new');
     cy.get('#react-select-select-group--option-0').click();
     cy.findByTestId('join-group-signup-button').should('be.enabled');
   });

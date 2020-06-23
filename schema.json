@@ -276,7 +276,7 @@
           },
           {
             "name": "paginatedCampaigns",
-            "description": "Experimental: Get a Relay-style paginated collection of campaigns.",
+            "description": "Get a Relay-style paginated collection of campaigns.",
             "args": [
               {
                 "name": "first",
@@ -396,8 +396,22 @@
                 "name": "groupTypeId",
                 "description": "The group type ID to filter groups by.",
                 "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "name",
+                "description": "The group name to filter groups by.",
+                "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -411,6 +425,63 @@
                 "name": "Group",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "paginatedGroups",
+            "description": "Get a Relay-style paginated collection of groups.",
+            "args": [
+              {
+                "name": "first",
+                "description": "Get the first N results.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": "20"
+              },
+              {
+                "name": "after",
+                "description": "The cursor to return results after.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "groupTypeId",
+                "description": "The group type ID to filter groups by.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "name",
+                "description": "The group name to filter groups by.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "GroupCollection",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1017,7 +1088,7 @@
           },
           {
             "name": "signups",
-            "description": "Get a paginated collection of signups.",
+            "description": "Get a list of signups.",
             "args": [
               {
                 "name": "campaignId",
@@ -1114,7 +1185,7 @@
           },
           {
             "name": "paginatedSignups",
-            "description": null,
+            "description": "Get a paginated collection of signups.",
             "args": [
               {
                 "name": "campaignId",
@@ -4227,7 +4298,7 @@
           },
           {
             "name": "contentfulCampaignId",
-            "description": "The contentful campaign id where this campaign is being used.",
+            "description": "The Contentful campaign ID where this campaign is being used.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -4363,11 +4434,23 @@
           },
           {
             "name": "groupTypeId",
-            "description": "The group type id associated with this campaign.",
+            "description": "The user activity group type ID associated with this campaign.",
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupType",
+            "description": "The user activity group type associated with this campaign.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "GroupType",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4424,6 +4507,73 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GroupType",
+        "description": "A type of user activity group.",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The unique ID for this group type.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": "The name of the group type.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this group type was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this group type was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6032,73 +6182,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "OBJECT",
-        "name": "GroupType",
-        "description": "A type of user activity group.",
-        "fields": [
-          {
-            "name": "id",
-            "description": "The unique ID for this group type.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": "The name of the group type.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": "The time this group type was last modified.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": "The time when this group type was originally created.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "ENUM",
         "name": "ReviewStatus",
         "description": "Posts are reviewed by DoSomething.org staff for content.",
@@ -6571,7 +6654,7 @@
       {
         "kind": "OBJECT",
         "name": "CampaignCollection",
-        "description": "Experimental: A paginated list of campaigns. This is a 'Connection' in Relay's\nparlance, and follows the [Relay Cursor Connections](https://dfurn.es/338oQ6i) specification.",
+        "description": "A paginated list of campaigns. This is a 'Connection' in Relay's parlance, and\nfollows the [Relay Cursor Connections](https://dfurn.es/338oQ6i) specification.",
         "fields": [
           {
             "name": "edges",
@@ -6614,7 +6697,7 @@
       {
         "kind": "OBJECT",
         "name": "CampaignEdge",
-        "description": "Experimental: Campaign in a paginated list.",
+        "description": "Campaign in a paginated list.",
         "fields": [
           {
             "name": "cursor",
@@ -6657,7 +6740,7 @@
       {
         "kind": "OBJECT",
         "name": "PageInfo",
-        "description": "Experimental: Information about a paginated list.",
+        "description": "Information about a paginated list.",
         "fields": [
           {
             "name": "endCursor",
@@ -6697,6 +6780,92 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GroupCollection",
+        "description": "A paginated list of user activity groups. This is a 'Connection' in Relay's\nparlance, and follows the [Relay Cursor Connections](https://dfurn.es/338oQ6i) specification.",
+        "fields": [
+          {
+            "name": "edges",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "GroupEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pageInfo",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PageInfo",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GroupEdge",
+        "description": "User activity group in a paginated list.",
+        "fields": [
+          {
+            "name": "cursor",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "node",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Group",
                 "ofType": null
               }
             },
@@ -6798,7 +6967,7 @@
       {
         "kind": "OBJECT",
         "name": "SignupCollection",
-        "description": "Experimental: A paginated list of signups. This is a 'Connection' in Relay's\nparlance, and follows the [Relay Cursor Connections](https://dfurn.es/338oQ6i) specification.",
+        "description": "A paginated list of signups. This is a 'Connection' in Relay's parlance, and\nfollows the [Relay Cursor Connections](https://dfurn.es/338oQ6i) specification.",
         "fields": [
           {
             "name": "edges",
@@ -6841,7 +7010,7 @@
       {
         "kind": "OBJECT",
         "name": "SignupEdge",
-        "description": "Experimental: Signup in a paginated list.",
+        "description": "Signup in a paginated list.",
         "fields": [
           {
             "name": "cursor",

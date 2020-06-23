@@ -1,19 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import Select from 'react-select';
+import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
+import AsyncSelect from 'react-select/async';
+import { useApolloClient } from '@apollo/react-hooks';
 
-import Spinner from '../artifacts/Spinner/Spinner';
-import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
-
-/**
- * Note: eventually we'll need to query by the group name, once we have more than 20 results
- * in a list of groups. Will also want to debounce search (see CurrentSchoolBlock).
- */
 const SEARCH_GROUPS_QUERY = gql`
-  query SearchGroupsQuery($groupTypeId: Int!) {
-    groups(groupTypeId: $groupTypeId) {
+  query SearchGroupsQuery($groupTypeId: Int!, $name: String!) {
+    groups(groupTypeId: $groupTypeId, name: $name) {
       id
       name
     }
@@ -21,31 +15,43 @@ const SEARCH_GROUPS_QUERY = gql`
 `;
 
 const GroupSelect = ({ groupTypeId, onChange }) => {
-  const { loading, error, data } = useQuery(SEARCH_GROUPS_QUERY, {
-    variables: { groupTypeId },
-  });
+  /**
+   * This is copied by example from the blocks/CurrentSchoolBlock/SchoolSelect, which has comments
+   * detailing debouncing the useApolloClient hook (AsyncSelect loadOptions expects a Promise).
+   */
+  const client = useApolloClient();
 
-  if (loading) {
-    return <Spinner className="flex justify-center p-3" />;
-  }
-
-  if (error) {
-    return <ErrorBlock error={error} />;
-  }
+  const fetchGroups = debounce((searchString, callback) => {
+    client
+      .query({
+        query: SEARCH_GROUPS_QUERY,
+        variables: {
+          groupTypeId,
+          name: searchString,
+        },
+      })
+      .then(result => callback(result.data.groups))
+      .catch(error => callback(error));
+  }, 250);
 
   /**
    * Passing id and instanceId props to the Select for use in our Cypress tests.
    * @see https://react-select.com/props#select-props
    */
   return (
-    <Select
+    <AsyncSelect
+      getOptionLabel={group => group.name}
+      getOptionValue={group => group.id}
       id="select-group-dropdown"
       instanceId="select-group-"
+      loadOptions={(input, callback) => {
+        if (!input) {
+          return Promise.resolve([]);
+        }
+        return fetchGroups(input, callback);
+      }}
+      noOptionsMessage={() => 'Enter your chapter name'}
       onChange={onChange}
-      options={data.groups.map(group => ({
-        value: group.id,
-        label: group.name,
-      }))}
     />
   );
 };
