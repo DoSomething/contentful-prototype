@@ -19,13 +19,14 @@ const ProgressBar = ({ goalTotal, goalProgess, testId }) => {
   const progressBar = css`
     background: ${tailwindYellow['500']};
     height: 100%;
+    width: 0px;
     border-radius: inherit;
-    transition: width 5s ease-in;
+    transition: width 1s ease-in;
   `;
 
   const label =
     percentCompleted > 100
-      ? "You're over your goal!"
+      ? `You're ${percentCompleted}% to your goal!`
       : `${percentCompleted}% To Your Goal!`;
 
   const barWidth = percentCompleted > 100 ? 100 : percentCompleted;
