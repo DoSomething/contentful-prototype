@@ -22,12 +22,8 @@
       display: flex;
       flex: 1;
 
-      .link,
-      .link-copy-button {
-        padding: 6px 12px;
-      }
-
       .link {
+        padding: 6px 12px;
         color: $dark-gray;
         overflow: scroll;
         padding-right: 0;
