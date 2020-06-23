@@ -15,6 +15,10 @@ const SEARCH_GROUPS_QUERY = gql`
 `;
 
 const GroupSelect = ({ groupTypeId, onChange }) => {
+  /**
+   * This is copied by example from the blocks/CurrentSchoolBlock/SchoolSelect, which has comments
+   * detailing debouncing the useApolloClient hook (AsyncSelect loadOptions expects a Promise).
+   */
   const client = useApolloClient();
 
   const fetchGroups = debounce((searchString, callback) => {
