@@ -19,9 +19,7 @@ const ProgressBar = ({ goalTotal, goalProgess, testId }) => {
   const progressBar = css`
     background: ${tailwindYellow['500']};
     height: 100%;
-    width: 0px;
     border-radius: inherit;
-    transition: width 1s ease-in;
   `;
 
   const label =
