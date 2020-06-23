@@ -24,7 +24,7 @@ const ReferFriendsTab = () => (
       />
     </div>
 
-    <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-11 xxl:col-start-2 xxl:col-span-10">
+    <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-11 xxl:col-start-2 xxl:col-span-10 pt-4">
       <SignupReferralsGallery />
     </div>
 
