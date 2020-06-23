@@ -5,7 +5,7 @@ import { css } from '@emotion/core';
 import { tailwind } from '../../../helpers';
 
 const ProgressBar = ({ goalTotal, goalProgess, testId }) => {
-  const percentCompleted = (goalProgess / goalTotal) * 100;
+  const percentCompleted = Math.round((goalProgess / goalTotal) * 100);
 
   const tailwindYellow = tailwind('colors.yellow');
 
