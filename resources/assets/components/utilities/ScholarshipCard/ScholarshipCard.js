@@ -8,6 +8,10 @@ import {
   contentfulImageUrl,
   getHumanFriendlyDate,
 } from '../../../helpers';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 // Write a graphql query to get campaign information for a specific id
 export const scholarshipCardFragment = gql`
