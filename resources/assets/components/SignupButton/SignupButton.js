@@ -42,6 +42,7 @@ const SignupButton = props => {
       context: {
         campaignId,
         contextSource,
+        groupId,
         pageId,
       },
     });
