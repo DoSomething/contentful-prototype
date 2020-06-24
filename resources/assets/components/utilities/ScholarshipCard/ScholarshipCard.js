@@ -8,6 +8,11 @@ import {
   contentfulImageUrl,
   getHumanFriendlyDate,
 } from '../../../helpers';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+  getPageContext,
+} from '../../../helpers/analytics';
 
 // Write a graphql query to get campaign information for a specific id
 export const scholarshipCardFragment = gql`
@@ -39,6 +44,7 @@ const ScholarshipCard = ({ campaign }) => {
     scholarshipAmount,
     scholarshipDeadline,
     showcaseImage,
+    campaignId,
     staffPick,
     path,
   } = campaign;
@@ -48,6 +54,19 @@ const ScholarshipCard = ({ campaign }) => {
     { height: 410, width: 730 },
     { height: 820, width: 1460 },
   ]);
+
+  const handleScholarshipCardShareClick = () => {
+    trackAnalyticsEvent('clicked_scholarship_gallery_block_apply_now', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.siteAction,
+      label: 'scholarship_gallery_card',
+      context: {
+        url: path,
+        ...getPageContext(),
+        campaignId,
+      },
+    });
+  };
 
   return (
     <article className="flex flex-col h-full relative text-left">
@@ -95,7 +114,12 @@ const ScholarshipCard = ({ campaign }) => {
           </div>
         </div>
 
-        <SecondaryButton className="w-full" href={path} text="Apply Now" />
+        <SecondaryButton
+          className="w-full"
+          href={path}
+          text="Apply Now"
+          onClick={handleScholarshipCardShareClick}
+        />
       </div>
     </article>
   );
