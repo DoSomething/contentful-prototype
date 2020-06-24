@@ -111,6 +111,8 @@ describe('Voter Registration Referrals Block', () => {
     const user = userFactory();
     const group = groupFactory();
 
+    const percentCompleted = Math.round((5 / group.goal) * 100);
+
     cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group }],
     });
@@ -133,6 +135,9 @@ describe('Voter Registration Referrals Block', () => {
     cy.findAllByTestId('group-goal').contains(group.goal);
     cy.findAllByTestId('group-total').contains(5);
     cy.findAllByTestId('individual-total').contains(5);
+    cy.findAllByTestId('group-progress').contains(
+      `${percentCompleted}% to your goal!`,
+    );
   });
 
   it('Group displays group goal as 50 if not set on group', () => {
@@ -153,5 +158,33 @@ describe('Voter Registration Referrals Block', () => {
     cy.findAllByTestId('group-goal').contains(50);
     cy.findAllByTestId('group-total').contains(0);
     cy.findAllByTestId('individual-total').contains(0);
+  });
+
+  it('Group displays group progress if over the group goal', () => {
+    const user = userFactory();
+    const group = groupFactory();
+    group.goal = 3;
+
+    cy.mockGraphqlOp('CampaignSignupQuery', {
+      signups: [{ id: 11122016, group }],
+    });
+    cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
+      // TODO: Fix me (same as tests above).
+      posts: [
+        fakePost('Sarah C.'),
+        fakePost('Kyle R.'),
+        fakePost('John C.'),
+        fakePost('Miles D.'),
+        fakePost('Tarissa D.'),
+      ],
+    });
+
+    cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
+
+    cy.findAllByTestId('group-goal').contains(3);
+    cy.findAllByTestId('group-total').contains(5);
+    cy.findAllByTestId('group-progress').contains(
+      "🎉 You're at 167% of your goal! 🎉",
+    );
   });
 });

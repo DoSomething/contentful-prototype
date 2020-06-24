@@ -24,8 +24,8 @@ const ProgressBar = ({ completed, target, testId }) => {
 
   const label =
     percentCompleted > 100
-      ? `You're ${percentCompleted}% to your goal!`
-      : `${percentCompleted}% To Your Goal!`;
+      ? `🎉 You're at ${percentCompleted}% of your goal! 🎉`
+      : `${percentCompleted}% to your goal!`;
 
   const barWidth = percentCompleted > 100 ? 100 : percentCompleted;
 
