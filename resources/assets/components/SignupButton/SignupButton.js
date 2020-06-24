@@ -64,7 +64,7 @@ const SignupButton = props => {
 
   const handleFocus = () => {
     trackAnalyticsEvent('clicked_group_finder', {
-      action: 'form_clicked',
+      action: 'field_focused',
       category: EVENT_CATEGORIES.campaignAction,
       label: 'group_finder',
       context: {
