@@ -43,6 +43,7 @@ const ScholarshipCard = ({ campaign }) => {
     scholarshipAmount,
     scholarshipDeadline,
     showcaseImage,
+    campaignId,
     staffPick,
     path,
   } = campaign;
@@ -54,10 +55,17 @@ const ScholarshipCard = ({ campaign }) => {
   ]);
 
   const handleScholarshipCardShareClick = () => {
-    trackAnalyticsEvent('clicked_scholarshipCard_action', {
+    trackAnalyticsEvent('clicked_scholarship_gallery_block_apply_now', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.siteAction,
       label: 'scholarship_gallery_card',
+      context: {
+        url: path,
+        campaignId,
+        pageId:
+          get(window, 'STATE.campaign.id', null) ||
+          get(window, 'STATE.page.id', null),
+      },
     });
   };
 
