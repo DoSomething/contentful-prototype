@@ -63,7 +63,7 @@ const ScholarshipCard = ({ campaign }) => {
       context: {
         url: path,
         campaignId,
-        pageId: getPageContext(),
+        ...getPageContext(),
       },
     });
   };
