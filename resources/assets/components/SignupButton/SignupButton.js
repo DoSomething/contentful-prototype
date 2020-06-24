@@ -62,7 +62,7 @@ const SignupButton = props => {
     });
   };
 
-  const onFocus = () => {
+  const handleFocus = () => {
     trackAnalyticsEvent('clicked_group_finder', {
       action: 'form_clicked',
       category: EVENT_CATEGORIES.campaignAction,
@@ -97,7 +97,7 @@ const SignupButton = props => {
             <GroupSelect
               groupTypeId={campaignGroupTypeId}
               onChange={selected => setGroupId(selected.id)}
-              onFocus={onFocus}
+              onFocus={handleFocus}
             />
           </div>
           <PrimaryButton
