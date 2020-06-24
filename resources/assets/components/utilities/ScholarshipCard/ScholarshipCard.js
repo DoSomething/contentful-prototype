@@ -62,8 +62,8 @@ const ScholarshipCard = ({ campaign }) => {
       label: 'scholarship_gallery_card',
       context: {
         url: path,
-        campaignId,
         ...getPageContext(),
+        campaignId,
       },
     });
   };
