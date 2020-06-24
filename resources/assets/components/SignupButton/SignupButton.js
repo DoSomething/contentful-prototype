@@ -50,15 +50,10 @@ const SignupButton = props => {
       body: {
         details: JSON.stringify(details),
         group_id: groupId,
-        /**
-         * Uncomment line below when we're ready to start storing signup.referrer_user_id.
-         * @see https://www.pivotaltracker.com/story/show/172747771
-         */
-        // referrer_user_id: query('referrer_user_id'),
+        referrer_user_id: query('referrer_user_id'),
         source_details: JSON.stringify(
           withoutNulls({
             contentful_id: pageId,
-            referrer_user_id: query('referrer_user_id'),
             ...getUtms(),
           }),
         ),
