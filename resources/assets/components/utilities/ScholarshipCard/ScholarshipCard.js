@@ -11,6 +11,7 @@ import {
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
+  getPageContext,
 } from '../../../helpers/analytics';
 
 // Write a graphql query to get campaign information for a specific id
@@ -62,9 +63,7 @@ const ScholarshipCard = ({ campaign }) => {
       context: {
         url: path,
         campaignId,
-        pageId:
-          get(window, 'STATE.campaign.id', null) ||
-          get(window, 'STATE.page.id', null),
+        pageId: getPageContext(),
       },
     });
   };
