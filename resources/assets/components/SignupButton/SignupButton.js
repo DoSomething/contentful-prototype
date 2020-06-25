@@ -42,6 +42,7 @@ const SignupButton = props => {
       context: {
         campaignId,
         contextSource,
+        groupId,
         pageId,
       },
     });
@@ -57,6 +58,34 @@ const SignupButton = props => {
             ...getUtms(),
           }),
         ),
+      },
+    });
+  };
+
+  const handleFocus = () => {
+    trackAnalyticsEvent('focused_group_finder_group', {
+      action: 'field_focused',
+      category: EVENT_CATEGORIES.campaignAction,
+      label: 'group_finder',
+      context: {
+        campaignId,
+        pageId,
+      },
+    });
+  };
+
+  const handleChange = selected => {
+    setGroupId(selected.id);
+
+    trackAnalyticsEvent('clicked_group_finder_group', {
+      action: 'form_clicked',
+      category: EVENT_CATEGORIES.campaignAction,
+      label: 'group_finder',
+      context: {
+        campaignId,
+        // Pass our selected.id to avoid race condition with setting groupId state.
+        groupId: selected.id,
+        pageId,
       },
     });
   };
@@ -83,7 +112,8 @@ const SignupButton = props => {
           <div className="pb-3">
             <GroupSelect
               groupTypeId={campaignGroupTypeId}
-              onChange={selected => setGroupId(selected.id)}
+              onChange={handleChange}
+              onFocus={handleFocus}
             />
           </div>
           <PrimaryButton
