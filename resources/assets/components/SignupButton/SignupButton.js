@@ -83,6 +83,7 @@ const SignupButton = props => {
       label: 'group_finder',
       context: {
         campaignId,
+        groupId,
         pageId,
       },
     });
