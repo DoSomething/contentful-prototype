@@ -3,6 +3,7 @@
 import { cloneDeep } from 'lodash';
 import { userFactory } from '../fixtures/user';
 import { campaignId } from '../fixtures/constants';
+import { campaignPath } from '../fixtures/constants';
 import { emptyResponse, newSignup } from '../fixtures/signups';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
@@ -78,6 +79,40 @@ describe('Campaign Signup', () => {
     cy.get('.card.affirmation').contains('Thanks for joining us!');
     cy.get('.modal-portal > .wrapper.modal-container').click('topRight');
     cy.get('.card.affirmation').should('not.exist');
+  });
+
+  context('Beta Referral campaign signup', () => {
+    /** @test */
+    it('Includes the referrer_user_id query param in the signup payload', () => {
+      const user = userFactory();
+
+      cy.mockGraphqlOp('CampaignBannerQuery', {
+        campaign: {
+          id: campaignId,
+          groupTypeId: null,
+        },
+      });
+
+      // Visit the campaign landing page:
+      cy.withState(exampleCampaign).visit(
+        `${campaignPath}${exampleCampaign.campaign.slug}?referrer_user_id=123`,
+      );
+
+      // Mock the responses we'll be expecting once we hit the signup button:
+      cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
+      cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
+        'signupRequest',
+      );
+
+      cy.contains('button', 'Join Us')
+        .click()
+        .handleLogin(user);
+
+      // The outgoing signup request should include the referrer_user_id.
+      cy.wait('@signupRequest')
+        .its('request.body.referrer_user_id')
+        .should('equal', '123');
+    });
   });
 
   context('Campaign ID configured as referral campaign', () => {
@@ -186,6 +221,8 @@ describe('Campaign Signup', () => {
 
   /** @test */
   it('Visits a groups campaign page, as an unauthenticated user', () => {
+    const user = userFactory();
+
     cy.mockGraphqlOp('SearchGroupsQuery', {
       groups: [
         { id: 1, name: 'New York' },
@@ -214,5 +251,20 @@ describe('Campaign Signup', () => {
     cy.get('#react-select-select-group--input').type('new');
     cy.get('#react-select-select-group--option-0').click();
     cy.findByTestId('join-group-signup-button').should('be.enabled');
+
+    // Mock the responses we'll be expecting once we hit the signup button:
+    cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
+    cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
+      'signupRequest',
+    );
+
+    cy.contains('button', 'Join Group')
+      .click()
+      .handleLogin(user);
+
+    // The outgoing signup request should include the selected group_id.
+    cy.wait('@signupRequest')
+      .its('request.body.group_id')
+      .should('equal', 1);
   });
 });

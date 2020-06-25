@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
-import Placeholder from '../utilities/Placeholder';
+import Spinner from '../artifacts/Spinner/Spinner';
 import CampaignHeader from '../utilities/CampaignHeader';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import CoverImage from '../utilities/CoverImage/CoverImage';
@@ -128,7 +128,7 @@ const CampaignBanner = ({
                     contextSource="campaign_landing_page"
                   />
                 ) : (
-                  <Placeholder />
+                  <Spinner className="flex justify-center p-6 mb-3" />
                 )}
 
                 {affiliateOptInContent ? (
@@ -192,7 +192,7 @@ const CampaignBanner = ({
                     contextSource="scholarship_modal"
                   />
                 ) : (
-                  <Placeholder />
+                  <Spinner className="flex justify-center p-6" />
                 )}
               </div>
             ) : null}
