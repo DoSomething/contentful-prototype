@@ -83,7 +83,8 @@ const SignupButton = props => {
       label: 'group_finder',
       context: {
         campaignId,
-        groupId,
+        // Pass our selected.id to avoid race condition with setting groupId state.
+        groupId: selected.id,
         pageId,
       },
     });
