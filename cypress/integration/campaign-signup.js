@@ -221,6 +221,8 @@ describe('Campaign Signup', () => {
 
   /** @test */
   it('Visits a groups campaign page, as an unauthenticated user', () => {
+    const user = userFactory();
+
     cy.mockGraphqlOp('SearchGroupsQuery', {
       groups: [
         { id: 1, name: 'New York' },
@@ -249,5 +251,20 @@ describe('Campaign Signup', () => {
     cy.get('#react-select-select-group--input').type('new');
     cy.get('#react-select-select-group--option-0').click();
     cy.findByTestId('join-group-signup-button').should('be.enabled');
+
+    // Mock the responses we'll be expecting once we hit the signup button:
+    cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
+    cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
+      'signupRequest',
+    );
+
+    cy.contains('button', 'Join Group')
+      .click()
+      .handleLogin(user);
+
+    // The outgoing signup request should include the selected group_id.
+    cy.wait('@signupRequest')
+      .its('request.body.group_id')
+      .should('equal', 1);
   });
 });
