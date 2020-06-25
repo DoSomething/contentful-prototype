@@ -128,7 +128,6 @@ const CampaignBanner = ({
                     contextSource="campaign_landing_page"
                   />
                 ) : (
-                  <Spinner className="flex justify-center p-6" />
                   <Spinner className="flex justify-center p-6 mb-3" />
                 )}
 
