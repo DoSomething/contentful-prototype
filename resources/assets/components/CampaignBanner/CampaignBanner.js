@@ -129,6 +129,7 @@ const CampaignBanner = ({
                   />
                 ) : (
                   <Spinner className="flex justify-center p-6" />
+                  <Spinner className="flex justify-center p-6 mb-3" />
                 )}
 
                 {affiliateOptInContent ? (
