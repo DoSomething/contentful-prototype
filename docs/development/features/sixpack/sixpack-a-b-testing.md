@@ -66,7 +66,7 @@ Thus, the following describes how a user is converted on a test in Phoenix withi
 
 While on a Campaign landing page, with a Sixpack A/B test experiment running, upon clicking the button to signup for the campaign, the following series of steps occur:
 
-1. When clicked, the `SignupButton` component calls the `storeCampaignSignup()` function from [`/resources/assets/actions/signup.js`](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/actions/signup.js).
+1. When clicked, the `CampaignSignupForm` component calls the `storeCampaignSignup()` function from [`/resources/assets/actions/signup.js`](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/actions/signup.js).
 2. The `storeCampaignSignup()` function dispatches an action to store the signup, and within the payload for the action there is a `sixpackExperiments` property that specifies the `conversion` as `signup` to trigger converting Sixpack experiments on signup.
 3. Next, the `sixpackExperimentMiddleware` catches the dispatched action and it checks for a `payload.meta.sixpackExperiment.conversion` property within the action payload. If it finds a conversion specified on the property, it proceeds to run the `convertOnAction()` method from the `Sixpack` service class.
 4. The `convertOnAction()` method converts all available experiments within the `experiments` list of registered experiments for a page that match a specified convertable action. For example, this will convert all experiments on the page that specify conversion on a "signup" action.

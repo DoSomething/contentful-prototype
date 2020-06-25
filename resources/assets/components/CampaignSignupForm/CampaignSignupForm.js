@@ -8,7 +8,7 @@ import PrimaryButton from '../utilities/Button/PrimaryButton';
 import { isCampaignClosed, query, withoutNulls } from '../../helpers';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
 
-const SignupButton = props => {
+const CampaignSignupForm = props => {
   const {
     affiliateMessagingOptIn,
     campaignActionText,
@@ -129,7 +129,7 @@ const SignupButton = props => {
   );
 };
 
-SignupButton.propTypes = {
+CampaignSignupForm.propTypes = {
   affiliateMessagingOptIn: PropTypes.bool,
   campaignActionText: PropTypes.string,
   campaignGroupTypeId: PropTypes.number,
@@ -143,7 +143,7 @@ SignupButton.propTypes = {
   text: PropTypes.string,
 };
 
-SignupButton.defaultProps = {
+CampaignSignupForm.defaultProps = {
   affiliateMessagingOptIn: false,
   campaignActionText: 'Take Action',
   campaignGroupTypeId: null,
@@ -154,4 +154,4 @@ SignupButton.defaultProps = {
   text: null,
 };
 
-export default SignupButton;
+export default CampaignSignupForm;

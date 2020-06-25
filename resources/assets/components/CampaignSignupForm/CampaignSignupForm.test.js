@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import SignupButton from './SignupButton';
+import CampaignSignupForm from './CampaignSignupForm';
 
 jest.mock('../../helpers/analytics');
 
@@ -13,15 +13,15 @@ const props = {
   storeCampaignSignup,
 };
 
-describe('The SignupButton component', () => {
+describe('The CampaignSignupForm component', () => {
   it('displays a Button', () => {
-    const wrapper = mount(<SignupButton {...props} />);
+    const wrapper = mount(<CampaignSignupForm {...props} />);
 
     expect(wrapper.find('PrimaryButton')).toHaveLength(1);
   });
 
   it('invokes the storeCampaignSignup function when the button is clicked', () => {
-    const wrapper = mount(<SignupButton {...props} />);
+    const wrapper = mount(<CampaignSignupForm {...props} />);
 
     wrapper.find('PrimaryButton').simulate('click');
 
@@ -30,20 +30,22 @@ describe('The SignupButton component', () => {
 
   describe('The signup button text', () => {
     it('defaults to the campaignActiontext', () => {
-      const wrapper = mount(<SignupButton {...props} />);
+      const wrapper = mount(<CampaignSignupForm {...props} />);
 
       expect(wrapper.find('PrimaryButton').text()).toEqual('Take Action');
     });
 
     it('is overriden by the "text" prop', () => {
       const text = 'Text Override!';
-      const wrapper = mount(<SignupButton {...props} text={text} />);
+      const wrapper = mount(<CampaignSignupForm {...props} text={text} />);
 
       expect(wrapper.find('PrimaryButton').text()).toEqual(text);
     });
 
     it('is overriden by the closed state text if the campaign is closed', () => {
-      const wrapper = mount(<SignupButton {...props} endDate="2019-09-08" />);
+      const wrapper = mount(
+        <CampaignSignupForm {...props} endDate="2019-09-08" />,
+      );
 
       expect(wrapper.find('PrimaryButton').text()).toEqual('Notify Me');
     });

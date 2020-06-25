@@ -13,7 +13,7 @@ import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import CoverImage from '../utilities/CoverImage/CoverImage';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
-import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
+import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
 import CampaignInfoBlock from '../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
@@ -117,7 +117,7 @@ const CampaignBanner = ({
                 `}
               >
                 {!loading ? (
-                  <SignupButtonContainer
+                  <CampaignSignupFormContainer
                     campaignGroupTypeId={campaignGroupTypeId}
                     className="block md:mb-3 p-6 text-lg w-full"
                     text={
@@ -185,7 +185,7 @@ const CampaignBanner = ({
                 }`}
               >
                 {!loading ? (
-                  <SignupButtonContainer
+                  <CampaignSignupFormContainer
                     campaignGroupTypeId={campaignGroupTypeId}
                     className="w-full md:px-2"
                     text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
