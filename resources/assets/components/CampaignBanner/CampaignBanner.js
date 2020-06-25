@@ -13,10 +13,10 @@ import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import CoverImage from '../utilities/CoverImage/CoverImage';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
-import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
 import CampaignInfoBlock from '../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
+import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
 import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
   isScholarshipAffiliateReferral,
@@ -131,6 +131,7 @@ const CampaignBanner = ({
                   <Spinner className="flex justify-center p-6 mb-3" />
                 )}
 
+                {/* TODO: Move this into the CampaignSignupForm */}
                 {affiliateOptInContent ? (
                   <AffiliateOptInToggleContainer
                     affiliateOptInContent={affiliateOptInContent}
