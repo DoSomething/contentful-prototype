@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-import LinkButton from '../../../utilities/Button/LinkButton';
 import Spinner from '../../../artifacts/Spinner/Spinner';
 
 const EMAIL_SUBSCRIPTION_STATUS = gql`
@@ -27,11 +27,12 @@ const EMAIL_SUBSCRIPTION_STATUS_MUTATION = gql`
     }
   }
 `;
-const CancelEmailSubscription = () => {
-  const options = { variables: { userId: window.ondurationchange.id } };
+const CancelEmailSubscription = props => {
+  const userId = props.user.id;
+  const options = { variables: { userId } };
 
   const { data, loading, error } = useQuery(EMAIL_SUBSCRIPTION_STATUS, options);
-  const updateEmailSubscriptionStatus = useMutation(
+  const [updateEmailSubscriptionStatus] = useMutation(
     EMAIL_SUBSCRIPTION_STATUS_MUTATION,
     options,
   );
@@ -45,25 +46,34 @@ const CancelEmailSubscription = () => {
   }
   return (
     <div>
-      {data.user.EMAIL_SUBSCRIPTION_STATUS === true ? (
+      {data.user.emailSubscriptionStatus ? (
         <p>
           Need a break?
-          <LinkButton
+          <button
+            className="px-1 text-blue-500 pb-4"
+            type="button"
             onClick={() =>
               updateEmailSubscriptionStatus({
                 variables: {
                   userId,
-                  subscribed: false,
+                  emailSubscriptionStatus: false,
                 },
               })
             }
-            text="Unsubscribe"
-          />
-          from all newsletters and account notification emails
+          >
+            Unsubscribe
+          </button>
+          from all newsletters and account notification emails.
         </p>
       ) : null}
     </div>
   );
+};
+
+CancelEmailSubscription.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string,
+  }).isRequired,
 };
 
 export default CancelEmailSubscription;

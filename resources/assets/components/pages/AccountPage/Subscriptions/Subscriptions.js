@@ -13,7 +13,9 @@ const Subscriptions = props => (
     </p>
 
     <EmailSubscriptions {...props} />
-    <CancelEmailSubscription userId={props.user.userId} />
+    <div>
+      <CancelEmailSubscription {...props} />
+    </div>
   </div>
 );
 
