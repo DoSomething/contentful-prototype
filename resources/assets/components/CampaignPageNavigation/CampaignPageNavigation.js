@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { isActionPage } from '../../helpers';
 import { prepareCampaignPageSlug } from '../../helpers/campaign';
 import PageNavigation from '../utilities/PageNavigation/PageNavigation';
-import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
+import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
 
 const CampaignPageNavigation = ({
   campaignSlug,
@@ -29,7 +29,7 @@ const CampaignPageNavigation = ({
   return campaignPages.length ? (
     <PageNavigation pages={campaignPages}>
       {isAffiliated ? null : (
-        <SignupButtonContainer className="inline-block -inline nav-button" />
+        <CampaignSignupFormContainer className="inline-block -inline nav-button" />
       )}
     </PageNavigation>
   ) : null;

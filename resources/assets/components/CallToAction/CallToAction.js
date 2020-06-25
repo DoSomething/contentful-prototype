@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import Card from '../utilities/Card/Card';
 import { isScholarshipAffiliateReferral } from '../../helpers';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
-import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
+import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
 
 export const CallToActionBlockFragment = gql`
   fragment CallToActionBlockFragment on CallToActionBlock {
@@ -83,7 +83,7 @@ const CallToAction = ({
       ) : null}
 
       {isSignedUp ? null : (
-        <SignupButtonContainer
+        <CampaignSignupFormContainer
           text={
             isScholarshipAffiliateReferral()
               ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT

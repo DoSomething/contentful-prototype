@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import SignupButton from './SignupButton';
+import CampaignSignupForm from './CampaignSignupForm';
 import { storeCampaignSignup } from '../../actions/signup';
 
 /**
@@ -27,4 +27,4 @@ const actionCreators = {
 export default connect(
   mapStateToProps,
   actionCreators,
-)(SignupButton);
+)(CampaignSignupForm);
