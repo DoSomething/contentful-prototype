@@ -53,7 +53,7 @@ The campaign URL that the Beta Page links to will include the alpha's user ID as
 https://www.dosomething.org/us/campaigns/teens-jeans?referrer_user_id=5547be89469c64ec7d8b518d
 ```
 
-This `referrer_user_id` query parameter will be added to the `source_detail` of any new user accounts created by betas.
+This `referrer_user_id` query parameter will be added to the `referrer_user_id` of any new user accounts created by betas, as well as appended to the campaign signup or reportback submitted when the query parameter is attached.
 
 ## Iterations
 

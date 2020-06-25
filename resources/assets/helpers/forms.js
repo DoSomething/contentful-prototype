@@ -2,8 +2,8 @@
 
 import { forEach, get, isInteger } from 'lodash';
 
-import { withoutValueless } from '.';
 import { getUtms } from './utm';
+import { query, withoutValueless } from '.';
 
 /**
  * Calculate the difference between a total value and a submitted value.
@@ -115,6 +115,11 @@ export function getFormData(formData) {
  */
 export function formatPostPayload(data = {}) {
   let formattedData = data;
+
+  // Attach the Referrer User ID query parameter to the payload.
+  if (query('referrer_user_id')) {
+    formattedData.referrer_user_id = query('referrer_user_id');
+  }
 
   // JSON serialize details field which gets validated as JSON.
   if (data.details) {
