@@ -43,7 +43,7 @@ const GroupFinder = ({ context, groupType, onChange }) => {
     });
   };
 
-  const filterByState = { groupType };
+  const { filterByState } = groupType;
 
   return (
     <>
