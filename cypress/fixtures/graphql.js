@@ -155,6 +155,7 @@ export const mocks = {
   }),
   PostGalleryBlock: () => ({
     hideReactions: false,
+    itemsPerRow: 3,
   }),
   CompanyPage: () => ({
     nodeType: 'document',

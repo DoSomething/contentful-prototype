@@ -117,7 +117,7 @@ describe('Campaign Signup', () => {
 
   context('Campaign ID configured as referral campaign', () => {
     /** @test */
-    it('Display Referral Page Banner CTA in affirmation for configured campaign & feature flagged user', () => {
+    it('Displays Referral Page Banner CTA in affirmation for configured campaign', () => {
       const user = userFactory();
       cy.mockGraphqlOp('CampaignBannerQuery', {
         campaign: {
@@ -125,24 +125,18 @@ describe('Campaign Signup', () => {
           groupTypeId: null,
         },
       });
+
       // Log in & visit the campaign pitch page:
       cy.authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
 
       // Mock the response we'll be expecting once we hit "Join Now":
       cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
 
-      // Mock the GraphQL response for the user to ensure they have the
-      // Refer a Friend feature flag enabled.
-      cy.mockGraphqlOp('UserAccountAndSignupsCountQuery', {
-        user: {
-          hasFeatureFlag: () => true,
-        },
-      });
-
       // Click "Join Now" & should get the affirmation modal:
       cy.contains('button', 'Join Us').click();
-      cy.get('.card.affirmation').contains('Thanks for joining us!');
-      cy.get('.cta-register-banner').contains('Benefits With Friends');
+      cy.get('.card.affirmation')
+        .findByTestId('cta-referral-page-banner')
+        .contains('Benefits With Friends');
     });
   });
 
@@ -164,18 +158,11 @@ describe('Campaign Signup', () => {
       // Mock the response we'll be expecting once we hit "Join Now":
       cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
 
-      // Mock the GraphQL response for the user to ensure they have the
-      // Refer a Friend feature flag enabled.
-      cy.mockGraphqlOp('UserAccountAndSignupsCountQuery', {
-        user: {
-          hasFeatureFlag: () => true,
-        },
-      });
-
       // Click "Join Now" & should get the affirmation modal:
       cy.contains('button', 'Join Us').click();
-      cy.get('.card.affirmation').contains('Thanks for joining us!');
-      cy.get('.cta-register-banner').should('not.exist');
+      cy.get('.card.affirmation')
+        .findByTestId('cta-referral-page-banner')
+        .should('not.exist');
     });
   });
 

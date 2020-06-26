@@ -37,9 +37,6 @@ const USER_QUERY = gql`
     user(id: $userId) {
       id
       hasBadgesFlag: hasFeatureFlag(feature: "badges")
-      hasReferFriendsScholarshipFlag: hasFeatureFlag(
-        feature: "refer-friends-scholarship"
-      )
     }
     signupsCount(userId: $userId, limit: 2)
   }
@@ -105,9 +102,7 @@ const Affirmation = ({
               />
             ) : null}
 
-            {get(res, 'user.hasReferFriendsScholarshipFlag', false) ? (
-              <CtaReferralPageBannerContainer />
-            ) : null}
+            <CtaReferralPageBannerContainer />
 
             <div className="p-3">
               <button

@@ -210,8 +210,44 @@ export default {
         internalTitle: '[Test] Example Campaign Landing Page',
         title: 'Example Campaign Landing Page',
         subTitle: null,
-        content:
-          '## The Problem\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit elementum erat in cursus. Donec aliquam tellus at erat gravida, sit amet vehicula velit vehicula. Nam sollicitudin posuere augue et ultricies. Nam dapibus lorem non dui ullamcorper, ac volutpat nunc interdum.\n\n## The Solution\nSed mi est, venenatis at turpis id, scelerisque blandit elit. Phasellus volutpat accumsan arcu, nec porttitor odio sollicitudin non. Maecenas dictum dignissim diam, a rutrum metus tincidunt et. Curabitur felis purus, auctor quis efficitur nec, cursus eget nunc. Integer quis tellus non justo vulputate eleifend ut sit amet leo.',
+        content: {
+          nodeType: 'document',
+          data: [],
+          content: [
+            {
+              nodeType: 'heading-1',
+              content: [
+                {
+                  nodeType: 'text',
+                  value: 'This will have a yellow border bottom',
+                  marks: [],
+                  data: [],
+                },
+              ],
+              data: {
+                target: {
+                  sys: {
+                    id: '7qT9bG21eOhu9svaFL3rJ6',
+                    type: 'Link',
+                    linkType: 'Entry',
+                  },
+                },
+              },
+            },
+            {
+              nodeType: 'paragraph',
+              content: [
+                {
+                  nodeType: 'text',
+                  value: 'This is Rich Text content.',
+                  marks: [],
+                  data: [],
+                },
+              ],
+              data: [],
+            },
+          ],
+        },
         sidebar: [],
         blocks: [],
         additionalContent: null,
