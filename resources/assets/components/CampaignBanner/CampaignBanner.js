@@ -1,7 +1,6 @@
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
@@ -21,7 +20,6 @@ import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptI
 import {
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
-  tailwind,
 } from '../../helpers';
 
 const CAMPAIGN_BANNER_QUERY = gql`
@@ -108,11 +106,6 @@ const CampaignBanner = ({
               <div
                 data-testid="campaign-banner-signup-button"
                 className="bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:p-0 fixed md:static w-full md:w-auto z-10 md:z-auto"
-                css={css`
-                  @media (min-width: ${tailwind('screens.medium')}) {
-                    background-color: none;
-                  }
-                `}
               >
                 {!loading ? (
                   <SignupButtonContainer
