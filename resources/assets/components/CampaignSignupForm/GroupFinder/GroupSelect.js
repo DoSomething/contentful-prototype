@@ -54,6 +54,7 @@ const GroupSelect = ({ groupState, groupTypeId, onChange, onFocus }) => {
       key={groupState}
       id="select-group-dropdown"
       instanceId="select-group-"
+      isClearable
       loadOptions={(input, callback) => {
         if (!input) {
           return Promise.resolve([]);
