@@ -41,6 +41,7 @@ const AFFILIATE_SPONSORS = [
 
 // Mock Campaign Website Showcase:
 const CAMPAIGN_ONE = {
+  path: '/us/campaigns/escape-the-vape',
   showcaseImage: {
     url: 'https://images.api.info/1',
     description: 'Cover Photo 1',
@@ -51,6 +52,7 @@ const CAMPAIGN_ONE = {
 };
 
 const CAMPAIGN_TWO = {
+  path: '/us/campaigns/escape-the-crepe',
   showcaseImage: {
     url: 'https://images.api.info/2',
     description: 'Cover Photo 2',
@@ -61,6 +63,7 @@ const CAMPAIGN_TWO = {
 };
 
 const CAMPAIGN_THREE = {
+  path: '/us/campaigns/escape-the-severus-snape',
   showcaseImage: {
     url: 'https://images.api.info/3',
     description: 'Cover Photo 3',

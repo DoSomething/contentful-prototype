@@ -35,6 +35,7 @@ export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
           }
           campaign {
             campaignWebsite {
+              path
               showcaseImage {
                 url
                 description

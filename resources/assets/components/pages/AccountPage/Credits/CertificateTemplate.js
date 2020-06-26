@@ -23,6 +23,7 @@ import sourceSansProItalic from '../../../../fonts/sourcesanspro-italic.woff';
 export const certificatePostType = PropTypes.shape({
   actionId: PropTypes.number.isRequired,
   campaignWebsite: PropTypes.shape({
+    path: PropTypes.string.isRequired,
     showcaseTitle: PropTypes.string.isRequired,
     showcaseDescription: PropTypes.string.isRequired,
     showcaseImage: PropTypes.shape({
