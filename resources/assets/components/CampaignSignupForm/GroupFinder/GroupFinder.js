@@ -49,6 +49,7 @@ const GroupFinder = ({ context, groupType, onChange }) => {
     <>
       {filterByState ? (
         <div className="pb-3">
+          <p className="font-bold pb-1">Select your state</p>
           <UsaStateSelect
             onChange={handleGroupStateSelectChange}
             onFocus={handleGroupStateSelectFocus}
@@ -57,6 +58,7 @@ const GroupFinder = ({ context, groupType, onChange }) => {
       ) : null}
       {!filterByState || (filterByState && groupState) ? (
         <div className="pb-3">
+          <p className="font-bold pb-1">Select your chapter location</p>
           <GroupSelect
             groupState={groupState}
             groupTypeId={groupType.id}
