@@ -23,15 +23,6 @@ const GroupFinder = ({ context, groupType, onChange }) => {
     });
   };
 
-  const handleGroupStateSelectFocus = () => {
-    trackAnalyticsEvent(`focused_${ANALYTICS_EVENT_LABEL}_state`, {
-      action: 'field_focused',
-      category: ANALYTICS_EVENT_CATEGORY,
-      label: ANALYTICS_EVENT_LABEL,
-      context,
-    });
-  };
-
   const handleGroupStateSelectChange = selected => {
     setGroupState(selected.abbreviation);
 
@@ -43,9 +34,20 @@ const GroupFinder = ({ context, groupType, onChange }) => {
     });
   };
 
+  const handleGroupStateSelectFocus = () => {
+    trackAnalyticsEvent(`focused_${ANALYTICS_EVENT_LABEL}_state`, {
+      action: 'field_focused',
+      category: ANALYTICS_EVENT_CATEGORY,
+      label: ANALYTICS_EVENT_LABEL,
+      context,
+    });
+  };
+
+  const filterByState = { groupType };
+
   return (
     <>
-      {groupType.filterByState ? (
+      {filterByState ? (
         <div className="pb-3">
           <UsaStateSelect
             onChange={handleGroupStateSelectChange}
@@ -53,14 +55,16 @@ const GroupFinder = ({ context, groupType, onChange }) => {
           />
         </div>
       ) : null}
-      <div className="pb-3">
-        <GroupSelect
-          groupState={groupState}
-          groupTypeId={groupType.id}
-          onChange={onChange}
-          onFocus={handleGroupSelectFocus}
-        />
-      </div>
+      {!filterByState || (filterByState && groupState) ? (
+        <div className="pb-3">
+          <GroupSelect
+            groupState={groupState}
+            groupTypeId={groupType.id}
+            onChange={onChange}
+            onFocus={handleGroupSelectFocus}
+          />
+        </div>
+      ) : null}
     </>
   );
 };
