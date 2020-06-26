@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import GroupSelect from './GroupSelect';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
+import GroupSelect from './GroupSelect';
 
+// These will be re-used once we add a UsaStateSelect utility component.
 const ANALYTICS_EVENT_CATEGORY = EVENT_CATEGORIES.campaignAction;
 const ANALYTICS_EVENT_LABEL = 'group_finder';
 
