@@ -8,7 +8,6 @@ import {
 import GroupSelect from './GroupSelect';
 import UsaStateSelect from '../../utilities/UsaStateSelect';
 
-// These will be re-used once we add a UsaStateSelect utility component.
 const ANALYTICS_EVENT_CATEGORY = EVENT_CATEGORIES.campaignAction;
 const ANALYTICS_EVENT_LABEL = 'group_finder';
 
@@ -46,12 +45,14 @@ const GroupFinder = ({ context, groupType, onChange }) => {
 
   return (
     <>
-      <div className="pb-3">
-        <UsaStateSelect
-          onChange={handleGroupStateSelectChange}
-          onFocus={handleGroupStateSelectFocus}
-        />
-      </div>
+      {groupType.filterByState ? (
+        <div className="pb-3">
+          <UsaStateSelect
+            onChange={handleGroupStateSelectChange}
+            onFocus={handleGroupStateSelectFocus}
+          />
+        </div>
+      ) : null}
       <div className="pb-3">
         <GroupSelect
           groupState={groupState}

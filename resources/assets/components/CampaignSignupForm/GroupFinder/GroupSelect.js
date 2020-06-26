@@ -24,15 +24,17 @@ const GroupSelect = ({ groupState, groupTypeId, onChange, onFocus }) => {
   const client = useApolloClient();
 
   const fetchGroups = debounce((searchString, callback) => {
-    client
-      .query({
-        query: SEARCH_GROUPS_QUERY,
-        variables: {
-          groupTypeId,
-          name: searchString,
-          state: groupState,
-        },
-      })
+    const variables = {
+      groupTypeId,
+      name: searchString,
+    };
+
+    if (groupState) {
+      variables.state = groupState;
+    }
+
+    return client
+      .query({ query: SEARCH_GROUPS_QUERY, variables })
       .then(result => callback(result.data.groups))
       .catch(error => callback(error));
   }, 250);
