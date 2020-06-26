@@ -11,7 +11,7 @@ We commonly use these terms (in the business, and in code) when describing this 
 
 Both the alpha and beta may earn a reward for the beta registering and signing up for the campaign.
 
-We offer a second scholarship entry as the reward. Users who have `refer-friends-scholarship` feature flag set will see a Referral Page Banner after signing up for any campaign configured for this feature, which refers them to their Alpha Referral Page.
+We offer a second scholarship entry as the reward. Users will see a Referral Page Banner after signing up for any campaign configured for this feature, which refers them to their Alpha Referral Page.
 
 ## Details
 
@@ -19,7 +19,7 @@ To opt a campaign into the referral feature, its `displayReferralPage` field sho
 
 ### Referral Page Banner
 
-After signing up for the campaign, users who have the `refer-friends-scholarship` flag set will see a Referral Page Banner within the signup Affirmation, which links to their Alpha Referral Page.
+After signing up for the campaign, users will see a Referral Page Banner within the signup Affirmation, which links to their Alpha Referral Page.
 
 ![Referral Page Banner Example](../../.gitbook/assets/referral-page-banner.png)
 
@@ -67,4 +67,6 @@ dosomething.org/us/join?user_id=:userId&campaign_id=9037
 
 If this campaign ID matched a hardcoded referral page campaign, we'd link to this campaign in the first block on the Beta Referral Page.
 
-The second iteration of RAF allowed the list of campaigns (as well as the default campaign) to be configured via environment variable feature flags. This was deprecated in [#1940](https://github.com/DoSomething/phoenix-next/pull/1940) by the addition of the `displayReferralPage` field.
+The second iteration of RAF allowed the list of campaigns (as well as the default campaign) to be configured via environment variable feature flags. This was deprecated in [#1940](https://github.com/DoSomething/phoenix-next/pull/1940) by the addition of the `displayReferralPage` field. The Referral Page Banner in the campaign signup affirmation was still only exposed to _new_ users who were assigned the `refer-friends-scholarship` feature flag.
+
+In anticipation of launching a fully formalized version of RAF, we deprecated the `refer-friends-scholarship` feature flag, and exposed the RAF CTA Banner to _all_ users signing up for a campaign opted into RAF in the Referral Page Banner.
