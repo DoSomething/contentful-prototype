@@ -21,7 +21,7 @@ const SEARCH_SCHOOLS_QUERY = gql`
   }
 `;
 
-const SchoolSelect = ({ filterByState, onChange }) => {
+const SchoolSelect = ({ onChange, schoolState }) => {
   const client = useApolloClient();
   // Debounce school search to query for schools after 250 ms typing pause.
   // @see https://github.com/JedWatson/react-select/issues/614#issuecomment-244006496
@@ -30,7 +30,7 @@ const SchoolSelect = ({ filterByState, onChange }) => {
       .query({
         query: SEARCH_SCHOOLS_QUERY,
         variables: {
-          state: filterByState,
+          state: schoolState,
           name: searchString,
         },
       })
@@ -59,12 +59,12 @@ const SchoolSelect = ({ filterByState, onChange }) => {
       getOptionValue={school => school.id}
       isClearable
       /**
-       * Changing per filterByState will result in clearing any selected options.
+       * Changing per schoolState will result in clearing any selected options.
        * If user selects a school, but then changes the school state to something else, they should
        * be forced to find school in the selected state.
        * @see https://stackoverflow.com/a/55142916
        */
-      key={filterByState}
+      key={schoolState}
       loadOptions={(input, callback) => {
         /**
          * Avoid querying by empty school name on page load.
@@ -82,8 +82,8 @@ const SchoolSelect = ({ filterByState, onChange }) => {
 };
 
 SchoolSelect.propTypes = {
-  filterByState: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  schoolState: PropTypes.string.isRequired,
 };
 
 export default SchoolSelect;

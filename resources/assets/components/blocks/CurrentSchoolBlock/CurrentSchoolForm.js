@@ -35,7 +35,7 @@ const CurrentSchoolForm = ({ description, userId }) => {
         <div className="mt-6" data-test="select-school">
           <SchoolSelect
             onChange={selected => setSchool(selected)}
-            filterByState={schoolState.abbreviation}
+            schoolState={schoolState.abbreviation}
           />
         </div>
       ) : null}
