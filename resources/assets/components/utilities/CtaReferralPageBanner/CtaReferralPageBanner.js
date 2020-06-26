@@ -6,7 +6,7 @@ import './cta-referral-page-banner.scss';
 const CtaReferralPageBanner = ({ campaignId, displayReferralPage }) => (
   <React.Fragment>
     {displayReferralPage ? (
-      <div className="p-3">
+      <div className="p-3" data-testid="cta-referral-page-banner">
         <div className="cta-register-banner md:px-6 pt-3 clearfix">
           <div className="cta-register-banner__content p-6 md:pr-0 text-center md:text-left">
             <h3 className="text-white">Benefits With Friends</h3>
