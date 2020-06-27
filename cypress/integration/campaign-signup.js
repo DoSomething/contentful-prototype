@@ -212,9 +212,9 @@ describe('Campaign Signup', () => {
     );
   });
 
-  // TODO: Add context
+  // TODO: Use cypress context to better group this test once #2238 is merged.
   /** @test */
-  it('Signup button is enabled after selecting a group', () => {
+  it('If campaign group type does not filter by state, signup button is enabled after selecting group', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('SearchGroupsQuery', {
