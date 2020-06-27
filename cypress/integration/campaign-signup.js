@@ -236,8 +236,7 @@ describe('Campaign Signup', () => {
       },
     });
 
-    // Visit the campaign pitch page
-    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
+    cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('join-group-signup-form').should('have.length', 1);
     cy.findByTestId('campaign-banner-signup-button').contains(
@@ -293,10 +292,7 @@ describe('Campaign Signup', () => {
           },
         });
 
-        // Visit the campaign pitch page
-        cy.withState(exampleCampaign).visit(
-          '/us/campaigns/test-example-campaign',
-        );
+        cy.anonVisitCampaign(exampleCampaign);
 
         cy.findByTestId('join-group-signup-form').should('have.length', 1);
         cy.findByTestId('campaign-banner-signup-button').contains(
