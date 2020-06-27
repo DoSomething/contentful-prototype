@@ -9,6 +9,8 @@ const UsaStateSelect = ({ onChange, onFocus }) => (
   <Select
     getOptionLabel={usaState => usaState.name}
     getOptionValue={usaState => usaState.abbreviation}
+    id="select-state-dropdown"
+    instanceId="select-state-"
     onChange={onChange}
     onFocus={onFocus}
     options={usaStateOptions}
