@@ -14,5 +14,5 @@ return [
     |
     */
 
-    'default-referral-campaign-id' => env('DS_DEFAULT_REFERRAL_CAMPAIGN_ID'),
+    'default_referral_campaign_id' => env('DS_DEFAULT_REFERRAL_CAMPAIGN_ID'),
 ];
