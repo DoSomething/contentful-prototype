@@ -5,6 +5,7 @@ import {
   makeShareLink,
   dynamicString,
   contentfulImageUrl,
+  featureConfig,
 } from './index';
 
 /**
@@ -151,4 +152,27 @@ test('pluralizes words', () => {
   expect(pluralize(0, 'item', 'items')).toEqual('items');
   expect(pluralize(1, 'item', 'items')).toEqual('item');
   expect(pluralize(2, 'item', 'items')).toEqual('items');
+});
+
+/**
+ * Test featureConfig()
+ */
+describe('featureConfig helper', () => {
+  /** @test */
+  test('it returns a feature config variable from window.STATE', () => {
+    global.ENV = {
+      FEATURE_CONFIG: { 'configuration-strategy': 'alpha_delta_strategy' },
+    };
+
+    expect(featureConfig('configuration-strategy')).toEqual(
+      'alpha_delta_strategy',
+    );
+  });
+
+  /** @test */
+  test("it doesn't fail when there's no config", () => {
+    global.ENV = null;
+
+    expect(featureConfig('configuration-strategy')).toBe(undefined);
+  });
 });

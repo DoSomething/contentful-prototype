@@ -536,6 +536,17 @@ export function featureFlag(feature, defaultVal) {
 }
 
 /**
+ * Get feature config value from window.ENV
+ *
+ * @param  {String} config
+ * @param  {*}      defaultVal
+ * @return {*}
+ */
+export function featureConfig(config, defaultVal) {
+  return get(env('FEATURE_CONFIG'), config, defaultVal);
+}
+
+/**
  * Construct absolute URL with query params.
  *
  * @param {String} url
