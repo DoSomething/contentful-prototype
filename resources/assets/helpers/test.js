@@ -159,7 +159,7 @@ test('pluralizes words', () => {
  */
 describe('featureConfig helper', () => {
   /** @test */
-  test('it returns a feature config variable from window.STATE', () => {
+  test('it returns a feature config variable from window.ENV', () => {
     global.ENV = {
       FEATURE_CONFIG: { 'configuration-strategy': 'alpha_delta_strategy' },
     };
