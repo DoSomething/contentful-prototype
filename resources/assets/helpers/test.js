@@ -161,7 +161,7 @@ describe('siteConfig helper', () => {
   /** @test */
   test('it returns a site config variable from window.ENV', () => {
     global.ENV = {
-      SITE_CONFIG: { 'configuration-strategy': 'alpha_delta_strategy' },
+      SITE: { 'configuration-strategy': 'alpha_delta_strategy' },
     };
 
     expect(siteConfig('configuration-strategy')).toEqual(

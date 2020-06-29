@@ -43,11 +43,11 @@ class AppServiceProvider extends ServiceProvider
                 'GRAPHQL_URL' => config('services.graphql.url'),
                 'NORTHSTAR_URL' => config('services.northstar.url'),
                 'PHOENIX_URL' => config('app.url'),
+                'SITE' => config('site'),
                 'SIXPACK_BASE_URL' => config('services.sixpack.url'),
                 'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),
                 'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
                 'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
-                'SITE_CONFIG' => config('site-config'),
                 'CONTENTFUL_USE_PREVIEW_API' => config('contentful')['delivery.preview'],
                 'FEATURE_FLAGS' => config('features'),
             ]);

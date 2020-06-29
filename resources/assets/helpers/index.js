@@ -543,7 +543,7 @@ export function featureFlag(feature, defaultVal) {
  * @return {*}
  */
 export function siteConfig(config, defaultVal) {
-  return get(env('SITE_CONFIG'), config, defaultVal);
+  return get(env('SITE'), config, defaultVal);
 }
 
 /**
