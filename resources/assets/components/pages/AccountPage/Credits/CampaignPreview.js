@@ -30,6 +30,7 @@ const CampaignPreview = ({ campaignWebsite }) => {
       />
       <div className="pl-3 md:p-0 xl:pl-3">
         <h3 className="font-bold text-base text-blue-500">{showcaseTitle}</h3>
+
         <p className="font-normal mt-1 text-gray-500 text-sm">
           {showcaseDescription}
         </p>
