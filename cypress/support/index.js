@@ -18,7 +18,7 @@ Cypress.on('window:before:load', window => {
       nps_survey: false,
     },
     SITE: {
-      default_referral_campaign_id: 9001,
+      default_referral_campaign_id: '9001',
     },
     SIXPACK_ENABLED: false,
     SIXPACK_BASE_URL: 'http://sixpack.test', // Our Sixpack service will throw an error if this isn't set.
