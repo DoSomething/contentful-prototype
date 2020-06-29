@@ -122,6 +122,56 @@ const badgeModalContent = {
   },
 };
 
+const addAnchorToUnearnedText = text => {
+  return (
+    <a
+      href="https://www.dosomething.org/us/campaigns"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {text}
+    </a>
+  );
+};
+
+const switchTextLinkInUnearnedText = unearnedText => {
+  const originalUnearnedText = unearnedText;
+
+  const findPhrase = term => {
+    if (originalUnearnedText.includes(term)) {
+      return originalUnearnedText;
+    }
+    return false;
+  };
+
+  switch (originalUnearnedText) {
+    case findPhrase('signing up for a campaign'):
+      return originalUnearnedText.replace(
+        'signing up for a campaign',
+        <addAnchorToUnearnedText text="signing up for a campaign" />,
+      );
+    case findPhrase('complete a DoSomething campaign'):
+      return originalUnearnedText.replace(
+        'complete a DoSomething campaign',
+        <addAnchorToUnearnedText text="complete a DoSomething campaign" />,
+      );
+    case findPhrase('Rock another DoSomething campaign'):
+      return originalUnearnedText.replace(
+        'Rock another DoSomething campaign',
+        <addAnchorToUnearnedText text="Rock another DoSomething campaign" />,
+      );
+    case findPhrase('Complete another campaign'):
+      return originalUnearnedText.replace(
+        'Complete another campaign',
+        <addAnchorToUnearnedText text="Complete another campaign" />,
+      );
+    default:
+      console.log('No unearnedText');
+  }
+
+  return originalUnearnedText;
+};
+
 class BadgesTab extends React.Component {
   constructor(props) {
     super(props);
@@ -385,7 +435,9 @@ class BadgesTab extends React.Component {
             <p>
               {this.state.modalEarned
                 ? badgeModalContent[this.state.modalName].earnedText
-                : badgeModalContent[this.state.modalName].unearnedText}
+                : switchTextLinkInUnearnedText(
+                    badgeModalContent[this.state.modalName].unearnedText,
+                  )}
             </p>
           </BadgeModal>
         ) : null}
