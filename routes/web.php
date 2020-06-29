@@ -10,7 +10,7 @@
 // Homepage
 $router->redirect('/', '/us');
 
-if (config('features.new_homepage')) {
+if (config('feature-flags.new_homepage')) {
     $router->view('/us', 'app');
 } else {
     $router->get('/us', 'HomePageController');
@@ -31,7 +31,7 @@ $router->view('/us/account/{clientRoute?}', 'app')
     ->middleware('auth');
 
 // Campaigns index
-if (config('features.dynamic_explore_campaigns')) {
+if (config('feature-flags.dynamic_explore_campaigns')) {
     $router->view('us/campaigns', 'app');
 } else {
     $router->get('us/campaigns', 'CampaignController@index');
