@@ -415,6 +415,16 @@
                   "ofType": null
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "state",
+                "description": "The group state to filter groups by.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
               }
             ],
             "type": {
@@ -470,6 +480,16 @@
               {
                 "name": "name",
                 "description": "The group name to filter groups by.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "state",
+                "description": "The group state to filter groups by.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
@@ -4555,6 +4575,18 @@
             "deprecationReason": null
           },
           {
+            "name": "filterByState",
+            "description": "Whether group finders for this type should first filter by state before searching by name.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "updatedAt",
             "description": "The time this group type was last modified.",
             "args": [],
@@ -6140,12 +6172,48 @@
             "deprecationReason": null
           },
           {
+            "name": "externalId",
+            "description": "The group external ID.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "goal",
             "description": "The group goal.",
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "city",
+            "description": "The group city.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "state",
+            "description": "The group state.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,

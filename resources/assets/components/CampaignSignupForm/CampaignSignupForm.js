@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-import GroupSelect from './GroupSelect';
 import Card from '../utilities/Card/Card';
 import { getUtms } from '../../helpers/utm';
+import GroupFinder from './GroupFinder/GroupFinder';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
 import { isCampaignClosed, query, withoutNulls } from '../../helpers';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
@@ -12,12 +12,12 @@ const CampaignSignupForm = props => {
   const {
     affiliateMessagingOptIn,
     campaignActionText,
-    campaignGroupTypeId,
     campaignId,
     campaignTitle,
     className,
     contextSource,
     endDate,
+    groupType,
     pageId,
     storeCampaignSignup,
     text,
@@ -62,19 +62,7 @@ const CampaignSignupForm = props => {
     });
   };
 
-  const handleFocus = () => {
-    trackAnalyticsEvent('focused_group_finder_group', {
-      action: 'field_focused',
-      category: EVENT_CATEGORIES.campaignAction,
-      label: 'group_finder',
-      context: {
-        campaignId,
-        pageId,
-      },
-    });
-  };
-
-  const handleChange = selected => {
+  const handleGroupFinderChange = selected => {
     setGroupId(selected.id);
 
     trackAnalyticsEvent('clicked_group_finder_group', {
@@ -95,7 +83,7 @@ const CampaignSignupForm = props => {
   const buttonCopy = text || campaignActionText;
   const closedCampaign = isCampaignClosed(endDate);
 
-  if (!campaignGroupTypeId || closedCampaign) {
+  if (!groupType || closedCampaign) {
     return (
       <PrimaryButton
         className={className}
@@ -109,13 +97,11 @@ const CampaignSignupForm = props => {
     <div className="my-3" data-testid="join-group-signup-form">
       <Card title="Join a group" className="rounded bordered">
         <div className="p-3">
-          <div className="pb-3">
-            <GroupSelect
-              groupTypeId={campaignGroupTypeId}
-              onChange={handleChange}
-              onFocus={handleFocus}
-            />
-          </div>
+          <GroupFinder
+            context={{ campaignId, pageId }}
+            groupType={groupType}
+            onChange={handleGroupFinderChange}
+          />
           <PrimaryButton
             attributes={{ 'data-testid': 'join-group-signup-button' }}
             className={className}
@@ -132,12 +118,12 @@ const CampaignSignupForm = props => {
 CampaignSignupForm.propTypes = {
   affiliateMessagingOptIn: PropTypes.bool,
   campaignActionText: PropTypes.string,
-  campaignGroupTypeId: PropTypes.number,
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
   className: PropTypes.string,
   contextSource: PropTypes.string,
   endDate: PropTypes.string,
+  groupType: PropTypes.object,
   pageId: PropTypes.string.isRequired,
   storeCampaignSignup: PropTypes.func.isRequired,
   text: PropTypes.string,
@@ -146,11 +132,11 @@ CampaignSignupForm.propTypes = {
 CampaignSignupForm.defaultProps = {
   affiliateMessagingOptIn: false,
   campaignActionText: 'Take Action',
-  campaignGroupTypeId: null,
   campaignTitle: null,
   className: null,
   contextSource: null,
   endDate: null,
+  groupType: null,
   text: null,
 };
 

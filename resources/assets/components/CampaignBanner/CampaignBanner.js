@@ -27,6 +27,10 @@ const CAMPAIGN_BANNER_QUERY = gql`
     campaign(id: $id) {
       id
       groupTypeId
+      groupType {
+        id
+        filterByState
+      }
     }
   }
 `;
@@ -71,7 +75,7 @@ const CampaignBanner = ({
     return <ErrorBlock error={error} />;
   }
 
-  const campaignGroupTypeId = get(data, 'campaign.groupTypeId', null);
+  const groupType = get(data, 'campaign.groupType', null);
 
   return (
     <>
@@ -109,8 +113,8 @@ const CampaignBanner = ({
               >
                 {!loading ? (
                   <CampaignSignupFormContainer
-                    campaignGroupTypeId={campaignGroupTypeId}
                     className="block md:mb-3 p-6 text-lg w-full"
+                    groupType={groupType}
                     text={
                       isScholarshipAffiliateReferral()
                         ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
@@ -171,15 +175,11 @@ const CampaignBanner = ({
             }
           >
             {!isAffiliated ? (
-              <div
-                className={`pt-6 ${
-                  !campaignGroupTypeId ? 'w-2/3 sm:w-1/2' : null
-                }`}
-              >
+              <div className={`pt-6 ${!groupType ? 'w-2/3 sm:w-1/2' : null}`}>
                 {!loading ? (
                   <CampaignSignupFormContainer
-                    campaignGroupTypeId={campaignGroupTypeId}
                     className="w-full md:px-2"
+                    groupType={groupType}
                     text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
                     contextSource="scholarship_modal"
                   />

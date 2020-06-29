@@ -26,6 +26,7 @@ describe('Campaign Signup', () => {
       campaign: {
         id: campaignId,
         groupTypeId: null,
+        groupType: null,
       },
     });
 
@@ -59,6 +60,7 @@ describe('Campaign Signup', () => {
       campaign: {
         id: campaignId,
         groupTypeId: null,
+        groupType: null,
       },
     });
     // Log in & visit the campaign landing page:
@@ -90,6 +92,7 @@ describe('Campaign Signup', () => {
         campaign: {
           id: campaignId,
           groupTypeId: null,
+          groupType: null,
         },
       });
 
@@ -123,6 +126,7 @@ describe('Campaign Signup', () => {
         campaign: {
           id: campaignId,
           groupTypeId: null,
+          groupType: null,
         },
       });
 
@@ -149,6 +153,7 @@ describe('Campaign Signup', () => {
         campaign: {
           id: campaignId,
           groupTypeId: null,
+          groupType: null,
         },
       });
 
@@ -191,6 +196,7 @@ describe('Campaign Signup', () => {
       campaign: {
         id: campaignId,
         groupTypeId: null,
+        groupType: null,
       },
     });
 
@@ -222,6 +228,10 @@ describe('Campaign Signup', () => {
       campaign: {
         id: campaignId,
         groupTypeId: 1,
+        groupType: {
+          id: 1,
+          filterByState: false,
+        },
       },
     });
 
