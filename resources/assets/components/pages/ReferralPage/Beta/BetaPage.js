@@ -3,10 +3,10 @@ import gql from 'graphql-tag';
 
 import Query from '../../../Query';
 import ErrorPage from '../../ErrorPage';
-import { query } from '../../../../helpers';
 import MoneyHandImage from './money-hand.svg';
 import CampaignLink from './BetaPageCampaignLink';
 import ArticleHeader from '../../../utilities/ArticleHeader';
+import { featureFlag, query, siteConfig } from '../../../../helpers';
 import { getReferralCampaignId } from '../../../../helpers/refer-friends';
 
 const REFERRAL_PAGE_USER = gql`
@@ -21,6 +21,12 @@ const REFERRAL_PAGE_USER = gql`
 const BetaPage = () => {
   const userId = query('user_id');
   const campaignId = getReferralCampaignId();
+
+  const defaultCampaignId = siteConfig('default_referral_campaign_id');
+
+  // We'll display a secondary campaign link option for RAF V2.
+  const displaySecondaryCampaign =
+    featureFlag('refer_friends_v2') && defaultCampaignId !== campaignId;
 
   if (!userId || !campaignId) {
     return <ErrorPage error="Missing User ID or Campaign ID." />;
@@ -55,6 +61,23 @@ const BetaPage = () => {
                 <div className="my-6">
                   <CampaignLink campaignId={campaignId} userId={userId} />
                 </div>
+
+                {displaySecondaryCampaign ? (
+                  <div
+                    className="my-6"
+                    data-testid="secondary-campaign-referral-link"
+                  >
+                    <p className="font-bold mb-3">
+                      Interested in doing a different campaign?
+                    </p>
+
+                    <CampaignLink
+                      campaignId={defaultCampaignId}
+                      userId={userId}
+                    />
+                  </div>
+                ) : null}
+
                 <div className="my-6">
                   <h3>FAQ</h3>
                   <h4>
