@@ -212,8 +212,9 @@ describe('Campaign Signup', () => {
     );
   });
 
+  // TODO: Use cypress context to better group this test once #2238 is merged.
   /** @test */
-  it('Visits a groups campaign page, as an unauthenticated user', () => {
+  it('If campaign group type does not filter by state, signup button is enabled after selecting group', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('SearchGroupsQuery', {
@@ -235,8 +236,7 @@ describe('Campaign Signup', () => {
       },
     });
 
-    // Visit the campaign pitch page
-    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
+    cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('join-group-signup-form').should('have.length', 1);
     cy.findByTestId('campaign-banner-signup-button').contains(
@@ -244,6 +244,7 @@ describe('Campaign Signup', () => {
       'Join Group',
     );
     cy.findByTestId('join-group-signup-button').should('be.disabled');
+    cy.get('#select-state-dropdown').should('have.length', 0);
     cy.get('#select-group-dropdown').click();
     cy.get('#react-select-select-group--input').type('new');
     cy.get('#react-select-select-group--option-0').click();
@@ -264,4 +265,74 @@ describe('Campaign Signup', () => {
       .its('request.body.group_id')
       .should('equal', 1);
   });
+
+  context(
+    'Campaign ID configured with group type that filters by state',
+    () => {
+      /** @test */
+      it('Signup button is enabled after selecting state, then group', () => {
+        const user = userFactory();
+
+        cy.mockGraphqlOp('SearchGroupsQuery', {
+          groups: [
+            { id: 1, name: 'New York', state: 'NY' },
+            { id: 2, name: 'Philadelphia', state: 'PA' },
+            { id: 3, name: 'San Francisco', state: 'CA' },
+          ],
+        });
+
+        cy.mockGraphqlOp('CampaignBannerQuery', {
+          campaign: {
+            id: campaignId,
+            groupTypeId: 1,
+            groupType: {
+              id: 1,
+              filterByState: true,
+            },
+          },
+        });
+
+        cy.anonVisitCampaign(exampleCampaign);
+
+        cy.findByTestId('join-group-signup-form').should('have.length', 1);
+        cy.findByTestId('campaign-banner-signup-button').contains(
+          'button',
+          'Join Group',
+        );
+        cy.findByTestId('join-group-signup-button').should('be.disabled');
+        cy.get('#select-state-dropdown').should('have.length', 1);
+        cy.get('#select-group-dropdown').should('have.length', 0);
+        cy.get('#select-state-dropdown').click();
+        cy.get('#react-select-select-state--input').type('new');
+        // Select "New York"
+        cy.get('#react-select-select-state--option-32').click();
+        cy.findByTestId('join-group-signup-button').should('be.disabled');
+        cy.get('#select-group-dropdown').should('have.length', 1);
+        // Forcing these actions because this element gets covered by the SitewideBanner.
+        cy.get('#react-select-select-group--input').type('new', {
+          force: true,
+        });
+        cy.get('#react-select-select-group--option-0').click({ force: true });
+        cy.findByTestId('join-group-signup-button').should('be.enabled');
+
+        // Mock the responses we'll be expecting once we hit the signup button:
+        cy.route(
+          `${API}/signups?filter[northstar_id]=${user.id}`,
+          emptyResponse,
+        );
+        cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
+          'signupRequest',
+        );
+
+        cy.contains('button', 'Join Group')
+          .click()
+          .handleLogin(user);
+
+        // The outgoing signup request should include the selected group_id.
+        cy.wait('@signupRequest')
+          .its('request.body.group_id')
+          .should('equal', 1);
+      });
+    },
+  );
 });

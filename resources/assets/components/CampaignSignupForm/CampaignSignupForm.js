@@ -63,7 +63,7 @@ const CampaignSignupForm = props => {
   };
 
   const handleGroupFinderChange = selected => {
-    setGroupId(selected.id);
+    setGroupId(selected ? selected.id : null);
 
     trackAnalyticsEvent('clicked_group_finder_group', {
       action: 'form_clicked',
@@ -72,7 +72,7 @@ const CampaignSignupForm = props => {
       context: {
         campaignId,
         // Pass our selected.id to avoid race condition with setting groupId state.
-        groupId: selected.id,
+        groupId: selected ? selected.id : null,
         pageId,
       },
     });

@@ -6,15 +6,17 @@ import AsyncSelect from 'react-select/async';
 import { useApolloClient } from '@apollo/react-hooks';
 
 const SEARCH_GROUPS_QUERY = gql`
-  query SearchGroupsQuery($groupTypeId: Int!, $name: String!) {
-    groups(groupTypeId: $groupTypeId, name: $name) {
+  query SearchGroupsQuery($groupTypeId: Int!, $name: String!, $state: String) {
+    groups(groupTypeId: $groupTypeId, name: $name, state: $state) {
       id
       name
+      city
+      state
     }
   }
 `;
 
-const GroupSelect = ({ groupTypeId, onChange, onFocus }) => {
+const GroupSelect = ({ groupState, groupTypeId, onChange, onFocus }) => {
   /**
    * This is copied by example from the blocks/CurrentSchoolBlock/SchoolSelect, which has comments
    * detailing debouncing the useApolloClient hook (AsyncSelect loadOptions expects a Promise).
@@ -22,14 +24,17 @@ const GroupSelect = ({ groupTypeId, onChange, onFocus }) => {
   const client = useApolloClient();
 
   const fetchGroups = debounce((searchString, callback) => {
+    const variables = {
+      groupTypeId,
+      name: searchString,
+    };
+
+    if (groupState) {
+      variables.state = groupState;
+    }
+
     client
-      .query({
-        query: SEARCH_GROUPS_QUERY,
-        variables: {
-          groupTypeId,
-          name: searchString,
-        },
-      })
+      .query({ query: SEARCH_GROUPS_QUERY, variables })
       .then(result => callback(result.data.groups))
       .catch(error => callback(error));
   }, 250);
@@ -40,10 +45,16 @@ const GroupSelect = ({ groupTypeId, onChange, onFocus }) => {
    */
   return (
     <AsyncSelect
-      getOptionLabel={group => group.name}
+      getOptionLabel={group =>
+        group.city
+          ? `${group.name} - ${group.city}, ${group.state}`
+          : group.name
+      }
       getOptionValue={group => group.id}
+      key={groupState}
       id="select-group-dropdown"
       instanceId="select-group-"
+      isClearable
       loadOptions={(input, callback) => {
         if (!input) {
           return Promise.resolve([]);
@@ -58,9 +69,14 @@ const GroupSelect = ({ groupTypeId, onChange, onFocus }) => {
 };
 
 GroupSelect.propTypes = {
+  groupState: PropTypes.string,
   groupTypeId: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
+};
+
+GroupSelect.defaultProps = {
+  groupState: null,
 };
 
 export default GroupSelect;
