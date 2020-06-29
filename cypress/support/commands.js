@@ -128,6 +128,20 @@ Cypress.Commands.add('withFeatureFlags', featureFlags => {
 });
 
 /**
+ * Set environment site config variables.
+ *
+ * @param {Object} config
+ */
+Cypress.Commands.add('withSiteConfig', config => {
+  cy.on('window:before:load', window => {
+    window.ENV = {
+      ...window.ENV,
+      SITE: { ...window.ENV.SITE, ...config },
+    };
+  });
+});
+
+/**
  * Mock an existing signup for the logged-in user & given campaign.
  *
  * @param {Object} state
