@@ -33,7 +33,7 @@ const GroupSelect = ({ groupState, groupTypeId, onChange, onFocus }) => {
       variables.state = groupState;
     }
 
-    return client
+    client
       .query({ query: SEARCH_GROUPS_QUERY, variables })
       .then(result => callback(result.data.groups))
       .catch(error => callback(error));
