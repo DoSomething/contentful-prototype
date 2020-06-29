@@ -44,33 +44,61 @@ const VOTER_BADGE = gql`
   }
 `;
 
+const exploreCampaignsLink = text => {
+  return (
+    <a href="/us/campaigns" target="_blank" rel="noopener noreferrer">
+      {text}
+    </a>
+  );
+};
+
 const badgeModalContent = {
   signupBadge: {
     title: '1 SIGN-UP',
     earnedText:
       'Hey, congrats! You earned a badge for signing up for your first campaign. More badges ahead…!',
-    unearnedText: 'Unlock this badge by signing up for a campaign.',
+    unearnedText: (
+      <span>
+        Unlock this badge by $
+        {exploreCampaignsLink('signing up for a campaign')}.
+      </span>
+    ),
   },
   onePostBadge: {
     title: '1 ACTION',
     earnedText:
       'Congratulations! You rocked the campaign, made a serious difference, and earned this badge. Feel good? You totally should.',
-    unearnedText:
-      'Complete a DoSomething campaign by taking action and uploading a photo. You’ll transform your community *and* earn this badge!',
+    unearnedText: (
+      <span>
+        {exploreCampaignsLink('Complete a DoSomething campaign')} by taking
+        action and uploading a photo. You’ll transform your community *and* earn
+        this badge!
+      </span>
+    ),
   },
   twoPostsBadge: {
     title: '2 ACTIONS',
     earnedText:
       'Niiiiice! You just earned another badge for making an impact *again*. Hope you’re double proud of yourself.',
-    unearnedText:
-      'Want to earn your second Action badge? Rock another DoSomething campaign.',
+    unearnedText: (
+      <span>
+        Want to earn your second Action badge?
+        {exploreCampaignsLink('Rock another DoSomething campaign')}, our current
+        events newsletter.
+      </span>
+    ),
   },
   threePostsBadge: {
     title: '3 ACTIONS',
     earnedText:
       'OH YEAH! You rocked another campaign and earned your *third* Action badge. Welcome to the three timers club!',
-    unearnedText:
-      'Third time’s a charm! Complete another campaign to unlock this exclusive badge.',
+    unearnedText: (
+      <span>
+        Third time’s a charm!{' '}
+        {exploreCampaignsLink('Complete another campaign')} to unlock this
+        exclusive badge.
+      </span>
+    ),
   },
   oneStaffFaveBadge: {
     title: '1 STAFF FAVE',
@@ -120,56 +148,6 @@ const badgeModalContent = {
       </span>
     ),
   },
-};
-
-const addAnchorToUnearnedText = text => {
-  return (
-    <a
-      href="https://www.dosomething.org/us/campaigns"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {text}
-    </a>
-  );
-};
-
-const switchTextLinkInUnearnedText = unearnedText => {
-  const originalUnearnedText = unearnedText;
-
-  const findPhrase = term => {
-    if (originalUnearnedText.includes(term)) {
-      return originalUnearnedText;
-    }
-    return false;
-  };
-
-  switch (originalUnearnedText) {
-    case findPhrase('signing up for a campaign'):
-      return originalUnearnedText.replace(
-        'signing up for a campaign',
-        <addAnchorToUnearnedText text="signing up for a campaign" />,
-      );
-    case findPhrase('complete a DoSomething campaign'):
-      return originalUnearnedText.replace(
-        'complete a DoSomething campaign',
-        <addAnchorToUnearnedText text="complete a DoSomething campaign" />,
-      );
-    case findPhrase('Rock another DoSomething campaign'):
-      return originalUnearnedText.replace(
-        'Rock another DoSomething campaign',
-        <addAnchorToUnearnedText text="Rock another DoSomething campaign" />,
-      );
-    case findPhrase('Complete another campaign'):
-      return originalUnearnedText.replace(
-        'Complete another campaign',
-        <addAnchorToUnearnedText text="Complete another campaign" />,
-      );
-    default:
-      console.log('No unearnedText');
-  }
-
-  return originalUnearnedText;
 };
 
 class BadgesTab extends React.Component {
@@ -435,9 +413,7 @@ class BadgesTab extends React.Component {
             <p>
               {this.state.modalEarned
                 ? badgeModalContent[this.state.modalName].earnedText
-                : switchTextLinkInUnearnedText(
-                    badgeModalContent[this.state.modalName].unearnedText,
-                  )}
+                : badgeModalContent[this.state.modalName].unearnedText}
             </p>
           </BadgeModal>
         ) : null}
