@@ -8,7 +8,12 @@ import {
 } from '../../../../helpers';
 
 const CampaignPreview = ({ campaignWebsite }) => {
-  const { showcaseTitle, showcaseDescription, showcaseImage } = campaignWebsite;
+  const {
+    path,
+    showcaseTitle,
+    showcaseDescription,
+    showcaseImage,
+  } = campaignWebsite;
 
   // @TODO: Can we use srcset instead of this logic?
   const showcaseImageUrl =
@@ -17,7 +22,7 @@ const CampaignPreview = ({ campaignWebsite }) => {
       : contentfulImageUrl(showcaseImage.url, 640, 360, 'fill');
 
   return (
-    <div className="flex">
+    <a className="flex" href={path}>
       <LazyImage
         className="h-16 sm:h-auto xl:h-16 md:hidden xl:block"
         src={showcaseImageUrl}
@@ -25,14 +30,18 @@ const CampaignPreview = ({ campaignWebsite }) => {
       />
       <div className="pl-3 md:p-0 xl:pl-3">
         <h3 className="font-bold text-base text-blue-500">{showcaseTitle}</h3>
-        <p className="mt-1 text-gray-500 text-sm">{showcaseDescription}</p>
+
+        <p className="font-normal mt-1 text-gray-500 text-sm">
+          {showcaseDescription}
+        </p>
       </div>
-    </div>
+    </a>
   );
 };
 
 CampaignPreview.propTypes = {
   campaignWebsite: PropTypes.shape({
+    path: PropTypes.string.isRequired,
     showcaseTitle: PropTypes.string.isRequired,
     showcaseDescription: PropTypes.string.isRequired,
     showcaseImage: PropTypes.shape({
