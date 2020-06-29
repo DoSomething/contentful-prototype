@@ -536,14 +536,14 @@ export function featureFlag(feature, defaultVal) {
 }
 
 /**
- * Get feature config value from window.ENV
+ * Get site config value from window.ENV
  *
  * @param  {String} config
  * @param  {*}      defaultVal
  * @return {*}
  */
-export function featureConfig(config, defaultVal) {
-  return get(env('FEATURE_CONFIG'), config, defaultVal);
+export function siteConfig(config, defaultVal) {
+  return get(env('SITE_CONFIG'), config, defaultVal);
 }
 
 /**

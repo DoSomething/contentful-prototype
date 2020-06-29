@@ -5,7 +5,7 @@ import {
   makeShareLink,
   dynamicString,
   contentfulImageUrl,
-  featureConfig,
+  siteConfig,
 } from './index';
 
 /**
@@ -155,16 +155,16 @@ test('pluralizes words', () => {
 });
 
 /**
- * Test featureConfig()
+ * Test siteConfig()
  */
-describe('featureConfig helper', () => {
+describe('siteConfig helper', () => {
   /** @test */
-  test('it returns a feature config variable from window.ENV', () => {
+  test('it returns a site config variable from window.ENV', () => {
     global.ENV = {
-      FEATURE_CONFIG: { 'configuration-strategy': 'alpha_delta_strategy' },
+      SITE_CONFIG: { 'configuration-strategy': 'alpha_delta_strategy' },
     };
 
-    expect(featureConfig('configuration-strategy')).toEqual(
+    expect(siteConfig('configuration-strategy')).toEqual(
       'alpha_delta_strategy',
     );
   });
@@ -173,6 +173,6 @@ describe('featureConfig helper', () => {
   test("it doesn't fail when there's no config", () => {
     global.ENV = null;
 
-    expect(featureConfig('configuration-strategy')).toBe(undefined);
+    expect(siteConfig('configuration-strategy')).toBe(undefined);
   });
 });

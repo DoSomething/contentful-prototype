@@ -47,9 +47,9 @@ class AppServiceProvider extends ServiceProvider
                 'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),
                 'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
                 'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
+                'SITE_CONFIG' => config('site-config'),
                 'CONTENTFUL_USE_PREVIEW_API' => config('contentful')['delivery.preview'],
                 'FEATURE_FLAGS' => config('features'),
-                'FEATURE_CONFIG' => config('feature-config'),
             ]);
         });
 
