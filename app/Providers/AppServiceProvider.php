@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
                 'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
                 'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
                 'CONTENTFUL_USE_PREVIEW_API' => config('contentful')['delivery.preview'],
-                'FEATURE_FLAGS' => config('features'),
+                'FEATURE_FLAGS' => config('feature-flags'),
             ]);
         });
 
