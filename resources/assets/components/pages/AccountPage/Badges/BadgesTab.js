@@ -55,7 +55,7 @@ const badgeModalContent = {
       'Hey, congrats! You earned a badge for signing up for your first campaign. More badges ahead…!',
     unearnedText: (
       <span>
-        Unlock this badge by $
+        Unlock this badge by
         {exploreCampaignsLink('signing up for a campaign')}.
       </span>
     ),
