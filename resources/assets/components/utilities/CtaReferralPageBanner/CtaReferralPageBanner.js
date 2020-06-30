@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { featureFlag } from '../../../helpers';
+
 import './cta-referral-page-banner.scss';
 
 const CtaReferralPageBanner = ({ campaignId, displayReferralPage }) => (
   <React.Fragment>
-    {displayReferralPage ? (
+    {/* @TODO: Remove this displayReferralPage & container logic once we launch RAF V2 */}
+    {displayReferralPage || featureFlag('refer_friends_v2') ? (
       <div className="p-3" data-testid="cta-referral-page-banner">
         <div className="cta-register-banner md:px-6 pt-3 clearfix">
           <div className="cta-register-banner__content p-6 md:pr-0 text-center md:text-left">
