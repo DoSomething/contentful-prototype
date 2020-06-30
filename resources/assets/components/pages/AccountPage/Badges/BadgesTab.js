@@ -5,7 +5,6 @@ import gql from 'graphql-tag';
 import Badge from './Badge';
 import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
-import { Link } from 'react-router-dom';
 import './badges-tab.scss';
 
 const CONFIRMED = 'CONFIRMED';
