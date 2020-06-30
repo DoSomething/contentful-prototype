@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
 import Badge from './Badge';
-import BadgeModal from './BadgeModal';
 import Query from '../../../Query';
+import BadgeModal from './BadgeModal';
+import { Link } from 'react-router-dom';
 import './badges-tab.scss';
 
 const CONFIRMED = 'CONFIRMED';
@@ -45,11 +46,7 @@ const VOTER_BADGE = gql`
 `;
 
 const exploreCampaignsLink = text => {
-  return (
-    <a href="/us/campaigns" target="_blank" rel="noopener noreferrer">
-      {text}
-    </a>
-  );
+  return <a href="/us/campaigns">{text}</a>;
 };
 
 const badgeModalContent = {
@@ -83,8 +80,7 @@ const badgeModalContent = {
     unearnedText: (
       <span>
         Want to earn your second Action badge?
-        {exploreCampaignsLink('Rock another DoSomething campaign')}, our current
-        events newsletter.
+        {exploreCampaignsLink('Rock another DoSomething campaign')}.
       </span>
     ),
   },
