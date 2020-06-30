@@ -35,9 +35,9 @@ describe('Beta Referral Page', () => {
 
   context('Refer Friends V2', () => {
     it('Displays a secondary referral campaign link', () => {
-      cy.withFeatureFlags({ refer_friends_v2: true }).visit(
-        `/us/join?user_id=${userId}&campaign_id=${campaignId}`,
-      );
+      cy.withFeatureFlags({ refer_friends_v2: true })
+        .withSiteConfig({ default_referral_campaign_id: '9001' })
+        .visit(`/us/join?user_id=${userId}&campaign_id=${campaignId}`);
 
       cy.findByTestId('secondary-campaign-referral-link').within(() => {
         cy.get('a')
