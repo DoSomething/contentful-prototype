@@ -42,7 +42,7 @@ const CancelEmailSubscription = props => {
   }
 
   if (loading) {
-    return Spinner;
+    return <Spinner />;
   }
   return (
     <div>
@@ -58,6 +58,7 @@ const CancelEmailSubscription = props => {
                   userId,
                   emailSubscriptionStatus: false,
                 },
+                refetchQueries: ['EmailSubscriptionsQuery'],
               })
             }
           >
