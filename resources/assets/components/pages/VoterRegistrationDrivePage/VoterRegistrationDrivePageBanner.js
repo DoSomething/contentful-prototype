@@ -6,11 +6,13 @@ import { query } from '../../../helpers';
 import CampaignHeader from '../../utilities/CampaignHeader';
 import CoverImage from '../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import GroupTemplate from '../../blocks/VoterRegistrationReferralsBlock/templates/Group';
 
 const VoterRegistrationDrivePageBanner = ({
-  user,
   campaignInfo,
+  group,
   modalToggle,
+  user,
 }) => {
   const { firstName } = user;
   const {
@@ -102,12 +104,16 @@ const VoterRegistrationDrivePageBanner = ({
             data-test="voter-registration-drive-page-campaign-info-block"
             className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3"
           >
-            <CampaignInfoBlock
-              campaignId={campaignId}
-              scholarshipAmount={scholarshipAmount}
-              scholarshipDeadline={scholarshipDeadline}
-              showModal={modalToggle}
-            />
+            {group ? (
+              <GroupTemplate group={group} user={user} />
+            ) : (
+              <CampaignInfoBlock
+                campaignId={campaignId}
+                scholarshipAmount={scholarshipAmount}
+                scholarshipDeadline={scholarshipDeadline}
+                showModal={modalToggle}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -115,10 +121,15 @@ const VoterRegistrationDrivePageBanner = ({
   );
 };
 
-export default VoterRegistrationDrivePageBanner;
+VoterRegistrationDrivePageBanner.propTypes = {
+  campaignInfo: PropTypes.object.isRequired,
+  group: PropTypes.object,
+  modalToggle: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+};
 
 VoterRegistrationDrivePageBanner.propTypes = {
-  user: PropTypes.object.isRequired,
-  campaignInfo: PropTypes.object.isRequired,
-  modalToggle: PropTypes.func.isRequired,
+  group: null,
 };
+
+export default VoterRegistrationDrivePageBanner;

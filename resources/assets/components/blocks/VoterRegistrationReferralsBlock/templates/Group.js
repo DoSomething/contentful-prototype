@@ -47,14 +47,22 @@ StatBlock.propTypes = {
   testId: PropTypes.string.isRequired,
 };
 
-const GroupTemplate = ({ group }) => {
+const GroupTemplate = ({ group, user }) => {
   return (
     <>
-      <SectionHeader title={`${group.groupType.name}: ${group.name}`} />
-      <p>Track how many people you and your group register to vote!</p>
+      {user ? null : (
+        <>
+          <SectionHeader title={`${group.groupType.name}: ${group.name}`} />
+          <p>Track how many people you and your group register to vote!</p>
+        </>
+      )}
+
       <Query
         query={GROUP_VOTER_REGISTRATION_REFERRALS_QUERY}
-        variables={{ groupId: group.id, referrerUserId: getUserId() }}
+        variables={{
+          groupId: group.id,
+          referrerUserId: user ? user.id : getUserId(),
+        }}
       >
         {data => (
           <>
@@ -63,16 +71,19 @@ const GroupTemplate = ({ group }) => {
               target={group.goal || 50}
               testId="group-progress"
             />
+
             <StatBlock
               amount={group.goal || 50}
               label="Your group’s registration goal"
               testId="group-goal"
             />
+
             <StatBlock
               amount={data.groupReferrals.length}
               label="People your group has registered"
               testId="group-total"
             />
+
             <StatBlock
               amount={data.individualReferrals.length}
               label="People you have registered"
@@ -86,7 +97,22 @@ const GroupTemplate = ({ group }) => {
 };
 
 GroupTemplate.propTypes = {
-  group: PropTypes.object.isRequired,
+  group: PropTypes.shape({
+    goal: PropTypes.number,
+    groupType: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }).isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+  }),
+};
+
+GroupTemplate.propTypes = {
+  user: null,
 };
 
 export default GroupTemplate;
