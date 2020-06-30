@@ -122,7 +122,7 @@ GroupTemplate.propTypes = {
   }),
 };
 
-GroupTemplate.propTypes = {
+GroupTemplate.defaultProps = {
   user: null,
 };
 

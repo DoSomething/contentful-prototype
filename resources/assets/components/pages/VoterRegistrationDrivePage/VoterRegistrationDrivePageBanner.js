@@ -123,12 +123,22 @@ const VoterRegistrationDrivePageBanner = ({
 
 VoterRegistrationDrivePageBanner.propTypes = {
   campaignInfo: PropTypes.object.isRequired,
-  group: PropTypes.object,
+  group: PropTypes.shape({
+    goal: PropTypes.number,
+    groupType: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }),
   modalToggle: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+  }).isRequired,
 };
 
-VoterRegistrationDrivePageBanner.propTypes = {
+VoterRegistrationDrivePageBanner.defaultProps = {
   group: null,
 };
 
