@@ -47,12 +47,17 @@ StatBlock.propTypes = {
   testId: PropTypes.string.isRequired,
 };
 
+/**
+ * If a user is provided, display that user's referrals, else user is the authenticated user.
+ */
 const GroupTemplate = ({ group, user }) => {
+  const groupDescription = `${group.groupType.name}: ${group.name}`;
+
   return (
     <>
       {user ? null : (
         <>
-          <SectionHeader title={`${group.groupType.name}: ${group.name}`} />
+          <SectionHeader title={groupDescription} />
           <p>Track how many people you and your group register to vote!</p>
         </>
       )}
@@ -74,19 +79,25 @@ const GroupTemplate = ({ group, user }) => {
 
             <StatBlock
               amount={group.goal || 50}
-              label="Your group’s registration goal"
+              label={`${
+                user ? groupDescription : 'Your group’s'
+              } registration goal`}
               testId="group-goal"
             />
 
             <StatBlock
               amount={data.groupReferrals.length}
-              label="People your group has registered"
+              label={`People ${
+                user ? groupDescription : 'your group'
+              } has registered`}
               testId="group-total"
             />
 
             <StatBlock
               amount={data.individualReferrals.length}
-              label="People you have registered"
+              label={`People ${
+                user ? `${user.firstName} has` : 'you have'
+              } registered`}
               testId="individual-total"
             />
           </>
