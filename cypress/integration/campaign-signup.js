@@ -192,7 +192,7 @@ describe('Campaign Signup', () => {
       // Mock the response we'll be expecting once we hit "Join Now":
       cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
 
-      // Click "Join Now" & should get the affirmation modal:
+      // Click "Join Us" & should get the affirmation modal with the CTA referral page banner:
       cy.contains('button', 'Join Us').click();
       cy.get('.card.affirmation')
         .findByTestId('cta-referral-page-banner')
