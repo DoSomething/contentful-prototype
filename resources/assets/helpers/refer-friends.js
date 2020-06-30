@@ -1,6 +1,6 @@
-import { query } from './index';
 import { getUserId } from './auth';
 import { PHOENIX_URL } from '../constants';
+import { query, siteConfig } from './index';
 
 /**
  * Get referral campaign ID for refer-a-friend share URL.
@@ -8,7 +8,7 @@ import { PHOENIX_URL } from '../constants';
  * @return {string}
  */
 export function getReferralCampaignId() {
-  return query('campaign_id');
+  return query('campaign_id') || siteConfig('default_referral_campaign_id');
 }
 
 /**
