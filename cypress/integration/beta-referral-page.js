@@ -33,6 +33,7 @@ describe('Beta Referral Page', () => {
     cy.get('.error-page').should('have.length', 1);
   });
 
+  // @TODO: Fromalize the default campaign in the Cypress config & update tests once we launce V2.
   context('Refer Friends V2', () => {
     it('Displays a secondary referral campaign link', () => {
       cy.withFeatureFlags({ refer_friends_v2: true })
