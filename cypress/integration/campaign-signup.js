@@ -171,6 +171,35 @@ describe('Campaign Signup', () => {
     });
   });
 
+  // @TODO: Formalize this test and remove the tests above once we launch RAF V2.
+  context('Refer Friends V2', () => {
+    it('Displays Referral Page Banner CTA regardless of displayReferralPage configuration', () => {
+      const user = userFactory();
+
+      cy.mockGraphqlOp('CampaignBannerQuery', {
+        campaign: {
+          id: campaignId,
+          groupTypeId: null,
+          groupType: null,
+        },
+      });
+
+      // Log in & visit the campaign pitch page:
+      cy.withFeatureFlags({
+        refer_friends_v2: true,
+      }).authVisitCampaignWithoutSignup(user, exampleCampaign);
+
+      // Mock the response we'll be expecting once we hit "Join Now":
+      cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+
+      // Click "Join Now" & should get the affirmation modal:
+      cy.contains('button', 'Join Us').click();
+      cy.get('.card.affirmation')
+        .findByTestId('cta-referral-page-banner')
+        .contains('Benefits With Friends');
+    });
+  });
+
   /** @test */
   it('Visit with existing signup, as an authenticated user', () => {
     const user = userFactory();
