@@ -132,9 +132,24 @@ describe('Voter Registration Referrals Block', () => {
     cy.get('.section-header__title').contains(
       `${group.groupType.name}: ${group.name}`,
     );
-    cy.findAllByTestId('group-goal').contains(group.goal);
-    cy.findAllByTestId('group-total').contains(5);
-    cy.findAllByTestId('individual-total').contains(5);
+    cy.findAllByTestId('group-goal')
+      .get('span')
+      .contains('Your group’s registration goal');
+    cy.findAllByTestId('group-goal')
+      .get('h1')
+      .contains(group.goal);
+    cy.findAllByTestId('group-goal')
+      .get('span')
+      .contains('People your group has registered');
+    cy.findAllByTestId('group-total')
+      .get('h1')
+      .contains(5);
+    cy.findAllByTestId('individual-total')
+      .get('span')
+      .contains('People you have registered');
+    cy.findAllByTestId('individual-total')
+      .get('h1')
+      .contains(5);
     cy.findAllByTestId('group-progress').contains(
       `${percentCompleted}% to your goal!`,
     );

@@ -30,14 +30,9 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
 `;
 
 const StatBlock = ({ amount, label, testId }) => (
-  <div className="pt-3">
+  <div className="pt-3" data-testid={testId}>
     <span className="font-bold uppercase text-gray-600">{label}</span>
-    <h1
-      data-testid={testId}
-      className="font-normal font-league-gothic text-3xl"
-    >
-      {amount}
-    </h1>
+    <h1 className="font-normal font-league-gothic text-3xl">{amount}</h1>
   </div>
 );
 
@@ -47,14 +42,27 @@ StatBlock.propTypes = {
   testId: PropTypes.string.isRequired,
 };
 
-const GroupTemplate = ({ group }) => {
+/**
+ * If a user is provided, display that user's referrals, else user is the authenticated user.
+ */
+const GroupTemplate = ({ group, user }) => {
+  const groupDescription = `${group.groupType.name}: ${group.name}`;
+
   return (
-    <>
-      <SectionHeader title={`${group.groupType.name}: ${group.name}`} />
-      <p>Track how many people you and your group register to vote!</p>
+    <div data-testid="group-voter-registration-referrals-block">
+      {user ? null : (
+        <>
+          <SectionHeader title={groupDescription} />
+          <p>Track how many people you and your group register to vote!</p>
+        </>
+      )}
+
       <Query
         query={GROUP_VOTER_REGISTRATION_REFERRALS_QUERY}
-        variables={{ groupId: group.id, referrerUserId: getUserId() }}
+        variables={{
+          groupId: group.id,
+          referrerUserId: user ? user.id : getUserId(),
+        }}
       >
         {data => (
           <>
@@ -63,30 +71,54 @@ const GroupTemplate = ({ group }) => {
               target={group.goal || 50}
               testId="group-progress"
             />
+
             <StatBlock
               amount={group.goal || 50}
-              label="Your group’s registration goal"
+              label={`${
+                user ? groupDescription : 'Your group’s'
+              } registration goal`}
               testId="group-goal"
             />
+
             <StatBlock
               amount={data.groupReferrals.length}
-              label="People your group has registered"
+              label={`People ${
+                user ? groupDescription : 'your group'
+              } has registered`}
               testId="group-total"
             />
+
             <StatBlock
               amount={data.individualReferrals.length}
-              label="People you have registered"
+              label={`People ${
+                user ? `${user.firstName} has` : 'you have'
+              } registered`}
               testId="individual-total"
             />
           </>
         )}
       </Query>
-    </>
+    </div>
   );
 };
 
 GroupTemplate.propTypes = {
-  group: PropTypes.object.isRequired,
+  group: PropTypes.shape({
+    goal: PropTypes.number,
+    groupType: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }).isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+  }),
+};
+
+GroupTemplate.defaultProps = {
+  user: null,
 };
 
 export default GroupTemplate;

@@ -21,6 +21,12 @@ const campaignWebsite = {
 };
 const group = {
   id: faker.random.number(),
+  name: faker.company.companyName(),
+  goal: faker.random.number(),
+  groupType: {
+    id: faker.random.number(),
+    name: faker.company.companyName(),
+  },
 };
 
 /**
@@ -149,13 +155,15 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       'have.length',
       1,
     );
-    cy.get(
-      '[data-test=voter-registration-drive-page-campaign-info-block]',
-    ).should('have.length', 1);
+    cy.findByTestId('campaign-info-block-container').should('have.length', 1);
+    cy.findByTestId('group-voter-registration-referrals-block').should(
+      'have.length',
+      0,
+    );
     cy.contains('Win A Scholarship');
-    cy.get(
-      '[data-test=voter-registration-drive-page-campaign-info-block] > article > dl > dd.campaign-info__scholarship',
-    ).contains(`$1,500`);
+    cy.findByTestId('campaign-info-block-container')
+      .get('article > dl > dd.campaign-info__scholarship')
+      .contains(`$1,500`);
     cy.contains('button', 'View Scholarship Details');
     cy.contains(`April 25th, 2022`);
     cy.get('[data-test=voter-registration-drive-page-blurb]').contains(
@@ -295,13 +303,18 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('OVRD Start VR Form tracking source contains group_id key value if valid group_id', () => {
+  it('If valid group_id query, tracking source contains group_id and group referrals block is displayed', () => {
     const user = userFactory();
+    const groupDescription = `${group.groupType.name}: ${group.name}`;
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
       group,
+    });
+    cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
+      // TODO: Update with queries once https://github.com/DoSomething/graphql/pull/252 merged.
+      posts: [{ id: faker.random.number() }, { id: faker.random.number() }],
     });
 
     cy.visit(getOvrdPagePathForUser(user, group));
@@ -310,5 +323,25 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       'have.value',
       `user:${user.id},source:web,source_details:onlinedrivereferral,group_id=${group.id},referral=true`,
     );
+    cy.findByTestId('campaign-info-block-container').should('have.length', 0);
+    cy.findByTestId('group-voter-registration-referrals-block').should(
+      'have.length',
+      1,
+    );
+    cy.findByTestId('group-goal')
+      .get('span')
+      .contains(`${groupDescription} registration goal`);
+    cy.findByTestId('group-total')
+      .get('span')
+      .contains(`People ${groupDescription} has registered`);
+    cy.findByTestId('group-total')
+      .get('h1')
+      .contains(2);
+    cy.findByTestId('individual-total')
+      .get('span')
+      .contains(`People ${user.firstName} has registered`);
+    cy.findByTestId('individual-total')
+      .get('h1')
+      .contains(2);
   });
 });

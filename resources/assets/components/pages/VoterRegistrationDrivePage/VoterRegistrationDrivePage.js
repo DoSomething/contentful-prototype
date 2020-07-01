@@ -42,7 +42,12 @@ const VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
 
     group(id: $groupId) {
       id
+      goal
       name
+      groupType {
+        id
+        name
+      }
     }
   }
 `;
@@ -109,9 +114,10 @@ const VoterRegistrationDrivePage = () => {
       <SiteNavigationContainer />
       <main data-test="voter-registration-drive-page">
         <VoterRegistrationDrivePageBanner
-          user={data.user}
           campaignInfo={data.campaignWebsite}
+          group={data.group}
           modalToggle={modalToggle}
+          user={data.user}
         />
         <div className="bg-white base-12-grid py-3 md:py-6">
           <div className="mx-auto py-6 grid-wide">

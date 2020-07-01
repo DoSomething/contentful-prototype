@@ -6,11 +6,13 @@ import { query } from '../../../helpers';
 import CampaignHeader from '../../utilities/CampaignHeader';
 import CoverImage from '../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import GroupTemplate from '../../blocks/VoterRegistrationReferralsBlock/templates/Group';
 
 const VoterRegistrationDrivePageBanner = ({
-  user,
   campaignInfo,
+  group,
   modalToggle,
+  user,
 }) => {
   const { firstName } = user;
   const {
@@ -98,16 +100,17 @@ const VoterRegistrationDrivePageBanner = ({
             </p>
           </div>
 
-          <div
-            data-test="voter-registration-drive-page-campaign-info-block"
-            className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3"
-          >
-            <CampaignInfoBlock
-              campaignId={campaignId}
-              scholarshipAmount={scholarshipAmount}
-              scholarshipDeadline={scholarshipDeadline}
-              showModal={modalToggle}
-            />
+          <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
+            {group ? (
+              <GroupTemplate group={group} user={user} />
+            ) : (
+              <CampaignInfoBlock
+                campaignId={campaignId}
+                scholarshipAmount={scholarshipAmount}
+                scholarshipDeadline={scholarshipDeadline}
+                showModal={modalToggle}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -115,10 +118,25 @@ const VoterRegistrationDrivePageBanner = ({
   );
 };
 
-export default VoterRegistrationDrivePageBanner;
-
 VoterRegistrationDrivePageBanner.propTypes = {
-  user: PropTypes.object.isRequired,
   campaignInfo: PropTypes.object.isRequired,
+  group: PropTypes.shape({
+    goal: PropTypes.number,
+    groupType: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }),
   modalToggle: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+  }).isRequired,
 };
+
+VoterRegistrationDrivePageBanner.defaultProps = {
+  group: null,
+};
+
+export default VoterRegistrationDrivePageBanner;
