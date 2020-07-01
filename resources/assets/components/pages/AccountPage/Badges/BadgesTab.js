@@ -56,6 +56,7 @@ const badgeModalContent = {
     unearnedText: (
       <span>
         Unlock this badge by
+        <br />
         {exploreCampaignsLink('signing up for a campaign')}.
       </span>
     ),
@@ -79,6 +80,7 @@ const badgeModalContent = {
     unearnedText: (
       <span>
         Want to earn your second Action badge?
+        <br />
         {exploreCampaignsLink('Rock another DoSomething campaign')}.
       </span>
     ),
