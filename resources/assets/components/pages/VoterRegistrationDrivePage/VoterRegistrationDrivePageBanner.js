@@ -100,10 +100,7 @@ const VoterRegistrationDrivePageBanner = ({
             </p>
           </div>
 
-          <div
-            data-test="voter-registration-drive-page-campaign-info-block"
-            className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3"
-          >
+          <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
             {group ? (
               <GroupTemplate group={group} user={user} />
             ) : (

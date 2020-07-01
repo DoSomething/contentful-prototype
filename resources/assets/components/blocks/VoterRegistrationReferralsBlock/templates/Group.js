@@ -54,7 +54,7 @@ const GroupTemplate = ({ group, user }) => {
   const groupDescription = `${group.groupType.name}: ${group.name}`;
 
   return (
-    <>
+    <div data-testid="group-voter-registration-referrals-block">
       {user ? null : (
         <>
           <SectionHeader title={groupDescription} />
@@ -103,7 +103,7 @@ const GroupTemplate = ({ group, user }) => {
           </>
         )}
       </Query>
-    </>
+    </div>
   );
 };
 

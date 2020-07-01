@@ -149,13 +149,15 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       'have.length',
       1,
     );
-    cy.get(
-      '[data-test=voter-registration-drive-page-campaign-info-block]',
-    ).should('have.length', 1);
+    cy.findByTestId('campaign-info-block-container').should('have.length', 1);
+    cy.findByTestId('group-voter-registration-referrals-block').should(
+      'have.length',
+      0,
+    );
     cy.contains('Win A Scholarship');
-    cy.get(
-      '[data-test=voter-registration-drive-page-campaign-info-block] > article > dl > dd.campaign-info__scholarship',
-    ).contains(`$1,500`);
+    cy.findByTestId('campaign-info-block-container')
+      .get('article > dl > dd.campaign-info__scholarship')
+      .contains(`$1,500`);
     cy.contains('button', 'View Scholarship Details');
     cy.contains(`April 25th, 2022`);
     cy.get('[data-test=voter-registration-drive-page-blurb]').contains(
@@ -295,7 +297,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it('OVRD Start VR Form tracking source contains group_id key value if valid group_id', () => {
+  it('If valid group_id query, tracking source contains group_id and group referrals block is displayed', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
@@ -309,6 +311,11 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
       `user:${user.id},source:web,source_details:onlinedrivereferral,group_id=${group.id},referral=true`,
+    );
+    cy.findByTestId('campaign-info-block-container').should('have.length', 0);
+    cy.findByTestId('group-voter-registration-referrals-block').should(
+      'have.length',
+      1,
     );
   });
 });
