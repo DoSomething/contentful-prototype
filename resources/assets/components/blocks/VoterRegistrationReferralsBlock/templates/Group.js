@@ -54,12 +54,12 @@ const GroupTemplate = ({ group, user }) => {
       >
         {data => {
           const groupGoal = group.goal || 50;
-          const groupReferralsCount = data.voterRegistrationsCountByGroupId;
+          const groupTotal = data.voterRegistrationsCountByGroupId;
 
           return (
             <>
               <ProgressBar
-                completed={groupReferralsCount}
+                completed={groupTotal}
                 target={groupGoal}
                 testId="group-progress"
               />
@@ -73,7 +73,7 @@ const GroupTemplate = ({ group, user }) => {
               />
 
               <StatBlock
-                amount={groupReferralsCount}
+                amount={groupTotal}
                 label={`People ${
                   user ? groupDescription : 'your group'
                 } has registered`}
