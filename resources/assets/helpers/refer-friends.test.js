@@ -19,14 +19,14 @@ describe('getReferFriendsLink', () => {
   });
 
   /** @test */
-  it('returns referral link when user is autenticated & campaign ID query param is present', () => {
+  it('returns referral link when user is authenticated & campaign ID query param is present', () => {
     expect(getReferFriendsLink()).toEqual(
       `${referralUrl}&campaign_id=${referralCampaignId}`,
     );
   });
 
   /** @test */
-  it('returns referral link when user is autenticated & default campaign ID is configured', () => {
+  it('returns referral link when user is authenticated & default campaign ID is configured', () => {
     window.jsdom.reconfigure({ url: alphaPageUrl });
 
     global.ENV = {
