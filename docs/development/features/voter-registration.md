@@ -28,7 +28,7 @@ This tracking source value is saved within the serialized `details` field of the
 
 - `user` - This is the Northstar user ID of either the authenticated user registering to vote, or the referring alpha user for a beta registration, when the `referral` key is present.
 
-- `group_id` - This is the Rogue group ID stored on the campaign signup, if user is sharing their link from a group OVRD campaign (docs coming soon).
+- `group_id` - This is the [Rogue group ID](https://github.com/DoSomething/rogue/blob/master/docs/endpoints/groups.md) stored on the campaign signup, if user is sharing their link from a [groups OVRD campaign](development/features/groups.md#online-voter-registration-drives).
 
 - `source` - This is similar to a `utm_source`.
 
@@ -36,7 +36,7 @@ This tracking source value is saved within the serialized `details` field of the
 
 - `source_detail` - This is similar to a `utm_campaign`.
 
-  - Examples: [`hellobar`](<(development/features/sitewide-banner.md)>), `broadcastID_4YOiqwTVOOVklZFARAFd4h`, `VoterRegQuiz_completed_votebymail`, `onlinedrivereferral`
+  - Examples: [`hellobar`](development/features/sitewide-banner.md), `broadcastID_4YOiqwTVOOVklZFARAFd4h`, `VoterRegQuiz_completed_votebymail`, `onlinedrivereferral`
 
 - `referral` - If this is set, the `user` parameter should be used as the `referrer_user_id` on the `voter-reg` post.
 
