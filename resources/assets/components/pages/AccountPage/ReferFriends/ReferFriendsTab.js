@@ -13,12 +13,11 @@ const DetailsParagraph = tw.p`pt-2`;
 const ReferFriendsTab = () => (
   <>
     <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6">
-      {/* @TODO Update all reward related copy once we have the updates from product. */}
-      <SectionHeader underlined title="Enter to Win A $10 Gift Card" />
+      <SectionHeader underlined title="Get Your Friends Involved" />
 
       <SocialDriveActionContainer
-        shareCardTitle="Refer a friend"
-        shareCardDescription="When your friend signs up for their first DoSomething campaign, you’ll both enter to win a $10 gift card! Every 2 weeks, there will be 25 winners. The more friends you refer, the more chances you have to win. (Psst...there’s no limit on how many you can refer!)"
+        shareCardTitle="Refer a friend!"
+        shareCardDescription="Share the link below with a friend and invite them to sign up for their first DoSomething campaign! As soon as your friend signs up, you’ll see their name in the Your Referrals section below. Let’s Do This."
         link={getReferFriendsLink()}
         fullWidth
       />
