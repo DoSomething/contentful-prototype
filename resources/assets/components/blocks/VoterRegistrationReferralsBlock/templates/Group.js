@@ -12,20 +12,8 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
     $groupId: Int!
     $referrerUserId: String!
   ) {
-    groupReferrals: posts(
-      groupId: $groupId
-      type: "voter-reg"
-      status: [REGISTER_FORM, REGISTER_OVR]
-    ) {
-      id
-    }
-    individualReferrals: posts(
-      referrerUserId: $referrerUserId
-      type: "voter-reg"
-      status: [REGISTER_FORM, REGISTER_OVR]
-    ) {
-      id
-    }
+    voterRegistrationsCountByGroupId(groupId: $groupId)
+    voterRegistrationsCountByReferrerUserId(referrerUserId: $referrerUserId)
   }
 `;
 
@@ -64,39 +52,44 @@ const GroupTemplate = ({ group, user }) => {
           referrerUserId: user ? user.id : getUserId(),
         }}
       >
-        {data => (
-          <>
-            <ProgressBar
-              completed={data.groupReferrals.length}
-              target={group.goal || 50}
-              testId="group-progress"
-            />
+        {data => {
+          const groupGoal = group.goal || 50;
+          const groupReferralsCount = data.voterRegistrationsCountByGroupId;
 
-            <StatBlock
-              amount={group.goal || 50}
-              label={`${
-                user ? groupDescription : 'Your group’s'
-              } registration goal`}
-              testId="group-goal"
-            />
+          return (
+            <>
+              <ProgressBar
+                completed={groupReferralsCount}
+                target={groupGoal}
+                testId="group-progress"
+              />
 
-            <StatBlock
-              amount={data.groupReferrals.length}
-              label={`People ${
-                user ? groupDescription : 'your group'
-              } has registered`}
-              testId="group-total"
-            />
+              <StatBlock
+                amount={groupGoal}
+                label={`${
+                  user ? groupDescription : 'Your group’s'
+                } registration goal`}
+                testId="group-goal"
+              />
 
-            <StatBlock
-              amount={data.individualReferrals.length}
-              label={`People ${
-                user ? `${user.firstName} has` : 'you have'
-              } registered`}
-              testId="individual-total"
-            />
-          </>
-        )}
+              <StatBlock
+                amount={groupReferralsCount}
+                label={`People ${
+                  user ? groupDescription : 'your group'
+                } has registered`}
+                testId="group-total"
+              />
+
+              <StatBlock
+                amount={data.voterRegistrationsCountByReferrerUserId}
+                label={`People ${
+                  user ? `${user.firstName} has` : 'you have'
+                } registered`}
+                testId="individual-total"
+              />
+            </>
+          );
+        }}
       </Query>
     </div>
   );
