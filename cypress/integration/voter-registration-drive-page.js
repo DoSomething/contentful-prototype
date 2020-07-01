@@ -313,8 +313,8 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       group,
     });
     cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
-      // TODO: Update with queries once https://github.com/DoSomething/graphql/pull/252 merged.
-      posts: [{ id: faker.random.number() }, { id: faker.random.number() }],
+      voterRegistrationsCountByGroupId: 31,
+      voterRegistrationsCountByReferrerUserId: 8,
     });
 
     cy.visit(getOvrdPagePathForUser(user, group));
@@ -336,12 +336,12 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       .contains(`People ${groupDescription} has registered`);
     cy.findByTestId('group-total')
       .get('h1')
-      .contains(2);
+      .contains(31);
     cy.findByTestId('individual-total')
       .get('span')
       .contains(`People ${user.firstName} has registered`);
     cy.findByTestId('individual-total')
       .get('h1')
-      .contains(2);
+      .contains(8);
   });
 });
