@@ -55,7 +55,7 @@ const badgeModalContent = {
       'Hey, congrats! You earned a badge for signing up for your first campaign. More badges ahead…!',
     unearnedText: (
       <span>
-        Unlock this badge by
+        Unlock this badge by &nbsp;{' '}
         {exploreCampaignsLink('signing up for a campaign')}.
       </span>
     ),
@@ -78,7 +78,7 @@ const badgeModalContent = {
       'Niiiiice! You just earned another badge for making an impact *again*. Hope you’re double proud of yourself.',
     unearnedText: (
       <span>
-        Want to earn your second Action badge?
+        Want to earn your second Action badge? &nbsp; &nbsp;
         {exploreCampaignsLink('Rock another DoSomething campaign')}.
       </span>
     ),
