@@ -5,6 +5,7 @@ import Query from '../../../Query';
 import ErrorPage from '../../ErrorPage';
 import MoneyHandImage from './money-hand.svg';
 import CampaignLink from './BetaPageCampaignLink';
+import GiftCardHandImage from './gift-card-hand.svg';
 import ArticleHeader from '../../../utilities/ArticleHeader';
 import { featureFlag, query, siteConfig } from '../../../../helpers';
 import { getReferralCampaignId } from '../../../../helpers/refer-friends';
@@ -48,7 +49,14 @@ const BetaPage = () => {
               <div className="my-6">
                 <ArticleHeader title={`Hey, ${firstName}’s friend!`} />
                 <div className="my-6">
-                  <img src={MoneyHandImage} alt="Hand with money envelope" />
+                  <img
+                    src={
+                      featureFlag('refer_friends_v2')
+                        ? GiftCardHandImage
+                        : MoneyHandImage
+                    }
+                    alt="Hand with money envelope"
+                  />
                 </div>
                 <div className="my-6">
                   <p>
