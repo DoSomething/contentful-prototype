@@ -30,14 +30,9 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
 `;
 
 const StatBlock = ({ amount, label, testId }) => (
-  <div className="pt-3">
+  <div className="pt-3" data-testid={testId}>
     <span className="font-bold uppercase text-gray-600">{label}</span>
-    <h1
-      data-testid={testId}
-      className="font-normal font-league-gothic text-3xl"
-    >
-      {amount}
-    </h1>
+    <h1 className="font-normal font-league-gothic text-3xl">{amount}</h1>
   </div>
 );
 

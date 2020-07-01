@@ -21,6 +21,12 @@ const campaignWebsite = {
 };
 const group = {
   id: faker.random.number(),
+  name: faker.company.companyName(),
+  goal: faker.random.number(),
+  groupType: {
+    id: faker.random.number(),
+    name: faker.company.companyName(),
+  },
 };
 
 /**
@@ -299,11 +305,16 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   /** @test */
   it('If valid group_id query, tracking source contains group_id and group referrals block is displayed', () => {
     const user = userFactory();
+    const groupDescription = `${group.groupType.name}: ${group.name}`;
 
     cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
       user,
       campaignWebsite,
       group,
+    });
+    cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
+      // TODO: Update with queries once https://github.com/DoSomething/graphql/pull/252 merged.
+      posts: [{ id: faker.random.number() }, { id: faker.random.number() }],
     });
 
     cy.visit(getOvrdPagePathForUser(user, group));
@@ -317,5 +328,20 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       'have.length',
       1,
     );
+    cy.findByTestId('group-goal')
+      .get('span')
+      .contains(`${groupDescription} registration goal`);
+    cy.findByTestId('group-total')
+      .get('span')
+      .contains(`People ${groupDescription} has registered`);
+    cy.findByTestId('group-total')
+      .get('h1')
+      .contains(2);
+    cy.findByTestId('individual-total')
+      .get('span')
+      .contains(`People ${user.firstName} has registered`);
+    cy.findByTestId('individual-total')
+      .get('h1')
+      .contains(2);
   });
 });
