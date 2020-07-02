@@ -6,7 +6,11 @@ import PropTypes from 'prop-types';
 import ContentfulEntry from '../../ContentfulEntry';
 import PageInfoBar from '../../PageInfoBar/PageInfoBar';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import { contentfulImageUrl, withoutNulls } from '../../../helpers';
+import {
+  contentfulImageUrl,
+  withoutNulls,
+  isAuthenticated,
+} from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
@@ -58,7 +62,9 @@ const StoryPage = props => {
               classNameByEntry={{
                 EmbedBlock: 'grid-main',
                 PostGalleryBlock: 'grid-main',
-                PhotoSubmissionBlock: 'grid-wide',
+                PhotoSubmissionBlock: isAuthenticated()
+                  ? 'grid-wide'
+                  : 'grid-narrow',
               }}
               classNameByEntryDefault="grid-narrow"
               key={block.id}
