@@ -110,7 +110,7 @@ const BetaPage = () => {
                       </h4>
                       <p>
                         Easy! Just sign up for a DoSomething campaign, and boom!
-                        You're ready to take action.
+                        You&apos;re ready to take action.
                       </p>
 
                       <h4>Why should I join DoSomething?</h4>
