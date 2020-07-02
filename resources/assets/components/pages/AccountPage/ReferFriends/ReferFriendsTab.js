@@ -2,6 +2,7 @@ import React from 'react';
 import tw from 'twin.macro';
 
 import SignupReferralsGallery from './SignupReferralsGallery';
+import { getReferFriendsLink } from '../../../../helpers/refer-friends';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
@@ -18,8 +19,7 @@ const ReferFriendsTab = () => (
       <SocialDriveActionContainer
         shareCardTitle="Refer a friend"
         shareCardDescription="When your friend signs up for their first DoSomething campaign, you’ll both enter to win a $10 gift card! Every 2 weeks, there will be 25 winners. The more friends you refer, the more chances you have to win. (Psst...there’s no limit on how many you can refer!)"
-        /* @TODO use refer-friends link generator helper once we establish a default campaign in https://bit.ly/3c9L7nT */
-        link="https://dosomething.org/us/campaigns/senior-homies"
+        link={getReferFriendsLink()}
         fullWidth
       />
     </div>
