@@ -61,7 +61,11 @@ const GroupSelect = ({ groupState, groupTypeId, onChange, onFocus }) => {
         }
         return fetchGroups(input, callback);
       }}
-      noOptionsMessage={() => 'Enter your chapter name'}
+      noOptionsMessage={({ inputValue }) =>
+        inputValue.length
+          ? "Can't find your group? Email tej@dosomething.org"
+          : 'Enter your chapter name'
+      }
       onChange={onChange}
       onFocus={onFocus}
     />
