@@ -34,6 +34,7 @@ const StatBlock = ({ amount, isVertical, label, testId }) => {
       data-testid={testId}
     >
       {isVertical ? null : statLabel}
+
       <h1
         className={`font-normal font-league-gothic text-3xl ${
           isVertical ? ' w-1/6' : ''
@@ -41,6 +42,7 @@ const StatBlock = ({ amount, isVertical, label, testId }) => {
       >
         {amount}
       </h1>
+
       {isVertical ? statLabel : null}
     </div>
   );
@@ -92,6 +94,7 @@ const GroupTemplate = ({ group, user }) => {
                     ? `🎉 You're at ${percentage}% of your goal! 🎉`
                     : `${percentage}% to your goal!`}
                 </span>
+
                 <ProgressBar percentage={percentage} />
               </div>
 
