@@ -58,6 +58,7 @@ const StoryPage = props => {
               classNameByEntry={{
                 EmbedBlock: 'grid-main',
                 PostGalleryBlock: 'grid-main',
+                PhotoSubmissionBlock: 'grid-wide',
               }}
               classNameByEntryDefault="grid-narrow"
               key={block.id}
