@@ -17,8 +17,11 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   }
 `;
 
-const StatBlock = ({ amount, isVertical, label, testId }) => {
-  const statLabel = (
+const StatBlock = ({ amount, isVertical, label, testId }) => (
+  <div
+    className={`pt-3 ${isVertical ? 'pb-3 flex flex-row-reverse' : null}`}
+    data-testid={testId}
+  >
     <span
       className={`font-bold uppercase text-gray-600 ${
         isVertical ? 'w-5/6 pb-2' : ''
@@ -26,27 +29,16 @@ const StatBlock = ({ amount, isVertical, label, testId }) => {
     >
       {label}
     </span>
-  );
 
-  return (
-    <div
-      className={`pt-3 ${isVertical ? 'pb-3 flex' : null}`}
-      data-testid={testId}
+    <h1
+      className={`font-normal font-league-gothic text-3xl ${
+        isVertical ? ' w-1/6' : ''
+      }`}
     >
-      {isVertical ? null : statLabel}
-
-      <h1
-        className={`font-normal font-league-gothic text-3xl ${
-          isVertical ? ' w-1/6' : ''
-        }`}
-      >
-        {amount}
-      </h1>
-
-      {isVertical ? statLabel : null}
-    </div>
-  );
-};
+      {amount}
+    </h1>
+  </div>
+);
 
 StatBlock.propTypes = {
   amount: PropTypes.number.isRequired,
