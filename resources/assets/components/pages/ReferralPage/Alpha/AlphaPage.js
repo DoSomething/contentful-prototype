@@ -55,6 +55,15 @@ const AlphaPage = () =>
                 <a href="/us/account/refer-friends">Refer a Friend section</a>{' '}
                 of your profile. Yep, that easy.
               </p>
+
+              <h4>Where can I find the full rules?</h4>
+              <p>
+                This offer is for a limited time only. See the{' '}
+                <a href="/us/refer-a-friend-official-rules">
+                  Refer A Friend Official Rules
+                </a>
+                .
+              </p>
             </>
           ) : (
             <>
