@@ -13,7 +13,6 @@ const ProgressBar = ({ completed, target, testId }) => {
     height: 25px;
     width: 350px;
     border-radius: 50px;
-    border: 1px solid #fff;
   `;
 
   const progressBar = css`
