@@ -19,13 +19,13 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
 
 const StatBlock = ({ amount, isVertical, label, testId }) => {
   const statLabel = (
-    <div
+    <span
       className={`font-bold uppercase text-gray-600 ${
         isVertical ? 'w-5/6 pb-2' : ''
       }`}
     >
       {label}
-    </div>
+    </span>
   );
 
   return (
