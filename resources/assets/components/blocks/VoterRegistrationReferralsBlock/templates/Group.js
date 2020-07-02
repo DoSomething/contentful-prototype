@@ -17,15 +17,35 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   }
 `;
 
-const StatBlock = ({ amount, label, testId }) => (
-  <div className="pt-3" data-testid={testId}>
-    <span className="font-bold uppercase text-gray-600">{label}</span>
-    <h1 className="font-normal font-league-gothic text-3xl">{amount}</h1>
-  </div>
-);
+const StatBlock = ({ amount, label, testId, condensed }) => {
+  const statLabel = (
+    <div
+      className={`font-bold uppercase text-gray-600 ${
+        condensed ? 'w-5/6 pb-2' : ''
+      }`}
+    >
+      {label}
+    </div>
+  );
+
+  return (
+    <div className={`pt-3 ${condensed ? 'flex' : null}`} data-testid={testId}>
+      {condensed ? null : statLabel}
+      <h1
+        className={`font-normal font-league-gothic text-3xl ${
+          condensed ? ' w-1/6' : ''
+        }`}
+      >
+        {amount}
+      </h1>
+      {condensed ? statLabel : null}
+    </div>
+  );
+};
 
 StatBlock.propTypes = {
   amount: PropTypes.number.isRequired,
+  condensed: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
 };
@@ -66,6 +86,7 @@ const GroupTemplate = ({ group, user }) => {
 
               <StatBlock
                 amount={groupGoal}
+                condensed={!!user}
                 label={`${
                   user ? groupDescription : 'Your group’s'
                 } registration goal`}
@@ -74,6 +95,7 @@ const GroupTemplate = ({ group, user }) => {
 
               <StatBlock
                 amount={groupTotal}
+                condensed={!!user}
                 label={`People ${
                   user ? groupDescription : 'your group'
                 } has registered`}
@@ -82,6 +104,7 @@ const GroupTemplate = ({ group, user }) => {
 
               <StatBlock
                 amount={data.voterRegistrationsCountByReferrerUserId}
+                condensed={!!user}
                 label={`People ${
                   user ? `${user.firstName} has` : 'you have'
                 } registered`}
