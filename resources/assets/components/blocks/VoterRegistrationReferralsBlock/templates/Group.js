@@ -29,7 +29,10 @@ const StatBlock = ({ amount, isVertical, label, testId }) => {
   );
 
   return (
-    <div className={`pt-3 ${isVertical ? 'flex' : null}`} data-testid={testId}>
+    <div
+      className={`pt-3 ${isVertical ? 'pb-3 flex' : null}`}
+      data-testid={testId}
+    >
       {isVertical ? null : statLabel}
       <h1
         className={`font-normal font-league-gothic text-3xl ${
@@ -80,7 +83,11 @@ const GroupTemplate = ({ group, user }) => {
           return (
             <>
               <div data-testid="group-progress" className="py-3">
-                <span className="font-bold uppercase text-gray-600">
+                <span
+                  className={`font-bold uppercase ${
+                    user ? 'text-lg' : 'text-gray-600'
+                  }`}
+                >
                   {percentage > 100
                     ? `🎉 You're at ${percentage}% of your goal! 🎉`
                     : `${percentage}% to your goal!`}
