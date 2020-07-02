@@ -29,7 +29,7 @@ class ReferralPageController extends Controller
                 'description' => 'Make an impact with your friend by completing one of DoSomething\'s volunteer campaigns. (You\'ll both increase your chances of winning the campaign scholarship!)',
                 'facebook_app_id' =>  config('services.analytics.facebook_id'),
                 'image' => [
-                    'url' => asset('images/money-hand.png'),
+                    'url' => asset(config('feature-flags.refer_friends_v2') ? 'images/gift-card-hand.png' : 'images/money-hand.png'),
                     'width' => '1200',
                     'height' => '1200',
                 ],
