@@ -396,13 +396,9 @@
                 "name": "groupTypeId",
                 "description": "The group type ID to filter groups by.",
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
                 },
                 "defaultValue": null
               },
@@ -419,6 +415,16 @@
               {
                 "name": "state",
                 "description": "The group state to filter groups by.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "schoolId",
+                "description": "The group school ID to filter groups by.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
@@ -467,13 +473,9 @@
                 "name": "groupTypeId",
                 "description": "The group type ID to filter groups by.",
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
                 },
                 "defaultValue": null
               },
@@ -490,6 +492,16 @@
               {
                 "name": "state",
                 "description": "The group state to filter groups by.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "schoolId",
+                "description": "The group school ID to filter groups by.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
@@ -1363,7 +1375,7 @@
             "args": [
               {
                 "name": "campaignId",
-                "description": "The Campaign ID count signups for.",
+                "description": "The Campaign ID to count signups for.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
@@ -1531,6 +1543,60 @@
                   "ofType": null
                 },
                 "defaultValue": "20"
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "voterRegistrationsCountByGroupId",
+            "description": "Find out how many completed voter registrations a group has.",
+            "args": [
+              {
+                "name": "groupId",
+                "description": "The Group ID to count completed voter registrations for.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "voterRegistrationsCountByReferrerUserId",
+            "description": "Find out how many completed voter registrations a referring user has.",
+            "args": [
+              {
+                "name": "referrerUserId",
+                "description": "The Referrer User ID to count completed voter registrations for.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
               }
             ],
             "type": {
@@ -6172,8 +6238,8 @@
             "deprecationReason": null
           },
           {
-            "name": "externalId",
-            "description": "The group external ID.",
+            "name": "schoolId",
+            "description": "The group school ID.",
             "args": [],
             "type": {
               "kind": "SCALAR",

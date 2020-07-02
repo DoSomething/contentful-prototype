@@ -117,14 +117,8 @@ describe('Voter Registration Referrals Block', () => {
       signups: [{ id: 11122016, group }],
     });
     cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
-      // TODO: How can we mock aliases, to test against the two different queries?
-      posts: [
-        fakePost('Sarah C.'),
-        fakePost('Kyle R.'),
-        fakePost('John C.'),
-        fakePost('Miles D.'),
-        fakePost('Tarissa D.'),
-      ],
+      voterRegistrationsCountByGroupId: 5,
+      voterRegistrationsCountByReferrerUserId: 12,
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
@@ -149,7 +143,7 @@ describe('Voter Registration Referrals Block', () => {
       .contains('People you have registered');
     cy.findAllByTestId('individual-total')
       .get('h1')
-      .contains(5);
+      .contains(12);
     cy.findAllByTestId('group-progress').contains(
       `${percentCompleted}% to your goal!`,
     );
@@ -163,15 +157,15 @@ describe('Voter Registration Referrals Block', () => {
     cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group }],
     });
-    // TODO: Fix me (same as test above).
     cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
-      posts: [],
+      voterRegistrationsCountByGroupId: 15,
+      voterRegistrationsCountByReferrerUserId: 0,
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.findAllByTestId('group-goal').contains(50);
-    cy.findAllByTestId('group-total').contains(0);
+    cy.findAllByTestId('group-total').contains(15);
     cy.findAllByTestId('individual-total').contains(0);
   });
 
@@ -184,14 +178,8 @@ describe('Voter Registration Referrals Block', () => {
       signups: [{ id: 11122016, group }],
     });
     cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
-      // TODO: Fix me (same as tests above).
-      posts: [
-        fakePost('Sarah C.'),
-        fakePost('Kyle R.'),
-        fakePost('John C.'),
-        fakePost('Miles D.'),
-        fakePost('Tarissa D.'),
-      ],
+      voterRegistrationsCountByGroupId: 5,
+      voterRegistrationsCountByReferrerUserId: 1,
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
