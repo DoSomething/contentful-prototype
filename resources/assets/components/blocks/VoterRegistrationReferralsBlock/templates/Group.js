@@ -58,7 +58,7 @@ StatBlock.propTypes = {
 /**
  * If a user is provided, display that user's referrals, else user is the authenticated user.
  */
-const GroupTemplate = ({ group, user }) => {
+const GroupTemplate = ({ group, isVertical, user }) => {
   const groupDescription = `${group.groupType.name}: ${group.name}`;
 
   return (
@@ -87,7 +87,7 @@ const GroupTemplate = ({ group, user }) => {
               <div data-testid="group-progress" className="py-3">
                 <span
                   className={`font-bold uppercase ${
-                    user ? 'text-lg' : 'text-gray-600'
+                    isVertical ? 'text-lg' : 'text-gray-600'
                   }`}
                 >
                   {percentage > 100
@@ -100,7 +100,7 @@ const GroupTemplate = ({ group, user }) => {
 
               <StatBlock
                 amount={groupGoal}
-                isVertical={!!user}
+                isVertical={isVertical}
                 label={`${
                   user ? groupDescription : 'Your group’s'
                 } registration goal`}
@@ -109,7 +109,7 @@ const GroupTemplate = ({ group, user }) => {
 
               <StatBlock
                 amount={groupTotal}
-                isVertical={!!user}
+                isVertical={isVertical}
                 label={`People ${
                   user ? groupDescription : 'your group'
                 } has registered`}
@@ -118,7 +118,7 @@ const GroupTemplate = ({ group, user }) => {
 
               <StatBlock
                 amount={data.voterRegistrationsCountByReferrerUserId}
-                isVertical={!!user}
+                isVertical={isVertical}
                 label={`People ${
                   user ? `${user.firstName} has` : 'you have'
                 } registered`}
@@ -141,6 +141,7 @@ GroupTemplate.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
   }).isRequired,
+  isVertical: PropTypes.bool,
   user: PropTypes.shape({
     id: PropTypes.string,
     firstName: PropTypes.string,
@@ -148,6 +149,7 @@ GroupTemplate.propTypes = {
 };
 
 GroupTemplate.defaultProps = {
+  isVertical: false,
   user: null,
 };
 

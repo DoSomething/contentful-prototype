@@ -102,7 +102,7 @@ const VoterRegistrationDrivePageBanner = ({
 
           <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
             {group ? (
-              <GroupTemplate group={group} user={user} />
+              <GroupTemplate group={group} isVertical user={user} />
             ) : (
               <CampaignInfoBlock
                 campaignId={campaignId}
