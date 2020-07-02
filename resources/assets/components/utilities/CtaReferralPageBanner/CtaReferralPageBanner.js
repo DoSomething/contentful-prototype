@@ -8,8 +8,6 @@ import { featureFlag, tailwind } from '../../../helpers';
 import GiftCardHandLargeImage from './gift-card-hand-large.svg';
 import GiftCardHandSmallImage from './gift-card-hand-small.svg';
 
-import { featureFlag } from '../../../helpers';
-
 import './cta-referral-page-banner.scss';
 
 const CtaReferralPageBanner = ({ campaignId, displayReferralPage }) => (
