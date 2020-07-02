@@ -17,11 +17,11 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   }
 `;
 
-const StatBlock = ({ amount, label, testId, condensed }) => {
+const StatBlock = ({ amount, isVertical, label, testId }) => {
   const statLabel = (
     <div
       className={`font-bold uppercase text-gray-600 ${
-        condensed ? 'w-5/6 pb-2' : ''
+        isVertical ? 'w-5/6 pb-2' : ''
       }`}
     >
       {label}
@@ -29,23 +29,23 @@ const StatBlock = ({ amount, label, testId, condensed }) => {
   );
 
   return (
-    <div className={`pt-3 ${condensed ? 'flex' : null}`} data-testid={testId}>
-      {condensed ? null : statLabel}
+    <div className={`pt-3 ${isVertical ? 'flex' : null}`} data-testid={testId}>
+      {isVertical ? null : statLabel}
       <h1
         className={`font-normal font-league-gothic text-3xl ${
-          condensed ? ' w-1/6' : ''
+          isVertical ? ' w-1/6' : ''
         }`}
       >
         {amount}
       </h1>
-      {condensed ? statLabel : null}
+      {isVertical ? statLabel : null}
     </div>
   );
 };
 
 StatBlock.propTypes = {
   amount: PropTypes.number.isRequired,
-  condensed: PropTypes.bool.isRequired,
+  isVertical: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
 };
@@ -75,18 +75,22 @@ const GroupTemplate = ({ group, user }) => {
         {data => {
           const groupGoal = group.goal || 50;
           const groupTotal = data.voterRegistrationsCountByGroupId;
+          const percentage = Math.round((groupTotal / groupGoal) * 100);
 
           return (
             <>
-              <ProgressBar
-                completed={groupTotal}
-                target={groupGoal}
-                testId="group-progress"
-              />
+              <div data-testid="group-progress" className="py-3">
+                <span className="font-bold uppercase text-gray-600">
+                  {percentage > 100
+                    ? `🎉 You're at ${percentage}% of your goal! 🎉`
+                    : `${percentage}% to your goal!`}
+                </span>
+                <ProgressBar percentage={percentage} />
+              </div>
 
               <StatBlock
                 amount={groupGoal}
-                condensed={!!user}
+                isVertical={!!user}
                 label={`${
                   user ? groupDescription : 'Your group’s'
                 } registration goal`}
@@ -95,7 +99,7 @@ const GroupTemplate = ({ group, user }) => {
 
               <StatBlock
                 amount={groupTotal}
-                condensed={!!user}
+                isVertical={!!user}
                 label={`People ${
                   user ? groupDescription : 'your group'
                 } has registered`}
@@ -104,7 +108,7 @@ const GroupTemplate = ({ group, user }) => {
 
               <StatBlock
                 amount={data.voterRegistrationsCountByReferrerUserId}
-                condensed={!!user}
+                isVertical={!!user}
                 label={`People ${
                   user ? `${user.firstName} has` : 'you have'
                 } registered`}

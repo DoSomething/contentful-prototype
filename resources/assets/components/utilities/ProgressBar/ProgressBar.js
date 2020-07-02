@@ -4,9 +4,7 @@ import { css } from '@emotion/core';
 
 import { tailwind } from '../../../helpers';
 
-const ProgressBar = ({ completed, target, testId }) => {
-  const percentCompleted = Math.round((completed / target) * 100);
-
+const ProgressBar = ({ percentage }) => {
   const tailwindYellow = tailwind('colors.yellow');
 
   const progressBarContainer = css`
@@ -21,27 +19,18 @@ const ProgressBar = ({ completed, target, testId }) => {
     border-radius: inherit;
   `;
 
-  const label =
-    percentCompleted > 100
-      ? `🎉 You're at ${percentCompleted}% of your goal! 🎉`
-      : `${percentCompleted}% to your goal!`;
-
-  const barWidth = percentCompleted > 100 ? 100 : percentCompleted;
-
   return (
-    <div data-testid={testId} className="py-3">
-      <span className="font-bold uppercase text-gray-600">{label}</span>
-      <div className="relative bg-gray-200" css={progressBarContainer}>
-        <div css={progressBar} style={{ width: `${barWidth}%` }} />
-      </div>
+    <div className="relative bg-gray-200" css={progressBarContainer}>
+      <div
+        css={progressBar}
+        style={{ width: `${percentage > 100 ? 100 : percentage}%` }}
+      />
     </div>
   );
 };
 
 ProgressBar.propTypes = {
-  completed: PropTypes.number.isRequired,
-  target: PropTypes.number.isRequired,
-  testId: PropTypes.string.isRequired,
+  percentage: PropTypes.number.isRequired,
 };
 
 export default ProgressBar;
