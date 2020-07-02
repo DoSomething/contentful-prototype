@@ -29,11 +29,18 @@ const CtaReferralPageBanner = ({ campaignId, displayReferralPage }) => (
               }
             `}
           >
-            <h3 className="text-white">Benefits With Friends</h3>
+            <h3 className="text-white">
+              {featureFlag('refer_friends_v2')
+                ? 'Get your Friends Involved!'
+                : 'Benefits With Friends'}
+            </h3>
+
             <p className="text-white pb-3">
-              Refer a friend to this campaign, and you’ll *both* increase your
-              chances of winning the campaign scholarship!
+              {featureFlag('refer_friends_v2')
+                ? 'Invite a friend to take action in this cause as well!'
+                : 'Refer a friend to this campaign, and you’ll *both* increase your chances of winning the campaign scholarship!'}
             </p>
+
             <a
               href={`/us/refer-friends?campaign_id=${campaignId}`}
               className="button p-3 -attached"

@@ -26,7 +26,7 @@ class ReferralPageController extends Controller
             // (and refactor get_metadata helper to expect an $entity instead of $campaign)
             'metadata' => [
                 'title' => $title,
-                'description' => 'Make an impact with your friend by completing one of DoSomething\'s volunteer campaigns. (You\'ll both increase your chances of winning the campaign scholarship!)',
+                'description' => config('feature-flags.refer_friends_v2') ? 'Make an impact by signing up for a DoSomething volunteer campaign.' : 'Make an impact with your friend by completing one of DoSomething\'s volunteer campaigns. (You\'ll both increase your chances of winning the campaign scholarship!)',
                 'facebook_app_id' =>  config('services.analytics.facebook_id'),
                 'image' => [
                     'url' => asset(config('feature-flags.refer_friends_v2') ? 'images/gift-card-hand.png' : 'images/money-hand.png'),
