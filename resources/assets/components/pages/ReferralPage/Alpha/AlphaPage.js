@@ -26,7 +26,7 @@ const AlphaPage = () =>
             <SocialDriveActionContainer
               shareCardDescription={
                 featureFlag('refer_friends_v2')
-                  ? "Share the link below with a friend and invite them to sign up for their first DoSomething campaign! As soon as your friend signs up, you'll see their name in the Your Referrals section below. Let's Do This."
+                  ? "Share the link below with a friend and invite them to sign up for their first DoSomething campaign! Let's Do This."
                   : "Invite your friends to join DoSomething. When your friend completes this campaign, you'll both increase your chances of winning the campaign scholarship! Every friend you refer earns you an additional shot at winning the scholarship. (Psst...there's no limit on how many you can refer!)"
               }
               shareCardTitle="Refer A Friend!"
@@ -51,8 +51,18 @@ const AlphaPage = () =>
                 Share the link above with your friend, either via text, email,
                 or social media. Using that link, your friend will create a
                 DoSomething account and then sign up for a campaign. When they
-                sign up, you&apos;ll see their name in the “Your Referrals”
-                section. Yep, that easy.
+                sign up, you’ll see their name in the{' '}
+                <a href="/us/account/refer-friends">Refer a Friend section</a>{' '}
+                of your profile. Yep, that easy.
+              </p>
+
+              <h4>Where can I find the full rules?</h4>
+              <p>
+                This offer is for a limited time only. See the{' '}
+                <a href="/us/refer-a-friend-official-rules">
+                  Refer A Friend Official Rules
+                </a>
+                .
               </p>
             </>
           ) : (

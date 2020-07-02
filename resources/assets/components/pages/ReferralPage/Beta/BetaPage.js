@@ -67,7 +67,7 @@ const BetaPage = () => {
                 <div className="my-6">
                   <p>
                     {featureFlag('refer_friends_v2')
-                      ? `${firstName} thinks that you'd be interested in joining DoSomething, the largest not-for-profit exclusively focused on young people and social change! Sign up for your first campaign. Let's do this!`
+                      ? `Your friend ${firstName} thinks that you'd be interested in joining DoSomething, the largest not-for-profit exclusively focused on young people and social change! Sign up for your first campaign. Let's do this!`
                       : `Your friend ${firstName} just invited you to volunteer through this campaign from DoSomething.org. Once you complete your first DoSomething campaign, you’ll both increase your chances of winning the campaign scholarship!`}
                   </p>
                 </div>
@@ -81,11 +81,7 @@ const BetaPage = () => {
                     data-testid="secondary-campaign-referral-link"
                   >
                     <p className="font-bold mb-3">
-                      Interested in joining a different cause? In less than 5
-                      minutes, you can join our campaign for road safety. Sign
-                      up for our campaign and help us curb car accidents among
-                      young people! You’ll get access to several road safety
-                      tips that you can share with friends. Let’s do this!
+                      Interested in doing a different campaign?
                     </p>
 
                     <CampaignLink
@@ -113,10 +109,8 @@ const BetaPage = () => {
                         How do I sign up to join DoSomething with {firstName}?
                       </h4>
                       <p>
-                        Easy! Just click the campaign link above and take 2
-                        minutes to create a DoSomething account to become a
-                        member. Then sign up for the campaign, and boom! You’re
-                        ready to take action.
+                        Easy! Just sign up for a DoSomething campaign, and boom!
+                        You're ready to take action.
                       </p>
 
                       <h4>Why should I join DoSomething?</h4>
