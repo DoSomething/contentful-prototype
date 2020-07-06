@@ -84,6 +84,7 @@ const EmailSubscriptionItem = ({
                   variables: {
                     topic,
                     subscribed: !topics.includes(topic),
+                    refetchQueries: ['EmailSubscriptionStatus'],
                   },
                 })
               }
