@@ -37,4 +37,8 @@ export const votingReasons = {
   'covid-relief': 'COVID-19 relief',
   'immigration-reform': 'immigration reform',
   healthcare: 'healthcare',
+  'lgbtq-rights': 'LGBTQ+ Rights',
+  'homelessness-poverty': 'Homelessness & Poverty',
+  education: 'Education Reform',
+  'gender-equality': 'Gender Equality',
 };
