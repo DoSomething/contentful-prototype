@@ -44,6 +44,7 @@ const CancelEmailSubscription = props => {
   if (loading) {
     return <Spinner />;
   }
+
   return (
     <div>
       {data.user.emailSubscriptionStatus ? (
@@ -55,7 +56,6 @@ const CancelEmailSubscription = props => {
             onClick={() =>
               updateEmailSubscriptionStatus({
                 variables: {
-                  userId,
                   emailSubscriptionStatus: false,
                 },
                 refetchQueries: ['EmailSubscriptionsQuery'],
