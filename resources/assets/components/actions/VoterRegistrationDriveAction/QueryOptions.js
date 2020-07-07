@@ -12,7 +12,7 @@ const votingReasons = {
   'immigration-reform': 'Immigration Reform',
   healthcare: 'Healthcare',
   'lgbtq-rights': 'LGBTQ+ Rights',
-  'homelessness-poverty': 'Homelessness & Poverty',
+  'homelessness-and-poverty': 'Homelessness & Poverty',
   education: 'Education Reform',
   'gender-equality': 'Gender Equality',
 };
