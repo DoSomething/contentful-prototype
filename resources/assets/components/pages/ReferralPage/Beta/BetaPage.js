@@ -126,7 +126,7 @@ const BetaPage = () => {
                       <h4>Where can I find the full rules?</h4>
                       <p>
                         This offer is for a limited time only. See the{' '}
-                        <a href="/us/refer-a-friends-official-rules">
+                        <a href="/us/refer-a-friend-official-rules">
                           Refer A Friend Official Rules
                         </a>
                         .
