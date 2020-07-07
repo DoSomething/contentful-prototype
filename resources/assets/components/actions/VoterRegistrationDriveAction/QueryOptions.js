@@ -11,6 +11,10 @@ const votingReasons = {
   'covid-relief': 'COVID-19 Relief',
   'immigration-reform': 'Immigration Reform',
   healthcare: 'Healthcare',
+  'lgbtq-rights': 'LGBTQ+ Rights',
+  'homelessness-and-poverty': 'Homelessness & Poverty',
+  education: 'Education Reform',
+  'gender-equality': 'Gender Equality',
 };
 
 const QueryOptions = ({ onChange }) => {
