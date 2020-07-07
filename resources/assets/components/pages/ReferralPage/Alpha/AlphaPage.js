@@ -39,7 +39,7 @@ const AlphaPage = () =>
 
           {featureFlag('refer_friends_v2') ? (
             <>
-              <h4>Why should I refer a friends?</h4>
+              <h4>Why should I refer a friend?</h4>
               <p>
                 You&apos;ll help your friend join our youth-led movement for
                 good, make an impact on the causes they care about, and have the
