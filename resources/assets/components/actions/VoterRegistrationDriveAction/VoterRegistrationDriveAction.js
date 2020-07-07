@@ -42,7 +42,6 @@ const VoterRegistrationDriveAction = ({
     return <ErrorBlock error={error} />;
   }
 
-  console.log(data);
   const signup = data.signups[0];
   const queryParams = { referrer_user_id: getUserId() };
 
