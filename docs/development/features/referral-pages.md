@@ -97,4 +97,4 @@ The second iteration of RAF allowed the list of campaigns (as well as the defaul
 
 In anticipation of launching a fully formalized version of RAF, we deprecated the `refer-friends-scholarship` feature flag, and exposed the RAF CTA Banner to _all_ users signing up for a campaign opted into RAF in the Referral Page Banner.
 
-And Now having actually soft-launched the RAF V2 iteration, we've deprecated the scholarship reward completely, and simply offer the RAF functionality, sans reward copy.
+And now, having actually soft-launched the RAF V2 iteration, we've deprecated the scholarship reward completely, and simply offer the RAF functionality, sans reward copy.
