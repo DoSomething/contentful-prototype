@@ -25,7 +25,7 @@ const POST_COUNT_BADGE = gql`
 `;
 
 const PostCreatedModal = ({ affirmationContent, onClose, title, userId }) => (
-  <Modal onClose={onClose}>
+  <Modal onClose={onClose} trackingId="REPORTBACK_AFFIRMATION_MODAL">
     <Card className="bordered rounded" title={title}>
       {userId ? (
         <Query query={BADGE_QUERY} variables={{ userId }} hideSpinner>
