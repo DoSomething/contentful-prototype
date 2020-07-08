@@ -35,6 +35,7 @@
   - [Dismissable Element](development/features/delayed-element.md)
   - [Stat Card](development/features/stat-card.md)
   - [General Buttons](development/features/general-buttons.md)
+  - [Groups](development/features/groups.md)
   - [Paginated Campaign Gallery](development/features/paginated-campaign-gallery.md)
   - [Refer A Friend](development/features/referral-pages.md)
   - [Referrals Gallery](development/features/referrals-gallery.md)
