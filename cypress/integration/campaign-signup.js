@@ -140,7 +140,7 @@ describe('Campaign Signup', () => {
       cy.contains('button', 'Join Us').click();
       cy.get('.card.affirmation')
         .findByTestId('cta-referral-page-banner')
-        .contains('Benefits With Friends');
+        .contains('Get your Friends Involved!');
     });
   });
 
