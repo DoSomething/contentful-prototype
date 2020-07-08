@@ -7,6 +7,7 @@
 // https://on.cypress.io/configuration
 
 import './commands';
+import { defaultReferralCampaignId } from '../fixtures/constants';
 
 Cypress.on('window:before:load', window => {
   const document = window.document;
@@ -16,6 +17,9 @@ Cypress.on('window:before:load', window => {
     APP_ENV: 'development',
     FEATURE_FLAGS: {
       nps_survey: false,
+    },
+    SITE: {
+      default_referral_campaign_id: defaultReferralCampaignId,
     },
     SIXPACK_ENABLED: false,
     SIXPACK_BASE_URL: 'http://sixpack.test', // Our Sixpack service will throw an error if this isn't set.
