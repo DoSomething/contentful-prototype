@@ -23,7 +23,7 @@ After signing up for the campaign, users will see a Referral Page Banner within 
 
 ![Referral Page Banner Example](../../.gitbook/assets/referral-page-banner.png)
 
-### Alpha Referral Page
+### Campaign Alpha Referral Page
 
 ```
 dosomething.org/us/refer-friends?campaign_id=123
