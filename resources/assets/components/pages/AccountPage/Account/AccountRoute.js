@@ -38,9 +38,7 @@ const AccountRoute = props => (
       path="/us/account/delete"
       render={() => <DeleteAccountTab {...props} />}
     />
-    {featureFlag('refer_friends_v2') ? (
-      <Route path="/us/account/refer-friends" component={ReferFriendsTab} />
-    ) : null}
+    <Route path="/us/account/refer-friends" component={ReferFriendsTab} />
     <Route path="/us/account" render={() => <Profile {...props} />} />
   </Switch>
 );

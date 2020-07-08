@@ -23,11 +23,9 @@ const AccountNavigation = props => (
       <NavigationLink to="/us/account/subscriptions">
         Subscriptions
       </NavigationLink>
-      {featureFlag('refer_friends_v2') ? (
-        <NavigationLink to="/us/account/refer-friends">
-          Refer a Friend
-        </NavigationLink>
-      ) : null}
+      <NavigationLink to="/us/account/refer-friends">
+        Refer a Friend
+      </NavigationLink>
     </div>
   </nav>
 );
