@@ -9,7 +9,7 @@ We commonly use these terms (in the business, and in code) when describing this 
 - **Alpha** - The user who is sharing the URL with friends, prompting the friends to register
 - **Beta** - The friends that the alpha is sharing the URL with
 
-We currently do not offer any reward for referrals. We anticipate introducing a new iteration of a reward in August, but for now we're in a 'soft-launch' reward-less phase of RAF. Previous iterations of this feature did offer rewards, see History.
+We currently do not offer any reward for referrals. We anticipate introducing a new iteration of a reward in August, but for now we're in a 'soft-launch' reward-less phase of RAF. Previous iterations of this feature did offer rewards, see [History](#iterations).
 
 Users will see a Referral Page Banner after signing up for any campaign configured for this feature, which refers them to their Alpha Referral Page.
 
