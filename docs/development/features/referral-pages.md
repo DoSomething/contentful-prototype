@@ -9,9 +9,7 @@ We commonly use these terms (in the business, and in code) when describing this 
 - **Alpha** - The user who is sharing the URL with friends, prompting the friends to register
 - **Beta** - The friends that the alpha is sharing the URL with
 
-Both the alpha and beta _may_ earn a reward for the beta registering and signing up for the campaign.
-
-We currently do not offer any reward for referrals. We anticipate introducing a new iteration of a reward in August, but for now we're in a 'soft-launch' rewardless phase of RAF.
+We currently do not offer any reward for referrals. We anticipate introducing a new iteration of a reward in August, but for now we're in a 'soft-launch' reward-less phase of RAF. Previous iterations of this feature did offer rewards, see History.
 
 Users will see a Referral Page Banner after signing up for any campaign configured for this feature, which refers them to their Alpha Referral Page.
 
@@ -43,7 +41,7 @@ If the `campaign_id` query parameter is missing completely, the campaign will de
 dosomething/us/account/refer-friends
 ```
 
-User's can visit their account RAF tab for a similar experience to the cannonical Alpha Referral Page.
+Users can visit their account RAF tab for a similar experience to the canonical Alpha Referral Page.
 
 The `campaign_id` query parameter for their share URL will be the assigned `DEFAULT_REFERRAL_CAMPAIGN_ID`. This can also be overwritten via a `campaign_id` query parameter: `dosomething/us/account/refer-friends?campaign_id={ID}`
 
@@ -67,7 +65,7 @@ We also display a secondary campaign link using the configured `DEFAULT_REFERRAL
 
 If the `campaign_id` query parameter matched this assigned default, we'll only display the primary link. If the `campaign_id` query parameter is missing completely, we'll similarly pull the default ID and display it _as_ the primary link.
 
-The campaign URL/s that the Beta Page links to will include the alpha's user ID as a `referrer_user_id` query parameter:
+The campaign URLs that the Beta Page links to will include the alpha's user ID as a `referrer_user_id` query parameter:
 
 ```
 https://www.dosomething.org/us/campaigns/teens-jeans?referrer_user_id=5547be89469c64ec7d8b518d
