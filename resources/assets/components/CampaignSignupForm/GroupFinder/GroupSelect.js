@@ -17,7 +17,7 @@ const SEARCH_GROUPS_QUERY = gql`
 `;
 
 const GroupSelect = ({
-  groupDescription,
+  groupLabel,
   groupState,
   groupTypeId,
   onChange,
@@ -69,8 +69,8 @@ const GroupSelect = ({
       }}
       noOptionsMessage={({ inputValue }) =>
         inputValue.length
-          ? `Oops, we can't find a ${groupDescription} called "${inputValue}"`
-          : `Enter your ${groupDescription} name`
+          ? `Oops, we can't find a ${groupLabel} called "${inputValue}"`
+          : `Enter your ${groupLabel} name`
       }
       onChange={onChange}
       onFocus={onFocus}
@@ -79,7 +79,7 @@ const GroupSelect = ({
 };
 
 GroupSelect.propTypes = {
-  groupDescription: PropTypes.string,
+  groupLabel: PropTypes.string.isRequired,
   groupState: PropTypes.string,
   groupTypeId: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -87,7 +87,6 @@ GroupSelect.propTypes = {
 };
 
 GroupSelect.defaultProps = {
-  groupDescription: 'chapter',
   groupState: null,
 };
 
