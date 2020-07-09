@@ -29,19 +29,22 @@
         padding-right: 0;
         white-space: nowrap;
         border-radius: 4px 0 0 4px;
+        border-right: 0;
       }
 
       .link-copy-button {
+        background-color: theme('colors.blurple.500');
         display: flex;
         max-width: 120px;
         border-radius: 0 4px 4px 0;
         cursor: pointer;
 
         &:hover {
-          background-color: theme('colors.gray.200');
+          background-color: theme('colors.blurple.300');
         }
 
         p {
+          color: white;
           font-size: 16px;
           font-family: theme('fontFamily.source-sans');
         }
