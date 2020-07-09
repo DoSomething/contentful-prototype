@@ -24,7 +24,7 @@ const StatBlock = ({ amount, isVertical, label, testId }) => (
   >
     <span
       className={`font-bold uppercase text-gray-600 ${
-        isVertical ? 'w-5/6 pb-2' : ''
+        isVertical ? 'w-5/6' : ''
       }`}
     >
       {label}
@@ -54,7 +54,10 @@ const GroupTemplate = ({ group, isVertical, user }) => {
   const groupDescription = `${group.groupType.name}: ${group.name}`;
 
   return (
-    <div data-testid="group-voter-registration-referrals-block">
+    <div
+      data-testid="group-voter-registration-referrals-block"
+      className="mx-3"
+    >
       {user ? null : (
         <>
           <SectionHeader title={groupDescription} />

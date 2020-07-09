@@ -9,7 +9,7 @@ const ProgressBar = ({ percentage }) => {
 
   const progressBarContainer = css`
     height: 25px;
-    width: 350px;
+    width: 100%;
     border-radius: 50px;
   `;
 
