@@ -19,7 +19,9 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
 
 const StatBlock = ({ amount, isVertical, label, testId }) => (
   <div
-    className={`pt-3 ${isVertical ? 'pb-3 flex flex-row-reverse' : null}`}
+    className={`pt-3 ${
+      isVertical ? 'pb-3 flex flex-row-reverse items-center' : null
+    }`}
     data-testid={testId}
   >
     <span
@@ -32,7 +34,7 @@ const StatBlock = ({ amount, isVertical, label, testId }) => (
 
     <h1
       className={`font-normal font-league-gothic text-3xl ${
-        isVertical ? ' w-1/6' : ''
+        isVertical ? ' w-1/6 mb-0' : ''
       }`}
     >
       {amount}
