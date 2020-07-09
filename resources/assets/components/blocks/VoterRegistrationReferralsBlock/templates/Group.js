@@ -32,13 +32,13 @@ const StatBlock = ({ amount, isVertical, label, testId }) => (
       {label}
     </span>
 
-    <h1
+    <span
       className={`font-normal font-league-gothic text-3xl ${
         isVertical ? ' w-1/6 mb-0' : ''
       }`}
     >
       {amount}
-    </h1>
+    </span>
   </div>
 );
 
