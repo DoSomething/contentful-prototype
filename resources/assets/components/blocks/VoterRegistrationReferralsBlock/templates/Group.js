@@ -19,24 +19,26 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
 
 const StatBlock = ({ amount, isVertical, label, testId }) => (
   <div
-    className={`pt-3 ${isVertical ? 'pb-3 flex flex-row-reverse' : null}`}
+    className={`pt-3 ${
+      isVertical ? 'pb-3 flex flex-row-reverse items-center' : null
+    }`}
     data-testid={testId}
   >
     <span
       className={`font-bold uppercase text-gray-600 ${
-        isVertical ? 'w-5/6 pb-2' : ''
+        isVertical ? 'w-5/6' : ''
       }`}
     >
       {label}
     </span>
 
-    <h1
+    <h2
       className={`font-normal font-league-gothic text-3xl ${
-        isVertical ? ' w-1/6' : ''
+        isVertical ? ' w-1/6 mb-0' : ''
       }`}
     >
       {amount}
-    </h1>
+    </h2>
   </div>
 );
 
@@ -54,7 +56,10 @@ const GroupTemplate = ({ group, isVertical, user }) => {
   const groupDescription = `${group.groupType.name}: ${group.name}`;
 
   return (
-    <div data-testid="group-voter-registration-referrals-block">
+    <div
+      data-testid="group-voter-registration-referrals-block"
+      className="mx-3"
+    >
       {user ? null : (
         <>
           <SectionHeader title={groupDescription} />

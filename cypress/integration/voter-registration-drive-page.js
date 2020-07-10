@@ -335,13 +335,13 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       .get('span')
       .contains(`People ${groupDescription} has registered`);
     cy.findByTestId('group-total')
-      .get('h1')
+      .get('h2')
       .contains(31);
     cy.findByTestId('individual-total')
       .get('span')
       .contains(`People ${user.firstName} has registered`);
     cy.findByTestId('individual-total')
-      .get('h1')
+      .get('h2')
       .contains(8);
   });
 });
