@@ -44,6 +44,7 @@ const GroupFinder = ({ context, groupType, onChange }) => {
   };
 
   const { filterByState } = groupType;
+  const groupLabel = 'chapter';
 
   return (
     <>
@@ -58,8 +59,9 @@ const GroupFinder = ({ context, groupType, onChange }) => {
       ) : null}
       {!filterByState || (filterByState && groupState) ? (
         <div className="pb-3">
-          <p className="font-bold text-sm py-1">Select your chapter</p>
+          <p className="font-bold text-sm py-1">Select your {groupLabel}</p>
           <GroupSelect
+            groupLabel={groupLabel}
             groupState={groupState}
             groupTypeId={groupType.id}
             onChange={onChange}
