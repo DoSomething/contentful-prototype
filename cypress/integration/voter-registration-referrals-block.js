@@ -130,19 +130,19 @@ describe('Voter Registration Referrals Block', () => {
       .get('span')
       .contains('Your group’s registration goal');
     cy.findAllByTestId('group-goal')
-      .get('h1')
+      .get('h2')
       .contains(group.goal);
     cy.findAllByTestId('group-goal')
       .get('span')
       .contains('People your group has registered');
     cy.findAllByTestId('group-total')
-      .get('h1')
+      .get('h2')
       .contains(5);
     cy.findAllByTestId('individual-total')
       .get('span')
       .contains('People you have registered');
     cy.findAllByTestId('individual-total')
-      .get('h1')
+      .get('h2')
       .contains(12);
     cy.findAllByTestId('group-progress').contains(
       `${percentCompleted}% to your goal!`,
