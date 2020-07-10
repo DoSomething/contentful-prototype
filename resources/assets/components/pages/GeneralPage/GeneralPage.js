@@ -38,7 +38,6 @@ const GeneralPage = props => {
     coverImage,
     content,
     additionalContent,
-    sidebar,
     blocks,
     displaySocialShare,
     isAuthenticated,
@@ -85,23 +84,7 @@ const GeneralPage = props => {
               />
             ) : null}
 
-            {content ? (
-              <div className={classnames({ row: sidebar.length })}>
-                <div className="primary">
-                  <TextContent>{content}</TextContent>
-                </div>
-
-                {sidebar.length ? (
-                  <div className="secondary">
-                    {sidebar.map(block => (
-                      <div className="mx-3 mb-6" key={block.id}>
-                        <ContentfulEntryLoader id={block.id} />
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            ) : null}
+            {content ? <TextContent>{content}</TextContent> : null}
 
             {blocks.map(block => (
               <div className="general-page__block my-6" key={block.id}>
@@ -186,7 +169,6 @@ GeneralPage.propTypes = {
   }),
   content: PropTypes.string,
   additionalContent: PropTypes.object,
-  sidebar: PropTypes.arrayOf(PropTypes.object),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   displaySocialShare: PropTypes.bool,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -198,7 +180,6 @@ GeneralPage.defaultProps = {
   coverImage: {},
   content: null,
   additionalContent: {},
-  sidebar: [],
   subTitle: null,
   displaySocialShare: false,
 };
