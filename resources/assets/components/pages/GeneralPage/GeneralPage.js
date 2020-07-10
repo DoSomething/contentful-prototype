@@ -3,7 +3,6 @@
 import React from 'react';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
@@ -57,7 +56,7 @@ const GeneralPage = props => {
           <div className="grid-narrow">
             <ArticleHeader title={title} subtitle={subTitle}>
               {authors.length ? (
-                <div className="general-page__authors">
+                <div className="inline-block text-left">
                   {authors.map(author => (
                     <Byline
                       key={author.id}
@@ -102,7 +101,7 @@ const GeneralPage = props => {
             ) : null}
 
             {authors.length ? (
-              <ul className="general-page__author-bios">
+              <ul className="border-t-2 border-solid border-gray-300 py-3">
                 {authors.map(author => (
                   <li className="py-3" key={author.id}>
                     <AuthorBio

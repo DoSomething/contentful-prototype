@@ -1,19 +1,7 @@
-@import '../../../scss/next-toolbox';
-
 .general-page {
   // HACK: If a Content Block is found on a "general page" without an
   // image, we want to force it to full-width so it looks normal.
   .hack-article-content-widths {
     grid-column: span 3 / span 3 !important;
-  }
-
-  .general-page__authors {
-    display: inline-block;
-    text-align: left;
-  }
-
-  .general-page__author-bios {
-    border-top: 2px solid #dcdcdc;
-    padding: theme('spacing.3') 0;
   }
 }
