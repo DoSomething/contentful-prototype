@@ -101,6 +101,9 @@ describe('Voter Registration Referrals Block', () => {
       posts: [
         voterRegPost(firstCompletedReferralUser, 'REGISTER_FORM'),
         voterRegPost(secondCompletedReferralUser, 'REGISTER_OVR'),
+        // Users may have multiple voter registration posts.
+        voterRegPost(thirdCompletedReferralUser, 'STEP_3'),
+        voterRegPost(thirdCompletedReferralUser, 'STEP_2'),
         voterRegPost(thirdCompletedReferralUser, 'REGISTER_OVR'),
         voterRegPost(userFactory(), 'STEP_1'),
         voterRegPost(userFactory(), 'REGISTER_OVR'),
