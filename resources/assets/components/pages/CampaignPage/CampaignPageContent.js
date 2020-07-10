@@ -24,7 +24,7 @@ const CampaignPageContent = props => {
     );
   }
 
-  const { content, sidebar, blocks } = subPage.fields;
+  const { content, blocks } = subPage.fields;
 
   return (
     <div className="leading-normal text-base" id={subPage.id}>
@@ -35,15 +35,6 @@ const CampaignPageContent = props => {
           <div className="grid-wide-7/10">
             <TextContent className="mx-3">{content}</TextContent>
           </div>
-          {sidebar.length ? (
-            <div className="grid-wide-3/10">
-              {sidebar.map(block => (
-                <div className="mb-6 mx-3" key={block.id}>
-                  <ContentfulEntryLoader id={block.id} />
-                </div>
-              ))}
-            </div>
-          ) : null}
         </div>
       ) : null}
 
