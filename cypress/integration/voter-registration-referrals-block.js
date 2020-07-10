@@ -7,13 +7,15 @@ import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 const blockId = '5APr82PRUm6WHtHF8cwa7K';
 
 /**
- * @param String displayName
+ * @param Object user
+ * @param String status
  * @return Object
  */
-function fakePost(displayName) {
+function voterRegPost(user, status) {
   return {
     id: faker.random.number(),
-    user: { displayName },
+    status,
+    user,
   };
 }
 
@@ -52,24 +54,35 @@ describe('Voter Registration Referrals Block', () => {
     cy.findByTestId('additional-referrals-count').should('have.length', 0);
   });
 
-  it('Individual displays 2 completed icons if user has 2 referrals', () => {
+  it('Individual displays 2 completed icons if user has 2 completed referrals', () => {
     const user = userFactory();
+    const firstCompletedReferralUser = userFactory();
+    const secondCompletedReferralUser = userFactory();
+    const incompleteReferralUser = userFactory();
 
     cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group: null }],
     });
     cy.mockGraphqlOp('IndividualVoterRegistrationReferralsQuery', {
-      posts: [fakePost('Jesus Q.'), fakePost('Walter S.')],
+      posts: [
+        voterRegPost(firstCompletedReferralUser, 'REGISTER_OVR'),
+        voterRegPost(secondCompletedReferralUser, 'REGISTER_FORM'),
+        voterRegPost(incompleteReferralUser, 'STEP_2'),
+      ],
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
     cy.findAllByTestId('referral-list-item-completed').should('have.length', 2);
     cy.nth('[data-testid=referral-list-item-completed]', 0).within(() => {
-      cy.findByTestId('referral-list-item-label').contains('Jesus Q.');
+      cy.findByTestId('referral-list-item-label').contains(
+        firstCompletedReferralUser.displayName,
+      );
     });
     cy.nth('[data-testid=referral-list-item-completed]', 1).within(() => {
-      cy.findByTestId('referral-list-item-label').contains('Walter S.');
+      cy.findByTestId('referral-list-item-label').contains(
+        secondCompletedReferralUser.displayName,
+      );
     });
     cy.findAllByTestId('referral-list-item-empty').should('have.length', 1);
     cy.findByTestId('additional-referrals-count').should('have.length', 0);
@@ -77,17 +90,22 @@ describe('Voter Registration Referrals Block', () => {
 
   it('Individual displays 3 completed icons and additional count if user has 5 referrals', () => {
     const user = userFactory();
+    const firstCompletedReferralUser = userFactory();
+    const secondCompletedReferralUser = userFactory();
+    const thirdCompletedReferralUser = userFactory();
 
     cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group: null }],
     });
     cy.mockGraphqlOp('IndividualVoterRegistrationReferralsQuery', {
       posts: [
-        fakePost('Sarah C.'),
-        fakePost('Kyle R.'),
-        fakePost('John C.'),
-        fakePost('Miles D.'),
-        fakePost('Tarissa D.'),
+        voterRegPost(firstCompletedReferralUser, 'REGISTER_FORM'),
+        voterRegPost(secondCompletedReferralUser, 'REGISTER_OVR'),
+        voterRegPost(thirdCompletedReferralUser, 'REGISTER_OVR'),
+        voterRegPost(userFactory(), 'STEP_1'),
+        voterRegPost(userFactory(), 'REGISTER_OVR'),
+        voterRegPost(userFactory(), 'REJECTED'),
+        voterRegPost(userFactory(), 'REGISTER_FORM'),
       ],
     });
 
@@ -95,13 +113,19 @@ describe('Voter Registration Referrals Block', () => {
 
     cy.findAllByTestId('referral-list-item-completed').should('have.length', 3);
     cy.nth('[data-testid=referral-list-item-completed]', 0).within(() => {
-      cy.findByTestId('referral-list-item-label').contains('Sarah C.');
+      cy.findByTestId('referral-list-item-label').contains(
+        firstCompletedReferralUser.displayName,
+      );
     });
     cy.nth('[data-testid=referral-list-item-completed]', 1).within(() => {
-      cy.findByTestId('referral-list-item-label').contains('Kyle R.');
+      cy.findByTestId('referral-list-item-label').contains(
+        secondCompletedReferralUser.displayName,
+      );
     });
     cy.nth('[data-testid=referral-list-item-completed]', 2).within(() => {
-      cy.findByTestId('referral-list-item-label').contains('John C.');
+      cy.findByTestId('referral-list-item-label').contains(
+        thirdCompletedReferralUser.displayName,
+      );
     });
     cy.findAllByTestId('referral-list-item-empty').should('have.length', 0);
     cy.findByTestId('additional-referrals-count').contains('+ 2 more');
