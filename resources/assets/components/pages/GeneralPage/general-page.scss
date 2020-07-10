@@ -1,8 +1,6 @@
 @import '../../../scss/next-toolbox';
 
 .general-page {
-  position: inherit;
-
   // HACK: If a Content Block is found on a "general page" without an
   // image, we want to force it to full-width so it looks normal.
   .hack-article-content-widths {
