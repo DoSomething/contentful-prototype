@@ -105,6 +105,7 @@ describe('Voter Registration Referrals Block', () => {
         voterRegPost(thirdCompletedReferralUser, 'STEP_3'),
         voterRegPost(thirdCompletedReferralUser, 'STEP_2'),
         voterRegPost(thirdCompletedReferralUser, 'REGISTER_OVR'),
+        voterRegPost(thirdCompletedReferralUser, 'STEP_4'),
         voterRegPost(userFactory(), 'STEP_1'),
         voterRegPost(userFactory(), 'REGISTER_OVR'),
         voterRegPost(userFactory(), 'REJECTED'),
