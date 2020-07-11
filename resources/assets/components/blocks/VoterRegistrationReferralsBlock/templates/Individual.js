@@ -12,7 +12,7 @@ import ReferralsGallery from '../../../utilities/ReferralsGallery/ReferralsGalle
 
 const INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query IndividualVoterRegistrationReferralsQuery($referrerUserId: String!) {
-    posts(referrerUserId: $referrerUserId, type: "voter-reg") {
+    posts(referrerUserId: $referrerUserId, type: "voter-reg", count: 50) {
       id
       status
       user {
@@ -91,7 +91,7 @@ const IndividualTemplate = ({ title }) => (
             )}
 
             <ReferralsGallery
-              referralLabels={completed.map(referral => referral.displayName)}
+              referralLabels={completed.map(user => user.displayName)}
               referralIcon={CompletedRegistrationImage}
               placeholderIcon={EmptyRegistrationImage}
             />
