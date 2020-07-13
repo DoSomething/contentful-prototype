@@ -21,8 +21,6 @@ import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContaine
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
-import './general-page.scss';
-
 /**
  * Render a general page
  *
@@ -87,7 +85,10 @@ const GeneralPage = props => {
 
             {blocks.map(block => (
               <div className="general-page__block my-6" key={block.id}>
-                <ContentfulEntryLoader id={block.id} />
+                <ContentfulEntryLoader
+                  id={block.id}
+                  propsByEntry={{ ContentBlock: { fullWidthContent: true } }}
+                />
               </div>
             ))}
 
