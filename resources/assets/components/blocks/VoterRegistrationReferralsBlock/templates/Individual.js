@@ -70,6 +70,7 @@ const IndividualTemplate = ({ title }) => (
         const parsed = parseVoterRegistrationReferrals(data.posts);
         const completed = Object.values(parsed.complete);
         const started = Object.values(parsed.incomplete);
+        const numReferrals = started.length + completed.length;
 
         return (
           <>
@@ -77,7 +78,10 @@ const IndividualTemplate = ({ title }) => (
               <div className="pb-3 md:pb-6">
                 You have registered{' '}
                 <strong>
-                  {completed.length} {pluralize('person', completed.length)}
+                  {started.length
+                    ? `${completed.length} out of ${numReferrals}`
+                    : completed.length}{' '}
+                  {pluralize('person', numReferrals)}
                 </strong>{' '}
                 so far.
               </div>
