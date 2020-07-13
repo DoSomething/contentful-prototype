@@ -30,11 +30,7 @@ const INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
 const parseVoterRegistrationReferrals = voterRegPosts => {
   const result = { complete: {}, incomplete: {} };
 
-  /**
-   * @param {String} status
-   * @param {Object} user
-   */
-  const parseVoterRegistrationReferral = ({ status, user }) => {
+  voterRegPosts.forEach(({ status, user }) => {
     const userId = user.id;
 
     // If status is incomplete:
@@ -55,9 +51,7 @@ const parseVoterRegistrationReferrals = voterRegPosts => {
     }
 
     result.complete[userId] = user;
-  };
-
-  voterRegPosts.forEach(parseVoterRegistrationReferral);
+  });
 
   return result;
 };
