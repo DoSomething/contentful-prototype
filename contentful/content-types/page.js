@@ -145,27 +145,6 @@ module.exports = function(migration) {
     .omitted(false);
 
   page
-    .createField('sidebar')
-    .name('Sidebar')
-    .type('Array')
-    .localized(false)
-    .required(false)
-    .validations([])
-    .disabled(false)
-    .omitted(false)
-    .items({
-      type: 'Link',
-
-      validations: [
-        {
-          linkContentType: ['callToAction', 'customBlock'],
-        },
-      ],
-
-      linkType: 'Entry',
-    });
-
-  page
     .createField('blocks')
     .name('Blocks')
     .type('Array')
@@ -267,21 +246,13 @@ module.exports = function(migration) {
   });
 
   page.changeFieldControl('metadata', 'builtin', 'entryLinkEditor', {});
-
-  page.changeFieldControl('authors', 'builtin', 'entryLinksEditor', {
-    bulkEditing: false,
-  });
+  page.changeFieldControl('authors', 'builtin', 'entryLinksEditor', {});
 
   page.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
     helpText: 'The cover image will display on the page before the content.',
   });
 
   page.changeFieldControl('content', 'builtin', 'markdown', {});
-
-  page.changeFieldControl('sidebar', 'builtin', 'entryLinksEditor', {
-    helpText: 'Add blocks to show up on alongside the main content.',
-    bulkEditing: false,
-  });
 
   page.changeFieldControl('blocks', 'builtin', 'entryLinksEditor', {
     bulkEditing: false,

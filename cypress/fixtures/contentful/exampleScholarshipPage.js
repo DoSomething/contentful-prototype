@@ -55,7 +55,6 @@ module.exports = {
       },
       content: null,
       additionalContent: { display_scholarship_newsletter_cta_popover: true },
-      sidebar: [],
       blocks: [
         {
           id: '1hEV7pPBdG3ORhD4yasvnp',
