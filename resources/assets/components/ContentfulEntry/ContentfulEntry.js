@@ -100,6 +100,7 @@ class ContentfulEntry extends React.Component {
               content: json.contentBlockContent,
               imageAlignment: json.contentBlockImageAlignment,
             })}
+            {...propsByEntry}
           />
         );
 
