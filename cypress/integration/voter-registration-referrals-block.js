@@ -34,7 +34,7 @@ describe('Voter Registration Referrals Block', () => {
     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
   });
 
-  it('Individual displays three empty icons if user has no referrals', () => {
+  it('Individual displays help text if no referrals found', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('CampaignSignupQuery', {
@@ -49,12 +49,20 @@ describe('Voter Registration Referrals Block', () => {
     cy.get('.section-header__title').contains(
       contentfulBlockQueryResult.block.title,
     );
-    cy.findAllByTestId('referral-list-item-empty').should('have.length', 3);
-    cy.findAllByTestId('referral-list-item-completed').should('have.length', 0);
-    cy.findByTestId('additional-referrals-count').should('have.length', 0);
+    cy.findAllByTestId('referrals-count-description').contains(
+      'You haven’t helped anyone register to vote yet. Scroll down to get started!',
+    );
+    cy.findAllByTestId('voter-registration-referral-completed').should(
+      'have.length',
+      0,
+    );
+    cy.findAllByTestId('voter-registration-referral-started').should(
+      'have.length',
+      0,
+    );
   });
 
-  it('Individual displays 2 completed icons if user has 2 completed referrals', () => {
+  it('Individual displays completed and started referrals', () => {
     const user = userFactory();
     const firstCompletedReferralUser = userFactory();
     const secondCompletedReferralUser = userFactory();
@@ -73,22 +81,41 @@ describe('Voter Registration Referrals Block', () => {
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
-    cy.findAllByTestId('referral-list-item-completed').should('have.length', 2);
-    cy.nth('[data-testid=referral-list-item-completed]', 0).within(() => {
-      cy.findByTestId('referral-list-item-label').contains(
-        firstCompletedReferralUser.displayName,
-      );
-    });
-    cy.nth('[data-testid=referral-list-item-completed]', 1).within(() => {
-      cy.findByTestId('referral-list-item-label').contains(
-        secondCompletedReferralUser.displayName,
-      );
-    });
-    cy.findAllByTestId('referral-list-item-empty').should('have.length', 1);
-    cy.findByTestId('additional-referrals-count').should('have.length', 0);
+    cy.findAllByTestId('referrals-count-description').contains(
+      'You have registered 2 out of 3 people so far.',
+    );
+    cy.findAllByTestId('voter-registration-referral-completed').should(
+      'have.length',
+      2,
+    );
+    cy.findAllByTestId('voter-registration-referral-started').should(
+      'have.length',
+      1,
+    );
+    cy.nth('[data-testid=voter-registration-referral-completed]', 0).within(
+      () => {
+        cy.findByTestId('voter-registration-referral-label').contains(
+          firstCompletedReferralUser.displayName,
+        );
+      },
+    );
+    cy.nth('[data-testid=voter-registration-referral-completed]', 1).within(
+      () => {
+        cy.findByTestId('voter-registration-referral-label').contains(
+          secondCompletedReferralUser.displayName,
+        );
+      },
+    );
+    cy.nth('[data-testid=voter-registration-referral-started]', 0).within(
+      () => {
+        cy.findByTestId('voter-registration-referral-label').contains(
+          incompleteReferralUser.displayName,
+        );
+      },
+    );
   });
 
-  it('Individual displays 3 completed icons and additional count if user has 5 referrals', () => {
+  it('Individual does not count incomplete referrals if completed exists for user', () => {
     const user = userFactory();
     const firstCompletedReferralUser = userFactory();
     const secondCompletedReferralUser = userFactory();
@@ -106,33 +133,22 @@ describe('Voter Registration Referrals Block', () => {
         voterRegPost(thirdCompletedReferralUser, 'STEP_2'),
         voterRegPost(thirdCompletedReferralUser, 'REGISTER_OVR'),
         voterRegPost(thirdCompletedReferralUser, 'STEP_4'),
-        voterRegPost(userFactory(), 'STEP_1'),
-        voterRegPost(userFactory(), 'REGISTER_OVR'),
-        voterRegPost(userFactory(), 'REJECTED'),
-        voterRegPost(userFactory(), 'REGISTER_FORM'),
       ],
     });
 
     cy.authVisitBlockPermalink(user, blockId, exampleCampaign);
 
-    cy.findAllByTestId('referral-list-item-completed').should('have.length', 3);
-    cy.nth('[data-testid=referral-list-item-completed]', 0).within(() => {
-      cy.findByTestId('referral-list-item-label').contains(
-        firstCompletedReferralUser.displayName,
-      );
-    });
-    cy.nth('[data-testid=referral-list-item-completed]', 1).within(() => {
-      cy.findByTestId('referral-list-item-label').contains(
-        secondCompletedReferralUser.displayName,
-      );
-    });
-    cy.nth('[data-testid=referral-list-item-completed]', 2).within(() => {
-      cy.findByTestId('referral-list-item-label').contains(
-        thirdCompletedReferralUser.displayName,
-      );
-    });
-    cy.findAllByTestId('referral-list-item-empty').should('have.length', 0);
-    cy.findByTestId('additional-referrals-count').contains('+ 2 more');
+    cy.findAllByTestId('referrals-count-description').contains(
+      'You have registered 3 people so far.',
+    );
+    cy.findAllByTestId('voter-registration-referral-completed').should(
+      'have.length',
+      3,
+    );
+    cy.findAllByTestId('voter-registration-referral-started').should(
+      'have.length',
+      0,
+    );
   });
 
   it('Group displays group goal, group referrals count, and individual referrals count', () => {

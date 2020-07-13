@@ -12,6 +12,9 @@ const VoterRegistrationReferral = ({ isCompleted, label }) => (
     css={css`
       border-bottom: 1px solid ${tailwind('colors.gray.200')};
     `}
+    data-testid={`voter-registration-referral-${
+      isCompleted ? 'completed' : 'started'
+    }`}
   >
     <div style={{ width: 80 }} className="pr-4">
       <img
@@ -20,7 +23,12 @@ const VoterRegistrationReferral = ({ isCompleted, label }) => (
       />
     </div>
     <div>
-      <span className="font-bold block">{label}</span>
+      <span
+        className="font-bold block"
+        data-testid="voter-registration-referral-label"
+      >
+        {label}
+      </span>
       <span className="italic">
         {isCompleted ? 'Registered' : 'Started Registration'}
       </span>
@@ -29,8 +37,8 @@ const VoterRegistrationReferral = ({ isCompleted, label }) => (
 );
 
 VoterRegistrationReferral.propTypes = {
-  label: PropTypes.string.isRequired,
   isCompleted: PropTypes.bool.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default VoterRegistrationReferral;

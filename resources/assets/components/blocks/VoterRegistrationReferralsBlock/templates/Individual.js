@@ -75,7 +75,10 @@ const IndividualTemplate = ({ title }) => (
         return (
           <>
             {completed.length ? (
-              <div className="pb-3 md:pb-6">
+              <div
+                className="pb-3 md:pb-6"
+                data-testid="referrals-count-description"
+              >
                 You have registered{' '}
                 <strong>
                   {started.length
@@ -86,11 +89,12 @@ const IndividualTemplate = ({ title }) => (
                 so far.
               </div>
             ) : (
-              <div>
+              <div data-testid="referrals-count-description">
                 You haven’t helped anyone register to vote yet. Scroll down to
                 get started!
               </div>
             )}
+
             {completed.map(item => (
               <VoterRegistrationReferral
                 isCompleted
@@ -98,6 +102,7 @@ const IndividualTemplate = ({ title }) => (
                 label={item.displayName}
               />
             ))}
+
             {started.map(item => (
               <VoterRegistrationReferral
                 key={item.id}
