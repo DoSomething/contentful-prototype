@@ -55,6 +55,7 @@ class ContentfulEntry extends React.Component {
       className = null,
       classNameByEntry = {},
       classNameByEntryDefault = null,
+      propsByEntry,
     } = this.props;
     const type = parseContentfulType(json);
 
@@ -241,12 +242,14 @@ ContentfulEntry.propTypes = {
   className: PropTypes.string,
   classNameByEntry: PropTypes.object, // eslint-disable-line
   classNameByEntryDefault: PropTypes.string,
+  propsByEntry: PropTypes.object,
 };
 
 ContentfulEntry.defaultProps = {
   className: null,
   classNameByEntry: null,
   classNameByEntryDefault: null,
+  propsByEntry: null,
 };
 
 export default ContentfulEntry;
