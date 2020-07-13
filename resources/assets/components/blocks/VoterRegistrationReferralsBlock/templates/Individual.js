@@ -69,6 +69,7 @@ const IndividualTemplate = ({ title }) => (
       {data => {
         const parsed = parseVoterRegistrationReferrals(data.posts);
         const completed = Object.values(parsed.complete);
+        const started = Object.values(parsed.incomplete);
 
         return (
           <>
@@ -81,7 +82,7 @@ const IndividualTemplate = ({ title }) => (
                 so far.
               </div>
             ) : (
-              <div className="pb-3 md:pb-6">
+              <div>
                 You haven’t helped anyone register to vote yet. Scroll down to
                 get started!
               </div>
@@ -91,6 +92,12 @@ const IndividualTemplate = ({ title }) => (
                 id={item.id}
                 displayName={item.displayName}
                 isCompleted
+              />
+            ))}
+            {started.map(item => (
+              <VoterRegistrationReferral
+                id={item.id}
+                displayName={item.displayName}
               />
             ))}
           </>

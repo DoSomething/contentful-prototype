@@ -8,7 +8,7 @@ import CompletedRegistrationImage from './completed-registration.svg';
 
 const VoterRegistrationReferral = ({ displayName, id, isCompleted }) => (
   <div
-    className="flex items-center pb-4"
+    className="flex items-center py-4"
     key={id}
     css={css`
       border-bottom: 1px solid ${tailwind('colors.gray.200')};
@@ -22,7 +22,9 @@ const VoterRegistrationReferral = ({ displayName, id, isCompleted }) => (
     </div>
     <div>
       <span className="font-bold block">{displayName}</span>
-      <span className="italic">Registered</span>
+      <span className="italic">
+        {isCompleted ? 'Registered' : 'Started Registration'}
+      </span>
     </div>
   </div>
 );
