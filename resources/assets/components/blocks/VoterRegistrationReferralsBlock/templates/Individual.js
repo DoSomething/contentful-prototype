@@ -5,10 +5,8 @@ import PropTypes from 'prop-types';
 
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
-import EmptyRegistrationImage from '../empty-registration.svg';
-import CompletedRegistrationImage from '../completed-registration.svg';
+import VoterRegistrationReferral from '../VoterRegistrationReferral';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
-import ReferralsGallery from '../../../utilities/ReferralsGallery/ReferralsGallery';
 
 const INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query IndividualVoterRegistrationReferralsQuery($referrerUserId: String!) {
@@ -88,12 +86,13 @@ const IndividualTemplate = ({ title }) => (
                 get started!
               </div>
             )}
-
-            <ReferralsGallery
-              referralLabels={completed.map(user => user.displayName)}
-              referralIcon={CompletedRegistrationImage}
-              placeholderIcon={EmptyRegistrationImage}
-            />
+            {completed.map(item => (
+              <VoterRegistrationReferral
+                id={item.id}
+                displayName={item.displayName}
+                isCompleted
+              />
+            ))}
           </>
         );
       }}
