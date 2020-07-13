@@ -1,45 +1,7 @@
-@import '../../../scss/next-toolbox';
-
 .general-page {
-  position: inherit;
-
   // HACK: If a Content Block is found on a "general page" without an
   // image, we want to force it to full-width so it looks normal.
   .hack-article-content-widths {
     grid-column: span 3 / span 3 !important;
-  }
-
-  .general-page__authors {
-    display: inline-block;
-    text-align: left;
-  }
-
-  .general-page__author-bios {
-    border-top: 2px solid #dcdcdc;
-    padding: theme('spacing.3') 0;
-  }
-
-  .row {
-    .primary {
-      margin: 0 0 theme('spacing.6');
-
-      @include media($large) {
-        float: left;
-        padding-right: theme('spacing.3');
-        width: 66.6666666666666%;
-      }
-    }
-
-    .secondary {
-      display: none;
-
-      @include media($large) {
-        display: block;
-        float: right;
-        padding-left: theme('spacing.3');
-        margin: 0 0 theme('spacing.6');
-        width: 33.3333333333333%;
-      }
-    }
   }
 }

@@ -3,7 +3,6 @@
 import React from 'react';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
@@ -38,7 +37,6 @@ const GeneralPage = props => {
     coverImage,
     content,
     additionalContent,
-    sidebar,
     blocks,
     displaySocialShare,
     isAuthenticated,
@@ -58,7 +56,7 @@ const GeneralPage = props => {
           <div className="grid-narrow">
             <ArticleHeader title={title} subtitle={subTitle}>
               {authors.length ? (
-                <div className="general-page__authors">
+                <div className="inline-block text-left">
                   {authors.map(author => (
                     <Byline
                       key={author.id}
@@ -85,23 +83,7 @@ const GeneralPage = props => {
               />
             ) : null}
 
-            {content ? (
-              <div className={classnames({ row: sidebar.length })}>
-                <div className="primary">
-                  <TextContent>{content}</TextContent>
-                </div>
-
-                {sidebar.length ? (
-                  <div className="secondary">
-                    {sidebar.map(block => (
-                      <div className="mx-3 mb-6" key={block.id}>
-                        <ContentfulEntryLoader id={block.id} />
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            ) : null}
+            {content ? <TextContent>{content}</TextContent> : null}
 
             {blocks.map(block => (
               <div className="general-page__block my-6" key={block.id}>
@@ -119,7 +101,7 @@ const GeneralPage = props => {
             ) : null}
 
             {authors.length ? (
-              <ul className="general-page__author-bios">
+              <ul className="border-t-2 border-solid border-gray-300 py-3">
                 {authors.map(author => (
                   <li className="py-3" key={author.id}>
                     <AuthorBio
@@ -186,7 +168,6 @@ GeneralPage.propTypes = {
   }),
   content: PropTypes.string,
   additionalContent: PropTypes.object,
-  sidebar: PropTypes.arrayOf(PropTypes.object),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   displaySocialShare: PropTypes.bool,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -198,7 +179,6 @@ GeneralPage.defaultProps = {
   coverImage: {},
   content: null,
   additionalContent: {},
-  sidebar: [],
   subTitle: null,
   displaySocialShare: false,
 };
