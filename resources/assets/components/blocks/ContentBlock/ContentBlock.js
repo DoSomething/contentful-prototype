@@ -28,6 +28,7 @@ const ContentBlock = props => {
   const {
     className,
     content,
+    fullWidthContent,
     image,
     imageAlignment,
     superTitle,
@@ -58,9 +59,16 @@ const ContentBlock = props => {
         ) : null}
 
         <div
+          data-testid="content-block-content"
           className={classnames('col-span-2', 'order-1', {
-            /* HACK: See 'general-page.scss'. */
-            'hack-article-content-widths': !image.url,
+            /*
+              When no image is provided, we can toggle the content to span across the full row.
+
+              This is necessary on 'General Pages' or in 'Modals' where the overlaying row width is more restricted,
+              and thus the content width is confined to accommodate the image, whereas on 'Campaign Pages', we assign
+              *extra* overlaying row space to Content Blocks, allowing the image to just optionally display within the extra space.
+            */
+            'col-span-3': !image.url && fullWidthContent,
           })}
         >
           {contentNode}
@@ -73,6 +81,7 @@ const ContentBlock = props => {
 ContentBlock.propTypes = {
   className: PropTypes.string,
   content: PropTypes.string.isRequired,
+  fullWidthContent: PropTypes.bool,
   image: PropTypes.shape({
     url: PropTypes.string,
     description: PropTypes.string,
@@ -84,6 +93,7 @@ ContentBlock.propTypes = {
 
 ContentBlock.defaultProps = {
   className: null,
+  fullWidthContent: false,
   image: {},
   imageAlignment: 'RIGHT',
   superTitle: null,
