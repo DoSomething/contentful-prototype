@@ -12,7 +12,12 @@ import ReferralsGallery from '../../../utilities/ReferralsGallery/ReferralsGalle
 
 const INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query IndividualVoterRegistrationReferralsQuery($referrerUserId: String!) {
-    posts(referrerUserId: $referrerUserId, type: "voter-reg", count: 50) {
+    posts(
+      referrerUserId: $referrerUserId
+      status: [REGISTER_FORM, REGISTER_OVR, STEP_1, STEP_2, STEP_3, STEP_4]
+      type: "voter-reg"
+      count: 50
+    ) {
       id
       status
       user {
