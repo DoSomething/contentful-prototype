@@ -74,7 +74,6 @@ export default {
           },
           content: null,
           additionalContent: null,
-          sidebar: [],
           blocks: [
             {
               id: '5iEu4rcj8IGucmMmwqCwm0',
@@ -102,7 +101,6 @@ export default {
           content:
             "__Note! If you applied for the August scholarship, we'll be picking winners for that one by the end of September. Keep an eye on the email associated with your DoSomething.org account to see if you won!__\n\n\n__How do I enter for the $5,000 scholarship?__\n\nShare your voter registration page using our Facebook or Twitter links and you will be entered in a drawing to a win a $5,000 scholarship from DoSomething.org. \n\nThe winner is not based off of how many people you get registered to vote but simply by helping share around information about how you can get registered to vote.\n\nAt the end of September we'll randomly pick the scholarship winner and announce it to the participants. Only residents and citizens of the US and Canada, younger than 26, are eligible to win the scholarship.",
           additionalContent: null,
-          sidebar: [],
           blocks: [],
           displaySocialShare: null,
           hideFromNavigation: null,
@@ -122,8 +120,6 @@ export default {
       fields: {
         internalTitle: 'Online Registration Drive Landing Page',
         content: null,
-        sidebar: [],
-        blocks: [],
         additionalContent: null,
       },
     },

@@ -87,7 +87,6 @@ export default {
             url: null,
           },
           content: null,
-          sidebar: [],
           blocks: [
             {
               id: '1G5PUgAZAh4WvvPDqlEy4u',
@@ -195,7 +194,6 @@ export default {
           },
           content:
             '# Here are some commonly asked questions:\n\n## Why?\nBecause.',
-          sidebar: [],
           blocks: [],
           displaySocialShare: null,
           hideFromNavigation: null,
@@ -248,8 +246,6 @@ export default {
             },
           ],
         },
-        sidebar: [],
-        blocks: [],
         additionalContent: null,
       },
     },

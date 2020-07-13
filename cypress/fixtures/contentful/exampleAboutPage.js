@@ -22,7 +22,6 @@ export default {
       },
       content:
         '# A digital platform powering offline action.\n\nDoSomething.org is mobilizing young people in every US area code and in 131 countries! Sign up for a volunteer, social change, or civic action campaign to make real-world impact on a cause you care about. You’ll team up with the DoSomething members who have:\n\n- Clothed half of America’s homeless youth\n- Cleaned up 3.7 million cigarette butts\n- Run the largest youth-led sports equipment drive\n\nAnd more! You’ve got the power and the passion to transform your community -- we’ll help you get it done.',
-      sidebar: [],
       blocks: [
         {
           id: '6lOSmXMObu8M8Ug6GSK6gs',

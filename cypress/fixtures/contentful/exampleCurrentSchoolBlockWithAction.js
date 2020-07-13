@@ -58,7 +58,6 @@ export default {
             url: null,
           },
           content: null,
-          sidebar: [],
           blocks: [
             {
               id: '6Kj1Av7MnvNcCXLYHLGee0',

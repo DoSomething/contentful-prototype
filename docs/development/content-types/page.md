@@ -26,8 +26,6 @@ The Page Content Type is used across the app in several forms:
 
 - **Content**: The markdown content for this page.
 
-- _deprecated!_ ~**Sidebar** _(optional)_: A list of Call To Action or Custom Block references displayed as a sidebar on the page.~
-
 - **Blocks** _(optional)_: A list of blocks displayed on the page beneath the **Content**. (Supports most standalone block widgets in our Contentful arsenal).
 
 - **Display Social Share** _(optional)_: Toggles social share buttons (Facebook, Twitter) beneath the page. (_only_ for articles/facts pages).
