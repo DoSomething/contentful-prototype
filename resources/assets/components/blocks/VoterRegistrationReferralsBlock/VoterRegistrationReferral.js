@@ -6,10 +6,9 @@ import { tailwind } from '../../../helpers';
 import EmptyRegistrationImage from './empty-registration.svg';
 import CompletedRegistrationImage from './completed-registration.svg';
 
-const VoterRegistrationReferral = ({ displayName, id, isCompleted }) => (
+const VoterRegistrationReferral = ({ isCompleted, label }) => (
   <div
     className="flex items-center py-4"
-    key={id}
     css={css`
       border-bottom: 1px solid ${tailwind('colors.gray.200')};
     `}
@@ -21,7 +20,7 @@ const VoterRegistrationReferral = ({ displayName, id, isCompleted }) => (
       />
     </div>
     <div>
-      <span className="font-bold block">{displayName}</span>
+      <span className="font-bold block">{label}</span>
       <span className="italic">
         {isCompleted ? 'Registered' : 'Started Registration'}
       </span>
@@ -30,9 +29,8 @@ const VoterRegistrationReferral = ({ displayName, id, isCompleted }) => (
 );
 
 VoterRegistrationReferral.propTypes = {
-  id: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
   isCompleted: PropTypes.bool.isRequired,
-  displayName: PropTypes.string.isRequired,
 };
 
 export default VoterRegistrationReferral;

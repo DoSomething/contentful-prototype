@@ -93,15 +93,15 @@ const IndividualTemplate = ({ title }) => (
             )}
             {completed.map(item => (
               <VoterRegistrationReferral
-                id={item.id}
-                displayName={item.displayName}
                 isCompleted
+                key={item.id}
+                label={item.displayName}
               />
             ))}
             {started.map(item => (
               <VoterRegistrationReferral
-                id={item.id}
-                displayName={item.displayName}
+                key={item.id}
+                label={item.displayName}
               />
             ))}
           </>
