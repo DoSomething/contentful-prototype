@@ -212,6 +212,25 @@ describe('Campaign Signup', () => {
     );
   });
 
+  /** @test */
+  it('Visits a campaign page from a scholarship partner, as an authenticated user', () => {
+    const user = userFactory();
+
+    //Log in and visit the campaign pitch page
+    cy.authVisitCampaignWithSignup(user, exampleCampaign).visit(
+      '/us/campaigns/test-example-campaign?utm_campaign=fastweb&utm_source=scholarship',
+
+      //Find the example campaign
+      cy.contains('Example Campaign'),
+      cy.contains('This is an example campaign for automated testing.'),
+
+      // We shouldn't see the "Join Now" button or affirmation modal,
+      // since the user is already signed up for this campaign:
+      cy.findByTestId('campaign-banner-signup-button').should('not.exist'),
+      cy.get('.card.affirmation').should('not.exist'),
+    );
+  });
+
   // TODO: Use cypress context to better group this test once #2238 is merged.
   /** @test */
   it('If campaign group type does not filter by state, signup button is enabled after selecting group', () => {
