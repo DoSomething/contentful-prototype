@@ -141,6 +141,20 @@ describe('Campaign Info Block', () => {
   });
 
   /** @test */
+  it('Visit campaign, as an authenticated user, show scholarship modal without "Apply Now" ', () => {
+    const user = userFactory();
+
+    // Auth user visit a campaign page:
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
+
+    cy.findByTestId('campaign-info-block-container').within(() => {
+      cy.contains('button', 'View Scholarship Details').click();
+    });
+
+    cy.findByTestId('campaign-banner-signup-button').should('not.exist');
+  });
+
+  /** @test */
   it('Opens the scholarship modal when "View Scholarship Details" is clicked, and closes it when the X button is clicked.', () => {
     cy.anonVisitCampaign(exampleCampaign);
 
