@@ -17,6 +17,7 @@ const VoterRegistrationReferral = ({ isCompleted, label }) => (
         alt={isCompleted ? 'Registered' : 'Started Registration'}
       />
     </div>
+
     <div>
       <span
         className="font-bold block"
@@ -24,6 +25,7 @@ const VoterRegistrationReferral = ({ isCompleted, label }) => (
       >
         {label}
       </span>
+
       <span className="italic">
         {isCompleted ? 'Registered' : 'Started Registration'}
       </span>
