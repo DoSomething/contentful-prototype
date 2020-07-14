@@ -175,7 +175,10 @@ const CampaignBanner = ({
             }
           >
             {!isAffiliated ? (
-              <div className={`pt-6 ${!groupType ? 'w-2/3 sm:w-1/2' : null}`}>
+              <div
+                data-testid="campaign-banner-affiliated"
+                className={`pt-6 ${!groupType ? 'w-2/3 sm:w-1/2' : null}`}
+              >
                 {!loading ? (
                   <CampaignSignupFormContainer
                     className="w-full md:px-2"

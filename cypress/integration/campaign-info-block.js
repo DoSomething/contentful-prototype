@@ -152,7 +152,7 @@ describe('Campaign Info Block', () => {
       cy.contains('button', 'View Scholarship Details').click();
     });
 
-    cy.findByTestId('campaign-banner-signup-button').should('not.exist');
+    cy.findByTestId('campaign-banner-affiliated').should('not.exist');
   });
 
   /** @test */
