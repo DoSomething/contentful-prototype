@@ -1,12 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 
+import { tailwind } from '../../../helpers';
 import EmptyRegistrationImage from './empty-registration.svg';
 import CompletedRegistrationImage from './completed-registration.svg';
 
-const VoterRegistrationReferral = ({ isCompleted, label }) => (
+const VoterRegistrationReferral = ({ isCompleted, isFirst, label }) => (
   <div
     className="flex items-center py-4"
+    css={
+      isFirst
+        ? null
+        : css`
+            border-top: 1px solid ${tailwind('colors.gray.200')};
+          `
+    }
     data-testid={`voter-registration-referral-${
       isCompleted ? 'completed' : 'started'
     }`}
@@ -34,8 +43,14 @@ const VoterRegistrationReferral = ({ isCompleted, label }) => (
 );
 
 VoterRegistrationReferral.propTypes = {
-  isCompleted: PropTypes.bool.isRequired,
+  isCompleted: PropTypes.bool,
+  isFirst: PropTypes.bool,
   label: PropTypes.string.isRequired,
+};
+
+VoterRegistrationReferral.propTypes = {
+  isCompleted: false,
+  isFirst: false,
 };
 
 export default VoterRegistrationReferral;

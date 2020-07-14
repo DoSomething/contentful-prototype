@@ -9,9 +9,10 @@ const VoterRegistrationReferrals = ({ completed, started }) => {
   const handleToggle = () => setExpanded(!expanded);
 
   // Add completed referrals first.
-  const referrals = completed.map(item => (
+  const referrals = completed.map((item, index) => (
     <VoterRegistrationReferral
       isCompleted
+      isFirst={index === 0}
       key={item.id}
       label={item.displayName}
     />
