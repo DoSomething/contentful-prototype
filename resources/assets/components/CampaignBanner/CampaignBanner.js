@@ -176,7 +176,7 @@ const CampaignBanner = ({
           >
             {!isAffiliated ? (
               <div
-                data-testid="campaign-banner-affiliated"
+                data-testid="scholarship-modal-signup-button"
                 className={`pt-6 ${!groupType ? 'w-2/3 sm:w-1/2' : null}`}
               >
                 {!loading ? (
