@@ -1,11 +1,11 @@
-import React from 'react';
 import gql from 'graphql-tag';
 import pluralize from 'pluralize';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
-import VoterRegistrationReferral from '../VoterRegistrationReferral';
+import VoterRegistrationReferrals from '../VoterRegistrationReferrals';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
@@ -70,7 +70,7 @@ const IndividualTemplate = ({ title }) => (
         const parsed = parseVoterRegistrationReferrals(data.posts);
         const completed = Object.values(parsed.complete);
         const started = Object.values(parsed.incomplete);
-        const numReferrals = started.length + completed.length;
+        const numReferrals = completed.length + started.length;
 
         return (
           <>
@@ -95,20 +95,10 @@ const IndividualTemplate = ({ title }) => (
               </div>
             )}
 
-            {completed.map(item => (
-              <VoterRegistrationReferral
-                isCompleted
-                key={item.id}
-                label={item.displayName}
-              />
-            ))}
-
-            {started.map(item => (
-              <VoterRegistrationReferral
-                key={item.id}
-                label={item.displayName}
-              />
-            ))}
+            <VoterRegistrationReferrals
+              completed={completed}
+              started={started}
+            />
           </>
         );
       }}

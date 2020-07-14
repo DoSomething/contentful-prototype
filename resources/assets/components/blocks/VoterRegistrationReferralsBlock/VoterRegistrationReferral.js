@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 
-import { tailwind } from '../../../helpers';
 import EmptyRegistrationImage from './empty-registration.svg';
 import CompletedRegistrationImage from './completed-registration.svg';
 
 const VoterRegistrationReferral = ({ isCompleted, label }) => (
   <div
     className="flex items-center py-4"
-    css={css`
-      border-bottom: 1px solid ${tailwind('colors.gray.200')};
-    `}
     data-testid={`voter-registration-referral-${
       isCompleted ? 'completed' : 'started'
     }`}
