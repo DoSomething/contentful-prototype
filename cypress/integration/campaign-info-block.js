@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
+import { userFactory } from '../fixtures/user';
 
 describe('Campaign Info Block', () => {
   const scholarshipAndReportbackAction = {
@@ -138,6 +139,20 @@ describe('Campaign Info Block', () => {
         cy.findByTestId('volunteer-credit-value').contains('No');
       });
     });
+  });
+
+  /** @test */
+  it('Visit campaign, as an affiliated user, show scholarship modal without "Apply Now" ', () => {
+    const user = userFactory();
+
+    // Auth user visit a campaign page:
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
+
+    cy.findByTestId('campaign-info-block-container').within(() => {
+      cy.contains('button', 'View Scholarship Details').click();
+    });
+
+    cy.findByTestId('campaign-banner-affiliated').should('not.exist');
   });
 
   /** @test */
