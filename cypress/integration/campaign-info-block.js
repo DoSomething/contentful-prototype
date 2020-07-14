@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
+import { userFactory } from '../fixtures/user';
 
 describe('Campaign Info Block', () => {
   const scholarshipAndReportbackAction = {
