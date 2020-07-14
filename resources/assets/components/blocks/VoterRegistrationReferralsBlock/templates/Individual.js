@@ -73,7 +73,7 @@ const IndividualTemplate = ({ title }) => (
         const numReferrals = completed.length + started.length;
 
         return (
-          <>
+          <div className="md:w-2/3">
             {numReferrals ? (
               <div className="pb-3" data-testid="referrals-count-description">
                 You have registered{' '}
@@ -96,7 +96,7 @@ const IndividualTemplate = ({ title }) => (
               completed={completed}
               started={started}
             />
-          </>
+          </div>
         );
       }}
     </Query>
