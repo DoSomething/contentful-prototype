@@ -109,6 +109,10 @@ const CampaignSignupForm = props => {
             onClick={handleSignup}
             text="Join Group"
           />
+          <p className="text-sm text-gray-500 pt-3 md:pt-0">
+            Can&apos;t find your group? <br />
+            Email tej@dosomething.org for help.
+          </p>
         </div>
       </Card>
     </div>
