@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import { tailwind } from '../../../helpers';
-import EmptyRegistrationImage from './empty-registration.svg';
+import StartedRegistrationImage from './started-registration.svg';
 import CompletedRegistrationImage from './completed-registration.svg';
 
 const VoterRegistrationReferral = ({ isCompleted, isFirst, label }) => (
@@ -22,7 +22,9 @@ const VoterRegistrationReferral = ({ isCompleted, isFirst, label }) => (
   >
     <div style={{ width: 80 }} className="pr-4">
       <img
-        src={isCompleted ? CompletedRegistrationImage : EmptyRegistrationImage}
+        src={
+          isCompleted ? CompletedRegistrationImage : StartedRegistrationImage
+        }
         alt={
           isCompleted
             ? 'Graphic of a box with checkmark'
