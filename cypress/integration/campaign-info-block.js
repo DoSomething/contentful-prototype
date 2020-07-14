@@ -142,7 +142,7 @@ describe('Campaign Info Block', () => {
   });
 
   /** @test */
-  it('Visit campaign, as an authenticated user, show scholarship modal without "Apply Now" ', () => {
+  it('Visit campaign, as an affiliated user, show scholarship modal without "Apply Now" ', () => {
     const user = userFactory();
 
     // Auth user visit a campaign page:
