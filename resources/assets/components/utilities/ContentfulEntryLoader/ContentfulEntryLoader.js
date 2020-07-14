@@ -135,7 +135,7 @@ const ContentfulEntryLoader = ({
   className,
   classNameByEntry,
   classNameByEntryDefault,
-  propsByEntry,
+  customProps,
 }) => {
   const { loading, error, data } = useQuery(CONTENTFUL_BLOCK_QUERY, {
     variables: { id, preview: env('CONTENTFUL_USE_PREVIEW_API', false) },
@@ -176,7 +176,7 @@ const ContentfulEntryLoader = ({
     >
       <ContentfulEntry
         json={data.block}
-        propsByEntry={get(propsByEntry, blockType)}
+        customProps={get(customProps, blockType)}
       />
     </div>
   );
@@ -187,14 +187,14 @@ ContentfulEntryLoader.propTypes = {
   classNameByEntry: PropTypes.object,
   classNameByEntryDefault: PropTypes.string,
   id: PropTypes.string.isRequired,
-  propsByEntry: PropTypes.object,
+  customProps: PropTypes.object,
 };
 
 ContentfulEntryLoader.defaultProps = {
   className: null,
   classNameByEntry: {},
   classNameByEntryDefault: null,
-  propsByEntry: {},
+  customProps: {},
 };
 
 export default ContentfulEntryLoader;

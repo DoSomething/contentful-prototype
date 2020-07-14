@@ -55,7 +55,7 @@ class ContentfulEntry extends React.Component {
       className = null,
       classNameByEntry = {},
       classNameByEntryDefault = null,
-      propsByEntry,
+      customProps,
     } = this.props;
     const type = parseContentfulType(json);
 
@@ -100,7 +100,7 @@ class ContentfulEntry extends React.Component {
               content: json.contentBlockContent,
               imageAlignment: json.contentBlockImageAlignment,
             })}
-            {...propsByEntry}
+            {...customProps}
           />
         );
 
@@ -243,14 +243,14 @@ ContentfulEntry.propTypes = {
   className: PropTypes.string,
   classNameByEntry: PropTypes.object, // eslint-disable-line
   classNameByEntryDefault: PropTypes.string,
-  propsByEntry: PropTypes.object,
+  customProps: PropTypes.object,
 };
 
 ContentfulEntry.defaultProps = {
   className: null,
   classNameByEntry: null,
   classNameByEntryDefault: null,
-  propsByEntry: null,
+  customProps: null,
 };
 
 export default ContentfulEntry;

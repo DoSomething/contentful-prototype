@@ -87,7 +87,7 @@ const GeneralPage = props => {
               <div className="general-page__block my-6" key={block.id}>
                 <ContentfulEntryLoader
                   id={block.id}
-                  propsByEntry={{ ContentBlock: { fullWidthContent: true } }}
+                  customProps={{ ContentBlock: { fullWidthContent: true } }}
                 />
               </div>
             ))}
