@@ -74,7 +74,7 @@ const IndividualTemplate = ({ title }) => (
 
         return (
           <>
-            {completed.length ? (
+            {numReferrals ? (
               <div className="pb-3" data-testid="referrals-count-description">
                 You have registered{' '}
                 <strong>
