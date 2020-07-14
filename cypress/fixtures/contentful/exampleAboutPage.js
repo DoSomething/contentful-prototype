@@ -35,7 +35,6 @@ export default {
                 fields: {
                   superTitle: null,
                   title: '1. Sign Up',
-                  subTitle: null,
                   content:
                     'Join a campaign and create an account with your name and phone number (or email). Then -- bam! -- you’re officially a DoSomething member.',
                   image: {
@@ -53,7 +52,6 @@ export default {
                 fields: {
                   superTitle: null,
                   title: '2. Do Something!',
-                  subTitle: null,
                   content:
                     'Complete the campaign and make an impact by following the instructions on the page. You’ll never need money, a car, or help from a parent or teacher.',
                   image: {
@@ -71,7 +69,6 @@ export default {
                 fields: {
                   superTitle: null,
                   title: '3. Submit a Photo',
-                  subTitle: null,
                   content:
                     'Upload a photo of yourself doing the campaign to inspire others to follow your lead. Plus, it’ll enter you to win scholarships, prizes, or swag -- win-win!',
                   image: {
@@ -89,7 +86,6 @@ export default {
                 fields: {
                   superTitle: null,
                   title: '4. Build the Movement',
-                  subTitle: null,
                   content:
                     'Share the campaign to get friends involved. Thanks to you, we’re unleashing the power of young people to change the world, and creating the most socially active generation ever. Let’s Do This!',
                   image: {
@@ -125,7 +121,6 @@ export default {
           fields: {
             superTitle: null,
             title: null,
-            subTitle: null,
             content:
               'Sponsors power our campaigns by contributing financial and operational resources to DoSomething.org. The sponsor’s support enables DoSomething.org to use our platform to get the word out about the campaign. Prior to entering into any sponsor relationship, DoSomething.org ensures the campaign aligns with our mission and is something we can be proud to support and tout to our community.',
             image: {

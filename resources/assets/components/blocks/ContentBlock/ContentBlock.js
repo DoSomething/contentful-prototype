@@ -12,7 +12,6 @@ export const ContentBlockFragment = gql`
   fragment ContentBlockFragment on ContentBlock {
     superTitle
     title
-    subTitle
     # Aliasing to avoid conflicting with *non-required* content fields in other fragments.
     contentBlockContent: content
     image {
