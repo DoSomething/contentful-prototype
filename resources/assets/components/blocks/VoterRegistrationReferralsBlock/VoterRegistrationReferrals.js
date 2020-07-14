@@ -40,7 +40,7 @@ const VoterRegistrationReferrals = ({ completed, started }) => {
       <button
         type="button"
         onClick={handleToggle}
-        className="underline cursor-pointer text-blurple-500"
+        className="underline text-blurple-500"
       >
         {expanded ? '+ See More' : '+ See Less'}
       </button>
