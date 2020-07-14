@@ -19,9 +19,13 @@ const VoterRegistrationReferrals = ({ completed, started }) => {
   ));
 
   // Then append incomplete referrals.
-  started.forEach(item =>
+  started.forEach((item, index) =>
     referrals.push(
-      <VoterRegistrationReferral key={item.id} label={item.displayName} />,
+      <VoterRegistrationReferral
+        isFirst={completed.length === 0 && index === 0}
+        key={item.id}
+        label={item.displayName}
+      />,
     ),
   );
 

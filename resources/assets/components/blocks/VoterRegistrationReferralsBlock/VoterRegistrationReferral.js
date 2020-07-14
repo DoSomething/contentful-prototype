@@ -23,7 +23,11 @@ const VoterRegistrationReferral = ({ isCompleted, isFirst, label }) => (
     <div style={{ width: 80 }} className="pr-4">
       <img
         src={isCompleted ? CompletedRegistrationImage : EmptyRegistrationImage}
-        alt={isCompleted ? 'Registered' : 'Started Registration'}
+        alt={
+          isCompleted
+            ? 'Graphic of a box with checkmark'
+            : 'Graphic of an empty box'
+        }
       />
     </div>
 
@@ -48,7 +52,7 @@ VoterRegistrationReferral.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-VoterRegistrationReferral.propTypes = {
+VoterRegistrationReferral.defaultProps = {
   isCompleted: false,
   isFirst: false,
 };
