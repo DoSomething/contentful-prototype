@@ -15,7 +15,7 @@ const VoterRegistrationReferrals = ({ completed, started }) => {
     .map((item, index) => (
       <VoterRegistrationReferral
         isCompleted={index < completed.length}
-        isFirst={index === 0}
+        index={index}
         key={item.id}
         label={item.displayName}
       />
