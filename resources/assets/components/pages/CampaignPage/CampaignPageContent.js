@@ -26,13 +26,17 @@ const CampaignPageContent = props => {
 
   const { content, blocks } = subPage.fields;
 
+  // Grid column span classes for styling our content.
+  const narrowSpan = 'col-span-4 md:col-span-6 lg:col-start-2 lg:col-span-7';
+  const wideSpan = 'col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-10';
+
   return (
     <div className="leading-normal text-base" id={subPage.id}>
       <ScrollConcierge trigger={!shouldShowAffirmation} />
 
       {content ? (
         <div className="base-12-grid py-3 md:py-6">
-          <div className="grid-wide-7/10">
+          <div className={narrowSpan}>
             <TextContent className="mx-3">{content}</TextContent>
           </div>
         </div>
@@ -45,16 +49,17 @@ const CampaignPageContent = props => {
               key={block.id}
               id={block.id}
               className="mb-6 clear-both"
-              classNameByEntryDefault="grid-wide-7/10"
+              classNameByEntryDefault={narrowSpan}
               classNameByEntry={{
-                ContentBlock: 'grid-wide',
-                ImagesBlock: 'grid-wide',
-                PostGalleryBlock: 'grid-wide',
-                PhotoSubmissionBlock: 'grid-wide',
-                QuizBlock: 'grid-wide',
-                SocialDriveBlock: 'grid-wide',
-                VoterRegistrationDriveBlock: 'grid-wide',
-                VoterRegistrationReferralsBlock: 'grid-wide',
+                ContentBlock: wideSpan,
+                GalleryBlock: wideSpan,
+                ImagesBlock: wideSpan,
+                PostGalleryBlock: wideSpan,
+                PhotoSubmissionBlock: wideSpan,
+                QuizBlock: wideSpan,
+                SocialDriveBlock: wideSpan,
+                VoterRegistrationDriveBlock: wideSpan,
+                VoterRegistrationReferralsBlock: wideSpan,
               }}
             />
           ))}
