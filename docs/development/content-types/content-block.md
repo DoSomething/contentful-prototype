@@ -25,7 +25,7 @@ But for e.g. General Pages where the content width is truncated to accommodate t
 
 ![Content Block on General Page](../../.gitbook/assets/content-block-on-general-page.png)
 
-The `fullWidthContent` prop toggles this behavior.
+The `fullWidth` prop toggles this behavior.
 
 <!-- ## Content Block Gallery Node -->
 <!-- @TODO: Add documentation pertaining to the Content Block rendered as a Gallery Block reference. -->

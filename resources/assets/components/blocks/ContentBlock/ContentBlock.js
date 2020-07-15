@@ -27,7 +27,7 @@ const ContentBlock = props => {
   const {
     className,
     content,
-    fullWidthContent,
+    fullWidth,
     image,
     imageAlignment,
     superTitle,
@@ -67,7 +67,7 @@ const ContentBlock = props => {
               and thus the content width is confined to accommodate the image, whereas on 'Campaign Pages', we assign
               *extra* overlaying row space to Content Blocks, allowing the image to just optionally display within the extra space.
             */
-            'col-span-3': !image.url && fullWidthContent,
+            'col-span-3': !image.url && fullWidth,
           })}
         >
           {contentNode}
@@ -80,7 +80,7 @@ const ContentBlock = props => {
 ContentBlock.propTypes = {
   className: PropTypes.string,
   content: PropTypes.string.isRequired,
-  fullWidthContent: PropTypes.bool,
+  fullWidth: PropTypes.bool,
   image: PropTypes.shape({
     url: PropTypes.string,
     description: PropTypes.string,
@@ -92,7 +92,7 @@ ContentBlock.propTypes = {
 
 ContentBlock.defaultProps = {
   className: null,
-  fullWidthContent: false,
+  fullWidth: false,
   image: {},
   imageAlignment: 'RIGHT',
   superTitle: null,
