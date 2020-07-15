@@ -44,6 +44,39 @@ describe('VoterRegistrationReferrals component', () => {
     ).toBe(completed[0].displayName);
   });
 
+  it('Displays "0 out of 2 people registered" if 0 completed referrals and 2 started', async () => {
+    const started = [userFactory(), userFactory()];
+
+    renderVoterRegistrationReferrals({
+      completed: [],
+      started,
+    });
+
+    expect(screen.getByTestId('referrals-count-description').textContent).toBe(
+      'You have registered 0 out of 2 people so far.',
+    );
+
+    const startedReferrals = screen.getAllByTestId(
+      'voter-registration-referral-started',
+    );
+
+    expect(startedReferrals).toHaveLength(2);
+    expect(
+      screen.queryByTestId('voter-registration-referral-completed'),
+    ).toBeNull();
+    expect(screen.queryByTestId('referrals-toggle')).toBeNull();
+    expect(
+      within(startedReferrals[0]).getByTestId(
+        'voter-registration-referral-label',
+      ).textContent,
+    ).toBe(started[0].displayName);
+    expect(
+      within(startedReferrals[1]).getByTestId(
+        'voter-registration-referral-label',
+      ).textContent,
+    ).toBe(started[1].displayName);
+  });
+
   it('Displays "3 people registered" if 3 completed referrals and 0 started', async () => {
     const completed = [userFactory(), userFactory(), userFactory()];
 
