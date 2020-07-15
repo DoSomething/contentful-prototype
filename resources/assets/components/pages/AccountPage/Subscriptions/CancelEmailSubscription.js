@@ -24,6 +24,7 @@ const EMAIL_SUBSCRIPTION_STATUS_MUTATION = gql`
     ) {
       id
       emailSubscriptionStatus
+      emailSubscriptionTopics
     }
   }
 `;
@@ -58,7 +59,6 @@ const CancelEmailSubscription = props => {
                 variables: {
                   emailSubscriptionStatus: false,
                 },
-                refetchQueries: ['EmailSubscriptionsQuery'],
               })
             }
           >
