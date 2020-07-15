@@ -101,6 +101,6 @@ describe('VoterRegistrationReferrals component', () => {
     // );
 
     expect(completedReferrals).toHaveLength(3);
-    //expect(startedReferrals).toHaveLength(4);
+    // expect(startedReferrals).toHaveLength(4);
   });
 });
