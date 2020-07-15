@@ -12,12 +12,12 @@ const VoterRegistrationReferrals = ({ completed, started }) => {
   // Display completed referrals first.
   const referrals = completed
     .concat(started)
-    .map((item, index) => (
+    .map((user, index) => (
       <VoterRegistrationReferral
         isCompleted={index < completed.length}
         index={index}
-        key={item.id}
-        label={item.displayName}
+        key={user.id}
+        label={user.displayName}
       />
     ));
 
