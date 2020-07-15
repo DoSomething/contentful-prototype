@@ -52,6 +52,7 @@ const CampaignPageContent = props => {
               classNameByEntryDefault={narrowSpan}
               classNameByEntry={{
                 ContentBlock: wideSpan,
+                GalleryBlock: wideSpan,
                 ImagesBlock: wideSpan,
                 PostGalleryBlock: wideSpan,
                 PhotoSubmissionBlock: wideSpan,
