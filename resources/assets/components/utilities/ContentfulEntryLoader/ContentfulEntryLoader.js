@@ -174,10 +174,7 @@ const ContentfulEntryLoader = ({
       data-contentful-id={id}
       className={classnames(className, entryClassNames)}
     >
-      <ContentfulEntry
-        json={data.block}
-        customProps={get(customProps, blockType)}
-      />
+      <ContentfulEntry json={data.block} {...get(customProps, blockType)} />
     </div>
   );
 };
