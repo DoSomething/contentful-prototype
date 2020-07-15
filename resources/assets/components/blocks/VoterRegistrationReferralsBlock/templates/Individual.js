@@ -1,6 +1,5 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import pluralize from 'pluralize';
 import PropTypes from 'prop-types';
 
 import Query from '../../../Query';
@@ -68,35 +67,12 @@ const IndividualTemplate = ({ title }) => (
     >
       {data => {
         const parsed = parseVoterRegistrationReferrals(data.posts);
-        const completed = Object.values(parsed.complete);
-        const started = Object.values(parsed.incomplete);
-        const numReferrals = completed.length + started.length;
 
         return (
-          <div className="md:w-2/3">
-            {numReferrals ? (
-              <div className="pb-3" data-testid="referrals-count-description">
-                You have registered{' '}
-                <strong>
-                  {started.length
-                    ? `${completed.length} out of ${numReferrals}`
-                    : completed.length}{' '}
-                  {pluralize('person', numReferrals)}
-                </strong>{' '}
-                so far.
-              </div>
-            ) : (
-              <div data-testid="referrals-count-description">
-                You haven’t helped anyone register to vote yet. Scroll down to
-                get started!
-              </div>
-            )}
-
-            <VoterRegistrationReferrals
-              completed={completed}
-              started={started}
-            />
-          </div>
+          <VoterRegistrationReferrals
+            completed={Object.values(parsed.complete)}
+            started={Object.values(parsed.incomplete)}
+          />
         );
       }}
     </Query>
