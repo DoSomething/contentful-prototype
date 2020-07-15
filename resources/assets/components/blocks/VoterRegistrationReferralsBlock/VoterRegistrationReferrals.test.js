@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 
 import { userFactory } from '../../../../../cypress/fixtures/user';
 import VoterRegistrationReferrals from './VoterRegistrationReferrals';
@@ -44,8 +44,8 @@ describe('VoterRegistrationReferrals component', () => {
     ).toBe(completed[0].displayName);
   });
 
-  it('Displays "2 people registered" if 2 completed referrals and 0 started', async () => {
-    const completed = [userFactory(), userFactory()];
+  it('Displays "3 people registered" if 3 completed referrals and 0 started', async () => {
+    const completed = [userFactory(), userFactory(), userFactory()];
 
     renderVoterRegistrationReferrals({
       completed,
@@ -53,14 +53,15 @@ describe('VoterRegistrationReferrals component', () => {
     });
 
     expect(screen.getByTestId('referrals-count-description').textContent).toBe(
-      'You have registered 2 people so far.',
+      'You have registered 3 people so far.',
     );
 
     const completedReferrals = screen.getAllByTestId(
       'voter-registration-referral-completed',
     );
 
-    expect(completedReferrals).toHaveLength(2);
+    expect(completedReferrals).toHaveLength(3);
+    expect(screen.queryByTestId('referrals-toggle')).toBeNull();
     expect(
       within(completedReferrals[0]).getByTestId(
         'voter-registration-referral-label',
@@ -74,7 +75,7 @@ describe('VoterRegistrationReferrals component', () => {
   });
 
   /** @test */
-  it('Displays "3 out of 7 people registered" if 3 completed and 4 started', async () => {
+  it('Displays "3 out of 7 people registered" if 3 completed and 4 started, expands/collapses', async () => {
     const completed = [userFactory(), userFactory(), userFactory()];
     const started = [
       userFactory(),
@@ -95,12 +96,44 @@ describe('VoterRegistrationReferrals component', () => {
     const completedReferrals = screen.getAllByTestId(
       'voter-registration-referral-completed',
     );
-    // @TODO: Why does this fail?
-    // const startedReferrals = screen.getAllByTestId(
-    //   'voter-registration-referral-started',
-    // );
 
+    expect(screen.getByTestId('referrals-toggle').textContent).toBe(
+      '+ See More',
+    );
     expect(completedReferrals).toHaveLength(3);
-    // expect(startedReferrals).toHaveLength(4);
+    expect(
+      screen.queryByTestId('voter-registration-referral-started'),
+    ).toBeNull();
+
+    fireEvent.click(screen.getByTestId('referrals-toggle'));
+
+    expect(screen.getByTestId('referrals-toggle').textContent).toBe(
+      '+ See Less',
+    );
+
+    const startedReferrals = screen.getAllByTestId(
+      'voter-registration-referral-started',
+    );
+
+    expect(startedReferrals).toHaveLength(4);
+    expect(
+      within(startedReferrals[0]).getByTestId(
+        'voter-registration-referral-label',
+      ).textContent,
+    ).toBe(started[0].displayName);
+    expect(
+      within(startedReferrals[1]).getByTestId(
+        'voter-registration-referral-label',
+      ).textContent,
+    ).toBe(started[1].displayName);
+
+    fireEvent.click(screen.getByTestId('referrals-toggle'));
+
+    expect(
+      screen.queryByTestId('voter-registration-referral-started'),
+    ).toBeNull();
+    expect(screen.getByTestId('referrals-toggle').textContent).toBe(
+      '+ See More',
+    );
   });
 });
