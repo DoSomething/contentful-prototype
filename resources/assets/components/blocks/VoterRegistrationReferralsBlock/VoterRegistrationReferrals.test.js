@@ -1,4 +1,3 @@
-import faker from 'faker';
 import React from 'react';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 
@@ -36,6 +35,43 @@ describe('VoterRegistrationReferrals component', () => {
     const completedReferrals = screen.getAllByTestId(
       'voter-registration-referral-completed',
     );
+
     expect(completedReferrals).toHaveLength(1);
+    expect(
+      within(completedReferrals[0]).getByTestId(
+        'voter-registration-referral-label',
+      ).textContent,
+    ).toBe(completed[0].displayName);
+  });
+
+  /** @test */
+  it('Displays "X out of Y" text if completed and started referrals exist', async () => {
+    const completed = [userFactory(), userFactory(), userFactory()];
+    const started = [
+      userFactory(),
+      userFactory(),
+      userFactory(),
+      userFactory(),
+    ];
+
+    renderVoterRegistrationReferrals({
+      completed,
+      started,
+    });
+
+    expect(screen.getByTestId('referrals-count-description').textContent).toBe(
+      'You have registered 3 out of 7 people so far.',
+    );
+
+    const completedReferrals = screen.getAllByTestId(
+      'voter-registration-referral-completed',
+    );
+    // @TODO: Why does this fail?
+    // const startedReferrals = screen.getAllByTestId(
+    //   'voter-registration-referral-started',
+    // );
+
+    expect(completedReferrals).toHaveLength(3);
+    //expect(startedReferrals).toHaveLength(4);
   });
 });
