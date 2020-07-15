@@ -20,7 +20,7 @@ describe('VoterRegistrationReferrals component', () => {
   });
 
   /** @test */
-  it('Displays "1 person registered" if one completed referral exists with none started', async () => {
+  it('Displays "1 person registered" if 1 completed referral and 0 started', async () => {
     const completed = [userFactory()];
 
     renderVoterRegistrationReferrals({
@@ -44,7 +44,7 @@ describe('VoterRegistrationReferrals component', () => {
     ).toBe(completed[0].displayName);
   });
 
-  it('Displays "2 people registered" if 3 completed referrals exists with none started', async () => {
+  it('Displays "2 people registered" if 2 completed referrals and 0 started', async () => {
     const completed = [userFactory(), userFactory()];
 
     renderVoterRegistrationReferrals({
@@ -74,7 +74,7 @@ describe('VoterRegistrationReferrals component', () => {
   });
 
   /** @test */
-  it('Displays "3 out of 7 people registered" if 3 completed and 4 referrals', async () => {
+  it('Displays "3 out of 7 people registered" if 3 completed and 4 started', async () => {
     const completed = [userFactory(), userFactory(), userFactory()];
     const started = [
       userFactory(),
