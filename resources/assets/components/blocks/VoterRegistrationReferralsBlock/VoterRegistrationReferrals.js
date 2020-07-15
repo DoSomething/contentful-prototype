@@ -9,26 +9,17 @@ const VoterRegistrationReferrals = ({ completed, started }) => {
 
   const handleToggle = () => setExpanded(!expanded);
 
-  // Add completed referrals first.
-  const referrals = completed.map((item, index) => (
-    <VoterRegistrationReferral
-      isCompleted
-      isFirst={index === 0}
-      key={item.id}
-      label={item.displayName}
-    />
-  ));
-
-  // Then append incomplete referrals.
-  started.forEach((item, index) =>
-    referrals.push(
+  // Display completed referrals first.
+  const referrals = completed
+    .concat(started)
+    .map((item, index) => (
       <VoterRegistrationReferral
-        isFirst={completed.length === 0 && index === 0}
+        isCompleted={index < completed.length}
+        isFirst={index === 0}
         key={item.id}
         label={item.displayName}
-      />,
-    ),
-  );
+      />
+    ));
 
   if (!referrals.length) {
     return (
