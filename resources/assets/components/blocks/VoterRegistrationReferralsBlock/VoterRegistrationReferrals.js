@@ -23,7 +23,7 @@ const VoterRegistrationReferrals = ({ completed, started }) => {
 
   if (!referrals.length) {
     return (
-      <div className="md:w-2/3" data-testid="referrals-count-description">
+      <div data-testid="referrals-count-description">
         You haven’t helped anyone register to vote yet. Scroll down to get
         started!
       </div>
@@ -31,7 +31,7 @@ const VoterRegistrationReferrals = ({ completed, started }) => {
   }
 
   return (
-    <div className="md:w-2/3">
+    <>
       <div className="pb-3" data-testid="referrals-count-description">
         You have registered{' '}
         <strong>
@@ -55,7 +55,7 @@ const VoterRegistrationReferrals = ({ completed, started }) => {
           {expanded ? '+ See Less' : '+ See More'}
         </button>
       ) : null}
-    </div>
+    </>
   );
 };
 

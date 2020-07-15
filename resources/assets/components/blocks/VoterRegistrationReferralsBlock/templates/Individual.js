@@ -69,10 +69,12 @@ const IndividualTemplate = ({ title }) => (
         const parsed = parseVoterRegistrationReferrals(data.posts);
 
         return (
-          <VoterRegistrationReferrals
-            completed={Object.values(parsed.complete)}
-            started={Object.values(parsed.incomplete)}
-          />
+          <div className="md:w-2/3">
+            <VoterRegistrationReferrals
+              completed={Object.values(parsed.complete)}
+              started={Object.values(parsed.incomplete)}
+            />
+          </div>
         );
       }}
     </Query>

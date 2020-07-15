@@ -20,7 +20,7 @@ const VoterRegistrationReferral = ({ index, isCompleted, label }) => (
       isCompleted ? 'completed' : 'started'
     }`}
   >
-    <div style={{ width: 80 }} className="pr-4">
+    <div className="pr-4">
       <img
         src={
           isCompleted ? CompletedRegistrationImage : StartedRegistrationImage
