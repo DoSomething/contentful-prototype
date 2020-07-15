@@ -28,6 +28,7 @@ const EMAIL_SUBSCRIPTION_MUTATION = gql`
     ) {
       id
       emailSubscriptionTopics
+      emailSubscriptionStatus
     }
   }
 `;
@@ -84,7 +85,6 @@ const EmailSubscriptionItem = ({
                   variables: {
                     topic,
                     subscribed: !topics.includes(topic),
-                    refetchQueries: ['EmailSubscriptionStatus'],
                   },
                 })
               }
