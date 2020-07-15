@@ -1,14 +1,11 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import pluralize from 'pluralize';
 import PropTypes from 'prop-types';
 
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
-import EmptyRegistrationImage from '../empty-registration.svg';
-import CompletedRegistrationImage from '../completed-registration.svg';
+import VoterRegistrationReferrals from '../VoterRegistrationReferrals';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
-import ReferralsGallery from '../../../utilities/ReferralsGallery/ReferralsGallery';
 
 const INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query IndividualVoterRegistrationReferralsQuery($referrerUserId: String!) {
@@ -70,31 +67,14 @@ const IndividualTemplate = ({ title }) => (
     >
       {data => {
         const parsed = parseVoterRegistrationReferrals(data.posts);
-        const completed = Object.values(parsed.complete);
 
         return (
-          <>
-            {completed.length ? (
-              <div className="pb-3 md:pb-6">
-                You have registered{' '}
-                <strong>
-                  {completed.length} {pluralize('person', completed.length)}
-                </strong>{' '}
-                so far.
-              </div>
-            ) : (
-              <div className="pb-3 md:pb-6">
-                You haven’t helped anyone register to vote yet. Scroll down to
-                get started!
-              </div>
-            )}
-
-            <ReferralsGallery
-              referralLabels={completed.map(user => user.displayName)}
-              referralIcon={CompletedRegistrationImage}
-              placeholderIcon={EmptyRegistrationImage}
+          <div className="md:w-2/3">
+            <VoterRegistrationReferrals
+              completed={Object.values(parsed.complete)}
+              started={Object.values(parsed.incomplete)}
             />
-          </>
+          </div>
         );
       }}
     </Query>
