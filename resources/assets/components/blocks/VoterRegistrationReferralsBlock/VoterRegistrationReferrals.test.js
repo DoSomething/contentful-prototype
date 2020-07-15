@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 
 import { userFactory } from '../../../../../cypress/fixtures/user';
 import VoterRegistrationReferrals from './VoterRegistrationReferrals';
@@ -20,7 +20,7 @@ describe('VoterRegistrationReferrals component', () => {
   });
 
   /** @test */
-  it('Does not display "X out of Y" text if completed referrals exist but none started', async () => {
+  it('Displays "1 person registered" if one completed referral exists with none started', async () => {
     const completed = [userFactory()];
 
     renderVoterRegistrationReferrals({
@@ -44,8 +44,37 @@ describe('VoterRegistrationReferrals component', () => {
     ).toBe(completed[0].displayName);
   });
 
+  it('Displays "2 people registered" if 3 completed referrals exists with none started', async () => {
+    const completed = [userFactory(), userFactory()];
+
+    renderVoterRegistrationReferrals({
+      completed,
+      started: [],
+    });
+
+    expect(screen.getByTestId('referrals-count-description').textContent).toBe(
+      'You have registered 2 people so far.',
+    );
+
+    const completedReferrals = screen.getAllByTestId(
+      'voter-registration-referral-completed',
+    );
+
+    expect(completedReferrals).toHaveLength(2);
+    expect(
+      within(completedReferrals[0]).getByTestId(
+        'voter-registration-referral-label',
+      ).textContent,
+    ).toBe(completed[0].displayName);
+    expect(
+      within(completedReferrals[1]).getByTestId(
+        'voter-registration-referral-label',
+      ).textContent,
+    ).toBe(completed[1].displayName);
+  });
+
   /** @test */
-  it('Displays "X out of Y" text if completed and started referrals exist', async () => {
+  it('Displays "3 out of 7 people registered" if 3 completed and 4 referrals', async () => {
     const completed = [userFactory(), userFactory(), userFactory()];
     const started = [
       userFactory(),
