@@ -32,7 +32,7 @@ const PageCard = ({ page }) => {
     <article className="flex flex-col h-full text-left">
       <a href={`/us/${slug}`} className="block">
         <img
-          alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
+          alt={get(showcaseImage, 'description', `Cover photo for ${showcaseTitle}`)}
           srcSet={srcset}
           src={contentfulImageUrl(showcaseImageUrl, '365', '205', 'fill')}
         />
