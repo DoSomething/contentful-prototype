@@ -36,7 +36,7 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
           id
           campaignWebsite {
             id
-            slug
+            path
             showcaseTitle
             showcaseDescription
             showcaseImage {
@@ -107,6 +107,7 @@ const PaginatedCampaignGallery = ({
     <div className={className} data-ref="paginated-campaign-gallery">
       <GalleryBlock
         blocks={campaigns}
+        galleryType="CAMPAIGN"
         itemsPerRow={itemsPerRow}
         imageAlignment="TOP"
         title={title}

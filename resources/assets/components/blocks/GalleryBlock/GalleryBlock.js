@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import { withoutNulls } from '../../../helpers';
 import Person from '../../utilities/Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
+import CampaignCard from '../../utilities/CampaignCard/CampaignCard';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import ScholarshipCard from '../../utilities/ScholarshipCard/ScholarshipCard';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
-import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItem';
 
 export const GalleryBlockFragment = gql`
   fragment GalleryBlockFragment on GalleryBlock {
@@ -60,15 +60,8 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
 
     case 'CAMPAIGN':
     case 'CampaignWebsite':
-      // @TODO: Replace with Campaign Card
       return (
-        <CampaignGalleryItem
-          key={block.id}
-          showcaseTitle={fields.title}
-          showcaseDescription={fields.tagline}
-          showcaseImage={fields.coverImage}
-          {...withoutNulls(fields)}
-        />
+        <CampaignCard key={block.id} campaign={{ ...withoutNulls(fields) }} />
       );
 
     case 'SCHOLARSHIP':
