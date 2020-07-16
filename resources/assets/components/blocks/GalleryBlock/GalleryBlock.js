@@ -49,7 +49,6 @@ export const GalleryBlockFragment = gql`
 `;
 
 const renderBlock = (blockType, block, imageAlignment, imageFit) => {
-  // GraphQL ('Showcasable' interface) and Phoenix-backend (legacy) queried blocks.
   const fields = withoutNulls(block);
 
   switch (blockType) {
