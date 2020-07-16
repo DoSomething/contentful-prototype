@@ -227,7 +227,7 @@ describe('Campaign Signup', () => {
     //Find the example campaign
     cy.contains('Example Campaign'),
       cy.contains('This is an example campaign for automated testing.'),
-      // We shouldn't see the "Join Now" button or affirmation modal,
+      // We shouldn't see the "Apply Now" button,
       // since the user is already signed up for this campaign:
       cy
         .findByTestId('campaign-info-block-scholarship-details')
