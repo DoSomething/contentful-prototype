@@ -212,6 +212,28 @@ describe('Campaign Signup', () => {
     );
   });
 
+  /** @test */
+  it('Visits a campaign page from a scholarship partner, as an authenticated user', () => {
+    const user = userFactory();
+
+    //Log in and visit the campaign pitch page
+    cy.login(user)
+      .withState(exampleCampaign)
+      .withSignup(exampleCampaign.campaign.campaignId)
+      .visit(
+        '/us/campaigns/test-example-campaign?utm_campaign=fastweb&utm_source=scholarship',
+      );
+
+    //Find the example campaign
+    cy.contains('Example Campaign'),
+      cy.contains('This is an example campaign for automated testing.'),
+      // We shouldn't see the "Apply Now" button,
+      // since the user is already signed up for this campaign:
+      cy
+        .findByTestId('campaign-info-block-scholarship-details')
+        .should('not.contain', 'Apply Now');
+  });
+
   // TODO: Use cypress context to better group this test once #2238 is merged.
   /** @test */
   it('If campaign group type does not filter by state, signup button is enabled after selecting group', () => {
