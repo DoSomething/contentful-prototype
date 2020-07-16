@@ -61,7 +61,7 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
       return <CampaignCard key={block.id} campaign={fields} />;
 
     case 'SCHOLARSHIP':
-      return <ScholarshipCard key={block.id} campaign={block} />;
+      return <ScholarshipCard key={block.id} campaign={fields} />;
 
     case 'PAGE':
     case 'Page':
