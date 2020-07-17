@@ -123,6 +123,9 @@ module.exports = function(migration) {
     .required(false)
     .validations([
       {
+        linkMimetypeGroup: ['image'],
+      },
+      {
         assetFileSize: {
           max: 20971520,
         },
@@ -227,7 +230,7 @@ module.exports = function(migration) {
     .required(false)
     .validations([
       {
-        linkContentType: ['landingPage', 'sixpackExperiment'],
+        linkContentType: ['landingPage'],
       },
     ])
     .disabled(false)
@@ -488,8 +491,6 @@ module.exports = function(migration) {
     },
   );
 
-  campaign.changeFieldControl('template', 'builtin', 'checkbox', {});
-
   campaign.changeFieldControl('endDate', 'builtin', 'datePicker', {
     ampm: '12',
     format: 'timeZ',
@@ -497,7 +498,10 @@ module.exports = function(migration) {
       "The date the campaign will close. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
   });
 
-  campaign.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {});
+  campaign.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
+  });
 
   campaign.changeFieldControl('blurb', 'builtin', 'markdown', {
     helpText:
