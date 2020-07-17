@@ -184,7 +184,6 @@ module.exports = {
       ],
       displaySocialShare: true,
       hideFromNavigation: false,
-      socialOverride: null,
     },
   },
 };

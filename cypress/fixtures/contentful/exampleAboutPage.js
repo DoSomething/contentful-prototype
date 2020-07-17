@@ -134,7 +134,6 @@ export default {
       ],
       displaySocialShare: null,
       hideFromNavigation: null,
-      socialOverride: null,
     },
   },
 };

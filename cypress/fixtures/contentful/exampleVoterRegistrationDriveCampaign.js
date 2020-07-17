@@ -81,7 +81,6 @@ export default {
           ],
           displaySocialShare: null,
           hideFromNavigation: false,
-          socialOverride: null,
         },
       },
       {
@@ -104,7 +103,6 @@ export default {
           blocks: [],
           displaySocialShare: null,
           hideFromNavigation: null,
-          socialOverride: null,
         },
       },
       {
@@ -123,7 +121,6 @@ export default {
         additionalContent: null,
       },
     },
-    socialOverride: null,
     allowExperiments: true,
     actionText: 'Join Us',
     staffPick: true,
