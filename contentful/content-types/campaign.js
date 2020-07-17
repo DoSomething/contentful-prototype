@@ -302,21 +302,6 @@ module.exports = function(migration) {
     .linkType('Entry');
 
   campaign
-    .createField('socialOverride')
-    .name('Social Override')
-    .type('Link')
-    .localized(false)
-    .required(false)
-    .validations([
-      {
-        linkContentType: ['socialOverride'],
-      },
-    ])
-    .disabled(true)
-    .omitted(false)
-    .linkType('Entry');
-
-  campaign
     .createField('staffPick')
     .name('Staff Pick')
     .type('Boolean')
@@ -497,7 +482,10 @@ module.exports = function(migration) {
       "The date the campaign will close. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
   });
 
-  campaign.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {});
+  campaign.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
+  });
 
   campaign.changeFieldControl('blurb', 'builtin', 'markdown', {
     helpText:
@@ -548,12 +536,6 @@ module.exports = function(migration) {
   });
 
   campaign.changeFieldControl('dashboard', 'builtin', 'entryLinkEditor', {});
-  campaign.changeFieldControl(
-    'socialOverride',
-    'builtin',
-    'entryLinkEditor',
-    {},
-  );
 
   campaign.changeFieldControl('staffPick', 'builtin', 'boolean', {
     helpText: 'Is this a Staff Pick campaign?',
