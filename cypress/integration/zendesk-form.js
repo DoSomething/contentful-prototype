@@ -1,14 +1,16 @@
 /// <reference types="Cypress" />
 import { userFactory } from '../fixtures/user';
+import { HELP_LINK } from '../../resources/assets/constants';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const QUESTION = 'causeyhippo';
 
 describe('Zendesk Modal', () => {
+  const user = userFactory();
+
   beforeEach(() => {
     cy.configureMocks();
 
-    const user = userFactory();
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
     cy.get('.info-bar .info-bar__secondary button')
@@ -16,6 +18,19 @@ describe('Zendesk Modal', () => {
       .click();
 
     cy.get('.modal .zendesk-form').contains('h1', 'Contact Us');
+  });
+
+  it('links to the FAQ page for affiliated users, and the help center for unaffiliated users', () => {
+    cy.findByTestId('zendesk-form-faq-link')
+      .should('have.attr', 'href')
+      .and('include', HELP_LINK);
+
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
+
+    cy.get('.info-bar .info-bar__secondary button')
+      .contains('button', 'Contact Us')
+      .click();
+
     cy.findByTestId('zendesk-form-faq-link')
       .should('have.attr', 'href')
       .and('include', `/us/campaigns/${exampleCampaign.campaign.slug}/faqs`);
