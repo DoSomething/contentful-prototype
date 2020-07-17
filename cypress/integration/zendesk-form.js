@@ -24,7 +24,7 @@ describe('Zendesk Modal', () => {
     cy.get('.modal .zendesk-form').contains('h1', 'Contact Us');
   });
 
-  it('links to the FAQ page for affiliated users, and the help center for unaffiliated users', () => {
+  it('Links to the FAQ page for affiliated users, and the help center for unaffiliated users', () => {
     cy.findByTestId('zendesk-form-faq-link')
       .should('have.attr', 'href')
       .and('include', HELP_LINK);
