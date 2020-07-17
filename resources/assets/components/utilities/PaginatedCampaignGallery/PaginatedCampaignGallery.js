@@ -13,6 +13,7 @@ import ElementButton from '../Button/ElementButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
+import { campaignCardFragment } from '../CampaignCard/CampaignCard';
 
 const PAGINATED_CAMPAIGNS_QUERY = gql`
   query PaginatedCampaignQuery(
@@ -35,14 +36,7 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
         node {
           id
           campaignWebsite {
-            id
-            path
-            showcaseTitle
-            showcaseDescription
-            showcaseImage {
-              url
-              description
-            }
+            ...CampaignCard
           }
         }
       }
@@ -52,6 +46,8 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
       }
     }
   }
+
+  ${campaignCardFragment}
 `;
 
 const PaginatedCampaignGallery = ({

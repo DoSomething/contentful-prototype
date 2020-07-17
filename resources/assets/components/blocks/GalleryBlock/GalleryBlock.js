@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 import { withoutNulls } from '../../../helpers';
 import Person from '../../utilities/Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
-import CampaignCard from '../../utilities/CampaignCard/CampaignCard';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import ScholarshipCard from '../../utilities/ScholarshipCard/ScholarshipCard';
+import CampaignCard, {
+  campaignCardFragment,
+} from '../../utilities/CampaignCard/CampaignCard';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 
@@ -32,20 +34,14 @@ export const GalleryBlockFragment = gql`
         type
         twitterId
       }
-      ... on CampaignWebsite {
-        scholarshipAmount
-        scholarshipDeadline
-        campaignId
-        path
-      }
-      ... on StoryPageWebsite {
-        path
-      }
       ... on Page {
         slug
       }
+      ...CampaignCard
     }
   }
+
+  ${campaignCardFragment}
 `;
 
 const renderBlock = (blockType, block, imageAlignment, imageFit) => {
