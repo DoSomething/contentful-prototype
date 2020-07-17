@@ -88,6 +88,13 @@ export const isAuthenticated = () => window.AUTH.isAuthenticated;
 export const getUserId = () => window.AUTH.id;
 
 /**
+ * Get the user auth token.
+ *
+ * @return {String}
+ */
+export const getUserToken = () => window.AUTH.token;
+
+/**
  * This hook allows a component to trigger an authentication gate, and
  * optionally "flash" data to the session for when they return.
  *
