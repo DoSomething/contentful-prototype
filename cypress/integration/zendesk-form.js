@@ -24,6 +24,7 @@ describe('Zendesk Modal', () => {
     cy.get('.modal .zendesk-form').contains('h1', 'Contact Us');
   });
 
+  /** @test */
   it('Links to the FAQ page for affiliated users, and the help center for unaffiliated users', () => {
     cy.findByTestId('zendesk-form-faq-link')
       .should('have.attr', 'href')
@@ -38,6 +39,7 @@ describe('Zendesk Modal', () => {
       .and('include', `/us/campaigns/${exampleCampaign.campaign.slug}/faqs`);
   });
 
+  /** @test */
   it('Submits a question successfully and displays affirmation', () => {
     cy.route('POST', '/api/v2/zendesk-tickets', []);
 
@@ -48,6 +50,7 @@ describe('Zendesk Modal', () => {
     cy.get('.zendesk-form h1').contains('Thank You');
   });
 
+  /** @test */
   it('Submits a question unsuccessfully and displays error message', () => {
     cy.route({ method: 'POST', url: '/api/v2/zendesk-tickets', status: 500 });
 
