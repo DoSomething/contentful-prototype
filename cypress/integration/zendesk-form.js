@@ -8,14 +8,18 @@ const QUESTION = 'causeyhippo';
 describe('Zendesk Modal', () => {
   const user = userFactory();
 
+  const clickOnTheContactUsLink = () => {
+    cy.get('.info-bar .info-bar__secondary button')
+      .contains('button', 'Contact Us')
+      .click();
+  };
+
   beforeEach(() => {
     cy.configureMocks();
 
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
-    cy.get('.info-bar .info-bar__secondary button')
-      .contains('button', 'Contact Us')
-      .click();
+    clickOnTheContactUsLink();
 
     cy.get('.modal .zendesk-form').contains('h1', 'Contact Us');
   });
@@ -27,9 +31,7 @@ describe('Zendesk Modal', () => {
 
     cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
-    cy.get('.info-bar .info-bar__secondary button')
-      .contains('button', 'Contact Us')
-      .click();
+    clickOnTheContactUsLink();
 
     cy.findByTestId('zendesk-form-faq-link')
       .should('have.attr', 'href')
