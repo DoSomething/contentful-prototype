@@ -105,7 +105,7 @@
     "jest-environment-jsdom": "^24.9.0",
     "jest-environment-jsdom-global": "^1.2.0",
     "localforage": "^1.7.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "lodash-es": "^4.17.15",
     "markdown-it": "^8.4.0",
     "markdown-it-anchor": "^5.2.5",
