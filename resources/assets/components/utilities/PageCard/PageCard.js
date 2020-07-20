@@ -1,5 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import { get } from 'lodash';
 import { propType } from 'graphql-anywhere';
 
 import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
@@ -19,7 +20,9 @@ export const pageCardFragment = gql`
 const PageCard = ({ page }) => {
   const { showcaseDescription, showcaseImage, showcaseTitle, slug } = page;
 
-  const srcset = contentfulImageSrcset(showcaseImage.url, [
+  const showcaseImageUrl = get(showcaseImage.url);
+
+  const srcset = contentfulImageSrcset(showcaseImageUrl, [
     { height: 205, width: 365 },
     { height: 410, width: 730 },
     { height: 820, width: 1460 },
@@ -29,9 +32,9 @@ const PageCard = ({ page }) => {
     <article className="flex flex-col h-full text-left">
       <a href={`/us/${slug}`} className="block">
         <img
-          alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
+          alt={get(showcaseImage, 'description', `Cover photo for ${showcaseTitle}`)}
           srcSet={srcset}
-          src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
+          src={contentfulImageUrl(showcaseImageUrl, '365', '205', 'fill')}
         />
       </a>
 
