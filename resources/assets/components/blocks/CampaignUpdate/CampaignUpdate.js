@@ -40,9 +40,7 @@ const CampaignUpdate = props => {
     bordered,
   } = props;
 
-  // Support both GraphQL & PHP Content API formats:
-  const authorFields = author && author.fields ? author.fields : author;
-  const authorPhoto = get(authorFields, 'photo.url') || undefined;
+  const authorPhoto = get(author, 'photo.url') || undefined;
 
   const isTweet = content && content.length < 144;
 
@@ -71,13 +69,13 @@ const CampaignUpdate = props => {
           />
         ) : (
           <Byline
-            author={authorFields.name}
             photo={
               authorPhoto
                 ? contentfulImageUrl(authorPhoto, 175, 175, 'fill')
                 : undefined
             }
-            jobTitle={authorFields.jobTitle || undefined}
+            author={author.name}
+            jobTitle={author.jobTitle || undefined}
             className="float-left"
           />
         )}
