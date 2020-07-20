@@ -69,12 +69,8 @@ const CampaignUpdate = props => {
           />
         ) : (
           <Byline
-            photo={
-              authorPhoto
-                ? contentfulImageUrl(authorPhoto, 175, 175, 'fill')
-                : undefined
-            }
             author={author.name}
+            photo={contentfulImageUrl(authorPhoto, 175, 175, 'fill')}
             jobTitle={author.jobTitle || undefined}
             className="float-left"
           />
