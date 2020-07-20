@@ -11,10 +11,6 @@ jest.mock(
   '../CallToAction/CallToActionContainer',
   () => 'CallToActionContainer',
 );
-jest.mock(
-  '../blocks/CampaignUpdate/CampaignUpdateContainer',
-  () => 'CampaignUpdateContainer',
-);
 
 test('it can display a campaign update', () => {
   const wrapper = shallow(
@@ -22,7 +18,7 @@ test('it can display a campaign update', () => {
       json={{ id: '12345', __typename: 'CampaignUpdateBlock', fields: {} }}
     />,
   );
-  expect(wrapper.find('CampaignUpdateContainer')).toHaveLength(1);
+  expect(wrapper.find('CampaignUpdate')).toHaveLength(1);
 });
 
 test('it can display a CTA block', () => {
