@@ -4,7 +4,6 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Query from '../Query';
-import { Flex, FlexCell } from '../Flex';
 import Card from '../utilities/Card/Card';
 import Byline from '../utilities/Byline/Byline';
 import { contentfulImageUrl } from '../../helpers';
@@ -77,12 +76,10 @@ const Affirmation = ({
               </Badge>
             ) : null}
 
-            <Flex className="items-center">
-              <FlexCell className="affirmation__cta p-3" width="half">
-                <h3>{callToActionHeader}</h3>
-                <p>{callToActionDescription}</p>
-              </FlexCell>
-            </Flex>
+            <div className="affirmation__cta p-3">
+              <h3>{callToActionHeader}</h3>
+              <p>{callToActionDescription}</p>
+            </div>
 
             {author ? (
               <Byline
