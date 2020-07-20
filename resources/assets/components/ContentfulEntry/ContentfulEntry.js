@@ -242,14 +242,12 @@ ContentfulEntry.propTypes = {
   className: PropTypes.string,
   classNameByEntry: PropTypes.object, // eslint-disable-line
   classNameByEntryDefault: PropTypes.string,
-  customProps: PropTypes.object,
 };
 
 ContentfulEntry.defaultProps = {
   className: null,
   classNameByEntry: null,
   classNameByEntryDefault: null,
-  customProps: null,
 };
 
 export default ContentfulEntry;
