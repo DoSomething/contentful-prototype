@@ -1,8 +1,8 @@
 import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { propType } from 'graphql-anywhere';
 
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
@@ -80,27 +80,6 @@ const CampaignUpdate = props => {
   );
 };
 
-CampaignUpdate.propTypes = {
-  id: PropTypes.string.isRequired,
-  affiliateLogo: PropTypes.string,
-  author: PropTypes.shape({
-    id: PropTypes.string,
-    type: PropTypes.string,
-    fields: PropTypes.object,
-  }),
-  closeModal: PropTypes.func,
-  content: PropTypes.string,
-  link: PropTypes.string,
-  bordered: PropTypes.bool,
-};
-
-CampaignUpdate.defaultProps = {
-  affiliateLogo: null,
-  link: null,
-  bordered: true,
-  author: null,
-  content: null,
-  closeModal: null,
-};
+CampaignUpdate.propTypes = propType(CampaignUpdateBlockFragment).isRequired;
 
 export default CampaignUpdate;
