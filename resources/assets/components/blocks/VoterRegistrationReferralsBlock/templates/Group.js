@@ -113,14 +113,14 @@ const GroupTemplate = ({ group, isVertical, user }) => {
                 testId="group-total"
               />
 
-              <StatBlock
-                amount={data.voterRegistrationsCountByReferrerUserId}
-                isVertical={isVertical}
-                label={`People ${
-                  user ? `${user.firstName} has` : 'you have'
-                } registered`}
-                testId="individual-total"
-              />
+              {user ? (
+                <StatBlock
+                  amount={data.voterRegistrationsCountByReferrerUserId}
+                  isVertical={isVertical}
+                  label={`People ${user.firstName} has registered`}
+                  testId="individual-total"
+                />
+              ) : null}
             </div>
           );
         }}
