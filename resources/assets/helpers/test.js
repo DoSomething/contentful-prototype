@@ -2,7 +2,6 @@ import {
   makeHash,
   modifiers,
   pluralize,
-  makeShareLink,
   dynamicString,
   contentfulImageUrl,
   siteConfig,
