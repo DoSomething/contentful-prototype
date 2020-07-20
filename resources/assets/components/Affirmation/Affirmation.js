@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Query from '../Query';
 import { Flex, FlexCell } from '../Flex';
 import Card from '../utilities/Card/Card';
-import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
 import { contentfulImageUrl } from '../../helpers';
 import Badge from '../pages/AccountPage/Badges/Badge';
