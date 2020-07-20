@@ -55,6 +55,7 @@ class ContentfulEntry extends React.Component {
       className = null,
       classNameByEntry = {},
       classNameByEntryDefault = null,
+      ...additionalCustomProps
     } = this.props;
     const type = parseContentfulType(json);
 
@@ -92,13 +93,13 @@ class ContentfulEntry extends React.Component {
       case 'ContentBlock':
         return (
           <ContentBlock
-            className={className}
             {...withoutNulls({
               ...json,
               // Resolves the aliases used in the ContentBlockFragment.
               content: json.contentBlockContent,
               imageAlignment: json.contentBlockImageAlignment,
             })}
+            {...additionalCustomProps}
           />
         );
 

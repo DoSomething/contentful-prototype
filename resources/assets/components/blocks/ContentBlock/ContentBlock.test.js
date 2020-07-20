@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
+import '@testing-library/jest-dom/extend-expect';
+import { render, screen } from '@testing-library/react';
 
 import ContentBlock from './ContentBlock';
 
@@ -50,5 +52,31 @@ describe('ContentBlock component', () => {
     );
 
     expect(shallowToJson(wrapper)).toMatchSnapshot();
+  });
+
+  describe('Content column span', () => {
+    test('it displays across the full row if there is no image & the fullWidth prop is toggled on', () => {
+      render(<ContentBlock {...props} image={emptyImage} fullWidth />);
+
+      expect(screen.getByTestId('content-block-content').className).toContain(
+        'col-span-3',
+      );
+    });
+
+    test('it displays across two-thirds of the row if an image is not provided but the fullWidth is not toggled on', () => {
+      render(<ContentBlock {...props} image={emptyImage} />);
+
+      const contentBlockContent = screen.getByTestId('content-block-content');
+      expect(contentBlockContent.className).toContain('col-span-2');
+      expect(contentBlockContent.className).not.toContain('col-span-3');
+    });
+
+    test('it displays across two-thirds of the row when an image *is* provided, even if the fullWidth is toggled on', () => {
+      render(<ContentBlock {...props} fullWidth />);
+
+      const contentBlockContent = screen.getByTestId('content-block-content');
+      expect(contentBlockContent.className).toContain('col-span-2');
+      expect(contentBlockContent.className).not.toContain('col-span-3');
+    });
   });
 });

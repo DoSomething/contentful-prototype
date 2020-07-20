@@ -50,6 +50,7 @@ class ModalRoute extends React.Component {
               <ContentfulEntryLoader
                 id={routingProps.match.params.id}
                 classNameByEntry={{ ContentBlock: 'bg-white rounded p-6' }}
+                customProps={{ ContentBlock: { fullWidth: true } }}
               />
             </Modal>
           )}
