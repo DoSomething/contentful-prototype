@@ -101,32 +101,6 @@ test('cannot hash undefined or null value', () => {
 });
 
 /**
- * Test makeShareLink()
- */
-test('it makes the expected share link for a content item and app section type', () => {
-  const options = {
-    domain: 'http://awesome.com',
-    slug: 'seriously-awesome-campaign',
-    key: '123',
-    type: 'blocks',
-  };
-
-  expect(makeShareLink('campaigns', options)).toBe(
-    'http://awesome.com/us/campaigns/seriously-awesome-campaign/blocks/123',
-  );
-});
-
-test('it cannot make share link with an unknown app section type', () => {
-  const options = {
-    domain: 'http://awesome.com',
-    slug: 'seriously-awesome-campaign',
-    key: '123',
-  };
-
-  expect(() => makeShareLink('unknown', options)).toThrow();
-});
-
-/**
  * Test modifiers()
  */
 test('prefix a class name', () => {
