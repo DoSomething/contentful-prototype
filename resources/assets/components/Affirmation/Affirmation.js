@@ -83,9 +83,6 @@ const Affirmation = ({
                 <h3>{callToActionHeader}</h3>
                 <p>{callToActionDescription}</p>
               </FlexCell>
-              <FlexCell className="p-3" width="half">
-                <Share variant="blue" parentSource="affirmation" />
-              </FlexCell>
             </Flex>
 
             {author ? (
