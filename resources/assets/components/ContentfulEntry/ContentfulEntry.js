@@ -9,6 +9,7 @@ import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
+import CampaignUpdate from '../blocks/CampaignUpdate/CampaignUpdate';
 import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import EmbedBlockContainer from '../blocks/EmbedBlock/EmbedBlockContainer';
@@ -18,7 +19,6 @@ import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import CampaignDashboard from '../utilities/CampaignDashboard/CampaignDashboard';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
-import CampaignUpdateContainer from '../blocks/CampaignUpdate/CampaignUpdateContainer';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import CurrentSchoolBlockContainer from '../blocks/CurrentSchoolBlock/CurrentSchoolBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
@@ -80,7 +80,7 @@ class ContentfulEntry extends React.Component {
 
       case 'CampaignUpdateBlock':
         return (
-          <CampaignUpdateContainer
+          <CampaignUpdate
             id={json.id}
             affiliateLogo={json.affiliateLogo}
             author={json.author}
