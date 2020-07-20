@@ -6,9 +6,10 @@ import Card from '../Card/Card';
 import { report } from '../../../helpers';
 import { postRequest } from '../../../helpers/api';
 import PrimaryButton from '../Button/PrimaryButton';
+import { getUserToken } from '../../../helpers/auth';
 import { HELP_LINK, HELP_REQUEST_LINK } from '../../../constants';
 
-const ZendeskForm = ({ campaignId, campaignName, faqLink, token }) => {
+const ZendeskForm = ({ campaignId, campaignName, faqLink }) => {
   const [question, setQuestion] = useState('');
   const [status, setStatus] = useState({
     loading: false,
@@ -27,7 +28,7 @@ const ZendeskForm = ({ campaignId, campaignName, faqLink, token }) => {
       question,
     };
 
-    postRequest('/api/v2/zendesk-tickets', data, token)
+    postRequest('/api/v2/zendesk-tickets', data, getUserToken())
       .then(() => setStatus({ ...status, loading: false, success: true }))
       .catch(error => {
         setStatus({ ...status, loading: false, error });
@@ -116,7 +117,6 @@ const ZendeskForm = ({ campaignId, campaignName, faqLink, token }) => {
 ZendeskForm.propTypes = {
   campaignId: PropTypes.string.isRequired,
   campaignName: PropTypes.string.isRequired,
-  token: PropTypes.string.isRequired,
   faqLink: PropTypes.string,
 };
 
