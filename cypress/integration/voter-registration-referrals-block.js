@@ -151,7 +151,7 @@ describe('Voter Registration Referrals Block', () => {
     );
   });
 
-  it('Group displays group goal, group referrals count, and individual referrals count', () => {
+  it('Group displays group goal and group referrals count', () => {
     const user = userFactory();
     const group = groupFactory();
 
@@ -182,12 +182,6 @@ describe('Voter Registration Referrals Block', () => {
     cy.findAllByTestId('group-total')
       .get('h2')
       .contains(5);
-    cy.findAllByTestId('individual-total')
-      .get('span')
-      .contains('People you have registered');
-    cy.findAllByTestId('individual-total')
-      .get('h2')
-      .contains(12);
     cy.findAllByTestId('group-progress').contains(
       `${percentCompleted}% to your goal!`,
     );
@@ -210,7 +204,6 @@ describe('Voter Registration Referrals Block', () => {
 
     cy.findAllByTestId('group-goal').contains(50);
     cy.findAllByTestId('group-total').contains(15);
-    cy.findAllByTestId('individual-total').contains(0);
   });
 
   it('Group displays group progress if over the group goal', () => {
