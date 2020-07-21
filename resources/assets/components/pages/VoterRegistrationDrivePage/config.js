@@ -41,4 +41,6 @@ export const votingReasons = {
   'homelessness-and-poverty': 'homelessness and poverty',
   education: 'education reform',
   'gender-equality': 'gender equality',
+  'food-insecurity': 'food insecurity',
+  'job-creation': 'job creation',
 };

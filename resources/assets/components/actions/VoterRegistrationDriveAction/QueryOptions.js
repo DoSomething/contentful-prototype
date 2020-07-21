@@ -15,6 +15,8 @@ const votingReasons = {
   'homelessness-and-poverty': 'Homelessness & Poverty',
   education: 'Education Reform',
   'gender-equality': 'Gender Equality',
+  'food-insecurity': 'Food Insecurity',
+  'job-creation': 'Job Creation',
 };
 
 const QueryOptions = ({ onChange }) => {
