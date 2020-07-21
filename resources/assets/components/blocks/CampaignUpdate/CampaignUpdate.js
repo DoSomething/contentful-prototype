@@ -1,6 +1,7 @@
 import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { propType } from 'graphql-anywhere';
 
@@ -80,6 +81,15 @@ const CampaignUpdate = props => {
   );
 };
 
-CampaignUpdate.propTypes = propType(CampaignUpdateBlockFragment).isRequired;
+CampaignUpdate.propTypes = {
+  ...propType(CampaignUpdateBlockFragment).isRequired,
+  bordered: PropTypes.bool,
+  closeModal: PropTypes.func,
+};
+
+CampaignUpdate.defaultProps = {
+  bordered: true,
+  closeModal: () => {},
+};
 
 export default CampaignUpdate;
