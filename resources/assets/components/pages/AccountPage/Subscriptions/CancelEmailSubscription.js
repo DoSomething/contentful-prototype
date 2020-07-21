@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+  getPageContext,
+} from '../../../../helpers/analytics';
 import Spinner from '../../../artifacts/Spinner/Spinner';
 
 const EMAIL_SUBSCRIPTION_STATUS = gql`
@@ -46,6 +51,20 @@ const CancelEmailSubscription = props => {
     return <Spinner />;
   }
 
+  const handleGlobalUnsubscribe = () => {
+    trackAnalyticsEvent(
+      'phoenix_clicked_link_action_global_email_unsubscribe',
+      {
+        action: 'link_clicked',
+        category: EVENT_CATEGORIES.siteAction,
+        label: 'global_email_unsubscribe',
+        context: {
+          ...getPageContext(),
+        },
+      },
+    );
+  };
+
   return (
     <div>
       {data.user.emailSubscriptionStatus ? (
@@ -59,6 +78,7 @@ const CancelEmailSubscription = props => {
                 variables: {
                   emailSubscriptionStatus: false,
                 },
+                handleGlobalUnsubscribe,
               })
             }
           >
