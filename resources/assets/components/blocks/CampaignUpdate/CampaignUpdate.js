@@ -89,7 +89,7 @@ CampaignUpdate.propTypes = {
 
 CampaignUpdate.defaultProps = {
   bordered: true,
-  closeModal: () => {},
+  closeModal: null,
 };
 
 export default CampaignUpdate;
