@@ -26,7 +26,7 @@ const StatBlock = ({ amount, isVertical, label, testId }) => (
   >
     <span
       className={`font-bold uppercase text-gray-600 ${
-        isVertical ? 'w-5/6' : ''
+        isVertical ? 'w-3/4' : ''
       }`}
     >
       {label}
@@ -34,7 +34,7 @@ const StatBlock = ({ amount, isVertical, label, testId }) => (
 
     <h2
       className={`font-normal font-league-gothic text-3xl ${
-        isVertical ? ' w-1/6 mb-0' : ''
+        isVertical ? ' w-1/4 mb-0' : ''
       }`}
     >
       {amount}
@@ -80,7 +80,7 @@ const GroupTemplate = ({ group, isVertical, user }) => {
           const percentage = Math.round((groupTotal / groupGoal) * 100);
 
           return (
-            <div className="md:w-2/3">
+            <div className={isVertical ? null : 'md:w-2/3'}>
               <div data-testid="group-progress" className="py-3">
                 <span
                   className={`font-bold uppercase ${
