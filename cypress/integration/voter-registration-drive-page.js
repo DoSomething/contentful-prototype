@@ -22,7 +22,7 @@ const campaignWebsite = {
 const group = {
   id: faker.random.number(),
   name: faker.company.companyName(),
-  goal: faker.random.number(),
+  goal: null,
   groupType: {
     id: faker.random.number(),
     name: faker.company.companyName(),
@@ -313,7 +313,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       group,
     });
     cy.mockGraphqlOp('VoterRegistrationDrivePageReferralsQuery', {
-      voterRegistrationsCountByGroupId: 31,
+      voterRegistrationsCountByGroupId: 25,
       voterRegistrationsCountByReferrerUserId: 8,
     });
 
@@ -328,6 +328,9 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       'have.length',
       1,
     );
+    cy.findByTestId('group-progress')
+      .get('span')
+      .contains('50% to your goal');
     cy.findByTestId('group-goal')
       .get('span')
       .contains(`${groupDescription} registration goal`);
@@ -336,7 +339,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       .contains(`People ${groupDescription} has registered`);
     cy.findByTestId('group-total')
       .get('h2')
-      .contains(31);
+      .contains(25);
     cy.findByTestId('individual-total')
       .get('span')
       .contains(`People ${user.firstName} has registered`);

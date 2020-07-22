@@ -25,55 +25,51 @@ const ReferralsInfo = ({ group, user }) => {
   const groupLabel = `${group.groupType.name}: ${group.name}`;
 
   return (
-    <div data-testid="voter-registration-drive-page-referrals-info">
-      <Query
-        query={VOTER_REGISTRATION_DRIVE_PAGE_REFERRALS_QUERY}
-        variables={{
-          groupId: group.id,
-          referrerUserId: user.id,
-        }}
-      >
-        {data => {
-          const groupTotal = data.voterRegistrationsCountByGroupId;
-          const { goal, percentage, description } = getGoalInfo(
-            group.goal,
-            groupTotal,
-          );
+    <Query
+      query={VOTER_REGISTRATION_DRIVE_PAGE_REFERRALS_QUERY}
+      variables={{
+        groupId: group.id,
+        referrerUserId: user.id,
+      }}
+    >
+      {data => {
+        const groupTotal = data.voterRegistrationsCountByGroupId;
+        const { goal, percentage, description } = getGoalInfo(
+          group.goal,
+          groupTotal,
+        );
 
-          return (
-            <>
-              <div data-testid="group-progress" className="py-3">
-                <span className="font-bold uppercase text-lg">
-                  {description}
-                </span>
+        return (
+          <div data-testid="voter-registration-drive-page-referrals-info">
+            <div data-testid="group-progress" className="py-3">
+              <span className="font-bold uppercase text-lg">{description}</span>
 
-                <ProgressBar percentage={percentage} />
-              </div>
+              <ProgressBar percentage={percentage} />
+            </div>
 
-              <div data-testid="group-goal" className={statClassName}>
-                <StatAmount>{goal}</StatAmount>
+            <div data-testid="group-goal" className={statClassName}>
+              <StatAmount>{goal}</StatAmount>
 
-                <StatLabel>{groupLabel} registration goal</StatLabel>
-              </div>
+              <StatLabel>{groupLabel} registration goal</StatLabel>
+            </div>
 
-              <div data-testid="group-total" className={statClassName}>
-                <StatAmount>{groupTotal}</StatAmount>
+            <div data-testid="group-total" className={statClassName}>
+              <StatAmount>{groupTotal}</StatAmount>
 
-                <StatLabel>People {groupLabel} has registered</StatLabel>
-              </div>
+              <StatLabel>People {groupLabel} has registered</StatLabel>
+            </div>
 
-              <div data-testid="individual-total" className={statClassName}>
-                <StatAmount>
-                  {data.voterRegistrationsCountByReferrerUserId}
-                </StatAmount>
+            <div data-testid="individual-total" className={statClassName}>
+              <StatAmount>
+                {data.voterRegistrationsCountByReferrerUserId}
+              </StatAmount>
 
-                <StatLabel>People {user.firstName} has registered</StatLabel>
-              </div>
-            </>
-          );
-        }}
-      </Query>
-    </div>
+              <StatLabel>People {user.firstName} has registered</StatLabel>
+            </div>
+          </div>
+        );
+      }}
+    </Query>
   );
 };
 
