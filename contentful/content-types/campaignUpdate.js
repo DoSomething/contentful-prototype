@@ -13,32 +13,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
-  campaignUpdate
-    .createField('displayOptions')
-    .name('Display Options')
-    .type('Array')
-    .localized(false)
-    .required(true)
-    .validations([
-      {
-        size: {
-          max: 1,
-        },
-      },
-    ])
-    .disabled(false)
-    .omitted(false)
-    .items({
-      type: 'Symbol',
-
-      validations: [
-        {
-          in: ['two-thirds', 'full'],
-        },
-      ],
-    });
-
   campaignUpdate
     .createField('content')
     .name('Content')
@@ -101,12 +75,6 @@ module.exports = function(migration) {
       'This title is used internally to help find this content in the CMS. It will not be displayed anywhere on the website.',
   });
 
-  campaignUpdate.changeFieldControl(
-    'displayOptions',
-    'builtin',
-    'checkbox',
-    {},
-  );
   campaignUpdate.changeFieldControl('content', 'builtin', 'markdown', {});
 
   campaignUpdate.changeFieldControl('link', 'builtin', 'urlEditor', {

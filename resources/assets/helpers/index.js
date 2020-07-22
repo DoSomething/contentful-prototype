@@ -399,29 +399,6 @@ export function makeHash(string) {
 }
 
 /**
- * Make a shareable link to a content item.
- *
- * @param  {String} type
- * @param  {Object} options
- * @param  {String} options.domain
- * @param  {String} options.slug
- * @param  {String} options.type
- * @param  {String} options.key  An id or a slug for the content.
- * @return {String}
- */
-export function makeShareLink(resource, options = {}) {
-  switch (resource) {
-    case 'campaigns':
-      return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${options.key}`;
-
-    default:
-      throw new Error(
-        'Please provide an expected section type for generating the link.',
-      );
-  }
-}
-
-/**
  * Get a human friendly date from a Contentful Date (ISO 8601) string.
  *
  * @param {string} date
