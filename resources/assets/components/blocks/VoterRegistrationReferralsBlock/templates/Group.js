@@ -69,7 +69,7 @@ const GroupTemplate = ({ group, isVertical, user }) => {
           const percentage = Math.round((groupTotal / groupGoal) * 100);
 
           return (
-            <div className={isVertical ? null : 'md:w-2/3'}>
+            <>
               <div data-testid="group-progress" className="py-3">
                 <span
                   className={`font-bold uppercase ${
@@ -110,7 +110,7 @@ const GroupTemplate = ({ group, isVertical, user }) => {
                   testId="individual-total"
                 />
               ) : null}
-            </div>
+            </>
           );
         }}
       </Query>

@@ -34,17 +34,21 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
                   title={`${signup.group.groupType.name}: ${signup.group.name}`}
                 />
 
-                <p>
-                  Track how many people you and your group register to vote!
-                </p>
+                <div className="md:w-2/3">
+                  <p>
+                    Track how many people you and your group register to vote!
+                  </p>
 
-                <GroupTemplate group={signup.group} />
+                  <GroupTemplate group={signup.group} />
+                </div>
               </div>
             ) : null}
 
             {title ? <SectionHeader underlined title={title} /> : null}
 
-            <IndividualTemplate />
+            <div className="md:w-2/3">
+              <IndividualTemplate />
+            </div>
           </>
         );
       }}
