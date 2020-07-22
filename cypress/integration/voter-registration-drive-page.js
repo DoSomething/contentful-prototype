@@ -156,7 +156,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       1,
     );
     cy.findByTestId('campaign-info-block-container').should('have.length', 1);
-    cy.findByTestId('group-voter-registration-referrals-block').should(
+    cy.findByTestId('voter-registration-drive-page-referrals-info').should(
       'have.length',
       0,
     );
@@ -312,7 +312,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       campaignWebsite,
       group,
     });
-    cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
+    cy.mockGraphqlOp('VoterRegistrationDrivePageReferralsQuery', {
       voterRegistrationsCountByGroupId: 31,
       voterRegistrationsCountByReferrerUserId: 8,
     });
@@ -324,7 +324,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       `user:${user.id},source:web,source_details:onlinedrivereferral,group_id=${group.id},referral=true`,
     );
     cy.findByTestId('campaign-info-block-container').should('have.length', 0);
-    cy.findByTestId('group-voter-registration-referrals-block').should(
+    cy.findByTestId('voter-registration-drive-page-referrals-info').should(
       'have.length',
       1,
     );
