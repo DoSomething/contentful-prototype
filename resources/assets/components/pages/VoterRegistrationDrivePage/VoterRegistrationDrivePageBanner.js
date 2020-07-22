@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import { votingReasons } from './config';
 import { query } from '../../../helpers';
+import ReferralsInfo from './ReferralsInfo';
 import CampaignHeader from '../../utilities/CampaignHeader';
 import CoverImage from '../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
-import GroupTemplate from '../../blocks/VoterRegistrationReferralsBlock/templates/Group';
 
 const VoterRegistrationDrivePageBanner = ({
   campaignInfo,
@@ -102,7 +102,7 @@ const VoterRegistrationDrivePageBanner = ({
 
           <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
             {group ? (
-              <GroupTemplate group={group} isVertical user={user} />
+              <ReferralsInfo group={group} user={user} />
             ) : (
               <CampaignInfoBlock
                 campaignId={campaignId}
