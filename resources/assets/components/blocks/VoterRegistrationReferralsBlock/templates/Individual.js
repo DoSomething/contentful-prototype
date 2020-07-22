@@ -57,21 +57,23 @@ const parseVoterRegistrationReferrals = voterRegPosts => {
 };
 
 const IndividualTemplate = () => (
-  <Query
-    query={INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY}
-    variables={{ referrerUserId: getUserId() }}
-  >
-    {data => {
-      const parsed = parseVoterRegistrationReferrals(data.posts);
+  <div className="md:w-2/3">
+    <Query
+      query={INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY}
+      variables={{ referrerUserId: getUserId() }}
+    >
+      {data => {
+        const parsed = parseVoterRegistrationReferrals(data.posts);
 
-      return (
-        <VoterRegistrationReferrals
-          completed={Object.values(parsed.complete)}
-          started={Object.values(parsed.incomplete)}
-        />
-      );
-    }}
-  </Query>
+        return (
+          <VoterRegistrationReferrals
+            completed={Object.values(parsed.complete)}
+            started={Object.values(parsed.incomplete)}
+          />
+        );
+      }}
+    </Query>
+  </div>
 );
 
 export default IndividualTemplate;

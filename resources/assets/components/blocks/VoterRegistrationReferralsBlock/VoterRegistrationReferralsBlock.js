@@ -28,7 +28,7 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
 
         return (
           <>
-            {signup && signup.groupId ? (
+            {signup && signup.group ? (
               <div className="pb-3">
                 <SectionHeader
                   title={`${signup.group.groupType.name}: ${signup.group.name}`}

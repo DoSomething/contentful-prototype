@@ -58,7 +58,6 @@ export const CAMPAIGN_SIGNUP_QUERY = gql`
   query CampaignSignupQuery($userId: String!, $campaignId: String!) {
     signups(userId: $userId, campaignId: $campaignId) {
       id
-      groupId
       group {
         id
         goal
