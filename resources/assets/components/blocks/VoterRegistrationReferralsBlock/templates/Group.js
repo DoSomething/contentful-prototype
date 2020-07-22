@@ -1,4 +1,5 @@
 import React from 'react';
+import tw from 'twin.macro';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
@@ -12,59 +13,46 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   }
 `;
 
-const StatBlock = ({ amount, label, testId }) => (
-  <div className="pt-3" data-testid={testId}>
-    <span className="font-bold uppercase text-gray-600">{label}</span>
-
-    <h2 className="font-normal font-league-gothic text-3xl">{amount}</h2>
-  </div>
-);
-
-StatBlock.propTypes = {
-  amount: PropTypes.number.isRequired,
-  label: PropTypes.string.isRequired,
-  testId: PropTypes.string.isRequired,
-};
+const StatLabel = tw.span`font-bold uppercase text-gray-600`;
+const StatAmount = tw.h2`font-normal font-league-gothic text-3xl`;
 
 const GroupTemplate = ({ group }) => (
-  <div data-testid="group-voter-registration-referrals-block">
-    <Query
-      query={GROUP_VOTER_REGISTRATION_REFERRALS_QUERY}
-      variables={{ groupId: group.id }}
-    >
-      {data => {
-        const groupTotal = data.voterRegistrationsCountByGroupId;
-        const { goal, percentage, description } = getGoalInfo(
-          group.goal,
-          groupTotal,
-        );
+  <Query
+    query={GROUP_VOTER_REGISTRATION_REFERRALS_QUERY}
+    variables={{ groupId: group.id }}
+  >
+    {data => {
+      const groupTotal = data.voterRegistrationsCountByGroupId;
+      const { goal, percentage, description } = getGoalInfo(
+        group.goal,
+        groupTotal,
+      );
 
-        return (
-          <>
-            <div data-testid="group-progress" className="py-3">
-              <span className="font-bold uppercase text-gray-600">
-                {description}
-              </span>
+      return (
+        <div data-testid="group-voter-registration-referrals-block">
+          <div data-testid="group-progress" className="py-3">
+            <span className="font-bold uppercase text-gray-600">
+              {description}
+            </span>
 
-              <ProgressBar percentage={percentage} />
-            </div>
+            <ProgressBar percentage={percentage} />
+          </div>
 
-            <StatBlock
-              amount={goal}
-              label="Your group’s registration goal"
-              testId="group-goal"
-            />
+          <div className="pt-3" data-testid="group-goal">
+            <StatLabel>Your group’s registration goal</StatLabel>
 
-            <StatBlock
-              amount={groupTotal}
-              label="People your group has registered"
-              testId="group-total"
-            />
-          </>
-        );
-      }}
-    </Query>
-  </div>
+            <StatAmount>{goal}</StatAmount>
+          </div>
+
+          <div className="pt-3" data-testid="group-total">
+            <StatLabel>People your group has registered</StatLabel>
+
+            <StatAmount>{groupTotal}</StatAmount>
+          </div>
+        </div>
+      );
+    }}
+  </Query>
 );
 
 GroupTemplate.propTypes = {

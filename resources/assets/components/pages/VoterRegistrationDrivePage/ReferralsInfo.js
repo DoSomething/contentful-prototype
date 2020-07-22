@@ -1,4 +1,5 @@
 import React from 'react';
+import tw from 'twin.macro';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
@@ -16,27 +17,12 @@ const VOTER_REGISTRATION_DRIVE_PAGE_REFERRALS_QUERY = gql`
   }
 `;
 
-const StatBlock = ({ amount, label, testId }) => (
-  <div
-    className="pt-3 pb-3 flex flex-row-reverse items-center'"
-    data-testid={testId}
-  >
-    <span className="font-bold uppercase text-gray-600 w-3/4">{label}</span>
-
-    <h2 className="font-normal font-league-gothic text-3xl w-1/4 mb-0">
-      {amount}
-    </h2>
-  </div>
-);
-
-StatBlock.propTypes = {
-  amount: PropTypes.number.isRequired,
-  label: PropTypes.string.isRequired,
-  testId: PropTypes.string.isRequired,
-};
+const statClassName = 'pt-3 pb-3 flex items-center';
+const StatLabel = tw.span`font-bold uppercase text-gray-600 w-3/4`;
+const StatAmount = tw.h2`font-normal font-league-gothic text-3xl w-1/4 mb-0`;
 
 const ReferralsInfo = ({ group, user }) => {
-  const groupDescription = `${group.groupType.name}: ${group.name}`;
+  const groupLabel = `${group.groupType.name}: ${group.name}`;
 
   return (
     <div data-testid="voter-registration-drive-page-referrals-info">
@@ -64,23 +50,25 @@ const ReferralsInfo = ({ group, user }) => {
                 <ProgressBar percentage={percentage} />
               </div>
 
-              <StatBlock
-                amount={goal}
-                label={`${groupDescription} registration goal`}
-                testId="group-goal"
-              />
+              <div data-testid="group-goal" className={statClassName}>
+                <StatAmount>{goal}</StatAmount>
 
-              <StatBlock
-                amount={groupTotal}
-                label={`People ${groupDescription} has registered`}
-                testId="group-total"
-              />
+                <StatLabel>{groupLabel} registration goal</StatLabel>
+              </div>
 
-              <StatBlock
-                amount={data.voterRegistrationsCountByReferrerUserId}
-                label={`People ${user.firstName} has registered`}
-                testId="individual-total"
-              />
+              <div data-testid="group-total" className={statClassName}>
+                <StatAmount>{groupTotal}</StatAmount>
+
+                <StatLabel>People {groupLabel} has registered</StatLabel>
+              </div>
+
+              <div data-testid="individual-total" className={statClassName}>
+                <StatAmount>
+                  {data.voterRegistrationsCountByReferrerUserId}
+                </StatAmount>
+
+                <StatLabel>People {user.firstName} has registered</StatLabel>
+              </div>
             </>
           );
         }}
