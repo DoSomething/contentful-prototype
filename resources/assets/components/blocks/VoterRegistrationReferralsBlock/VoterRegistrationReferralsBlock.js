@@ -28,8 +28,16 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
 
         return (
           <>
-            {signup && signup.group ? (
+            {signup && signup.groupId ? (
               <div className="pb-3">
+                <SectionHeader
+                  title={`${signup.group.groupType.name}: ${signup.group.name}`}
+                />
+
+                <p>
+                  Track how many people you and your group register to vote!
+                </p>
+
                 <GroupTemplate group={signup.group} />
               </div>
             ) : null}

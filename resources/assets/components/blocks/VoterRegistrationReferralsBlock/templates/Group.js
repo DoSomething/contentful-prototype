@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
 import ProgressBar from '../../../utilities/ProgressBar/ProgressBar';
-import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query GroupVoterRegistrationReferralsQuery(
@@ -57,13 +56,6 @@ const GroupTemplate = ({ group, isVertical, user }) => {
 
   return (
     <div data-testid="group-voter-registration-referrals-block">
-      {user ? null : (
-        <>
-          <SectionHeader title={groupDescription} />
-          <p>Track how many people you and your group register to vote!</p>
-        </>
-      )}
-
       <Query
         query={GROUP_VOTER_REGISTRATION_REFERRALS_QUERY}
         variables={{

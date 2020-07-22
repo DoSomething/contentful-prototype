@@ -1,6 +1,5 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
 
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
