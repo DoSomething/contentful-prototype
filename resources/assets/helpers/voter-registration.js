@@ -18,3 +18,5 @@ export function getGoalInfo(goalAmount, completedAmount) {
         : `${percentage}% to your goal!`,
   };
 }
+
+export { getGoalInfo as default };

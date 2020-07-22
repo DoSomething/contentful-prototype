@@ -26,70 +26,52 @@ StatBlock.propTypes = {
   testId: PropTypes.string.isRequired,
 };
 
-const GroupTemplate = ({ group }) => {
-  const groupDescription = `${group.groupType.name}: ${group.name}`;
+const GroupTemplate = ({ group }) => (
+  <div data-testid="group-voter-registration-referrals-block">
+    <Query
+      query={GROUP_VOTER_REGISTRATION_REFERRALS_QUERY}
+      variables={{ groupId: group.id }}
+    >
+      {data => {
+        const groupTotal = data.voterRegistrationsCountByGroupId;
+        const { goal, percentage, description } = getGoalInfo(
+          group.goal,
+          groupTotal,
+        );
 
-  return (
-    <div data-testid="group-voter-registration-referrals-block">
-      <Query
-        query={GROUP_VOTER_REGISTRATION_REFERRALS_QUERY}
-        variables={{ groupId: group.id }}
-      >
-        {data => {
-          const groupTotal = data.voterRegistrationsCountByGroupId;
-          const { goal, percentage, description } = getGoalInfo(
-            group.goal,
-            groupTotal,
-          );
+        return (
+          <>
+            <div data-testid="group-progress" className="py-3">
+              <span className="font-bold uppercase text-gray-600">
+                {description}
+              </span>
 
-          return (
-            <>
-              <div data-testid="group-progress" className="py-3">
-                <span className="font-bold uppercase text-gray-600">
-                  {description}
-                </span>
+              <ProgressBar percentage={percentage} />
+            </div>
 
-                <ProgressBar percentage={percentage} />
-              </div>
+            <StatBlock
+              amount={goal}
+              label="Your group’s registration goal"
+              testId="group-goal"
+            />
 
-              <StatBlock
-                amount={goal}
-                label="Your group’s registration goal"
-                testId="group-goal"
-              />
-
-              <StatBlock
-                amount={groupTotal}
-                label="People your group has registered"
-                testId="group-total"
-              />
-            </>
-          );
-        }}
-      </Query>
-    </div>
-  );
-};
+            <StatBlock
+              amount={groupTotal}
+              label="People your group has registered"
+              testId="group-total"
+            />
+          </>
+        );
+      }}
+    </Query>
+  </div>
+);
 
 GroupTemplate.propTypes = {
   group: PropTypes.shape({
     goal: PropTypes.number,
-    groupType: PropTypes.shape({
-      name: PropTypes.string,
-    }),
     id: PropTypes.number,
-    name: PropTypes.string,
   }).isRequired,
-  isVertical: PropTypes.bool,
-  user: PropTypes.shape({
-    id: PropTypes.string,
-    firstName: PropTypes.string,
-  }),
-};
-
-GroupTemplate.defaultProps = {
-  isVertical: false,
-  user: null,
 };
 
 export default GroupTemplate;
