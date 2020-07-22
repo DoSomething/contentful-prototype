@@ -1,9 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Query from '../../../Query';
-import { getUserId } from '../../../../helpers/auth';
-import VoterRegistrationReferrals from '../VoterRegistrationReferrals';
+import Query from '../../Query';
+import { getUserId } from '../../../helpers/auth';
+import VoterRegistrationReferrals from './VoterRegistrationReferrals';
 
 const INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query IndividualVoterRegistrationReferralsQuery($referrerUserId: String!) {
@@ -56,7 +56,7 @@ const parseVoterRegistrationReferrals = voterRegPosts => {
   return result;
 };
 
-const IndividualTemplate = () => (
+const IndividualReferrals = () => (
   <Query
     query={INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY}
     variables={{ referrerUserId: getUserId() }}
@@ -74,4 +74,4 @@ const IndividualTemplate = () => (
   </Query>
 );
 
-export default IndividualTemplate;
+export default IndividualReferrals;

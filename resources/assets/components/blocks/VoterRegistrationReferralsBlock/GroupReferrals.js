@@ -3,9 +3,9 @@ import tw from 'twin.macro';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import Query from '../../../Query';
-import { getGoalInfo } from '../../../../helpers/voter-registration';
-import ProgressBar from '../../../utilities/ProgressBar/ProgressBar';
+import Query from '../../Query';
+import { getGoalInfo } from '../../../helpers/voter-registration';
+import ProgressBar from '../../utilities/ProgressBar/ProgressBar';
 
 const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query GroupVoterRegistrationReferralsQuery($groupId: Int!) {
@@ -16,7 +16,7 @@ const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
 const StatLabel = tw.span`font-bold uppercase text-gray-600`;
 const StatAmount = tw.h2`font-normal font-league-gothic text-3xl`;
 
-const GroupTemplate = ({ group }) => (
+const GroupReferrals = ({ group }) => (
   <Query
     query={GROUP_VOTER_REGISTRATION_REFERRALS_QUERY}
     variables={{ groupId: group.id }}
@@ -55,11 +55,11 @@ const GroupTemplate = ({ group }) => (
   </Query>
 );
 
-GroupTemplate.propTypes = {
+GroupReferrals.propTypes = {
   group: PropTypes.shape({
     goal: PropTypes.number,
     id: PropTypes.number,
   }).isRequired,
 };
 
-export default GroupTemplate;
+export default GroupReferrals;

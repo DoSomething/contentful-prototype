@@ -7,8 +7,8 @@ import {
   CAMPAIGN_SIGNUP_QUERY,
   getCampaignSignupQueryVariables,
 } from '../../../helpers/campaign';
-import GroupTemplate from './templates/Group';
-import IndividualTemplate from './templates/Individual';
+import GroupReferrals from './GroupReferrals';
+import IndividualReferrals from './IndividualReferrals';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 
 export const VoterRegistrationReferralsBlockFragment = gql`
@@ -39,7 +39,7 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
                     Track how many people you and your group register to vote!
                   </p>
 
-                  <GroupTemplate group={signup.group} />
+                  <GroupReferrals group={signup.group} />
                 </div>
               </div>
             ) : null}
@@ -47,7 +47,7 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
             {title ? <SectionHeader underlined title={title} /> : null}
 
             <div className="md:w-2/3">
-              <IndividualTemplate />
+              <IndividualReferrals />
             </div>
           </>
         );
