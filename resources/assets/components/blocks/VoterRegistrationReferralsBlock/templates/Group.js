@@ -3,113 +3,66 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Query from '../../../Query';
-import { getUserId } from '../../../../helpers/auth';
+import { getGoalInfo } from '../../../../helpers/voter-registration';
 import ProgressBar from '../../../utilities/ProgressBar/ProgressBar';
 
 const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
-  query GroupVoterRegistrationReferralsQuery(
-    $groupId: Int!
-    $referrerUserId: String!
-  ) {
+  query GroupVoterRegistrationReferralsQuery($groupId: Int!) {
     voterRegistrationsCountByGroupId(groupId: $groupId)
-    voterRegistrationsCountByReferrerUserId(referrerUserId: $referrerUserId)
   }
 `;
 
-const StatBlock = ({ amount, isVertical, label, testId }) => (
-  <div
-    className={`pt-3 ${
-      isVertical ? 'pb-3 flex flex-row-reverse items-center' : null
-    }`}
-    data-testid={testId}
-  >
-    <span
-      className={`font-bold uppercase text-gray-600 ${
-        isVertical ? 'w-3/4' : ''
-      }`}
-    >
-      {label}
-    </span>
+const StatBlock = ({ amount, label, testId }) => (
+  <div className="pt-3" data-testid={testId}>
+    <span className="font-bold uppercase text-gray-600">{label}</span>
 
-    <h2
-      className={`font-normal font-league-gothic text-3xl ${
-        isVertical ? ' w-1/4 mb-0' : ''
-      }`}
-    >
-      {amount}
-    </h2>
+    <h2 className="font-normal font-league-gothic text-3xl">{amount}</h2>
   </div>
 );
 
 StatBlock.propTypes = {
   amount: PropTypes.number.isRequired,
-  isVertical: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
 };
 
-/**
- * If a user is provided, display that user's referrals, else user is the authenticated user.
- */
-const GroupTemplate = ({ group, isVertical, user }) => {
+const GroupTemplate = ({ group }) => {
   const groupDescription = `${group.groupType.name}: ${group.name}`;
 
   return (
     <div data-testid="group-voter-registration-referrals-block">
       <Query
         query={GROUP_VOTER_REGISTRATION_REFERRALS_QUERY}
-        variables={{
-          groupId: group.id,
-          referrerUserId: user ? user.id : getUserId(),
-        }}
+        variables={{ groupId: group.id }}
       >
         {data => {
-          const groupGoal = group.goal || 50;
           const groupTotal = data.voterRegistrationsCountByGroupId;
-          const percentage = Math.round((groupTotal / groupGoal) * 100);
+          const { goal, percentage, description } = getGoalInfo(
+            group.goal,
+            groupTotal,
+          );
 
           return (
             <>
               <div data-testid="group-progress" className="py-3">
-                <span
-                  className={`font-bold uppercase ${
-                    isVertical ? 'text-lg' : 'text-gray-600'
-                  }`}
-                >
-                  {percentage > 100
-                    ? `🎉 You're at ${percentage}% of your goal! 🎉`
-                    : `${percentage}% to your goal!`}
+                <span className="font-bold uppercase text-gray-600">
+                  {description}
                 </span>
 
                 <ProgressBar percentage={percentage} />
               </div>
 
               <StatBlock
-                amount={groupGoal}
-                isVertical={isVertical}
-                label={`${
-                  user ? groupDescription : 'Your group’s'
-                } registration goal`}
+                amount={goal}
+                label="Your group’s registration goal"
                 testId="group-goal"
               />
 
               <StatBlock
                 amount={groupTotal}
-                isVertical={isVertical}
-                label={`People ${
-                  user ? groupDescription : 'your group'
-                } has registered`}
+                label="People your group has registered"
                 testId="group-total"
               />
-
-              {user ? (
-                <StatBlock
-                  amount={data.voterRegistrationsCountByReferrerUserId}
-                  isVertical={isVertical}
-                  label={`People ${user.firstName} has registered`}
-                  testId="individual-total"
-                />
-              ) : null}
             </>
           );
         }}
