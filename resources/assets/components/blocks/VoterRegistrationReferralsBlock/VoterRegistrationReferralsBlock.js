@@ -9,6 +9,7 @@ import {
 } from '../../../helpers/campaign';
 import GroupTemplate from './templates/Group';
 import IndividualTemplate from './templates/Individual';
+import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 
 export const VoterRegistrationReferralsBlockFragment = gql`
   fragment VoterRegistrationReferralsBlockFragment on VoterRegistrationReferralsBlock {
@@ -25,10 +26,30 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
       {data => {
         const signup = data.signups[0];
 
-        return signup && signup.group ? (
-          <GroupTemplate group={signup.group} />
-        ) : (
-          <IndividualTemplate title={title} />
+        return (
+          <>
+            {signup && signup.group ? (
+              <div className="pb-3">
+                <SectionHeader
+                  title={`${signup.group.groupType.name}: ${signup.group.name}`}
+                />
+
+                <div className="md:w-2/3">
+                  <p>
+                    Track how many people you and your group register to vote!
+                  </p>
+
+                  <GroupTemplate group={signup.group} />
+                </div>
+              </div>
+            ) : null}
+
+            {title ? <SectionHeader underlined title={title} /> : null}
+
+            <div className="md:w-2/3">
+              <IndividualTemplate />
+            </div>
+          </>
         );
       }}
     </Query>

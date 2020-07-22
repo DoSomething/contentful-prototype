@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
 import ProgressBar from '../../../utilities/ProgressBar/ProgressBar';
-import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query GroupVoterRegistrationReferralsQuery(
@@ -56,17 +55,7 @@ const GroupTemplate = ({ group, isVertical, user }) => {
   const groupDescription = `${group.groupType.name}: ${group.name}`;
 
   return (
-    <div
-      data-testid="group-voter-registration-referrals-block"
-      className="mx-3"
-    >
-      {user ? null : (
-        <>
-          <SectionHeader title={groupDescription} />
-          <p>Track how many people you and your group register to vote!</p>
-        </>
-      )}
-
+    <div data-testid="group-voter-registration-referrals-block">
       <Query
         query={GROUP_VOTER_REGISTRATION_REFERRALS_QUERY}
         variables={{
@@ -80,7 +69,7 @@ const GroupTemplate = ({ group, isVertical, user }) => {
           const percentage = Math.round((groupTotal / groupGoal) * 100);
 
           return (
-            <div className={isVertical ? null : 'md:w-2/3'}>
+            <>
               <div data-testid="group-progress" className="py-3">
                 <span
                   className={`font-bold uppercase ${
@@ -113,15 +102,15 @@ const GroupTemplate = ({ group, isVertical, user }) => {
                 testId="group-total"
               />
 
-              <StatBlock
-                amount={data.voterRegistrationsCountByReferrerUserId}
-                isVertical={isVertical}
-                label={`People ${
-                  user ? `${user.firstName} has` : 'you have'
-                } registered`}
-                testId="individual-total"
-              />
-            </div>
+              {user ? (
+                <StatBlock
+                  amount={data.voterRegistrationsCountByReferrerUserId}
+                  isVertical={isVertical}
+                  label={`People ${user.firstName} has registered`}
+                  testId="individual-total"
+                />
+              ) : null}
+            </>
           );
         }}
       </Query>
