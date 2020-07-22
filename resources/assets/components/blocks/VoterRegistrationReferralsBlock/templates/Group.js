@@ -6,6 +6,7 @@ import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
 import ProgressBar from '../../../utilities/ProgressBar/ProgressBar';
 
+// TODO: We only need to query for referrer count on OVRD page.
 const GROUP_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query GroupVoterRegistrationReferralsQuery(
     $groupId: Int!

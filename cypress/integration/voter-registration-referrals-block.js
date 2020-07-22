@@ -34,7 +34,7 @@ describe('Voter Registration Referrals Block', () => {
     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
   });
 
-  it('Individual displays help text if no referrals found', () => {
+  it('Displays help text if no referrals found', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('CampaignSignupQuery', {
@@ -62,7 +62,7 @@ describe('Voter Registration Referrals Block', () => {
     );
   });
 
-  it('Individual displays completed and started referrals', () => {
+  it('Displays completed and started referrals', () => {
     const user = userFactory();
     const firstCompletedReferralUser = userFactory();
     const secondCompletedReferralUser = userFactory();
@@ -115,7 +115,7 @@ describe('Voter Registration Referrals Block', () => {
     );
   });
 
-  it('Individual does not count incomplete referrals if completed exists for user', () => {
+  it('Does not count incomplete referrals if completed exists for user', () => {
     const user = userFactory();
     const firstCompletedReferralUser = userFactory();
     const secondCompletedReferralUser = userFactory();
@@ -151,7 +151,7 @@ describe('Voter Registration Referrals Block', () => {
     );
   });
 
-  it('Group displays group goal and group referrals count', () => {
+  it('Group signup displays group goal and group referrals count', () => {
     const user = userFactory();
     const group = groupFactory();
 
@@ -159,6 +159,12 @@ describe('Voter Registration Referrals Block', () => {
 
     cy.mockGraphqlOp('CampaignSignupQuery', {
       signups: [{ id: 11122016, group }],
+    });
+    cy.mockGraphqlOp('IndividualVoterRegistrationReferralsQuery', {
+      posts: [
+        voterRegPost(userFactory(), 'REGISTER_FORM'),
+        voterRegPost(userFactory(), 'REGISTER_OVR'),
+      ],
     });
     cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
       voterRegistrationsCountByGroupId: 5,
@@ -185,9 +191,16 @@ describe('Voter Registration Referrals Block', () => {
     cy.findAllByTestId('group-progress').contains(
       `${percentCompleted}% to your goal!`,
     );
+    cy.findAllByTestId('referrals-count-description').contains(
+      'You have registered 2 people so far.',
+    );
+    cy.findAllByTestId('voter-registration-referral-completed').should(
+      'have.length',
+      2,
+    );
   });
 
-  it('Group displays group goal as 50 if not set on group', () => {
+  it('Group signup displays group goal as 50 if not set on group', () => {
     const user = userFactory();
     const group = groupFactory();
     group.goal = null;
@@ -206,7 +219,7 @@ describe('Voter Registration Referrals Block', () => {
     cy.findAllByTestId('group-total').contains(15);
   });
 
-  it('Group displays group progress if over the group goal', () => {
+  it('Group signup displays group progress if over the group goal', () => {
     const user = userFactory();
     const group = groupFactory();
     group.goal = 3;
