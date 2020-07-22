@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
 import VoterRegistrationReferrals from '../VoterRegistrationReferrals';
-import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query IndividualVoterRegistrationReferralsQuery($referrerUserId: String!) {
@@ -58,35 +57,22 @@ const parseVoterRegistrationReferrals = voterRegPosts => {
   return result;
 };
 
-const IndividualTemplate = ({ title }) => (
-  <>
-    {title ? <SectionHeader underlined title={title} /> : null}
-    <Query
-      query={INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY}
-      variables={{ referrerUserId: getUserId() }}
-    >
-      {data => {
-        const parsed = parseVoterRegistrationReferrals(data.posts);
+const IndividualTemplate = () => (
+  <Query
+    query={INDIVIDUAL_VOTER_REGISTRATION_REFERRALS_QUERY}
+    variables={{ referrerUserId: getUserId() }}
+  >
+    {data => {
+      const parsed = parseVoterRegistrationReferrals(data.posts);
 
-        return (
-          <div className="md:w-2/3">
-            <VoterRegistrationReferrals
-              completed={Object.values(parsed.complete)}
-              started={Object.values(parsed.incomplete)}
-            />
-          </div>
-        );
-      }}
-    </Query>
-  </>
+      return (
+        <VoterRegistrationReferrals
+          completed={Object.values(parsed.complete)}
+          started={Object.values(parsed.incomplete)}
+        />
+      );
+    }}
+  </Query>
 );
-
-IndividualTemplate.propTypes = {
-  title: PropTypes.string,
-};
-
-IndividualTemplate.defaultProps = {
-  title: null,
-};
 
 export default IndividualTemplate;
