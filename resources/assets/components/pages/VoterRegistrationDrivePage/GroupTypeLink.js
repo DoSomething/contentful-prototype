@@ -61,6 +61,8 @@ const GroupTypeLink = ({ group }) => {
           ) : (
             <a
               href={groupCampaignPath}
+              target="_blank"
+              rel="noopener noreferrer"
               data-test="voter-registration-drive-page-group-campaign-link"
             >
               What&lsquo;s {group.groupType.name}?
