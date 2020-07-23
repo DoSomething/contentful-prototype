@@ -1,5 +1,4 @@
 import React from 'react';
-import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
@@ -51,9 +50,7 @@ const QuizResultPage = ({ id }) => {
   const config = isDevEnvironment()
     ? gqlVariables.development
     : gqlVariables.production;
-  const { linkBlockTitle } = data.block;
-  const assetId = get(config, `results.${id}.assetId`, null);
-  const sourceDetail = get(config, `results.${id}.sourceDetail`, null);
+  const { additionalContent, affiliateLogo, linkBlockTitle } = data.block;
 
   return (
     <>
@@ -63,7 +60,9 @@ const QuizResultPage = ({ id }) => {
         <article data-testid="quiz-result-page">
           <header role="banner" className="base-12-grid bg-blurple-500 py-3">
             <div className="col-span-4 md:col-span-3 bg-bottom md:col-start-2">
-              {assetId ? <ContentfulAsset id={assetId} width={375} /> : null}
+              {affiliateLogo ? (
+                <ContentfulAsset id={affiliateLogo.id} width={375} />
+              ) : null}
             </div>
             <div className="col-span-4 md:col-span-7 md:my-auto">
               <h1 className="font-normal font-league-gothic color-white uppercase">
@@ -84,7 +83,7 @@ const QuizResultPage = ({ id }) => {
               id={config.galleryBlockId}
               className="grid-full"
             />
-            {sourceDetail ? (
+            {additionalContent ? (
               <div className="grid-full grid-main py-3 md:py-6">
                 <h1 className="mx-auto text-center mb-3">
                   <span className="font-normal font-league-gothic uppercase text-4xl pb-3">
@@ -103,7 +102,7 @@ const QuizResultPage = ({ id }) => {
                 <StartVoterRegistrationForm
                   contextSource="voter-registration-quiz-results-page"
                   className="md:mx-auto xl:w-4/5"
-                  sourceDetail={sourceDetail}
+                  sourceDetail={additionalContent.sourceDetails}
                 />
               </div>
             ) : null}
