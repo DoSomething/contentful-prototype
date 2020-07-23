@@ -98,6 +98,16 @@ const VoterRegistrationDrivePageBanner = ({
               After you register, share with your friends to enter to win a $
               {`${scholarshipAmount.toLocaleString()}`} scholarship!
             </p>
+            <div className="mt-3">
+              {group ? (
+                <a
+                  href="google.com"
+                  data-test="voter-registration-drive-page-group-campaign-link"
+                >
+                  What&lsquo;s {group.groupType.name}?
+                </a>
+              ) : null}
+            </div>
           </div>
 
           <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
