@@ -25,10 +25,10 @@ const GROUPS_CAMPAIGN_WEBSITE_QUERY = gql`
   }
 `;
 
-const GroupTypeLink = ({ group }) => {
+const GroupTypeLink = ({ id, name }) => {
   const { loading, error, data } = useQuery(GROUPS_CAMPAIGN_QUERY, {
     variables: {
-      groupTypeId: get(group, 'groupType.id'),
+      groupTypeId: id,
       causes: ['voter-registration'],
     },
   });
@@ -65,7 +65,7 @@ const GroupTypeLink = ({ group }) => {
               rel="noopener noreferrer"
               data-test="voter-registration-drive-page-group-campaign-link"
             >
-              What&lsquo;s {group.groupType.name}?
+              What&lsquo;s {name}?
             </a>
           )}
         </div>
@@ -75,12 +75,8 @@ const GroupTypeLink = ({ group }) => {
 };
 
 GroupTypeLink.propTypes = {
-  group: PropTypes.shape({
-    groupType: PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-    }),
-  }).isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default GroupTypeLink;

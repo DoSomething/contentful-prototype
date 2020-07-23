@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import { votingReasons } from './config';
@@ -99,7 +100,12 @@ const VoterRegistrationDrivePageBanner = ({
               After you register, share with your friends to enter to win a $
               {`${scholarshipAmount.toLocaleString()}`} scholarship!
             </p>
-            {group ? <GroupTypeLink group={group} /> : null}
+            {group ? (
+              <GroupTypeLink
+                id={get(group, 'groupType.id', null)}
+                name={get(group, 'groupType.name', null)}
+              />
+            ) : null}
           </div>
 
           <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
