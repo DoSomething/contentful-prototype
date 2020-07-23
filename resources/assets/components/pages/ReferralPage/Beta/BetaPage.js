@@ -5,8 +5,8 @@ import Query from '../../../Query';
 import ErrorPage from '../../ErrorPage';
 import CampaignLink from './BetaPageCampaignLink';
 import GiftCardHandImage from './gift-card-hand.svg';
-import { query, siteConfig } from '../../../../helpers';
 import ArticleHeader from '../../../utilities/ArticleHeader';
+import { featureFlag, query, siteConfig } from '../../../../helpers';
 import { getReferralCampaignId } from '../../../../helpers/refer-friends';
 
 const REFERRAL_PAGE_USER = gql`
@@ -25,6 +25,8 @@ const BetaPage = () => {
   const defaultCampaignId = siteConfig('default_referral_campaign_id');
 
   const displaySecondaryCampaign = defaultCampaignId !== campaignId;
+
+  const referralIncentive = featureFlag('refer-friends-incentive');
 
   if (!userId || !campaignId) {
     return <ErrorPage error="Missing User ID or Campaign ID." />;
@@ -52,10 +54,9 @@ const BetaPage = () => {
 
                 <div className="my-6">
                   <p>
-                    Your friend {firstName} thinks that you&apos;d be interested
-                    in joining DoSomething, the largest not-for-profit
-                    exclusively focused on young people and social change! Sign
-                    up for your first campaign. Let&apos;s do this!
+                    {referralIncentive
+                      ? `${firstName} invited you to join this campaign (and enter for a chance to win a $10 gift card) through DoSomething! Once you sign up for the campaign below, you and ${firstName} will both have a chance at the gift card! We’ll select 25 winners every 2 weeks.`
+                      : `Your friend ${firstName} thinks that you&apos;d be interested in joining DoSomething, the largest not-for-profit exclusively focused on young people and social change! Sign up for your first campaign. Let&apos;s do this!`}
                   </p>
                 </div>
 
@@ -69,7 +70,9 @@ const BetaPage = () => {
                     data-testid="secondary-campaign-referral-link"
                   >
                     <p className="font-bold mb-3">
-                      Interested in doing a different campaign?
+                      {`Interested in doing a different campaign${
+                        referralIncentive ? ' to get a gift card' : ''
+                      }?`}
                     </p>
 
                     <CampaignLink
@@ -82,32 +85,81 @@ const BetaPage = () => {
                 <div className="my-6">
                   <h3>FAQ</h3>
 
-                  <h4>What is DoSomething.org?</h4>
-                  <p>
-                    DoSomething.org is the largest not-for-profit for young
-                    people and social change, with members representing every US
-                    area code and 131 countries. Using our digital platform,
-                    millions of young people make real-world impact through our
-                    volunteer, social change, and civic action campaigns.
-                  </p>
+                  {referralIncentive ? (
+                    <>
+                      <h4>
+                        Can I still enter for the $10 gift card if I already
+                        have a DoSomething account?
+                      </h4>
+                      <p>
+                        So glad to have you as a member already! Unfortunately,
+                        if another DoSomething member sends you a referral link
+                        and you already have a DoSomething account, you won’t be
+                        eligible to win the gift card when you sign up for the
+                        shared campaign.
+                      </p>
 
-                  <h4>
-                    How do I sign up to join DoSomething with {firstName}?
-                  </h4>
-                  <p>
-                    Easy! Just sign up for a DoSomething campaign, and boom!
-                    You&apos;re ready to take action.
-                  </p>
+                      <h4>How do I know that I won a $10 gift card?</h4>
+                      <p>
+                        Every 2 weeks, we’ll randomly select 25 winners. We’ll
+                        email it to you using the same email address used to
+                        create your DoSomething account.
+                      </p>
 
-                  <h4>Why should I join DoSomething?</h4>
-                  <p>
-                    Because your friend said so! (Jk.) DoSomething members can
-                    make an impact with millions of other young people and earn
-                    the chance to win scholarships for volunteering. Plus,
-                    you’ll have access to all our newsletters, content, and
-                    competitions...not to mention a shot to win merch,
-                    experiences and other prizes too.
-                  </p>
+                      <h4>What is DoSomething.org?</h4>
+                      <p>
+                        DoSomething.org is the largest not-for-profit for young
+                        people and social change. Using our digital platform,
+                        millions of young people make real-world impact through
+                        our volunteer, social change, and civic action
+                        campaigns. We’ve got hundreds of campaigns to choose
+                        from (but only the{' '}
+                        {displaySecondaryCampaign
+                          ? 'two above are'
+                          : 'one above is'}{' '}
+                        offering the gift card reward right now). Check out all
+                        the{' '}
+                        <a
+                          href="https://2019.dosomething.org/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          impact our members made last year
+                        </a>
+                        . Let’s Do This!
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <h4>What is DoSomething.org?</h4>
+                      <p>
+                        DoSomething.org is the largest not-for-profit for young
+                        people and social change, with members representing
+                        every US area code and 131 countries. Using our digital
+                        platform, millions of young people make real-world
+                        impact through our volunteer, social change, and civic
+                        action campaigns.
+                      </p>
+
+                      <h4>
+                        How do I sign up to join DoSomething with {firstName}?
+                      </h4>
+                      <p>
+                        Easy! Just sign up for a DoSomething campaign, and boom!
+                        You&apos;re ready to take action.
+                      </p>
+
+                      <h4>Why should I join DoSomething?</h4>
+                      <p>
+                        Because your friend said so! (Jk.) DoSomething members
+                        can make an impact with millions of other young people
+                        and earn the chance to win scholarships for
+                        volunteering. Plus, you’ll have access to all our
+                        newsletters, content, and competitions...not to mention
+                        a shot to win merch, experiences and other prizes too.
+                      </p>
+                    </>
+                  )}
 
                   <h4>Where can I find the full rules?</h4>
                   <p>
