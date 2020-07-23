@@ -119,28 +119,60 @@ describe('Campaign Signup', () => {
   });
 
   context('Campaign ID configured as referral campaign', () => {
-    /** @test */
-    it('Displays Referral Page Banner CTA in affirmation for configured campaign', () => {
-      const user = userFactory();
-      cy.mockGraphqlOp('CampaignBannerQuery', {
-        campaign: {
-          id: campaignId,
-          groupTypeId: null,
-          groupType: null,
-        },
+    describe('Displays Referral Page Banner CTA in affirmation for configured campaign', () => {
+      context('Incentive feature flag is toggled on', () => {
+        /** @test */
+        it('displays the incentive copy', () => {
+          const user = userFactory();
+          cy.mockGraphqlOp('CampaignBannerQuery', {
+            campaign: {
+              id: campaignId,
+              groupTypeId: null,
+              groupType: null,
+            },
+          });
+
+          // Log in & visit the campaign pitch page:
+          cy.withFeatureFlags({
+            refer_friends_incentive: true,
+          }).authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
+
+          // Mock the response we'll be expecting once we hit "Join Now":
+          cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+
+          // Click "Join Now" & should get the affirmation modal:
+          cy.contains('button', 'Join Us').click();
+          cy.get('.card.affirmation')
+            .findByTestId('cta-referral-page-banner')
+            .contains('Benefits With Friends');
+        });
       });
 
-      // Log in & visit the campaign pitch page:
-      cy.authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
+      context('Incentive feature flag is toggled off', () => {
+        /** @test */
+        it('displays the incentive free copy', () => {
+          const user = userFactory();
+          cy.mockGraphqlOp('CampaignBannerQuery', {
+            campaign: {
+              id: campaignId,
+              groupTypeId: null,
+              groupType: null,
+            },
+          });
 
-      // Mock the response we'll be expecting once we hit "Join Now":
-      cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+          // Log in & visit the campaign pitch page:
+          cy.authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
 
-      // Click "Join Now" & should get the affirmation modal:
-      cy.contains('button', 'Join Us').click();
-      cy.get('.card.affirmation')
-        .findByTestId('cta-referral-page-banner')
-        .contains('Get your Friends Involved!');
+          // Mock the response we'll be expecting once we hit "Join Now":
+          cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+
+          // Click "Join Now" & should get the affirmation modal:
+          cy.contains('button', 'Join Us').click();
+          cy.get('.card.affirmation')
+            .findByTestId('cta-referral-page-banner')
+            .contains('Get your Friends Involved!');
+        });
+      });
     });
   });
 
