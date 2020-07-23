@@ -4,8 +4,7 @@ import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
 
-const quizResultId = '347iYsbykgQe6KqeGceMUk';
-const quizResultPath = `/us/quiz-results/${quizResultId}`;
+const quizResultPath = '/us/quiz-results/347iYsbykgQe6KqeGceMUk';
 
 /**
  * @param {String} sourceDetails
@@ -14,7 +13,7 @@ const quizResultPath = `/us/quiz-results/${quizResultId}`;
  */
 const linkBlock = (sourceDetails, hasAsset = true) => {
   return {
-    id: quizResultId,
+    id: '347iYsbykgQe6KqeGceMUk',
     __typename: 'LinkBlock',
     title: faker.company.bsBuzz(),
     content: faker.lorem.sentence(),
@@ -39,18 +38,35 @@ describe('Quiz Result Page', () => {
   });
 
   /** @test */
-  it('Renders GraphQL title and content', () => {
+  it('Renders GraphQL title, header asset, content', () => {
     const block = linkBlock(null);
+    const imageUrl = faker.image.imageUrl();
 
     cy.mockGraphqlOp('QuizResultPageQuery', {
       block,
+    });
+    cy.mockGraphqlOp('ContentfulAssetQuery', {
+      asset: {
+        url: imageUrl,
+      },
     });
 
     cy.visit(quizResultPath);
 
     cy.findByTestId('quiz-result-page').should('have.length', 1);
+    cy.get('header img').should('have.attr', 'src', imageUrl);
     cy.get('h1').should('contain', block.title);
     cy.findByTestId('quiz-result-page').contains(block.content);
+  });
+
+  it('Does not display header image if asset is null', () => {
+    cy.mockGraphqlOp('QuizResultPageQuery', {
+      block: linkBlock(null, false),
+    });
+
+    cy.visit(quizResultPath);
+
+    cy.get('header img').should('have.length', 0);
   });
 
   /** @test */
@@ -62,7 +78,10 @@ describe('Quiz Result Page', () => {
     cy.visit(quizResultPath);
 
     cy.findByTestId('quiz-result-page').should('have.length', 1);
-    cy.findByTestId('voter-registration-form-card').should('have.length', 0);
+    cy.findByTestId('quiz-result-page-registration-section').should(
+      'have.length',
+      0,
+    );
   });
 
   /** @test */
@@ -73,7 +92,10 @@ describe('Quiz Result Page', () => {
 
     cy.visit(quizResultPath);
 
-    cy.findByTestId('quiz-result-page').should('have.length', 1);
+    cy.findByTestId('quiz-result-page-registration-section').should(
+      'have.length',
+      1,
+    );
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
       'source:web,source_details:VoterRegQuiz_completed_notsure',

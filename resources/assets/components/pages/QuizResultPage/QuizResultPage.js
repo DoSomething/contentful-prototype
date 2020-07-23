@@ -90,7 +90,10 @@ const QuizResultPage = ({ id }) => {
             />
 
             {additionalContent && additionalContent.sourceDetails ? (
-              <div className="grid-full grid-main py-3 md:py-6">
+              <div
+                className="grid-full grid-main py-3 md:py-6"
+                data-testid="quiz-result-page-registration-section"
+              >
                 <h1 className="mx-auto text-center mb-3">
                   <span className="font-normal font-league-gothic uppercase text-4xl pb-3">
                     What&rsquo;s Next? Register to Vote
