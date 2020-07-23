@@ -20,7 +20,6 @@ const GROUPS_CAMPAIGN_WEBSITE_QUERY = gql`
     campaignWebsiteByCampaignId(campaignId: $campaignId) {
       id
       path
-      url
     }
   }
 `;
