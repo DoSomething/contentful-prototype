@@ -22,7 +22,7 @@ const campaignWebsite = {
 const group = {
   id: faker.random.number(),
   name: faker.company.companyName(),
-  goal: faker.random.number(),
+  goal: null,
   groupType: {
     id: faker.random.number(),
     name: faker.company.companyName(),
@@ -156,7 +156,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       1,
     );
     cy.findByTestId('campaign-info-block-container').should('have.length', 1);
-    cy.findByTestId('group-voter-registration-referrals-block').should(
+    cy.findByTestId('voter-registration-drive-page-referrals-info').should(
       'have.length',
       0,
     );
@@ -312,8 +312,8 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       campaignWebsite,
       group,
     });
-    cy.mockGraphqlOp('GroupVoterRegistrationReferralsQuery', {
-      voterRegistrationsCountByGroupId: 31,
+    cy.mockGraphqlOp('VoterRegistrationDrivePageReferralsQuery', {
+      voterRegistrationsCountByGroupId: 25,
       voterRegistrationsCountByReferrerUserId: 8,
     });
 
@@ -324,10 +324,13 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       `user:${user.id},source:web,source_details:onlinedrivereferral,group_id=${group.id},referral=true`,
     );
     cy.findByTestId('campaign-info-block-container').should('have.length', 0);
-    cy.findByTestId('group-voter-registration-referrals-block').should(
+    cy.findByTestId('voter-registration-drive-page-referrals-info').should(
       'have.length',
       1,
     );
+    cy.findByTestId('group-progress')
+      .get('span')
+      .contains('50% to your goal');
     cy.findByTestId('group-goal')
       .get('span')
       .contains(`${groupDescription} registration goal`);
@@ -336,7 +339,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       .contains(`People ${groupDescription} has registered`);
     cy.findByTestId('group-total')
       .get('h2')
-      .contains(31);
+      .contains(25);
     cy.findByTestId('individual-total')
       .get('span')
       .contains(`People ${user.firstName} has registered`);
