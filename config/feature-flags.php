@@ -19,7 +19,7 @@ return [
     'new_homepage' => env('DS_ENABLE_NEW_HOMEPAGE', false),
     'nps_survey' => env('DS_ENABLE_NPS_SURVEY', false),
     'quiz_result_page' =>  env('DS_ENABLE_QUIZ_RESULT_PAGE', false),
-    'refer-friends-incentive' => env('DS_ENABLE_REFER_FRIENDS_INCENTIVE', false),
+    'refer_friends_incentive' => env('DS_ENABLE_REFER_FRIENDS_INCENTIVE', false),
     'sitewide_nps_survey' => env('DS_ENABLE_SITEWIDE_NPS_SURVEY', false),
     'volunteer_credits' => env('DS_ENABLE_VOLUNTEER_CREDITS', false),
 ];

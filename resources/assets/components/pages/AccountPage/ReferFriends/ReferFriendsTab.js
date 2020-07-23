@@ -12,7 +12,7 @@ const Summary = tw.summary`font-bold text-base cursor-pointer`;
 const DetailsParagraph = tw.p`pt-2`;
 
 const ReferFriendsTab = () => {
-  const referralIncentive = featureFlag('refer-friends-incentive');
+  const referralIncentive = featureFlag('refer_friends_incentive');
 
   return (
     <>

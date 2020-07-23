@@ -9,7 +9,7 @@ import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationConta
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const AlphaPage = () => {
-  const referralIncentive = featureFlag('refer-friends-incentive');
+  const referralIncentive = featureFlag('refer_friends_incentive');
 
   return getReferFriendsLink() ? (
     <>

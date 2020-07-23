@@ -26,7 +26,7 @@ const BetaPage = () => {
 
   const displaySecondaryCampaign = defaultCampaignId !== campaignId;
 
-  const referralIncentive = featureFlag('refer-friends-incentive');
+  const referralIncentive = featureFlag('refer_friends_incentive');
 
   if (!userId || !campaignId) {
     return <ErrorPage error="Missing User ID or Campaign ID." />;
