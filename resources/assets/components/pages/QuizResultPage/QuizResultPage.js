@@ -50,7 +50,12 @@ const QuizResultPage = ({ id }) => {
   const config = isDevEnvironment()
     ? gqlVariables.development
     : gqlVariables.production;
-  const { additionalContent, affiliateLogo, linkBlockTitle } = data.block;
+  const {
+    additionalContent,
+    affiliateLogo,
+    content,
+    linkBlockTitle,
+  } = data.block;
 
   return (
     <>
@@ -71,7 +76,7 @@ const QuizResultPage = ({ id }) => {
                 </span>
               </h1>
               <div className="color-white">
-                <TextContent>{data.block.content}</TextContent>
+                <TextContent>{content}</TextContent>
               </div>
             </div>
           </header>
@@ -83,7 +88,8 @@ const QuizResultPage = ({ id }) => {
               id={config.galleryBlockId}
               className="grid-full"
             />
-            {additionalContent ? (
+
+            {additionalContent && additionalContent.sourceDetails ? (
               <div className="grid-full grid-main py-3 md:py-6">
                 <h1 className="mx-auto text-center mb-3">
                   <span className="font-normal font-league-gothic uppercase text-4xl pb-3">
