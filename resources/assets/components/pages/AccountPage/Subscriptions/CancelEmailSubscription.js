@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-import {
-  EVENT_CATEGORIES,
-  trackAnalyticsEvent,
-  getPageContext,
-} from '../../../../helpers/analytics';
 import Spinner from '../../../artifacts/Spinner/Spinner';
 
 const EMAIL_SUBSCRIPTION_STATUS = gql`
@@ -33,6 +28,7 @@ const EMAIL_SUBSCRIPTION_STATUS_MUTATION = gql`
     }
   }
 `;
+
 const CancelEmailSubscription = props => {
   const userId = props.user.id;
   const options = { variables: { userId } };
@@ -51,18 +47,18 @@ const CancelEmailSubscription = props => {
     return <Spinner />;
   }
 
-  const handleGlobalUnsubscribe = () => {
-    trackAnalyticsEvent(
-      'phoenix_clicked_link_action_global_email_unsubscribe',
-      {
-        action: 'link_clicked',
-        category: EVENT_CATEGORIES.siteAction,
-        label: 'global_email_unsubscribe',
-        context: {
-          ...getPageContext(),
-        },
+  const handleGlobalUnsubscribeClick = () => {
+    trackAnalyticsEvent('clicked_link_action_global_email_unsubscribe', {
+      action: 'link_clicked',
+      category: EVENT_CATEGORIES.siteAction,
+      label: 'global_email_unsubscribe',
+      context: {},
+    });
+    updateEmailSubscriptionStatus({
+      variables: {
+        emailSubscriptionStatus: false,
       },
-    );
+    });
   };
 
   return (
@@ -73,14 +69,7 @@ const CancelEmailSubscription = props => {
           <button
             className="px-1 text-blue-500 pb-4"
             type="button"
-            onClick={() =>
-              updateEmailSubscriptionStatus({
-                variables: {
-                  emailSubscriptionStatus: false,
-                },
-                handleGlobalUnsubscribe,
-              })
-            }
+            onClick={handleGlobalUnsubscribeClick}
           >
             Unsubscribe
           </button>
