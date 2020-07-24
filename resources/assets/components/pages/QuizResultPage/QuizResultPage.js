@@ -47,9 +47,10 @@ const QuizResultPage = ({ id }) => {
     return <NotFoundPage id={id} />;
   }
 
-  const config = isDevEnvironment()
+  const { galleryBlockId } = isDevEnvironment()
     ? gqlVariables.development
     : gqlVariables.production;
+
   const {
     additionalContent,
     affiliateLogo,
@@ -84,10 +85,7 @@ const QuizResultPage = ({ id }) => {
             <img className="m-auto" src={triangle} alt="triangle" />
           </div>
           <div className="bg-white base-12-grid py-3 md:py-6">
-            <ContentfulEntryLoader
-              id={config.galleryBlockId}
-              className="grid-full"
-            />
+            <ContentfulEntryLoader id={galleryBlockId} className="grid-full" />
 
             {additionalContent && additionalContent.sourceDetails ? (
               <div
