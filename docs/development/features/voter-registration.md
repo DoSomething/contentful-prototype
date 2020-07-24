@@ -112,46 +112,39 @@ This page had inline JS that would query Northstar to find a user's first name b
 
 ## Quiz
 
-### Voting Quiz Campaign
+The Quiz content type is only used for voter registration campaigns.
 
-Our Voting Quiz campaign (`/us/campaigns/ready-vote`) uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry. It has two entry points:
+Users are redirected to `/us/quiz-results/:id` to see their quiz result on a Quiz Result Page.
+
+The `QuizResultPage` component expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's Result Blocks multi-value reference field.
+
+To display the Start Voter Registration Form on a quiz result, add a `sourceDetails` property to the Additional Content field on the quiz result's Link Action entry. This value will be set to the `source_details` of the voter registration tracking source if a user submits the form.
+
+A header image can be added by selecting an asset in the Affiliate Logo field.
+
+A static Gallery Block entry is displayed all for all Quiz result ID's:
+
+- Production: 78WaGsvDEzAxnreEvNx3Za
+- Dev: 2VGFq3XBcqCfKOA8mC5mP4
+
+### Voting Quiz Campaign
 
 - Gated: `/us/campaigns/ready-vote` - user must signup to take the quiz from the action page
 
 - Ungated: `/us/campaigns/ready-vote/quiz/ready` - user can take quiz but must signup to see their result
 
-### Quiz Result Page
+Production Quiz Results:
 
-When the `DS_ENABLE_QUIZ_RESULT_PAGE` configuration variable is set to `true`, the current user is redirected to `/us/quiz-results/:id` to see their quiz result.
+- [p7hqjSP4Y1U6ad0UDz4iS](https://www.dosomething.org/us/quiz-results/p7hqjSP4Y1U6ad0UDz4iS) - Vote By Mail
+- [1giTEF3B2hO2CyccmhlVDm](https://www.dosomething.org/us/quiz-results/1giTEF3B2hO2CyccmhlVDm) - In-Person Voting
+- [21PDBge2bKCTWMe5f9eo1H](https://www.dosomething.org/us/quiz-results/21PDBge2bKCTWMe5f9eo1H) - Unsure of Voting
+- [14KfeAs265httjNMf1jwTw](https://www.dosomething.org/us/quiz-results/14KfeAs265httjNMf1jwTw) - Ineligible to Vote
 
-The `QuizResultPage` component expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field.
+Dev Quiz Results:
 
-The `QuizResultPage` displays a static `GalleryBlock` for all of the different result ID's.
-
-**Production:**
-
-Gallery Block: 78WaGsvDEzAxnreEvNx3Za
-
-Quiz Results:
-
-| id                                                                                           | title               | internalTitle      | assetId                |
-| -------------------------------------------------------------------------------------------- | ------------------- | ------------------ | ---------------------- |
-| [p7hqjSP4Y1U6ad0UDz4iS](https://www.dosomething.org/us/quiz-results/p7hqjSP4Y1U6ad0UDz4iS)   | Shell-tered Voter   | Vote By Mail       | 49Y4ucuGbJbgZL7IDDfxG0 |
-| [1giTEF3B2hO2CyccmhlVDm](https://www.dosomething.org/us/quiz-results/1giTEF3B2hO2CyccmhlVDm) | Hare Who Dares      | In-Person Voting   | 2f2kgaHl9w5VtdswKkaBWT |
-| [21PDBge2bKCTWMe5f9eo1H](https://www.dosomething.org/us/quiz-results/21PDBge2bKCTWMe5f9eo1H) | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
-| [14KfeAs265httjNMf1jwTw](https://www.dosomething.org/us/quiz-results/14KfeAs265httjNMf1jwTw) | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
-
-**Dev:**
-
-Gallery Block: 2VGFq3XBcqCfKOA8mC5mP4
-
-Quiz Results:
-
-| id                                                                                           | title               | internalTitle    | assetId                |
-| -------------------------------------------------------------------------------------------- | ------------------- | ---------------- | ---------------------- |
-| [347iYsbykgQe6KqeGceMUk](https://dev.dosomething.org/us/quiz-results/347iYsbykgQe6KqeGceMUk) | Moral Support Panda | Super Motivated  | 6J13jUL4YGGC1fyYMNEfbc |
-| [1lvJHhlJqQSgKgwIwUymQ8](https://dev.dosomething.org/us/quiz-results/1lvJHhlJqQSgKgwIwUymQ8) | Shell-tered Voter   | Social Voter     | 3iLKsRlFQ1k9ddQbRb3RN8 |
-| [2KfkCOTi7u4CqAyyCuGyci](https://dev.dosomething.org/us/quiz-results/2KfkCOTi7u4CqAyyCuGyci) | Hare Who Dares      | Election Dabbler | 3uB88eZmTNEaoFxV9pZ8hX |
+- [347iYsbykgQe6KqeGceMUk](https://dev.dosomething.org/us/quiz-results/347iYsbykgQe6KqeGceMUk)
+- [1lvJHhlJqQSgKgwIwUymQ8](https://dev.dosomething.org/us/quiz-results/1lvJHhlJqQSgKgwIwUymQ8)
+- [2KfkCOTi7u4CqAyyCuGyci](https://dev.dosomething.org/us/quiz-results/2KfkCOTi7u4CqAyyCuGyci)
 
 **Related links:**
 
@@ -160,12 +153,5 @@ Quiz Results:
 - [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the Campaign Playbook.
 
 **Notes:**
-
-- While we're still developing this component, we're displaying placeholder copy for the Link Action content unless a `preview=true` query parameter is present. Examples:
-
-  - Placeholder content = https://qa.dosomething.org/us/quiz-results/p7hqjSP4Y1U6ad0UDz4iS
-  - Live content - https://qa.dosomething.org/us/quiz-results/p7hqjSP4Y1U6ad0UDz4iS?preview=true
-
-This is because the current content in Contentful for our result entries contains the banner image inline (so they are displayed twice, once within the header and a second time within the copy). When we're ready to go live, we'll have the campaigns team edit the content and remove the requirement to include the `preview` query.
 
 - Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
