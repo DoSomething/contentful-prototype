@@ -64,7 +64,7 @@ const GroupTypeLink = ({ id, name }) => {
               rel="noopener noreferrer"
               data-testid="voter-registration-drive-page-group-campaign-link"
             >
-              What&lsquo;s {name}?
+              What&apos;s {name}?
             </a>
           )}
         </div>

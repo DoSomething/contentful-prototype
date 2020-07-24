@@ -329,6 +329,10 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       'have.length',
       1,
     );
+    cy.findByTestId('voter-registration-drive-page-group-campaign-link').should(
+      'have.length',
+      0,
+    );
     cy.findByTestId('group-progress')
       .get('span')
       .contains('50% to your goal');
@@ -350,9 +354,15 @@ describe('Voter Registration Drive (OVRD) Page', () => {
   });
 
   /** @test */
-  it(' If a group is found, OVRD page displays link to groups campaign page', () => {
+  it('OVRD page displays link to group voter registration campaign website if exists for the group type', () => {
     const user = userFactory();
     const campaigns = [exampleCampaign];
+
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+      group,
+    });
 
     cy.mockGraphqlOp('GroupsCampaignQuery', {
       campaigns,
@@ -373,5 +383,8 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       'href',
       mockUrl,
     );
+    cy.findByTestId(
+      'voter-registration-drive-page-group-campaign-link',
+    ).contains(`What's ${group.groupType.name}?`);
   });
 });
