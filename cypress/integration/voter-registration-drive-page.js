@@ -3,6 +3,7 @@
 import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
+import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const ovrdPathPage = '/us/my-voter-registration-drive';
 const mockUrl = faker.image.imageUrl();
@@ -328,6 +329,10 @@ describe('Voter Registration Drive (OVRD) Page', () => {
       'have.length',
       1,
     );
+    cy.findByTestId('voter-registration-drive-page-group-campaign-link').should(
+      'have.length',
+      0,
+    );
     cy.findByTestId('group-progress')
       .get('span')
       .contains('50% to your goal');
@@ -346,5 +351,40 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.findByTestId('individual-total')
       .get('h2')
       .contains(8);
+  });
+
+  /** @test */
+  it('OVRD page displays link to group voter registration campaign website if exists for the group type', () => {
+    const user = userFactory();
+    const campaigns = [exampleCampaign];
+
+    cy.mockGraphqlOp('VoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+      group,
+    });
+
+    cy.mockGraphqlOp('GroupsCampaignQuery', {
+      campaigns,
+    });
+
+    cy.mockGraphqlOp('GroupsCampaignWebsiteQuery', {
+      campaignWebsiteByCampaignId: campaignWebsite,
+    });
+
+    cy.visit(getOvrdPagePathForUser(user, group));
+
+    cy.findByTestId('voter-registration-drive-page-group-campaign-link').should(
+      'have.length',
+      1,
+    );
+    cy.findByTestId('voter-registration-drive-page-group-campaign-link').should(
+      'have.attr',
+      'href',
+      mockUrl,
+    );
+    cy.findByTestId(
+      'voter-registration-drive-page-group-campaign-link',
+    ).contains(`What's ${group.groupType.name}?`);
   });
 });
