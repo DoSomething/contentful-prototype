@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
-
 import Spinner from '../../../artifacts/Spinner/Spinner';
 
 const EMAIL_SUBSCRIPTION_STATUS = gql`
