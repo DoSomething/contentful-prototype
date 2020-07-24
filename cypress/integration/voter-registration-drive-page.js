@@ -3,6 +3,7 @@
 import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
+import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const ovrdPathPage = '/us/my-voter-registration-drive';
 const mockUrl = faker.image.imageUrl();
@@ -346,5 +347,31 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.findByTestId('individual-total')
       .get('h2')
       .contains(8);
+  });
+
+  /** @test */
+  it(' If a group is found, OVRD page displays link to groups campaign page', () => {
+    const user = userFactory();
+    const campaigns = [exampleCampaign];
+
+    cy.mockGraphqlOp('GroupsCampaignQuery', {
+      campaigns,
+    });
+
+    cy.mockGraphqlOp('GroupsCampaignWebsiteQuery', {
+      campaignWebsiteByCampaignId: campaignWebsite,
+    });
+
+    cy.visit(getOvrdPagePathForUser(user, group));
+
+    cy.findByTestId('voter-registration-drive-page-group-campaign-link').should(
+      'have.length',
+      1,
+    );
+    cy.findByTestId('voter-registration-drive-page-group-campaign-link').should(
+      'have.attr',
+      'href',
+      mockUrl,
+    );
   });
 });

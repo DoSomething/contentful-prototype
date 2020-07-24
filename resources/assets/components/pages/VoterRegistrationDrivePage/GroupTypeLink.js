@@ -19,7 +19,7 @@ const GROUPS_CAMPAIGN_WEBSITE_QUERY = gql`
   query GroupsCampaignWebsiteQuery($campaignId: String!) {
     campaignWebsiteByCampaignId(campaignId: $campaignId) {
       id
-      path
+      url
     }
   }
 `;
@@ -43,9 +43,9 @@ const GroupTypeLink = ({ id, name }) => {
       campaignId: String(groupTypeCampaignId),
     },
   });
-  const groupCampaignPath = get(
+  const groupCampaignUrl = get(
     campaignWebsiteData,
-    'campaignWebsiteByCampaignId.path',
+    'campaignWebsiteByCampaignId.url',
     null,
   );
 
@@ -59,10 +59,10 @@ const GroupTypeLink = ({ id, name }) => {
             <PlaceholderText size="medium" />
           ) : (
             <a
-              href={groupCampaignPath}
+              href={groupCampaignUrl}
               target="_blank"
               rel="noopener noreferrer"
-              data-test="voter-registration-drive-page-group-campaign-link"
+              data-testid="voter-registration-drive-page-group-campaign-link"
             >
               What&lsquo;s {name}?
             </a>
