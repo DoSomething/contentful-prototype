@@ -3,7 +3,13 @@ import gql from 'graphql-tag';
 import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import Placeholder from '../Placeholder';
+import Spinner from '../../artifacts/Spinner/Spinner';
 
+import gql from 'graphql-tag';
+
+import { getUserId } from '../../../helpers/auth';
 import excludedPaths from './config';
 import { getUserId } from '../../../helpers/auth';
 import SitewideBannerContent from './SitewideBannerContent';

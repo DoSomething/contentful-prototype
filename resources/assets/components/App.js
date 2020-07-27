@@ -37,22 +37,6 @@ const App = ({ store, history }) => {
   return (
     <ReduxProvider store={store}>
       <ErrorBoundary FallbackComponent={ErrorPage}>
-        <DismissableElement
-          name="sitewide_banner_call_to_action"
-          daysToReRender={7}
-          context={{ contextSource: 'voter_registration' }}
-          render={(handleClose, handleComplete) => (
-            <SitewideBanner
-              cta="Get Started"
-              description="Make your voice heard. Register to vote in less than 2 minutes."
-              handleClose={handleClose}
-              handleComplete={handleComplete}
-              link={`https://vote.dosomething.org/?r=${getTrackingSource(
-                'hellobar',
-              )}`}
-            />
-          )}
-        />
         <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
           <DismissableElement
             name="sitewide_banner_call_to_action"
