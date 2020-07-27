@@ -2,7 +2,6 @@ import gql from 'graphql-tag';
 import { createPortal } from 'react-dom';
 import React, { useRef, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-
 import { getUserId } from '../../../helpers/auth';
 import excludedPaths from './config';
 import SitewideBannerContent from './SitewideBannerContent';
