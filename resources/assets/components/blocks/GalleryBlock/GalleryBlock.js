@@ -7,9 +7,11 @@ import Person from '../../utilities/Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import ScholarshipCard from '../../utilities/ScholarshipCard/ScholarshipCard';
+import CampaignCard, {
+  campaignCardFragment,
+} from '../../utilities/CampaignCard/CampaignCard';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
-import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItem';
 
 export const GalleryBlockFragment = gql`
   fragment GalleryBlockFragment on GalleryBlock {
@@ -32,25 +34,17 @@ export const GalleryBlockFragment = gql`
         type
         twitterId
       }
-      ... on CampaignWebsite {
-        scholarshipAmount
-        scholarshipDeadline
-        campaignId
-        slug
-        path
-      }
-      ... on StoryPageWebsite {
-        path
-      }
       ... on Page {
         slug
       }
+      ...CampaignCard
     }
   }
+
+  ${campaignCardFragment}
 `;
 
 const renderBlock = (blockType, block, imageAlignment, imageFit) => {
-  // GraphQL ('Showcasable' interface) and Phoenix-backend (legacy) queried blocks.
   const fields = withoutNulls(block);
 
   switch (blockType) {
@@ -60,19 +54,10 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
 
     case 'CAMPAIGN':
     case 'CampaignWebsite':
-      // @TODO: Replace with Campaign Card
-      return (
-        <CampaignGalleryItem
-          key={block.id}
-          showcaseTitle={fields.title}
-          showcaseDescription={fields.tagline}
-          showcaseImage={fields.coverImage}
-          {...withoutNulls(fields)}
-        />
-      );
+      return <CampaignCard key={block.id} campaign={fields} />;
 
     case 'SCHOLARSHIP':
-      return <ScholarshipCard key={block.id} campaign={block} />;
+      return <ScholarshipCard key={block.id} campaign={fields} />;
 
     case 'PAGE':
     case 'Page':
