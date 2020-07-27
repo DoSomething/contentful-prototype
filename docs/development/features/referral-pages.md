@@ -11,9 +11,8 @@ We commonly use these terms (in the business, and in code) when describing this 
 
 Users will see a Referral Page Banner after signing up for any campaign configured for this feature, which refers them to their Alpha Referral Page.
 
-We offer two versions of the RAF copy across all referral pages. One - incentive specific, alluding to a \$10 gift card reward for the Alpha & Beta, and the second, an incentive-less version.
+When the `DS_ENABLE_REFER_FRIENDS_INCENTIVE` ENV variable is set to `true`, incentive-specific RAF copy is displayed across all referral pages, alluding to a \$10 gift card reward for the Alpha & Beta. Otherwise incentive-less RAF copy is displayed.
 
-The `DS_ENABLE_REFER_FRIENDS_INCENTIVE` ENV variable toggles between the two. If set to `true`, the incentive specific copy will display.
 
 ## Details
 
