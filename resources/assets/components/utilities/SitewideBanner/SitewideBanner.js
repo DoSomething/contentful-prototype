@@ -1,11 +1,10 @@
+import gql from 'graphql-tag';
 import { createPortal } from 'react-dom';
 import React, { useRef, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+
 import Placeholder from '../Placeholder';
 import Spinner from '../../artifacts/Spinner/Spinner';
-
-import gql from 'graphql-tag';
-
 import { getUserId } from '../../../helpers/auth';
 import excludedPaths from './config';
 import SitewideBannerContent from './SitewideBannerContent';
@@ -51,9 +50,13 @@ const SitewideBanner = props => {
     return <Placeholder />;
   }
 
+  if (error) {
+    return <Spinner className="flex justify-center p-3 pb-8" />;
+  }
+
   // shouldDisplayRegistrationBanner
   // shouldDisplayRegistrationBanner.includes(data ? data.user['voterRegistrationStatus'] : {})
-  console.log('Banner:', data ? data.user['voterRegistrationStatus'] : {});
+  console.log('Banner:', data ? data.user.voterRegistrationStatus : {});
 
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
