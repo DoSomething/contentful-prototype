@@ -336,44 +336,6 @@ function useOverrideIfSet($field, $base, $override)
 }
 
 /**
- * Determine the fields to display in the social share.
- *
- * @param  \Contentful\Delivery\Resource\Entry|stdClass $entry
- * @return array|null
- * @deprecated Will be removed; use get_metadata() instead.
- */
-function get_social_fields($entry)
-{
-    // @TODO We'll want to re-assess the following once we re-work caching Contentful queries.
-
-    // If this is an Entry which has been cast as JSON and thus completely JSON serialized.
-    if (get_class($entry) === 'stdClass') {
-        $socialOverride = object_get($entry->fields, 'socialOverride.fields');
-    // Otherwise, It should be a non-cast Contentful Entity object.
-    } else {
-        $socialOverride = $entry->socialOverride;
-    }
-
-    if (! $socialOverride) {
-        return;
-    }
-
-    // If the socialOverride is pulled from an Entity object, the cover image field
-    // will be an Asset object from which we'll need to pull a URL string.
-    if (gettype($socialOverride->coverImage) === 'object') {
-        $socialOverride->coverImage = get_image_url($socialOverride->coverImage, 'landscape');
-    }
-
-    return [
-        'title' => $socialOverride->title,
-        'callToAction' => $socialOverride->callToAction,
-        'coverImage' => $socialOverride->coverImage,
-        'facebookAppId' => config('services.analytics.facebook_id'),
-        'quote' => $socialOverride->quote,
-    ];
-}
-
-/**
  * Get metadata associated with a page or campaign.
  *
  * @param  \Contentful\Delivery\Resource\Entry|stdClass $entry
@@ -438,56 +400,6 @@ function metadata_fallback()
     ];
 
     return array_get($HARDCODED_METADATA, request()->path());
-}
-
-/**
- * Determine the fields to display in the social share for a campaign.
- *
- * @param  stdClass $campaign
- * @param  string   $uri
- * @return array
- */
-function get_campaign_social_fields($campaign, $uri)
-{
-    $socialOverride = $campaign->socialOverride ? $campaign->socialOverride->fields : null;
-    $blockPath = $campaign->slug . '/blocks';
-    $modalPath = $campaign->slug . '/modal';
-
-    if (str_contains($uri, [$blockPath, $modalPath])) {
-        $block = null;
-        $blockId = last(explode('/', $uri));
-
-        // Find the community page.
-        $communityPage = array_first($campaign->pages, function ($value) {
-            return isset($value->fields->slug) && ends_with($value->fields->slug, 'community');
-        });
-
-        if ($communityPage) {
-            // Find the block within the community page block if available.
-            $block = array_first($communityPage->fields->blocks, function ($value) use ($blockId) {
-                return $value->id === $blockId;
-            });
-        }
-
-        if ($block && isset($block->fields->socialOverride)) {
-            $socialOverride = $block->fields->socialOverride->fields;
-        }
-    }
-
-    $coverImage = useOverrideIfSet('coverImage', $campaign, $socialOverride);
-    // If the image is pulled from socialOverride, its going to be a string.
-    // But if its pulled from campaign, its an object containing a url string.
-    if (gettype($coverImage) === 'object') {
-        $coverImage = $coverImage->landscapeUrl;
-    }
-
-    return [
-        'title' => useOverrideIfSet('title', $campaign, $socialOverride),
-        'callToAction' => useOverrideIfSet('callToAction', $campaign, $socialOverride),
-        'coverImage' => $coverImage,
-        'facebookAppId' => config('services.analytics.facebook_id'),
-        'quote' => useOverrideIfSet('quote', $campaign, $socialOverride),
-    ];
 }
 
 /**

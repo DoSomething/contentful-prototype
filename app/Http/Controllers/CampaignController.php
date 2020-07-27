@@ -68,10 +68,9 @@ class CampaignController extends Controller
             // server-rendered top navigation bar.
             'campaign' => $campaign,
             'headTitle' => $campaign->title,
-            'metadata' => get_metadata($campaign),
             // We render social metatags server-side because Facebook & Twitter
             // do not render JavaScript when crawling pages like Google does.
-            'socialFields' => get_campaign_social_fields($campaign, $request->url()),
+            'metadata' => get_metadata($campaign),
             'state' => [
                 'campaign' => $campaign,
             ],

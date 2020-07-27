@@ -22,7 +22,6 @@ export default {
       blocks: [],
       displaySocialShare: null,
       hideFromNavigation: null,
-      socialOverride: null,
     },
   },
 };

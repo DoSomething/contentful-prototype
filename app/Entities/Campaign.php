@@ -101,7 +101,6 @@ class Campaign extends Entity implements JsonSerializable
             'affirmation' => $this->affirmation ? $this->parseBlock($this->affirmation) : null,
             'pages' => $this->parseBlocks($this->pages),
             'landingPage' => $this->landingPage ? $this->parseBlock($this->landingPage) : null,
-            'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
             'additionalContent' => $this->additionalContent,
             'allowExperiments' => $this->campaignSettings ? $this->campaignSettings->allowExperiments : null,
             'actionText' => array_get($this->campaignSettings, 'actionText') ?: 'Join Us',

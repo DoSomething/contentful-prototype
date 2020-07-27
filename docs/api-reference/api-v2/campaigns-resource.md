@@ -180,7 +180,6 @@ e.g.: 6LQzMvDNQcYQYwso8qSkQ8
     "affirmation": null,
     "pages": [],
     "landingPage": null,
-    "socialOverride": null,
     "additionalContent": null,
     "allowExperiments": true,
     "actionText": "Join Us",

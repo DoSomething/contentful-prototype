@@ -27,7 +27,6 @@ module.exports = function(migration) {
       {
         regexp: {
           pattern: '^[a-zA-Z0-9-]+$',
-          flags: null,
         },
 
         message:
@@ -120,8 +119,11 @@ module.exports = function(migration) {
     .name('Cover Image')
     .type('Link')
     .localized(false)
-    .required(false)
+    .required(true)
     .validations([
+      {
+        linkMimetypeGroup: ['image'],
+      },
       {
         assetFileSize: {
           max: 20971520,
@@ -227,7 +229,7 @@ module.exports = function(migration) {
     .required(false)
     .validations([
       {
-        linkContentType: ['landingPage', 'sixpackExperiment'],
+        linkContentType: ['landingPage'],
       },
     ])
     .disabled(false)
@@ -296,21 +298,6 @@ module.exports = function(migration) {
       },
     ])
     .disabled(false)
-    .omitted(false)
-    .linkType('Entry');
-
-  campaign
-    .createField('socialOverride')
-    .name('Social Override')
-    .type('Link')
-    .localized(false)
-    .required(false)
-    .validations([
-      {
-        linkContentType: ['socialOverride'],
-      },
-    ])
-    .disabled(true)
     .omitted(false)
     .linkType('Entry');
 
@@ -431,8 +418,8 @@ module.exports = function(migration) {
         nodes: {},
       },
       {
-        enabledMarks: ['bold', 'underline', 'italic'],
-        message: 'Only bold, underline, and italic marks are allowed',
+        enabledMarks: ['bold', 'italic', 'underline'],
+        message: 'Only bold, italic, and underline marks are allowed',
       },
       {
         enabledNodeTypes: ['hyperlink'],
@@ -488,8 +475,6 @@ module.exports = function(migration) {
     },
   );
 
-  campaign.changeFieldControl('template', 'builtin', 'checkbox', {});
-
   campaign.changeFieldControl('endDate', 'builtin', 'datePicker', {
     ampm: '12',
     format: 'timeZ',
@@ -497,7 +482,10 @@ module.exports = function(migration) {
       "The date the campaign will close. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
   });
 
-  campaign.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {});
+  campaign.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
+  });
 
   campaign.changeFieldControl('blurb', 'builtin', 'markdown', {
     helpText:
@@ -535,6 +523,8 @@ module.exports = function(migration) {
 
   campaign.changeFieldControl('landingPage', 'builtin', 'entryLinkEditor', {
     helpText: '',
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
   });
 
   campaign.changeFieldControl('pages', 'builtin', 'entryLinksEditor', {
@@ -546,12 +536,6 @@ module.exports = function(migration) {
   });
 
   campaign.changeFieldControl('dashboard', 'builtin', 'entryLinkEditor', {});
-  campaign.changeFieldControl(
-    'socialOverride',
-    'builtin',
-    'entryLinkEditor',
-    {},
-  );
 
   campaign.changeFieldControl('staffPick', 'builtin', 'boolean', {
     helpText: 'Is this a Staff Pick campaign?',
