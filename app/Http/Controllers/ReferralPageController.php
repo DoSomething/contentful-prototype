@@ -19,6 +19,7 @@ class ReferralPageController extends Controller
          * @see https://github.com/DoSomething/phoenix-next/pull/1932#issuecomment-587720454
          */
         $title = 'Do Something Good With Your Friend!';
+        $incentiveSuffix = config('feature-flags.refer_friends_incentive') ? ' (You\'ll both enter for a chance to win a $10 gift card!' : '';
 
         return response()->view('app', [
             'headTitle' => $title,
@@ -26,7 +27,7 @@ class ReferralPageController extends Controller
             // (and refactor get_metadata helper to expect an $entity instead of $campaign)
             'metadata' => [
                 'title' => $title,
-                'description' => 'Make an impact by signing up for a DoSomething volunteer campaign.',
+                'description' => 'Make an impact by signing up for a DoSomething volunteer campaign.'.$incentiveSuffix,
                 'facebook_app_id' =>  config('services.analytics.facebook_id'),
                 'image' => [
                     'url' => asset('images/gift-card-hand.png'),

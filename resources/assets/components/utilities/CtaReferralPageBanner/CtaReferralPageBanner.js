@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-import { tailwind } from '../../../helpers';
+import { featureFlag, tailwind } from '../../../helpers';
 import GiftCardHandLargeImage from './gift-card-hand-large.svg';
 import GiftCardHandSmallImage from './gift-card-hand-small.svg';
 
@@ -23,10 +23,16 @@ const CtaReferralPageBanner = ({ campaignId, displayReferralPage }) => (
               }
             `}
           >
-            <h3 className="text-white">Get your Friends Involved!</h3>
+            <h3 className="text-white">
+              {featureFlag('refer_friends_incentive')
+                ? 'Benefits With Friends'
+                : 'Get your Friends Involved!'}
+            </h3>
 
             <p className="text-white pb-3">
-              Invite a friend to take action in this cause as well!
+              {featureFlag('refer_friends_incentive')
+                ? 'Refer a friend to this campaign, and you’ll *both* enter for a chance to win a $10 gift card!'
+                : 'Invite a friend to take action in this cause as well!'}
             </p>
 
             <a

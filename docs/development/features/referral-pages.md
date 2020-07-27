@@ -9,9 +9,10 @@ We commonly use these terms (in the business, and in code) when describing this 
 - **Alpha** - The user who is sharing the URL with friends, prompting the friends to register
 - **Beta** - The friends that the alpha is sharing the URL with
 
-We currently do not offer any reward for referrals. We anticipate introducing a new iteration of a reward in August, but for now we're in a 'soft-launch' reward-less phase of RAF. Previous iterations of this feature did offer rewards, see [History](#iterations).
-
 Users will see a Referral Page Banner after signing up for any campaign configured for this feature, which refers them to their Alpha Referral Page.
+
+When the `DS_ENABLE_REFER_FRIENDS_INCENTIVE` ENV variable is set to `true`, incentive-specific RAF copy is displayed across all referral pages, alluding to a \$10 gift card reward for the Alpha & Beta. Otherwise incentive-less RAF copy is displayed.
+
 
 ## Details
 
@@ -95,4 +96,4 @@ The second iteration of RAF allowed the list of campaigns (as well as the defaul
 
 In anticipation of launching a fully formalized version of RAF, we deprecated the `refer-friends-scholarship` feature flag, and exposed the RAF CTA Banner to _all_ users signing up for a campaign opted into RAF in the Referral Page Banner.
 
-And now, having actually soft-launched the RAF V2 iteration, we've deprecated the scholarship reward completely, and simply offer the RAF functionality, sans reward copy.
+And now, having actually soft-launched the RAF V2 iteration, we've deprecated the scholarship reward completely, and offer the RAF functionality with both gift card incentive and incentive-less copy options.
