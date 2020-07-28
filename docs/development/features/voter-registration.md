@@ -146,7 +146,7 @@ Dev Quiz Results:
 
 **Related links:**
 
-- [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the Campaign Playbook.
+- [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the [Campaign Playbook](https://docs.google.com/document/d/1iOFgNNNN0ry9zyyRyxcuLI-tZm2CKkcPLbfUMos9WcI/edit?usp=sharing).
 
 **Notes:**
 
