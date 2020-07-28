@@ -12,6 +12,10 @@ import { REFERRAL_USER_QUERY } from '../../pages/ReferralPage/Beta/BetaPage';
 import './cta-referral-page-banner.scss';
 
 const CtaReferralPageBanner = ({ campaignId, displayReferralPage }) => {
+  if (!displayReferralPage) {
+    return null;
+  }
+
   const referralIncentive = featureFlag('refer_friends_incentive');
 
   const referrerUserId = query('referrer_user_id');
@@ -41,7 +45,7 @@ const CtaReferralPageBanner = ({ campaignId, displayReferralPage }) => {
     ? "If you win, we'll email the gift card to you."
     : 'Refer a friend to this campaign, and you’ll *both* enter for a chance to win a $10 gift card!';
 
-  return displayReferralPage ? (
+  return (
     <div className="p-3" data-testid="cta-referral-page-banner">
       <div className="cta-register-banner md:px-6 pt-3 clearfix">
         <div
@@ -77,7 +81,7 @@ const CtaReferralPageBanner = ({ campaignId, displayReferralPage }) => {
         </div>
       </div>
     </div>
-  ) : null;
+  );
 };
 
 CtaReferralPageBanner.propTypes = {
