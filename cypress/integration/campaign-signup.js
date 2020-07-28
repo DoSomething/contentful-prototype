@@ -122,7 +122,48 @@ describe('Campaign Signup', () => {
     describe('Displays Referral Page Banner CTA in affirmation for configured campaign', () => {
       context('Incentive feature flag is toggled on', () => {
         /** @test */
-        it('displays the incentive copy', () => {
+        it('Beta Referral campaign signup displays the beta reward copy', () => {
+          const user = userFactory();
+
+          cy.mockGraphqlOp('CampaignBannerQuery', {
+            campaign: {
+              id: campaignId,
+              groupTypeId: null,
+              groupType: null,
+            },
+          });
+
+          // Visit the campaign landing page as an authenticated user with a referrer_user_id query param:
+          cy.login(user)
+            .withFeatureFlags({
+              refer_friends_incentive: true,
+            })
+            .withState(exampleReferralCampaign)
+            .visit(
+              `${campaignPath}${exampleCampaign.campaign.slug}?referrer_user_id=${user.id}`,
+            );
+
+          // Mock the response we'll be expecting once we hit the signup button:
+          cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
+            'signupRequest',
+          );
+
+          cy.mockGraphqlOp('ReferralUserQuery', {
+            user: {
+              id: user.id,
+              firstName: 'Piano',
+            },
+          });
+
+          // Click "Join Now" & should get the affirmation modal:
+          cy.contains('button', 'Join Us').click();
+          cy.get('.card.affirmation')
+            .findByTestId('cta-referral-page-banner')
+            .contains('You and Piano are both entered to win a $10 gift card!');
+        });
+
+        /** @test */
+        it('Regular Referral campaign signup displays the general incentive copy', () => {
           const user = userFactory();
           cy.mockGraphqlOp('CampaignBannerQuery', {
             campaign: {
