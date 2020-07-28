@@ -96,8 +96,6 @@ We hardcode specific configuration `ContentBlock` ID's:
 
 **Dev:**
 
-Content:
-
 - [Register To Vote ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/bt0jUBYJaKoi1oab25Wmx) - bt0jUBYJaKoi1oab25Wmx
 - [FAQ ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3cXc0RPMVNeE4surEqFujL) - 3cXc0RPMVNeE4surEqFujL
 - [OVRD Campaign Link ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3p2qz2JPCvgVitgRVBoMFz) - 3p2qz2JPCvgVitgRVBoMFz
@@ -147,8 +145,6 @@ Dev Quiz Results:
 - [2KfkCOTi7u4CqAyyCuGyci](https://dev.dosomething.org/us/quiz-results/2KfkCOTi7u4CqAyyCuGyci)
 
 **Related links:**
-
-- [User Flows For Voting Quiz](https://docs.google.com/spreadsheets/d/10uIZNghJTMKWR0lk5_y-q9-NwabDKYyrf8Vxlj17S9c/edit#gid=1453114542)
 
 - [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the Campaign Playbook.
 
