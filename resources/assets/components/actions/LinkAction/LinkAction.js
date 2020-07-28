@@ -14,6 +14,7 @@ export const LinkBlockFragment = gql`
     linkBlockLink: link
     buttonText
     affiliateLogo {
+      id
       url(w: 200, h: 100)
       description
     }

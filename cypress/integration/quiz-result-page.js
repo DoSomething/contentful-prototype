@@ -4,22 +4,22 @@ import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
 
-const quizResultId = '347iYsbykgQe6KqeGceMUk';
+const quizResultPath = '/us/quiz-results/347iYsbykgQe6KqeGceMUk';
 
 /**
- * @param String id
- * @param Boolean preview
- * @return String
+ * @param {String} sourceDetails
+ * @param {Boolean} hasAsset
+ * @return {Object}
  */
-function getQuizResultPath(id) {
-  return `/us/quiz-results/${id}`;
-}
-
-const linkBlock = {
-  id: quizResultId,
-  __typename: 'LinkBlock',
-  title: faker.company.bsBuzz(),
-  content: faker.lorem.sentence(),
+const linkBlock = (sourceDetails, hasAsset = true) => {
+  return {
+    id: '347iYsbykgQe6KqeGceMUk',
+    __typename: 'LinkBlock',
+    title: faker.company.bsBuzz(),
+    content: faker.lorem.sentence(),
+    additionalContent: sourceDetails ? { sourceDetails } : null,
+    affilliateLogo: hasAsset ? { id: '2KfkCOTi7u4CqAyyCuGyci' } : null,
+  };
 };
 
 describe('Quiz Result Page', () => {
@@ -31,67 +31,74 @@ describe('Quiz Result Page', () => {
       block: null,
     });
 
-    cy.visit(getQuizResultPath('55767606a59dbf3c7a8b4571'));
+    cy.visit(quizResultPath);
 
     cy.findByTestId('not-found-page').should('have.length', 1);
     cy.findByTestId('quiz-result-page').should('have.length', 0);
   });
 
   /** @test */
-  it('Renders GraphQL title and content', () => {
+  it('Renders GraphQL title, header asset, content', () => {
+    const block = linkBlock(null);
+    const imageUrl = faker.image.imageUrl();
+
     cy.mockGraphqlOp('QuizResultPageQuery', {
-      block: linkBlock,
+      block,
+    });
+    cy.mockGraphqlOp('ContentfulAssetQuery', {
+      asset: {
+        url: imageUrl,
+      },
     });
 
-    cy.visit(getQuizResultPath(quizResultId));
+    cy.visit(quizResultPath);
 
     cy.findByTestId('quiz-result-page').should('have.length', 1);
-    cy.get('h1').should('contain', linkBlock.title);
-    cy.findByTestId('quiz-result-page').contains(linkBlock.content);
+    cy.get('header img').should('have.attr', 'src', imageUrl);
+    cy.get('h1').should('contain', block.title);
+    cy.findByTestId('quiz-result-page').contains(block.content);
+  });
+
+  it('Does not display header image if asset is null', () => {
+    cy.mockGraphqlOp('QuizResultPageQuery', {
+      block: linkBlock(null, false),
+    });
+
+    cy.visit(quizResultPath);
+
+    cy.get('header img').should('have.length', 0);
   });
 
   /** @test */
-  it('Does Not Render the registration form if there is no source detail provided', () => {
+  it('Does not display registration form if source detail is null', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
-      block: linkBlock,
+      block: linkBlock(null, false),
     });
 
-    cy.visit(getQuizResultPath('2KfkCOTi7u4CqAyyCuGyci'));
+    cy.visit(quizResultPath);
 
     cy.findByTestId('quiz-result-page').should('have.length', 1);
-    cy.findByTestId('voter-registration-form-card').should('have.length', 0);
-  });
-
-  /** @test */
-  it('Sets up the correct tracking source for the RTV redirect URL for an unauthenticated user', () => {
-    cy.mockGraphqlOp('QuizResultPageQuery', {
-      block: linkBlock,
-    });
-
-    cy.visit(getQuizResultPath(quizResultId));
-
-    cy.findByTestId('quiz-result-page').should('have.length', 1);
-    cy.findByTestId('voter-registration-tracking-source').should(
-      'have.value',
-      'source:web,source_details:VoterRegQuiz_completed_notsure',
+    cy.findByTestId('quiz-result-page-registration-section').should(
+      'have.length',
+      0,
     );
   });
 
   /** @test */
-  it('Sets up the correct tracking source for the RTV redirect URL for an authenticated user', () => {
+  it('Displays registration form if source detail is set', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
-      block: linkBlock,
+      block: linkBlock('VoterRegQuiz_completed_notsure'),
     });
 
-    const user = userFactory();
+    cy.visit(quizResultPath);
 
-    // Log in & visit the campaign pitch page:
-    cy.login(user).visit(getQuizResultPath(quizResultId));
-
-    cy.findByTestId('quiz-result-page').should('have.length', 1);
+    cy.findByTestId('quiz-result-page-registration-section').should(
+      'have.length',
+      1,
+    );
     cy.findByTestId('voter-registration-tracking-source').should(
       'have.value',
-      `user:${user.id},source:web,source_details:VoterRegQuiz_completed_notsure`,
+      'source:web,source_details:VoterRegQuiz_completed_notsure',
     );
   });
 });
