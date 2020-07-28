@@ -9,8 +9,8 @@ import ArticleHeader from '../../../utilities/ArticleHeader';
 import { featureFlag, query, siteConfig } from '../../../../helpers';
 import { getReferralCampaignId } from '../../../../helpers/refer-friends';
 
-const REFERRAL_PAGE_USER = gql`
-  query ReferralPageUserQuery($id: String!) {
+export const REFERRAL_USER_QUERY = gql`
+  query ReferralUserQuery($id: String!) {
     user(id: $id) {
       id
       firstName
@@ -34,7 +34,7 @@ const BetaPage = () => {
 
   return (
     // We *do not* render a SiteNavigationContainer here to avoid losing the referral metadata (see https://git.io/JeX2A).
-    <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
+    <Query query={REFERRAL_USER_QUERY} variables={{ id: userId }}>
       {data => {
         if (!data.user) {
           return <ErrorPage error={`User not found for ID: ${userId}.`} />;
