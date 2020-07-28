@@ -9,7 +9,7 @@ import {
 } from '../../../helpers/analytics';
 import PrimaryButton from '../Button/PrimaryButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
-import { getVoterRegistrationTrackingSource } from '../../../helpers';
+import { getTrackingSource } from '../../../helpers/voter-registration';
 
 const StartVoterRegistrationForm = ({
   campaignId,
@@ -23,11 +23,6 @@ const StartVoterRegistrationForm = ({
   const [zip, setZip] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const trackingSource = getVoterRegistrationTrackingSource(
-    sourceDetail,
-    referrerUserId,
-    groupId,
-  );
   const isDisabled = !zip || !email;
 
   const handleChange = event => {
@@ -67,7 +62,7 @@ const StartVoterRegistrationForm = ({
           <input
             type="hidden"
             name="source"
-            value={trackingSource}
+            value={getTrackingSource(sourceDetail, referrerUserId, groupId)}
             data-testid="voter-registration-tracking-source"
           />
 

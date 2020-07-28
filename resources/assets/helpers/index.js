@@ -18,7 +18,6 @@ import {
   omitBy,
 } from 'lodash';
 
-import { getUserId } from './auth';
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
 import tailwindVariables from '../../../tailwind.variables';
@@ -1009,29 +1008,4 @@ export function getMillisecondsFromDays(days) {
   // # of days * 1440 minutes in a day * 60 minutes * 1000 milliseconds
   // @TODO make this more flexible, ie. get milliseconds from hours vs days etc
   return days * 1440 * 60 * 1000;
-}
-
-/**
- * Returns tracking source query value to send for Voter Registration URLs.
- * @see /docs/development/features/voter-registration#tracking-source
- *
- * @param {String} sourceDetails
- * @param {String} referrerUserId
- * @param {Number} groupId
- * @return {String}
- */
-export function getVoterRegistrationTrackingSource(
-  sourceDetails,
-  referrerUserId,
-  groupId,
-) {
-  const result = `source:web,source_details:${sourceDetails}${
-    groupId ? `,group_id=${groupId}` : ''
-  }`;
-
-  if (referrerUserId) {
-    return `user:${referrerUserId},${result},referral=true`;
-  }
-
-  return getUserId() ? `user:${getUserId()},${result}` : result;
 }

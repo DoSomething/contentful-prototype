@@ -6,21 +6,18 @@ import { ApolloProvider } from '@apollo/react-common';
 import { Provider as ReduxProvider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 
-import {
-  env,
-  featureFlag,
-  getVoterRegistrationTrackingSource,
-} from '../helpers';
 import graphqlClient from '../graphql';
 import ErrorPage from './pages/ErrorPage';
+import Modal from './utilities/Modal/Modal';
+import { env, featureFlag } from '../helpers';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
-import Modal from './utilities/Modal/Modal';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
 import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
+import { getTrackingSource } from '../helpers/voter-registration';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
@@ -50,7 +47,7 @@ const App = ({ store, history }) => {
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}
               handleComplete={handleComplete}
-              link={`https://vote.dosomething.org/?r=${getVoterRegistrationTrackingSource(
+              link={`https://vote.dosomething.org/?r=${getTrackingSource(
                 'hellobar',
               )}`}
             />
