@@ -41,47 +41,43 @@ const CtaReferralPageBanner = ({ campaignId, displayReferralPage }) => {
     ? "If you win, we'll email the gift card to you."
     : 'Refer a friend to this campaign, and you’ll *both* enter for a chance to win a $10 gift card!';
 
-  return (
-    <React.Fragment>
-      {displayReferralPage ? (
-        <div className="p-3" data-testid="cta-referral-page-banner">
-          <div className="cta-register-banner md:px-6 pt-3 clearfix">
-            <div
-              className="cta-register-banner__content p-6 md:pr-0 text-center md:text-left"
-              css={css`
-                background: url(${GiftCardHandSmallImage});
+  return displayReferralPage ? (
+    <div className="p-3" data-testid="cta-referral-page-banner">
+      <div className="cta-register-banner md:px-6 pt-3 clearfix">
+        <div
+          className="cta-register-banner__content p-6 md:pr-0 text-center md:text-left"
+          css={css`
+            background: url(${GiftCardHandSmallImage});
 
-                @media (min-width: ${tailwind('screens.md')}) {
-                  background: url(${GiftCardHandLargeImage});
-                }
-              `}
+            @media (min-width: ${tailwind('screens.md')}) {
+              background: url(${GiftCardHandLargeImage});
+            }
+          `}
+        >
+          <h3 className="text-white">
+            {referralIncentive
+              ? referralIncentiveHeader
+              : 'Get your Friends Involved!'}
+          </h3>
+
+          <p className="text-white pb-3">
+            {referralIncentive
+              ? referralIncentiveBody
+              : 'Invite a friend to take action in this cause as well!'}
+          </p>
+
+          {referralUserName ? null : (
+            <a
+              href={`/us/refer-friends?campaign_id=${campaignId}`}
+              className="button p-3 -attached"
             >
-              <h3 className="text-white">
-                {referralIncentive
-                  ? referralIncentiveHeader
-                  : 'Get your Friends Involved!'}
-              </h3>
-
-              <p className="text-white pb-3">
-                {referralIncentive
-                  ? referralIncentiveBody
-                  : 'Invite a friend to take action in this cause as well!'}
-              </p>
-
-              {referralUserName ? null : (
-                <a
-                  href={`/us/refer-friends?campaign_id=${campaignId}`}
-                  className="button p-3 -attached"
-                >
-                  Refer A Friend
-                </a>
-              )}
-            </div>
-          </div>
+              Refer A Friend
+            </a>
+          )}
         </div>
-      ) : null}
-    </React.Fragment>
-  );
+      </div>
+    </div>
+  ) : null;
 };
 
 CtaReferralPageBanner.propTypes = {
