@@ -132,7 +132,7 @@ const VoterRegistrationDrivePage = () => {
                 contextSource="beta-voter-registration-drive-page"
                 groupId={groupId}
                 referrerUserId={referrerUserId}
-                sourceDetail="onlinedrivereferral"
+                sourceDetails="onlinedrivereferral"
               />
             </div>
             <ContentfulEntryLoader

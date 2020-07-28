@@ -109,7 +109,7 @@ const QuizResultPage = ({ id }) => {
                 <StartVoterRegistrationForm
                   contextSource="voter-registration-quiz-results-page"
                   className="md:mx-auto xl:w-4/5"
-                  sourceDetail={additionalContent.sourceDetails}
+                  sourceDetails={additionalContent.sourceDetails}
                 />
               </div>
             ) : null}
