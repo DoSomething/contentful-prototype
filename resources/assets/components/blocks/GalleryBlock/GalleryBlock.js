@@ -6,10 +6,12 @@ import { withoutNulls } from '../../../helpers';
 import Person from '../../utilities/Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
-import ScholarshipCard from '../../utilities/ScholarshipCard/ScholarshipCard';
 import CampaignCard, {
   campaignCardFragment,
 } from '../../utilities/CampaignCard/CampaignCard';
+import ScholarshipCard, {
+  scholarshipCardFragment,
+} from '../../utilities/ScholarshipCard/ScholarshipCard';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 
@@ -38,10 +40,12 @@ export const GalleryBlockFragment = gql`
         slug
       }
       ...CampaignCard
+      ...ScholarshipCard
     }
   }
 
   ${campaignCardFragment}
+  ${scholarshipCardFragment}
 `;
 
 const renderBlock = (blockType, block, imageAlignment, imageFit) => {
