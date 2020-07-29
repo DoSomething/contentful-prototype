@@ -19,7 +19,7 @@ class ReferralPageController extends Controller
          * @see https://github.com/DoSomething/phoenix-next/pull/1932#issuecomment-587720454
          */
         $title = 'Do Something Good With Your Friend!';
-        $incentiveSuffix = config('feature-flags.refer_friends_incentive') ? ' (You\'ll both enter for a chance to win a $10 gift card!' : '';
+        $incentiveSuffix = config('feature-flags.refer_friends_incentive') ? ' (You\'ll both enter for a chance to win a $10 gift card!)' : '';
 
         return response()->view('app', [
             'headTitle' => $title,
