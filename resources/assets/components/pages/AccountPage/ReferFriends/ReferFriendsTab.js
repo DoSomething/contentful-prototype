@@ -17,7 +17,14 @@ const ReferFriendsTab = () => {
   return (
     <>
       <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6">
-        <SectionHeader underlined title="Get Your Friends Involved" />
+        <SectionHeader
+          underlined
+          title={
+            referralIncentive
+              ? 'Enter to win a $10 gift card'
+              : 'Get Your Friends Involved'
+          }
+        />
 
         <SocialDriveActionContainer
           shareCardTitle="Refer a friend!"
