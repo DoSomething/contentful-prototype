@@ -45,15 +45,32 @@ const ReferFriendsTab = () => {
       <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6 pt-10">
         <SectionHeader underlined title="faq" />
 
-        <Details>
-          <Summary>Why should I refer a friend?</Summary>
+        {referralIncentive ? (
+          <Details>
+            <Summary>Who can I refer?</Summary>
 
-          <DetailsParagraph>
-            {referralIncentive
-              ? 'To earn the chance to win a $10 gift card, you need to refer NEW members to DoSomething! Referring someone who already has a DoSomething account is an awesome way to build our movement, but unfortunately, referring them won’t enter you for a chance at the gift card.'
-              : 'You’ll help your friend join our youth-led movement for good, make an impact on the causes they care about, and have the chance to earn scholarships for volunteering.'}
-          </DetailsParagraph>
-        </Details>
+            <p className="pt-2">
+              To earn the chance to win a $10 gift card, you need to refer NEW
+              members to DoSomething!
+            </p>
+
+            <p className="mt-0 pt-2">
+              Referring someone who already has a DoSomething account is an
+              awesome way to build our movement, but unfortunately, referring
+              them won’t enter you for a chance at the gift card.
+            </p>
+          </Details>
+        ) : (
+          <Details>
+            <Summary>Why should I refer a friend?</Summary>
+
+            <DetailsParagraph>
+              You’ll help your friend join our youth-led movement for good, make
+              an impact on the causes they care about, and have the chance to
+              earn scholarships for volunteering.
+            </DetailsParagraph>
+          </Details>
+        )}
 
         <Details>
           <Summary>How do I know that I’ve referred a friend?</Summary>
