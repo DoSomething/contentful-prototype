@@ -99,7 +99,7 @@ const ReferFriendsTab = () => {
 
           <DetailsParagraph>
             This offer is for a limited time only. See the{' '}
-            <a href="/us/refer-a-friend-official-rules">
+            <a href="/us/refer-a-friend-official-rules" target="_blank">
               Refer A Friend Official Rules.
             </a>
           </DetailsParagraph>
