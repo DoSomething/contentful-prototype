@@ -100,7 +100,6 @@ return [
 
     'store' => env('SESSION_STORE', null),
 
-
     /*
     |--------------------------------------------------------------------------
     | Session Sweeping Lottery
