@@ -81,6 +81,7 @@ return [
         'heroku_mariadb' => [
             'driver' => 'mysql',
             'url' => env('JAWS_MARIA_URL'),
+            'database' => env('DB_DATABASE', 'forge'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
@@ -91,6 +92,7 @@ return [
         'heroku_mysql' => [
             'driver' => 'mysql',
             'url' => env('CLEARDB_DATABASE_URL'),
+            'database' => env('DB_DATABASE', 'forge'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
