@@ -1,5 +1,10 @@
 <?php
 
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use App\User;
+use Faker\Generator as Faker;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -11,7 +16,7 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker $faker) {
     static $password;
 
     return [

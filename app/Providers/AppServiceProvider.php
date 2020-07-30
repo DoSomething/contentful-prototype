@@ -14,6 +14,18 @@ use Contentful\Delivery\Client as DeliveryClient;
 class AppServiceProvider extends ServiceProvider
 {
     /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->singleton(\App\Http\Middleware\StartSession::class);
+
+        $this->app->alias(DeliveryClient::class, 'contentful.delivery');
+    }
+
+    /**
      * Bootstrap any application services.
      *
      * @param Router $router
@@ -79,17 +91,5 @@ class AppServiceProvider extends ServiceProvider
 
         //     return $record;
         // });
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->app->singleton(\App\Http\Middleware\StartSession::class);
-
-        $this->app->alias(DeliveryClient::class, 'contentful.delivery');
     }
 }

@@ -8,16 +8,6 @@ use SeatGeek\Sixpack\Session\Base as Sixpack;
 class SixpackServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
-
-    /**
      * Register the application services.
      *
      * @return void
@@ -31,5 +21,15 @@ class SixpackServiceProvider extends ServiceProvider
                 'timeout' => config('services.sixpack.timeout', null),
             ]);
         });
+    }
+
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
     }
 }
