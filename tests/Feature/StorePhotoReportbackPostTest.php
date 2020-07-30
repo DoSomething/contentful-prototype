@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class StorePhotoReportbackPostTest extends BrowserKitTestCase
 {
-    protected function setUp()
+    protected function setup(): void
     {
         parent::setUp();
 

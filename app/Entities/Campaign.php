@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use JsonSerializable;
+use Illuminate\Support\Arr;
 
 /**
  * The Campaign entity.
@@ -103,7 +104,7 @@ class Campaign extends Entity implements JsonSerializable
             'landingPage' => $this->landingPage ? $this->parseBlock($this->landingPage) : null,
             'additionalContent' => $this->additionalContent,
             'allowExperiments' => $this->campaignSettings ? $this->campaignSettings->allowExperiments : null,
-            'actionText' => array_get($this->campaignSettings, 'actionText') ?: 'Join Us',
+            'actionText' => Arr::get($this->campaignSettings, 'actionText') ?: 'Join Us',
             'staffPick' => $this->staffPick,
             'cause' => $this->cause,
             'scholarshipAmount' => $this->scholarshipAmount,

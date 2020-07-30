@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -74,7 +76,7 @@ class AuthController extends Controller
      */
     protected function getDestination($queryParams, $options = [])
     {
-        return array_get($queryParams, 'destination', array_get($options, 'title'));
+        return Arr::get($queryParams, 'destination', Arr::get($options, 'title'));
     }
 
     /**
@@ -85,9 +87,9 @@ class AuthController extends Controller
      */
     protected function getOptions($queryParams)
     {
-        $options = array_get($queryParams, 'options', []);
+        $options = Arr::get($queryParams, 'options', []);
 
-        $mode = array_get($queryParams, 'mode', null);
+        $mode = Arr::get($queryParams, 'mode', null);
 
         if (is_string($options)) {
             $options = (array) json_decode($options);
@@ -113,7 +115,7 @@ class AuthController extends Controller
         if (session('actionId')) {
             $actionIdParam = 'actionId='.urlencode(session('actionId'));
 
-            $url .= str_contains($url, '?') ? '&'.$actionIdParam : '?'.$actionIdParam;
+            $url .= Str::contains($url, '?') ? '&'.$actionIdParam : '?'.$actionIdParam;
         }
 
         return $url;
@@ -127,7 +129,7 @@ class AuthController extends Controller
     protected function setSessionData($queryParams = [])
     {
         // @see Northstar Authorization Code Grant: https://git.io/fjd8N
-        if (array_has($queryParams, 'code')) {
+        if (Arr::has($queryParams, 'code')) {
             return;
         }
 
@@ -142,7 +144,7 @@ class AuthController extends Controller
         session(['login.intended' => $intended]);
 
         // If starting the login process, see if we have a "queued" action.
-        $actionId = array_get($queryParams, 'actionId');
+        $actionId = Arr::get($queryParams, 'actionId');
 
         session()->flash('actionId', $actionId);
     }

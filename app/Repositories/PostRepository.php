@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Arr;
 use App\Services\RogueClient;
 
 class PostRepository
@@ -40,7 +41,7 @@ class PostRepository
      */
     public function storePost($payload = [])
     {
-        if (array_has($payload, 'file')) {
+        if (Arr::has($payload, 'file')) {
             unset($payload['media']);
 
             // Guzzle expects specific file object for multipart form.

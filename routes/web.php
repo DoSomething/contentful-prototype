@@ -1,103 +1,109 @@
 <?php
 
-/**
- * Set web routes for the application.
- *
- * @var \Illuminate\Routing\Router $router
- * @see \App\Providers\RouteServiceProvider
- */
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
 // Homepage
-$router->redirect('/', '/us');
+Route::redirect('/', '/us');
 
 if (config('feature-flags.new_homepage')) {
-    $router->view('/us', 'app');
+    Route::view('/us', 'app');
 } else {
-    $router->get('/us', 'HomePageController');
+    Route::get('/us', 'HomePageController');
 }
 
 // Authentication
-$router->get('/authorize', 'AuthController@getAuthorization')->name('authorize');
-$router->redirect('/auth/login', '/next/login', 302); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
-$router->redirect('/next/login', '/authorize', 302);
+Route::get('/authorize', 'AuthController@getAuthorization')->name('authorize');
+Route::redirect('/auth/login', '/next/login', 302); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
+Route::redirect('/next/login', '/authorize', 302);
 
-$router->get('/deauthorize', 'AuthController@getDeauthorization')->name('deauthorize');
-$router->redirect('/next/logout', '/deauthorize', 302);
+Route::get('/deauthorize', 'AuthController@getDeauthorization')->name('deauthorize');
+Route::redirect('/next/logout', '/deauthorize', 302);
 
 // Profile
-$router->redirect('/northstar/{id}', '/us/account');
-$router->view('/us/account/{clientRoute?}', 'app')
+Route::redirect('/northstar/{id}', '/us/account');
+Route::view('/us/account/{clientRoute?}', 'app')
     ->where('clientRoute', '.*')
     ->middleware('auth');
 
 // Campaigns index
 if (config('feature-flags.dynamic_explore_campaigns')) {
-    $router->view('us/campaigns', 'app');
+    Route::view('us/campaigns', 'app');
 } else {
-    $router->get('us/campaigns', 'CampaignController@index');
+    Route::get('us/campaigns', 'CampaignController@index');
 }
 
-$router->redirect('campaigns', 'us/campaigns');
+Route::redirect('campaigns', 'us/campaigns');
 
 // Redirect routes for campaign specific URLs containing "/pages/".
-$router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute = '') {
+Route::get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute = '') {
     return redirect('us/campaigns/'.$slug.'/'.$clientRoute);
 });
 
 // Campaign pages
-$router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')->where('clientRoute', '.*');
-$router->get('campaigns/{slug}/{clientRoute?}', function ($slug, $clientRoute = '') {
+Route::get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')->where('clientRoute', '.*');
+Route::get('campaigns/{slug}/{clientRoute?}', function ($slug, $clientRoute = '') {
     return redirect('us/campaigns/'.$slug.'/'.$clientRoute);
 });
 
 // Search
-$router->get('us/search', 'SearchController');
-$router->get('search', function () {
+Route::get('us/search', 'SearchController');
+Route::get('search', function () {
     return redirect('/us'.request()->getRequestUri());
 });
 
 // About pages
-$router->view('us/about/{slug}', 'app');
+Route::view('us/about/{slug}', 'app');
 
 // Categorized Pages (articles, facts)
 $categories = 'articles|facts|stories';
 
-$router->get('us/{category}/{slug}', 'CategorizedPageController@show')->where('category', $categories);
-$router->get('{category}/{slug}', function ($category, $slug) {
+Route::get('us/{category}/{slug}', 'CategorizedPageController@show')->where('category', $categories);
+Route::get('{category}/{slug}', function ($category, $slug) {
     return redirect('us/'.$category.'/'.$slug);
 })->where('category', $categories);
 
 // Referral Pages
-$router->get('us/join', 'ReferralPageController@show');
-$router->view('us/refer-friends', 'app')
+Route::get('us/join', 'ReferralPageController@show');
+Route::view('us/refer-friends', 'app')
     ->middleware('auth');
 
 // Blocks
-$router->view('us/blocks/{id}', 'app');
+Route::view('us/blocks/{id}', 'app');
 
 // Voter Registration Drives
-$router->get('us/my-voter-registration-drive', 'VoterRegistrationDrivePageController@show');
+Route::get('us/my-voter-registration-drive', 'VoterRegistrationDrivePageController@show');
 
 // Quiz Results
-$router->view('us/quiz-results/{id}', 'app');
+Route::view('us/quiz-results/{id}', 'app');
 
 // Pages
-$router->get('us/{slug}', 'PageController@show');
-$router->get('{slug}', function ($slug) {
+Route::get('us/{slug}', 'PageController@show');
+Route::get('{slug}', function ($slug) {
     return redirect('us/'.$slug);
 });
 
 // Cause Pages
-$router->view('us/causes/{slug}', 'app');
+Route::view('us/causes/{slug}', 'app');
 
 // Collection Pages
-$router->view('us/collections/{slug}', 'app');
+Route::view('us/collections/{slug}', 'app');
 
 // Cache
-$router->get('cache/{cacheId}', 'CacheController');
+Route::get('cache/{cacheId}', 'CacheController');
 
 // Unknown Route Fallback
 // Ensures we run through web middleware when rendering 404 pages.
-$router->fallback(function () {
+Route::fallback(function () {
     return response()->view('errors.404', [], 404);
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Log;
@@ -52,7 +53,7 @@ class PostsController extends Controller
 
         $data = $this->postRepository->storePost($request->all());
 
-        Log::debug('[Phoenix] PostsController@store  '.$request->input('type').' submission response data:', array_except($data, 'data.signup'));
+        Log::debug('[Phoenix] PostsController@store  '.$request->input('type').' submission response data:', Arr::except($data, 'data.signup'));
 
         return response()->json($data, 201);
     }

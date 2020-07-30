@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\RogueCampaignRepository;
 use Huddle\Zendesk\Facades\Zendesk as ZendeskClient;
@@ -39,7 +40,7 @@ class Zendesk
 
         Log::debug('[Phoenix] ZendeskTicketsController@store: Creating Zendesk ticket:', [
             'northstar_id' => $northstarId,
-            'question' => str_limit($question, 5000, '(...)'),
+            'question' => Str::limit($question, 5000, '(...)'),
         ]);
 
         $zendeskUser = $this->createOrUpdateZendeskUser($northstarId);

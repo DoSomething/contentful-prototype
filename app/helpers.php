@@ -1,6 +1,7 @@
 <?php
 
 use App\Entities\Campaign;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\HtmlString;
 use Contentful\Core\File\ImageOptions;
@@ -201,7 +202,7 @@ function readable_title($string)
  */
 function remember($key, $minutes, Closure $callback)
 {
-    return cache()->remember($key, $minutes, $callback);
+    return cache()->remember($key, now()->addMinutes($minutes), $callback);
 }
 
 /**
@@ -363,7 +364,7 @@ function get_metadata($entry)
     return [
         'title' => data_get($entry, 'metadata.fields.title', $entry->title),
         'type' => 'article',
-        'description' => str_limit($description, 160),
+        'description' => Str::limit($description, 160),
         'url' => $entryType === 'campaign' ? $baseUrl.'/campaigns/'.$entry->slug : $baseUrl.'/'.$entry->slug,
         'facebook_app_id' => config('services.analytics.facebook_id'),
         'image' => [
@@ -399,7 +400,7 @@ function metadata_fallback()
         ],
     ];
 
-    return array_get($HARDCODED_METADATA, request()->path());
+    return Arr::get($HARDCODED_METADATA, request()->path());
 }
 
 /**

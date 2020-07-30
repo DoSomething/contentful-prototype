@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use JsonSerializable;
+use Illuminate\Support\Arr;
 
 class TruncatedCampaign extends Campaign implements JsonSerializable
 {
@@ -28,7 +29,7 @@ class TruncatedCampaign extends Campaign implements JsonSerializable
                 'url' => get_image_url($this->coverImage),
                 'landscapeUrl' => get_image_url($this->coverImage, 'landscape'),
             ],
-            'actionText' => array_get($this->campaignSettings, 'actionText') ?: 'Join Us',
+            'actionText' => Arr::get($this->campaignSettings, 'actionText') ?: 'Join Us',
             'staffPick' => $this->staffPick,
             'cause' => $this->cause,
             'scholarshipAmount' => $this->scholarshipAmount,
