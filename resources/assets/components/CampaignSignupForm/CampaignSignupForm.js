@@ -97,24 +97,27 @@ const CampaignSignupForm = props => {
     <div className="my-3" data-testid="join-group-signup-form">
       <Card title="Join a group" className="rounded bordered">
         <div className="p-3">
+          <p className="text-sm text-gray-500 pt-3 md:pt-0">
+            Can&apos;t find your group?
+          </p>
+
+          <p className="text-sm text-gray-500 mt-0">
+            Email tej@dosomething.org for help.
+          </p>
+
           <GroupFinder
             context={{ campaignId, pageId }}
             groupType={groupType}
             onChange={handleGroupFinderChange}
           />
+
           <PrimaryButton
             attributes={{ 'data-testid': 'join-group-signup-button' }}
-            className={className}
+            className={`${className} py-2 md:py-3`}
             isDisabled={!groupId}
             onClick={handleSignup}
             text="Join Group"
           />
-          <p className="text-sm text-gray-500 pt-3 md:pt-0">
-            Can&apos;t find your group?
-          </p>
-          <p className="text-sm text-gray-500 mt-0">
-            Email tej@dosomething.org for help.
-          </p>
         </div>
       </Card>
     </div>
