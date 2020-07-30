@@ -236,7 +236,8 @@ const CertificateTemplate = ({ certificatePost }) => {
                     </View>
                   ) : null}
 
-                  <View>
+                  {/* Assigning width here to ensure that super long email addresses don't overflow the border. */}
+                  <View style={{ width: '60%' }}>
                     <Text style={styles.postDetailsTitle}>Email</Text>
                     <Text>{certificatePost.user.email}</Text>
                   </View>
