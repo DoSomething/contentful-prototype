@@ -44,11 +44,10 @@ function get_cache_url($prefix, $slug = null)
  */
 function get_contentful_url()
 {
-    $contentful = config('contentful');
-    $spaceId = $contentful['delivery.space'];
-    $envronment = $contentful['delivery.environment'];
+    $spaceId = config('contentful.delivery.space');
+    $environment = config('contentful.delivery.environment');
 
-    $environmentPath = $envronment !== 'master' ? 'environments/'.$envronment.'/' : '';
+    $environmentPath = $environment !== 'master' ? 'environments/'.$environment.'/' : '';
 
     return config('services.contentful.url').'/spaces/'.$spaceId.'/'.$environmentPath;
 }

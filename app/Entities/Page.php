@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use JsonSerializable;
+use Illuminate\Support\Str;
 
 class Page extends Entity implements JsonSerializable
 {
@@ -16,7 +17,7 @@ class Page extends Entity implements JsonSerializable
     {
         $parsedBlocks = parent::parseBlocks($blocks);
 
-        if (ends_with(rtrim($this->slug, '/'), 'community')) {
+        if (Str::endsWith(rtrim($this->slug, '/'), 'community')) {
             return $parsedBlocks->reverse()->values();
         }
 
