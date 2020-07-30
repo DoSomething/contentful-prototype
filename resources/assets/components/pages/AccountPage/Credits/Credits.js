@@ -12,9 +12,12 @@ const Credits = () => {
         <SectionHeader underlined title="Volunteer Credits" />
         <p>
           Earn volunteer credits through volunteering. Your certificates will
-          appear here within 4 days of you completing a campaign, after our
-          staff is able to verify your work! Learn more about our volunteer
-          credit program.
+          appear here within 14 days of you completing a campaign, after our
+          staff is able to verify your work!{' '}
+          <a href="/us/about/volunteer-hours">
+            Learn more about our volunteer credit program
+          </a>
+          .
         </p>
       </div>
 
