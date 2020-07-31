@@ -172,6 +172,7 @@ export const mockUserResponse = {
   id: '123',
   firstName: 'Brent',
   lastName: 'Sakkoy',
+  email: 'brent.sakkoy@yahoo.gov',
 };
 
 // Mocked paginatedPost data should be parsed into the following result:

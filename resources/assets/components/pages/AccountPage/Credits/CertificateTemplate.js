@@ -47,6 +47,7 @@ export const certificatePostType = PropTypes.shape({
   user: PropTypes.shape({
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
   }),
 });
 
@@ -227,12 +228,20 @@ const CertificateTemplate = ({ certificatePost }) => {
                   </View>
                 </View>
 
-                {certificatePost.impactLabel ? (
-                  <View style={{ marginTop: 10 }}>
-                    <Text style={styles.postDetailsTitle}>Impact</Text>
-                    <Text>{certificatePost.impactLabel}</Text>
+                <View style={[styles.flex, { marginTop: 10 }]}>
+                  {certificatePost.impactLabel ? (
+                    <View style={{ width: '40%' }}>
+                      <Text style={styles.postDetailsTitle}>Impact</Text>
+                      <Text>{certificatePost.impactLabel}</Text>
+                    </View>
+                  ) : null}
+
+                  {/* Assigning width here to ensure that super long email addresses don't overflow the border. */}
+                  <View style={{ width: '60%' }}>
+                    <Text style={styles.postDetailsTitle}>Email</Text>
+                    <Text>{certificatePost.user.email}</Text>
                   </View>
-                ) : null}
+                </View>
               </View>
             </View>
           </View>

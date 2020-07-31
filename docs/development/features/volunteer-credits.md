@@ -37,7 +37,7 @@ Posts pending review will display a grayed out 'Pending' button.
 
 The certificate will include the following data:
 
-- Members first and last name
+- Members first name, last name, and email address
 - Campaign title & CTA
 - Completed Date
 - Estimated volunteer hours

@@ -57,6 +57,7 @@ export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
       id
       firstName
       lastName
+      email
     }
   }
 `;
