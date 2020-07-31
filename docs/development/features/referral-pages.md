@@ -11,8 +11,7 @@ We commonly use these terms (in the business, and in code) when describing this 
 
 Users will see a Referral Page Banner after signing up for any campaign configured for this feature, which refers them to their Alpha Referral Page.
 
-When the `DS_ENABLE_REFER_FRIENDS_INCENTIVE` ENV variable is set to `true`, incentive-specific RAF copy is displayed across all referral pages, alluding to a \$10 gift card reward for the Alpha & Beta. Otherwise incentive-less RAF copy is displayed.
-
+When the 'referral incentive' feature flag is enabled (`DS_ENABLE_REFER_FRIENDS_INCENTIVE` ENV variable is set to `true`), incentive-specific RAF copy is displayed across all referral pages, alluding to a \$10 gift card reward for the Alpha & Beta. Otherwise incentive-less RAF copy is displayed.
 
 ## Details
 
@@ -23,6 +22,10 @@ To opt a campaign into the referral feature, its `displayReferralPage` field sho
 After signing up for the campaign, users will see a Referral Page Banner within the signup Affirmation, which links to their Alpha Referral Page.
 
 ![Referral Page Banner Example](../../.gitbook/assets/referral-page-banner.png)
+
+If the 'referral incentive' feature flag is enabled, and the user is a beta referral (they have a `referrer_user_id` query parameter in the URL), we display targeted copy in the banner instead of the CTA.
+
+![Beta Referral Page Banner Example](../../.gitbook/assets/beta-referral-page-banner.png)
 
 ### Campaign Alpha Referral Page
 
