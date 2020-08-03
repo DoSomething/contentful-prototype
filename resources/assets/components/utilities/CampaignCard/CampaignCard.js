@@ -40,7 +40,10 @@ const CampaignCard = ({ campaign }) => {
   ]);
 
   return (
-    <article className="flex flex-col h-full relative text-left">
+    <article
+      className="flex flex-col h-full relative text-left"
+      data-testid="campaign-card"
+    >
       <a className="block" href={path}>
         <img
           alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
