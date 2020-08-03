@@ -2,6 +2,10 @@
 
 The `PaginatedCampaignGallery` component will display a paginated gallery of 'website' campaigns queried via GraphQL.
 
+## Hide Campaigns
+
+If the `DS_ENABLE_HIDE_CAMPAIGNS` feature flag is enabled, Group Campaigns (Campaigns with a `group_type_id` field assigned), will not be displayed in the gallery. Additionally, a custom list of Campaign IDs can be assigned via the `DS_HIDE_CAMPAIGN_IDS` site config variable, and Campaigns with matching IDs also be rejected.
+
 ## Usage Instructions
 
 The `PaginatedCampaignGallery` accepts a list of variables used to optionally filter and sort the campaigns:
