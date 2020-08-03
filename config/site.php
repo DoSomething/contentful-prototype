@@ -15,4 +15,5 @@ return [
     */
 
     'default_referral_campaign_id' => env('DS_DEFAULT_REFERRAL_CAMPAIGN_ID'),
+    'hide_campaign_ids' => explode(',', env('DS_HIDE_CAMPAIGN_IDS')),
 ];

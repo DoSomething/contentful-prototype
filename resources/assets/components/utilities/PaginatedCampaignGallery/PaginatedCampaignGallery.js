@@ -8,12 +8,12 @@ import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
-import { updateQuery } from '../../../helpers';
 import ElementButton from '../Button/ElementButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
 import { campaignCardFragment } from '../CampaignCard/CampaignCard';
+import { featureFlag, siteConfig, updateQuery } from '../../../helpers';
 
 const PAGINATED_CAMPAIGNS_QUERY = gql`
   query PaginatedCampaignQuery(
@@ -35,6 +35,7 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
         cursor
         node {
           id
+          groupTypeId
           campaignWebsite {
             ...CampaignCard
           }
@@ -78,8 +79,22 @@ const PaginatedCampaignGallery = ({
     });
   };
 
+  const campaigns = get(data, 'campaigns.edges', []);
+
+  // Optionally, exclude any Group Campaigns, or Campaigns included in our list of Campaign ID's to hide from website discovery.
+  const filteredCampaigns = featureFlag('hide_campaigns')
+    ? campaigns.filter(
+        campaign =>
+          !get(campaign, 'node.groupTypeId') &&
+          !siteConfig('hide_campaign_ids').includes(
+            // Our filter will be a list of Strings but the Campaign IDs will be integers.
+            String(get(campaign, 'node.id')),
+          ),
+      )
+    : campaigns;
+
   // Parse out the nested campaign website nodes so we can pass them to the Gallery Block.
-  const campaigns = get(data, 'campaigns.edges', []).map(edge =>
+  const campaignWebsites = filteredCampaigns.map(edge =>
     get(edge, 'node.campaignWebsite'),
   );
 
@@ -102,7 +117,7 @@ const PaginatedCampaignGallery = ({
   return (
     <div className={className} data-ref="paginated-campaign-gallery">
       <GalleryBlock
-        blocks={campaigns}
+        blocks={campaignWebsites}
         galleryType="CAMPAIGN"
         itemsPerRow={itemsPerRow}
         imageAlignment="TOP"
