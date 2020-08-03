@@ -43,12 +43,6 @@ describe('Site Wide Banner', () => {
     }
   });
 
-  it('Site Wide Banner is not displayed on any pages when data-test=site-wide-banner is not visible', () => {
-    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
-      'not.exist',
-    );
-  });
-
   it('The Site Wide Banner is not displayed on the beta voter registration (OVRD) drive page', () => {
     const user = userFactory();
 
@@ -106,12 +100,14 @@ describe('Site Wide Banner', () => {
   it('The Site Wide Banner CTA URL is correct for an unauthenticated user', () => {
     cy.anonVisitCampaign(exampleCampaign);
 
-    cy.findByTestId('sitewide-banner-button').should('have.length', 1);
-    cy.findByTestId('sitewide-banner-button').should(
-      'have.attr',
-      'href',
-      'https://vote.dosomething.org/?r=source:web,source_details:hellobar',
-    );
+    if ('#banner-portal > .wrapper > [data-test=site-wide-banner]') {
+      cy.findByTestId('sitewide-banner-button').should('have.length', 1);
+      cy.findByTestId('sitewide-banner-button').should(
+        'have.attr',
+        'href',
+        'https://vote.dosomething.org/?r=source:web,source_details:hellobar',
+      );
+    }
   });
 
   /** @test */
@@ -119,13 +115,16 @@ describe('Site Wide Banner', () => {
     const user = userFactory();
 
     // Log in & visit the campaign pitch page:
-    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
-    cy.findByTestId('sitewide-banner-button').should('have.length', 1);
-    cy.findByTestId('sitewide-banner-button').should(
-      'have.attr',
-      'href',
-      `https://vote.dosomething.org/?r=user:${user.id},source:web,source_details:hellobar`,
-    );
+    if ('#banner-portal > .wrapper > [data-test=site-wide-banner]') {
+      cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+
+      cy.findByTestId('sitewide-banner-button').should('have.length', 1);
+      cy.findByTestId('sitewide-banner-button').should(
+        'have.attr',
+        'href',
+        `https://vote.dosomething.org/?r=user:${user.id},source:web,source_details:hellobar`,
+      );
+    }
   });
 });

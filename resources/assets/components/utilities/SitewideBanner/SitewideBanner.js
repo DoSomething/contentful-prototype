@@ -8,7 +8,7 @@ import excludedPaths from './config';
 import SitewideBannerContent from './SitewideBannerContent';
 
 const VOTER_REGISTRATION_STATUS = gql`
-  query VoterRegBadgeQuery($userId: String!) {
+  query VoterRegSiteWideBannerQuery($userId: String!) {
     user(id: $userId) {
       id
       voterRegistrationStatus
