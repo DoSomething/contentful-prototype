@@ -94,7 +94,7 @@ const PaginatedCampaignGallery = ({
     : campaigns;
 
   // Parse out the nested campaign website nodes so we can pass them to the Gallery Block.
-  const campagnWebsites = filteredCampaigns.map(edge =>
+  const campaignWebsites = filteredCampaigns.map(edge =>
     get(edge, 'node.campaignWebsite'),
   );
 
