@@ -25,7 +25,7 @@ trait QueriesContentful
     {
         $query = (new Query)
                 ->setContentType($type)
-                ->setInclude(arr::get($options, 'includeDepth', 0))
+                ->setInclude(Arr::get($options, 'includeDepth', 0))
                 ->orderBy('sys.updatedAt', true)
                 ->setLimit(Arr::get($options, 'limit'))
                 ->setSkip(Arr::get($options, 'skip'))
