@@ -5,6 +5,18 @@ import faker from 'faker';
 import { userFactory } from '../fixtures/user';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
+const exampleRegisteredUser = {
+  id: '3401458',
+  displayName: 'Michael',
+  voterRegistrationStatus: 'REGISTRATION_COMPLETE',
+};
+
+const exampleUnregisteredUser = {
+  id: '3401458',
+  displayName: 'Michael',
+  voterRegistrationStatus: 'UNREGISTERED',
+};
+
 describe('Site Wide Banner', () => {
   beforeEach(() => {
     cy.configureMocks();
@@ -42,8 +54,7 @@ describe('Site Wide Banner', () => {
 
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
     cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
-      'have.length',
-      1,
+      'not.exist',
     );
   });
 
