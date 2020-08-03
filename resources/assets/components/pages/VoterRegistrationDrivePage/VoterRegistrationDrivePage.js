@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { css } from '@emotion/core';
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 
@@ -49,6 +50,13 @@ const VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
         name
       }
     }
+  }
+`;
+
+const linkStyles = css`
+  .markdown a {
+    color: white;
+    font-weight: 700;
   }
 `;
 
@@ -112,7 +120,7 @@ const VoterRegistrationDrivePage = () => {
   return (
     <>
       <SiteNavigationContainer />
-      <main data-test="voter-registration-drive-page">
+      <main css={linkStyles} data-test="voter-registration-drive-page">
         <VoterRegistrationDrivePageBanner
           campaignInfo={data.campaignWebsite}
           group={data.group}
