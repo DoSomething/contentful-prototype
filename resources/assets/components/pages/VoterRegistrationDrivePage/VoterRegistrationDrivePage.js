@@ -3,8 +3,8 @@ import { css } from '@emotion/core';
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 
-import { gqlVariables } from './config';
 import ErrorPage from '../ErrorPage';
+import { gqlVariables } from './config';
 import NotFoundPage from '../NotFoundPage';
 import Modal from '../../utilities/Modal/Modal';
 import Placeholder from '../../utilities/Placeholder';
