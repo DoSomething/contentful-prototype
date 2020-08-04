@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 
 import { votingReasons } from './config';
 import { query } from '../../../helpers';
@@ -55,7 +56,15 @@ const VoterRegistrationDrivePageBanner = ({ campaignInfo, group, user }) => {
   return (
     <>
       <div className="clearfix bg-gray-100">
-        <div className="base-12-grid bg-blurple-400 cover-image pt-8 pb-3 md:py-6">
+        <div
+          css={css`
+            background-image: url('./VoterReg_Patterns-01.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+          `}
+          className="base-12-grid bg-blurple-400 cover-image pt-8 pb-3 md:py-6"
+        >
           <div className="grid-wide-7/10 mb-6">
             <CampaignHeader
               title={title}
