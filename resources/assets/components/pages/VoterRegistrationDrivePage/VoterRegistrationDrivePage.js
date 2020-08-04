@@ -127,12 +127,13 @@ const VoterRegistrationDrivePage = () => {
           modalToggle={modalToggle}
           user={data.user}
         />
-        <div className="pb-6 base-12-grid bg-gray-100">
+        <div className="py-6 base-12-grid bg-gray-100">
           <ContentfulEntryLoader
             id={config.startVoterRegistration.contentBlockId}
-            className="grid-wide clearfix wrapper"
+            className="grid-wide-7/10 clearfix wrapper"
           />
           <StartVoterRegistrationForm
+            className="grid-wide-3/10"
             campaignId={campaignId}
             contextSource="beta-voter-registration-drive-page"
             groupId={groupId}
