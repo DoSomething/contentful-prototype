@@ -5,18 +5,6 @@ import faker from 'faker';
 import { userFactory } from '../fixtures/user';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
-const exampleRegisteredUser = {
-  id: '3401458',
-  displayName: 'Michael',
-  voterRegistrationStatus: 'REGISTRATION_COMPLETE',
-};
-
-const exampleUnregisteredUser = {
-  id: '3401458',
-  displayName: 'Michael',
-  voterRegistrationStatus: 'UNREGISTERED',
-};
-
 describe('Site Wide Banner', () => {
   beforeEach(() => {
     cy.configureMocks();
@@ -157,12 +145,13 @@ describe('Site Wide Banner', () => {
     if ('#banner-portal > .wrapper > [data-test=site-wide-banner]') {
       cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
-      cy.findByTestId('sitewide-banner-button').should('have.length', 1);
-      cy.findByTestId('sitewide-banner-button').should(
-        'have.attr',
-        'href',
-        `https://vote.dosomething.org/?r=user:${user.id},source:web,source_details:hellobar`,
-      );
-    }
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+
+    cy.findByTestId('sitewide-banner-button').should('have.length', 1);
+    cy.findByTestId('sitewide-banner-button').should(
+      'have.attr',
+      'href',
+      `https://vote.dosomething.org/?r=user:${user.id},source:web,source_details:hellobar`,
+    );
   });
 });
