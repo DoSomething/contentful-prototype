@@ -5,18 +5,6 @@ import faker from 'faker';
 import { userFactory } from '../fixtures/user';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
-const exampleRegisteredUser = {
-  id: '3401458',
-  displayName: 'Michael',
-  voterRegistrationStatus: 'REGISTRATION_COMPLETE',
-};
-
-const exampleUnregisteredUser = {
-  id: '3401458',
-  displayName: 'Michael',
-  voterRegistrationStatus: 'UNREGISTERED',
-};
-
 describe('Site Wide Banner', () => {
   beforeEach(() => {
     cy.configureMocks();
@@ -41,6 +29,37 @@ describe('Site Wide Banner', () => {
         1,
       );
     }
+  });
+
+  it('The Site Wide Banner is displayed on campaign pages for authenticated users who are not registered to vote', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('VoterRegSiteWideBannerQuery', {
+      user: {
+        voterRegistrationStatus: 'UNREGISTERED',
+      },
+    });
+
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
+      'have.length',
+      1,
+    );
+  });
+
+  it('The Site Wide Banner is not displayed on campaign pages for authenticated users who are registered to vote', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('VoterRegSiteWideBannerQuery', {
+      user: {
+        voterRegistrationStatus: 'REGISTRATION_COMPLETE',
+      },
+    });
+
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
+      'not.exist',
+    );
   });
 
   it('The Site Wide Banner is not displayed on the beta voter registration (OVRD) drive page', () => {
@@ -116,15 +135,19 @@ describe('Site Wide Banner', () => {
 
     // Log in & visit the campaign pitch page:
 
-    if ('#banner-portal > .wrapper > [data-test=site-wide-banner]') {
-      cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+    cy.mockGraphqlOp('VoterRegSiteWideBannerQuery', {
+      user: {
+        voterRegistrationStatus: 'UNREGISTERED',
+      },
+    });
 
-      cy.findByTestId('sitewide-banner-button').should('have.length', 1);
-      cy.findByTestId('sitewide-banner-button').should(
-        'have.attr',
-        'href',
-        `https://vote.dosomething.org/?r=user:${user.id},source:web,source_details:hellobar`,
-      );
-    }
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+
+    cy.findByTestId('sitewide-banner-button').should('have.length', 1);
+    cy.findByTestId('sitewide-banner-button').should(
+      'have.attr',
+      'href',
+      `https://vote.dosomething.org/?r=user:${user.id},source:web,source_details:hellobar`,
+    );
   });
 });

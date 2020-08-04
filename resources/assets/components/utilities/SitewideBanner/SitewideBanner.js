@@ -1,10 +1,11 @@
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import { createPortal } from 'react-dom';
-import React, { useRef, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import React, { useRef, useEffect } from 'react';
 
-import { getUserId } from '../../../helpers/auth';
 import excludedPaths from './config';
+import { getUserId } from '../../../helpers/auth';
 import SitewideBannerContent from './SitewideBannerContent';
 
 const VOTER_REGISTRATION_STATUS = gql`
@@ -38,11 +39,12 @@ const isExcludedPath = pathname => {
 };
 
 const SitewideBanner = props => {
-  const options = { variables: { userId: getUserId() } };
+  const userId = getUserId();
+  const options = { variables: { userId }, skip: !userId };
   const { data } = useQuery(VOTER_REGISTRATION_STATUS, options);
 
   const unregistered = shouldDisplayRegistrationBanner.includes(
-    data ? data.user.voterRegistrationStatus : {},
+    get(data, 'user.voterRegistrationStatus'),
   );
 
   const usePortal = id => {
@@ -62,7 +64,7 @@ const SitewideBanner = props => {
 
   const target = usePortal('banner-portal');
 
-  return !isExcludedPath(window.location.pathname) && unregistered
+  return !isExcludedPath(window.location.pathname) && (!userId || unregistered)
     ? createPortal(children, target)
     : null;
 };
