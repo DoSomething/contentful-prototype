@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import { votingReasons } from './config';
+import backgroundVrImage from './VoterReg_Patterns-01.png';
 import { query } from '../../../helpers';
 import GroupTypeLink from './GroupTypeLink';
 import ReferralsInfo from './ReferralsInfo';
@@ -58,7 +59,7 @@ const VoterRegistrationDrivePageBanner = ({ campaignInfo, group, user }) => {
       <div className="clearfix bg-gray-100">
         <div
           css={css`
-            background-image: url('./VoterReg_Patterns-01.png');
+            background-image: url(${backgroundVrImage});
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
