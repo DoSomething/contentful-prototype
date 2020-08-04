@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
-import PlaceholderText from '../../utilities/PlaceholderText/PlaceholderText';
 
 const GROUPS_CAMPAIGN_QUERY = gql`
   query GroupsCampaignQuery($groupTypeId: Int!, $causes: [String]) {
