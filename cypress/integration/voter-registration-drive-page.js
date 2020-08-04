@@ -152,10 +152,6 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.findByTestId('campaign-header-subtitle').contains(
       `${user.firstName} wants you to register to vote!`,
     );
-    cy.get('[data-test=voter-registration-drive-page-cover-image]').should(
-      'have.length',
-      1,
-    );
     cy.findByTestId('campaign-info-block-container').should('have.length', 1);
     cy.findByTestId('voter-registration-drive-page-referrals-info').should(
       'have.length',
