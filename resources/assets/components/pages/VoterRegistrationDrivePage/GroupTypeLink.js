@@ -55,9 +55,7 @@ const GroupTypeLink = ({ id, name }) => {
         <ErrorBlock error={error || campaignWebsiteError} />
       ) : (
         <div className="mt-3">
-          {loading || campaignWebsiteLoading ? (
-            <PlaceholderText size="medium" />
-          ) : (
+          {loading || campaignWebsiteLoading ? null : (
             <a
               href={groupCampaignUrl}
               target="_blank"

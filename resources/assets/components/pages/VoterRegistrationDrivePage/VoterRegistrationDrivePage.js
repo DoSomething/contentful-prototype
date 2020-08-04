@@ -127,22 +127,21 @@ const VoterRegistrationDrivePage = () => {
           modalToggle={modalToggle}
           user={data.user}
         />
+        <div className="pb-6 base-12-grid bg-gray-100">
+          <ContentfulEntryLoader
+            id={config.startVoterRegistration.contentBlockId}
+            className="grid-wide clearfix wrapper"
+          />
+          <StartVoterRegistrationForm
+            campaignId={campaignId}
+            contextSource="beta-voter-registration-drive-page"
+            groupId={groupId}
+            referrerUserId={referrerUserId}
+            sourceDetails="onlinedrivereferral"
+          />
+        </div>
         <div className="bg-white base-12-grid py-3 md:py-6">
           <div className="mx-auto py-6 grid-wide">
-            <ContentfulEntryLoader
-              id={config.startVoterRegistration.contentBlockId}
-              className="grid-wide clearfix wrapper pb-3"
-            />
-            <div className="pb-6">
-              <StartVoterRegistrationForm
-                campaignId={campaignId}
-                className="md:w-3/5"
-                contextSource="beta-voter-registration-drive-page"
-                groupId={groupId}
-                referrerUserId={referrerUserId}
-                sourceDetails="onlinedrivereferral"
-              />
-            </div>
             <ContentfulEntryLoader
               id={config.faq.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import React, { useState } from 'react';
 
-import Card from '../Card/Card';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -46,75 +45,70 @@ const StartVoterRegistrationForm = ({
 
   return (
     <>
-      <Card
+      <form
         attributes={{ 'data-testid': 'voter-registration-form-card' }}
-        className={classnames(className, 'bordered rounded')}
-        title="Register online to vote"
+        action="https://register.rockthevote.com/registrants/new"
+        method="GET"
+        onSubmit={handleSubmit}
+        className={classnames('form p-3', className)}
       >
-        <form
-          action="https://register.rockthevote.com/registrants/new"
-          method="GET"
-          onSubmit={handleSubmit}
-          className="form p-3"
-        >
-          <input type="hidden" name="partner" value="37187" />
+        <input type="hidden" name="partner" value="37187" />
 
-          <input
-            type="hidden"
-            name="source"
-            value={getTrackingSource(sourceDetails, referrerUserId, groupId)}
-            data-testid="voter-registration-tracking-source"
-          />
+        <input
+          type="hidden"
+          name="source"
+          value={getTrackingSource(sourceDetails, referrerUserId, groupId)}
+          data-testid="voter-registration-tracking-source"
+        />
 
-          <div className="form-item stretched">
-            <label htmlFor="email" className="font-bold">
-              Email
-              <input
-                className="text-field"
-                required
-                type="email"
-                name="email_address"
-                value={email}
-                onChange={handleChange}
-                data-testid="voter-registration-email-field"
-              />
-            </label>
-          </div>
+        <div className="form-item stretched">
+          <label htmlFor="email" className="font-bold">
+            Email
+            <input
+              className="text-field"
+              required
+              type="email"
+              name="email_address"
+              value={email}
+              onChange={handleChange}
+              data-testid="voter-registration-email-field"
+            />
+          </label>
+        </div>
 
-          <div className="form-item stretched">
-            <label htmlFor="zip" className="font-bold">
-              Zip Code
-              <input
-                className="text-field"
-                type="text"
-                name="home_zip_code"
-                value={zip}
-                onChange={handleChange}
-                required
-                pattern="^\s*?\d{5}(?:[-\s]\d{4})?\s*?$"
-                data-testid="voter-registration-zip-field"
-              />
-            </label>
-          </div>
+        <div className="form-item stretched">
+          <label htmlFor="zip" className="font-bold">
+            Zip Code
+            <input
+              className="text-field"
+              type="text"
+              name="home_zip_code"
+              value={zip}
+              onChange={handleChange}
+              required
+              pattern="^\s*?\d{5}(?:[-\s]\d{4})?\s*?$"
+              data-testid="voter-registration-zip-field"
+            />
+          </label>
+        </div>
 
-          <PrimaryButton
-            attributes={{ 'data-testid': 'voter-registration-submit-button' }}
-            className="w-full"
-            isDisabled={isDisabled}
-            text={
-              submitted ? (
-                <div className="flex justify-center">
-                  <Spinner />
-                  <span className="pl-1 pt-1">Processing...</span>
-                </div>
-              ) : (
-                'Start Your Registration'
-              )
-            }
-            type="submit"
-          />
-        </form>
-      </Card>
+        <PrimaryButton
+          attributes={{ 'data-testid': 'voter-registration-submit-button' }}
+          className="w-full"
+          isDisabled={isDisabled}
+          text={
+            submitted ? (
+              <div className="flex justify-center">
+                <Spinner />
+                <span className="pl-1 pt-1">Processing...</span>
+              </div>
+            ) : (
+              'Start Your Registration'
+            )
+          }
+          type="submit"
+        />
+      </form>
     </>
   );
 };

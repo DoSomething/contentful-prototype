@@ -56,33 +56,35 @@ const VoterRegistrationDrivePageBanner = ({ campaignInfo, group, user }) => {
     <>
       <div className="clearfix bg-gray-100">
         <div className="base-12-grid bg-blurple-400 cover-image pt-8 pb-3 md:py-6">
-          <CampaignHeader
-            title={title}
-            subtitle={`${firstName} wants you to register to vote!`}
-            textColor="text-white"
-          />
-          <div className="grid-wide-7/10 mb-6 markdown">
-            <blockquote className="text-white italic markdown">
-              <p data-test="voter-registration-drive-page-quote-text">
-                Voting is one of the most impactful ways to make a difference on
-                the causes that matter to us{formatQuote()}. Take 2 minutes and
-                register to vote today!
-              </p>
+          <div className="grid-wide-7/10 mb-6">
+            <CampaignHeader
+              title={title}
+              subtitle={`${firstName} wants you to register to vote!`}
+              textColor="text-white"
+            />
+            <div className="markdown">
+              <blockquote className="text-white italic">
+                <p data-test="voter-registration-drive-page-quote-text">
+                  Voting is one of the most impactful ways to make a difference
+                  on the causes that matter to us{formatQuote()}. Take 2 minutes
+                  and register to vote today!
+                </p>
 
-              <p data-test="voter-registration-drive-page-quote-byline">
-                - {firstName}
-              </p>
-            </blockquote>
-            {group ? (
-              <GroupTypeLink
-                id={group.groupType.id}
-                name={group.groupType.name}
-              />
-            ) : null}
+                <p data-test="voter-registration-drive-page-quote-byline">
+                  - {firstName}
+                </p>
+              </blockquote>
+              {group ? (
+                <GroupTypeLink
+                  id={group.groupType.id}
+                  name={group.groupType.name}
+                />
+              ) : null}
+            </div>
           </div>
 
           {group ? (
-            <div className="grid-wide-3/10 flex items-end mb-6 xxl:row-start-1 xxl:row-span-3">
+            <div className="grid-wide-3/10 flex items-center xxl:row-start-1 xxl:row-span-3">
               <ReferralsInfo group={group} user={user} />
             </div>
           ) : null}
