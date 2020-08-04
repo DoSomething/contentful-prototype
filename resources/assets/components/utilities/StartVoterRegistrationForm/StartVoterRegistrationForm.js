@@ -83,7 +83,7 @@ const StartVoterRegistrationForm = ({
           <div className="form-item stretched">
             <input
               className="text-field"
-              aria-label="Email"
+              aria-label="Zip Code"
               type="text"
               name="home_zip_code"
               value={zip}
