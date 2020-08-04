@@ -152,24 +152,15 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     cy.findByTestId('campaign-header-subtitle').contains(
       `${user.firstName} wants you to register to vote!`,
     );
-    cy.findByTestId('campaign-info-block-container').should('have.length', 1);
     cy.findByTestId('voter-registration-drive-page-referrals-info').should(
       'have.length',
       0,
     );
-    cy.contains('Win A Scholarship');
-    cy.findByTestId('campaign-info-block-container')
-      .get('article > dl > dd.campaign-info__scholarship')
-      .contains(`$1,500`);
-    cy.contains('button', 'View Scholarship Details');
-    cy.contains(`April 25th, 2022`);
-    cy.get('[data-test=voter-registration-drive-page-blurb]').contains(
-      `150,000+ young people have registered to vote via DoSomething. After you register, share with your friends to enter to win a $1,500 scholarship!`,
+    cy.findByTestId('voter-registration-drive-page-group-campaign-link').should(
+      'have.length',
+      0,
     );
-    cy.findByTestId('voter-registration-form-card').should('have.length', 1);
-    cy.findByTestId('voter-registration-form-card').findByText(
-      'Register online to vote',
-    );
+    cy.findByTestId('voter-registration-form').should('have.length', 1);
     cy.get('[data-test=visit-voter-registration-campaign-button]')
       .should('have.length', 1)
       .should('have.attr', 'href', mockUrl);
@@ -327,7 +318,7 @@ describe('Voter Registration Drive (OVRD) Page', () => {
     );
     cy.findByTestId('voter-registration-drive-page-group-campaign-link').should(
       'have.length',
-      0,
+      1,
     );
     cy.findByTestId('group-progress')
       .get('span')
