@@ -2,7 +2,6 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
 
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
@@ -22,11 +21,6 @@ const GROUPS_CAMPAIGN_WEBSITE_QUERY = gql`
       url
     }
   }
-`;
-
-const groupsLink = css`
-  color: white;
-  font-weight: 700 !important;
 `;
 
 const GroupTypeLink = ({ id, name }) => {
@@ -66,7 +60,7 @@ const GroupTypeLink = ({ id, name }) => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="voter-registration-drive-page-group-campaign-link"
-              css={groupsLink}
+              style={{ color: 'white', fontWeight: 700 }}
             >
               What&apos;s {name}?
             </a>
