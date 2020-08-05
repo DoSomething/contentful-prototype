@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import { votingReasons } from './config';
-import backgroundVrImage from './VoterReg_Patterns-01.png';
 import { query } from '../../../helpers';
 import GroupTypeLink from './GroupTypeLink';
 import ReferralsInfo from './ReferralsInfo';
+import backgroundVrImage from './VoterReg_Patterns-01.png';
 import CampaignHeader from '../../utilities/CampaignHeader';
 
 const VoterRegistrationDrivePageBanner = ({ campaignInfo, group, user }) => {
