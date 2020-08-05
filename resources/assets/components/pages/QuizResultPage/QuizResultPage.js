@@ -65,12 +65,12 @@ const QuizResultPage = ({ id }) => {
       <main>
         <article data-testid="quiz-result-page">
           <header role="banner" className="base-12-grid bg-blurple-500 py-3">
-            <div className="col-span-4 md:col-span-3 bg-bottom md:col-start-2">
+            <div className="col-span-4 lg:col-span-3 bg-bottom lg:col-start-2">
               {affiliateLogo ? (
                 <ContentfulAsset id={affiliateLogo.id} width={375} />
               ) : null}
             </div>
-            <div className="col-span-4 md:col-span-7 md:my-auto">
+            <div className="col-span-4 lg:col-span-7 lg:my-auto">
               <h1 className="font-normal font-league-gothic color-white uppercase">
                 <span className="border-b-4 border-solid border-yellow-400 inline-block text-4xl">
                   {linkBlockTitle}
@@ -85,8 +85,6 @@ const QuizResultPage = ({ id }) => {
             <img className="m-auto" src={triangle} alt="triangle" />
           </div>
           <div className="bg-white base-12-grid py-3 md:py-6">
-            <ContentfulEntryLoader id={galleryBlockId} className="grid-full" />
-
             {additionalContent && additionalContent.sourceDetails ? (
               <div
                 className="grid-full grid-main py-3 md:py-6"
@@ -113,6 +111,8 @@ const QuizResultPage = ({ id }) => {
                 />
               </div>
             ) : null}
+
+            <ContentfulEntryLoader id={galleryBlockId} className="grid-full" />
           </div>
         </article>
       </main>
