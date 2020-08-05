@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 
 export const ActionStatsBlockFragment = gql`
   fragment ActionStatsBlockFragment on ActionStatsBlock {
-    actionId
+    filterByActionId: actionId
   }
 `;
 
-const ActionStatsBlock = ({ actionId }) => (
+const ActionStatsBlock = ({ filterByActionId }) => (
   <>
-    <h1>{actionId}</h1>
+    <h1>{filterByActionId}</h1>
   </>
 );
 
 ActionStatsBlock.propTypes = {
-  actionId: PropTypes.number.isRequired,
+  filterByActionId: PropTypes.number.isRequired,
 };
 
 export default ActionStatsBlock;
