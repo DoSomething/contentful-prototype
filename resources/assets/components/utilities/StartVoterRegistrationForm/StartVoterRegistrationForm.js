@@ -48,14 +48,14 @@ const StartVoterRegistrationForm = ({
     <>
       <Card
         attributes={{ 'data-testid': 'voter-registration-form-card' }}
-        className={classnames(className, 'bordered rounded')}
-        title="Register online to vote"
+        className={classnames(className, 'bg-gray-100 border-none')}
       >
         <form
+          data-testid="voter-registration-form"
           action="https://register.rockthevote.com/registrants/new"
           method="GET"
           onSubmit={handleSubmit}
-          className="form p-3"
+          className={classnames('form p-3', className)}
         >
           <input type="hidden" name="partner" value="37187" />
 
@@ -67,34 +67,32 @@ const StartVoterRegistrationForm = ({
           />
 
           <div className="form-item stretched">
-            <label htmlFor="email" className="font-bold">
-              Email
-              <input
-                className="text-field"
-                required
-                type="email"
-                name="email_address"
-                value={email}
-                onChange={handleChange}
-                data-testid="voter-registration-email-field"
-              />
-            </label>
+            <input
+              className="text-field"
+              required
+              aria-label="Email"
+              type="email"
+              name="email_address"
+              value={email}
+              onChange={handleChange}
+              data-testid="voter-registration-email-field"
+              placeholder="Email"
+            />
           </div>
 
           <div className="form-item stretched">
-            <label htmlFor="zip" className="font-bold">
-              Zip Code
-              <input
-                className="text-field"
-                type="text"
-                name="home_zip_code"
-                value={zip}
-                onChange={handleChange}
-                required
-                pattern="^\s*?\d{5}(?:[-\s]\d{4})?\s*?$"
-                data-testid="voter-registration-zip-field"
-              />
-            </label>
+            <input
+              className="text-field"
+              aria-label="Zip Code"
+              type="text"
+              name="home_zip_code"
+              value={zip}
+              onChange={handleChange}
+              required
+              pattern="^\s*?\d{5}(?:[-\s]\d{4})?\s*?$"
+              data-testid="voter-registration-zip-field"
+              placeholder="Zip Code"
+            />
           </div>
 
           <PrimaryButton

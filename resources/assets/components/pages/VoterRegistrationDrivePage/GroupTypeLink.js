@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
-import PlaceholderText from '../../utilities/PlaceholderText/PlaceholderText';
 
 const GROUPS_CAMPAIGN_QUERY = gql`
   query GroupsCampaignQuery($groupTypeId: Int!, $causes: [String]) {
@@ -55,14 +54,13 @@ const GroupTypeLink = ({ id, name }) => {
         <ErrorBlock error={error || campaignWebsiteError} />
       ) : (
         <div className="mt-3">
-          {loading || campaignWebsiteLoading ? (
-            <PlaceholderText size="medium" />
-          ) : (
+          {loading || campaignWebsiteLoading ? null : (
             <a
               href={groupCampaignUrl}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="voter-registration-drive-page-group-campaign-link"
+              style={{ color: 'white', fontWeight: 700 }}
             >
               What&apos;s {name}?
             </a>

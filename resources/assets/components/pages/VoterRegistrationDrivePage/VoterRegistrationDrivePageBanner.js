@@ -1,28 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 
 import { votingReasons } from './config';
 import { query } from '../../../helpers';
 import GroupTypeLink from './GroupTypeLink';
 import ReferralsInfo from './ReferralsInfo';
+import backgroundVrImage from './VoterRegistration-Pattern.png';
 import CampaignHeader from '../../utilities/CampaignHeader';
-import CoverImage from '../../utilities/CoverImage/CoverImage';
-import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 
-const VoterRegistrationDrivePageBanner = ({
-  campaignInfo,
-  group,
-  modalToggle,
-  user,
-}) => {
+const VoterRegistrationDrivePageBanner = ({ campaignInfo, group, user }) => {
   const { firstName } = user;
-  const {
-    campaignId,
-    coverImage,
-    scholarshipAmount,
-    scholarshipDeadline,
-    title,
-  } = campaignInfo;
+  const { title } = campaignInfo;
 
   /**
    * Query url for voting-reasons param.
@@ -67,58 +56,48 @@ const VoterRegistrationDrivePageBanner = ({
 
   return (
     <>
-      <CoverImage
-        attributes={{
-          'data-test': 'voter-registration-drive-page-cover-image',
-        }}
-        coverImage={coverImage}
-      />
-
       <div className="clearfix bg-gray-100">
-        <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
-          <CampaignHeader
-            title={title}
-            subtitle={`${firstName} wants you to register to vote!`}
-          />
+        <div
+          css={css`
+            background-image: url(${backgroundVrImage});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+          `}
+          className="base-12-grid bg-blurple-400 cover-image pt-8 pb-3 md:py-6"
+        >
+          <div className="grid-wide-7/10 mb-6">
+            <CampaignHeader
+              title={title}
+              subtitle={`${firstName} wants you to register to vote!`}
+              textColor="text-white"
+            />
+            <div className="markdown">
+              <blockquote className="text-white italic">
+                <p data-test="voter-registration-drive-page-quote-text">
+                  Voting is one of the most impactful ways to make a difference
+                  on the causes that matter to us{formatQuote()}. Take 2 minutes
+                  and register to vote today!
+                </p>
 
-          <div className="grid-wide-7/10 mb-6 markdown">
-            <blockquote>
-              <p data-test="voter-registration-drive-page-quote-text">
-                Voting is one of the most impactful ways to make a difference on
-                the causes that matter to us{formatQuote()}. Take 2 minutes and
-                register to vote today!
-              </p>
-
-              <p data-test="voter-registration-drive-page-quote-byline">
-                - {firstName}
-              </p>
-            </blockquote>
-
-            <p data-test="voter-registration-drive-page-blurb">
-              150,000+ young people have registered to vote via DoSomething.
-              After you register, share with your friends to enter to win a $
-              {`${scholarshipAmount.toLocaleString()}`} scholarship!
-            </p>
-            {group ? (
-              <GroupTypeLink
-                id={group.groupType.id}
-                name={group.groupType.name}
-              />
-            ) : null}
+                <p data-test="voter-registration-drive-page-quote-byline">
+                  - {firstName}
+                </p>
+              </blockquote>
+              {group ? (
+                <GroupTypeLink
+                  id={group.groupType.id}
+                  name={group.groupType.name}
+                />
+              ) : null}
+            </div>
           </div>
 
-          <div className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3">
-            {group ? (
+          {group ? (
+            <div className="grid-wide-3/10 flex items-center xxl:row-start-1 xxl:row-span-3">
               <ReferralsInfo group={group} user={user} />
-            ) : (
-              <CampaignInfoBlock
-                campaignId={campaignId}
-                scholarshipAmount={scholarshipAmount}
-                scholarshipDeadline={scholarshipDeadline}
-                showModal={modalToggle}
-              />
-            )}
-          </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </>
@@ -136,7 +115,6 @@ VoterRegistrationDrivePageBanner.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
   }),
-  modalToggle: PropTypes.func.isRequired,
   user: PropTypes.shape({
     id: PropTypes.string,
     firstName: PropTypes.string,

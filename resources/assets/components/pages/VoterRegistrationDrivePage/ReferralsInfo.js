@@ -18,8 +18,8 @@ const VOTER_REGISTRATION_DRIVE_PAGE_REFERRALS_QUERY = gql`
 `;
 
 const statClassName = 'pt-3 pb-3 flex items-center';
-const StatLabel = tw.span`font-bold uppercase text-gray-600 w-3/4`;
-const StatAmount = tw.h2`font-normal font-league-gothic text-3xl w-1/4 mb-0`;
+const StatLabel = tw.span`font-bold uppercase text-white w-3/4`;
+const StatAmount = tw.h2`font-normal font-league-gothic text-white text-3xl w-1/4 mb-0`;
 
 const ReferralsInfo = ({ group, user }) => {
   const groupLabel = `${group.groupType.name}: ${group.name}`;
@@ -42,7 +42,9 @@ const ReferralsInfo = ({ group, user }) => {
         return (
           <div data-testid="voter-registration-drive-page-referrals-info">
             <div data-testid="group-progress" className="py-3">
-              <span className="font-bold uppercase text-lg">{description}</span>
+              <span className="font-bold uppercase text-lg text-white">
+                {description}
+              </span>
 
               <ProgressBar percentage={percentage} />
             </div>

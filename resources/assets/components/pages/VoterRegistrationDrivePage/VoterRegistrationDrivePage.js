@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 
-import { gqlVariables } from './config';
 import ErrorPage from '../ErrorPage';
+import { gqlVariables } from './config';
 import NotFoundPage from '../NotFoundPage';
 import Modal from '../../utilities/Modal/Modal';
 import Placeholder from '../../utilities/Placeholder';
@@ -119,22 +119,22 @@ const VoterRegistrationDrivePage = () => {
           modalToggle={modalToggle}
           user={data.user}
         />
+        <div className="py-6 base-12-grid bg-gray-100">
+          <ContentfulEntryLoader
+            id={config.startVoterRegistration.contentBlockId}
+            className="grid-wide-7/10 clearfix wrapper"
+          />
+          <StartVoterRegistrationForm
+            className="grid-wide-3/10"
+            campaignId={campaignId}
+            contextSource="beta-voter-registration-drive-page"
+            groupId={groupId}
+            referrerUserId={referrerUserId}
+            sourceDetails="onlinedrivereferral"
+          />
+        </div>
         <div className="bg-white base-12-grid py-3 md:py-6">
           <div className="mx-auto py-6 grid-wide">
-            <ContentfulEntryLoader
-              id={config.startVoterRegistration.contentBlockId}
-              className="grid-wide clearfix wrapper pb-3"
-            />
-            <div className="pb-6">
-              <StartVoterRegistrationForm
-                campaignId={campaignId}
-                className="md:w-3/5"
-                contextSource="beta-voter-registration-drive-page"
-                groupId={groupId}
-                referrerUserId={referrerUserId}
-                sourceDetails="onlinedrivereferral"
-              />
-            </div>
             <ContentfulEntryLoader
               id={config.faq.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
