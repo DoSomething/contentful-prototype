@@ -13,7 +13,7 @@ export const CREATE_SIGNUP_MUTATION = gql`
     }
   }
 `;
-const GallleryBlockSignup = ({ id, campaignId }) => {
+const GalleryBlockSignup = ({ id, campaignId }) => {
   const [handleSignup] = useMutation(CREATE_SIGNUP_MUTATION, {
     variables: { campaignId },
   });
@@ -27,9 +27,9 @@ const GallleryBlockSignup = ({ id, campaignId }) => {
   return <Redirect to={`/us/campaigns/${campaignId}`} />;
 };
 
-GallleryBlockSignup.propTypes = {
+GalleryBlockSignup.propTypes = {
   id: PropTypes.string.isRequired,
   campaignId: PropTypes.number.isRequired,
 };
 
-export default GallleryBlockSignup;
+export default GalleryBlockSignup;
