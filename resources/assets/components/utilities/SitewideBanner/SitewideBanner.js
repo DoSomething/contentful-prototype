@@ -3,8 +3,6 @@ import gql from 'graphql-tag';
 import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import React, { useRef, useEffect } from 'react';
 
 import excludedPaths from './config';
 import { getUserId } from '../../../helpers/auth';
