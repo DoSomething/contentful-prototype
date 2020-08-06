@@ -84,7 +84,7 @@ const QuizResultPage = ({ id }) => {
           <div className="bg-white">
             <img className="m-auto" src={triangle} alt="triangle" />
           </div>
-          <div className="bg-white base-12-grid py-3 md:py-6">
+          <div className="bg-white base-12-grid py-3 md:pt-6 md:pb-10">
             {additionalContent && additionalContent.sourceDetails ? (
               <div
                 className="grid-full grid-main py-3 md:py-6"

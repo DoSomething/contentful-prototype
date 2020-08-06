@@ -12,6 +12,7 @@ import Spinner from '../../artifacts/Spinner/Spinner';
 import { getTrackingSource } from '../../../helpers/voter-registration';
 
 const StartVoterRegistrationForm = ({
+  betaPage,
   campaignId,
   className,
   contextSource,
@@ -49,6 +50,7 @@ const StartVoterRegistrationForm = ({
       <Card
         attributes={{ 'data-testid': 'voter-registration-form-card' }}
         className={classnames(className, 'bg-gray-100 border-none')}
+        title={!betaPage ? 'Register Online to Vote' : ''}
       >
         <form
           data-testid="voter-registration-form"
@@ -118,6 +120,7 @@ const StartVoterRegistrationForm = ({
 };
 
 StartVoterRegistrationForm.propTypes = {
+  betaPage: PropTypes.bool,
   campaignId: PropTypes.number,
   className: PropTypes.string,
   contextSource: PropTypes.string.isRequired,
@@ -127,6 +130,7 @@ StartVoterRegistrationForm.propTypes = {
 };
 
 StartVoterRegistrationForm.defaultProps = {
+  betaPage: false,
   campaignId: null,
   className: null,
   groupId: null,

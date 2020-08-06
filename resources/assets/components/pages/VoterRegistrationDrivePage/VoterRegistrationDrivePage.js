@@ -125,6 +125,7 @@ const VoterRegistrationDrivePage = () => {
             className="grid-wide-7/10 clearfix wrapper"
           />
           <StartVoterRegistrationForm
+            betaPage
             className="grid-wide-3/10"
             campaignId={campaignId}
             contextSource="beta-voter-registration-drive-page"
