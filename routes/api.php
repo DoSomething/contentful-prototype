@@ -35,9 +35,6 @@ Route::group(['prefix' => 'v2'], function () {
     Route::get('/campaigns/{id}/signups', 'Api\CampaignSignupsController@index');
     Route::post('/campaigns/{id}/signups', 'Api\CampaignSignupsController@store');
 
-    // Shortlinks
-    Route::post('/links', 'Api\LinkController@store');
-
     // Posts
     Route::get('/posts', 'Api\PostsController@index');
     Route::post('/posts', 'Api\PostsController@store');

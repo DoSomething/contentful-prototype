@@ -52,7 +52,6 @@ return [
 
     'bertly' => [
         'url' => env('BERTLY_URL', 'https://dosome.click'),
-        'key' => env('BERTLY_API_KEY'),
     ],
 
     'contentful' => [
