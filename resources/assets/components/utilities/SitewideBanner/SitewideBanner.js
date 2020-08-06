@@ -1,8 +1,23 @@
+import { get } from 'lodash';
+import gql from 'graphql-tag';
 import { createPortal } from 'react-dom';
+import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
 import excludedPaths from './config';
+import { getUserId } from '../../../helpers/auth';
 import SitewideBannerContent from './SitewideBannerContent';
+
+const VOTER_REGISTRATION_STATUS = gql`
+  query VoterRegSitewideBannerQuery($userId: String!) {
+    user(id: $userId) {
+      id
+      voterRegistrationStatus
+    }
+  }
+`;
+
+const unregisteredStatuses = ['UNCERTAIN', 'CONFIRMED', 'UNREGISTERED'];
 
 const isExcludedPath = pathname => {
   return excludedPaths.find(excludedPath => {
@@ -20,6 +35,14 @@ const isExcludedPath = pathname => {
 };
 
 const SitewideBanner = props => {
+  const userId = getUserId();
+  const options = { variables: { userId }, skip: !userId };
+  const { data } = useQuery(VOTER_REGISTRATION_STATUS, options);
+
+  const unregistered = unregisteredStatuses.includes(
+    get(data, 'user.voterRegistrationStatus'),
+  );
+
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
 
@@ -37,7 +60,7 @@ const SitewideBanner = props => {
 
   const target = usePortal('banner-portal');
 
-  return !isExcludedPath(window.location.pathname)
+  return !isExcludedPath(window.location.pathname) && (!userId || unregistered)
     ? createPortal(children, target)
     : null;
 };

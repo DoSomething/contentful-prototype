@@ -29,6 +29,36 @@ describe('Site Wide Banner', () => {
     );
   });
 
+  it('The Site Wide Banner is displayed on campaign pages for authenticated users who are not registered to vote', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
+      user: {
+        voterRegistrationStatus: 'UNREGISTERED',
+      },
+    });
+
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
+      'not.exist',
+    );
+  });
+
+  it('The Site Wide Banner is not displayed on campaign pages for authenticated users who are registered to vote', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
+      user: {
+        voterRegistrationStatus: 'REGISTRATION_COMPLETE',
+      },
+    });
+
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
+      'not.exist',
+    );
+  });
+
   it('The Site Wide Banner is not displayed on the beta voter registration (OVRD) drive page', () => {
     const user = userFactory();
 
@@ -99,8 +129,14 @@ describe('Site Wide Banner', () => {
     const user = userFactory();
 
     // Log in & visit the campaign pitch page:
-    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
+    cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
+      user: {
+        voterRegistrationStatus: 'UNREGISTERED',
+      },
+    });
+
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
     cy.findByTestId('sitewide-banner-button').should('have.length', 1);
     cy.findByTestId('sitewide-banner-button').should(
       'have.attr',
