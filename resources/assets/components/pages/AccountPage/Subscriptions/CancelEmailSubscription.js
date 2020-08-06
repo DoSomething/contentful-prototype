@@ -10,7 +10,7 @@ import {
 import Spinner from '../../../artifacts/Spinner/Spinner';
 
 const EMAIL_SUBSCRIPTION_STATUS = gql`
-  query CancelEmailSubscriptionStatus($userId: String!) {
+  query CancelEmailSubscriptionQuery($userId: String!) {
     user(id: $userId) {
       id
       emailSubscriptionStatus
@@ -18,7 +18,7 @@ const EMAIL_SUBSCRIPTION_STATUS = gql`
   }
 `;
 const EMAIL_SUBSCRIPTION_STATUS_MUTATION = gql`
-  mutation CancelEmailSubscription(
+  mutation CancelEmailSubscriptionMutation(
     $userId: String!
     $emailSubscriptionStatus: Boolean!
   ) {
