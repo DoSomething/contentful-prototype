@@ -84,10 +84,10 @@ const QuizResultPage = ({ id }) => {
           <div className="bg-white">
             <img className="m-auto" src={triangle} alt="triangle" />
           </div>
-          <div className="bg-white base-12-grid py-3 md:pt-6 md:pb-10">
+          <div className="bg-white base-12-grid py-3 md:py-6">
             {additionalContent && additionalContent.sourceDetails ? (
               <div
-                className="grid-full grid-main py-3 md:py-6"
+                className="grid-full grid-main py-3 md:py-6 mb-10"
                 data-testid="quiz-result-page-registration-section"
               >
                 <h1 className="mx-auto text-center mb-3">
@@ -106,7 +106,7 @@ const QuizResultPage = ({ id }) => {
                 </p>
                 <StartVoterRegistrationForm
                   contextSource="voter-registration-quiz-results-page"
-                  className="md:mx-auto xl:w-4/5 pb-6"
+                  className="md:mx-auto xl:w-4/5 pb-3"
                   sourceDetails={additionalContent.sourceDetails}
                 />
               </div>
