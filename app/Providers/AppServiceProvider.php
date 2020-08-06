@@ -54,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
                 'FACEBOOK_APP_ID' => config('services.analytics.facebook_id'),
                 'GRAPHQL_URL' => config('services.graphql.url'),
                 'NORTHSTAR_URL' => config('services.northstar.url'),
+                'BERTLY_URL' => config('services.bertly.url'),
                 'PHOENIX_URL' => config('app.url'),
                 'SITE' => config('site'),
                 'SIXPACK_BASE_URL' => config('services.sixpack.url'),

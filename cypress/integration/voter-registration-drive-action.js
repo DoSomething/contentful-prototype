@@ -36,7 +36,7 @@ describe('Voter Registration Drive Action', () => {
     // Mock a Bertly API error to ensure the longUrl will appear in the input field.
     cy.route({
       method: 'POST',
-      url: '/api/v2/links',
+      url: 'https://mock.dosome.click/',
       status: 503,
       response: {},
     });
