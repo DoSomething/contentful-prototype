@@ -23,12 +23,10 @@ describe('Site Wide Banner', () => {
   it('The Site Wide Banner is displayed on campaign pages', () => {
     cy.anonVisitCampaign(exampleCampaign);
 
-    if ('#banner-portal > .wrapper > [data-test=site-wide-banner]') {
-      cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
-        'have.length',
-        1,
-      );
-    }
+    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
+      'have.length',
+      1,
+    );
   });
 
   it('The Site Wide Banner is displayed on campaign pages for authenticated users who are not registered to vote', () => {
