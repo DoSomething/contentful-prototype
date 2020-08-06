@@ -106,7 +106,7 @@ const QuizResultPage = ({ id }) => {
                 </p>
                 <StartVoterRegistrationForm
                   contextSource="voter-registration-quiz-results-page"
-                  className="md:mx-auto xl:w-4/5"
+                  className="md:mx-auto xl:w-4/5 pb-6"
                   sourceDetails={additionalContent.sourceDetails}
                 />
               </div>
