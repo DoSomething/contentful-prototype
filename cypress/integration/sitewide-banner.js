@@ -145,13 +145,14 @@ describe('Site Wide Banner', () => {
     if ('#banner-portal > .wrapper > [data-test=site-wide-banner]') {
       cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
-    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+      cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
-    cy.findByTestId('sitewide-banner-button').should('have.length', 1);
-    cy.findByTestId('sitewide-banner-button').should(
-      'have.attr',
-      'href',
-      `https://vote.dosomething.org/?r=user:${user.id},source:web,source_details:hellobar`,
-    );
+      cy.findByTestId('sitewide-banner-button').should('have.length', 1);
+      cy.findByTestId('sitewide-banner-button').should(
+        'have.attr',
+        'href',
+        `https://vote.dosomething.org/?r=user:${user.id},source:web,source_details:hellobar`,
+      );
+    }
   });
 });
