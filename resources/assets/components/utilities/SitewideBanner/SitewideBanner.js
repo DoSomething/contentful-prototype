@@ -17,11 +17,7 @@ const VOTER_REGISTRATION_STATUS = gql`
   }
 `;
 
-const shouldDisplayRegistrationBanner = [
-  'UNCERTAIN',
-  'CONFIRMED',
-  'UNREGISTERED',
-];
+const unregisteredStatuses = ['UNCERTAIN', 'CONFIRMED', 'UNREGISTERED'];
 
 const isExcludedPath = pathname => {
   return excludedPaths.find(excludedPath => {
@@ -43,7 +39,7 @@ const SitewideBanner = props => {
   const options = { variables: { userId }, skip: !userId };
   const { data } = useQuery(VOTER_REGISTRATION_STATUS, options);
 
-  const unregistered = shouldDisplayRegistrationBanner.includes(
+  const unregistered = unregisteredStatuses.includes(
     get(data, 'user.voterRegistrationStatus'),
   );
 
