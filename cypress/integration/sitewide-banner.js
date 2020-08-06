@@ -130,7 +130,7 @@ describe('Site Wide Banner', () => {
 
     // Log in & visit the campaign pitch page:
 
-    cy.mockGraphqlOp('VoterRegSiteWideBannerQuery', {
+    cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
       user: {
         voterRegistrationStatus: 'UNREGISTERED',
       },
