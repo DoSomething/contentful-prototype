@@ -9,7 +9,7 @@ import { getUserId } from '../../../helpers/auth';
 import SitewideBannerContent from './SitewideBannerContent';
 
 const VOTER_REGISTRATION_STATUS = gql`
-  query VoterRegSiteWideBannerQuery($userId: String!) {
+  query VoterRegSitewideBannerQuery($userId: String!) {
     user(id: $userId) {
       id
       voterRegistrationStatus
