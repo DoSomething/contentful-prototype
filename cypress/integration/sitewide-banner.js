@@ -136,8 +136,9 @@ describe('Site Wide Banner', () => {
       },
     });
 
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+
     if ('#banner-portal > .wrapper > [data-test=site-wide-banner]') {
-      cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
       cy.findByTestId('sitewide-banner-button').should('have.length', 1);
       cy.findByTestId('sitewide-banner-button').should(
         'have.attr',
