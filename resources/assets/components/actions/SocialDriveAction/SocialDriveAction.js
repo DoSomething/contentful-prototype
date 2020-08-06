@@ -11,8 +11,13 @@ import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
 import TotalAcceptedQuantity from './TotalAcceptedQuantity';
-import { appendToQuery, dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import {
+  appendToQuery,
+  dynamicString,
+  env,
+  withoutTokens,
+} from '../../../helpers';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -78,12 +83,12 @@ class SocialDriveAction extends React.Component {
     this.setState({ loading: true });
 
     postRequest(
-      '/api/v2/links',
+      env('BERTLY_URL'),
       { url: withoutTokens(longUrl) },
       this.props.token,
     )
       .then(apiResponse =>
-        this.setState({ loading: false, shortUrl: apiResponse.url }),
+        this.setState({ loading: false, shortUrl: apiResponse.url_short }),
       )
       .catch(() =>
         this.setState({

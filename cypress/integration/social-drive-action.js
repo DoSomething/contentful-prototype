@@ -11,8 +11,8 @@ const blockId = '2T5ARr1AViKw2Kw0Q4S0so';
 
 // Configure mock data to use for each test:
 const user = userFactory();
-const linksApiUrl = `/api/v2/links`;
-const shortenedLink = 'https://dosome.click/ngzdjp';
+const linksApiUrl = 'https://mock.dosome.click/';
+const shortenedLink = 'https://mock.dosome.click/ngzdjp';
 const unshortenedLink = `https://example.dosomething.org/puppet-sloth?userId=${user.id}`;
 const contentfulBlockQueryResult = {
   block: {
@@ -30,7 +30,7 @@ describe('Social Action Drive', () => {
 
     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
 
-    cy.route('POST', linksApiUrl, { url: shortenedLink });
+    cy.route('POST', linksApiUrl, { url_short: shortenedLink });
 
     cy.authVisitBlockPermalink(user, blockId);
 

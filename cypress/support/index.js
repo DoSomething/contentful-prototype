@@ -22,6 +22,7 @@ Cypress.on('window:before:load', window => {
       default_referral_campaign_id: defaultReferralCampaignId,
     },
     SIXPACK_ENABLED: false,
+    BERTLY_URL: 'https://mock.dosome.click/', // Setting this to something predictable so we can mock it.
     SIXPACK_BASE_URL: 'http://sixpack.test', // Our Sixpack service will throw an error if this isn't set.
     CONTENTFUL_USE_PREVIEW_API: false,
     NORTHSTAR_URL: 'https://identity-dev.dosomething.org',
