@@ -14,6 +14,18 @@ use Contentful\Delivery\Client as DeliveryClient;
 class AppServiceProvider extends ServiceProvider
 {
     /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->singleton(\App\Http\Middleware\StartSession::class);
+
+        $this->app->alias(DeliveryClient::class, 'contentful.delivery');
+    }
+
+    /**
      * Bootstrap any application services.
      *
      * @param Router $router
@@ -48,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
                 'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),
                 'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
                 'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
-                'CONTENTFUL_USE_PREVIEW_API' => config('contentful')['delivery.preview'],
+                'CONTENTFUL_USE_PREVIEW_API' => config('contentful.delivery.preview'),
                 'FEATURE_FLAGS' => config('feature-flags'),
             ]);
         });
@@ -79,17 +91,5 @@ class AppServiceProvider extends ServiceProvider
 
         //     return $record;
         // });
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->app->singleton(\App\Http\Middleware\StartSession::class);
-
-        $this->app->alias(DeliveryClient::class, 'contentful.delivery');
     }
 }

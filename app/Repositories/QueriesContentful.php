@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Entities\Entity;
 use App\Entities\HomePage;
+use Illuminate\Support\Arr;
 use Contentful\Delivery\Query;
 use App\Entities\TruncatedCampaign;
 
@@ -24,11 +25,11 @@ trait QueriesContentful
     {
         $query = (new Query)
                 ->setContentType($type)
-                ->setInclude(array_get($options, 'includeDepth', 0))
+                ->setInclude(Arr::get($options, 'includeDepth', 0))
                 ->orderBy('sys.updatedAt', true)
-                ->setLimit(array_get($options, 'limit'))
-                ->setSkip(array_get($options, 'skip'))
-                ->where('query', array_get($options, 'query'));
+                ->setLimit(Arr::get($options, 'limit'))
+                ->setSkip(Arr::get($options, 'skip'))
+                ->where('query', Arr::get($options, 'query'));
 
         $entries = app('contentful.delivery')->getEntries($query)->getItems();
 

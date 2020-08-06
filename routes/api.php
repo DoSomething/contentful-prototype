@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -12,39 +14,39 @@
 */
 
 // v2 Routes
-$router->group(['prefix' => 'v2'], function () {
+Route::group(['prefix' => 'v2'], function () {
     // Status health check
-    $this->get('/status', function () {
+    Route::get('/status', function () {
         return ['status' => 'good'];
     });
 
     // Blocks
-    $this->get('/blocks/{id}', 'Api\BlocksController@show');
+    Route::get('/blocks/{id}', 'Api\BlocksController@show');
 
     // Campaigns
-    $this->get('/campaigns', 'Api\CampaignsController@index');
-    $this->get('/campaigns/{id}', 'Api\CampaignsController@show');
+    Route::get('/campaigns', 'Api\CampaignsController@index');
+    Route::get('/campaigns/{id}', 'Api\CampaignsController@show');
 
     // Campaign Posts
-    $this->get('/campaigns/{id}/posts', 'Api\CampaignPostsController@index');
-    $this->post('/campaigns/{id}/posts', 'Api\CampaignPostsController@store');
+    Route::get('/campaigns/{id}/posts', 'Api\CampaignPostsController@index');
+    Route::post('/campaigns/{id}/posts', 'Api\CampaignPostsController@store');
 
     // Campaign Signups
-    $this->get('/campaigns/{id}/signups', 'Api\CampaignSignupsController@index');
-    $this->post('/campaigns/{id}/signups', 'Api\CampaignSignupsController@store');
+    Route::get('/campaigns/{id}/signups', 'Api\CampaignSignupsController@index');
+    Route::post('/campaigns/{id}/signups', 'Api\CampaignSignupsController@store');
 
     // Shortlinks
-    $this->post('/links', 'Api\LinkController@store');
+    Route::post('/links', 'Api\LinkController@store');
 
     // Posts
-    $this->get('/posts', 'Api\PostsController@index');
-    $this->post('/posts', 'Api\PostsController@store');
+    Route::get('/posts', 'Api\PostsController@index');
+    Route::post('/posts', 'Api\PostsController@store');
 
     // Zendesk Tickets
-    $this->post('/zendesk-tickets', 'Api\ZendeskTicketsController@store');
+    Route::post('/zendesk-tickets', 'Api\ZendeskTicketsController@store');
 
     // Unknown Route Fallback
-    $this->fallback(function () {
+    Route::fallback(function () {
         return response()->json(['message' => 'Not Found!'], 404);
     });
 });

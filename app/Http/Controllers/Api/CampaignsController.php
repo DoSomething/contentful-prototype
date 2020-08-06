@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\CampaignRepository;
@@ -32,7 +33,7 @@ class CampaignsController extends Controller
      */
     public function index(Request $request)
     {
-        $idString = array_get($request->query('filter'), 'id');
+        $idString = Arr::get($request->query('filter'), 'id');
 
         $ids = $idString ? explode(',', $idString) : [];
 

@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use JsonSerializable;
+use Illuminate\Support\Str;
 
 class Affirmation extends Entity implements JsonSerializable
 {
@@ -18,7 +19,7 @@ class Affirmation extends Entity implements JsonSerializable
 
         if (is_string($authorValue)) {
             $author = [
-                'id' => str_random(22),
+                'id' => Str::random(22),
                 'type' => 'person',
                 'fields' => [
                     'name' => $authorValue,
