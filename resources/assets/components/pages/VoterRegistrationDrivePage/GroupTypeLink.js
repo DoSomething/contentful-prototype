@@ -60,7 +60,7 @@ const GroupTypeLink = ({ id, name }) => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="voter-registration-drive-page-group-campaign-link"
-              style={{ color: 'white', fontWeight: 700 }}
+              style={{ color: 'white' }}
             >
               What&apos;s {name}?
             </a>
