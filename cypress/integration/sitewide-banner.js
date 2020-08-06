@@ -116,14 +116,12 @@ describe('Site Wide Banner', () => {
   it('The Site Wide Banner CTA URL is correct for an unauthenticated user', () => {
     cy.anonVisitCampaign(exampleCampaign);
 
-    if ('#banner-portal > .wrapper > [data-test=site-wide-banner]') {
-      cy.findByTestId('sitewide-banner-button').should('have.length', 1);
-      cy.findByTestId('sitewide-banner-button').should(
-        'have.attr',
-        'href',
-        'https://vote.dosomething.org/?r=source:web,source_details:hellobar',
-      );
-    }
+    cy.findByTestId('sitewide-banner-button').should('have.length', 1);
+    cy.findByTestId('sitewide-banner-button').should(
+      'have.attr',
+      'href',
+      'https://vote.dosomething.org/?r=source:web,source_details:hellobar',
+    );
   });
 
   /** @test */
