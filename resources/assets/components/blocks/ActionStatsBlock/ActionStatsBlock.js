@@ -12,19 +12,22 @@ export const ActionStatsBlockFragment = gql`
 `;
 
 const ActionStatsBlock = ({ filterByActionId }) => {
-  const [location, setLocation] = useState(null);
+  const [schoolLocation, setSchoolLocation] = useState(null);
 
   return (
     <>
       <div className="w-1/4 pb-3">
         <SelectLocationDropdown
           locationList="domestic"
-          onSelect={event => setLocation(event.target.value)}
-          selectedOption={location || ''}
+          onSelect={event => setSchoolLocation(event.target.value)}
+          selectedOption={schoolLocation || ''}
         />
       </div>
 
-      <ActionStatsTable actionId={filterByActionId} location={location} />
+      <ActionStatsTable
+        actionId={filterByActionId}
+        schoolLocation={schoolLocation}
+      />
     </>
   );
 };

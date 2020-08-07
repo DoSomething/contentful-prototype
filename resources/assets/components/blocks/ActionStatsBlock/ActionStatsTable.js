@@ -36,7 +36,6 @@ const PAGINATED_ACTION_STATS_QUERY = gql`
             id
             name
             city
-            state
           }
         }
       }
@@ -57,11 +56,11 @@ const TableCell = tw.td`p-2 text-base`;
  * @param {Number} actionId
  * @param {String} schoolId
  */
-const ActionStatsTable = ({ actionId, location, schoolId }) => {
+const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
   const variables = { actionId };
 
-  if (location) {
-    assign(variables, { location });
+  if (schoolLocation) {
+    assign(variables, { location: schoolLocation });
   }
 
   if (schoolId) {
@@ -102,7 +101,7 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
       <table className="w-full">
         <TableHeader>
           <tr>
-            <TableCell>{location ? 'State' : 'National'} Rank</TableCell>
+            <TableCell>{schoolLocation ? 'State' : 'National'} Rank</TableCell>
 
             <TableCell>School Name</TableCell>
 
@@ -114,7 +113,7 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
 
         <tbody>
           {stats.map(({ node, cursor }) => {
-            const { impact, school } = node;
+            const { impact, location, school } = node;
 
             rank += 1;
 
@@ -125,7 +124,7 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
                 <TableCell>{school.name}</TableCell>
 
                 <TableCell>
-                  {school.city}, {school.state}
+                  {school.city}, {location.substring(3)}
                 </TableCell>
 
                 <TableCell>{impact}</TableCell>
@@ -162,13 +161,13 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
 
 ActionStatsTable.propTypes = {
   actionId: PropTypes.number.isRequired,
-  location: PropTypes.string,
   schoolId: PropTypes.string,
+  schoolLocation: PropTypes.string,
 };
 
 ActionStatsTable.defaultProps = {
-  location: null,
   schoolId: null,
+  schoolLocation: null,
 };
 
 export default ActionStatsTable;
