@@ -116,7 +116,7 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
           {stats.map(({ node, cursor }) => {
             const { impact, school } = node;
 
-            rank++;
+            rank += 1;
 
             return (
               <tr key={cursor}>
