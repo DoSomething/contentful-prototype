@@ -28,7 +28,7 @@ const SitewideBannerContent = ({
   return (
     <div
       className="w-full md:flex md:justify-center bg-yellow-500 p-8 pb-4 md:pt-4 sm:px-10 z-50"
-      data-test="site-wide-banner"
+      data-testid="sitewide-banner"
     >
       <CloseButton
         callback={handleClose}
