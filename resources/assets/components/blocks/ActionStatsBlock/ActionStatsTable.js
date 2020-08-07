@@ -1,4 +1,5 @@
 import React from 'react';
+import tw from 'twin.macro';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { assign, get } from 'lodash';
@@ -47,6 +48,9 @@ const PAGINATED_ACTION_STATS_QUERY = gql`
   }
 `;
 
+const TableHeader = tw.thead`bg-blurple-500 font-bold p-4 pr-6 text-left text-white`;
+const TableCell = tw.td`p-2 text-base`;
+
 /**
  * This component handles fetching & paginating a list of action stats.
  *
@@ -94,13 +98,15 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
   return (
     <>
       <table className="w-full">
-        <thead>
+        <TableHeader>
           <tr>
-            <td>School Name</td>
-            <td>Location</td>
-            <td>Impact</td>
+            <TableCell>School Name</TableCell>
+
+            <TableCell>Location</TableCell>
+
+            <TableCell>Impact</TableCell>
           </tr>
-        </thead>
+        </TableHeader>
 
         <tbody>
           {stats.map(({ node, cursor }) => {
@@ -108,11 +114,13 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
 
             return (
               <tr key={cursor}>
-                <td>{school.name}</td>
-                <td>
+                <TableCell>{school.name}</TableCell>
+
+                <TableCell>
                   {school.city}, {school.state}
-                </td>
-                <td>{impact}</td>
+                </TableCell>
+
+                <TableCell>{impact}</TableCell>
               </tr>
             );
           })}
@@ -121,15 +129,15 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
         <tfoot className="form-actions">
           {loading ? (
             <tr>
-              <td colSpan="3">
-                <Spinner />
+              <td className="p-3" colSpan="3">
+                <Spinner className="flex justify-center" />
               </td>
             </tr>
           ) : null}
 
           {hasNextPage ? (
             <tr>
-              <td colSpan="3">
+              <td className="p-3" colSpan="3">
                 <PrimaryButton
                   onClick={handleViewMore}
                   isDisabled={loading}
