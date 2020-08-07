@@ -2,6 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
+import ActionStatsTable from './ActionStatsTable';
+
 export const ActionStatsBlockFragment = gql`
   fragment ActionStatsBlockFragment on ActionStatsBlock {
     filterByActionId: actionId
@@ -10,7 +12,7 @@ export const ActionStatsBlockFragment = gql`
 
 const ActionStatsBlock = ({ filterByActionId }) => (
   <>
-    <h1>{filterByActionId}</h1>
+    <ActionStatsTable actionId={1} />
   </>
 );
 
