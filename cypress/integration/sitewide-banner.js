@@ -23,10 +23,7 @@ describe('Site Wide Banner', () => {
   it('The Site Wide Banner is displayed on campaign pages', () => {
     cy.anonVisitCampaign(exampleCampaign);
 
-    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
-      'have.length',
-      1,
-    );
+    cy.findByTestId('sitewide-banner').should('have.length', 1);
   });
 
   it('The Site Wide Banner is displayed on campaign pages for authenticated users who are not registered to vote', () => {
@@ -39,9 +36,8 @@ describe('Site Wide Banner', () => {
     });
 
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
-    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
-      'not.exist',
-    );
+
+    cy.findByTestId('sitewide-banner').should('have.length', 1);
   });
 
   it('The Site Wide Banner is not displayed on campaign pages for authenticated users who are registered to vote', () => {
@@ -54,9 +50,8 @@ describe('Site Wide Banner', () => {
     });
 
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
-    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
-      'not.exist',
-    );
+
+    cy.findByTestId('sitewide-banner-hidden');
   });
 
   it('The Site Wide Banner is not displayed on the beta voter registration (OVRD) drive page', () => {
@@ -83,10 +78,7 @@ describe('Site Wide Banner', () => {
 
     cy.visit(`/us/my-voter-registration-drive?referrer_user_id=${user.id}`);
 
-    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
-      'have.length',
-      0,
-    );
+    cy.findByTestId('sitewide-banner-hidden');
   });
 
   /** @test */
@@ -106,10 +98,7 @@ describe('Site Wide Banner', () => {
 
     cy.visit(`/us/quiz-results/${quizResultId}`);
 
-    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
-      'have.length',
-      0,
-    );
+    cy.findByTestId('sitewide-banner-hidden');
   });
 
   /** @test */
@@ -137,6 +126,7 @@ describe('Site Wide Banner', () => {
     });
 
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+
     cy.findByTestId('sitewide-banner-button').should('have.length', 1);
     cy.findByTestId('sitewide-banner-button').should(
       'have.attr',
