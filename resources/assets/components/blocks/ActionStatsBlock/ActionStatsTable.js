@@ -20,7 +20,7 @@ const PAGINATED_ACTION_STATS_QUERY = gql`
     stats: paginatedSchoolActionStats(
       actionId: $actionId
       after: $cursor
-      first: 20
+      first: 10
       location: $location
       orderBy: "impact,desc"
       schoolId: $schoolId
@@ -95,16 +95,20 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
     return <div>No results</div>;
   }
 
+  let rank = 0;
+
   return (
     <>
       <table className="w-full">
         <TableHeader>
           <tr>
+            <TableCell>{location ? 'State' : 'National'} Rank</TableCell>
+
             <TableCell>School Name</TableCell>
 
             <TableCell>Location</TableCell>
 
-            <TableCell>Impact</TableCell>
+            <TableCell>Voter Registrations</TableCell>
           </tr>
         </TableHeader>
 
@@ -112,8 +116,12 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
           {stats.map(({ node, cursor }) => {
             const { impact, school } = node;
 
+            rank++;
+
             return (
               <tr key={cursor}>
+                <TableCell>{rank}</TableCell>
+
                 <TableCell>{school.name}</TableCell>
 
                 <TableCell>
@@ -129,7 +137,7 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
         <tfoot className="form-actions">
           {loading ? (
             <tr>
-              <td className="p-3" colSpan="3">
+              <td className="p-3" colSpan="4">
                 <Spinner className="flex justify-center" />
               </td>
             </tr>
@@ -137,7 +145,7 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
 
           {hasNextPage ? (
             <tr>
-              <td className="p-3" colSpan="3">
+              <td className="p-3" colSpan="4">
                 <PrimaryButton
                   onClick={handleViewMore}
                   isDisabled={loading}
