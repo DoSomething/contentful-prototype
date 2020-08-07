@@ -51,7 +51,7 @@ describe('Site Wide Banner', () => {
 
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
-    cy.findByTestId('sitewide-banner-hidden');
+    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
   });
 
   it('The Site Wide Banner is not displayed on the beta voter registration (OVRD) drive page', () => {
@@ -78,7 +78,7 @@ describe('Site Wide Banner', () => {
 
     cy.visit(`/us/my-voter-registration-drive?referrer_user_id=${user.id}`);
 
-    cy.findByTestId('sitewide-banner-hidden');
+    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
   });
 
   /** @test */
@@ -98,7 +98,7 @@ describe('Site Wide Banner', () => {
 
     cy.visit(`/us/quiz-results/${quizResultId}`);
 
-    cy.findByTestId('sitewide-banner-hidden');
+    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
   });
 
   /** @test */
