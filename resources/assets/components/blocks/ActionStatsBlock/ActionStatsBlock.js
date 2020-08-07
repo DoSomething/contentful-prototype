@@ -12,7 +12,7 @@ export const ActionStatsBlockFragment = gql`
 
 const ActionStatsBlock = ({ filterByActionId }) => (
   <>
-    <ActionStatsTable actionId={1} />
+    <ActionStatsTable actionId={filterByActionId} />
   </>
 );
 

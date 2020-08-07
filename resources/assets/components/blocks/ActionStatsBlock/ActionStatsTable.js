@@ -1,15 +1,17 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { assign, get, isArray, mergeWith } from 'lodash';
+import { assign, get } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 
+import { updateQuery } from '../../../helpers';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import Spinner from '../../artifacts/Spinner/Spinner';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 
 const ACTION_STATS_TABLE_QUERY = gql`
   query ActionStatsTableQuery {
-    stats: paginatedSchoolActionStats {
+    stats: paginatedSchoolActionStats(orderBy: "impact,desc") {
       edges {
         cursor
         node {
@@ -66,15 +68,7 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
   const handleViewMore = () => {
     fetchMore({
       variables: { cursor: endCursor },
-      updateQuery: (previous, { fetchMoreResult }) => {
-        return mergeWith({}, previous, fetchMoreResult, (dest, src) => {
-          // By default, Lodash's `merge` would try to merge *each* array
-          // item (e.g. `edges[0]` with then next page's `edges[0]`).
-          if (isArray(dest)) {
-            return [...dest, ...src];
-          }
-        });
-      },
+      updateQuery,
     });
   };
 
@@ -90,7 +84,7 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
 
   return (
     <>
-      <table>
+      <table className="w-full">
         <thead>
           <tr>
             <td>School Name</td>
@@ -127,13 +121,11 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
           {hasNextPage ? (
             <tr>
               <td colSpan="3">
-                <button
-                  className="button -tertiary"
+                <PrimaryButton
                   onClick={handleViewMore}
-                  disabled={loading}
-                >
-                  view more...
-                </button>
+                  isDisabled={loading}
+                  text="Load More"
+                />
               </td>
             </tr>
           ) : null}
