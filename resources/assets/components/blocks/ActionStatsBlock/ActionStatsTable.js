@@ -9,9 +9,21 @@ import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 
-const ACTION_STATS_TABLE_QUERY = gql`
-  query ActionStatsTableQuery {
-    stats: paginatedSchoolActionStats(orderBy: "impact,desc") {
+const PAGINATED_ACTION_STATS_QUERY = gql`
+  query PaginatedActionStatsQuery(
+    $actionId: Int
+    $cursor: String
+    $location: String
+    $schoolId: String
+  ) {
+    stats: paginatedSchoolActionStats(
+      actionId: $actionId
+      after: $cursor
+      first: 20
+      location: $location
+      orderBy: "impact,desc"
+      schoolId: $schoolId
+    ) {
       edges {
         cursor
         node {
@@ -43,7 +55,6 @@ const ACTION_STATS_TABLE_QUERY = gql`
  */
 const ActionStatsTable = ({ actionId, location, schoolId }) => {
   const variables = { actionId };
-  console.log(variables);
 
   if (location) {
     assign(variables, { location });
@@ -54,7 +65,7 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
   }
 
   const { error, loading, data, fetchMore } = useQuery(
-    ACTION_STATS_TABLE_QUERY,
+    PAGINATED_ACTION_STATS_QUERY,
     {
       variables,
       notifyOnNetworkStatusChange: true,
@@ -79,8 +90,6 @@ const ActionStatsTable = ({ actionId, location, schoolId }) => {
   if (noResults && !hasNextPage) {
     return <div>No results</div>;
   }
-
-  console.log(stats);
 
   return (
     <>
