@@ -50,12 +50,6 @@ const PAGINATED_ACTION_STATS_QUERY = gql`
 const TableHeader = tw.thead`bg-blurple-500 font-bold p-4 pr-6 text-left text-white`;
 const TableCell = tw.td`p-2 text-base`;
 
-/**
- * This component handles fetching & paginating a list of action stats.
- *
- * @param {Number} actionId
- * @param {String} schoolId
- */
 const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
   const variables = { actionId };
 
