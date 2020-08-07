@@ -123,6 +123,7 @@ const VoterRegistrationDrivePage = () => {
           <ContentfulEntryLoader
             id={config.startVoterRegistration.contentBlockId}
             className="grid-wide-7/10 clearfix wrapper"
+            customProps={{ ContentBlock: { fullWidth: true } }}
           />
           <StartVoterRegistrationForm
             betaPage

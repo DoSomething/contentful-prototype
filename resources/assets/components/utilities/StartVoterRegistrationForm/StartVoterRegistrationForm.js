@@ -108,7 +108,7 @@ const StartVoterRegistrationForm = ({
                   <span className="pl-1 pt-1">Processing...</span>
                 </div>
               ) : (
-                'Start Your Registration'
+                'Start Registration'
               )
             }
             type="submit"
