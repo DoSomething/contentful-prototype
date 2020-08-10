@@ -12,7 +12,7 @@ const ANALYTICS_EVENT_CATEGORY = EVENT_CATEGORIES.campaignAction;
 const ANALYTICS_EVENT_LABEL = 'group_finder';
 
 const GroupFinder = ({ context, groupType, onChange }) => {
-  const [groupState, setGroupState] = useState(null);
+  const [groupLocation, setGroupLocation] = useState(null);
 
   const handleGroupSelectFocus = () => {
     trackAnalyticsEvent(`focused_${ANALYTICS_EVENT_LABEL}_group`, {
@@ -23,8 +23,8 @@ const GroupFinder = ({ context, groupType, onChange }) => {
     });
   };
 
-  const handleGroupStateSelectChange = selected => {
-    setGroupState(selected.abbreviation);
+  const handleGroupLocationSelectChange = selected => {
+    setGroupLocation(selected.abbreviation);
 
     trackAnalyticsEvent(`clicked_${ANALYTICS_EVENT_LABEL}_state`, {
       action: 'form_clicked',
@@ -34,7 +34,7 @@ const GroupFinder = ({ context, groupType, onChange }) => {
     });
   };
 
-  const handleGroupStateSelectFocus = () => {
+  const handleGroupLocationSelectFocus = () => {
     trackAnalyticsEvent(`focused_${ANALYTICS_EVENT_LABEL}_state`, {
       action: 'field_focused',
       category: ANALYTICS_EVENT_CATEGORY,
@@ -43,26 +43,26 @@ const GroupFinder = ({ context, groupType, onChange }) => {
     });
   };
 
-  const { filterByState } = groupType;
+  const { filterByLocation } = groupType;
   const groupLabel = 'chapter';
 
   return (
     <>
-      {filterByState ? (
+      {filterByLocation ? (
         <div className="pb-3">
           <p className="font-bold text-sm py-1">Select your state</p>
           <UsaStateSelect
-            onChange={handleGroupStateSelectChange}
-            onFocus={handleGroupStateSelectFocus}
+            onChange={handleGroupLocationSelectChange}
+            onFocus={handleGroupLocationSelectFocus}
           />
         </div>
       ) : null}
-      {!filterByState || (filterByState && groupState) ? (
+      {!filterByLocation || (filterByLocation && groupLocation) ? (
         <div className="pb-3">
           <p className="font-bold text-sm py-1">Select your {groupLabel}</p>
           <GroupSelect
             groupLabel={groupLabel}
-            groupLocation={groupState}
+            groupLocation={`US-${groupLocation}`}
             groupTypeId={groupType.id}
             onChange={onChange}
             onFocus={handleGroupSelectFocus}

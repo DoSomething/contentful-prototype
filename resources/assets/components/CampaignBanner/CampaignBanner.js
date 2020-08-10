@@ -29,7 +29,7 @@ const CAMPAIGN_BANNER_QUERY = gql`
       groupTypeId
       groupType {
         id
-        filterByState
+        filterByLocation
       }
     }
   }
