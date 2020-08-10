@@ -130,34 +130,34 @@ module.exports = function(migration) {
 
       validations: [
         {
-          linkContentType: ['sectionBlock'],
+          linkContentType: ['actionStatsBlock', 'sectionBlock'],
         },
       ],
 
       linkType: 'Entry',
     });
 
-  storyPage.changeEditorInterface('internalTitle', 'singleLine', {
+  storyPage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {
     helpText:
       'This title is used internally to help find this content. It will not be displayed anywhere on the rendered web page.',
   });
 
-  storyPage.changeEditorInterface('title', 'singleLine', {});
-  storyPage.changeEditorInterface('subTitle', 'singleLine', {});
+  storyPage.changeFieldControl('title', 'builtin', 'singleLine', {});
+  storyPage.changeFieldControl('subTitle', 'builtin', 'singleLine', {});
 
-  storyPage.changeEditorInterface('slug', 'slugEditor', {
+  storyPage.changeFieldControl('slug', 'builtin', 'slugEditor', {
     helpText:
       'Must begin with the "stories/" category prefix for the slug, e.g. "stories/page-name-here".',
   });
 
-  storyPage.changeEditorInterface('metadata', 'entryLinkEditor', {});
+  storyPage.changeFieldControl('metadata', 'builtin', 'entryLinkEditor', {});
 
-  storyPage.changeEditorInterface('coverImage', 'assetLinkEditor', {
+  storyPage.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
     helpText:
       'This cover image is used in the banner at the top of the Story Page, as well as for the tile on home page and explore campaigns.',
   });
 
-  storyPage.changeEditorInterface('blocks', 'entryLinksEditor', {
+  storyPage.changeFieldControl('blocks', 'builtin', 'entryLinksEditor', {
     bulkEditing: false,
   });
 };
