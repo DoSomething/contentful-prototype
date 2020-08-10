@@ -326,7 +326,7 @@ describe('Campaign Signup', () => {
         groupTypeId: 1,
         groupType: {
           id: 1,
-          filterByState: false,
+          filterByLocation: false,
         },
       },
     });
@@ -382,7 +382,7 @@ describe('Campaign Signup', () => {
             groupTypeId: 1,
             groupType: {
               id: 1,
-              filterByState: true,
+              filterByLocation: true,
             },
           },
         });
