@@ -22,6 +22,16 @@ describe('Site Wide Banner', () => {
   });
 
   it('The Site Wide Banner is displayed on campaign pages', () => {
+    cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
+      campaign: {
+        id: campaignId,
+        groupTypeId: null,
+        groupType: {
+          id: null,
+        },
+      },
+    });
+
     cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('sitewide-banner').should('have.length', 1);
@@ -33,6 +43,16 @@ describe('Site Wide Banner', () => {
     cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
       user: {
         voterRegistrationStatus: 'UNREGISTERED',
+      },
+    });
+
+    cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
+      campaign: {
+        id: campaignId,
+        groupTypeId: null,
+        groupType: {
+          id: null,
+        },
       },
     });
 
@@ -118,6 +138,16 @@ describe('Site Wide Banner', () => {
 
   /** @test */
   it('The Site Wide Banner CTA URL is correct for an unauthenticated user', () => {
+    cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
+      campaign: {
+        id: campaignId,
+        groupTypeId: null,
+        groupType: {
+          id: null,
+        },
+      },
+    });
+
     cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('sitewide-banner-button').should('have.length', 1);
@@ -144,6 +174,9 @@ describe('Site Wide Banner', () => {
       campaign: {
         id: campaignId,
         groupTypeId: null,
+        groupType: {
+          id: null,
+        },
       },
     });
 
