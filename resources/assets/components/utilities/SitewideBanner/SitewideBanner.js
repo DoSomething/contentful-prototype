@@ -82,25 +82,11 @@ const SitewideBanner = props => {
 
   const target = usePortal('banner-portal');
 
-<<<<<<< HEAD
-  if (loading) {
-    return null;
-  }
-
-  if (isExcludedPath(window.location.pathname) || (userId && !unregistered)) {
-    target.setAttribute('data-testid', 'sitewide-banner-hidden');
-
-    return null;
-  }
-
-  return createPortal(children, target);
-=======
   return !isExcludedPath(window.location.pathname) &&
     (!userId || unregistered) &&
     !campaignGroupTypeId
     ? createPortal(children, target)
     : null;
->>>>>>> add a query for a campaigns groupTypeId, and only show hellobar if it does not have one
 };
 
 export default SitewideBanner;
