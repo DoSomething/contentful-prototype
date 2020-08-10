@@ -70,8 +70,6 @@ const SitewideBanner = props => {
   );
   const campaignGroupTypeId = get(campaignData, 'campaign.groupType.id', null);
 
-  console.log(campaignGroupTypeId);
-
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
 
