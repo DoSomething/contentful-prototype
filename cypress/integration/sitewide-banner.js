@@ -25,7 +25,6 @@ describe('Site Wide Banner', () => {
     cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
       campaign: {
         id: campaignId,
-        groupTypeId: null,
         groupType: {
           id: null,
         },
@@ -49,7 +48,6 @@ describe('Site Wide Banner', () => {
     cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
       campaign: {
         id: campaignId,
-        groupTypeId: null,
         groupType: {
           id: null,
         },
@@ -127,7 +125,6 @@ describe('Site Wide Banner', () => {
     cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
       campaign: {
         id: campaignId,
-        groupTypeId: 1,
         groupType: {
           id: 1,
         },
@@ -144,7 +141,6 @@ describe('Site Wide Banner', () => {
     cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
       campaign: {
         id: campaignId,
-        groupTypeId: null,
         groupType: {
           id: null,
         },
@@ -176,7 +172,6 @@ describe('Site Wide Banner', () => {
     cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
       campaign: {
         id: campaignId,
-        groupTypeId: null,
         groupType: {
           id: null,
         },

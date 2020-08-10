@@ -22,7 +22,6 @@ const CAMPAIGN_GROUPTYPE_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {
     campaign(id: $campaignId) {
       id
-      groupTypeId
       groupType {
         id
       }
@@ -51,7 +50,7 @@ const isExcludedPath = pathname => {
 
 const SitewideBanner = props => {
   const userId = getUserId();
-  const campaignId = campaign ? parseInt(campaign.campaignId, 10) : null;
+  const campaignId = campaign ? Number(campaign.campaignId) : null;
 
   const options = { variables: { userId }, skip: !userId };
   const { data, loading } = useQuery(VOTER_REGISTRATION_STATUS, options);
@@ -68,7 +67,7 @@ const SitewideBanner = props => {
       skip: !campaignId,
     },
   );
-  const campaignGroupTypeId = get(campaignData, 'campaign.groupType.id', null);
+  const isGroupCampaign = !!get(campaignData, 'campaign.groupType.id');
 
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
@@ -95,7 +94,7 @@ const SitewideBanner = props => {
   if (
     isExcludedPath(window.location.pathname) ||
     (userId && !unregistered) ||
-    campaignGroupTypeId
+    isGroupCampaign
   ) {
     target.setAttribute('data-testid', 'sitewide-banner-hidden');
 
