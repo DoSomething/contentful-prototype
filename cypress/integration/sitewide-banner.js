@@ -3,6 +3,7 @@
 import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
+import { campaignId } from '../fixtures/constants';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 describe('Site Wide Banner', () => {
@@ -102,6 +103,23 @@ describe('Site Wide Banner', () => {
   });
 
   /** @test */
+  it('The Site Wide Banner is not displayed on groups campaign pages', () => {
+    cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
+      campaign: {
+        id: campaignId,
+        groupTypeId: 1,
+      },
+    });
+
+    cy.anonVisitCampaign(exampleCampaign);
+
+    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
+      'have.length',
+      0,
+    );
+  });
+
+  /** @test */
   it('The Site Wide Banner CTA URL is correct for an unauthenticated user', () => {
     cy.anonVisitCampaign(exampleCampaign);
 
@@ -122,6 +140,13 @@ describe('Site Wide Banner', () => {
     cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
       user: {
         voterRegistrationStatus: 'UNREGISTERED',
+      },
+    });
+
+    cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
+      campaign: {
+        id: campaignId,
+        groupTypeId: null,
       },
     });
 
