@@ -6,6 +6,7 @@ import {
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 import GroupSelect from './GroupSelect';
+// TODO: We should deprecate this for SelectLocationDropdown, but have to pass style overrides.
 import UsaStateSelect from '../../utilities/UsaStateSelect';
 
 const ANALYTICS_EVENT_CATEGORY = EVENT_CATEGORIES.campaignAction;
