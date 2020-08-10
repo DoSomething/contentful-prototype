@@ -37,7 +37,7 @@ const isExcludedPath = pathname => {
 const SitewideBanner = props => {
   const userId = getUserId();
   const options = { variables: { userId }, skip: !userId };
-  const { data } = useQuery(VOTER_REGISTRATION_STATUS, options);
+  const { data, loading } = useQuery(VOTER_REGISTRATION_STATUS, options);
 
   const unregistered = unregisteredStatuses.includes(
     get(data, 'user.voterRegistrationStatus'),
@@ -56,13 +56,22 @@ const SitewideBanner = props => {
 
     return rootElem.current;
   };
+
   const children = <SitewideBannerContent {...props} />;
 
   const target = usePortal('banner-portal');
 
-  return !isExcludedPath(window.location.pathname) && (!userId || unregistered)
-    ? createPortal(children, target)
-    : null;
+  if (loading) {
+    return null;
+  }
+
+  if (isExcludedPath(window.location.pathname) || (userId && !unregistered)) {
+    target.setAttribute('data-testid', 'sitewide-banner-hidden');
+
+    return null;
+  }
+
+  return createPortal(children, target);
 };
 
 export default SitewideBanner;
