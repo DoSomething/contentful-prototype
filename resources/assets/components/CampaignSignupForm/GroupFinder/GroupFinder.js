@@ -62,7 +62,7 @@ const GroupFinder = ({ context, groupType, onChange }) => {
           <p className="font-bold text-sm py-1">Select your {groupLabel}</p>
           <GroupSelect
             groupLabel={groupLabel}
-            groupState={groupState}
+            groupLocation={groupState}
             groupTypeId={groupType.id}
             onChange={onChange}
             onFocus={handleGroupSelectFocus}
