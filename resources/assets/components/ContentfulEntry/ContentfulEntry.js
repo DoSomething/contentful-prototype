@@ -12,6 +12,7 @@ import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import CampaignUpdate from '../blocks/CampaignUpdate/CampaignUpdate';
 import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
+import ActionStatsBlock from '../blocks/ActionStatsBlock/ActionStatsBlock';
 import EmbedBlockContainer from '../blocks/EmbedBlock/EmbedBlockContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import CallToActionBlock from '../blocks/CallToActionBlock/CallToActionBlock';
@@ -60,6 +61,9 @@ class ContentfulEntry extends React.Component {
     const type = parseContentfulType(json);
 
     switch (type) {
+      case 'ActionStatsBlock':
+        return <ActionStatsBlock {...withoutNulls(json)} />;
+
       case 'AffirmationBlock':
         return (
           <AffirmationContainer

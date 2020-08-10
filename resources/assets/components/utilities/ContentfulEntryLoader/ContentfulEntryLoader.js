@@ -22,6 +22,7 @@ import { ContentBlockFragment } from '../../blocks/ContentBlock/ContentBlock';
 import { CampaignDashboardFragment } from '../CampaignDashboard/CampaignDashboard';
 import { SixpackExperimentBlockFragment } from '../SixpackExperiment/SixpackExperiment';
 import { CampaignUpdateBlockFragment } from '../../blocks/CampaignUpdate/CampaignUpdate';
+import { ActionStatsBlockFragment } from '../../blocks/ActionStatsBlock/ActionStatsBlock';
 import { SocialDriveBlockFragment } from '../../actions/SocialDriveAction/SocialDriveAction';
 import { PostGalleryBlockFragment } from '../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import { CurrentSchoolBlockFragment } from '../../blocks/CurrentSchoolBlock/CurrentSchoolBlock';
@@ -70,6 +71,9 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ... on PostGalleryBlock {
         ...PostGalleryBlockFragment
       }
+      ... on ActionStatsBlock {
+        ...ActionStatsBlockFragment
+      }
       ... on CampaignDashboard {
         ...CampaignDashboardFragment
       }
@@ -114,6 +118,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${GalleryBlockFragment}
   ${ContentBlockFragment}
   ${SoftEdgeBlockFragment}
+  ${ActionStatsBlockFragment}
   ${AffirmationBlockFragment}
   ${SocialDriveBlockFragment}
   ${PostGalleryBlockFragment}
