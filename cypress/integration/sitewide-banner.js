@@ -128,6 +128,9 @@ describe('Site Wide Banner', () => {
       campaign: {
         id: campaignId,
         groupTypeId: 1,
+        groupType: {
+          id: 1,
+        },
       },
     });
 
