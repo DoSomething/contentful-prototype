@@ -23,6 +23,9 @@ const CAMPAIGN_GROUPTYPE_QUERY = gql`
     campaign(id: $campaignId) {
       id
       groupTypeId
+      groupType {
+        id
+      }
     }
   }
 `;
@@ -51,18 +54,23 @@ const SitewideBanner = props => {
   const campaignId = campaign ? parseInt(campaign.campaignId, 10) : null;
 
   const options = { variables: { userId }, skip: !userId };
-  const { data } = useQuery(VOTER_REGISTRATION_STATUS, options);
+  const { data, loading } = useQuery(VOTER_REGISTRATION_STATUS, options);
   const unregistered = unregisteredStatuses.includes(
     get(data, 'user.voterRegistrationStatus'),
   );
 
-  const { data: campaignData } = useQuery(CAMPAIGN_GROUPTYPE_QUERY, {
-    variables: {
-      campaignId,
+  const { data: campaignData, loading: campaignLoading } = useQuery(
+    CAMPAIGN_GROUPTYPE_QUERY,
+    {
+      variables: {
+        campaignId,
+      },
+      skip: !campaignId,
     },
-    skip: !campaignId,
-  });
-  const campaignGroupTypeId = get(campaignData, 'campaign.groupTypeId', null);
+  );
+  const campaignGroupTypeId = get(campaignData, 'campaign.groupType.id', null);
+
+  console.log(campaignGroupTypeId);
 
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
@@ -82,11 +90,21 @@ const SitewideBanner = props => {
 
   const target = usePortal('banner-portal');
 
-  return !isExcludedPath(window.location.pathname) &&
-    (!userId || unregistered) &&
-    !campaignGroupTypeId
-    ? createPortal(children, target)
-    : null;
+  if (loading || campaignLoading) {
+    return null;
+  }
+
+  if (
+    isExcludedPath(window.location.pathname) ||
+    (userId && !unregistered) ||
+    campaignGroupTypeId
+  ) {
+    target.setAttribute('data-testid', 'sitewide-banner-hidden');
+
+    return null;
+  }
+
+  return createPortal(children, target);
 };
 
 export default SitewideBanner;

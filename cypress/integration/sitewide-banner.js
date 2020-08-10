@@ -113,10 +113,7 @@ describe('Site Wide Banner', () => {
 
     cy.anonVisitCampaign(exampleCampaign);
 
-    cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
-      'have.length',
-      0,
-    );
+    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
   });
 
   /** @test */
