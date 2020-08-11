@@ -22,9 +22,7 @@ const CAMPAIGN_GROUPTYPE_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {
     campaign(id: $campaignId) {
       id
-      groupType {
-        id
-      }
+      groupTypeId
     }
   }
 `;
@@ -67,7 +65,7 @@ const SitewideBanner = props => {
       skip: !campaignId,
     },
   );
-  const isGroupCampaign = !!get(campaignData, 'campaign.groupType.id');
+  const isGroupCampaign = !!get(campaignData, 'campaign.groupTypeId');
 
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
