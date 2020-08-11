@@ -130,7 +130,7 @@ module.exports = function(migration) {
 
       validations: [
         {
-          linkContentType: ['actionStatsBlock', 'sectionBlock'],
+          linkContentType: ['sectionBlock'],
         },
       ],
 
