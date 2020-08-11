@@ -6,19 +6,23 @@ import AsyncSelect from 'react-select/async';
 import { useApolloClient } from '@apollo/react-hooks';
 
 const SEARCH_GROUPS_QUERY = gql`
-  query SearchGroupsQuery($groupTypeId: Int!, $name: String!, $state: String) {
-    groups(groupTypeId: $groupTypeId, name: $name, state: $state) {
+  query SearchGroupsQuery(
+    $groupTypeId: Int!
+    $name: String!
+    $location: String
+  ) {
+    groups(groupTypeId: $groupTypeId, name: $name, location: $location) {
       id
       name
       city
-      state
+      location
     }
   }
 `;
 
 const GroupSelect = ({
   groupLabel,
-  groupState,
+  groupLocation,
   groupTypeId,
   onChange,
   onFocus,
@@ -35,8 +39,8 @@ const GroupSelect = ({
       name: searchString,
     };
 
-    if (groupState) {
-      variables.state = groupState;
+    if (groupLocation) {
+      variables.location = groupLocation;
     }
 
     client
@@ -53,11 +57,11 @@ const GroupSelect = ({
     <AsyncSelect
       getOptionLabel={group =>
         group.city
-          ? `${group.name} - ${group.city}, ${group.state}`
+          ? `${group.name} - ${group.city}, ${group.location.substring(3)}`
           : group.name
       }
       getOptionValue={group => group.id}
-      key={groupState}
+      key={groupLocation}
       id="select-group-dropdown"
       instanceId="select-group-"
       isClearable
@@ -80,14 +84,14 @@ const GroupSelect = ({
 
 GroupSelect.propTypes = {
   groupLabel: PropTypes.string.isRequired,
-  groupState: PropTypes.string,
+  groupLocation: PropTypes.string,
   groupTypeId: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
 };
 
 GroupSelect.defaultProps = {
-  groupState: null,
+  groupLocation: null,
 };
 
 export default GroupSelect;

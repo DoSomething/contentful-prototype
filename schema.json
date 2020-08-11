@@ -3632,8 +3632,8 @@
             "deprecationReason": null
           },
           {
-            "name": "filterByState",
-            "description": "Whether group finders for this type should first filter by state before searching by name.",
+            "name": "filterByLocation",
+            "description": "Whether group finders for this type should first filter by location before searching by name.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -3642,6 +3642,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "filterByState",
+            "description": "Whether group finders for this type should first filter by state before searching by name.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use 'filterByLocation' instead."
           },
           {
             "name": "updatedAt",
