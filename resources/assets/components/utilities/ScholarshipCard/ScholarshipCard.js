@@ -14,6 +14,7 @@ import {
   trackAnalyticsEvent,
   getPageContext,
 } from '../../../helpers/analytics';
+import { isAuthenticated } from '../../../selectors/user';
 
 // Write a graphql query to get campaign information for a specific id
 export const scholarshipCardFragment = gql`
@@ -57,7 +58,6 @@ const ScholarshipCard = ({ campaign }) => {
   ]);
 
   const handleScholarshipCardShareClick = () => {
-    GalleryBlockSignup();
     trackAnalyticsEvent('clicked_scholarship_gallery_block_apply_now', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.siteAction,
@@ -116,12 +116,16 @@ const ScholarshipCard = ({ campaign }) => {
           </div>
         </div>
 
-        <SecondaryButton
-          className="w-full"
-          href={path}
-          text="Apply Now"
-          onClick={handleScholarshipCardShareClick}
-        />
+        {isAuthenticated ? (
+          <GalleryBlockSignup />
+        ) : (
+          <SecondaryButton
+            className="w-full"
+            href={path}
+            text="Apply Now"
+            onClick={handleScholarshipCardShareClick}
+          />
+        )}
       </div>
     </article>
   );

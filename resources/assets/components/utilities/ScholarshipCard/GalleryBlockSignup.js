@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
-import { isAuthenticated } from '../../../helpers/auth';
+import SecondaryButton from '../Button/SecondaryButton';
 
 export const CREATE_SIGNUP_MUTATION = gql`
   mutation CampaignSignupMutation($campaignId: Int!) {
@@ -18,11 +18,12 @@ const GalleryBlockSignup = ({ id, campaignId }) => {
     variables: { campaignId },
   });
 
-  useEffect(() => {
-    if (isAuthenticated()) {
-      handleSignup();
-    }
-  }, [id]);
+  <SecondaryButton
+    className="w-full"
+    href={path}
+    text="Apply Now"
+    onClick={handleSignup}
+  />;
 
   return <Redirect to={`/us/campaigns/${campaignId}`} />;
 };
