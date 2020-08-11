@@ -29,8 +29,6 @@ const CAMPAIGN_GROUPTYPE_QUERY = gql`
 
 const unregisteredStatuses = ['UNCERTAIN', 'CONFIRMED', 'UNREGISTERED'];
 
-const campaign = getCampaign();
-
 const isExcludedPath = pathname => {
   return excludedPaths.find(excludedPath => {
     if (excludedPath.includes('*')) {
@@ -47,9 +45,13 @@ const isExcludedPath = pathname => {
 };
 
 const SitewideBanner = props => {
+  let campaignId;
   const userId = getUserId();
-  const campaignId = campaign ? Number(campaign.campaignId) : null;
-
+  useEffect(() => {
+    const campaign = getCampaign();
+    campaignId = campaign ? Number(campaign.campaignId) : null;
+  }, []);
+  console.log(campaignId);
   const options = { variables: { userId }, skip: !userId };
   const { data, loading } = useQuery(VOTER_REGISTRATION_STATUS, options);
   const unregistered = unregisteredStatuses.includes(

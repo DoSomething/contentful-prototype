@@ -121,7 +121,7 @@ describe('Site Wide Banner', () => {
     cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
       campaign: {
         id: campaignId,
-        groupTypeId: null,
+        groupTypeId: 1,
       },
     });
 
