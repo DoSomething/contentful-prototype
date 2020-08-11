@@ -58,7 +58,6 @@ const ScholarshipCard = ({ campaign }) => {
   ]);
 
   const handleScholarshipCardShareClick = () => {
-    GalleryBlockSignup();
     trackAnalyticsEvent('clicked_scholarship_gallery_block_apply_now', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.siteAction,
