@@ -22,9 +22,8 @@ describe('Site Wide Banner', () => {
   });
 
   it('The Site Wide Banner is displayed on campaign pages', () => {
-    cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
+    cy.mockGraphqlOp('CampaignBannerQuery', {
       campaign: {
-        id: campaignId,
         groupTypeId: null,
       },
     });
@@ -37,16 +36,15 @@ describe('Site Wide Banner', () => {
   it('The Site Wide Banner is displayed on campaign pages for authenticated users who are not registered to vote', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
-      user: {
-        voterRegistrationStatus: 'UNREGISTERED',
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        groupTypeId: null,
       },
     });
 
-    cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
-      campaign: {
-        id: campaignId,
-        groupTypeId: null,
+    cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
+      user: {
+        voterRegistrationStatus: 'UNREGISTERED',
       },
     });
 
@@ -132,9 +130,8 @@ describe('Site Wide Banner', () => {
 
   /** @test */
   it('The Site Wide Banner CTA URL is correct for an unauthenticated user', () => {
-    cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
+    cy.mockGraphqlOp('CampaignBannerQuery', {
       campaign: {
-        id: campaignId,
         groupTypeId: null,
       },
     });
@@ -153,7 +150,11 @@ describe('Site Wide Banner', () => {
   it('Sets up the correct tracking source for the RTV redirect URL for an authenticated user', () => {
     const user = userFactory();
 
-    // Log in & visit the campaign pitch page:
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        groupTypeId: null,
+      },
+    });
 
     cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
       user: {
@@ -161,13 +162,7 @@ describe('Site Wide Banner', () => {
       },
     });
 
-    cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
-      campaign: {
-        id: campaignId,
-        groupTypeId: null,
-      },
-    });
-
+    // Log in & visit the campaign pitch page:
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
     cy.findByTestId('sitewide-banner-button').should('have.length', 1);

@@ -45,13 +45,9 @@ const isExcludedPath = pathname => {
 };
 
 const SitewideBanner = props => {
-  let campaignId;
   const userId = getUserId();
-  useEffect(() => {
-    const campaign = getCampaign();
-    campaignId = campaign ? Number(campaign.campaignId) : null;
-  }, []);
-  console.log(campaignId);
+  const campaign = getCampaign();
+  const campaignId = campaign ? Number(campaign.campaignId) : null;
   const options = { variables: { userId }, skip: !userId };
   const { data, loading } = useQuery(VOTER_REGISTRATION_STATUS, options);
   const unregistered = unregisteredStatuses.includes(
