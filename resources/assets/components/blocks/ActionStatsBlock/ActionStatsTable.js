@@ -61,6 +61,8 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
     assign(variables, { schoolId });
   }
 
+  console.log(variables);
+
   const { error, loading, data, fetchMore } = useQuery(
     PAGINATED_ACTION_STATS_QUERY,
     {
