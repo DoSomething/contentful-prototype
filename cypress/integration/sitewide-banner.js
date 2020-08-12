@@ -3,6 +3,7 @@
 import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
+import { campaignId } from '../fixtures/constants';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 describe('Site Wide Banner', () => {
@@ -21,6 +22,12 @@ describe('Site Wide Banner', () => {
   });
 
   it('The Site Wide Banner is displayed on campaign pages', () => {
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        groupTypeId: null,
+      },
+    });
+
     cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('sitewide-banner').should('have.length', 1);
@@ -28,6 +35,12 @@ describe('Site Wide Banner', () => {
 
   it('The Site Wide Banner is displayed on campaign pages for authenticated users who are not registered to vote', () => {
     const user = userFactory();
+
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        groupTypeId: null,
+      },
+    });
 
     cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
       user: {
@@ -102,7 +115,27 @@ describe('Site Wide Banner', () => {
   });
 
   /** @test */
+  it('The Site Wide Banner is not displayed on groups campaign pages', () => {
+    cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
+      campaign: {
+        id: campaignId,
+        groupTypeId: 1,
+      },
+    });
+
+    cy.anonVisitCampaign(exampleCampaign);
+
+    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
+  });
+
+  /** @test */
   it('The Site Wide Banner CTA URL is correct for an unauthenticated user', () => {
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        groupTypeId: null,
+      },
+    });
+
     cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('sitewide-banner-button').should('have.length', 1);
@@ -117,7 +150,11 @@ describe('Site Wide Banner', () => {
   it('Sets up the correct tracking source for the RTV redirect URL for an authenticated user', () => {
     const user = userFactory();
 
-    // Log in & visit the campaign pitch page:
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        groupTypeId: null,
+      },
+    });
 
     cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
       user: {
@@ -125,6 +162,7 @@ describe('Site Wide Banner', () => {
       },
     });
 
+    // Log in & visit the campaign pitch page:
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
     cy.findByTestId('sitewide-banner-button').should('have.length', 1);

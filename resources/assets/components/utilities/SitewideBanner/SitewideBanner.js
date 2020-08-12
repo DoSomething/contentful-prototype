@@ -6,6 +6,7 @@ import React, { useRef, useEffect } from 'react';
 
 import excludedPaths from './config';
 import { getUserId } from '../../../helpers/auth';
+import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
 
 const VOTER_REGISTRATION_STATUS = gql`
@@ -13,6 +14,15 @@ const VOTER_REGISTRATION_STATUS = gql`
     user(id: $userId) {
       id
       voterRegistrationStatus
+    }
+  }
+`;
+
+const CAMPAIGN_GROUPTYPE_QUERY = gql`
+  query CampaignSitewideBannerQuery($campaignId: Int!) {
+    campaign(id: $campaignId) {
+      id
+      groupTypeId
     }
   }
 `;
@@ -36,12 +46,24 @@ const isExcludedPath = pathname => {
 
 const SitewideBanner = props => {
   const userId = getUserId();
+  const campaign = getCampaign();
+  const campaignId = campaign ? Number(campaign.campaignId) : null;
   const options = { variables: { userId }, skip: !userId };
   const { data, loading } = useQuery(VOTER_REGISTRATION_STATUS, options);
-
   const unregistered = unregisteredStatuses.includes(
     get(data, 'user.voterRegistrationStatus'),
   );
+
+  const { data: campaignData, loading: campaignLoading } = useQuery(
+    CAMPAIGN_GROUPTYPE_QUERY,
+    {
+      variables: {
+        campaignId,
+      },
+      skip: !campaignId,
+    },
+  );
+  const isGroupCampaign = !!get(campaignData, 'campaign.groupTypeId');
 
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
@@ -61,11 +83,15 @@ const SitewideBanner = props => {
 
   const target = usePortal('banner-portal');
 
-  if (loading) {
+  if (loading || campaignLoading) {
     return null;
   }
 
-  if (isExcludedPath(window.location.pathname) || (userId && !unregistered)) {
+  if (
+    isExcludedPath(window.location.pathname) ||
+    (userId && !unregistered) ||
+    isGroupCampaign
+  ) {
     target.setAttribute('data-testid', 'sitewide-banner-hidden');
 
     return null;
