@@ -1,6 +1,7 @@
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
@@ -109,7 +110,10 @@ const CampaignBanner = ({
             {!isAffiliated ? (
               <div
                 data-testid="campaign-banner-signup-button"
-                className="bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:p-0 fixed md:static w-full md:w-auto z-10 md:z-auto"
+                className={classnames(
+                  'bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:static md:p-0 w-full md:w-auto z-10 md:z-auto',
+                  { fixed: !groupType },
+                )}
               >
                 {!loading ? (
                   <CampaignSignupFormContainer
