@@ -111,8 +111,8 @@ const CampaignBanner = ({
               <div
                 data-testid="campaign-banner-signup-button"
                 className={classnames(
-                  'bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:p-0 w-full md:w-auto z-10 md:z-auto',
-                  { 'fixed md:static': !groupType, static: groupType },
+                  'bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:static md:p-0 w-full md:w-auto z-10 md:z-auto',
+                  { fixed: !groupType },
                 )}
               >
                 {!loading ? (
