@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
@@ -13,23 +13,21 @@ export const CREATE_SIGNUP_MUTATION = gql`
     }
   }
 `;
-const GalleryBlockSignup = ({ id, campaignId }) => {
+const GalleryBlockSignup = ({ campaignId }) => {
   const [handleSignup] = useMutation(CREATE_SIGNUP_MUTATION, {
     variables: { campaignId },
   });
 
-  <SecondaryButton
+  return <SecondaryButton
     className="w-full"
-    href={path}
     text="Apply Now"
     onClick={handleSignup}
-  />;
-
-  return <Redirect to={`/us/campaigns/${campaignId}`} />;
+  /> ? (
+    <Redirect to={`/us/campaigns/${campaignId}`} />
+  ) : null;
 };
 
 GalleryBlockSignup.propTypes = {
-  id: PropTypes.string.isRequired,
   campaignId: PropTypes.number.isRequired,
 };
 
