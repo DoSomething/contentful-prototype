@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import ActionStatsTable from './ActionStatsTable';
+import ActionStatsLeaderboard from './ActionStatsLeaderboard';
 import SelectLocationDropdown from '../../utilities/SelectLocationDropdown/SelectLocationDropdown';
 
 export const ActionStatsBlockFragment = gql`
@@ -16,6 +17,7 @@ const ActionStatsBlock = ({ filterByActionId }) => {
 
   return (
     <>
+      <ActionStatsLeaderboard />
       <div className="w-1/4 pb-3">
         <SelectLocationDropdown
           locationList="domestic"
