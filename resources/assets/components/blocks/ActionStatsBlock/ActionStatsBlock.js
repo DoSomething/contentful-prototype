@@ -17,7 +17,7 @@ const ActionStatsBlock = ({ filterByActionId }) => {
 
   return (
     <>
-      <ActionStatsLeaderboard />
+      <ActionStatsLeaderboard actionId={filterByActionId} />
       <div className="w-1/4 pb-3">
         <SelectLocationDropdown
           locationList="domestic"
