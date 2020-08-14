@@ -28,7 +28,7 @@ const SCHOOL_ACTION_STATS_LEADER_QUERY = gql`
   }
 `;
 
-const ActionStatsLeaderboard = ({ actionId }) => {
+const LeaderList = ({ actionId }) => {
   const { loading, data, error } = useQuery(SCHOOL_ACTION_STATS_LEADER_QUERY, {
     variables: {
       actionId,
@@ -83,6 +83,27 @@ const ActionStatsLeaderboard = ({ actionId }) => {
           })}
         </div>
       )}
+    </>
+  );
+};
+
+LeaderList.propTypes = {
+  actionId: PropTypes.number.isRequired,
+};
+
+const ActionStatsLeaderboard = ({ actionId }) => {
+  return (
+    <>
+      <SectionHeader underlined title="Voter Registration Leaderboard" />
+      <div className="lg:w-2/3 py-3">
+        <p>
+          This is the online voter registration leaderboard for high school
+          students currently running drives. Search your state and/or school to
+          see how your registration drive compares to other participating
+          schools and groups.
+        </p>
+      </div>
+      <LeaderList actionId={actionId} />
     </>
   );
 };
