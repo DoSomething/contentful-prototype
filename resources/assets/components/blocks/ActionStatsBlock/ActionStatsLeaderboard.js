@@ -52,7 +52,9 @@ const LeaderList = ({ actionId }) => {
         <div className="p-6 bg-white lg:w-2/3 mb-6">
           {leaders.map(leader => {
             const { impact, school, location, id } = leader;
+
             rank += 1;
+
             return (
               <div
                 className="mx-auto md:flex md:items-center md:justify-between border-b border-gray-300 border-solid md:pb-4 mb-4"
