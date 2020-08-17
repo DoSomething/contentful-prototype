@@ -11,18 +11,31 @@ import {
 } from '../../../constants/school-finder';
 
 const SEARCH_SCHOOLS_QUERY = gql`
-  query SearchSchoolsQuery($state: String!, $name: String!) {
-    searchSchools(state: $state, name: $name) {
+  query SearchSchoolsQuery($location: String!, $name: String!) {
+    searchSchools(location: $location, name: $name) {
       id
       name
       city
-      state
+      location
     }
   }
 `;
 
-const SchoolSelect = ({ onChange, schoolState }) => {
+const SchoolSelect = ({
+  includeSchoolNotAvailableOption,
+  onChange,
+  schoolLocation,
+}) => {
   const client = useApolloClient();
+
+  const schoolNotAvailableOption = includeSchoolNotAvailableOption
+    ? [
+        {
+          id: SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
+        },
+      ]
+    : null;
+
   // Debounce school search to query for schools after 250 ms typing pause.
   // @see https://github.com/JedWatson/react-select/issues/614#issuecomment-244006496
   const fetchSchools = debounce((searchString, callback) => {
@@ -30,20 +43,14 @@ const SchoolSelect = ({ onChange, schoolState }) => {
       .query({
         query: SEARCH_SCHOOLS_QUERY,
         variables: {
-          state: schoolState,
+          location: schoolLocation,
           name: searchString,
         },
       })
       .then(result => {
-        // Return search results, or School Not Available ID if no school was found.
-        const options = result.data.searchSchools.length
-          ? result.data.searchSchools
-          : [
-              {
-                id: SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
-              },
-            ];
-        callback(options);
+        const schools = result.data.searchSchools;
+
+        callback(schools.length ? schools : schoolNotAvailableOption);
       })
       .catch(error => callback(error));
   }, 250);
@@ -54,17 +61,16 @@ const SchoolSelect = ({ onChange, schoolState }) => {
       getOptionLabel={school =>
         school.id === SCHOOL_NOT_AVAILABLE_SCHOOL_ID
           ? SCHOOL_NOT_AVAILABLE_OPTION_LABEL
-          : `${school.name} - ${school.city}, ${school.state}`
+          : `${school.name} - ${school.city}, ${school.location.substring(3)}`
       }
       getOptionValue={school => school.id}
       isClearable
       /**
-       * Changing per schoolState will result in clearing any selected options.
-       * If user selects a school, but then changes the school state to something else, they should
-       * be forced to find school in the selected state.
+       * Changing per schoolLocation will result in clearing any selected options.
+       * If user selects a school, but then changes location, force reselect.
        * @see https://stackoverflow.com/a/55142916
        */
-      key={schoolState}
+      key={schoolLocation}
       loadOptions={(input, callback) => {
         /**
          * Avoid querying by empty school name on page load.
@@ -73,17 +79,27 @@ const SchoolSelect = ({ onChange, schoolState }) => {
         if (!input) {
           return Promise.resolve([]);
         }
+
         return fetchSchools(input, callback);
       }}
-      noOptionsMessage={() => 'Enter your school name'}
+      noOptionsMessage={({ inputValue }) =>
+        inputValue.length
+          ? `Oops, we can't find a school called "${inputValue}"`
+          : 'Enter your school name'
+      }
       onChange={onChange}
     />
   );
 };
 
 SchoolSelect.propTypes = {
+  includeSchoolNotAvailableOption: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
-  schoolState: PropTypes.string.isRequired,
+  schoolLocation: PropTypes.string.isRequired,
+};
+
+SchoolSelect.defaultProps = {
+  includeSchoolNotAvailableOption: false,
 };
 
 export default SchoolSelect;
