@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 
 import ActionStatsTable from './ActionStatsTable';
 import ActionStatsLeaderboard from './ActionStatsLeaderboard';
-import SelectLocationDropdown from '../../utilities/SelectLocationDropdown/SelectLocationDropdown';
+import SchoolSelect from '../CurrentSchoolBlock/SchoolSelect';
+import SchoolLocationSelect from '../../utilities/UsaStateSelect';
 
 export const ActionStatsBlockFragment = gql`
   fragment ActionStatsBlockFragment on ActionStatsBlock {
@@ -13,22 +14,36 @@ export const ActionStatsBlockFragment = gql`
 `;
 
 const ActionStatsBlock = ({ filterByActionId }) => {
+  const [schoolId, setSchoolId] = useState(null);
   const [schoolLocation, setSchoolLocation] = useState(null);
 
   return (
     <>
       <ActionStatsLeaderboard actionId={filterByActionId} />
 
-      <div className="md:w-1/4 pb-3">
-        <SelectLocationDropdown
-          locationList="domestic"
-          onSelect={event => setSchoolLocation(event.target.value)}
-          selectedOption={schoolLocation || ''}
-        />
+      <div className="flex pb-3">
+        <div className="md:w-1/4 pb-3">
+          <SchoolLocationSelect
+            isClearable
+            onChange={selected =>
+              setSchoolLocation(selected ? selected.value : null)
+            }
+          />
+        </div>
+
+        {schoolLocation ? (
+          <div className="w-1/4 pb-3">
+            <SchoolSelect
+              schoolLocation={schoolLocation}
+              onChange={school => setSchoolId(school ? school.id : null)}
+            />
+          </div>
+        ) : null}
       </div>
 
       <ActionStatsTable
         actionId={filterByActionId}
+        schoolId={schoolId}
         schoolLocation={schoolLocation}
       />
     </>

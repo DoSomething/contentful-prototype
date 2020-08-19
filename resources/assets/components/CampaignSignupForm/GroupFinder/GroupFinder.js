@@ -25,7 +25,7 @@ const GroupFinder = ({ context, groupType, onChange }) => {
   };
 
   const handleGroupLocationSelectChange = selected => {
-    setGroupLocation(selected.abbreviation);
+    setGroupLocation(selected.value);
 
     trackAnalyticsEvent(`clicked_${ANALYTICS_EVENT_LABEL}_state`, {
       action: 'form_clicked',
@@ -63,7 +63,7 @@ const GroupFinder = ({ context, groupType, onChange }) => {
           <p className="font-bold text-sm py-1">Select your {groupLabel}</p>
           <GroupSelect
             groupLabel={groupLabel}
-            groupLocation={`US-${groupLocation}`}
+            groupLocation={groupLocation}
             groupTypeId={groupType.id}
             onChange={onChange}
             onFocus={handleGroupSelectFocus}

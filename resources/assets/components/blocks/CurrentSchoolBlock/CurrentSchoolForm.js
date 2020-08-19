@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 import SchoolSelect from './SchoolSelect';
-import SchoolStateSelect from '../../utilities/UsaStateSelect';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import SchoolLocationSelect from '../../utilities/UsaStateSelect';
 
 const USER_SCHOOL_MUTATION = gql`
   mutation UserSchoolMutation($userId: String!, $schoolId: String) {
@@ -18,7 +18,7 @@ const USER_SCHOOL_MUTATION = gql`
 
 const CurrentSchoolForm = ({ description, userId }) => {
   const [school, setSchool] = useState(null);
-  const [schoolState, setSchoolState] = useState(null);
+  const [schoolLocation, setSchoolLocation] = useState(null);
   const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
 
   return (
@@ -28,14 +28,17 @@ const CurrentSchoolForm = ({ description, userId }) => {
       <div className="mt-6" data-test="select-state">
         <strong>State</strong>
 
-        <SchoolStateSelect onChange={selected => setSchoolState(selected)} />
+        <SchoolLocationSelect
+          onChange={selected => setSchoolLocation(selected.value)}
+        />
       </div>
 
-      {schoolState ? (
+      {schoolLocation ? (
         <div className="mt-6" data-test="select-school">
           <SchoolSelect
+            includeSchoolNotAvailableOption
             onChange={selected => setSchool(selected)}
-            schoolState={schoolState.abbreviation}
+            schoolLocation={schoolLocation}
           />
         </div>
       ) : null}

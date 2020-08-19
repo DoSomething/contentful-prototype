@@ -3,26 +3,33 @@ import Select from 'react-select';
 import PropTypes from 'prop-types';
 import { UsaStates } from 'usa-states';
 
-const usaStateOptions = new UsaStates().states;
+const options = new UsaStates().states.map(item => {
+  return {
+    label: item.name,
+    value: `US-${item.abbreviation}`,
+  };
+});
 
-const UsaStateSelect = ({ onChange, onFocus }) => (
+const UsaStateSelect = ({ isClearable, onChange, onFocus }) => (
   <Select
-    getOptionLabel={usaState => usaState.name}
-    getOptionValue={usaState => usaState.abbreviation}
     id="select-state-dropdown"
     instanceId="select-state-"
+    isClearable={isClearable}
     onChange={onChange}
     onFocus={onFocus}
-    options={usaStateOptions}
+    options={options}
+    placeholder="Select state"
   />
 );
 
 UsaStateSelect.propTypes = {
+  isClearable: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
 };
 
 UsaStateSelect.defaultProps = {
+  isClearable: false,
   onFocus: () => {},
 };
 
