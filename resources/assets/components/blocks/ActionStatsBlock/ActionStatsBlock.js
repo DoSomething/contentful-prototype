@@ -19,7 +19,7 @@ const ActionStatsBlock = ({ filterByActionId }) => {
     <>
       <ActionStatsLeaderboard actionId={filterByActionId} />
 
-      <div className="w-1/4 pb-3">
+      <div className="md:w-1/4 pb-3">
         <SelectLocationDropdown
           locationList="domestic"
           onSelect={event => setSchoolLocation(event.target.value)}

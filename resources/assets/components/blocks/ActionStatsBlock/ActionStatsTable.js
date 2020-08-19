@@ -47,8 +47,8 @@ const PAGINATED_ACTION_STATS_QUERY = gql`
   }
 `;
 
-const TableHeader = tw.thead`bg-blurple-500 font-bold p-4 pr-6 text-left text-white`;
-const TableCell = tw.td`p-2 text-base`;
+const TableHeader = tw.thead`bg-blurple-500 font-bold p-4 pr-6 text-left text-white w-full`;
+const TableCell = tw.td`p-2 text-sm md:text-base`;
 
 const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
   const variables = { actionId };
