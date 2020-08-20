@@ -47,7 +47,7 @@ const PAGINATED_ACTION_STATS_QUERY = gql`
   }
 `;
 
-const Table = tw.table`w-full bordered`;
+const Table = tw.table`w-full border border-solid border-gray-200`;
 const TableHeader = tw.thead`bg-blurple-500 font-bold p-4 pr-6 text-left text-white w-full`;
 const TableCell = tw.td`p-2 text-sm md:text-base`;
 
@@ -111,7 +111,7 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
         <tbody>
           <tr>
             <td className="bg-gray-100 px-10 pt-10 pb-32" colSpan={colSpan}>
-              <div className="bg-white p-6 bordered rounded">
+              <div className="bg-white p-6 rounded">
                 <h3>No Schools Found</h3>
 
                 <p>
