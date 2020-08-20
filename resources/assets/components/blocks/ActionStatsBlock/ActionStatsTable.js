@@ -47,6 +47,7 @@ const PAGINATED_ACTION_STATS_QUERY = gql`
   }
 `;
 
+const Table = tw.table`w-full bordered`;
 const TableHeader = tw.thead`bg-blurple-500 font-bold p-4 pr-6 text-left text-white w-full`;
 const TableCell = tw.td`p-2 text-sm md:text-base`;
 
@@ -104,7 +105,7 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
 
   if (noResults && !hasNextPage) {
     return (
-      <table className="w-full">
+      <Table>
         {header}
 
         <tbody>
@@ -112,6 +113,7 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
             <td className="bg-gray-100 px-10 pt-10 pb-32" colSpan={colSpan}>
               <div className="bg-white p-6 bordered rounded">
                 <h3>No Schools Found</h3>
+
                 <p>
                   Uh oh! Looks like we don’t currently have any schools in your
                   state. Keep in mind that if your school has 0 registrations,
@@ -122,12 +124,12 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
             </td>
           </tr>
         </tbody>
-      </table>
+      </Table>
     );
   }
 
   return (
-    <table className="w-full">
+    <Table>
       {header}
 
       <tbody>
@@ -173,7 +175,7 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
           </tr>
         ) : null}
       </tfoot>
-    </table>
+    </Table>
   );
 };
 
