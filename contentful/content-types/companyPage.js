@@ -105,21 +105,6 @@ module.exports = function(migration) {
     .required(true)
     .validations([
       {
-        nodes: {
-          'embedded-entry-block': [
-            {
-              linkContentType: [
-                'callToAction',
-                'contentBlock',
-                'galleryBlock',
-                'imagesBlock',
-                'linkAction',
-              ],
-            },
-          ],
-        },
-      },
-      {
         enabledNodeTypes: [
           'heading-1',
           'heading-2',
@@ -139,6 +124,22 @@ module.exports = function(migration) {
 
         message:
           'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, block entry, asset, link to Url, and link to asset nodes are allowed',
+      },
+      {
+        nodes: {
+          'embedded-entry-block': [
+            {
+              linkContentType: [
+                'actionStatsBlock',
+                'callToAction',
+                'contentBlock',
+                'galleryBlock',
+                'imagesBlock',
+                'linkAction',
+              ],
+            },
+          ],
+        },
       },
     ])
     .disabled(false)
