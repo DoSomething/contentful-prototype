@@ -48,7 +48,7 @@ const ActionStatsLeaderboard = ({ actionId }) => {
       {loading ? (
         <Spinner className="flex justify-center" />
       ) : (
-        <div className="p-6 bg-white lg:w-2/3 mb-6">
+        <div className="p-6 bg-white lg:w-2/3">
           {leaders.map(leader => {
             const { impact, school, location, id } = leader;
 
