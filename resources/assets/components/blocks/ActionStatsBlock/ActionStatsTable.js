@@ -2,6 +2,7 @@ import React from 'react';
 import tw from 'twin.macro';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import { assign, get } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -47,6 +48,7 @@ const PAGINATED_ACTION_STATS_QUERY = gql`
   }
 `;
 
+const Table = tw.table`w-full border border-solid border-gray-200`;
 const TableHeader = tw.thead`bg-blurple-500 font-bold p-4 pr-6 text-left text-white w-full`;
 const TableCell = tw.td`p-2 text-sm md:text-base`;
 
@@ -84,72 +86,102 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
     return <ErrorBlock error={error} />;
   }
 
-  if (noResults && !hasNextPage) {
-    return <div>No results</div>;
-  }
-
   let rank = 0;
+  const displayRank = !schoolLocation;
+  const colSpan = displayRank ? 4 : 3;
 
-  return (
-    <>
-      <table className="w-full">
-        <TableHeader>
-          <tr>
-            <TableCell>{schoolLocation ? 'State' : 'National'} Rank</TableCell>
+  const header = (
+    <TableHeader>
+      <tr>
+        {displayRank ? <TableCell>National Rank</TableCell> : null}
 
-            <TableCell>School Name</TableCell>
+        <TableCell>School Name</TableCell>
 
-            <TableCell>Location</TableCell>
+        <TableCell>Location</TableCell>
 
-            <TableCell>Voter Registrations</TableCell>
-          </tr>
-        </TableHeader>
+        <TableCell>Voter Registrations</TableCell>
+      </tr>
+    </TableHeader>
+  );
+
+  if (noResults && !hasNextPage) {
+    return (
+      <Table>
+        {header}
 
         <tbody>
-          {stats.map(({ node, cursor }) => {
-            const { impact, location, school } = node;
+          <tr>
+            <td className="bg-gray-100 px-10 pt-10 pb-32" colSpan={colSpan}>
+              <div className="bg-white p-6 rounded">
+                <h3>No Schools Found</h3>
 
-            rank += 1;
-
-            return (
-              <tr key={cursor}>
-                <TableCell>{rank}</TableCell>
-
-                <TableCell>{school.name}</TableCell>
-
-                <TableCell>
-                  {school.city}, {location.substring(3)}
-                </TableCell>
-
-                <TableCell>{impact}</TableCell>
-              </tr>
-            );
-          })}
+                <p>
+                  Uh oh! Looks like we don’t currently have any schools in your
+                  state. Keep in mind that if your school has 0 registrations,
+                  it won’t show up in the leaderboard. Still have questions?
+                  Email tej@dosomething.org for help.
+                </p>
+              </div>
+            </td>
+          </tr>
         </tbody>
+      </Table>
+    );
+  }
 
-        <tfoot className="form-actions">
-          {loading ? (
-            <tr>
-              <td className="p-3" colSpan="4">
-                <Spinner className="flex justify-center" />
-              </td>
-            </tr>
-          ) : null}
+  return (
+    <Table>
+      {header}
 
-          {hasNextPage ? (
-            <tr>
-              <td className="p-3" colSpan="4">
-                <PrimaryButton
-                  onClick={handleViewMore}
-                  isDisabled={loading}
-                  text="Load More"
-                />
-              </td>
+      <tbody>
+        {stats.map(({ node, cursor }) => {
+          const { impact, location, school } = node;
+
+          rank += 1;
+
+          return (
+            <tr
+              key={cursor}
+              css={css`{background-color: #${
+                rank % 2 === 0 ? 'f4f9ff' : 'ffffff'
+              }`}
+            >
+              {displayRank ? <TableCell>{rank}</TableCell> : null}
+
+              <TableCell>{school.name}</TableCell>
+
+              <TableCell>
+                {school.city}, {location.substring(3)}
+              </TableCell>
+
+              <TableCell>{impact}</TableCell>
             </tr>
-          ) : null}
-        </tfoot>
-      </table>
-    </>
+          );
+        })}
+      </tbody>
+
+      <tfoot className="form-actions">
+        {loading ? (
+          <tr>
+            <td className="p-3" colSpan={colSpan}>
+              <Spinner className="flex justify-center" />
+            </td>
+          </tr>
+        ) : null}
+
+        {hasNextPage ? (
+          <tr>
+            <td className="p-3" colSpan={colSpan}>
+              <PrimaryButton
+                onClick={handleViewMore}
+                isDisabled={loading}
+                text="Load More"
+              />
+            </td>
+          </tr>
+        ) : null}
+      </tfoot>
+    </Table>
   );
 };
 
