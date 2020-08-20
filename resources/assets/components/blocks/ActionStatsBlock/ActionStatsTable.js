@@ -2,6 +2,7 @@ import React from 'react';
 import tw from 'twin.macro';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import { assign, get } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -139,7 +140,12 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
           rank += 1;
 
           return (
-            <tr key={cursor}>
+            <tr
+              key={cursor}
+              css={css`{background-color: #${
+                rank % 2 === 0 ? 'f4f9ff' : 'ffffff'
+              }`}
+            >
               {displayRank ? <TableCell>{rank}</TableCell> : null}
 
               <TableCell>{school.name}</TableCell>
