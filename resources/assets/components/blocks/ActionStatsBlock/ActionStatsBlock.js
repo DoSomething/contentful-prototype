@@ -22,7 +22,7 @@ const ActionStatsBlock = ({ filterByActionId }) => {
       <ActionStatsLeaderboard actionId={filterByActionId} />
 
       <div className="flex pb-3">
-        <div className="md:w-1/4 pb-3">
+        <div className="flex-1">
           <SchoolLocationSelect
             isClearable
             onChange={selected =>
@@ -31,14 +31,18 @@ const ActionStatsBlock = ({ filterByActionId }) => {
           />
         </div>
 
-        {schoolLocation ? (
-          <div className="w-1/4 pb-3">
-            <SchoolSelect
-              schoolLocation={schoolLocation}
-              onChange={school => setSchoolId(school ? school.id : null)}
-            />
-          </div>
-        ) : null}
+        <div className="flex-1">
+          <SchoolSelect
+            schoolLocation={schoolLocation}
+            onChange={school => setSchoolId(school ? school.id : null)}
+          />
+        </div>
+
+        <div className="flex-1">
+          If your school has <span className="font-bold">0 registrations</span>,
+          it won’t show up in the leaderboard. Email tej@dosomething.org for
+          help.
+        </div>
       </div>
 
       <ActionStatsTable
