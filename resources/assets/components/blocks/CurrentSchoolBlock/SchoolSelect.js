@@ -23,7 +23,9 @@ const SEARCH_SCHOOLS_QUERY = gql`
 
 const SchoolSelect = ({
   includeSchoolNotAvailableOption,
+  isDisabled,
   onChange,
+  placeholder,
   schoolLocation,
 }) => {
   const client = useApolloClient();
@@ -65,6 +67,7 @@ const SchoolSelect = ({
       }
       getOptionValue={school => school.id}
       isClearable
+      isDisabled={isDisabled}
       /**
        * Changing per schoolLocation will result in clearing any selected options.
        * If user selects a school, but then changes location, force reselect.
@@ -88,18 +91,23 @@ const SchoolSelect = ({
           : 'Enter your school name'
       }
       onChange={onChange}
+      placeholder={placeholder}
     />
   );
 };
 
 SchoolSelect.propTypes = {
   includeSchoolNotAvailableOption: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
   schoolLocation: PropTypes.string.isRequired,
 };
 
 SchoolSelect.defaultProps = {
   includeSchoolNotAvailableOption: false,
+  isDisabled: false,
+  placeholder: 'Enter school name',
 };
 
 export default SchoolSelect;
