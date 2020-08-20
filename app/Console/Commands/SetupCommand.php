@@ -57,10 +57,12 @@ class SetupCommand extends Command
             $this->setEnvironmentVariable('CONTENTFUL_CONTENT_API_KEY', 'Enter the Contentful API Key');
         });
 
-        $this->runCommand('key:generate', 'Creating application key');
+        $this->runArtisanCommand('key:generate', 'Creating application key');
 
-        $this->runCommand('gateway:key', 'Fetching public key from Northstar');
+        $this->runArtisanCommand('gateway:key', 'Fetching public key from Northstar');
 
-        $this->runCommand('migrate', 'Running database migrations');
+        $this->runArtisanCommand('migrate', 'Running database migrations');
+
+        $this->comment('Let\'s do this! 🔥');
     }
 }
