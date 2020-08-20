@@ -51,6 +51,7 @@ const CampaignPageContent = props => {
               className="mb-6 clear-both"
               classNameByEntryDefault={narrowSpan}
               classNameByEntry={{
+                ActionStatsBlock: wideSpan,
                 ContentBlock: wideSpan,
                 GalleryBlock: wideSpan,
                 ImagesBlock: wideSpan,
