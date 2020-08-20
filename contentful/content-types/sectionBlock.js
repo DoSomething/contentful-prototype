@@ -89,7 +89,6 @@ module.exports = function(migration) {
           'embedded-entry-block': [
             {
               linkContentType: [
-                'actionStatsBlock',
                 'callToAction',
                 'campaignUpdate',
                 'contentBlock',
