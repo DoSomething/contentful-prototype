@@ -89,13 +89,14 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
   }
 
   let rank = 0;
+  const displayRank = !schoolLocation;
 
   return (
     <>
       <table className="w-full">
         <TableHeader>
           <tr>
-            <TableCell>{schoolLocation ? 'State' : 'National'} Rank</TableCell>
+            {displayRank ? <TableCell>National Rank</TableCell> : null}
 
             <TableCell>School Name</TableCell>
 
@@ -113,7 +114,7 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
 
             return (
               <tr key={cursor}>
-                <TableCell>{rank}</TableCell>
+                {displayRank ? <TableCell>{rank}</TableCell> : null}
 
                 <TableCell>{school.name}</TableCell>
 
@@ -130,7 +131,7 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
         <tfoot className="form-actions">
           {loading ? (
             <tr>
-              <td className="p-3" colSpan="4">
+              <td className="p-3" colSpan={displayRank ? 4 : 3}>
                 <Spinner className="flex justify-center" />
               </td>
             </tr>
@@ -138,7 +139,7 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
 
           {hasNextPage ? (
             <tr>
-              <td className="p-3" colSpan="4">
+              <td className="p-3" colSpan={displayRank ? 4 : 3}>
                 <PrimaryButton
                   onClick={handleViewMore}
                   isDisabled={loading}
