@@ -4,13 +4,13 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
-import excludedPaths from './config';
 import { getUserId } from '../../../helpers/auth';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
+import { excludedPaths, excludedVoterRegistrationStatuses } from './config';
 
-const VOTER_REGISTRATION_STATUS = gql`
-  query VoterRegSitewideBannerQuery($userId: String!) {
+const USER_QUERY = gql`
+  query UserSitewideBannerQuery($userId: String!) {
     user(id: $userId) {
       id
       voterRegistrationStatus
@@ -18,7 +18,7 @@ const VOTER_REGISTRATION_STATUS = gql`
   }
 `;
 
-const CAMPAIGN_GROUPTYPE_QUERY = gql`
+const CAMPAIGN_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {
     campaign(id: $campaignId) {
       id
@@ -27,8 +27,12 @@ const CAMPAIGN_GROUPTYPE_QUERY = gql`
   }
 `;
 
-const unregisteredStatuses = ['UNCERTAIN', 'CONFIRMED', 'UNREGISTERED'];
-
+/**
+ * Checks if given pathname matches an entry in the excluded paths config.
+ *
+ * @param {String} pathname
+ * @return {Boolean}
+ */
 const isExcludedPath = pathname => {
   return excludedPaths.find(excludedPath => {
     if (excludedPath.includes('*')) {
@@ -44,27 +48,17 @@ const isExcludedPath = pathname => {
   });
 };
 
+/**
+ * Checks if given voter registration status matches an entry in excluded status config.
+ *
+ * @param {String} voterRegistrationStatus
+ * @return {Boolean}
+ */
+const isExcludedVoterRegistrationStatus = voterRegistrationStatus => {
+  return excludedVoterRegistrationStatuses.includes[voterRegistrationStatus];
+};
+
 const SitewideBanner = props => {
-  const userId = getUserId();
-  const campaign = getCampaign();
-  const campaignId = campaign ? Number(campaign.campaignId) : null;
-  const options = { variables: { userId }, skip: !userId };
-  const { data, loading } = useQuery(VOTER_REGISTRATION_STATUS, options);
-  const unregistered = unregisteredStatuses.includes(
-    get(data, 'user.voterRegistrationStatus'),
-  );
-
-  const { data: campaignData, loading: campaignLoading } = useQuery(
-    CAMPAIGN_GROUPTYPE_QUERY,
-    {
-      variables: {
-        campaignId,
-      },
-      skip: !campaignId,
-    },
-  );
-  const isGroupCampaign = !!get(campaignData, 'campaign.groupTypeId');
-
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
 
@@ -79,25 +73,54 @@ const SitewideBanner = props => {
     return rootElem.current;
   };
 
-  const children = <SitewideBannerContent {...props} />;
-
   const target = usePortal('banner-portal');
+  const hiddenAttributeDataTestId = 'sitewide-banner-hidden';
 
-  if (loading || campaignLoading) {
+  // First check if this path is excluded, to avoid making unnecessary GraphQL requests.
+  if (isExcludedPath(window.location.pathname)) {
+    target.setAttribute('data-testid', hiddenAttributeDataTestId);
+
+    return null;
+  }
+
+  const userId = getUserId();
+  const { data: userData, loading: userLoading } = useQuery(USER_QUERY, {
+    variables: { userId },
+    skip: !userId,
+  });
+
+  const campaign = getCampaign();
+  const campaignId = campaign ? Number(campaign.campaignId) : null;
+  const { data: campaignData, loading: campaignLoading } = useQuery(
+    CAMPAIGN_QUERY,
+    {
+      variables: {
+        campaignId,
+      },
+      skip: !campaignId,
+    },
+  );
+
+  if (userLoading || campaignLoading) {
     return null;
   }
 
   if (
-    isExcludedPath(window.location.pathname) ||
-    (userId && !unregistered) ||
-    isGroupCampaign
+    /**
+     * If this is a groups campaign, we hide the banner to avoid interfering with the group finder
+     * on small screen.
+     */
+    !!get(campaignData, 'campaign.groupTypeId') ||
+    isExcludedVoterRegistrationStatus(
+      get(userData, 'user.voterRegistrationStatus'),
+    )
   ) {
-    target.setAttribute('data-testid', 'sitewide-banner-hidden');
+    target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
     return null;
   }
 
-  return createPortal(children, target);
+  return createPortal(<SitewideBannerContent {...props} />, target);
 };
 
 export default SitewideBanner;
