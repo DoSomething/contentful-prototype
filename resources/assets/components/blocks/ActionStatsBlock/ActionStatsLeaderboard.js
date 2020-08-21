@@ -2,17 +2,18 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import Spinner from '../../artifacts/Spinner/Spinner';
 
 const SCHOOL_ACTION_STATS_LEADER_QUERY = gql`
-  query SchoolActionStatsLeaderQuery($actionId: Int!) {
+  query SchoolActionStatsLeaderQuery($actionId: Int!, $count: Int) {
     stats: schoolActionStats(
       actionId: $actionId
       orderBy: "impact,desc"
-      count: 3
+      count: $count
     ) {
       id
       actionId
@@ -28,10 +29,11 @@ const SCHOOL_ACTION_STATS_LEADER_QUERY = gql`
   }
 `;
 
-const ActionStatsLeaderboard = ({ actionId }) => {
+const ActionStatsLeaderboard = ({ actionId, count }) => {
   const { loading, data, error } = useQuery(SCHOOL_ACTION_STATS_LEADER_QUERY, {
     variables: {
       actionId,
+      count,
     },
   });
 
@@ -51,25 +53,49 @@ const ActionStatsLeaderboard = ({ actionId }) => {
         <div className="p-6 bg-white lg:w-2/3">
           {leaders.map(leader => {
             const { impact, school, location, id } = leader;
-
+            let circleBgColor;
             rank += 1;
+
+            switch (rank) {
+              case 1:
+                circleBgColor = 'bg-yellow-500';
+                break;
+              case 2:
+                circleBgColor = 'bg-purple-500';
+                break;
+              default:
+                circleBgColor = 'bg-blurple-500';
+            }
 
             return (
               <div
-                className="mx-auto md:flex md:items-center md:justify-between border-b border-gray-300 border-solid md:pb-4 mb-4"
+                className={classnames(
+                  'mx-auto md:flex md:items-center md:justify-between',
+                  {
+                    'border-b border-gray-300 border-solid md:pb-4 mb-4':
+                      rank < count,
+                  },
+                )}
                 key={id}
               >
-                <div className="mx-auto md:mr-4 bg-blurple-500 rounded-full h-20 w-20 flex items-center justify-center">
+                <div
+                  className={classnames(
+                    'mx-auto md:mr-4 rounded-full h-20 w-20 flex items-center justify-center',
+                    circleBgColor,
+                  )}
+                >
                   <h1 className="font-normal text-2xl font-league-gothic mb-0 text-white md:px-10">
                     {rank}
                   </h1>
                 </div>
-                <div className="md:w-3/5 mt-6 md:mt-0 text-center md:text-left">
+
+                <div className="md:w-3/5 mt-6 md:mt-0 text-center md:text-left md:pr-4">
                   <h2 className="text-lg">{school.name}</h2>
                   <h3 className="font-bold text-sm text-gray-600 uppercase">
                     {school.city}, {location.substring(3)}
                   </h3>
                 </div>
+
                 <div className="w-full md:w-2/5 pt-3 pb-3 flex justify-center items-center">
                   <h2 className="font-normal font-league-gothic pr-3 text-3xl md:w-1/4">
                     {impact}
@@ -89,6 +115,11 @@ const ActionStatsLeaderboard = ({ actionId }) => {
 
 ActionStatsLeaderboard.propTypes = {
   actionId: PropTypes.number.isRequired,
+  count: PropTypes.number,
+};
+
+ActionStatsLeaderboard.defaultProps = {
+  count: 3,
 };
 
 export default ActionStatsLeaderboard;
