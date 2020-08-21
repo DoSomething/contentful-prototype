@@ -90,7 +90,6 @@ const SitewideBanner = props => {
 
   const campaign = getCampaign();
   const campaignId = campaign ? Number(campaign.campaignId) : null;
-
   const { data: campaignData, loading: campaignLoading } = useQuery(
     CAMPAIGN_QUERY,
     {
@@ -105,10 +104,12 @@ const SitewideBanner = props => {
     return null;
   }
 
-  const isGroupCampaign = !!get(campaignData, 'campaign.groupTypeId');
-
   if (
-    isGroupCampaign ||
+    /**
+     * If this is a group campaign, we hide the banner to avoid interfering with the group finder
+     * on small screen.
+     */
+    !!get(campaignData, 'campaign.groupTypeId') ||
     isExcludedVoterRegistrationStatus(
       get(userData, 'user.voterRegistrationStatus'),
     )
