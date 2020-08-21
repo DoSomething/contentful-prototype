@@ -21,7 +21,7 @@ const ActionStatsBlock = ({ filterByActionId }) => {
     <>
       <ActionStatsLeaderboard actionId={filterByActionId} />
 
-      <div className="flex bg-gray-100 flex-wrap py-8 px-4 border border-solid border-gray-200">
+      <div className="flex bg-gray-100 flex-wrap py-8 px-4 md:px-20 lg:px-4 border border-solid border-gray-200">
         <div className="w-full lg:w-1/5">
           <SchoolLocationSelect
             isClearable

@@ -116,10 +116,10 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
                 <h3>No Schools Found</h3>
 
                 <p>
-                  Uh oh! Looks like we don’t currently have any schools in your
-                  state. Keep in mind that if your school has 0 registrations,
-                  it won’t show up in the leaderboard. Still have questions?
-                  Email tej@dosomething.org for help.
+                  Uh oh! Looks like we don’t currently have any schools based on
+                  your search criteria. Keep in mind that if your school has 0
+                  registrations, it won’t show up in the leaderboard. Still have
+                  questions? Email tej@dosomething.org for help.
                 </p>
               </div>
             </td>
