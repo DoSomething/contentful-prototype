@@ -6,10 +6,7 @@
  * ineligible to vote.
  */
 
-/**
- * Hide banner if current URL contains one of these paths. An asterik can be used to exclude all
- * children of a path, e.g. /us/campaigns/ready-vote/*
- */
+// An asterik can be used to exclude all children of a path, e.g. /us/campaigns/ready-vote/*
 export const excludedPaths = [
   '/us/campaigns/ready-vote',
   '/us/campaigns/ready-vote/*',
@@ -17,7 +14,6 @@ export const excludedPaths = [
   '/us/quiz-results/*',
 ];
 
-// We want to hide the banner if user is registered to vote, or ineligible to vote.
 export const excludedVoterRegistrationStatuses = [
   'CONFIRMED',
   'INELIGIBLE',
