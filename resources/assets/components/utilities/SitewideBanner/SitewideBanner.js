@@ -76,6 +76,7 @@ const SitewideBanner = props => {
   const target = usePortal('banner-portal');
   const hiddenAttributeDataTestId = 'sitewide-banner-hidden';
 
+  // First check if this path is excluded, to avoid making unnecessary GraphQL requests.
   if (isExcludedPath(window.location.pathname)) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
@@ -106,7 +107,7 @@ const SitewideBanner = props => {
 
   if (
     /**
-     * If this is a group campaign, we hide the banner to avoid interfering with the group finder
+     * If this is a groups campaign, we hide the banner to avoid interfering with the group finder
      * on small screen.
      */
     !!get(campaignData, 'campaign.groupTypeId') ||

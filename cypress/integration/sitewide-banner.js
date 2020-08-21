@@ -21,7 +21,7 @@ describe('Site Wide Banner', () => {
     });
   });
 
-  it('The Site Wide Banner is displayed on campaign pages', () => {
+  it('The Site Wide Banner is displayed for anonymous users', () => {
     cy.mockGraphqlOp('CampaignBannerQuery', {
       campaign: {
         groupTypeId: null,
@@ -33,7 +33,27 @@ describe('Site Wide Banner', () => {
     cy.findByTestId('sitewide-banner').should('have.length', 1);
   });
 
-  it('The Site Wide Banner is displayed on campaign pages for authenticated users who are not registered to vote', () => {
+  it('The Site Wide Banner is displayed for users with null voter reg status', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        groupTypeId: null,
+      },
+    });
+
+    cy.mockGraphqlOp('UserSitewideBannerQuery', {
+      user: {
+        voterRegistrationStatus: null,
+      },
+    });
+
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+
+    cy.findByTestId('sitewide-banner').should('have.length', 1);
+  });
+
+  it('The Site Wide Banner is displayed for users when voter reg status is not excluded', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('CampaignBannerQuery', {
@@ -53,7 +73,41 @@ describe('Site Wide Banner', () => {
     cy.findByTestId('sitewide-banner').should('have.length', 1);
   });
 
-  it('The Site Wide Banner is not displayed on campaign pages for authenticated users who are registered to vote', () => {
+  it('The Site Wide Banner is not displayed for users with CONFIRMED voter reg status', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        groupTypeId: null,
+      },
+    });
+
+    cy.mockGraphqlOp('UserSitewideBannerQuery', {
+      user: {
+        voterRegistrationStatus: 'CONFIRMED',
+      },
+    });
+
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+
+    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
+  });
+
+  it('The Site Wide Banner is not displayed for users with INELIGIBLE voter reg status', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('UserSitewideBannerQuery', {
+      user: {
+        voterRegistrationStatus: 'INELIGIBLE',
+      },
+    });
+
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+
+    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
+  });
+
+  it('The Site Wide Banner is not displayed for users with REGISTRATION_COMPLETE voter reg status', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('UserSitewideBannerQuery', {
