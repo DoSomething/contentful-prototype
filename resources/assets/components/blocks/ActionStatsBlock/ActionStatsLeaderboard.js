@@ -9,11 +9,11 @@ import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import Spinner from '../../artifacts/Spinner/Spinner';
 
 const SCHOOL_ACTION_STATS_LEADER_QUERY = gql`
-  query SchoolActionStatsLeaderQuery($actionId: Int!) {
+  query SchoolActionStatsLeaderQuery($actionId: Int!, $count: Int) {
     stats: schoolActionStats(
       actionId: $actionId
       orderBy: "impact,desc"
-      count: 3
+      count: $count
     ) {
       id
       actionId
@@ -29,10 +29,11 @@ const SCHOOL_ACTION_STATS_LEADER_QUERY = gql`
   }
 `;
 
-const ActionStatsLeaderboard = ({ actionId }) => {
+const ActionStatsLeaderboard = ({ actionId, count }) => {
   const { loading, data, error } = useQuery(SCHOOL_ACTION_STATS_LEADER_QUERY, {
     variables: {
       actionId,
+      count,
     },
   });
 
@@ -62,9 +63,6 @@ const ActionStatsLeaderboard = ({ actionId }) => {
               case 2:
                 circleBgColor = 'bg-purple-500';
                 break;
-              case 3:
-                circleBgColor = 'bg-blurple-500';
-                break;
               default:
                 circleBgColor = 'bg-blurple-500';
             }
@@ -75,7 +73,7 @@ const ActionStatsLeaderboard = ({ actionId }) => {
                   'mx-auto md:flex md:items-center md:justify-between',
                   {
                     'border-b border-gray-300 border-solid md:pb-4 mb-4':
-                      rank !== 3,
+                      rank < count,
                   },
                 )}
                 key={id}
@@ -90,12 +88,14 @@ const ActionStatsLeaderboard = ({ actionId }) => {
                     {rank}
                   </h1>
                 </div>
+
                 <div className="md:w-3/5 mt-6 md:mt-0 text-center md:text-left md:pr-4">
                   <h2 className="text-lg">{school.name}</h2>
                   <h3 className="font-bold text-sm text-gray-600 uppercase">
                     {school.city}, {location.substring(3)}
                   </h3>
                 </div>
+
                 <div className="w-full md:w-2/5 pt-3 pb-3 flex justify-center items-center">
                   <h2 className="font-normal font-league-gothic pr-3 text-3xl md:w-1/4">
                     {impact}
@@ -115,6 +115,11 @@ const ActionStatsLeaderboard = ({ actionId }) => {
 
 ActionStatsLeaderboard.propTypes = {
   actionId: PropTypes.number.isRequired,
+  count: PropTypes.number,
+};
+
+ActionStatsLeaderboard.defaultProps = {
+  count: 3,
 };
 
 export default ActionStatsLeaderboard;
