@@ -42,7 +42,7 @@ describe('Site Wide Banner', () => {
       },
     });
 
-    cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
+    cy.mockGraphqlOp('UserSitewideBannerQuery', {
       user: {
         voterRegistrationStatus: 'UNREGISTERED',
       },
@@ -56,7 +56,7 @@ describe('Site Wide Banner', () => {
   it('The Site Wide Banner is not displayed on campaign pages for authenticated users who are registered to vote', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
+    cy.mockGraphqlOp('UserSitewideBannerQuery', {
       user: {
         voterRegistrationStatus: 'REGISTRATION_COMPLETE',
       },
@@ -156,7 +156,7 @@ describe('Site Wide Banner', () => {
       },
     });
 
-    cy.mockGraphqlOp('VoterRegSitewideBannerQuery', {
+    cy.mockGraphqlOp('UserSitewideBannerQuery', {
       user: {
         voterRegistrationStatus: 'UNREGISTERED',
       },
