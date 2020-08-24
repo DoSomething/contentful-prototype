@@ -5,7 +5,12 @@ import Card from '../utilities/Card/Card';
 import { getUtms } from '../../helpers/utm';
 import GroupFinder from './GroupFinder/GroupFinder';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
-import { isCampaignClosed, query, withoutNulls } from '../../helpers';
+import {
+  isCampaignClosed,
+  query,
+  siteConfig,
+  withoutNulls,
+} from '../../helpers';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
 
 const CampaignSignupForm = props => {
@@ -92,9 +97,12 @@ const CampaignSignupForm = props => {
       />
     );
   }
-  // TODO: Add a config variable to save chapter group types.
-  const groupLabel =
-    groupType.name === 'March For Our Lives' ? 'chapter' : 'school';
+
+  const groupLabel = siteConfig('chapter_group_type_ids').includes(
+    `${groupType.id}`,
+  )
+    ? 'chapter'
+    : 'school';
 
   return (
     <div className="my-3" data-testid="join-group-signup-form">

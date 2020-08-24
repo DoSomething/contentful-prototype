@@ -70,6 +70,7 @@ const GroupSelect = ({
         if (!input) {
           return Promise.resolve([]);
         }
+
         return fetchGroups(input, callback);
       }}
       noOptionsMessage={({ inputValue }) =>
