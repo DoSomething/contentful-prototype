@@ -73,26 +73,6 @@ describe('Site Wide Banner', () => {
     cy.findByTestId('sitewide-banner').should('have.length', 1);
   });
 
-  it('The Site Wide Banner is not displayed for users with CONFIRMED voter reg status', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        groupTypeId: null,
-      },
-    });
-
-    cy.mockGraphqlOp('UserSitewideBannerQuery', {
-      user: {
-        voterRegistrationStatus: 'CONFIRMED',
-      },
-    });
-
-    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
-
-    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
-  });
-
   it('The Site Wide Banner is not displayed for users with INELIGIBLE voter reg status', () => {
     const user = userFactory();
 
