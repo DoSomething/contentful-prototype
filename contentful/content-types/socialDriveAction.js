@@ -25,11 +25,26 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  socialDriveAction.changeFieldControl(
-    'internalTitle',
-    'builtin',
-    'singleLine',
-    {},
-  );
-  socialDriveAction.changeFieldControl('link', 'builtin', 'singleLine', {});
+  socialDriveAction
+    .createField('title')
+    .name('Title')
+    .type('Symbol')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  socialDriveAction
+    .createField('description')
+    .name('Description')
+    .type('Text')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  socialDriveAction.changeEditorInterface('internalTitle', 'singleLine', {});
+  socialDriveAction.changeEditorInterface('link', 'singleLine', {});
+  socialDriveAction.changeEditorInterface('title', 'singleLine', {});
+  socialDriveAction.changeEditorInterface('description', 'markdown', {});
 };
