@@ -98,7 +98,7 @@ const CampaignSignupForm = props => {
     );
   }
 
-  const groupLabel = siteConfig('chapter_group_type_ids').includes(
+  const groupLabel = siteConfig('chapter_group_type_ids', []).includes(
     `${groupType.id}`,
   )
     ? 'chapter'
