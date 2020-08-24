@@ -92,6 +92,9 @@ const CampaignSignupForm = props => {
       />
     );
   }
+  // TODO: Add a config variable to save chapter group types.
+  const groupLabel =
+    groupType.name === 'March For Our Lives' ? 'chapter' : 'school';
 
   return (
     <div className="my-3" data-testid="join-group-signup-form">
@@ -99,6 +102,7 @@ const CampaignSignupForm = props => {
         <div className="p-3">
           <GroupFinder
             context={{ campaignId, pageId }}
+            groupLabel={groupLabel}
             groupType={groupType}
             onChange={handleGroupFinderChange}
           />
@@ -112,7 +116,8 @@ const CampaignSignupForm = props => {
           />
 
           <p className="text-sm text-gray-500 pt-3 md:pt-0">
-            Can&apos;t find your group? Email tej@dosomething.org for help.
+            Can&apos;t find your {groupLabel}? Email tej@dosomething.org for
+            help.
           </p>
         </div>
       </Card>
