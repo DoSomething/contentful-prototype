@@ -307,65 +307,68 @@ describe('Campaign Signup', () => {
         .should('not.contain', 'Apply Now');
   });
 
-  // TODO: Use cypress context to better group this test once #2238 is merged.
-  /** @test */
-  it('If campaign group type does not filter by state, signup button is enabled after selecting group', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('SearchGroupsQuery', {
-      groups: [
-        { id: 1, name: 'New York' },
-        { id: 2, name: 'Philadelphia' },
-        { id: 3, name: 'San Francisco' },
-      ],
-    });
-
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        id: campaignId,
-        groupTypeId: 1,
-        groupType: {
-          id: 1,
-          filterByLocation: false,
-        },
-      },
-    });
-
-    cy.anonVisitCampaign(exampleCampaign);
-
-    cy.findByTestId('join-group-signup-form').should('have.length', 1);
-    cy.findByTestId('campaign-banner-signup-button').contains(
-      'button',
-      'Join Group',
-    );
-    cy.findByTestId('join-group-signup-button').should('be.disabled');
-    cy.get('#select-state-dropdown').should('have.length', 0);
-    cy.get('#select-group-dropdown').click();
-    cy.get('#react-select-select-group--input').type('new');
-    cy.get('#react-select-select-group--option-0').click();
-    cy.findByTestId('join-group-signup-button').should('be.enabled');
-
-    // Mock the responses we'll be expecting once we hit the signup button:
-    cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
-    cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
-      'signupRequest',
-    );
-
-    cy.contains('button', 'Join Group')
-      .click()
-      .handleLogin(user);
-
-    // The outgoing signup request should include the selected group_id.
-    cy.wait('@signupRequest')
-      .its('request.body.group_id')
-      .should('equal', 1);
-  });
-
-  context(
-    'Campaign ID configured with group type that filters by state',
-    () => {
+  context('Campaign ID configured with a group type', () => {
+    context('Group type does not filter by location', () => {
       /** @test */
-      it('Signup button is enabled after selecting state, then group', () => {
+      it('Signup button is enabled after selecting group', () => {
+        const user = userFactory();
+
+        cy.mockGraphqlOp('SearchGroupsQuery', {
+          groups: [
+            { id: 1, name: 'New York' },
+            { id: 2, name: 'Philadelphia' },
+            { id: 3, name: 'San Francisco' },
+          ],
+        });
+
+        cy.mockGraphqlOp('CampaignBannerQuery', {
+          campaign: {
+            id: campaignId,
+            groupTypeId: 1,
+            groupType: {
+              id: 1,
+              filterByLocation: false,
+            },
+          },
+        });
+
+        cy.anonVisitCampaign(exampleCampaign);
+
+        cy.findByTestId('join-group-signup-form').should('have.length', 1);
+        cy.findByTestId('campaign-banner-signup-button').contains(
+          'button',
+          'Join Group',
+        );
+        cy.findByTestId('join-group-signup-button').should('be.disabled');
+        cy.get('#select-state-dropdown').should('have.length', 0);
+        cy.get('#select-group-dropdown').click();
+        cy.get('#react-select-select-group--input').type('new');
+        cy.get('#react-select-select-group--option-0').click();
+        cy.findByTestId('join-group-signup-button').should('be.enabled');
+
+        // Mock the responses we'll be expecting once we hit the signup button:
+        cy.route(
+          `${API}/signups?filter[northstar_id]=${user.id}`,
+          emptyResponse,
+        );
+        cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
+          'signupRequest',
+        );
+
+        cy.contains('button', 'Join Group')
+          .click()
+          .handleLogin(user);
+
+        // The outgoing signup request should include the selected group_id.
+        cy.wait('@signupRequest')
+          .its('request.body.group_id')
+          .should('equal', 1);
+      });
+    });
+
+    context('Group type filters by location', () => {
+      /** @test */
+      it('Signup button is enabled after selecting location, then group', () => {
         const user = userFactory();
 
         cy.mockGraphqlOp('SearchGroupsQuery', {
@@ -428,6 +431,6 @@ describe('Campaign Signup', () => {
           .its('request.body.group_id')
           .should('equal', 1);
       });
-    },
-  );
+    });
+  });
 });
