@@ -59,8 +59,9 @@ const GroupFinder = ({ context, groupLabel, groupType, onChange }) => {
       ) : null}
       {!filterByLocation || (filterByLocation && groupLocation) ? (
         <div className="pb-3">
-          <p className="font-bold text-sm py-1">
-            Select your group (start typing your {groupLabel} name)
+          <p className="text-sm py-1">
+            <span className="font-bold">Select your group</span> (start typing
+            your {groupLabel} name)
           </p>
           <GroupSelect
             groupLabel={groupLabel}
