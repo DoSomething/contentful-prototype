@@ -15,7 +15,6 @@ export const excludedPaths = [
 ];
 
 export const excludedVoterRegistrationStatuses = [
-  'CONFIRMED',
   'INELIGIBLE',
   'REGISTRATION_COMPLETE',
 ];
