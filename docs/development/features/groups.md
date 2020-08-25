@@ -1,6 +1,6 @@
 # Groups
 
-If a Rogue campaign is configured with a [group type]((https://activity.dosomething.org/group-types), a Group Finder will appear on the campaign landing page. Members must select a group to join in order to signup for the campaign (which will save their selected group ID to their signup).
+If a Rogue campaign is configured with a [group type](https://activity.dosomething.org/group-types), a Group Finder will appear on the campaign landing page. Members must select a group to join in order to signup for the campaign (which will save their selected group ID to their signup).
 
 ![Example Group Finder](../../.gitbook/assets/groups-landing-page.png)
 
