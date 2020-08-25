@@ -98,6 +98,10 @@ const CampaignSignupForm = props => {
     );
   }
 
+  /**
+   * TODO: Everything below should get moved into the GroupFinder component, so we'll simply
+   * render a GroupFinder here, passing props like groupType, handleSignup, className, etc.
+   */
   const groupLabel = siteConfig('chapter_group_type_ids', []).includes(
     `${groupType.id}`,
   )
