@@ -307,36 +307,6 @@ describe('Campaign Signup', () => {
   });
 
   context('Campaign ID configured with a group type', () => {
-    context.only('Group type label configuration', () => {
-      /** @test */
-      it('Group label is "school" if group type is not in chapter config', () => {
-        cy.mockGraphqlOp(
-          'CampaignBannerQuery',
-          mockCampaignBannerQueryResult(1, false),
-        );
-
-        cy.anonVisitCampaign(exampleCampaign);
-
-        cy.contains('start typing your school name');
-        cy.contains("Can't find your school?");
-      });
-
-      /** @test */
-      it('Group label is "chapter" if group type is in chapter config', () => {
-        cy.mockGraphqlOp(
-          'CampaignBannerQuery',
-          mockCampaignBannerQueryResult(20, false),
-        );
-
-        cy.withSiteConfig({
-          chapter_group_type_ids: '20,22',
-        }).anonVisitCampaign(exampleCampaign);
-
-        cy.contains('start typing your chapter name');
-        cy.contains("Can't find your chapter?");
-      });
-    });
-
     context('Group type does not filter by location', () => {
       /** @test */
       it('Signup button is enabled after selecting group', () => {
@@ -434,6 +404,36 @@ describe('Campaign Signup', () => {
         cy.wait('@signupRequest')
           .its('request.body.group_id')
           .should('equal', 1);
+      });
+    });
+
+    context('Group type label configuration', () => {
+      /** @test */
+      it('Group label is "school" if group type is not in chapter config', () => {
+        cy.mockGraphqlOp(
+          'CampaignBannerQuery',
+          mockCampaignBannerQueryResult(1, false),
+        );
+
+        cy.anonVisitCampaign(exampleCampaign);
+
+        cy.contains('start typing your school name');
+        cy.contains("Can't find your school?");
+      });
+
+      /** @test */
+      it('Group label is "chapter" if group type is in chapter config', () => {
+        cy.mockGraphqlOp(
+          'CampaignBannerQuery',
+          mockCampaignBannerQueryResult(20, false),
+        );
+
+        cy.withSiteConfig({
+          chapter_group_type_ids: '20,22',
+        }).anonVisitCampaign(exampleCampaign);
+
+        cy.contains('start typing your chapter name');
+        cy.contains("Can't find your chapter?");
       });
     });
   });
