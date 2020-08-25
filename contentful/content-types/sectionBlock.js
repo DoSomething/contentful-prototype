@@ -91,6 +91,7 @@ module.exports = function(migration) {
               linkContentType: [
                 'callToAction',
                 'campaignUpdate',
+                'currentClubBlock',
                 'contentBlock',
                 'embed',
                 'imagesBlock',
