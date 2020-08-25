@@ -37,9 +37,9 @@ const mockCampaignBannerQueryResult = (
 
 const mockSearchGroupsQueryResult = {
   groups: [
-    { id: 1, name: 'New York', state: 'NY' },
-    { id: 2, name: 'Philadelphia', state: 'PA' },
-    { id: 3, name: 'San Francisco', state: 'CA' },
+    { id: 1, name: 'New York Pizza', location: 'US-NY' },
+    { id: 2, name: 'Philadelphia Hoagies', location: 'US-PA' },
+    { id: 3, name: 'San Francisco Sourdough', location: 'US-CA' },
   ],
 };
 
