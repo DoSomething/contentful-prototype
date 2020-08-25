@@ -35,10 +35,6 @@ const mockCampaignBannerQueryResult = (
   };
 };
 
-/**
- * @param {Boolean} filterByLocation
- * @return {Object}
- */
 const mockSearchGroupsQueryResult = {
   groups: [
     { id: 1, name: 'New York', state: 'NY' },
