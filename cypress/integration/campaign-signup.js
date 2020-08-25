@@ -27,6 +27,7 @@ const mockCampaignBannerQueryResult = (
       groupTypeId: groupTypeId || null,
       groupType: groupTypeId
         ? {
+            id: groupTypeId,
             filterByLocation,
           }
         : null,
