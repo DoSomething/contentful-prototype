@@ -12,6 +12,37 @@ const API = `/api/v2/campaigns/${campaignId}`;
 const exampleBlurb = `Did you know that the world's oldest cat`;
 const exampleReferralCampaign = cloneDeep(exampleCampaign);
 
+/**
+ * @param {Number} groupTypeId
+ * @param {Boolean} filterByLocation
+ * @return {Object}
+ */
+const mockCampaignBannerQueryResult = (
+  groupTypeId,
+  filterByLocation = true,
+) => {
+  return {
+    campaign: {
+      id: campaignId,
+      groupTypeId: groupTypeId || null,
+      groupType: groupTypeId
+        ? {
+            id: groupTypeId,
+            filterByLocation,
+          }
+        : null,
+    },
+  };
+};
+
+const mockSearchGroupsQueryResult = {
+  groups: [
+    { id: 1, name: 'New York Pizza', location: 'US-NY' },
+    { id: 2, name: 'Philadelphia Hoagies', location: 'US-PA' },
+    { id: 3, name: 'San Francisco Sourdough', location: 'US-CA' },
+  ],
+};
+
 exampleReferralCampaign.campaign.displayReferralPage = true;
 
 describe('Campaign Signup', () => {
@@ -22,13 +53,7 @@ describe('Campaign Signup', () => {
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        id: campaignId,
-        groupTypeId: null,
-        groupType: null,
-      },
-    });
+    cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
     // Visit the campaign landing page:
     cy.anonVisitCampaign(exampleCampaign);
@@ -56,13 +81,9 @@ describe('Campaign Signup', () => {
   /** @test */
   it('Create signup, as an authenticated user', () => {
     const user = userFactory();
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        id: campaignId,
-        groupTypeId: null,
-        groupType: null,
-      },
-    });
+
+    cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
+
     // Log in & visit the campaign landing page:
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
@@ -88,13 +109,7 @@ describe('Campaign Signup', () => {
     it('Includes the referrer_user_id query param in the signup payload', () => {
       const user = userFactory();
 
-      cy.mockGraphqlOp('CampaignBannerQuery', {
-        campaign: {
-          id: campaignId,
-          groupTypeId: null,
-          groupType: null,
-        },
-      });
+      cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
       // Visit the campaign landing page:
       cy.withState(exampleCampaign).visit(
@@ -125,13 +140,10 @@ describe('Campaign Signup', () => {
         it('Beta Referral campaign signup displays the beta reward copy', () => {
           const user = userFactory();
 
-          cy.mockGraphqlOp('CampaignBannerQuery', {
-            campaign: {
-              id: campaignId,
-              groupTypeId: null,
-              groupType: null,
-            },
-          });
+          cy.mockGraphqlOp(
+            'CampaignBannerQuery',
+            mockCampaignBannerQueryResult(),
+          );
 
           // Visit the campaign landing page as an authenticated user with a referrer_user_id query param:
           cy.login(user)
@@ -165,13 +177,11 @@ describe('Campaign Signup', () => {
         /** @test */
         it('Regular Referral campaign signup displays the general incentive copy', () => {
           const user = userFactory();
-          cy.mockGraphqlOp('CampaignBannerQuery', {
-            campaign: {
-              id: campaignId,
-              groupTypeId: null,
-              groupType: null,
-            },
-          });
+
+          cy.mockGraphqlOp(
+            'CampaignBannerQuery',
+            mockCampaignBannerQueryResult(),
+          );
 
           // Log in & visit the campaign pitch page:
           cy.withFeatureFlags({
@@ -193,13 +203,11 @@ describe('Campaign Signup', () => {
         /** @test */
         it('displays the incentive free copy', () => {
           const user = userFactory();
-          cy.mockGraphqlOp('CampaignBannerQuery', {
-            campaign: {
-              id: campaignId,
-              groupTypeId: null,
-              groupType: null,
-            },
-          });
+
+          cy.mockGraphqlOp(
+            'CampaignBannerQuery',
+            mockCampaignBannerQueryResult(),
+          );
 
           // Log in & visit the campaign pitch page:
           cy.authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
@@ -222,13 +230,7 @@ describe('Campaign Signup', () => {
     it("Doesn't display Referral Page Banner CTA in affirmation for non configured campaign", () => {
       const user = userFactory();
 
-      cy.mockGraphqlOp('CampaignBannerQuery', {
-        campaign: {
-          id: campaignId,
-          groupTypeId: null,
-          groupType: null,
-        },
-      });
+      cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
       // Log in & visit the campaign pitch page:
       cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
@@ -265,13 +267,7 @@ describe('Campaign Signup', () => {
 
   /** @test */
   it('Visits a campaign page from scholarship partner, as an unauthenticated user', () => {
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        id: campaignId,
-        groupTypeId: null,
-        groupType: null,
-      },
-    });
+    cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
     // Visit the campaign pitch page
     cy.withState(exampleCampaign).visit(
@@ -307,85 +303,63 @@ describe('Campaign Signup', () => {
         .should('not.contain', 'Apply Now');
   });
 
-  // TODO: Use cypress context to better group this test once #2238 is merged.
-  /** @test */
-  it('If campaign group type does not filter by state, signup button is enabled after selecting group', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('SearchGroupsQuery', {
-      groups: [
-        { id: 1, name: 'New York' },
-        { id: 2, name: 'Philadelphia' },
-        { id: 3, name: 'San Francisco' },
-      ],
-    });
-
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        id: campaignId,
-        groupTypeId: 1,
-        groupType: {
-          id: 1,
-          filterByLocation: false,
-        },
-      },
-    });
-
-    cy.anonVisitCampaign(exampleCampaign);
-
-    cy.findByTestId('join-group-signup-form').should('have.length', 1);
-    cy.findByTestId('campaign-banner-signup-button').contains(
-      'button',
-      'Join Group',
-    );
-    cy.findByTestId('join-group-signup-button').should('be.disabled');
-    cy.get('#select-state-dropdown').should('have.length', 0);
-    cy.get('#select-group-dropdown').click();
-    cy.get('#react-select-select-group--input').type('new');
-    cy.get('#react-select-select-group--option-0').click();
-    cy.findByTestId('join-group-signup-button').should('be.enabled');
-
-    // Mock the responses we'll be expecting once we hit the signup button:
-    cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
-    cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
-      'signupRequest',
-    );
-
-    cy.contains('button', 'Join Group')
-      .click()
-      .handleLogin(user);
-
-    // The outgoing signup request should include the selected group_id.
-    cy.wait('@signupRequest')
-      .its('request.body.group_id')
-      .should('equal', 1);
-  });
-
-  context(
-    'Campaign ID configured with group type that filters by state',
-    () => {
+  context('Campaign ID configured with a group type', () => {
+    context('Group type does not filter by location', () => {
       /** @test */
-      it('Signup button is enabled after selecting state, then group', () => {
+      it('Signup button is enabled after selecting group', () => {
         const user = userFactory();
 
-        cy.mockGraphqlOp('SearchGroupsQuery', {
-          groups: [
-            { id: 1, name: 'New York', state: 'NY' },
-            { id: 2, name: 'Philadelphia', state: 'PA' },
-            { id: 3, name: 'San Francisco', state: 'CA' },
-          ],
-        });
+        cy.mockGraphqlOp('SearchGroupsQuery', mockSearchGroupsQueryResult);
 
-        cy.mockGraphqlOp('CampaignBannerQuery', {
-          campaign: {
-            id: campaignId,
-            groupTypeId: 1,
-            groupType: {
-              id: 1,
-              filterByLocation: true,
-            },
-          },
-        });
+        cy.mockGraphqlOp(
+          'CampaignBannerQuery',
+          mockCampaignBannerQueryResult(1, false),
+        );
+
+        cy.anonVisitCampaign(exampleCampaign);
+
+        cy.findByTestId('join-group-signup-form').should('have.length', 1);
+        cy.findByTestId('campaign-banner-signup-button').contains(
+          'button',
+          'Join Group',
+        );
+        cy.findByTestId('join-group-signup-button').should('be.disabled');
+        cy.get('#select-state-dropdown').should('have.length', 0);
+        cy.get('#select-group-dropdown').click();
+        cy.get('#react-select-select-group--input').type('new');
+        cy.get('#react-select-select-group--option-0').click();
+        cy.findByTestId('join-group-signup-button').should('be.enabled');
+
+        // Mock the responses we'll be expecting once we hit the signup button:
+        cy.route(
+          `${API}/signups?filter[northstar_id]=${user.id}`,
+          emptyResponse,
+        );
+        cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
+          'signupRequest',
+        );
+
+        cy.contains('button', 'Join Group')
+          .click()
+          .handleLogin(user);
+
+        // The outgoing signup request should include the selected group_id.
+        cy.wait('@signupRequest')
+          .its('request.body.group_id')
+          .should('equal', 1);
+      });
+    });
+
+    context('Group type filters by location', () => {
+      /** @test */
+      it('Signup button is enabled after selecting location, then group', () => {
+        const user = userFactory();
+
+        cy.mockGraphqlOp('SearchGroupsQuery', mockSearchGroupsQueryResult);
+        cy.mockGraphqlOp(
+          'CampaignBannerQuery',
+          mockCampaignBannerQueryResult(1),
+        );
 
         cy.anonVisitCampaign(exampleCampaign);
 
@@ -428,6 +402,36 @@ describe('Campaign Signup', () => {
           .its('request.body.group_id')
           .should('equal', 1);
       });
-    },
-  );
+    });
+
+    context('Group type label configuration', () => {
+      /** @test */
+      it('Group label is "school" if group type is not in chapter config', () => {
+        cy.mockGraphqlOp(
+          'CampaignBannerQuery',
+          mockCampaignBannerQueryResult(1, false),
+        );
+
+        cy.anonVisitCampaign(exampleCampaign);
+
+        cy.contains('start typing your school name');
+        cy.contains("Can't find your school?");
+      });
+
+      /** @test */
+      it('Group label is "chapter" if group type is in chapter config', () => {
+        cy.mockGraphqlOp(
+          'CampaignBannerQuery',
+          mockCampaignBannerQueryResult(20, false),
+        );
+
+        cy.withSiteConfig({
+          chapter_group_type_ids: '20,22',
+        }).anonVisitCampaign(exampleCampaign);
+
+        cy.contains('start typing your chapter name');
+        cy.contains("Can't find your chapter?");
+      });
+    });
+  });
 });

@@ -26,6 +26,7 @@ const GroupSelect = ({
   groupTypeId,
   onChange,
   onFocus,
+  placeholder,
 }) => {
   /**
    * This is copied by example from the blocks/CurrentSchoolBlock/SchoolSelect, which has comments
@@ -69,6 +70,7 @@ const GroupSelect = ({
         if (!input) {
           return Promise.resolve([]);
         }
+
         return fetchGroups(input, callback);
       }}
       noOptionsMessage={({ inputValue }) =>
@@ -78,6 +80,7 @@ const GroupSelect = ({
       }
       onChange={onChange}
       onFocus={onFocus}
+      placeholder={placeholder}
     />
   );
 };
@@ -88,10 +91,12 @@ GroupSelect.propTypes = {
   groupTypeId: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 GroupSelect.defaultProps = {
   groupLocation: null,
+  placeholder: 'Start typing...',
 };
 
 export default GroupSelect;

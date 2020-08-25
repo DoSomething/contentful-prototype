@@ -12,7 +12,7 @@ import UsaStateSelect from '../../utilities/UsaStateSelect';
 const ANALYTICS_EVENT_CATEGORY = EVENT_CATEGORIES.campaignAction;
 const ANALYTICS_EVENT_LABEL = 'group_finder';
 
-const GroupFinder = ({ context, groupType, onChange }) => {
+const GroupFinder = ({ context, groupLabel, groupType, onChange }) => {
   const [groupLocation, setGroupLocation] = useState(null);
 
   const handleGroupSelectFocus = () => {
@@ -45,7 +45,6 @@ const GroupFinder = ({ context, groupType, onChange }) => {
   };
 
   const { filterByLocation } = groupType;
-  const groupLabel = 'chapter';
 
   return (
     <>
@@ -60,7 +59,10 @@ const GroupFinder = ({ context, groupType, onChange }) => {
       ) : null}
       {!filterByLocation || (filterByLocation && groupLocation) ? (
         <div className="pb-3">
-          <p className="font-bold text-sm py-1">Select your {groupLabel}</p>
+          <p className="text-sm py-1">
+            <span className="font-bold">Select your group</span> (start typing
+            your {groupLabel} name)
+          </p>
           <GroupSelect
             groupLabel={groupLabel}
             groupLocation={groupLocation}
@@ -76,6 +78,7 @@ const GroupFinder = ({ context, groupType, onChange }) => {
 
 GroupFinder.propTypes = {
   context: PropTypes.object.isRequired,
+  groupLabel: PropTypes.string.isRequired,
   groupType: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
 };

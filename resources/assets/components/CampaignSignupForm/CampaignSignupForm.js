@@ -5,7 +5,12 @@ import Card from '../utilities/Card/Card';
 import { getUtms } from '../../helpers/utm';
 import GroupFinder from './GroupFinder/GroupFinder';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
-import { isCampaignClosed, query, withoutNulls } from '../../helpers';
+import {
+  isCampaignClosed,
+  query,
+  siteConfig,
+  withoutNulls,
+} from '../../helpers';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
 
 const CampaignSignupForm = props => {
@@ -93,12 +98,23 @@ const CampaignSignupForm = props => {
     );
   }
 
+  /**
+   * TODO: Everything below should get moved into the GroupFinder component, so we'll simply
+   * render a GroupFinder here, passing props like groupType, handleSignup, className, etc.
+   */
+  const groupLabel = siteConfig('chapter_group_type_ids', []).includes(
+    `${groupType.id}`,
+  )
+    ? 'chapter'
+    : 'school';
+
   return (
     <div className="my-3" data-testid="join-group-signup-form">
       <Card title="Join a group" className="rounded bordered">
         <div className="p-3">
           <GroupFinder
             context={{ campaignId, pageId }}
+            groupLabel={groupLabel}
             groupType={groupType}
             onChange={handleGroupFinderChange}
           />
@@ -112,7 +128,8 @@ const CampaignSignupForm = props => {
           />
 
           <p className="text-sm text-gray-500 pt-3 md:pt-0">
-            Can&apos;t find your group? Email tej@dosomething.org for help.
+            Can&apos;t find your {groupLabel}? Email tej@dosomething.org for
+            help.
           </p>
         </div>
       </Card>
