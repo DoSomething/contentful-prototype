@@ -12,6 +12,40 @@ const API = `/api/v2/campaigns/${campaignId}`;
 const exampleBlurb = `Did you know that the world's oldest cat`;
 const exampleReferralCampaign = cloneDeep(exampleCampaign);
 
+/**
+ * @param {Number} groupTypeId
+ * @param {Boolean} filterByLocation
+ * @return {Object}
+ */
+const mockCampaignBannerQueryResult = (
+  groupTypeId,
+  filterByLocation = true,
+) => {
+  return {
+    campaign: {
+      id: campaignId,
+      groupTypeId: groupTypeId || null,
+      groupType: groupTypeId
+        ? {
+            filterByLocation,
+          }
+        : null,
+    },
+  };
+};
+
+/**
+ * @param {Boolean} filterByLocation
+ * @return {Object}
+ */
+const mockSearchGroupsQueryResult = {
+  groups: [
+    { id: 1, name: 'New York', state: 'NY' },
+    { id: 2, name: 'Philadelphia', state: 'PA' },
+    { id: 3, name: 'San Francisco', state: 'CA' },
+  ],
+};
+
 exampleReferralCampaign.campaign.displayReferralPage = true;
 
 describe('Campaign Signup', () => {
@@ -22,13 +56,7 @@ describe('Campaign Signup', () => {
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        id: campaignId,
-        groupTypeId: null,
-        groupType: null,
-      },
-    });
+    cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
     // Visit the campaign landing page:
     cy.anonVisitCampaign(exampleCampaign);
@@ -56,13 +84,9 @@ describe('Campaign Signup', () => {
   /** @test */
   it('Create signup, as an authenticated user', () => {
     const user = userFactory();
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        id: campaignId,
-        groupTypeId: null,
-        groupType: null,
-      },
-    });
+
+    cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
+
     // Log in & visit the campaign landing page:
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
@@ -88,13 +112,7 @@ describe('Campaign Signup', () => {
     it('Includes the referrer_user_id query param in the signup payload', () => {
       const user = userFactory();
 
-      cy.mockGraphqlOp('CampaignBannerQuery', {
-        campaign: {
-          id: campaignId,
-          groupTypeId: null,
-          groupType: null,
-        },
-      });
+      cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
       // Visit the campaign landing page:
       cy.withState(exampleCampaign).visit(
@@ -125,13 +143,10 @@ describe('Campaign Signup', () => {
         it('Beta Referral campaign signup displays the beta reward copy', () => {
           const user = userFactory();
 
-          cy.mockGraphqlOp('CampaignBannerQuery', {
-            campaign: {
-              id: campaignId,
-              groupTypeId: null,
-              groupType: null,
-            },
-          });
+          cy.mockGraphqlOp(
+            'CampaignBannerQuery',
+            mockCampaignBannerQueryResult(),
+          );
 
           // Visit the campaign landing page as an authenticated user with a referrer_user_id query param:
           cy.login(user)
@@ -165,13 +180,11 @@ describe('Campaign Signup', () => {
         /** @test */
         it('Regular Referral campaign signup displays the general incentive copy', () => {
           const user = userFactory();
-          cy.mockGraphqlOp('CampaignBannerQuery', {
-            campaign: {
-              id: campaignId,
-              groupTypeId: null,
-              groupType: null,
-            },
-          });
+
+          cy.mockGraphqlOp(
+            'CampaignBannerQuery',
+            mockCampaignBannerQueryResult(),
+          );
 
           // Log in & visit the campaign pitch page:
           cy.withFeatureFlags({
@@ -193,13 +206,11 @@ describe('Campaign Signup', () => {
         /** @test */
         it('displays the incentive free copy', () => {
           const user = userFactory();
-          cy.mockGraphqlOp('CampaignBannerQuery', {
-            campaign: {
-              id: campaignId,
-              groupTypeId: null,
-              groupType: null,
-            },
-          });
+
+          cy.mockGraphqlOp(
+            'CampaignBannerQuery',
+            mockCampaignBannerQueryResult(),
+          );
 
           // Log in & visit the campaign pitch page:
           cy.authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
@@ -222,13 +233,7 @@ describe('Campaign Signup', () => {
     it("Doesn't display Referral Page Banner CTA in affirmation for non configured campaign", () => {
       const user = userFactory();
 
-      cy.mockGraphqlOp('CampaignBannerQuery', {
-        campaign: {
-          id: campaignId,
-          groupTypeId: null,
-          groupType: null,
-        },
-      });
+      cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
       // Log in & visit the campaign pitch page:
       cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
@@ -265,13 +270,7 @@ describe('Campaign Signup', () => {
 
   /** @test */
   it('Visits a campaign page from scholarship partner, as an unauthenticated user', () => {
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        id: campaignId,
-        groupTypeId: null,
-        groupType: null,
-      },
-    });
+    cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
     // Visit the campaign pitch page
     cy.withState(exampleCampaign).visit(
@@ -313,24 +312,12 @@ describe('Campaign Signup', () => {
       it('Signup button is enabled after selecting group', () => {
         const user = userFactory();
 
-        cy.mockGraphqlOp('SearchGroupsQuery', {
-          groups: [
-            { id: 1, name: 'New York' },
-            { id: 2, name: 'Philadelphia' },
-            { id: 3, name: 'San Francisco' },
-          ],
-        });
+        cy.mockGraphqlOp('SearchGroupsQuery', mockSearchGroupsQueryResult);
 
-        cy.mockGraphqlOp('CampaignBannerQuery', {
-          campaign: {
-            id: campaignId,
-            groupTypeId: 1,
-            groupType: {
-              id: 1,
-              filterByLocation: false,
-            },
-          },
-        });
+        cy.mockGraphqlOp(
+          'CampaignBannerQuery',
+          mockCampaignBannerQueryResult(1, false),
+        );
 
         cy.anonVisitCampaign(exampleCampaign);
 
@@ -371,24 +358,11 @@ describe('Campaign Signup', () => {
       it('Signup button is enabled after selecting location, then group', () => {
         const user = userFactory();
 
-        cy.mockGraphqlOp('SearchGroupsQuery', {
-          groups: [
-            { id: 1, name: 'New York', state: 'NY' },
-            { id: 2, name: 'Philadelphia', state: 'PA' },
-            { id: 3, name: 'San Francisco', state: 'CA' },
-          ],
-        });
-
-        cy.mockGraphqlOp('CampaignBannerQuery', {
-          campaign: {
-            id: campaignId,
-            groupTypeId: 1,
-            groupType: {
-              id: 1,
-              filterByLocation: true,
-            },
-          },
-        });
+        cy.mockGraphqlOp('SearchGroupsQuery', mockSearchGroupsQueryResult);
+        cy.mockGraphqlOp(
+          'CampaignBannerQuery',
+          mockCampaignBannerQueryResult(1),
+        );
 
         cy.anonVisitCampaign(exampleCampaign);
 
