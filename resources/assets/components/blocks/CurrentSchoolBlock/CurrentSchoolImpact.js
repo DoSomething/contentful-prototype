@@ -28,7 +28,7 @@ const CurrentSchoolImpact = ({ actionId, school }) => {
       <div className={`md:flex-auto ${schoolClassName}`}>
         <p className="school-name font-bold">{school.name}</p>
         <span className="uppercase text-sm text-gray-400 font-bold">
-          {school.city}, {school.state}
+          {school.city}, {school.location.substring(3)}
         </span>
       </div>
       {actionId ? (
