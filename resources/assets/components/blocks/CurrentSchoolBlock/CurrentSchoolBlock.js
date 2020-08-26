@@ -27,7 +27,7 @@ const USER_SCHOOL_QUERY = gql`
         id
         name
         city
-        state
+        location
       }
     }
   }
