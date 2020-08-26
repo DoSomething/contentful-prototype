@@ -67,7 +67,7 @@ CurrentSchoolImpact.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     city: PropTypes.string,
-    state: PropTypes.string,
+    location: PropTypes.string,
   }).isRequired,
 };
 
