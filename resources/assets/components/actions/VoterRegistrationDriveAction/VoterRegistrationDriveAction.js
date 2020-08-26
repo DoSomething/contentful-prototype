@@ -62,8 +62,8 @@ const VoterRegistrationDriveAction = ({
         ).href
       }
       queryOptions={<QueryOptions />}
-      shareCardDescription={description}
-      shareCardTitle={title}
+      description={description}
+      title={title}
     />
   );
 };
