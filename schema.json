@@ -480,16 +480,6 @@
                 "defaultValue": null
               },
               {
-                "name": "state",
-                "description": "The group state to filter groups by.",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
                 "name": "schoolId",
                 "description": "The group school ID to filter groups by.",
                 "type": {
@@ -559,16 +549,6 @@
               {
                 "name": "location",
                 "description": "The ISO-3166-2 location to filter groups by (e.g. US-NY).",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "state",
-                "description": "The group state to filter groups by.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
@@ -2565,16 +2545,12 @@
             "description": "Search schools by state and name.",
             "args": [
               {
-                "name": "state",
-                "description": "The school state to filter by.",
+                "name": "location",
+                "description": "The school ISO-3166-2 location to filter by (e.g. US-NY).",
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
                 },
                 "defaultValue": null
               },
@@ -3497,8 +3473,8 @@
             "deprecationReason": null
           },
           {
-            "name": "state",
-            "description": "The school state.",
+            "name": "location",
+            "description": "The school ISO-3166-2 location.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -3642,18 +3618,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "filterByState",
-            "description": "Whether group finders for this type should first filter by state before searching by name.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "isDeprecated": true,
-            "deprecationReason": "Use 'filterByLocation' instead."
           },
           {
             "name": "updatedAt",
@@ -6666,18 +6630,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "state",
-            "description": "The group state.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": true,
-            "deprecationReason": "Use 'location' instead."
           },
           {
             "name": "updatedAt",
@@ -15449,6 +15401,30 @@
             "type": {
               "kind": "SCALAR",
               "name": "AbsoluteUrl",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": "The user-facing title for this social drive block.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
+            "description": "The user-facing description for this social drive block.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
