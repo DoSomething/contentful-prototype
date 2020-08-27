@@ -28,6 +28,8 @@ import './social-drive.scss';
 export const SocialDriveBlockFragment = gql`
   fragment SocialDriveBlockFragment on SocialDriveBlock {
     link
+    title
+    description
   }
 `;
 
@@ -120,11 +122,11 @@ class SocialDriveAction extends React.Component {
     const {
       approvedPostCountActionId,
       approvedPostCountLabel,
+      description,
       fullWidth,
       link,
       queryOptions,
-      shareCardDescription,
-      shareCardTitle,
+      title,
       userId,
     } = this.props;
 
@@ -141,10 +143,10 @@ class SocialDriveAction extends React.Component {
             'lg:w-2/3 lg:pr-3': !fullWidth,
           })}
         >
-          <Card className="rounded bordered" title={shareCardTitle}>
-            {shareCardDescription ? (
+          <Card className="rounded bordered" title={title}>
+            {description ? (
               <div className="p-3">
-                <p>{shareCardDescription}</p>
+                <p>{description}</p>
               </div>
             ) : null}
 
@@ -225,6 +227,7 @@ SocialDriveAction.propTypes = {
   approvedPostCountActionId: PropTypes.number,
   approvedPostCountLabel: PropTypes.string,
   campaignId: PropTypes.string,
+  description: PropTypes.string,
   /**
    * This prop allows us to force the "main" block to fill the width of the container.
    * @see https://git.io/Jfnqy
@@ -237,8 +240,7 @@ SocialDriveAction.propTypes = {
    * @see /resources/assets/components/pages/VoterRegistrationDrivePage/Alpha/AlphaPage
    */
   queryOptions: PropTypes.element,
-  shareCardDescription: PropTypes.string,
-  shareCardTitle: PropTypes.string,
+  title: PropTypes.string,
   token: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
@@ -247,11 +249,11 @@ SocialDriveAction.defaultProps = {
   approvedPostCountActionId: null,
   approvedPostCountLabel: null,
   campaignId: null,
+  description: null,
   fullWidth: false,
   pageId: null,
   queryOptions: null,
-  shareCardDescription: null,
-  shareCardTitle: 'Your Online Drive',
+  title: 'Your Online Drive',
 };
 
 export default SocialDriveAction;
