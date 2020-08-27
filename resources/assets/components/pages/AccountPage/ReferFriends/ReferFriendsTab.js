@@ -2,10 +2,10 @@ import React from 'react';
 import tw from 'twin.macro';
 
 import { featureFlag } from '../../../../helpers';
-import SignupReferralsGallery from './SignupReferralsGallery';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 import { getReferFriendsLink } from '../../../../helpers/refer-friends';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
+import SignupReferralsBlock from '../../../blocks/SignupReferralsBlock/SignupReferralsBlock';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const Details = tw.details`pb-4`;
@@ -49,7 +49,7 @@ const ReferFriendsTab = () => {
       </div>
 
       <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-11 xxl:col-start-2 xxl:col-span-10 pt-4">
-        <SignupReferralsGallery />
+        <SignupReferralsBlock />
       </div>
 
       <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6 pt-10">

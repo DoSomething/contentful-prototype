@@ -3,12 +3,12 @@ import gql from 'graphql-tag';
 import { uniqBy } from 'lodash';
 import pluralize from 'pluralize';
 
-import Query from '../../../Query';
-import { getUserId } from '../../../../helpers/auth';
+import Query from '../../Query';
+import { getUserId } from '../../../helpers/auth';
 import EmptyReferralIcon from './empty-referral.svg';
 import CompletedReferralIcon from './completed-referral.svg';
-import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
-import ReferralsGallery from '../../../utilities/ReferralsGallery/ReferralsGallery';
+import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
+import ReferralsGallery from '../../utilities/ReferralsGallery/ReferralsGallery';
 
 export const SIGNUP_REFERRALS_QUERY = gql`
   query SignupReferrals($referrerUserId: String!) {
@@ -22,7 +22,7 @@ export const SIGNUP_REFERRALS_QUERY = gql`
   }
 `;
 
-const SignupReferralsGallery = () => (
+const SignupReferralsBlock = () => (
   <>
     <SectionHeader underlined title="Your Referrals" />
 
@@ -60,4 +60,4 @@ const SignupReferralsGallery = () => (
   </>
 );
 
-export default SignupReferralsGallery;
+export default SignupReferralsBlock;

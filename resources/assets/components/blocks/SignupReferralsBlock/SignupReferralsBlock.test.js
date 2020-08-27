@@ -3,9 +3,9 @@ import { act } from 'react-dom/test-utils';
 import { MockedProvider } from '@apollo/react-testing';
 import { render, screen } from '@testing-library/react';
 
-import SignupReferralsGallery, {
+import SignupReferralsBlock, {
   SIGNUP_REFERRALS_QUERY,
-} from './SignupReferralsGallery';
+} from './SignupReferralsBlock';
 
 const MOCK_USER_ID = '123';
 
@@ -58,11 +58,11 @@ const mocks = [
   },
 ];
 
-describe('SignupReferralsGallery component', () => {
+describe('SignupReferralsBlock component', () => {
   test('it passes a unique list of referred users to the Referrals Gallery', async () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <SignupReferralsGallery />
+        <SignupReferralsBlock />
       </MockedProvider>,
     );
 
