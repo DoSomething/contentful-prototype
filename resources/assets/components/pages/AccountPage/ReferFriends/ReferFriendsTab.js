@@ -2,9 +2,10 @@ import React from 'react';
 import tw from 'twin.macro';
 
 import { featureFlag } from '../../../../helpers';
-import SignupReferralsGallery from './SignupReferralsGallery';
+import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 import { getReferFriendsLink } from '../../../../helpers/refer-friends';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
+import SignupReferralsBlock from '../../../blocks/SignupReferralsBlock/SignupReferralsBlock';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const Details = tw.details`pb-4`;
@@ -13,6 +14,15 @@ const DetailsParagraph = tw.p`pt-2`;
 
 const ReferFriendsTab = () => {
   const referralIncentive = featureFlag('refer_friends_incentive');
+  const referFriendsLink = getReferFriendsLink();
+
+  if (!referFriendsLink) {
+    return (
+      <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6">
+        <ErrorBlock error="Refer Friends link is undefined. Is the default_referral_campaign_id config set?" />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -33,13 +43,13 @@ const ReferFriendsTab = () => {
               ? 'When your friend signs up for their first DoSomething campaign, you’ll both enter for a chance to win a $10 gift card! Every 2 weeks, we’ll randomly select 25 winners. The more friends you refer, the more chances you have to win. (P.S. There’s no limit on how many friends you can refer!)'
               : 'Share the link below with a friend and invite them to sign up for their first DoSomething campaign! As soon as your friend signs up, you’ll see their name in the Your Referrals section below. Let’s Do This.'
           }
-          link={getReferFriendsLink()}
+          link={referFriendsLink}
           fullWidth
         />
       </div>
 
       <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-11 xxl:col-start-2 xxl:col-span-10 pt-4">
-        <SignupReferralsGallery />
+        <SignupReferralsBlock />
       </div>
 
       <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6 pt-10">
