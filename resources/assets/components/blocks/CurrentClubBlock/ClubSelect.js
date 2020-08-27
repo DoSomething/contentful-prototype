@@ -23,19 +23,17 @@ const ClubSelect = ({ onChange }) => {
    */
   const client = useApolloClient();
 
-  const fetchClubs = debounce(
-    (searchString, callback) =>
-      client
-        .query({
-          query: SEARCH_CLUBS_QUERY,
-          variables: {
-            name: searchString,
-          },
-        })
-        .then(result => callback(result.data.clubs))
-        .catch(error => callback(error)),
-    250,
-  );
+  const fetchClubs = debounce((searchString, callback) => {
+    client
+      .query({
+        query: SEARCH_CLUBS_QUERY,
+        variables: {
+          name: searchString,
+        },
+      })
+      .then(result => callback(result.data.clubs))
+      .catch(error => callback(error));
+  }, 250);
 
   return (
     <AsyncSelect
