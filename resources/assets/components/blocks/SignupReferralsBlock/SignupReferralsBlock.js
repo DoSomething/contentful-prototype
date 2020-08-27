@@ -39,8 +39,8 @@ const SignupReferralsBlock = ({ title }) => (
     >
       {data => {
         // Avoid passing duplicate referrals (multiple referral signups from the same user) to the referrals gallery.
-        const referralLabels = uniqBy(data.signups, 'userId').map(
-          signup => signup.user.displayName,
+        const referralLabels = uniqBy(data.signups, 'userId').map(signup =>
+          signup.user ? signup.user.displayName : 'DoSomething Member',
         );
         const numberOfReferrals = referralLabels.length;
 
