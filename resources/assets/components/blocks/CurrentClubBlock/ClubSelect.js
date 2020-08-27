@@ -44,15 +44,15 @@ const ClubSelect = ({ onChange }) => {
       }
       getOptionValue={club => club.id}
       isClearable
-      loadOptions={(input, callback) =>
-        !input ? Promise.resolve([]) : fetchClubs(input, callback)
-      }
+      loadOptions={(input, callback) => {
+        return !input ? Promise.resolve([]) : fetchClubs(input, callback);
+      }}
       noOptionsMessage={({ inputValue }) =>
         inputValue.length
           ? `Oops, we can't find a club called "${inputValue}"`
           : 'Enter your club name'
       }
-      onChange={onChange}
+      onChange={club => onChange(club.id)}
       placeholder="Enter your club name"
     />
   );
