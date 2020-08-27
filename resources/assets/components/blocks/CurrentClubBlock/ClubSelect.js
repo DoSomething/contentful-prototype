@@ -50,7 +50,7 @@ const ClubSelect = ({ onChange }) => {
           ? `Oops, we can't find a club called "${inputValue}"`
           : 'Enter your club name'
       }
-      onChange={club => onChange(club.id)}
+      onChange={club => onChange(club ? club.id : null)}
       placeholder="Enter your club name"
     />
   );
