@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { uniqBy } from 'lodash';
 import pluralize from 'pluralize';
+import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import { getUserId } from '../../../helpers/auth';
@@ -9,6 +10,12 @@ import EmptyReferralIcon from './empty-referral.svg';
 import CompletedReferralIcon from './completed-referral.svg';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import ReferralsGallery from '../../utilities/ReferralsGallery/ReferralsGallery';
+
+export const SignupReferralsBlockFragment = gql`
+  fragment SignupReferralsBlockFragment on SignupReferralsBlock {
+    title
+  }
+`;
 
 export const SIGNUP_REFERRALS_QUERY = gql`
   query SignupReferrals($referrerUserId: String!) {
@@ -22,9 +29,9 @@ export const SIGNUP_REFERRALS_QUERY = gql`
   }
 `;
 
-const SignupReferralsBlock = () => (
+const SignupReferralsBlock = ({ title }) => (
   <>
-    <SectionHeader underlined title="Your Referrals" />
+    <SectionHeader underlined title={title} />
 
     <Query
       query={SIGNUP_REFERRALS_QUERY}
@@ -59,5 +66,13 @@ const SignupReferralsBlock = () => (
     </Query>
   </>
 );
+
+SignupReferralsBlock.propTypes = {
+  title: PropTypes.string,
+};
+
+SignupReferralsBlock.defaultProps = {
+  title: 'Your Referrals',
+};
 
 export default SignupReferralsBlock;
