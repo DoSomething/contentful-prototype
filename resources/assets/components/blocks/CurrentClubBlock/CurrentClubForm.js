@@ -34,7 +34,7 @@ const CurrentClubForm = () => {
   }, []);
 
   return (
-    <div className="p-3">
+    <>
       <strong>Club Name</strong>
 
       <ClubSelect onChange={setClubId} />
@@ -52,7 +52,7 @@ const CurrentClubForm = () => {
         isDisabled={!clubId || loading}
         text="join club"
       />
-    </div>
+    </>
   );
 };
 

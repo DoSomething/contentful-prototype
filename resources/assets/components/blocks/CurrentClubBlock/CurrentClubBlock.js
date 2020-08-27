@@ -44,27 +44,29 @@ const CurrentClubBlock = () => {
 
   return (
     <Card className="rounded bordered" title="Your club">
-      {club ? (
-        <div className="p-3">
-          <p className="pt-2 pb-3">Hooray! You have joined the club for:</p>
+      <div className="p-3">
+        {club ? (
+          <>
+            <p className="pt-2 pb-3">Hooray! You have joined the club for:</p>
 
-          <div className="border border-solid border-gray-400 rounded p-4">
-            <p className="font-bold">{name}</p>
+            <div className="border border-solid border-gray-400 rounded p-4">
+              <p className="font-bold">{name}</p>
 
-            {location ? (
-              <span className="uppercase text-sm text-gray-600 font-bold">
-                {city}, {location.substring(3)}
-              </span>
-            ) : null}
-          </div>
-        </div>
-      ) : (
-        <CurrentClubForm />
-      )}
+              {location ? (
+                <span className="uppercase text-sm text-gray-600 font-bold">
+                  {city}, {location.substring(3)}
+                </span>
+              ) : null}
+            </div>
+          </>
+        ) : (
+          <CurrentClubForm />
+        )}
 
-      <p className="text-sm text-gray-500 p-3">
-        Need help? Email maddy@dosomething.org
-      </p>
+        <p className="text-sm text-gray-500 pt-3">
+          Need help? Email maddy@dosomething.org
+        </p>
+      </div>
     </Card>
   );
 };
