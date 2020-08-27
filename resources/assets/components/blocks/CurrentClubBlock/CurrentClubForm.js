@@ -3,6 +3,8 @@ import { useMutation } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
 import ClubSelect from './ClubSelect';
+import ErrorBlock from '../ErrorBlock/ErrorBlock';
+import Spinner from '../../artifacts/Spinner/Spinner';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { getUserId, isAuthenticated, useGate } from '../../../helpers/auth';
 
@@ -22,16 +24,29 @@ const CurrentClubForm = () => {
   const [flash, authenticate] = useGate('CurrentClubForm');
   const [clubId, setClubId] = useState();
 
-  const [updateUserClub, { loading }] = useMutation(USER_CLUB_MUTATION, {
-    variables: { userId: getUserId(), clubId: flash.clubId },
-    refetchQueries: ['UserClubQuery'],
-  });
+  const [updateUserClub, { loading, data, error }] = useMutation(
+    USER_CLUB_MUTATION,
+    {
+      variables: { userId: getUserId(), clubId: flash.clubId },
+      refetchQueries: ['UserClubQuery'],
+    },
+  );
 
   useEffect(() => {
     if (isAuthenticated() && flash.clubId) {
       updateUserClub();
     }
   }, []);
+
+  if (error) {
+    return <ErrorBlock error={error} />;
+  }
+
+  // If the mutation was successful, we'll hide the form while the CurrentClubBlock
+  // updates to display the user's current club.
+  if (data) {
+    return <Spinner className="flex justify-center p-6" />;
+  }
 
   return (
     <>
