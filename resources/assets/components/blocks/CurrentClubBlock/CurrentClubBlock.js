@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
 import Card from '../../utilities/Card/Card';
+import CurrentClubForm from './CurrentClubForm';
 import { getUserId } from '../../../helpers/auth';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import Spinner from '../../artifacts/Spinner/Spinner';
@@ -12,7 +13,6 @@ const USER_CLUB_QUERY = gql`
   query UserClubQuery($userId: String!) {
     user(id: $userId) {
       id
-      clubId
       club {
         id
         name
@@ -57,14 +57,14 @@ const CurrentClubBlock = () => {
               </span>
             ) : null}
           </div>
-
-          <p className="text-sm text-gray-500 pt-3">
-            Need help? Email maddy@dosomething.org
-          </p>
         </div>
       ) : (
-        <div>Club Form</div>
+        <CurrentClubForm />
       )}
+
+      <p className="text-sm text-gray-500 p-3">
+        Need help? Email maddy@dosomething.org
+      </p>
     </Card>
   );
 };
