@@ -14,4 +14,4 @@ This block type displays the current user's completed voter registration referra
 
 ## Notes
 
-All block content besides the `title` field is managed in code, e.g. "You have registered **1** friend.".
+All block content besides the `title` field is managed in code, e.g. "You have registered **1 person** so far.".
