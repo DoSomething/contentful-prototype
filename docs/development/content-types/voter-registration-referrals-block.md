@@ -2,7 +2,9 @@
 
 This block type displays the current user's completed voter registration referrals, as well as voter registration referrals that are still in progress.
 
-**Note:** It will display the user's voter registration referrals for all voter registration actions (but we only began saving referrer users on `voter-reg` posts in 2020 for [action 954](https://activity.dosomething.org/actions/954).
+![Voter Registration Referrals Block](../../.gitbook/assets/voter-registration-referrals-block.png)
+
+**Note:** It will display the user's voter registration referrals for all voter registration actions -- but we only began saving referrer users on `voter-reg` posts in 2020 for [action 954](https://activity.dosomething.org/actions/954).
 
 ## Fields
 
