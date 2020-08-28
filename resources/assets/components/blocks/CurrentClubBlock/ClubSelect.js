@@ -43,6 +43,10 @@ const ClubSelect = ({ onChange }) => {
       getOptionValue={club => club.id}
       isClearable
       loadOptions={(input, callback) => {
+        /**
+         * Avoid querying by empty club name on page load.
+         * @see https://github.com/JedWatson/react-select/issues/614#issuecomment-380763225
+         */
         return !input ? Promise.resolve([]) : fetchClubs(input, callback);
       }}
       noOptionsMessage={({ inputValue }) =>
