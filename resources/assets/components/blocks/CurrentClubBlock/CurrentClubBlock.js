@@ -49,7 +49,7 @@ const CurrentClubBlock = () => {
           <>
             <p className="pt-2 pb-3">Hooray! You have joined the club for:</p>
 
-            <div className="border border-solid border-gray-400 rounded p-4">
+            <div className="border border-solid border-gray-400 rounded p-3">
               <p className="font-bold">{name}</p>
 
               {location ? (
@@ -58,14 +58,14 @@ const CurrentClubBlock = () => {
                 </span>
               ) : null}
             </div>
+
+            <p className="text-sm text-gray-500 pt-3">
+              Need help? Contact maddy@dosomething.org
+            </p>
           </>
         ) : (
           <CurrentClubForm />
         )}
-
-        <p className="text-sm text-gray-500 pt-3">
-          Need help? Email maddy@dosomething.org
-        </p>
       </div>
     </Card>
   );
