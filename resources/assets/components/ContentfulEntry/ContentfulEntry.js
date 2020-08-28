@@ -20,6 +20,7 @@ import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import CampaignDashboard from '../utilities/CampaignDashboard/CampaignDashboard';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
+import SignupReferralsBlock from '../blocks/SignupReferralsBlock/SignupReferralsBlock';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import CurrentSchoolBlockContainer from '../blocks/CurrentSchoolBlock/CurrentSchoolBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
@@ -194,6 +195,9 @@ class ContentfulEntry extends React.Component {
 
       case 'ShareBlock':
         return <ShareActionContainer id={json.id} {...withoutNulls(json)} />;
+
+      case 'SignupReferralsBlock':
+        return <SignupReferralsBlock {...withoutNulls(json)} />;
 
       case 'SixpackExperimentBlock':
         return <SixpackExperiment id={json.id} {...withoutNulls(json)} />;
