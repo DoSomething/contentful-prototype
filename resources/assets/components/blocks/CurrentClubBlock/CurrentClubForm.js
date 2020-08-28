@@ -33,6 +33,8 @@ const CurrentClubForm = () => {
   );
 
   useEffect(() => {
+    // If the user has been successfully redirected from the authentication flow after selecting their
+    // club anonymously, manually run the mutation to add them to the club.
     if (isAuthenticated() && flash.clubId) {
       updateUserClub();
     }
@@ -42,7 +44,7 @@ const CurrentClubForm = () => {
     return <ErrorBlock error={error} />;
   }
 
-  // If the mutation was successful, we'll hide the form while the CurrentClubBlock
+  // If the mutation was successful, hide the form while the CurrentClubBlock
   // updates to display the user's current club.
   if (data) {
     return <Spinner className="flex justify-center p-6" />;
