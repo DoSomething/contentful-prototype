@@ -17,6 +17,7 @@ describe('Current Club Block', () => {
   });
 
   context('Authenticated users', () => {
+    /** @test */
     it("See their club if they've already joined one", () => {
       const user = userFactory();
 
@@ -30,6 +31,7 @@ describe('Current Club Block', () => {
       });
     });
 
+    /** @test */
     it("See the club form if they haven't joined one, and can select a club to join", () => {
       const user = userFactory();
 
@@ -67,6 +69,7 @@ describe('Current Club Block', () => {
 
   context('Unauthenticated users', () => {
     // @TODO: Fix this test to authenticate the user and see if the mutation runs with their selected club ID.
+    /** @test */
     xit('Can join a club via "lazy authentication"', () => {
       const user = userFactory();
 
