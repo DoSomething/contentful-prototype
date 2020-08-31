@@ -1,6 +1,8 @@
 # Action Stats Block
 
-Displays paginated school [action stats](https://github.com/DoSomething/rogue/blob/master/docs/endpoints/action-stats.md) for a given Rogue action.
+Displays a leaderboard and table of paginated school [action stats](https://github.com/DoSomething/rogue/blob/master/docs/endpoints/action-stats.md) for a given Rogue action.
+
+![Action Stats Block](../../.gitbook/assets/action-stats-block.png)
 
 ## Content Type Fields
 

@@ -175,6 +175,7 @@ module.exports = function(migration) {
             'quiz',
             'selectionSubmissionAction',
             'shareAction',
+            'signupReferralsBlock',
             'sixpackExperiment',
             'socialDriveAction',
             'softEdgeWidgetAction',
