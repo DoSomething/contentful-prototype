@@ -52,6 +52,11 @@ const CurrentClubForm = () => {
 
   return (
     <div data-testid="current-club-form">
+      <p className="pb-3">
+        Join an existing DoSomething club. Don’t forget to double check with
+        your leader that you’re selecting the right one!
+      </p>
+
       <strong>Club Name</strong>
 
       <ClubSelect onChange={setClubId} />
@@ -70,7 +75,7 @@ const CurrentClubForm = () => {
         }
         isLoading={loading}
         isDisabled={!clubId || loading}
-        text="join club"
+        text="Join Now"
       />
     </div>
   );
