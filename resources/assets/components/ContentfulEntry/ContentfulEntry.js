@@ -13,6 +13,7 @@ import CampaignUpdate from '../blocks/CampaignUpdate/CampaignUpdate';
 import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import ActionStatsBlock from '../blocks/ActionStatsBlock/ActionStatsBlock';
+import CurrentClubBlock from '../blocks/CurrentClubBlock/CurrentClubBlock';
 import EmbedBlockContainer from '../blocks/EmbedBlock/EmbedBlockContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import CallToActionBlock from '../blocks/CallToActionBlock/CallToActionBlock';
@@ -107,6 +108,9 @@ class ContentfulEntry extends React.Component {
             {...additionalCustomProps}
           />
         );
+
+      case 'CurrentClubBlock':
+        return <CurrentClubBlock {...withoutNulls(json)} />;
 
       case 'CurrentSchoolBlock':
         return <CurrentSchoolBlockContainer {...withoutNulls(json)} />;
