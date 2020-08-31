@@ -47,7 +47,9 @@ const CurrentClubBlock = () => {
       <div className="p-3">
         {club ? (
           <div data-testid="current-club">
-            <p className="pt-2 pb-3">Hooray! You have joined the club for:</p>
+            <p className="pt-2 pb-3">
+              Hooray! You’re officially a member of your local DoSomething Club:
+            </p>
 
             <div className="border border-solid border-gray-400 rounded p-3">
               <p className="font-bold" data-testid="current-club-name">
@@ -62,7 +64,7 @@ const CurrentClubBlock = () => {
             </div>
 
             <p className="text-sm text-gray-500 pt-3">
-              Need help? Contact maddy@dosomething.org
+              Need help? Email Maddy at maddy@dosomething.org
             </p>
           </div>
         ) : (
