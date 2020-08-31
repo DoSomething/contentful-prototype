@@ -46,7 +46,7 @@ const CurrentClubForm = () => {
 
   // If the mutation was successful, hide the form while the CurrentClubBlock
   // updates to display the user's current club.
-  if (data) {
+  if (isAuthenticated() && (data || flash.clubId)) {
     return <Spinner className="flex justify-center p-6" />;
   }
 
