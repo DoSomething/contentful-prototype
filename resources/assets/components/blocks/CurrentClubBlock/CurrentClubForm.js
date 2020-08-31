@@ -51,12 +51,15 @@ const CurrentClubForm = () => {
   }
 
   return (
-    <>
+    <div data-testid="current-club-form">
       <strong>Club Name</strong>
 
       <ClubSelect onChange={setClubId} />
 
       <PrimaryButton
+        attributes={{
+          'data-testid': 'current-club-form-submit',
+        }}
         className="mt-3 text-lg w-full"
         onClick={() =>
           isAuthenticated()
@@ -69,7 +72,7 @@ const CurrentClubForm = () => {
         isDisabled={!clubId || loading}
         text="join club"
       />
-    </>
+    </div>
   );
 };
 

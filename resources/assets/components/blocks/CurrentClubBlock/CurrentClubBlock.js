@@ -46,11 +46,13 @@ const CurrentClubBlock = () => {
     <Card className="rounded bordered" title="Your club">
       <div className="p-3">
         {club ? (
-          <>
+          <div data-testid="current-club">
             <p className="pt-2 pb-3">Hooray! You have joined the club for:</p>
 
             <div className="border border-solid border-gray-400 rounded p-3">
-              <p className="font-bold">{name}</p>
+              <p className="font-bold" data-testid="current-club-name">
+                {name}
+              </p>
 
               {location ? (
                 <span className="uppercase text-sm text-gray-600 font-bold">
@@ -62,7 +64,7 @@ const CurrentClubBlock = () => {
             <p className="text-sm text-gray-500 pt-3">
               Need help? Contact maddy@dosomething.org
             </p>
-          </>
+          </div>
         ) : (
           <CurrentClubForm />
         )}
