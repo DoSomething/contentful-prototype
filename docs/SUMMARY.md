@@ -18,6 +18,7 @@
     -   [Content Block](development/content-types/content-block.md)
     -   [Cause Page](development/content-types/cause-page.md)
     -   [Company Page](development/content-types/company-page.md)
+    -   [Current Club Block](development/content-types/current-club-block.md)
     -   [Current School Block](development/content-types/current-school-block.md)
     -   [Embed](development/content-types/embed.md)
     -   [Landing Page](development/content-types/landing-page.md)
