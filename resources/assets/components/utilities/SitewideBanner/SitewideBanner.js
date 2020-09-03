@@ -3,8 +3,9 @@ import gql from 'graphql-tag';
 import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import { getUserId } from '../../../helpers/auth';
+import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
 import { excludedPaths, excludedVoterRegistrationStatuses } from './config';
@@ -118,6 +119,28 @@ const SitewideBanner = props => {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
     return null;
+  }
+
+  if (
+    /**
+     * Checks for auth user and if the user is registered to vote,
+     * we will display an refer a friend banner
+     */
+    isAuthenticated &&
+    !isExcludedVoterRegistrationStatus(
+      get(userData, 'user.voterRegistrationStatus'),
+    )
+  ) {
+    return createPortal(
+      <SitewideBannerContent
+        description={
+          'Refer a friend to DoSomething. (You could win a $10 gift card!)'
+        }
+        link={<Link to="/account/refer-friends"></Link>}
+        cta="Refer Now"
+      />,
+      target,
+    );
   }
 
   return createPortal(<SitewideBannerContent {...props} />, target);
