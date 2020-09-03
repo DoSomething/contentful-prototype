@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import { getCampaign } from '../../../helpers/campaign';
@@ -134,7 +133,7 @@ const SitewideBanner = props => {
     return createPortal(
       <SitewideBannerContent
         description="Refer a friend to DoSomething. (You could win a $10 gift card!)"
-        link={<Link to="/account/refer-friends"></Link>}
+        link="/account/refer-friends"
         cta="Refer Now"
       />,
     );
