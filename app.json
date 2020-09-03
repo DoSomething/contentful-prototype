@@ -19,7 +19,7 @@
     },
     "APP_LOG": "errorlog",
     "APP_URL": "https://ds-phoenix-staging.herokuapp.com/",
-    "DB_CONNECTION": "heroku_mariadb",
+    "DB_CONNECTION": "jawsdb",
     "CONTENTFUL_CACHE": "false",
     "CONTENTFUL_CONTENT_API_KEY": {
       "required": true

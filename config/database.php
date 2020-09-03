@@ -78,26 +78,18 @@ return [
             'sslmode' => 'prefer',
         ],
 
-        'heroku_mariadb' => [
+        'jawsdb' => [
             'driver' => 'mysql',
-            'url' => env('JAWS_MARIA_URL'),
-            'database' => env('DB_DATABASE', 'forge'),
+            'url' => env('JAWSDB_MARIA_URL'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
+            'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-        ],
-
-        'heroku_mysql' => [
-            'driver' => 'mysql',
-            'url' => env('CLEARDB_DATABASE_URL'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
         ],
 
         'sqlsrv' => [
