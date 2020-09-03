@@ -130,6 +130,8 @@ const SitewideBanner = props => {
       get(userData, 'user.voterRegistrationStatus'),
     )
   ) {
+    target.setAttribute('data-testid', hiddenAttributeDataTestId);
+
     return createPortal(
       <SitewideBannerContent
         description="Refer a friend to DoSomething. (You could win a $10 gift card!)"
