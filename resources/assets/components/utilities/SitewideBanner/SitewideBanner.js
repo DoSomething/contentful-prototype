@@ -133,13 +133,10 @@ const SitewideBanner = props => {
   ) {
     return createPortal(
       <SitewideBannerContent
-        description={
-          'Refer a friend to DoSomething. (You could win a $10 gift card!)'
-        }
+        description="Refer a friend to DoSomething. (You could win a $10 gift card!)"
         link={<Link to="/account/refer-friends"></Link>}
         cta="Refer Now"
       />,
-      target,
     );
   }
 
