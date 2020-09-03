@@ -78,10 +78,10 @@ return [
             'sslmode' => 'prefer',
         ],
 
-        'heroku_mariadb' => [
+        'jawsdb' => [
             'driver' => 'mysql',
-            'url' => env('JAWS_MARIA_URL'),
             'database' => env('DB_DATABASE', 'forge'),
+            'url' => env('JAWSDB_MARIA_URL'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
