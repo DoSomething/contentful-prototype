@@ -101,6 +101,8 @@ const SitewideBanner = props => {
     },
   );
 
+  const userRegistrationStatus = get(userData, 'user.voterRegistrationStatus');
+
   if (userLoading || campaignLoading) {
     return null;
   }
@@ -110,7 +112,10 @@ const SitewideBanner = props => {
      * If this is a groups campaign, we hide the banner to avoid interfering with the group finder
      * on small screen.
      */
-    !get(campaignData, 'campaign.groupTypeId')
+    !!get(campaignData, 'campaign.groupTypeId') ||
+    isExcludedVoterRegistrationStatus(
+      get(userData, 'user.voterRegistrationStatus'),
+    )
   ) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
@@ -120,18 +125,18 @@ const SitewideBanner = props => {
   if (
     /**
      * Checks for auth user and if the user is registered to vote,
-     * we will display an refer a friend banner
+     * Display an refer a friend banner
      */
     isAuthenticated() &&
-    isExcludedVoterRegistrationStatus(
-      get(userData, 'user.voterRegistrationStatus'),
-    )
+    excludedVoterRegistrationStatuses.includes(userRegistrationStatus)
   ) {
     return createPortal(
       <SitewideBannerContent
-        description="Refer a friend to DoSomething. (You could win a $10 gift card!)"
-        link="/account/refer-friends"
         cta="Refer Now"
+        link="/account/refer-friends"
+        description="Refer a friend to DoSomething. (You could win a $10 gift card!)"
+        handleClose={props.handleClose}
+        handleComplete={props.handleComplete}
       />,
       target,
     );
