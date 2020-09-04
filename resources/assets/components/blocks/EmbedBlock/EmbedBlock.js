@@ -5,8 +5,10 @@ import PropTypes from 'prop-types';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import CartoTemplate from './templates/CartoTemplate';
 import TypeFormTemplate from './templates/TypeFormTemplate';
+import IframeEmbed from '../../utilities/IframeEmbed/IframeEmbed';
 
 const PERMITTED_HOSTNAMES = {
+  'airtable.com': 'airtable',
   'dosomething.carto.com': 'carto',
   'dosomething.typeform.com': 'typeform',
 };
@@ -32,6 +34,9 @@ const EmbedBlock = props => {
 
     case 'carto':
       return <CartoTemplate {...props} />;
+
+    case 'airtable':
+      return <IframeEmbed {...props} />;
 
     default:
       return (
