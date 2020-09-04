@@ -130,7 +130,7 @@ describe('Site Wide Banner', () => {
     });
 
     cy.anonVisitCampaign(exampleCampaign);
-
+    cy.wait(2000);
     cy.findByTestId('sitewide-banner-hidden').should('have.length', 0);
   });
 
