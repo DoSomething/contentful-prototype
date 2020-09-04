@@ -133,6 +133,7 @@ module.exports = function(migration) {
                 'actionStatsBlock',
                 'callToAction',
                 'contentBlock',
+                'embed',
                 'galleryBlock',
                 'imagesBlock',
                 'linkAction',
