@@ -21,7 +21,7 @@ const Subscriptions = props => (
 
 Subscriptions.propTypes = {
   user: PropTypes.shape({
-    emailSubscriptionTopics: PropTypes.array,
+    emailSubscriptionTopics: PropTypes.InstanceOf(Array),
     userId: PropTypes.string,
   }).isRequired,
 };

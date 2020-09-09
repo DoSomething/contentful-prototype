@@ -89,7 +89,7 @@ CausePageTemplate.propTypes = {
   description: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
   additionalContent: PropTypes.shape({
-    stats: PropTypes.array,
+    stats: PropTypes.InstanceOf(Array),
     statsBackgroundColor: PropTypes.string,
   }),
 };
