@@ -11,17 +11,16 @@ import UserPostsQuery from '../Campaigns/UserPostsQuery';
 import DeleteAccountTab from '../Profile/DeleteAccountTab';
 import Subscriptions from '../Subscriptions/Subscriptions';
 import ReferFriendsTab from '../ReferFriends/ReferFriendsTab';
-
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
 
-const handleAccountNavTabClick = tab_name => {
-  trackAnalyticsEvent(`clicked_account_navlink_${tab_name}}`, {
+const handleAccountNavTabClick = tabName => {
+  trackAnalyticsEvent(`clicked_account_navlink_${tabName}}`, {
     action: 'link_clicked',
     category: EVENT_CATEGORIES.navigation,
-    label: `account_${tab_name}`,
+    label: `account_${tabName}`,
     context: {},
   });
 };
