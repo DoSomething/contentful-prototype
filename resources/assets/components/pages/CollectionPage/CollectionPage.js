@@ -93,7 +93,7 @@ CollectionPageTemplate.propTypes = {
   affiliates: PropTypes.arrayOf(PropTypes.object),
   content: PropTypes.object.isRequired,
   additionalContent: PropTypes.shape({
-    stats: PropTypes.InstanceOf(Array),
+    stats: PropTypes.arrayOf,
     statsBackgroundColor: PropTypes.string,
   }),
 };
