@@ -122,6 +122,8 @@ describe('Site Wide Banner', () => {
 
   /** @test */
   it('The Site Wide Banner is not displayed on groups campaign pages', () => {
+    const user = userFactory();
+
     cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
       campaign: {
         id: campaignId,
@@ -129,8 +131,7 @@ describe('Site Wide Banner', () => {
       },
     });
 
-    cy.anonVisitCampaign(exampleCampaign);
-    cy.wait(2000);
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
     cy.findByTestId('sitewide-banner-hidden').should('have.length', 0);
   });
 
