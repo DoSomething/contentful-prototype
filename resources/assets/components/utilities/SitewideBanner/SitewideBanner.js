@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
-import { getUserId } from '../../../helpers/auth';
+import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
 import { excludedPaths, excludedVoterRegistrationStatuses } from './config';
@@ -101,6 +101,8 @@ const SitewideBanner = props => {
     },
   );
 
+  const userRegistrationStatus = get(userData, 'user.voterRegistrationStatus');
+
   if (userLoading || campaignLoading) {
     return null;
   }
@@ -118,6 +120,26 @@ const SitewideBanner = props => {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
     return null;
+  }
+
+  if (
+    /**
+     * Checks for auth user and if the user is registered to vote,
+     * Display an refer a friend banner
+     */
+    isAuthenticated() &&
+    excludedVoterRegistrationStatuses.includes(userRegistrationStatus)
+  ) {
+    return createPortal(
+      <SitewideBannerContent
+        cta="Refer Now"
+        link="/account/refer-friends"
+        description="Refer a friend to DoSomething. (You could win a $10 gift card!)"
+        handleClose={props.handleClose}
+        handleComplete={props.handleComplete}
+      />,
+      target,
+    );
   }
 
   return createPortal(<SitewideBannerContent {...props} />, target);

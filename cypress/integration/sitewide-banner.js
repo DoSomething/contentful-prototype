@@ -73,34 +73,6 @@ describe('Site Wide Banner', () => {
     cy.findByTestId('sitewide-banner').should('have.length', 1);
   });
 
-  it('The Site Wide Banner is not displayed for users with INELIGIBLE voter reg status', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('UserSitewideBannerQuery', {
-      user: {
-        voterRegistrationStatus: 'INELIGIBLE',
-      },
-    });
-
-    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
-
-    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
-  });
-
-  it('The Site Wide Banner is not displayed for users with REGISTRATION_COMPLETE voter reg status', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('UserSitewideBannerQuery', {
-      user: {
-        voterRegistrationStatus: 'REGISTRATION_COMPLETE',
-      },
-    });
-
-    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
-
-    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
-  });
-
   it('The Site Wide Banner is not displayed on the beta voter registration (OVRD) drive page', () => {
     const user = userFactory();
 
@@ -150,6 +122,8 @@ describe('Site Wide Banner', () => {
 
   /** @test */
   it('The Site Wide Banner is not displayed on groups campaign pages', () => {
+    const user = userFactory();
+
     cy.mockGraphqlOp('CampaignSitewideBannerQuery', {
       campaign: {
         id: campaignId,
@@ -157,9 +131,8 @@ describe('Site Wide Banner', () => {
       },
     });
 
-    cy.anonVisitCampaign(exampleCampaign);
-
-    cy.findByTestId('sitewide-banner-hidden').should('have.length', 1);
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+    cy.findByTestId('sitewide-banner-hidden').should('have.length', 0);
   });
 
   /** @test */
