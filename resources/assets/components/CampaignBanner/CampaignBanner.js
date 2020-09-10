@@ -5,8 +5,13 @@ import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
+import {
+  isScholarshipAffiliateReferral,
+  getScholarshipAffiliateLabel,
+} from '../../helpers';
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
+import partnerScholarshipQuizPaths from './config';
 import Spinner from '../artifacts/Spinner/Spinner';
 import CampaignHeader from '../utilities/CampaignHeader';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
@@ -18,10 +23,6 @@ import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromoti
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
 import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptInToggleContainer';
-import {
-  isScholarshipAffiliateReferral,
-  getScholarshipAffiliateLabel,
-} from '../../helpers';
 
 const CAMPAIGN_BANNER_QUERY = gql`
   query CampaignBannerQuery($id: Int!) {

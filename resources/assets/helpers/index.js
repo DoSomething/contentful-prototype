@@ -1009,3 +1009,25 @@ export function getMillisecondsFromDays(days) {
   // @TODO make this more flexible, ie. get milliseconds from hours vs days etc
   return days * 1440 * 60 * 1000;
 }
+
+/**
+ * Checks if given pathname matches an entry in a paths config.
+ *
+ * @param {Array} paths
+ * @param {String} pathname
+ * @return {Boolean}
+ */
+export const isExcludedPath = (paths, pathname) => {
+  return paths.find(path => {
+    if (path.includes('*')) {
+      const pathWithoutAsterisk = path.slice(0, -1);
+
+      return (
+        pathname.includes(pathWithoutAsterisk) &&
+        pathname.length > pathWithoutAsterisk.length
+      );
+    }
+
+    return path === pathname;
+  });
+};
