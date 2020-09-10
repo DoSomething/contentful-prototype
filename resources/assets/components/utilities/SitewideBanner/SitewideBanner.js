@@ -28,27 +28,6 @@ const CAMPAIGN_QUERY = gql`
 `;
 
 /**
- * Checks if given pathname matches an entry in the excluded paths config.
- *
- * @param {String} pathname
- * @return {Boolean}
- */
-const isExcludedPath = pathname => {
-  return excludedPaths.find(excludedPath => {
-    if (excludedPath.includes('*')) {
-      const pathWithoutAsterisk = excludedPath.slice(0, -1);
-
-      return (
-        pathname.includes(pathWithoutAsterisk) &&
-        pathname.length > pathWithoutAsterisk.length
-      );
-    }
-
-    return excludedPath === pathname;
-  });
-};
-
-/**
  * Checks if given voter registration status matches an entry in excluded status config.
  *
  * @param {String} voterRegistrationStatus
@@ -77,7 +56,7 @@ const SitewideBanner = props => {
   const hiddenAttributeDataTestId = 'sitewide-banner-hidden';
 
   // First check if this path is excluded, to avoid making unnecessary GraphQL requests.
-  if (isExcludedPath(window.location.pathname)) {
+  if (isExcludedPath(excludedPaths, window.location.pathname)) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
     return null;

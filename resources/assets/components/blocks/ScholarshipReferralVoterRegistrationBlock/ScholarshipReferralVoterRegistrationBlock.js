@@ -96,7 +96,11 @@ const ScholarshipReferralVoterRegistrationBlock = ({
         </div>
       </div>
       <div className="md:w-1/2 p-6 text-base scholarship-info-block">
-        <StartVoterRegistrationForm />
+        <StartVoterRegistrationForm
+          campaignId={campaignId}
+          contextSource="voter-registration-quiz-signup-page"
+          sourceDetails="quizsignup"
+        />
       </div>
     </Card>
   );
