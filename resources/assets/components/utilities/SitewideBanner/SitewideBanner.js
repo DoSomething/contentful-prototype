@@ -4,9 +4,10 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
-import { getUserId, isAuthenticated } from '../../../helpers/auth';
+import { isExcludedPath } from '../../../helpers';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
+import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import { excludedPaths, excludedVoterRegistrationStatuses } from './config';
 
 const USER_QUERY = gql`
