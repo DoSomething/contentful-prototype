@@ -29,7 +29,7 @@ const AccountRoute = props => (
   <Switch>
     <Route
       path="/us/account/campaigns"
-      onClick={handleAccountNavTabClick}
+      onClick={handleAccountNavTabClick('campaigns')}
       render={() => <UserPostsQuery userId={props.userId} />}
     />
     {props.user.hasBadgesFlag ? (
