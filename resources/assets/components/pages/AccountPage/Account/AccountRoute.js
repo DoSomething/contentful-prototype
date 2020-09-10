@@ -21,7 +21,6 @@ const handleAccountNavTabClick = tabName => {
     action: 'link_clicked',
     category: EVENT_CATEGORIES.navigation,
     label: `account_${tabName}`,
-    context: {},
   });
 };
 

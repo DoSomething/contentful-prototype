@@ -56,7 +56,6 @@ const CancelEmailSubscription = props => {
       action: 'link_clicked',
       category: EVENT_CATEGORIES.siteAction,
       label: 'global_email_unsubscribe',
-      context: {},
     });
     updateEmailSubscriptionStatus({
       variables: {
