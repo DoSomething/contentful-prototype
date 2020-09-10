@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 import {
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
+  isExcludedPath,
 } from '../../helpers';
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
@@ -23,6 +24,7 @@ import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromoti
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
 import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptInToggleContainer';
+import ScholarshipReferralVoterRegistrationBlock from '../blocks/ScholarshipReferralVoterRegistrationBlock/ScholarshipReferralVoterRegistrationBlock';
 
 const CAMPAIGN_BANNER_QUERY = gql`
   query CampaignBannerQuery($id: Int!) {
@@ -161,42 +163,60 @@ const CampaignBanner = ({
           }}
           trackingId="SCHOLARSHIP_MODAL"
         >
-          <ScholarshipInfoBlock
-            actionIdToDisplay={actionIdToDisplay}
-            affiliateSponsors={affiliateSponsors}
-            attributes={{
-              'data-testid': 'campaign-info-block-scholarship-details',
-            }}
-            campaignId={numCampaignId}
-            scholarshipAmount={scholarshipAmount}
-            scholarshipCallToAction={scholarshipCallToAction || undefined}
-            scholarshipDeadline={scholarshipDeadline}
-            scholarshipDescription={scholarshipDescription}
-            numberOfScholarships={numberOfScholarships}
-            utmLabel={
-              scholarshipAffiliateLabel
-                ? scholarshipAffiliateLabel.toLowerCase()
-                : null
-            }
-          >
-            {!isAffiliated ? (
-              <div
-                data-testid="scholarship-modal-signup-button"
-                className={`pt-6 ${!groupType ? 'w-2/3 sm:w-1/2' : null}`}
-              >
-                {!loading ? (
-                  <CampaignSignupFormContainer
-                    className="w-full md:px-2"
-                    groupType={groupType}
-                    text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
-                    contextSource="scholarship_modal"
-                  />
-                ) : (
-                  <Spinner className="flex justify-center p-6" />
-                )}
-              </div>
-            ) : null}
-          </ScholarshipInfoBlock>
+          {isExcludedPath(
+            partnerScholarshipQuizPaths,
+            window.location.pathname,
+          ) ? (
+            <ScholarshipReferralVoterRegistrationBlock
+              affiliateSponsors={affiliateSponsors}
+              attributes={{
+                'data-testid': 'voter-registration-quiz-start-registration',
+              }}
+              campaignId={numCampaignId}
+              utmLabel={
+                scholarshipAffiliateLabel
+                  ? scholarshipAffiliateLabel.toLowerCase()
+                  : null
+              }
+            />
+          ) : (
+            <ScholarshipInfoBlock
+              actionIdToDisplay={actionIdToDisplay}
+              affiliateSponsors={affiliateSponsors}
+              attributes={{
+                'data-testid': 'campaign-info-block-scholarship-details',
+              }}
+              campaignId={numCampaignId}
+              scholarshipAmount={scholarshipAmount}
+              scholarshipCallToAction={scholarshipCallToAction || undefined}
+              scholarshipDeadline={scholarshipDeadline}
+              scholarshipDescription={scholarshipDescription}
+              numberOfScholarships={numberOfScholarships}
+              utmLabel={
+                scholarshipAffiliateLabel
+                  ? scholarshipAffiliateLabel.toLowerCase()
+                  : null
+              }
+            >
+              {!isAffiliated ? (
+                <div
+                  data-testid="scholarship-modal-signup-button"
+                  className={`pt-6 ${!groupType ? 'w-2/3 sm:w-1/2' : null}`}
+                >
+                  {!loading ? (
+                    <CampaignSignupFormContainer
+                      className="w-full md:px-2"
+                      groupType={groupType}
+                      text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
+                      contextSource="scholarship_modal"
+                    />
+                  ) : (
+                    <Spinner className="flex justify-center p-6" />
+                  )}
+                </div>
+              ) : null}
+            </ScholarshipInfoBlock>
+          )}
         </Modal>
       ) : null}
 
