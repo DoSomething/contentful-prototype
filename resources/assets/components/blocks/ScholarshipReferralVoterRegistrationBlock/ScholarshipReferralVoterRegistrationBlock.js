@@ -100,7 +100,7 @@ const ScholarshipReferralVoterRegistrationBlock = ({
           campaignId={campaignId}
           className="my-6"
           contextSource="voter-registration-quiz-signup-page"
-          sourceDetails="quizsignup"
+          sourceDetails="VoterRegQuiz_ScholarshipReferral"
         />
       </div>
     </Card>
