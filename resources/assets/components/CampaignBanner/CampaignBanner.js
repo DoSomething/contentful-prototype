@@ -166,7 +166,7 @@ const CampaignBanner = ({
           {isExcludedPath(
             partnerScholarshipQuizPaths,
             window.location.pathname,
-          ) ? (
+          ) && !showScholarshipModal ? (
             <ScholarshipReferralVoterRegistrationBlock
               affiliateSponsors={affiliateSponsors}
               attributes={{
