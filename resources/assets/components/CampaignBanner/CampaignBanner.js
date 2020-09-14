@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import {
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
-  isExcludedPath,
+  isCurrentPathInPaths,
 } from '../../helpers';
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
@@ -163,10 +163,8 @@ const CampaignBanner = ({
           }}
           trackingId="SCHOLARSHIP_MODAL"
         >
-          {isExcludedPath(
-            partnerScholarshipQuizPaths,
-            window.location.pathname,
-          ) && !showScholarshipModal ? (
+          {isCurrentPathInPaths(partnerScholarshipQuizPaths) &&
+          !showScholarshipModal ? (
             <ScholarshipReferralVoterRegistrationBlock
               affiliateSponsors={affiliateSponsors}
               attributes={{

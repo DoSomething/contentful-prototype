@@ -1011,13 +1011,14 @@ export function getMillisecondsFromDays(days) {
 }
 
 /**
- * Checks if given pathname matches an entry in a paths config.
+ * Checks if current path matches an item in given paths array.
  *
  * @param {Array} paths
- * @param {String} pathname
  * @return {Boolean}
  */
-export const isExcludedPath = (paths, pathname) => {
+export const isCurrentPathInPaths = paths => {
+  const pathname = window.location.pathname;
+
   return paths.find(path => {
     if (path.includes('*')) {
       const pathWithoutAsterisk = path.slice(0, -1);

@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
-import { isExcludedPath } from '../../../helpers';
+import { isCurrentPathInPaths } from '../../../helpers';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
@@ -57,7 +57,7 @@ const SitewideBanner = props => {
   const hiddenAttributeDataTestId = 'sitewide-banner-hidden';
 
   // First check if this path is excluded, to avoid making unnecessary GraphQL requests.
-  if (isExcludedPath(excludedPaths, window.location.pathname)) {
+  if (isCurrentPathInPaths(excludedPaths)) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
     return null;
