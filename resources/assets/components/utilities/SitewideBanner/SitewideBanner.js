@@ -132,9 +132,9 @@ const SitewideBanner = props => {
   ) {
     return createPortal(
       <SitewideBannerContent
-        cta="Refer Now"
+        cta="Start Now"
         link="/us/account/refer-friends"
-        description="Refer a friend to DoSomething. (You could win a $10 gift card!)"
+        description="Want to build our youth-led movement? Refer a friend!"
         handleClose={props.handleClose}
         handleComplete={props.handleComplete}
       />,
