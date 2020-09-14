@@ -7,29 +7,18 @@ import { useQuery } from 'react-apollo';
 import React, { Fragment, useState } from 'react';
 
 import Card from '../../utilities/Card/Card';
+import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import ScholarshipActionType from './ScholarshipActionType';
 import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
 import ScholarshipRequirements from './ScholarshipRequirements';
 import ScholarshipInstructions from './ScholarshipInstructions';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
-import { env, getHumanFriendlyDate, report } from '../../../helpers';
+import { getHumanFriendlyDate, report } from '../../../helpers';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
-import PlaceholderText from '../../utilities/PlaceholderText/PlaceholderText';
-import ErrorBlock from '../ErrorBlock/ErrorBlock';
+import ScholarshipInfoBlockTitle from '../../utilities/ScholarshipInfoBlockTitle/ScholarshipInfoBlockTitle';
 
 import './scholarshipInfoBlock.scss';
-
-/**
- * The GraphQL query to load data for this component.
- */
-const SCHOLARSHIP_AFFILIATE_QUERY = gql`
-  query ScholarshipAffiliateQuery($utmLabel: String!, $preview: Boolean!) {
-    affiliate(utmLabel: $utmLabel, preview: $preview) {
-      title
-    }
-  }
-`;
 
 const SCHOLARSHIP_INFO_QUERY = gql`
   query ScholarshipInfoQuery($campaignId: Int!) {
@@ -60,15 +49,6 @@ const ScholarshipInfoBlock = ({
   numberOfScholarships,
   utmLabel,
 }) => {
-  const { loading, error, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
-    skip: utmLabel === null,
-    variables: {
-      utmLabel,
-      preview: env('CONTENTFUL_USE_PREVIEW_API'),
-      campaignId,
-    },
-  });
-
   const {
     loading: scholarshipLoading,
     error: scholarshipError,
@@ -94,8 +74,7 @@ const ScholarshipInfoBlock = ({
     setDetailsLabel(drawerOpen ? 'Show' : 'Hide');
   };
 
-  const isLoaded = !loading && !scholarshipLoading;
-  const affiliateTitle = get(data, 'affiliate.title');
+  const isLoaded = !scholarshipLoading;
   const endDate = get(scholarshipData, 'campaign.endDate');
   const actions = get(scholarshipData, 'actions', []);
 
@@ -111,10 +90,10 @@ const ScholarshipInfoBlock = ({
   }
 
   const actionType = get(actionItem, 'actionLabel', '');
-  if (error || scholarshipError) {
-    console.error(`[ErrorBlock] ${error}`);
-    report(error);
-    return <ErrorBlock error={error || scholarshipError} />;
+  if (scholarshipError) {
+    console.error(`[ErrorBlock] ${scholarshipError}`);
+    report(scholarshipError);
+    return <ErrorBlock error={scholarshipError} />;
   }
 
   return (
@@ -140,17 +119,10 @@ const ScholarshipInfoBlock = ({
           ) : null}
         </div>
         <div className="pt-6 pb-8 clear-both">
-          {isLoaded ? (
-            <strong className="text-lg">
-              Welcome
-              {affiliateTitle
-                ? ` from ${affiliateTitle.toUpperCase()}`
-                : ' to DoSomething.org!'}
-              !
-            </strong>
-          ) : (
-            <PlaceholderText size="large" />
-          )}{' '}
+          <ScholarshipInfoBlockTitle
+            campaignId={campaignId}
+            utmLabel={utmLabel}
+          />{' '}
           {scholarshipDescription ? (
             <TextContent>{scholarshipDescription}</TextContent>
           ) : (
