@@ -22,7 +22,7 @@ const AccountNavigation = props => (
       <NavigationLink
         exact
         to="/us/account"
-        onClick={handleAccountNavTabClick('account')}
+        onClick={() => handleAccountNavTabClick('account')}
       >
         Account
       </NavigationLink>
