@@ -22,20 +22,20 @@ const AccountNavigation = props => (
       <NavigationLink
         exact
         to="/us/account"
-        onClick={handleAccountNavTabClick('account')}
+        onClick={() => handleAccountNavTabClick('account')}
       >
         Account
       </NavigationLink>
       <NavigationLink
         to="/us/account/campaigns"
-        onClick={handleAccountNavTabClick('campaigns')}
+        onClick={() => handleAccountNavTabClick('campaigns')}
       >
         Campaigns
       </NavigationLink>
       {props.user.hasBadgesFlag ? (
         <NavigationLink
           to="/us/account/badges"
-          onClick={handleAccountNavTabClick('badges')}
+          onClick={() => handleAccountNavTabClick('badges')}
         >
           Badges
         </NavigationLink>
@@ -43,7 +43,7 @@ const AccountNavigation = props => (
       {featureFlag('volunteer_credits') ? (
         <NavigationLink
           to="/us/account/credits"
-          onClick={handleAccountNavTabClick('credits')}
+          onClick={() => handleAccountNavTabClick('credits')}
         >
           Credits
         </NavigationLink>
@@ -51,20 +51,20 @@ const AccountNavigation = props => (
       {featureFlag('cause_preferences') ? (
         <NavigationLink
           to="/us/account/interests"
-          onClick={handleAccountNavTabClick('interests')}
+          onClick={() => handleAccountNavTabClick('interests')}
         >
           Interests
         </NavigationLink>
       ) : null}
       <NavigationLink
         to="/us/account/subscriptions"
-        onClick={handleAccountNavTabClick('subscriptions')}
+        onClick={() => handleAccountNavTabClick('subscriptions')}
       >
         Subscriptions
       </NavigationLink>
       <NavigationLink
         to="/us/account/refer-friends"
-        onClick={handleAccountNavTabClick('refer-friends')}
+        onClick={() => handleAccountNavTabClick('refer-friends')}
       >
         Refer a Friend
       </NavigationLink>
