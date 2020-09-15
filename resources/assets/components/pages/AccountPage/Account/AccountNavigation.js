@@ -9,7 +9,7 @@ import {
 } from '../../../../helpers/analytics';
 
 const handleAccountNavTabClick = tabName => {
-  trackAnalyticsEvent(`clicked_account_navlink_${tabName}}`, {
+  trackAnalyticsEvent(`clicked_account_nav_link_${tabName}}`, {
     action: 'link_clicked',
     category: EVENT_CATEGORIES.navigation,
     label: `account_${tabName}`,
