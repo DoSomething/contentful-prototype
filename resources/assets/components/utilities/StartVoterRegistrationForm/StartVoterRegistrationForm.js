@@ -50,7 +50,7 @@ const StartVoterRegistrationForm = ({
       <Card
         attributes={{ 'data-testid': 'voter-registration-form-card' }}
         className={classnames(className, 'bg-gray-100 border-none')}
-        title={!betaPage ? 'Register Online to Vote' : ''}
+        title={!betaPage ? 'Register to Vote' : ''}
       >
         <form
           data-testid="voter-registration-form"
