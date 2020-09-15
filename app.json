@@ -61,6 +61,7 @@
       "required": true
     },
     "DS_ENABLE_NEW_HOMEPAGE": "true",
-    "DS_ENABLE_VOTER_REG_BETA_PAGE": "true"
+    "DS_ENABLE_VOTER_REG_BETA_PAGE": "true",
+    "DS_DEFAULT_REFERRAL_CAMPAIGN_ID": "true"
   }
 }
