@@ -64,6 +64,8 @@ const CampaignBanner = ({
     setShowReferralScholarshipModal,
   ] = useState(false);
   const numCampaignId = Number(campaignId);
+  const showVoterRegistrationModal =
+    isCurrentPathInPaths(partnerScholarshipQuizPaths) && !showScholarshipModal;
 
   useEffect(() => {
     if (scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline) {
@@ -161,10 +163,13 @@ const CampaignBanner = ({
             setShowScholarshipModal(false);
             setShowReferralScholarshipModal(false);
           }}
-          trackingId="SCHOLARSHIP_MODAL"
+          trackingId={
+            showVoterRegistrationModal
+              ? 'SCHOLARSHIP_MODAL_VOTER_REGISTRATION'
+              : 'SCHOLARSHIP_MODAL'
+          }
         >
-          {isCurrentPathInPaths(partnerScholarshipQuizPaths) &&
-          !showScholarshipModal ? (
+          {showVoterRegistrationModal ? (
             <ScholarshipReferralVoterRegistrationBlock
               affiliateSponsors={affiliateSponsors}
               attributes={{
