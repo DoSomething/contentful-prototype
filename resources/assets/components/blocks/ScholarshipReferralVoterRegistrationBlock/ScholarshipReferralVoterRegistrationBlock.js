@@ -58,7 +58,7 @@ const ScholarshipReferralVoterRegistrationBlock = ({
         <StartVoterRegistrationForm
           campaignId={campaignId}
           className="my-6"
-          contextSource="voter-registration-quiz-signup-page"
+          contextSource="voter-registration-quiz-ungated-signup-modal"
           sourceDetails="VoterRegQuiz_ScholarshipReferral"
         />
       </div>
