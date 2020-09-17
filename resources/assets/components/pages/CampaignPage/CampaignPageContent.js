@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import NotFound from '../../NotFound';
+import { query } from '../../../helpers';
 import ScrollConcierge from '../../ScrollConcierge';
 import GotvBlock from '../../blocks/GotvBlock/GotvBlock';
 import { CallToActionContainer } from '../../CallToAction';
@@ -27,6 +28,8 @@ const CampaignPageContent = props => {
 
   const { content, blocks } = subPage.fields;
 
+  const gotvQuery = query('gotv-block');
+
   // Grid column span classes for styling our content.
   const narrowSpan = 'col-span-4 md:col-span-6 lg:col-start-2 lg:col-span-7';
   const wideSpan = 'col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-10';
@@ -43,7 +46,7 @@ const CampaignPageContent = props => {
         </div>
       ) : null}
 
-      <GotvBlock />
+      {gotvQuery ? <GotvBlock /> : null}
 
       {blocks.length ? (
         <div className="base-12-grid clear-both py-3 md:py-6">
