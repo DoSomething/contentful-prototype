@@ -8,12 +8,14 @@ Displays supertitle, title, copy, and image. Commonly used to list steps in a ca
 
 ## Content Type Fields
 
-- **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc.
-- **Supertitle** _(optional)_: The supertitle for the content block which appears in smaller font-size above the title.
-- **Title** _(optional)_: The title for the content block which appears in larger font-size above the content.
-- **Content**: The content for the content block in Markdown format, displayed below the title.
-- **Image** _(optional)_: An accompanying image displayed alongside the content.
-- **Image Alignment** _(optional)_: Controls whether to render the image to the right or left of the content (defaults to right).
+-   **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc.
+-   **Supertitle** _(optional)_: The supertitle for the content block which appears in smaller font-size above the title.
+-   **Title** _(optional)_: The title for the content block which appears in larger font-size above the content.
+-   **Content**: The content for the content block in Markdown format, displayed below the title.
+-   **Image** _(optional)_: An accompanying image displayed alongside the content.
+-   **Image Alignment** _(optional)_: Controls whether to render the image to the right or left of the content (defaults to right).
+-   **Additional Content _(optional)_**: A JSON field, with properties:
+    -   `footerType`: Only currently supports values: `VoterWidgetBlock`.
 
 ## Content Width Span
 

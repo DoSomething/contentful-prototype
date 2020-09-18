@@ -15,7 +15,7 @@ const VoterWidgetBlock = () => {
     };
   }, []);
 
-  // This value is used attribute the submission to DoSomething.
+  // This value is used to track a submission on behalf of DoSomething.
   // @see https://www.pivotaltracker.com/story/show/174199686/comments/218082111
   const utmSource = 'DST';
 
