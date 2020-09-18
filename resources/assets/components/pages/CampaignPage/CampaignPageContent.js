@@ -46,7 +46,11 @@ const CampaignPageContent = props => {
         </div>
       ) : null}
 
-      {gotvQuery ? <GotvBlock /> : null}
+      {gotvQuery ? (
+        <div className="base-12-grid clear-both py-3 md:py-6">
+          <GotvBlock />
+        </div>
+      ) : null}
 
       {blocks.length ? (
         <div className="base-12-grid clear-both py-3 md:py-6">
