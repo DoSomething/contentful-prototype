@@ -117,7 +117,7 @@ const ScholarshipCard = ({ campaign }) => {
         </div>
 
         {isAuthenticated ? (
-          <GalleryBlockSignup />
+          <GalleryBlockSignup campaignId={campaignId} />
         ) : (
           <SecondaryButton
             className="w-full"
