@@ -16,6 +16,10 @@ const VoterWidgetBlock = () => {
     };
   }, []);
 
+  // This value is used attribute the submission to DoSomething.
+  // @see https://www.pivotaltracker.com/story/show/174199686/comments/218082111
+  const utmSource = 'DST';
+
   return (
     <div
       css={css`
@@ -28,7 +32,7 @@ const VoterWidgetBlock = () => {
         opacity: 0.95;
       `}
     >
-      <div className="civicengine-address" />
+      <div className="civicengine-address" data-utm-source={utmSource} />
     </div>
   );
 };
