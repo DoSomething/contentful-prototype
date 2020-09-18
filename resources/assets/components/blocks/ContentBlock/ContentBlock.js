@@ -35,6 +35,9 @@ const ContentBlock = ({
   superTitle,
   title,
 }) => {
+  const contentNode = content ? <TextContent>{content}</TextContent> : null;
+  const { footerType } = additionalContent;
+
   return (
     <div className={classnames(className, 'pb-6')}>
       {title ? (
@@ -69,9 +72,9 @@ const ContentBlock = ({
             'col-span-3': !image.url && fullWidth,
           })}
         >
-          {content ? <TextContent>{content}</TextContent> : null}
+          {contentNode}
 
-          <ContentBlockFooter type={additionalContent.footerType} />
+          {footerType ? <ContentBlockFooter type={footerType} /> : null}
         </div>
       </div>
     </div>
