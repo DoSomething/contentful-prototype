@@ -25,63 +25,56 @@ export const ContentBlockFragment = gql`
   }
 `;
 
-const ContentBlock = props => {
-  const {
-    additionalContent,
-    className,
-    content,
-    fullWidth,
-    image,
-    imageAlignment,
-    superTitle,
-    title,
-  } = props;
+const ContentBlock = ({
+  additionalContent,
+  className,
+  content,
+  fullWidth,
+  image,
+  imageAlignment,
+  superTitle,
+  title,
+}) => (
+  <div className={classnames(className, 'pb-6')}>
+    {title ? (
+      <SectionHeader underlined superTitle={superTitle} title={title} />
+    ) : null}
 
-  const contentNode = content ? <TextContent>{content}</TextContent> : null;
-
-  return (
-    <>
-      <div className={classnames(className, 'pb-6')}>
-        {title ? (
-          <SectionHeader underlined superTitle={superTitle} title={title} />
-        ) : null}
-
-        <div className="md:grid grid-flow-row-dense grid-cols-3 gap-4">
-          {image.url ? (
-            <div
-              className={classnames('mb-3', 'col-span-1', {
-                'order-1': imageAlignment === 'LEFT',
-                'order-2': imageAlignment === 'RIGHT',
-              })}
-            >
-              <LazyImage
-                src={contentfulImageUrl(image.url, '600', '600', 'fill')}
-                alt={image.description || 'content-block'}
-              />
-            </div>
-          ) : null}
-
-          <div
-            data-testid="content-block-content"
-            className={classnames('col-span-2', 'order-1', {
-              /*
-              When no image is provided, we can toggle the content to span across the full row.
-
-              This is necessary on 'General Pages' or in 'Modals' where the overlaying row width is more restricted,
-              and thus the content width is confined to accommodate the image, whereas on 'Campaign Pages', we assign
-              *extra* overlaying row space to Content Blocks, allowing the image to just optionally display within the extra space.
-            */
-              'col-span-3': !image.url && fullWidth,
-            })}
-          >
-            {contentNode}
-          </div>
+    <div className="md:grid grid-flow-row-dense grid-cols-3 gap-4">
+      {image.url ? (
+        <div
+          className={classnames('mb-3', 'col-span-1', {
+            'order-1': imageAlignment === 'LEFT',
+            'order-2': imageAlignment === 'RIGHT',
+          })}
+        >
+          <LazyImage
+            src={contentfulImageUrl(image.url, '600', '600', 'fill')}
+            alt={image.description || 'content-block'}
+          />
         </div>
+      ) : null}
+
+      <div
+        data-testid="content-block-content"
+        className={classnames('col-span-2', 'order-1', {
+          /*
+            When no image is provided, we can toggle the content to span across the full row.
+
+            This is necessary on 'General Pages' or in 'Modals' where the overlaying row width is more restricted,
+            and thus the content width is confined to accommodate the image, whereas on 'Campaign Pages', we assign
+            *extra* overlaying row space to Content Blocks, allowing the image to just optionally display within the extra space.
+          */
+          'col-span-3': !image.url && fullWidth,
+        })}
+      >
+        {content ? <TextContent>{content}</TextContent> : null}
+
+        <ContentBlockFooter type={additionalContent.footerType} />
       </div>
-      <ContentBlockFooter type={additionalContent.footerType} />
-    </>
-  );
-};
+    </div>
+  </div>
+);
 
 ContentBlock.propTypes = {
   additionalContent: PropTypes.object,

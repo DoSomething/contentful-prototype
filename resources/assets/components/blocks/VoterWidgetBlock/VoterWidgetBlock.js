@@ -22,6 +22,7 @@ const VoterWidgetBlock = () => {
         background: #ececec;
         margin: 0 auto;
         max-width: 500px;
+        min-height: 200px;
         padding: 1rem;
         border-radius: 0.3rem;
         opacity: 0.95;
