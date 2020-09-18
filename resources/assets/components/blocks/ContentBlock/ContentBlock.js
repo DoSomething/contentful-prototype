@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import LazyImage from '../../utilities/LazyImage';
+import ContentBlockFooter from './ContentBlockFooter';
 import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 
 export const ContentBlockFragment = gql`
   fragment ContentBlockFragment on ContentBlock {
+    additionalContent
     superTitle
     title
     # Aliasing to avoid conflicting with *non-required* content fields in other fragments.
@@ -25,6 +27,7 @@ export const ContentBlockFragment = gql`
 
 const ContentBlock = props => {
   const {
+    additionalContent,
     className,
     content,
     fullWidth,
@@ -37,47 +40,51 @@ const ContentBlock = props => {
   const contentNode = content ? <TextContent>{content}</TextContent> : null;
 
   return (
-    <div className={classnames(className, 'pb-6')}>
-      {title ? (
-        <SectionHeader underlined superTitle={superTitle} title={title} />
-      ) : null}
-
-      <div className="md:grid grid-flow-row-dense grid-cols-3 gap-4">
-        {image.url ? (
-          <div
-            className={classnames('mb-3', 'col-span-1', {
-              'order-1': imageAlignment === 'LEFT',
-              'order-2': imageAlignment === 'RIGHT',
-            })}
-          >
-            <LazyImage
-              src={contentfulImageUrl(image.url, '600', '600', 'fill')}
-              alt={image.description || 'content-block'}
-            />
-          </div>
+    <>
+      <div className={classnames(className, 'pb-6')}>
+        {title ? (
+          <SectionHeader underlined superTitle={superTitle} title={title} />
         ) : null}
 
-        <div
-          data-testid="content-block-content"
-          className={classnames('col-span-2', 'order-1', {
-            /*
+        <div className="md:grid grid-flow-row-dense grid-cols-3 gap-4">
+          {image.url ? (
+            <div
+              className={classnames('mb-3', 'col-span-1', {
+                'order-1': imageAlignment === 'LEFT',
+                'order-2': imageAlignment === 'RIGHT',
+              })}
+            >
+              <LazyImage
+                src={contentfulImageUrl(image.url, '600', '600', 'fill')}
+                alt={image.description || 'content-block'}
+              />
+            </div>
+          ) : null}
+
+          <div
+            data-testid="content-block-content"
+            className={classnames('col-span-2', 'order-1', {
+              /*
               When no image is provided, we can toggle the content to span across the full row.
 
               This is necessary on 'General Pages' or in 'Modals' where the overlaying row width is more restricted,
               and thus the content width is confined to accommodate the image, whereas on 'Campaign Pages', we assign
               *extra* overlaying row space to Content Blocks, allowing the image to just optionally display within the extra space.
             */
-            'col-span-3': !image.url && fullWidth,
-          })}
-        >
-          {contentNode}
+              'col-span-3': !image.url && fullWidth,
+            })}
+          >
+            {contentNode}
+          </div>
         </div>
       </div>
-    </div>
+      <ContentBlockFooter type={additionalContent.footerType} />
+    </>
   );
 };
 
 ContentBlock.propTypes = {
+  additionalContent: PropTypes.object,
   className: PropTypes.string,
   content: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
@@ -91,6 +98,7 @@ ContentBlock.propTypes = {
 };
 
 ContentBlock.defaultProps = {
+  additionalContent: {},
   className: null,
   fullWidth: false,
   image: {},
