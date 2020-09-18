@@ -1,4 +1,3 @@
-import { css } from '@emotion/core';
 import React, { useEffect } from 'react';
 
 import { siteConfig } from '../../../helpers';
@@ -20,21 +19,7 @@ const VoterWidgetBlock = () => {
   // @see https://www.pivotaltracker.com/story/show/174199686/comments/218082111
   const utmSource = 'DST';
 
-  return (
-    <div
-      css={css`
-        background: #ececec;
-        margin: 0 auto;
-        max-width: 500px;
-        min-height: 200px;
-        padding: 1rem;
-        border-radius: 0.3rem;
-        opacity: 0.95;
-      `}
-    >
-      <div className="civicengine-address" data-utm-source={utmSource} />
-    </div>
-  );
+  return <div className="civicengine-address" data-utm-source={utmSource} />;
 };
 
 export default VoterWidgetBlock;
