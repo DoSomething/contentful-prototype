@@ -7,7 +7,6 @@ import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
-import VoterWidgetBlock from '../../blocks/VoterWidgetBlock/VoterWidgetBlock';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const CampaignPageContent = props => {
@@ -42,8 +41,6 @@ const CampaignPageContent = props => {
           </div>
         </div>
       ) : null}
-
-      <VoterWidgetBlock />
 
       {blocks.length ? (
         <div className="base-12-grid clear-both py-3 md:py-6">
