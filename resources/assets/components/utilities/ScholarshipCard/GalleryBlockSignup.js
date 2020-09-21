@@ -13,22 +13,38 @@ export const CREATE_SIGNUP_MUTATION = gql`
     }
   }
 `;
-const GalleryBlockSignup = ({ campaignId }) => {
-  const [handleSignup] = useMutation(CREATE_SIGNUP_MUTATION, {
-    variables: { campaignId },
-  });
+const GalleryBlockSignup = ({ campaignId, slug }) => {
+  const [handleSignup, { called, error }] = useMutation(
+    CREATE_SIGNUP_MUTATION,
+    {
+      variables: { campaignId },
+    },
+  );
 
-  return <SecondaryButton
-    className="w-full"
-    text="Apply Now"
-    onClick={handleSignup}
-  /> ? (
-    <Redirect to={`/us/campaigns/${campaignId}`} />
-  ) : null;
+  if (called && !error) {
+    return <Redirect to={`/us/campaigns/${slug}`} />;
+  }
+
+  if (error) {
+    // TODO: show error state…
+  }
+
+  return (
+    <SecondaryButton
+      className="w-full"
+      text="Apply Now"
+      onClick={handleSignup}
+    />
+  );
 };
 
 GalleryBlockSignup.propTypes = {
-  campaignId: PropTypes.number.isRequired,
+  campaignId: PropTypes.number,
+  slug: PropTypes.string,
+};
+GalleryBlockSignup.defaultProps = {
+  campaignId: null,
+  slug: null,
 };
 
 export default GalleryBlockSignup;

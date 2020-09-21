@@ -26,6 +26,8 @@ export const scholarshipCardFragment = gql`
     }
     ... on CampaignWebsite {
       id
+      campaignId
+      slug
       scholarshipAmount
       scholarshipDeadline
       staffPick
@@ -47,6 +49,7 @@ const ScholarshipCard = ({ campaign }) => {
     scholarshipDeadline,
     showcaseImage,
     campaignId,
+    slug,
     staffPick,
     path,
   } = campaign;
@@ -117,7 +120,7 @@ const ScholarshipCard = ({ campaign }) => {
         </div>
 
         {isAuthenticated ? (
-          <GalleryBlockSignup campaignId={campaignId} />
+          <GalleryBlockSignup campaignId={campaignId} campaignSlug={slug} />
         ) : (
           <SecondaryButton
             className="w-full"
