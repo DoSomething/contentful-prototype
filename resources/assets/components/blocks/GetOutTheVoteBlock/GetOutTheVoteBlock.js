@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GotvBlock = () => {
+const GetOutTheVoteBlock = () => {
   // const friendCount = 3;
 
   return (
@@ -41,4 +41,4 @@ const GotvBlock = () => {
   );
 };
 
-export default GotvBlock;
+export default GetOutTheVoteBlock;

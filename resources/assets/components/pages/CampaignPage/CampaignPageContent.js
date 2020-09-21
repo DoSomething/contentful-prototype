@@ -6,9 +6,9 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import NotFound from '../../NotFound';
 import { query } from '../../../helpers';
 import ScrollConcierge from '../../ScrollConcierge';
-import GotvBlock from '../../blocks/GotvBlock/GotvBlock';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
+import GetOutTheVoteBlock from '../../blocks/GetOutTheVoteBlock/GetOutTheVoteBlock';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const CampaignPageContent = props => {
@@ -48,7 +48,7 @@ const CampaignPageContent = props => {
 
       {gotvQuery ? (
         <div className="base-12-grid clear-both py-3 md:py-6">
-          <GotvBlock />
+          <GetOutTheVoteBlock />
         </div>
       ) : null}
 
