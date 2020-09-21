@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import NotFound from '../../NotFound';
-import { query } from '../../../helpers';
 import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
-import GetOutTheVoteBlock from '../../blocks/GetOutTheVoteBlock/GetOutTheVoteBlock';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const CampaignPageContent = props => {
@@ -28,8 +26,6 @@ const CampaignPageContent = props => {
 
   const { content, blocks } = subPage.fields;
 
-  const gotvQuery = query('gotv-block');
-
   // Grid column span classes for styling our content.
   const narrowSpan = 'col-span-4 md:col-span-6 lg:col-start-2 lg:col-span-7';
   const wideSpan = 'col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-10';
@@ -43,12 +39,6 @@ const CampaignPageContent = props => {
           <div className={narrowSpan}>
             <TextContent className="mx-3">{content}</TextContent>
           </div>
-        </div>
-      ) : null}
-
-      {gotvQuery ? (
-        <div className="base-12-grid clear-both py-3 md:py-6">
-          <GetOutTheVoteBlock />
         </div>
       ) : null}
 
