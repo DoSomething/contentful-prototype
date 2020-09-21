@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import LazyImage from '../../utilities/LazyImage';
+import ContentBlockFooter from './ContentBlockFooter';
 import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 
 export const ContentBlockFragment = gql`
   fragment ContentBlockFragment on ContentBlock {
+    additionalContent
     superTitle
     title
     # Aliasing to avoid conflicting with *non-required* content fields in other fragments.
@@ -23,18 +25,18 @@ export const ContentBlockFragment = gql`
   }
 `;
 
-const ContentBlock = props => {
-  const {
-    className,
-    content,
-    fullWidth,
-    image,
-    imageAlignment,
-    superTitle,
-    title,
-  } = props;
-
+const ContentBlock = ({
+  additionalContent,
+  className,
+  content,
+  fullWidth,
+  image,
+  imageAlignment,
+  superTitle,
+  title,
+}) => {
   const contentNode = content ? <TextContent>{content}</TextContent> : null;
+  const { footerType } = additionalContent;
 
   return (
     <div className={classnames(className, 'pb-6')}>
@@ -71,6 +73,8 @@ const ContentBlock = props => {
           })}
         >
           {contentNode}
+
+          {footerType ? <ContentBlockFooter type={footerType} /> : null}
         </div>
       </div>
     </div>
@@ -78,6 +82,7 @@ const ContentBlock = props => {
 };
 
 ContentBlock.propTypes = {
+  additionalContent: PropTypes.object,
   className: PropTypes.string,
   content: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
@@ -91,6 +96,7 @@ ContentBlock.propTypes = {
 };
 
 ContentBlock.defaultProps = {
+  additionalContent: {},
   className: null,
   fullWidth: false,
   image: {},
