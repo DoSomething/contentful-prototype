@@ -18,6 +18,10 @@ const GetOutTheVoteBlock = () => {
               type="text"
               placeholder="Friend's First Name"
             />
+
+            <label htmlFor="voting-location">
+              <input id="voting-location" type="checkbox" />
+            </label>
           </form>
 
           <h2 className="text-base uppercase">Voter Resources</h2>
