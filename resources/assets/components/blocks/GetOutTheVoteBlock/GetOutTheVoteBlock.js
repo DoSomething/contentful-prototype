@@ -1,30 +1,22 @@
 import React from 'react';
 
-const GetOutTheVoteBlock = () => {
-  // const friendCount = 3;
+import WhoAreYourPeopleForm from './WhoAreYourPeopleForm';
 
+const GetOutTheVoteBlock = () => {
   return (
     <>
       <div className="md:bg-blurple-500 grid-wide md:p-6">
         <div className="bg-white border border-solid border-gray-300 p-3 rounded md:rounded-none">
           <h2 className="text-base uppercase">Your Friends</h2>
+
           <p className="text-sm">
             (Don’t worry, we don’t save any info about your friends)
           </p>
 
-          <form>
-            <input
-              className="border border-dashed rounded border-gray-600 p-3"
-              type="text"
-              placeholder="Friend's First Name"
-            />
-
-            <label htmlFor="voting-location">
-              <input id="voting-location" type="checkbox" />
-            </label>
-          </form>
+          <WhoAreYourPeopleForm />
 
           <h2 className="text-base uppercase">Voter Resources</h2>
+
           <p className="text-sm">
             Resource links & conversation starters to get the dialog flowing!
           </p>
