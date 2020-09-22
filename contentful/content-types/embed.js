@@ -24,7 +24,7 @@ module.exports = function(migration) {
       {
         regexp: {
           pattern:
-            '^(https:\\/\\/dosomething\\\\.(?:(?:carto\\\\.com\\/builder\\/[a-z0-9-]+\\/embed)|(?:typeform\\.com\\/to\\/[a-zA-Z0-9-]+)))|(https:\\/\\/airtable.com\\/embed\\/[a-zA-Z0-9-\\/]+)\\/?',
+            '^(https:\\/\\/dosomething\\.(?:(?:carto\\.com\\/builder\\/[a-z0-9-]+\\/embed)|(?:typeform\\.com\\/to\\/[a-zA-Z0-9-]+)))|(https:\\/\\/airtable.com\\/embed\\/[a-zA-Z0-9-\\/]+)\\/?',
           flags: null,
         },
 
@@ -62,7 +62,7 @@ module.exports = function(migration) {
 
   embed.changeFieldControl('url', 'builtin', 'singleLine', {
     helpText:
-      'The URL for the embed. (Currently only supporting Carto map embed URLs. (https://dosomething.carto.com/dashboard)).',
+      'Must be a valid Carto embeddable map URL from the DoSomething space (https://dosomething.carto.com/dashboard), or a valid Typeform embeddable URL (https://dosomething.typeform.com)',
   });
 
   embed.changeFieldControl('previewImage', 'builtin', 'assetLinkEditor', {
