@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import VoterWidgetBlock from '../VoterWidgetBlock/VoterWidgetBlock';
 import GetOutTheVoteBlock from '../GetOutTheVoteBlock/GetOutTheVoteBlock';
 
@@ -12,7 +13,7 @@ const ContentBlockFooter = ({ type }) => {
       return <GetOutTheVoteBlock />;
 
     default:
-      return null;
+      return <ErrorBlock error={`ContentBlock is unable to render ${type}.`} />;
   }
 };
 
