@@ -4,6 +4,7 @@ import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 import SecondaryButton from '../Button/SecondaryButton';
+import Spinner from '../../artifacts/Spinner/Spinner';
 
 export const CREATE_SIGNUP_MUTATION = gql`
   mutation CampaignSignupMutation($campaignId: Int!) {
@@ -21,7 +22,9 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   );
 
   if (called && !error) {
-    return (window.location = { path });
+    window.location = path;
+
+    return <Spinner className="flex justify-center p-4" />;
   }
 
   if (error) {
