@@ -14,9 +14,11 @@ const WhoAreYourPeopleForm = () => (
       <div className="w-2/3 flex">
         <p className="w-1/3">Voting in-person</p>
 
-        <label className="w-1/3" htmlFor="voting-location">
-          <input id="voting-location" type="checkbox" />
-        </label>
+        <input
+          id="voting-location-friend-1"
+          type="checkbox"
+          aria-label="voting-location"
+        />
 
         <p className="w-1/3">Voting by mail</p>
       </div>
@@ -34,9 +36,11 @@ const WhoAreYourPeopleForm = () => (
       <div className="w-2/3 flex">
         <p className="w-1/3">Voting in-person</p>
 
-        <label className="w-1/3" htmlFor="voting-location">
-          <input id="voting-location" type="checkbox" />
-        </label>
+        <input
+          id="voting-location-friend-2"
+          type="checkbox"
+          aria-label="voting-location"
+        />
 
         <p className="w-1/3">Voting by mail</p>
       </div>
@@ -54,9 +58,11 @@ const WhoAreYourPeopleForm = () => (
       <div className="w-2/3 flex">
         <p className="w-1/3">Voting in-person</p>
 
-        <label className="w-1/3" htmlFor="voting-location">
-          <input id="voting-location" type="checkbox" />
-        </label>
+        <input
+          id="voting-location-friend-3"
+          type="checkbox"
+          aria-label="voting-location"
+        />
 
         <p className="w-1/3">Voting by mail</p>
       </div>
