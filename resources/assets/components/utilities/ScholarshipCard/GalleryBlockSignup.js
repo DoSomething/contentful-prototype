@@ -13,7 +13,7 @@ export const CREATE_SIGNUP_MUTATION = gql`
     }
   }
 `;
-const GalleryBlockSignup = ({ campaignId, slug }) => {
+const GalleryBlockSignup = ({ campaignId, path }) => {
   const [handleSignup, { called, error }] = useMutation(
     CREATE_SIGNUP_MUTATION,
     {
@@ -22,7 +22,7 @@ const GalleryBlockSignup = ({ campaignId, slug }) => {
   );
 
   if (called && !error) {
-    return <Redirect to={`/us/campaigns/${slug}`} />;
+    return <Redirect to={path} />;
   }
 
   if (error) {
@@ -40,11 +40,11 @@ const GalleryBlockSignup = ({ campaignId, slug }) => {
 
 GalleryBlockSignup.propTypes = {
   campaignId: PropTypes.number,
-  slug: PropTypes.string,
+  path: PropTypes.string,
 };
 GalleryBlockSignup.defaultProps = {
   campaignId: null,
-  slug: null,
+  path: null,
 };
 
 export default GalleryBlockSignup;

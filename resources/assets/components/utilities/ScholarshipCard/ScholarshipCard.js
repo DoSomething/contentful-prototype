@@ -49,7 +49,6 @@ const ScholarshipCard = ({ campaign }) => {
     scholarshipDeadline,
     showcaseImage,
     campaignId,
-    slug,
     staffPick,
     path,
   } = campaign;
@@ -120,7 +119,7 @@ const ScholarshipCard = ({ campaign }) => {
         </div>
 
         {isAuthenticated ? (
-          <GalleryBlockSignup campaignId={campaignId} campaignSlug={slug} />
+          <GalleryBlockSignup campaignId={campaignId} path={path} />
         ) : (
           <SecondaryButton
             className="w-full"
