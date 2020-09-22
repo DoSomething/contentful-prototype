@@ -2,7 +2,7 @@ import React from 'react';
 
 const WhoAreYourPeopleForm = () => (
   <form>
-    <div className="flex">
+    <div className="md:flex">
       <div className="w-1/3">
         <input
           className="border border-dashed rounded border-gray-600 p-3"
@@ -22,7 +22,7 @@ const WhoAreYourPeopleForm = () => (
       </div>
     </div>
 
-    <div className="flex">
+    <div className="md:flex">
       <div className="w-1/3">
         <input
           className="border border-dashed rounded border-gray-600 p-3"
@@ -42,7 +42,7 @@ const WhoAreYourPeopleForm = () => (
       </div>
     </div>
 
-    <div className="flex">
+    <div className="md:flex">
       <div className="w-1/3">
         <input
           className="border border-dashed rounded border-gray-600 p-3"

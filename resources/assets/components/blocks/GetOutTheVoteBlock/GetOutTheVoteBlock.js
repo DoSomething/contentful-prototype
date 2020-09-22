@@ -20,7 +20,7 @@ const GetOutTheVoteBlock = () => (
         Resource links & conversation starters to get the dialog flowing!
       </p>
 
-      <div className="flex">
+      <div className="md:flex">
         <div className="md:w-1/2 bg-blurple-500 p-6">
           <div className="bg-white bg-opacity-25 border border-solid border-gray-300 p-3">
             <h3 className="italic text-base">Conversation Starters</h3>
