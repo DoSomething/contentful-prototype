@@ -14,7 +14,7 @@ import {
   trackAnalyticsEvent,
   getPageContext,
 } from '../../../helpers/analytics';
-import { isAuthenticated } from '../../../selectors/user';
+import { isAuthenticated } from '../../../helpers/auth';
 
 // Write a graphql query to get campaign information for a specific id
 export const scholarshipCardFragment = gql`
@@ -118,7 +118,7 @@ const ScholarshipCard = ({ campaign }) => {
           </div>
         </div>
 
-        {isAuthenticated ? (
+        {isAuthenticated() ? (
           <GalleryBlockSignup campaignId={campaignId} path={path} />
         ) : (
           <SecondaryButton

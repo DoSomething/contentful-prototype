@@ -1,7 +1,6 @@
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
 import SecondaryButton from '../Button/SecondaryButton';
@@ -22,7 +21,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   );
 
   if (called && !error) {
-    return <Redirect to={path} />;
+    return (window.location = { path });
   }
 
   if (error) {
