@@ -44,6 +44,7 @@ const VoterWidgetBlock = () => {
 
     script.src = `${baseUri}embed.js`;
     script.async = true;
+    script.defer = true;
     document.body.appendChild(script);
 
     return () => {
