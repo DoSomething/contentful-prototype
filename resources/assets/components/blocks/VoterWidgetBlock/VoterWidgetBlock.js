@@ -7,7 +7,7 @@ import { siteConfig } from '../../../helpers';
  * @see https://developers.civicengine.com/docs/widget/
  */
 const VoterWidgetBlock = () => {
-  const baseUri = `https://app.${siteConfig(
+  const baseUri = `https://ec.${siteConfig(
     'civic_engine_client_name',
   )}.civicengine.com/`;
   const embedType = siteConfig('civic_engine_embed_type') || 'bronze';
@@ -16,9 +16,12 @@ const VoterWidgetBlock = () => {
   // @see https://www.pivotaltracker.com/story/show/174199686/comments/218082111
   const utmSource = siteConfig('civic_engine_utm_source') || 'DST';
 
-  // If bronze level, add as an iframe.
-  // TODO: Do UTM parameters work here? The documentation suggests they don't.
-  // @see https://developers.civicengine.com/docs/widget/#bronze-level-widget-instructions
+  /**
+   * If bronze level, add as an iframe.
+   * Although the docs claim bronze level does not support UTM parameters, Ballot Ready says
+   * this should still send through the UTM source.
+   * @see https://developers.civicengine.com/docs/widget/#bronze-level-widget-instructions
+   */
   if (embedType === 'bronze') {
     return (
       <iframe
