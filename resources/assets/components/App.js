@@ -9,11 +9,11 @@ import { Router, Route, Switch } from 'react-router-dom';
 import graphqlClient from '../graphql';
 import ErrorPage from './pages/ErrorPage';
 import Modal from './utilities/Modal/Modal';
-import { env, featureFlag } from '../helpers';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
+import { env, featureFlag, query } from '../helpers';
 import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
@@ -34,10 +34,15 @@ import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/Voter
 
 const App = ({ store, history }) => {
   initializeStore(store);
+
   return (
     <ReduxProvider store={store}>
       <ErrorBoundary FallbackComponent={ErrorPage}>
         <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
+          {query('chromeless') ? (
+            /* If we're in "chromeless" mode, open all links in new windows: */
+            <base target="_blank" />
+          ) : null}
           <DismissableElement
             name="sitewide_banner_call_to_action"
             daysToReRender={7}

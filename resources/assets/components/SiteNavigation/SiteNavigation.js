@@ -11,6 +11,7 @@ import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
+import { query } from '../../helpers';
 import {
   EVENT_CATEGORIES,
   getUtmContext,
@@ -169,6 +170,11 @@ class SiteNavigation extends React.Component {
   };
 
   render() {
+    // Hide navigation if we're in "chromeless" mode, e.g. for an embed:
+    if (query('chromeless')) {
+      return null;
+    }
+
     return (
       <nav role="navigation" id="nav" className="site-navigation">
         <div className="wrapper base-12-grid">
