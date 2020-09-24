@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { propType } from 'graphql-anywhere';
 
 import SecondaryButton from '../Button/SecondaryButton';
+import GalleryBlockSignup from './GalleryBlockSignup';
 import {
   contentfulImageSrcset,
   contentfulImageUrl,
@@ -13,6 +14,7 @@ import {
   trackAnalyticsEvent,
   getPageContext,
 } from '../../../helpers/analytics';
+import { isAuthenticated } from '../../../helpers/auth';
 
 // Write a graphql query to get campaign information for a specific id
 export const scholarshipCardFragment = gql`
@@ -24,6 +26,8 @@ export const scholarshipCardFragment = gql`
     }
     ... on CampaignWebsite {
       id
+      campaignId
+      slug
       scholarshipAmount
       scholarshipDeadline
       staffPick
@@ -114,12 +118,16 @@ const ScholarshipCard = ({ campaign }) => {
           </div>
         </div>
 
-        <SecondaryButton
-          className="w-full"
-          href={path}
-          text="Apply Now"
-          onClick={handleScholarshipCardShareClick}
-        />
+        {isAuthenticated() ? (
+          <GalleryBlockSignup campaignId={campaignId} path={path} />
+        ) : (
+          <SecondaryButton
+            className="w-full"
+            href={path}
+            text="Apply Now"
+            onClick={handleScholarshipCardShareClick}
+          />
+        )}
       </div>
     </article>
   );
