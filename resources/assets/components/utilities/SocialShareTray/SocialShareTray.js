@@ -26,8 +26,6 @@ import {
   handleSnapchatShareClick,
 } from '../../../helpers';
 
-import './social-share-tray.scss';
-
 class SocialShareTray extends React.Component {
   componentDidMount() {
     loadFacebookSDK();
@@ -136,10 +134,11 @@ class SocialShareTray extends React.Component {
   };
 
   render() {
-    const { shareLink, platforms, responsive, title } = this.props;
+    const { shareLink, platforms, title } = this.props;
     const trackLink = this.props.trackLink || this.props.shareLink;
+
     return (
-      <div className="social-share-tray p-3 text-center">
+      <div className="social-share-tray p-3">
         {title ? (
           <p
             data-test="social-share-tray-title"
@@ -149,7 +148,7 @@ class SocialShareTray extends React.Component {
           </p>
         ) : null}
 
-        <div className={classNames('share-buttons', { responsive })}>
+        <div className="share-buttons">
           {platforms.includes('facebook') ? (
             <ShareButton
               className="facebook bg-facebook-500 hover:bg-facebook-400"
@@ -216,7 +215,6 @@ SocialShareTray.propTypes = {
   trackLink: PropTypes.string,
   platforms: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string,
-  responsive: PropTypes.bool,
 };
 
 SocialShareTray.defaultProps = {
@@ -224,7 +222,6 @@ SocialShareTray.defaultProps = {
   trackLink: null,
   platforms: ['facebook', 'snapchat', 'twitter', 'messenger', 'email'],
   title: null,
-  responsive: false,
 };
 
 export default SocialShareTray;

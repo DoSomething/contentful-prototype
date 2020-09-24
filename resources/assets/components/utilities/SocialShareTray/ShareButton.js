@@ -17,7 +17,7 @@ const ShareButton = ({
     disabled={disabled}
     data-share-url={dataShareUrl}
   >
-    <img className="icon-image" src={icon} alt="share icon" />
+    <img width="25" height="25" src={icon} alt="share icon" />
   </button>
 );
 
