@@ -155,7 +155,8 @@ class SocialShareTray extends React.Component {
                 this.handleFacebookShareClick(shareLink, trackLink)
               }
               disabled={!shareLink}
-              icon={facebookIcon}
+              iconAlt="Facebook icon"
+              iconSrc={facebookIcon}
             />
           ) : null}
 
@@ -168,7 +169,8 @@ class SocialShareTray extends React.Component {
                 }
                 dataShareUrl={shareLink}
                 disabled={!shareLink}
-                icon={snapchatIcon}
+                iconAlt="Snapchat icon"
+                iconSrc={snapchatIcon}
               />
             </Media>
           ) : null}
@@ -180,7 +182,8 @@ class SocialShareTray extends React.Component {
                 handleTwitterShareClick(shareLink, { url: trackLink })
               }
               disabled={!shareLink}
-              icon={twitterIcon}
+              iconAlt="Twitter icon"
+              iconSrc={twitterIcon}
             />
           ) : null}
 
@@ -188,7 +191,8 @@ class SocialShareTray extends React.Component {
             <ShareButton
               className="messenger bg-messenger-500 hover:bg-messenger-400"
               disabled={!shareLink}
-              icon={messengerIcon}
+              iconAlt="Messenger icon"
+              iconSrc={messengerIcon}
               onClick={() =>
                 this.handleFacebookMessengerClick(shareLink, trackLink)
               }
@@ -199,7 +203,8 @@ class SocialShareTray extends React.Component {
             <ShareButton
               className="email bg-blue-500 hover:bg-blue-400"
               disabled={!shareLink}
-              icon={emailIcon}
+              iconAlt="Email icon"
+              iconSrc={emailIcon}
               onClick={() => this.handleEmailShareClick(shareLink, trackLink)}
             />
           ) : null}
