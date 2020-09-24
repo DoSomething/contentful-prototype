@@ -16,7 +16,7 @@ const ContentBlockFooter = ({ type }) => {
     default:
       return (
         <ErrorBlock
-          error={`Invalid footerType "${type}". Valid values: "GetOutTheVoteBlock","RequestBallotBlock"`}
+          error={`Invalid footerType "${type}". Valid values: "GetOutTheVoteBlock", "RequestBallotBlock"`}
         />
       );
   }
