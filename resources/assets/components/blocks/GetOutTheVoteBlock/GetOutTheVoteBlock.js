@@ -4,7 +4,7 @@ import Embed from '../../utilities/Embed/Embed';
 import WhoAreYourPeopleForm from './WhoAreYourPeopleForm';
 
 const GetOutTheVoteBlock = () => (
-  <div className="md:bg-blurple-500 grid-wide py-6 md:p-6">
+  <div className="md:bg-blurple-500 grid-wide py-6 my-6 md:p-6">
     <div className="bg-white border border-solid border-gray-300 px-5 py-6 rounded md:rounded-none">
       <h2 className="text-base uppercase">Your Friends</h2>
 

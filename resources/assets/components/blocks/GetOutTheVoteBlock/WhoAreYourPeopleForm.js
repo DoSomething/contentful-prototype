@@ -13,12 +13,24 @@ const WhoAreYourPeopleForm = () => (
 
       <div className="w-full md:w-3/5 flex justify-around py-6 md:py-0">
         <p className="w-1/3">Voting in-person</p>
-
-        <input
-          id="voting-location-friend-1"
-          type="checkbox"
-          aria-label="voting-location"
-        />
+        <div className="w-1/3 bg-blurple-500">
+          <input
+            id="voting-location-friend-1-in-person"
+            type="radio"
+            aria-label="voting-location"
+          />
+          <input
+            id="voting-location-friend-1"
+            type="radio"
+            aria-label="voting-location"
+            checked
+          />
+          <input
+            id="voting-location-friend-1-by-mail"
+            type="radio"
+            aria-label="voting-location"
+          />
+        </div>
 
         <p className="w-1/3">Voting by mail</p>
       </div>
