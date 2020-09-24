@@ -19,7 +19,6 @@
     <link rel="icon" sizes="144x144" href="/apple-touch-icon-precomposed.png">
     <link rel="stylesheet" href="{{ elixir('app.css', 'next/assets') }}" media="screen, projection" type="text/css">
 
-    @include('partials.civic_engine_script')
     @include('partials.google_tag_manager_script')
     @include('partials.snowplow_script')
 </head>
