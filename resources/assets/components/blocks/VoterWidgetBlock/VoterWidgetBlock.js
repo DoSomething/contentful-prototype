@@ -27,6 +27,8 @@ const VoterWidgetBlock = () => {
       <iframe
         src={`${baseUri}w/address?utm_source=${utmSource}`}
         title="Voting Widget"
+        width="100%"
+        height="520"
       />
     );
   }
