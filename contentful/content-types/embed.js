@@ -13,25 +13,13 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   embed
     .createField('url')
     .name('URL')
     .type('Symbol')
     .localized(false)
     .required(true)
-    .validations([
-      {
-        regexp: {
-          pattern:
-            '^(https:\\/\\/dosomething\\.(?:(?:carto\\.com\\/builder\\/[a-z0-9-]+\\/embed)|(?:typeform\\.com\\/to\\/[a-zA-Z0-9-]+)))|(https:\\/\\/airtable.com\\/embed\\/[a-zA-Z0-9-\\/]+)\\/?',
-          flags: null,
-        },
-
-        message:
-          'Must be a valid Carto embeddable map URL from the DoSomething space (https://dosomething.carto.com/dashboard), or a valid Typeform embeddable URL (https://dosomething.typeform.com), or a valid Airtable embeddable URL.',
-      },
-    ])
+    .validations([])
     .disabled(false)
     .omitted(false);
 
@@ -62,7 +50,7 @@ module.exports = function(migration) {
 
   embed.changeFieldControl('url', 'builtin', 'singleLine', {
     helpText:
-      'Must be a valid Carto embeddable map URL from the DoSomething space (https://dosomething.carto.com/dashboard), or a valid Typeform embeddable URL (https://dosomething.typeform.com)',
+      'The URL for the embed. Supports Carto map (https://dosomething.carto.com/dashboard) or Typeform (https://dosomething.typeform.com) embed URLs from our DoSomething spaces, or Airtable embed URLs (https://airtable.com/embed/abcd1234).',
   });
 
   embed.changeFieldControl('previewImage', 'builtin', 'assetLinkEditor', {
