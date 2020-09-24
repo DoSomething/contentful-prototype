@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 import SecondaryButton from '../Button/SecondaryButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
+import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 
 export const CREATE_SIGNUP_MUTATION = gql`
   mutation CampaignSignupMutation($campaignId: Int!) {
@@ -28,7 +29,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   }
 
   if (error) {
-    // TODO: show error state…
+    return <ErrorBlock error={error} />;
   }
 
   return (
