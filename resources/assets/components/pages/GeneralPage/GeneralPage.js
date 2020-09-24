@@ -94,6 +94,7 @@ const GeneralPage = props => {
 
             {displaySocialShare ? (
               <SocialShareTray
+                className="text-center"
                 shareLink={window.location.href}
                 platforms={['facebook', 'twitter']}
                 title="found this useful?"

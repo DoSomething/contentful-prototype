@@ -51,6 +51,7 @@ const StoryPage = props => {
           </header>
 
           <SocialShareTray
+            className="text-center"
             // Pass through the current URL without the query parameters.
             shareLink={window.location.href.split('?')[0]}
             platforms={['facebook', 'twitter']}
