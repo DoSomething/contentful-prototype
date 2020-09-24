@@ -7,7 +7,7 @@ import { siteConfig } from '../../../helpers';
  * @see https://developers.civicengine.com/docs/widget/
  */
 const VoterWidgetBlock = () => {
-  const baseUri = `https://ec.${siteConfig(
+  const baseUri = `https://app.${siteConfig(
     'civic_engine_client_name',
   )}.civicengine.com/`;
   const embedType = siteConfig('civic_engine_embed_type') || 'bronze';
