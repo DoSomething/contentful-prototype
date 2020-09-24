@@ -70,6 +70,12 @@ We host customized voter registration drives for influencers on our Instapage, b
 
 ## Utilities
 
+### Request Ballot Block
+
+A [CivicEngine Voting Widget](https://developers.civicengine.com/docs/widget/) can be embedded in the footer of a [`ContentBlock`](development/content-types/voter-registration-drive-action.md#content-type-fields) to allow a user to begin the process of requesting a mail-in ballot by entering their address. Upon submitting their address, the user is redirected to the CivicEngine website to complete requesting a ballot.
+
+![Content Block - RequestBallotBlock footerType](../../.gitbook/assets/request-ballot-block.png)
+
 ### Start Voter Registration Form
 
 The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the [Voter Registration Drive Page](#voter-registration-drive-page) and the [Quiz Result Page](#quiz-result-page) components.
@@ -107,10 +113,6 @@ The initial version of OVRD beta page was hosted on Instapage - https://vote.dos
 > vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true
 
 This page had inline JS that would query Northstar to find a user's first name based on the `userId` query parameter passed.
-
-### Request Ballot Block
-
-A [`ContentBlock`](development/content-types/voter-registration-drive-action.md#content-type-fields) supports embedding BallotReady's [CivicEngine Voting Widget](https://developers.civicengine.com/docs/widget/) to allow a user to begin the process of requesting a mail-in ballot by entering their address. Upon submitting their address, the user is redirected to the CivicEngine website to complete requesting a ballot.
 
 ## Quiz
 
