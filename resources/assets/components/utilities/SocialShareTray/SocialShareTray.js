@@ -137,7 +137,7 @@ class SocialShareTray extends React.Component {
     const trackLink = this.props.trackLink || this.props.shareLink;
 
     return (
-      <div className="social-share-tray p-3">
+      <div className="p-3">
         {title ? (
           <p
             data-test="social-share-tray-title"
@@ -147,7 +147,7 @@ class SocialShareTray extends React.Component {
           </p>
         ) : null}
 
-        <div className="share-buttons">
+        <div>
           {platforms.includes('facebook') ? (
             <ShareButton
               className="facebook bg-facebook-500 hover:bg-facebook-400"

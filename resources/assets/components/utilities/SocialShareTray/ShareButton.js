@@ -13,7 +13,7 @@ const ShareButton = ({
 }) => (
   <button
     type="button"
-    className={classnames('btn share-button mr-4 my-2', className)}
+    className={classnames('btn mr-4 my-2', className)}
     onClick={onClick}
     disabled={disabled}
     data-share-url={dataShareUrl}
