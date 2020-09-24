@@ -26,23 +26,23 @@ When we download the RTV reports, each registration contains the `source` query 
 
 This tracking source value is saved within the serialized `details` field of the `voter-reg` post, and is utilized by both the Chompy import and Looker:
 
-- `user` - This is the Northstar user ID of either the authenticated user registering to vote, or the referring alpha user for a beta registration, when the `referral` key is present.
+-   `user` - This is the Northstar user ID of either the authenticated user registering to vote, or the referring alpha user for a beta registration, when the `referral` key is present.
 
-- `group_id` - This is the [Rogue group ID](https://github.com/DoSomething/rogue/blob/master/docs/endpoints/groups.md) stored on the campaign signup, if user is sharing their link from a [groups OVRD campaign](development/features/groups.md#online-voter-registration-drives).
+-   `group_id` - This is the [Rogue group ID](https://github.com/DoSomething/rogue/blob/master/docs/endpoints/groups.md) stored on the campaign signup, if user is sharing their link from a [groups OVRD campaign](development/features/groups.md#online-voter-registration-drives).
 
-- `source` - This is similar to a `utm_source`.
+-   `source` - This is similar to a `utm_source`.
 
-  - Examples: `web`, `sms`, `email`
+    -   Examples: `web`, `sms`, `email`
 
-- `source_detail` - This is similar to a `utm_campaign`.
+-   `source_detail` - This is similar to a `utm_campaign`.
 
-  - Examples: [`hellobar`](development/features/sitewide-banner.md), `broadcastID_4YOiqwTVOOVklZFARAFd4h`, `VoterRegQuiz_completed_votebymail`, `onlinedrivereferral`
+    -   Examples: [`hellobar`](development/features/sitewide-banner.md), `broadcastID_4YOiqwTVOOVklZFARAFd4h`, `VoterRegQuiz_completed_votebymail`, `onlinedrivereferral`
 
-- `referral` - If this is set, the `user` parameter should be used as the `referrer_user_id` on the `voter-reg` post.
+-   `referral` - If this is set, the `user` parameter should be used as the `referrer_user_id` on the `voter-reg` post.
 
 **Notes**
 
-- Some older voter registration URLs may contain `campaignID` and `campaignRunID` keys within their tracking source. These have long been deprecated by the import: when we first started on voter registration, we used multiple campaigns. The import would update the `campaignID` and `campaignRunID` values on the `voter-reg` post if present within the tracking source. See [#171090116](https://www.pivotaltracker.com/story/show/171090116) for details.
+-   Some older voter registration URLs may contain `campaignID` and `campaignRunID` keys within their tracking source. These have long been deprecated by the import: when we first started on voter registration, we used multiple campaigns. The import would update the `campaignID` and `campaignRunID` values on the `voter-reg` post if present within the tracking source. See [#171090116](https://www.pivotaltracker.com/story/show/171090116) for details.
 
 ## Voting Portal
 
@@ -62,13 +62,19 @@ We host customized voter registration drives for influencers on our Instapage, b
 
 ## Content types
 
-- [`VoterRegistrationAction`](development/content-types/voter-registration-action.md) - Links to a voting portal page. A `clicked_voter_registration_action` analytics event is fired when the user clicks on the CTA to visit the voter registration portal.
+-   [`VoterRegistrationAction`](development/content-types/voter-registration-action.md) - Links to a voting portal page. A `clicked_voter_registration_action` analytics event is fired when the user clicks on the CTA to visit the voter registration portal.
 
-- [`VoterRegistrationDriveAction`](development/content-types/voter-registration-drive-action.md) - Used in [OVRD campaigns](#online-drives)
+-   [`VoterRegistrationDriveAction`](development/content-types/voter-registration-drive-action.md) - Used in [OVRD campaigns](#online-drives)
 
-- [`VoterRegistrationReferralsBlock`](development/content-types/voter-registration-drive-action.md) - Used in [OVRD campaigns](#online-drives)
+-   [`VoterRegistrationReferralsBlock`](development/content-types/voter-registration-drive-action.md) - Used in [OVRD campaigns](#online-drives)
 
 ## Utilities
+
+### Request Ballot Block
+
+A [CivicEngine Voting Widget](https://developers.civicengine.com/docs/widget/) can be embedded in the footer of a [`ContentBlock`](development/content-types/voter-registration-drive-action.md#content-type-fields) to allow a user to begin the process of requesting a mail-in ballot by entering their address. Upon submitting their address, the user is redirected to the CivicEngine website to complete requesting a ballot.
+
+![Content Block - RequestBallotBlock footerType](../../.gitbook/assets/request-ballot-block.png)
 
 ### Start Voter Registration Form
 
@@ -90,15 +96,15 @@ We hardcode specific configuration `ContentBlock` ID's:
 
 **Production:**
 
-- [Register To Vote ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/entries/2d2i2M3yn4RB9pZYVzQxGm) - 2d2i2M3yn4RB9pZYVzQxGm
-- [FAQ ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/entries/4yP8BdIdiGU0qwZaFyzmsm) - 4yP8BdIdiGU0qwZaFyzmsm
-- [OVRD Campaign Link ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/entries/30rCn63G1rnpzojCXC9PmF) - 30rCn63G1rnpzojCXC9PmF
+-   [Register To Vote ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/entries/2d2i2M3yn4RB9pZYVzQxGm) - 2d2i2M3yn4RB9pZYVzQxGm
+-   [FAQ ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/entries/4yP8BdIdiGU0qwZaFyzmsm) - 4yP8BdIdiGU0qwZaFyzmsm
+-   [OVRD Campaign Link ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/entries/30rCn63G1rnpzojCXC9PmF) - 30rCn63G1rnpzojCXC9PmF
 
 **Dev:**
 
-- [Register To Vote ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/bt0jUBYJaKoi1oab25Wmx) - bt0jUBYJaKoi1oab25Wmx
-- [FAQ ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3cXc0RPMVNeE4surEqFujL) - 3cXc0RPMVNeE4surEqFujL
-- [OVRD Campaign Link ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3p2qz2JPCvgVitgRVBoMFz) - 3p2qz2JPCvgVitgRVBoMFz
+-   [Register To Vote ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/bt0jUBYJaKoi1oab25Wmx) - bt0jUBYJaKoi1oab25Wmx
+-   [FAQ ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3cXc0RPMVNeE4surEqFujL) - 3cXc0RPMVNeE4surEqFujL
+-   [OVRD Campaign Link ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3p2qz2JPCvgVitgRVBoMFz) - 3p2qz2JPCvgVitgRVBoMFz
 
 **Notes:**
 
@@ -122,32 +128,32 @@ A header image can be added by selecting an asset in the Affiliate Logo field.
 
 A static Gallery Block entry is displayed all for all Quiz result ID's:
 
-- Production: 78WaGsvDEzAxnreEvNx3Za
-- Dev: 2VGFq3XBcqCfKOA8mC5mP4
+-   Production: 78WaGsvDEzAxnreEvNx3Za
+-   Dev: 2VGFq3XBcqCfKOA8mC5mP4
 
 ### Voting Quiz Campaign
 
-- Gated: `/us/campaigns/ready-vote` - user must signup to take the quiz from the action page
+-   Gated: `/us/campaigns/ready-vote` - user must signup to take the quiz from the action page
 
-- Ungated: `/us/campaigns/ready-vote/quiz/ready` - user can take quiz but must signup to see their result
+-   Ungated: `/us/campaigns/ready-vote/quiz/ready` - user can take quiz but must signup to see their result
 
 Production Quiz Results:
 
-- [p7hqjSP4Y1U6ad0UDz4iS](https://www.dosomething.org/us/quiz-results/p7hqjSP4Y1U6ad0UDz4iS) - Vote By Mail
-- [1giTEF3B2hO2CyccmhlVDm](https://www.dosomething.org/us/quiz-results/1giTEF3B2hO2CyccmhlVDm) - In-Person Voting
-- [21PDBge2bKCTWMe5f9eo1H](https://www.dosomething.org/us/quiz-results/21PDBge2bKCTWMe5f9eo1H) - Unsure of Voting
-- [14KfeAs265httjNMf1jwTw](https://www.dosomething.org/us/quiz-results/14KfeAs265httjNMf1jwTw) - Ineligible to Vote
+-   [p7hqjSP4Y1U6ad0UDz4iS](https://www.dosomething.org/us/quiz-results/p7hqjSP4Y1U6ad0UDz4iS) - Vote By Mail
+-   [1giTEF3B2hO2CyccmhlVDm](https://www.dosomething.org/us/quiz-results/1giTEF3B2hO2CyccmhlVDm) - In-Person Voting
+-   [21PDBge2bKCTWMe5f9eo1H](https://www.dosomething.org/us/quiz-results/21PDBge2bKCTWMe5f9eo1H) - Unsure of Voting
+-   [14KfeAs265httjNMf1jwTw](https://www.dosomething.org/us/quiz-results/14KfeAs265httjNMf1jwTw) - Ineligible to Vote
 
 Dev Quiz Results:
 
-- [347iYsbykgQe6KqeGceMUk](https://dev.dosomething.org/us/quiz-results/347iYsbykgQe6KqeGceMUk)
-- [1lvJHhlJqQSgKgwIwUymQ8](https://dev.dosomething.org/us/quiz-results/1lvJHhlJqQSgKgwIwUymQ8)
-- [2KfkCOTi7u4CqAyyCuGyci](https://dev.dosomething.org/us/quiz-results/2KfkCOTi7u4CqAyyCuGyci)
+-   [347iYsbykgQe6KqeGceMUk](https://dev.dosomething.org/us/quiz-results/347iYsbykgQe6KqeGceMUk)
+-   [1lvJHhlJqQSgKgwIwUymQ8](https://dev.dosomething.org/us/quiz-results/1lvJHhlJqQSgKgwIwUymQ8)
+-   [2KfkCOTi7u4CqAyyCuGyci](https://dev.dosomething.org/us/quiz-results/2KfkCOTi7u4CqAyyCuGyci)
 
 **Related links:**
 
-- [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the [Campaign Playbook](https://docs.google.com/document/d/1iOFgNNNN0ry9zyyRyxcuLI-tZm2CKkcPLbfUMos9WcI/edit?usp=sharing).
+-   [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the [Campaign Playbook](https://docs.google.com/document/d/1iOFgNNNN0ry9zyyRyxcuLI-tZm2CKkcPLbfUMos9WcI/edit?usp=sharing).
 
 **Notes:**
 
-- Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
+-   Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).

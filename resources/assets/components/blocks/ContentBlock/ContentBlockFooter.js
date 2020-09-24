@@ -2,18 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
-import VoterWidgetBlock from '../VoterWidgetBlock/VoterWidgetBlock';
 import GetOutTheVoteBlock from '../GetOutTheVoteBlock/GetOutTheVoteBlock';
+import RequestBallotBlock from '../RequestBallotBlock/RequestBallotBlock';
 
 const ContentBlockFooter = ({ type }) => {
   switch (type) {
-    case 'VoterWidgetBlock':
-      return <VoterWidgetBlock />;
     case 'GetOutTheVoteBlock':
       return <GetOutTheVoteBlock />;
 
+    case 'RequestBallotBlock':
+      return <RequestBallotBlock />;
+
     default:
-      return <ErrorBlock error={`ContentBlock is unable to render ${type}.`} />;
+      return (
+        <ErrorBlock
+          error={`Invalid footerType "${type}". Valid values: "GetOutTheVoteBlock", "RequestBallotBlock"`}
+        />
+      );
   }
 };
 
