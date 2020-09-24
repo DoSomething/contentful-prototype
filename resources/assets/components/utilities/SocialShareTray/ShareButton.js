@@ -12,8 +12,9 @@ const ShareButton = ({ className, onClick, disabled, icon, dataShareUrl }) => (
     data-share-url={dataShareUrl}
     css={css`
       height: 65px;
-      width: 55p;
-      x image {
+      width: 55px;
+
+      image {
         width: 25px;
         height: 25px;
       }
