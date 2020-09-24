@@ -92,7 +92,7 @@ describe('Voter Registration Drive Action', () => {
       `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`,
     );
     cy.get('[data-test=voting-reasons-query-options]').should('have.length', 1);
-    cy.get('[data-test=social-share-tray-title]').should('have.length', 0);
+    cy.findByTestId('social-share-tray-title').should('have.length', 0);
   });
 
   it('Appends group_id query to link if signed up with group', () => {

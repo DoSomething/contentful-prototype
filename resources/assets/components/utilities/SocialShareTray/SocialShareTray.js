@@ -138,10 +138,13 @@ class SocialShareTray extends React.Component {
     const trackLink = this.props.trackLink || this.props.shareLink;
 
     return (
-      <div className={classnames('p-3', className)}>
+      <div
+        className={classnames('p-3', className)}
+        data-testid="social-share-tray"
+      >
         {title ? (
           <p
-            data-test="social-share-tray-title"
+            data-testid="social-share-tray-title"
             className="title uppercase font-bold"
           >
             {title}
