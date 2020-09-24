@@ -15,14 +15,18 @@ export const CREATE_SIGNUP_MUTATION = gql`
   }
 `;
 const GalleryBlockSignup = ({ campaignId, path }) => {
-  const [handleSignup, { called, error }] = useMutation(
+  const [handleSignup, { loading, data, error }] = useMutation(
     CREATE_SIGNUP_MUTATION,
     {
       variables: { campaignId },
     },
   );
 
-  if (called && !error) {
+  if (loading) {
+    return <Spinner className="flex justify-center p-4" />;
+  }
+
+  if (data) {
     window.location = path;
 
     return <Spinner className="flex justify-center p-4" />;
