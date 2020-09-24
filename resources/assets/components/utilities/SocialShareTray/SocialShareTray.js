@@ -3,7 +3,6 @@
 import React from 'react';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import ShareButton from './ShareButton';
 import emailIcon from './emailIcon.svg';
@@ -25,8 +24,6 @@ import {
   getFormattedScreenSize,
   handleSnapchatShareClick,
 } from '../../../helpers';
-
-import './social-share-tray.scss';
 
 class SocialShareTray extends React.Component {
   componentDidMount() {
@@ -136,10 +133,11 @@ class SocialShareTray extends React.Component {
   };
 
   render() {
-    const { shareLink, platforms, responsive, title } = this.props;
+    const { shareLink, platforms, title } = this.props;
     const trackLink = this.props.trackLink || this.props.shareLink;
+
     return (
-      <div className="social-share-tray p-3 text-center">
+      <div className="p-3">
         {title ? (
           <p
             data-test="social-share-tray-title"
@@ -149,7 +147,7 @@ class SocialShareTray extends React.Component {
           </p>
         ) : null}
 
-        <div className={classNames('share-buttons', { responsive })}>
+        <div>
           {platforms.includes('facebook') ? (
             <ShareButton
               className="facebook bg-facebook-500 hover:bg-facebook-400"
@@ -157,10 +155,11 @@ class SocialShareTray extends React.Component {
                 this.handleFacebookShareClick(shareLink, trackLink)
               }
               disabled={!shareLink}
-              icon={facebookIcon}
-              text="Share"
+              iconAlt="Facebook icon"
+              iconSrc={facebookIcon}
             />
           ) : null}
+
           {platforms.includes('snapchat') ? (
             <Media query="(max-width: 759px)">
               <ShareButton
@@ -170,8 +169,8 @@ class SocialShareTray extends React.Component {
                 }
                 dataShareUrl={shareLink}
                 disabled={!shareLink}
-                icon={snapchatIcon}
-                text="Share"
+                iconAlt="Snapchat icon"
+                iconSrc={snapchatIcon}
               />
             </Media>
           ) : null}
@@ -183,8 +182,8 @@ class SocialShareTray extends React.Component {
                 handleTwitterShareClick(shareLink, { url: trackLink })
               }
               disabled={!shareLink}
-              icon={twitterIcon}
-              text="Tweet"
+              iconAlt="Twitter icon"
+              iconSrc={twitterIcon}
             />
           ) : null}
 
@@ -192,8 +191,8 @@ class SocialShareTray extends React.Component {
             <ShareButton
               className="messenger bg-messenger-500 hover:bg-messenger-400"
               disabled={!shareLink}
-              icon={messengerIcon}
-              text="Send"
+              iconAlt="Messenger icon"
+              iconSrc={messengerIcon}
               onClick={() =>
                 this.handleFacebookMessengerClick(shareLink, trackLink)
               }
@@ -204,8 +203,8 @@ class SocialShareTray extends React.Component {
             <ShareButton
               className="email bg-blue-500 hover:bg-blue-400"
               disabled={!shareLink}
-              icon={emailIcon}
-              text="Email"
+              iconAlt="Email icon"
+              iconSrc={emailIcon}
               onClick={() => this.handleEmailShareClick(shareLink, trackLink)}
             />
           ) : null}
@@ -220,7 +219,6 @@ SocialShareTray.propTypes = {
   trackLink: PropTypes.string,
   platforms: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string,
-  responsive: PropTypes.bool,
 };
 
 SocialShareTray.defaultProps = {
@@ -228,7 +226,6 @@ SocialShareTray.defaultProps = {
   trackLink: null,
   platforms: ['facebook', 'snapchat', 'twitter', 'messenger', 'email'],
   title: null,
-  responsive: false,
 };
 
 export default SocialShareTray;
