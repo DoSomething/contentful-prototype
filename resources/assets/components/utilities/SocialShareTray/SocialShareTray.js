@@ -3,7 +3,6 @@
 import React from 'react';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import ShareButton from './ShareButton';
 import emailIcon from './emailIcon.svg';
