@@ -3,6 +3,7 @@
 import React from 'react';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import ShareButton from './ShareButton';
 import emailIcon from './emailIcon.svg';
@@ -133,11 +134,11 @@ class SocialShareTray extends React.Component {
   };
 
   render() {
-    const { shareLink, platforms, title } = this.props;
+    const { className, shareLink, platforms, title } = this.props;
     const trackLink = this.props.trackLink || this.props.shareLink;
 
     return (
-      <div className="p-3">
+      <div className={classnames('p-3', className)}>
         {title ? (
           <p
             data-test="social-share-tray-title"
@@ -215,6 +216,7 @@ class SocialShareTray extends React.Component {
 }
 
 SocialShareTray.propTypes = {
+  className: PropTypes.string,
   shareLink: PropTypes.string,
   trackLink: PropTypes.string,
   platforms: PropTypes.arrayOf(PropTypes.string),
@@ -222,6 +224,7 @@ SocialShareTray.propTypes = {
 };
 
 SocialShareTray.defaultProps = {
+  className: null,
   shareLink: null,
   trackLink: null,
   platforms: ['facebook', 'snapchat', 'twitter', 'messenger', 'email'],
