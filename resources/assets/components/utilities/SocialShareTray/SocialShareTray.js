@@ -158,9 +158,9 @@ class SocialShareTray extends React.Component {
               }
               disabled={!shareLink}
               icon={facebookIcon}
-              text="Share"
             />
           ) : null}
+
           {platforms.includes('snapchat') ? (
             <Media query="(max-width: 759px)">
               <ShareButton
@@ -171,7 +171,6 @@ class SocialShareTray extends React.Component {
                 dataShareUrl={shareLink}
                 disabled={!shareLink}
                 icon={snapchatIcon}
-                text="Share"
               />
             </Media>
           ) : null}
@@ -184,7 +183,6 @@ class SocialShareTray extends React.Component {
               }
               disabled={!shareLink}
               icon={twitterIcon}
-              text="Tweet"
             />
           ) : null}
 
@@ -193,7 +191,6 @@ class SocialShareTray extends React.Component {
               className="messenger bg-messenger-500 hover:bg-messenger-400"
               disabled={!shareLink}
               icon={messengerIcon}
-              text="Send"
               onClick={() =>
                 this.handleFacebookMessengerClick(shareLink, trackLink)
               }
@@ -205,7 +202,6 @@ class SocialShareTray extends React.Component {
               className="email bg-blue-500 hover:bg-blue-400"
               disabled={!shareLink}
               icon={emailIcon}
-              text="Email"
               onClick={() => this.handleEmailShareClick(shareLink, trackLink)}
             />
           ) : null}

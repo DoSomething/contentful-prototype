@@ -17,8 +17,7 @@ const ShareButton = ({
     disabled={disabled}
     data-share-url={dataShareUrl}
   >
-    <img className="icon-image float-left" src={icon} alt="share icon" />
-    <span className="button-text">{text}</span>
+    <img className="icon-image" src={icon} alt="share icon" />
   </button>
 );
 
@@ -28,14 +27,12 @@ ShareButton.propTypes = {
   dataShareUrl: PropTypes.string,
   disabled: PropTypes.bool,
   icon: PropTypes.string.isRequired,
-  text: PropTypes.string,
 };
 
 ShareButton.defaultProps = {
   className: null,
   onClick: () => {},
   disabled: false,
-  text: 'Share',
   dataShareUrl: '',
 };
 
