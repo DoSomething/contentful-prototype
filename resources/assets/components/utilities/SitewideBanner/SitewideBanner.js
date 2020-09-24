@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
-import { isCurrentPathInPaths } from '../../../helpers';
+import { isCurrentPathInPaths, query } from '../../../helpers';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
@@ -60,6 +60,11 @@ const SitewideBanner = props => {
   if (isCurrentPathInPaths(excludedPaths)) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
+    return null;
+  }
+
+  // If we're in "chromeless" mode, e.g. an embed, hide this bar:
+  if (query('chromeless')) {
     return null;
   }
 
