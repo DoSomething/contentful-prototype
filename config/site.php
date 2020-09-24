@@ -21,7 +21,6 @@ return [
      * @see https://developers.civicengine.com/docs/widget
      */
     'civic_engine_client_name' => env('CIVIC_ENGINE_CLIENT_NAME'),
-    'civic_engine_embed_type' => env('CIVIC_ENGINE_EMBED_TYPE'),
     'civic_engine_utm_source' => env('CIVIC_ENGINE_UTM_SOURCE'),
     'default_referral_campaign_id' => env('DS_DEFAULT_REFERRAL_CAMPAIGN_ID'),
     'hide_campaign_ids' => explode(',', env('DS_HIDE_CAMPAIGN_IDS')),
