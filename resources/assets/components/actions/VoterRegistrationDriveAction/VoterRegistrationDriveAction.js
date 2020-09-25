@@ -69,9 +69,18 @@ const VoterRegistrationDriveAction = ({ description, title }) => {
             />
           </div>
 
-          <div className="lg:w-1/3">
-            <a href={previewUrl}>
+          <div className="lg:w-1/3 lg:my-12 lg:ml-16 lg:mr-24">
+            <a href={previewUrl} rel="noopener noreferrer" target="_blank">
               <img src={PreviewImage} alt="Preview of custom website" />
+            </a>
+
+            <a
+              className="block mt-10 font-normal underline text-blurple-500"
+              href={previewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Preview your custom page
             </a>
           </div>
         </div>
