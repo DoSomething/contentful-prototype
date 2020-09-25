@@ -58,6 +58,19 @@ describe('Voter Registration Drive Action', () => {
       contentfulBlockQueryResult.block.description,
     );
     cy.get('.link-bar input').should('contain.value', expectedUrl);
+    cy.findByTestId('voter-registration-drive-action-preview-image').should(
+      'have.attr',
+      'href',
+      expectedUrl,
+    );
+    cy.findByTestId('voter-registration-drive-action-preview-label').contains(
+      'Preview your custom page',
+    );
+    cy.findByTestId('voter-registration-drive-action-preview-label').should(
+      'have.attr',
+      'href',
+      expectedUrl,
+    );
     cy.get('[data-test=voting-reasons-query-options]').should('have.length', 1);
     cy.findByTestId('social-share-tray-title').should('have.length', 0);
   });
