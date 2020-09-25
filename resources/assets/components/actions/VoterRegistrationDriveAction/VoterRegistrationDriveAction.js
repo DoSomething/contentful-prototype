@@ -9,10 +9,10 @@ import {
   getCampaignSignupQueryVariables,
 } from '../../../helpers/campaign';
 import QueryOptions from './QueryOptions';
+import Card from '../../utilities/Card/Card';
 import { PHOENIX_URL } from '../../../constants';
 import { appendToQuery } from '../../../helpers';
 import { getUserId } from '../../../helpers/auth';
-import Card from '../../utilities/Card/Card';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PreviewImage from './voter-registration-drive-page.png';

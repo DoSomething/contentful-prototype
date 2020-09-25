@@ -1,6 +1,6 @@
 # Voter Registration Drive Action
 
-This block types displays a shortened link to the current user's Online Voter Registration Drive (OVRD) Page.
+This block type displays a shortened link to the current user's Online Voter Registration Drive (OVRD) Page.
 
 ![Voter Registration Drive Action](../../.gitbook/assets/voter-registration-drive-action.png)
 
