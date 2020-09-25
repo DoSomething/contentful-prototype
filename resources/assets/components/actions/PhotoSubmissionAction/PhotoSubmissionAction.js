@@ -423,7 +423,7 @@ class PhotoSubmissionAction extends PostForm {
                             htmlFor="quantity"
                           >
                             {quantity
-                              ? 'Total Items - Updated (this is the total items number above plus the new number you are adding. For instance, if you currently have 1 total item and are adding 1 more, you would enter 2 here):'
+                              ? 'Total Items - Updated (This is the total items number above plus the new number you are adding. For instance, if you currently have 1 total item and are adding 1 more, you would enter 2 here):'
                               : this.props.quantityFieldLabel}
                           </label>
 
