@@ -6,18 +6,6 @@
             display: flex;
         }
 
-        .share-text {
-            color: theme('colors.gray.900');
-            padding-bottom: theme('spacing.2');
-
-            @include media($large) {
-                margin: auto;
-                white-space: nowrap;
-                padding-right: theme('spacing.3');
-                padding-bottom: 0;
-            }
-        }
-
         .link-bar {
             display: flex;
             flex: 1;

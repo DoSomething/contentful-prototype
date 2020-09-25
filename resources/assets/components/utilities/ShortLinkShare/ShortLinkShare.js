@@ -119,28 +119,20 @@ class ShortLinkShare extends React.Component {
 
     return (
       <div className="short-link-share">
-        {queryOptions
-          ? React.cloneElement(queryOptions, {
-              onChange: queryStr =>
-                this.setState({
-                  longUrl: this.getLongUrl(queryStr),
-                }),
-            })
-          : null}
-
-        {queryOptions ? null : (
+        {queryOptions ? (
+          React.cloneElement(queryOptions, {
+            onChange: queryStr =>
+              this.setState({
+                longUrl: this.getLongUrl(queryStr),
+              }),
+          })
+        ) : (
           <div className="p-3">
             <Embed url={longUrl} />
           </div>
         )}
 
         <div className="p-3 link-area">
-          {!queryOptions ? (
-            <div className="share-text">
-              <p>Share your link:</p>
-            </div>
-          ) : null}
-
           <div className="link-bar h-10">
             <input
               readOnly
