@@ -1,6 +1,8 @@
 import React from 'react';
+import { css } from '@emotion/core';
 
 import Embed from '../../utilities/Embed/Embed';
+import starterTextBackground from './VoteExplosion.png';
 import WhoAreYourPeopleForm from './WhoAreYourPeopleForm';
 
 const GetOutTheVoteBlock = () => (
@@ -21,7 +23,15 @@ const GetOutTheVoteBlock = () => (
       </p>
 
       <div className="md:flex py-6">
-        <div className="md:w-1/2 bg-blurple-500 p-6 mb-6 md:mb-0 md:mr-3">
+        <div
+          css={css`
+            background-image: url(${starterTextBackground});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+          `}
+          className="md:w-1/2 p-6 mb-6 md:mb-0 md:mr-3"
+        >
           <div className="bg-white bg-opacity-25 border border-solid border-gray-300 p-3">
             <h3 className="italic text-base">Conversation Starters</h3>
             “Hey! Election Day (Tuesday, Nov. 3) is coming up soon, so I wanted
