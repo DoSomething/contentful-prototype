@@ -49,11 +49,18 @@ const VoterRegistrationDriveAction = ({ description, title }) => {
 
   return (
     <div className="clearfix pb-6">
-      <Card className="rounded bordered" title={title}>
+      <Card
+        className="rounded bordered"
+        title={title}
+        attributes={{ 'data-testid': 'voter-registration-drive-action-card' }}
+      >
         <div className="lg:flex">
           <div className="lg:w-2/3">
             {description ? (
-              <div className="p-3">
+              <div
+                className="p-3"
+                data-testid="voter-registration-drive-action-description"
+              >
                 <p>{description}</p>
               </div>
             ) : null}

@@ -50,6 +50,10 @@ class ShortLinkShare extends React.Component {
     }
   }
 
+  onChange() {
+    this.props.onChange(this.state.shortUrl);
+  }
+
   /**
    * Replaces any userId tokens, and appends query string if given.
    *
@@ -107,10 +111,6 @@ class ShortLinkShare extends React.Component {
       },
     });
   };
-
-  onChange() {
-    this.props.onChange(this.state.shortUrl);
-  }
 
   render() {
     const { link, queryOptions } = this.props;
