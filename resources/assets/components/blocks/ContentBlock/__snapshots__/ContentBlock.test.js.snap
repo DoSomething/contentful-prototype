@@ -35,7 +35,7 @@ exports[`ContentBlock component does not include SectionHeader when there's no t
 </div>
 `;
 
-exports[`ContentBlock component is rendered with the proper child components when image is set 1`] = `
+exports[`ContentBlock component renders proper child components when image is set 1`] = `
 <div
   className="pb-6"
 >
@@ -75,7 +75,7 @@ exports[`ContentBlock component is rendered with the proper child components whe
 </div>
 `;
 
-exports[`ContentBlock component it works beautifully with content and an empty image prop 1`] = `
+exports[`ContentBlock component works beautifully with content and an empty image prop 1`] = `
 <div
   className="pb-6"
 >
