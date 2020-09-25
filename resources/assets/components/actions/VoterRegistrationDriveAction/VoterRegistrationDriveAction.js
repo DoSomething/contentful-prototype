@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -69,13 +70,19 @@ const VoterRegistrationDriveAction = ({ description, title }) => {
             />
           </div>
 
-          <div className="lg:w-1/3 lg:my-12 lg:ml-16 lg:mr-24">
+          <div className="lg:w-1/3 lg:my-8 lg:ml-16 lg:mr-24">
             <a href={previewUrl} rel="noopener noreferrer" target="_blank">
-              <img src={PreviewImage} alt="Custom page preview" />
+              <img
+                css={css`
+                  height: 462px;
+                `}
+                src={PreviewImage}
+                alt="Custom page preview"
+              />
             </a>
 
             <a
-              className="block mt-10 font-normal underline text-blurple-500"
+              className="block mt-4 font-normal underline text-blurple-500"
               href={previewUrl}
               target="_blank"
               rel="noopener noreferrer"

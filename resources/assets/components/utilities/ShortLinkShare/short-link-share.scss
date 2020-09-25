@@ -11,7 +11,7 @@
             flex: 1;
 
             .link {
-                padding: 6px 12px;
+                padding: 8px;
                 color: $dark-gray;
                 overflow: scroll;
                 padding-right: 0;
@@ -23,9 +23,11 @@
             .link-copy-button {
                 background-color: theme('colors.blurple.500');
                 display: flex;
-                max-width: 120px;
+                max-width: 162px;
                 border-radius: 0 4px 4px 0;
                 cursor: pointer;
+                align-items: center;
+                justify-content: center;
 
                 &:hover {
                     background-color: theme('colors.blurple.300');
@@ -35,6 +37,7 @@
                     color: white;
                     font-size: 16px;
                     font-family: theme('fontFamily.source-sans');
+                    text-align: center;
                 }
 
                 img {

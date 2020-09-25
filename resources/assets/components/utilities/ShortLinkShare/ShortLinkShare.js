@@ -5,7 +5,7 @@ import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Embed from '../Embed/Embed';
-import LinkIcon from './linkIcon.svg';
+import LinkIcon from './link-icon.svg';
 import { postRequest } from '../../../helpers/api';
 import SocialShareTray from '../SocialShareTray/SocialShareTray';
 import {
@@ -133,7 +133,7 @@ class ShortLinkShare extends React.Component {
         )}
 
         <div className="p-3 link-area">
-          <div className="link-bar h-10">
+          <div className="link-bar">
             <input
               readOnly
               type="text"
@@ -142,6 +142,7 @@ class ShortLinkShare extends React.Component {
               value={loading ? 'Loading...' : shortUrl}
               disabled={loading}
             />
+
             <button
               type="button"
               className="text-field link-copy-button py-2"
