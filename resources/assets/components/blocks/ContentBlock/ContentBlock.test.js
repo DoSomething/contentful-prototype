@@ -87,9 +87,9 @@ describe('ContentBlock component', () => {
     });
   });
 
-  describe('Footer type', () => {
+  describe('Footer component', () => {
     /** @test */
-    test('Renders ContentBlockFooter when footerType is set', () => {
+    test('Renders ContentBlockFooter when additonalContent.footerType is set', () => {
       const wrapper = shallow(
         <ContentBlock
           {...props}
@@ -101,7 +101,7 @@ describe('ContentBlock component', () => {
     });
 
     /** @test */
-    test('Does not render ContentBlockFooter if footerType is not set', () => {
+    test('Does not render ContentBlockFooter when null additionalContent.footerType', () => {
       const wrapper = shallow(<ContentBlock {...props} />);
 
       expect(wrapper.find('ContentBlockFooter').length).toEqual(0);
