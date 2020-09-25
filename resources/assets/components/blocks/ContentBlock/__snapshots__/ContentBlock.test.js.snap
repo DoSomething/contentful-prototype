@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ContentBlock component Does not include SectionHeader when there's no title 1`] = `
+exports[`ContentBlock component does not include SectionHeader when there's no title 1`] = `
 <div
   className="pb-6"
 >
@@ -35,7 +35,7 @@ exports[`ContentBlock component Does not include SectionHeader when there's no t
 </div>
 `;
 
-exports[`ContentBlock component Renders proper child components when image is set 1`] = `
+exports[`ContentBlock component renders proper child components when image is set 1`] = `
 <div
   className="pb-6"
 >
@@ -75,7 +75,7 @@ exports[`ContentBlock component Renders proper child components when image is se
 </div>
 `;
 
-exports[`ContentBlock component Works beautifully with content and an empty image prop 1`] = `
+exports[`ContentBlock component works beautifully with content and an empty image prop 1`] = `
 <div
   className="pb-6"
 >
