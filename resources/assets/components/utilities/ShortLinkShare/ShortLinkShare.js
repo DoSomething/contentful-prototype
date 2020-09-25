@@ -112,7 +112,7 @@ class ShortLinkShare extends React.Component {
     const { loading, longUrl, shortUrl } = this.state;
 
     return (
-      <div className="social-drive-action">
+      <div className="short-link-share">
         {queryOptions
           ? React.cloneElement(queryOptions, {
               onChange: queryStr =>
