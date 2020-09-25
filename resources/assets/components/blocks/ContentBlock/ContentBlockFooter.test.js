@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { shallowToJson } from 'enzyme-to-json';
 import '@testing-library/jest-dom/extend-expect';
 
 import ContentBlockFooter from './ContentBlockFooter';
@@ -21,5 +20,7 @@ describe('ContentBlockFooter component', () => {
     const wrapper = shallow(<ContentBlockFooter type="PuppetSlothBlock" />);
 
     expect(wrapper.find('ErrorBlock').length).toEqual(1);
+    expect(wrapper.find('GetOutTheVoteBlock').length).toEqual(0);
+    expect(wrapper.find('RequestBallotBlock').length).toEqual(0);
   });
 });
