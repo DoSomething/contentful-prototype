@@ -22,7 +22,7 @@ import CampaignDashboard from '../utilities/CampaignDashboard/CampaignDashboard'
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import SignupReferralsBlock from '../blocks/SignupReferralsBlock/SignupReferralsBlock';
-import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
+import SocialDriveAction from '../actions/SocialDriveAction/SocialDriveAction';
 import CurrentSchoolBlockContainer from '../blocks/CurrentSchoolBlock/CurrentSchoolBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
@@ -212,7 +212,7 @@ class ContentfulEntry extends React.Component {
         );
 
       case 'SocialDriveBlock':
-        return <SocialDriveActionContainer {...json} />;
+        return <SocialDriveAction {...json} />;
 
       case 'SoftEdgeBlock':
         return <SoftEdgeBlock {...json} />;

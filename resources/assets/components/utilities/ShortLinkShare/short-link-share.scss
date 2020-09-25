@@ -1,0 +1,58 @@
+@import '../../../scss/next-toolbox.scss';
+
+.social-drive-action {
+    .link-area {
+        @include media($large) {
+            display: flex;
+        }
+
+        .share-text {
+            color: theme('colors.gray.900');
+            padding-bottom: theme('spacing.2');
+
+            @include media($large) {
+                margin: auto;
+                white-space: nowrap;
+                padding-right: theme('spacing.3');
+                padding-bottom: 0;
+            }
+        }
+
+        .link-bar {
+            display: flex;
+            flex: 1;
+
+            .link {
+                padding: 6px 12px;
+                color: $dark-gray;
+                overflow: scroll;
+                padding-right: 0;
+                white-space: nowrap;
+                border-radius: 4px 0 0 4px;
+                border-right: 0;
+            }
+
+            .link-copy-button {
+                background-color: theme('colors.blurple.500');
+                display: flex;
+                max-width: 120px;
+                border-radius: 0 4px 4px 0;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: theme('colors.blurple.300');
+                }
+
+                p {
+                    color: white;
+                    font-size: 16px;
+                    font-family: theme('fontFamily.source-sans');
+                }
+
+                img {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}

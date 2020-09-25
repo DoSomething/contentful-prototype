@@ -11,10 +11,11 @@ import QueryOptions from './QueryOptions';
 import { PHOENIX_URL } from '../../../constants';
 import { appendToQuery } from '../../../helpers';
 import { getUserId } from '../../../helpers/auth';
+import Card from '../../utilities/Card/Card';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PreviewImage from './voter-registration-drive-page.png';
-import SocialDriveActionContainer from '../SocialDriveAction/SocialDriveActionContainer';
+import ShortLinkShareContainer from '../../utilities/ShortLinkShare/ShortLinkShareContainer';
 
 export const VoterRegistrationDriveBlockFragment = gql`
   fragment VoterRegistrationDriveBlockFragment on VoterRegistrationDriveBlock {
@@ -44,18 +45,26 @@ const VoterRegistrationDriveAction = ({ description, title }) => {
   }
 
   return (
-    <SocialDriveActionContainer
-      link={
-        appendToQuery(
-          queryParams,
-          `${PHOENIX_URL}/us/my-voter-registration-drive`,
-        ).href
-      }
-      previewImage={PreviewImage}
-      queryOptions={<QueryOptions />}
-      description={description}
-      title={title}
-    />
+    <div className="clearfix pb-6">
+      <Card className="rounded bordered" title={title}>
+        {description ? (
+          <div className="p-3">
+            <p>{description}</p>
+          </div>
+        ) : null}
+
+        <ShortLinkShareContainer
+          link={
+            appendToQuery(
+              queryParams,
+              `${PHOENIX_URL}/us/my-voter-registration-drive`,
+            ).href
+          }
+          previewImage={PreviewImage}
+          queryOptions={<QueryOptions />}
+        />
+      </Card>
+    </div>
   );
 };
 

@@ -5,8 +5,8 @@ import { featureFlag } from '../../../../helpers';
 import ArticleHeader from '../../../utilities/ArticleHeader';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import { getReferFriendsLink } from '../../../../helpers/refer-friends';
+import SocialDriveAction from '../../../actions/SocialDriveAction/SocialDriveAction';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
-import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const AlphaPage = () => {
   const referralIncentive = featureFlag('refer_friends_incentive');
@@ -26,7 +26,7 @@ const AlphaPage = () => {
           />
 
           <div className="my-6">
-            <SocialDriveActionContainer
+            <SocialDriveAction
               description={`${
                 referralIncentive
                   ? "Invite your friends to join DoSomething. When your friend signs up for this campaign, you'll both enter for a chance to win a $10 gift card! Every 2 weeks, we’ll randomly select 25 winners. The more friends you refer, the more chances you have to win. (P.S. There’s no limit on how many friends you can refer!)"
