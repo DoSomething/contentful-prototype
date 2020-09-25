@@ -21,7 +21,7 @@ const props = {
 
 describe('ContentBlock component', () => {
   /** @test */
-  test('Renders proper child components when image is set', () => {
+  test('renders proper child components when image is set', () => {
     const wrapper = shallow(<ContentBlock {...props} />);
 
     expect(wrapper.find('SectionHeader').length).toEqual(1);
@@ -32,7 +32,7 @@ describe('ContentBlock component', () => {
   });
 
   /** @test */
-  test("Does not include SectionHeader when there's no title", () => {
+  test("does not include SectionHeader when there's no title", () => {
     const wrapper = shallow(<ContentBlock {...props} title={undefined} />);
 
     expect(wrapper.find('SectionHeader').length).toEqual(0);
@@ -41,7 +41,7 @@ describe('ContentBlock component', () => {
   });
 
   /** @test */
-  test('Renders proper child components when image is not set', () => {
+  test('renders proper child components when image is not set', () => {
     const wrapper = shallow(<ContentBlock {...props} image={emptyImage} />);
 
     expect(wrapper.find('SectionHeader').length).toEqual(1);
@@ -50,7 +50,7 @@ describe('ContentBlock component', () => {
   });
 
   /** @test */
-  test('Works beautifully with content and an empty image prop', () => {
+  test('works beautifully with content and an empty image prop', () => {
     const wrapper = shallow(
       <ContentBlock content="hi there" image={emptyImage} />,
     );
@@ -60,7 +60,7 @@ describe('ContentBlock component', () => {
 
   describe('Content column span', () => {
     /** @test */
-    test('Displays across the full row if there is no image & the fullWidth prop is toggled on', () => {
+    test('displays across the full row if there is no image & the fullWidth prop is toggled on', () => {
       render(<ContentBlock {...props} image={emptyImage} fullWidth />);
 
       expect(screen.getByTestId('content-block-content').className).toContain(
@@ -69,7 +69,7 @@ describe('ContentBlock component', () => {
     });
 
     /** @test */
-    test('Displays across two-thirds of the row if an image is not provided but the fullWidth is not toggled on', () => {
+    test('displays across two-thirds of the row if an image is not provided but the fullWidth is not toggled on', () => {
       render(<ContentBlock {...props} image={emptyImage} />);
 
       const contentBlockContent = screen.getByTestId('content-block-content');
@@ -78,7 +78,7 @@ describe('ContentBlock component', () => {
     });
 
     /** @test */
-    test('Displays across two-thirds of the row when an image *is* provided, even if the fullWidth is toggled on', () => {
+    test('displays across two-thirds of the row when an image *is* provided, even if the fullWidth is toggled on', () => {
       render(<ContentBlock {...props} fullWidth />);
 
       const contentBlockContent = screen.getByTestId('content-block-content');
@@ -89,7 +89,7 @@ describe('ContentBlock component', () => {
 
   describe('Footer component', () => {
     /** @test */
-    test('Renders ContentBlockFooter when additonalContent.footerType is set', () => {
+    test('renders ContentBlockFooter when additonalContent.footerType is set', () => {
       const wrapper = shallow(
         <ContentBlock
           {...props}
@@ -101,7 +101,7 @@ describe('ContentBlock component', () => {
     });
 
     /** @test */
-    test('Does not render ContentBlockFooter when null additionalContent.footerType', () => {
+    test('does not render ContentBlockFooter when null additionalContent.footerType', () => {
       const wrapper = shallow(<ContentBlock {...props} />);
 
       expect(wrapper.find('ContentBlockFooter').length).toEqual(0);

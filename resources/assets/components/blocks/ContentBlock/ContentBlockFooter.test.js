@@ -6,7 +6,7 @@ import ContentBlockFooter from './ContentBlockFooter';
 
 describe('ContentBlockFooter component', () => {
   /** @test */
-  test('Renders component when type is valid', () => {
+  test('renders component when type is valid', () => {
     ['GetOutTheVoteBlock', 'RequestBallotBlock'].forEach(type => {
       const wrapper = shallow(<ContentBlockFooter type={type} />);
 
@@ -16,7 +16,7 @@ describe('ContentBlockFooter component', () => {
   });
 
   /** @test */
-  test('Renders ErrorBlock if invalid type', () => {
+  test('renders ErrorBlock if invalid type', () => {
     const wrapper = shallow(<ContentBlockFooter type="PuppetSlothBlock" />);
 
     expect(wrapper.find('ErrorBlock').length).toEqual(1);
