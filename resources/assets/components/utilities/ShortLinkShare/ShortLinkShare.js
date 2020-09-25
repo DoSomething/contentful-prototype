@@ -50,6 +50,10 @@ class ShortLinkShare extends React.Component {
     }
   }
 
+  onChange() {
+    this.props.onChange(this.state.shortUrl);
+  }
+
   /**
    * Replaces any userId tokens, and appends query string if given.
    *
@@ -77,16 +81,18 @@ class ShortLinkShare extends React.Component {
       { url: withoutTokens(longUrl) },
       this.props.token,
     )
-      .then(apiResponse =>
-        this.setState({ loading: false, shortUrl: apiResponse.url_short }),
-      )
-      .catch(() =>
+      .then(apiResponse => {
+        this.setState({ loading: false, shortUrl: apiResponse.url_short });
+        this.onChange();
+      })
+      .catch(() => {
         this.setState({
           loading: false,
           // Fallback to the long URL if API request fails.
           shortUrl: longUrl,
-        }),
-      );
+        });
+        this.onChange();
+      });
   }
 
   handleCopyLinkClick = () => {
@@ -170,8 +176,8 @@ class ShortLinkShare extends React.Component {
 ShortLinkShare.propTypes = {
   campaignId: PropTypes.string,
   link: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   pageId: PropTypes.string,
-  previewImage: PropTypes.string,
   /**
    * This prop expects a React component to allow user customization of link prop's query string.
    * @see /resources/assets/components/pages/VoterRegistrationDrivePage/Alpha/AlphaPage
@@ -183,8 +189,8 @@ ShortLinkShare.propTypes = {
 
 ShortLinkShare.defaultProps = {
   campaignId: null,
+  onChange: () => {},
   pageId: null,
-  previewImage: null,
   queryOptions: null,
 };
 

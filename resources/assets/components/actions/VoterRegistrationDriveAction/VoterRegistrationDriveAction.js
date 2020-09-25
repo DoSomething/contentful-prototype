@@ -1,6 +1,6 @@
-import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import {
@@ -25,6 +25,8 @@ export const VoterRegistrationDriveBlockFragment = gql`
 `;
 
 const VoterRegistrationDriveAction = ({ description, title }) => {
+  const [previewUrl, setPreviewUrl] = useState(null);
+
   const { loading, error, data } = useQuery(CAMPAIGN_SIGNUP_QUERY, {
     variables: getCampaignSignupQueryVariables(),
   });
@@ -47,22 +49,32 @@ const VoterRegistrationDriveAction = ({ description, title }) => {
   return (
     <div className="clearfix pb-6">
       <Card className="rounded bordered" title={title}>
-        {description ? (
-          <div className="p-3">
-            <p>{description}</p>
-          </div>
-        ) : null}
+        <div className="lg:flex">
+          <div className="lg:w-2/3">
+            {description ? (
+              <div className="p-3">
+                <p>{description}</p>
+              </div>
+            ) : null}
 
-        <ShortLinkShareContainer
-          link={
-            appendToQuery(
-              queryParams,
-              `${PHOENIX_URL}/us/my-voter-registration-drive`,
-            ).href
-          }
-          previewImage={PreviewImage}
-          queryOptions={<QueryOptions />}
-        />
+            <ShortLinkShareContainer
+              link={
+                appendToQuery(
+                  queryParams,
+                  `${PHOENIX_URL}/us/my-voter-registration-drive`,
+                ).href
+              }
+              onChange={url => setPreviewUrl(url)}
+              queryOptions={<QueryOptions />}
+            />
+          </div>
+
+          <div className="lg:w-1/3">
+            <a href={previewUrl}>
+              <img src={PreviewImage} alt="Preview of custom website" />
+            </a>
+          </div>
+        </div>
       </Card>
     </div>
   );
