@@ -53,8 +53,8 @@ class ShortLinkShare extends React.Component {
   /**
    * Replaces any userId tokens, and appends query string if given.
    *
-   * @param Object query
-   * @return String
+   * @param {Object} query
+   * @return {String}
    */
   getLongUrl(query) {
     const result = dynamicString(this.props.link, {
@@ -67,7 +67,7 @@ class ShortLinkShare extends React.Component {
   /**
    * Executes API request to shorten given longUrl, and saves result to state.shortUrl.
    *
-   * @param String longUrl
+   * @param {String} longUrl
    */
   getShortUrl(longUrl) {
     this.setState({ loading: true });

@@ -70,7 +70,7 @@ const VoterRegistrationDriveAction = ({ description, title }) => {
             />
           </div>
 
-          <div className="lg:w-1/3 lg:my-8 lg:ml-16 lg:mr-24">
+          <div className="m-4 lg:w-1/3 lg:my-8 lg:ml-16 lg:mr-24">
             <a href={previewUrl} rel="noopener noreferrer" target="_blank">
               <img
                 css={css`
