@@ -149,9 +149,9 @@ class ShortLinkShare extends React.Component {
               onClick={this.handleCopyLinkClick}
               disabled={loading}
             >
-              <img src={LinkIcon} alt="link" />
+              <img className="mr-1" src={LinkIcon} alt="link" />
 
-              <p>Copy link</p>
+              <p className="text-sm font-bold text-white">Copy link</p>
             </button>
           </div>
         </div>
