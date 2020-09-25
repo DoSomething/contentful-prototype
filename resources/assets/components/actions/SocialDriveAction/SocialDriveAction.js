@@ -10,7 +10,6 @@ import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
-import TotalAcceptedQuantity from './TotalAcceptedQuantity';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import {
   appendToQuery,
@@ -120,14 +119,12 @@ class SocialDriveAction extends React.Component {
 
   render() {
     const {
-      approvedPostCountActionId,
-      approvedPostCountLabel,
       description,
       fullWidth,
       link,
+      previewImage,
       queryOptions,
       title,
-      userId,
     } = this.props;
 
     const { loading, longUrl, shortUrl } = this.state;
@@ -135,7 +132,7 @@ class SocialDriveAction extends React.Component {
     return (
       <div
         className={classNames('clearfix pb-6', {
-          'lg:flex': approvedPostCountActionId !== null,
+          'lg:flex': previewImage !== null,
         })}
       >
         <div
@@ -159,20 +156,11 @@ class SocialDriveAction extends React.Component {
                 })
               : null}
 
-            <div className="p-3">
-              {queryOptions ? (
-                <a
-                  className="font-normal underline text-blurple-500"
-                  href={longUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Preview your custom page
-                </a>
-              ) : (
+            {queryOptions ? null : (
+              <div className="p-3">
                 <Embed url={longUrl} />
-              )}
-            </div>
+              </div>
+            )}
 
             <div className="p-3 link-area">
               {!queryOptions ? (
@@ -211,12 +199,19 @@ class SocialDriveAction extends React.Component {
           </Card>
         </div>
 
-        {approvedPostCountActionId ? (
-          <TotalAcceptedQuantity
-            actionId={approvedPostCountActionId}
-            label={approvedPostCountLabel}
-            userId={userId}
-          />
+        {previewImage ? (
+          <div
+            data-test="total-accepted-quantity"
+            className="mt-6 lg:w-1/3 lg:pl-3 lg:mt-0"
+          >
+            <a href={longUrl} target="_blank" rel="noopener noreferrer">
+              <img src={previewImage} alt="Preview of your custom page" />
+
+              <p className="font-normal underline text-blurple-500">
+                Preview your custom page
+              </p>
+            </a>
+          </div>
         ) : null}
       </div>
     );
@@ -224,8 +219,6 @@ class SocialDriveAction extends React.Component {
 }
 
 SocialDriveAction.propTypes = {
-  approvedPostCountActionId: PropTypes.number,
-  approvedPostCountLabel: PropTypes.string,
   campaignId: PropTypes.string,
   description: PropTypes.string,
   /**
@@ -235,6 +228,7 @@ SocialDriveAction.propTypes = {
   fullWidth: PropTypes.bool,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
+  previewImage: PropTypes.string,
   /**
    * This prop expects a React component to allow user customization of link prop's query string.
    * @see /resources/assets/components/pages/VoterRegistrationDrivePage/Alpha/AlphaPage
@@ -246,12 +240,11 @@ SocialDriveAction.propTypes = {
 };
 
 SocialDriveAction.defaultProps = {
-  approvedPostCountActionId: null,
-  approvedPostCountLabel: null,
   campaignId: null,
   description: null,
   fullWidth: false,
   pageId: null,
+  previewImage: null,
   queryOptions: null,
   title: 'Your Online Drive',
 };

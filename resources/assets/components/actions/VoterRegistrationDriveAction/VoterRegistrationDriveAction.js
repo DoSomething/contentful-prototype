@@ -13,23 +13,17 @@ import { appendToQuery } from '../../../helpers';
 import { getUserId } from '../../../helpers/auth';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
+import PreviewImage from './voter-registration-drive-page.png';
 import SocialDriveActionContainer from '../SocialDriveAction/SocialDriveActionContainer';
 
 export const VoterRegistrationDriveBlockFragment = gql`
   fragment VoterRegistrationDriveBlockFragment on VoterRegistrationDriveBlock {
-    approvedPostCountActionId
-    approvedPostCountLabel
     description
     title
   }
 `;
 
-const VoterRegistrationDriveAction = ({
-  approvedPostCountActionId,
-  approvedPostCountLabel,
-  description,
-  title,
-}) => {
+const VoterRegistrationDriveAction = ({ description, title }) => {
   const { loading, error, data } = useQuery(CAMPAIGN_SIGNUP_QUERY, {
     variables: getCampaignSignupQueryVariables(),
   });
@@ -51,16 +45,13 @@ const VoterRegistrationDriveAction = ({
 
   return (
     <SocialDriveActionContainer
-      approvedPostCountActionId={approvedPostCountActionId}
-      approvedPostCountLabel={
-        approvedPostCountLabel || 'Total scholarship entries'
-      }
       link={
         appendToQuery(
           queryParams,
           `${PHOENIX_URL}/us/my-voter-registration-drive`,
         ).href
       }
+      previewImage={PreviewImage}
       queryOptions={<QueryOptions />}
       description={description}
       title={title}
@@ -69,15 +60,11 @@ const VoterRegistrationDriveAction = ({
 };
 
 VoterRegistrationDriveAction.propTypes = {
-  approvedPostCountActionId: PropTypes.number,
-  approvedPostCountLabel: PropTypes.string,
   description: PropTypes.string,
   title: PropTypes.string,
 };
 
 VoterRegistrationDriveAction.defaultProps = {
-  approvedPostCountActionId: null,
-  approvedPostCountLabel: null,
   description: null,
   title: null,
 };
