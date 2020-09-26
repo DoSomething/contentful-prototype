@@ -1,15 +1,19 @@
 import React from 'react';
 
 import ErrorPage from '../../ErrorPage';
+import Card from '../../../utilities/Card/Card';
 import { featureFlag } from '../../../../helpers';
 import ArticleHeader from '../../../utilities/ArticleHeader';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import { getReferFriendsLink } from '../../../../helpers/refer-friends';
-import SocialDriveAction from '../../../actions/SocialDriveAction/SocialDriveAction';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
+import ShortLinkShareContainer from '../../../utilities/ShortLinkShare/ShortLinkShareContainer';
 
 const AlphaPage = () => {
   const referralIncentive = featureFlag('refer_friends_incentive');
+  const description = referralIncentive
+    ? "Invite your friends to join DoSomething. When your friend signs up for this campaign, you'll both enter for a chance to win a $10 gift card! Every 2 weeks, we’ll randomly select 25 winners. The more friends you refer, the more chances you have to win. (P.S. There’s no limit on how many friends you can refer!)"
+    : "Share the link below with a friend and invite them to sign up for their first DoSomething campaign! Let's Do This.";
 
   return getReferFriendsLink() ? (
     <>
@@ -26,16 +30,15 @@ const AlphaPage = () => {
           />
 
           <div className="my-6">
-            <SocialDriveAction
-              description={`${
-                referralIncentive
-                  ? "Invite your friends to join DoSomething. When your friend signs up for this campaign, you'll both enter for a chance to win a $10 gift card! Every 2 weeks, we’ll randomly select 25 winners. The more friends you refer, the more chances you have to win. (P.S. There’s no limit on how many friends you can refer!)"
-                  : "Share the link below with a friend and invite them to sign up for their first DoSomething campaign! Let's Do This."
-              }`}
-              title="Refer A Friend!"
-              link={getReferFriendsLink()}
-              fullWidth
-            />
+            <div className="clearfix pb-6 lg:flex">
+              <Card className="rounded bordered" title="Refer A Friend!">
+                <div className="p-3">
+                  <p>{description}</p>
+                </div>
+
+                <ShortLinkShareContainer link={getReferFriendsLink()} />
+              </Card>
+            </div>
           </div>
 
           <h3>FAQ</h3>
