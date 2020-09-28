@@ -78,6 +78,8 @@ We share an instance of this Voter Widget on behalf The Movement Cooperative, wh
 
 ![Content Block - CivicEngineVoterWidget footerType](../../.gitbook/assets/request-ballot-block.png)
 
+-   Note: For the 2018 election, we used a `PollLocator` component which linked to the Voting Information Project. In 2020, we'll instead be using the CivicEngine Voter Widget as a polling locator, so the `PollLocator` component was removed in [#2373](https://github.com/DoSomething/phoenix-next/pull/2373).
+
 ### Start Voter Registration Form
 
 The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the [Voter Registration Drive Page](#voter-registration-drive-page) and the [Quiz Result Page](#quiz-result-page) components.
