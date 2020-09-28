@@ -70,11 +70,13 @@ We host customized voter registration drives for influencers on our Instapage, b
 
 ## Utilities
 
-### Request Ballot Block
+### CivicEngine Voter Widget
 
-A [CivicEngine Voting Widget](https://developers.civicengine.com/docs/widget/) can be embedded in the footer of a [`ContentBlock`](development/content-types/voter-registration-drive-action.md#content-type-fields) to allow a user to begin the process of requesting a mail-in ballot by entering their address. Upon submitting their address, the user is redirected to the CivicEngine website to complete requesting a ballot.
+A [CivicEngine Voter Widget](https://developers.civicengine.com/docs/widget/) can be embedded in the footer of a [`ContentBlock`](development/content-types/voter-registration-drive-action.md#content-type-fields).
 
-![Content Block - RequestBallotBlock footerType](../../.gitbook/assets/request-ballot-block.png)
+We share an instance of this Voter Widget on behalf The Movement Cooperative, who control its configuration. The Voter Widget will display a form to enter your address to a mail-in ballot until October 10, 2020. After October 10, it will display to enter your address to find your polling location.
+
+![Content Block - CivicEngineVoterWidget footerType](../../.gitbook/assets/request-ballot-block.png)
 
 ### Start Voter Registration Form
 
