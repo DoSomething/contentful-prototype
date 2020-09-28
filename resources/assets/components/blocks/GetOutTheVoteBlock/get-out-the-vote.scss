@@ -1,5 +1,8 @@
+@import '../../../scss/next-toolbox.scss';
+
 .switch {
     width: 90px;
+    position: relative;
 }
 
 .switch input {
@@ -20,8 +23,8 @@
     content: '';
     height: 26px;
     width: 26px;
-    left: 4px;
-    bottom: 4px;
+    left: 5px;
+    bottom: 2px;
     background-color: white;
     -webkit-transition: 0.4s;
     transition: 0.4s;
@@ -36,12 +39,8 @@
     border-radius: 50%;
 }
 
-input:checked + .slider {
-    background-color: #2196f3;
-}
-
 input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
-    transform: translateX(50px);
+    transform: translateX(26px);
 }
