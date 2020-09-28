@@ -72,7 +72,7 @@ We host customized voter registration drives for influencers on our Instapage, b
 
 ### CivicEngine Voter Widget
 
-A [CivicEngine Voter Widget](https://developers.civicengine.com/docs/widget/) can be embedded in the footer of a [`ContentBlock`](development/content-types/voter-registration-drive-action.md#content-type-fields).
+A [CivicEngine Voter Widget](https://developers.civicengine.com/docs/widget/) can be embedded in the footer of a [`ContentBlock`](development/content-types/content-block.md#content-type-fields).
 
 We share an instance of this Voter Widget on behalf The Movement Cooperative, who control its configuration. The Voter Widget will display a form to enter your address to a mail-in ballot until October 10, 2020. After October 10, it will display to enter your address to find your polling location.
 
