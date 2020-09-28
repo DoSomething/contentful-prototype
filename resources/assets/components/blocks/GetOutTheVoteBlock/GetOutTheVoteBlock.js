@@ -30,7 +30,7 @@ const GetOutTheVoteBlock = () => (
             background-repeat: no-repeat;
             background-size: cover;
           `}
-          className="md:w-1/2 p-6 mb-6 md:mb-0 md:mr-3"
+          className="md:w-1/2 p-6 mb-6 md:mb-0 md:mr-3 flex items-center"
         >
           <div className="bg-white bg-opacity-25 border border-solid border-gray-300 p-3">
             <h3 className="italic text-base">Conversation Starters</h3>
