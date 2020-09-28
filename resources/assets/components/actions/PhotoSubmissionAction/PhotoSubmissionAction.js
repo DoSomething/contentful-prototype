@@ -405,7 +405,7 @@ class PhotoSubmissionAction extends PostForm {
                           {quantity ? (
                             <div className="quantity-display py-3">
                               <span className="block font-bold leading-none mb-2 text-base text-gray-600 uppercase">
-                                total items
+                                Total Items - Current
                               </span>
 
                               <span
@@ -423,7 +423,7 @@ class PhotoSubmissionAction extends PostForm {
                             htmlFor="quantity"
                           >
                             {quantity
-                              ? 'You can enter your new total here:'
+                              ? 'Total Items - Updated'
                               : this.props.quantityFieldLabel}
                           </label>
 
@@ -440,6 +440,12 @@ class PhotoSubmissionAction extends PostForm {
                             required
                             min={Number(quantity) + 1}
                           />
+                          <p className="text-sm text-gray-600">
+                            This is the total items number above plus the new
+                            number you are adding. For instance, if you
+                            currently have 1 total item and are adding 1 more,
+                            you would enter 2 here.
+                          </p>
                         </div>
                       ) : null}
 
