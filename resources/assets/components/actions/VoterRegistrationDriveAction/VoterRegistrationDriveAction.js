@@ -1,6 +1,7 @@
-import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import {
@@ -8,28 +9,25 @@ import {
   getCampaignSignupQueryVariables,
 } from '../../../helpers/campaign';
 import QueryOptions from './QueryOptions';
+import Card from '../../utilities/Card/Card';
 import { PHOENIX_URL } from '../../../constants';
 import { appendToQuery } from '../../../helpers';
 import { getUserId } from '../../../helpers/auth';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
-import SocialDriveActionContainer from '../SocialDriveAction/SocialDriveActionContainer';
+import PreviewImage from './voter-registration-drive-page.png';
+import ShortLinkShareContainer from '../../utilities/ShortLinkShare/ShortLinkShareContainer';
 
 export const VoterRegistrationDriveBlockFragment = gql`
   fragment VoterRegistrationDriveBlockFragment on VoterRegistrationDriveBlock {
-    approvedPostCountActionId
-    approvedPostCountLabel
     description
     title
   }
 `;
 
-const VoterRegistrationDriveAction = ({
-  approvedPostCountActionId,
-  approvedPostCountLabel,
-  description,
-  title,
-}) => {
+const VoterRegistrationDriveAction = ({ description, title }) => {
+  const [previewUrl, setPreviewUrl] = useState(null);
+
   const { loading, error, data } = useQuery(CAMPAIGN_SIGNUP_QUERY, {
     variables: getCampaignSignupQueryVariables(),
   });
@@ -50,34 +48,73 @@ const VoterRegistrationDriveAction = ({
   }
 
   return (
-    <SocialDriveActionContainer
-      approvedPostCountActionId={approvedPostCountActionId}
-      approvedPostCountLabel={
-        approvedPostCountLabel || 'Total scholarship entries'
-      }
-      link={
-        appendToQuery(
-          queryParams,
-          `${PHOENIX_URL}/us/my-voter-registration-drive`,
-        ).href
-      }
-      queryOptions={<QueryOptions />}
-      description={description}
-      title={title}
-    />
+    <div className="clearfix pb-6">
+      <Card
+        className="rounded bordered"
+        title={title}
+        attributes={{ 'data-testid': 'voter-registration-drive-action-card' }}
+      >
+        <div className="lg:flex">
+          <div className="lg:w-2/3">
+            {description ? (
+              <p
+                className="p-3"
+                data-testid="voter-registration-drive-action-description"
+              >
+                {description}
+              </p>
+            ) : null}
+
+            <ShortLinkShareContainer
+              link={
+                appendToQuery(
+                  queryParams,
+                  `${PHOENIX_URL}/us/my-voter-registration-drive`,
+                ).href
+              }
+              onChange={url => setPreviewUrl(url)}
+              queryOptions={<QueryOptions />}
+            />
+          </div>
+
+          <div className="m-4 lg:w-1/3 lg:my-8 lg:ml-16 lg:mr-24">
+            <a
+              data-testid="voter-registration-drive-action-preview-image"
+              href={previewUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                css={css`
+                  height: 462px;
+                `}
+                src={PreviewImage}
+                alt="Custom page preview"
+              />
+            </a>
+
+            <a
+              className="block mt-4 font-normal underline text-blurple-500"
+              data-testid="voter-registration-drive-action-preview-label"
+              href={previewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Preview your custom page
+            </a>
+          </div>
+        </div>
+      </Card>
+    </div>
   );
 };
 
 VoterRegistrationDriveAction.propTypes = {
-  approvedPostCountActionId: PropTypes.number,
-  approvedPostCountLabel: PropTypes.string,
   description: PropTypes.string,
   title: PropTypes.string,
 };
 
 VoterRegistrationDriveAction.defaultProps = {
-  approvedPostCountActionId: null,
-  approvedPostCountLabel: null,
   description: null,
   title: null,
 };

@@ -1,0 +1,38 @@
+@import '../../../scss/next-toolbox.scss';
+
+.short-link-share {
+    .link-area {
+        @include media($large) {
+            display: flex;
+        }
+
+        .link-bar {
+            display: flex;
+            flex: 1;
+
+            .link {
+                padding: 8px;
+                color: $dark-gray;
+                overflow: scroll;
+                padding-right: 0;
+                white-space: nowrap;
+                border-radius: 4px 0 0 4px;
+                border-right: 0;
+            }
+
+            .link-copy-button {
+                background-color: theme('colors.blurple.500');
+                display: flex;
+                max-width: 162px;
+                border-radius: 0 4px 4px 0;
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    background-color: theme('colors.blurple.300');
+                }
+            }
+        }
+    }
+}

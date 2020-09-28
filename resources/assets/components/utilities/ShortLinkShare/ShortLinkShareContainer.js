@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import SocialDriveAction from './SocialDriveAction';
+import ShortLinkShare from './ShortLinkShare';
 import { getUserId } from '../../../selectors/user';
 
 /**
@@ -14,4 +14,4 @@ const mapStateToProps = state => ({
 });
 
 // Export the container component.
-export default connect(mapStateToProps)(SocialDriveAction);
+export default connect(mapStateToProps)(ShortLinkShare);

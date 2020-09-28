@@ -5,8 +5,8 @@ import { featureFlag } from '../../../../helpers';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 import { getReferFriendsLink } from '../../../../helpers/refer-friends';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
+import SocialDriveAction from '../../../actions/SocialDriveAction/SocialDriveAction';
 import SignupReferralsBlock from '../../../blocks/SignupReferralsBlock/SignupReferralsBlock';
-import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const Details = tw.details`pb-4`;
 const Summary = tw.summary`font-bold text-base cursor-pointer`;
@@ -36,7 +36,7 @@ const ReferFriendsTab = () => {
           }
         />
 
-        <SocialDriveActionContainer
+        <SocialDriveAction
           title="Refer a friend!"
           description={
             referralIncentive
