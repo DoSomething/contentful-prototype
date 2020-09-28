@@ -16,11 +16,7 @@ export const SocialDriveBlockFragment = gql`
 const SocialDriveAction = ({ description, link, title }) => (
   <div className="clearfix pb-6 lg:flex lg:w-2/3 lg:pr-3">
     <Card className="rounded bordered" title={title}>
-      {description ? (
-        <div className="p-3">
-          <p>{description}</p>
-        </div>
-      ) : null}
+      {description ? <p className="p-3">{description}</p> : null}
 
       <ShortLinkShareContainer link={link} />
     </Card>

@@ -57,12 +57,12 @@ const VoterRegistrationDriveAction = ({ description, title }) => {
         <div className="lg:flex">
           <div className="lg:w-2/3">
             {description ? (
-              <div
+              <p
                 className="p-3"
                 data-testid="voter-registration-drive-action-description"
               >
-                <p>{description}</p>
-              </div>
+                {description}
+              </p>
             ) : null}
 
             <ShortLinkShareContainer
