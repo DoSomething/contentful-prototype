@@ -90,6 +90,8 @@ const App = ({ store, history }) => {
 
               <Route path="/us/blocks/:id" component={BlockPage} />
 
+              <Route path="/us/posts/:post_id" component={ShowPostPage} />
+
               {featureFlag('dynamic_explore_campaigns') ? (
                 <Route
                   exact
