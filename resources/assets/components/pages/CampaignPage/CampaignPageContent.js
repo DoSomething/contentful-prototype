@@ -58,7 +58,6 @@ const CampaignPageContent = props => {
                 PostGalleryBlock: wideSpan,
                 PhotoSubmissionBlock: wideSpan,
                 QuizBlock: wideSpan,
-                SocialDriveBlock: wideSpan,
                 VoterRegistrationDriveBlock: wideSpan,
                 VoterRegistrationReferralsBlock: wideSpan,
               }}
