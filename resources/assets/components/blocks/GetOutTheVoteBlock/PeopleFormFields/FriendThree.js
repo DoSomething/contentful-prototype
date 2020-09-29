@@ -22,11 +22,11 @@ const FriendThree = () => {
       </div>
 
       <div className="w-full md:w-3/5 flex justify-around py-6 md:py-0">
-        <label htmlFor="voting-location-friend-2-in-person">
+        <label htmlFor="voting-location-friend-3-in-person">
           <input
-            id="voting-location-friend-2-in-person"
+            id="voting-location-friend-3-in-person"
             className="mr-2 md:mr-4"
-            name="in-person"
+            name="in-person-3"
             type="radio"
             aria-label="voting-location"
             onClick={handleVotingChoiceFriendThree}
@@ -34,11 +34,11 @@ const FriendThree = () => {
           />
           Voting in-person
         </label>
-        <label htmlFor="voting-location-friend-2-by-mail">
+        <label htmlFor="voting-location-friend-3-by-mail">
           <input
-            id="voting-location-friend-2-by-mail"
+            id="voting-location-friend-3-by-mail"
             className="mr-2 md:mr-4"
-            name="mail"
+            name="mail-3"
             type="radio"
             aria-label="voting-location"
             onClick={handleVotingChoiceFriendThree}
