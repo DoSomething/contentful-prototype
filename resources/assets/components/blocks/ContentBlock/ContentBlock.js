@@ -69,7 +69,7 @@ const ContentBlock = ({
               and thus the content width is confined to accommodate the image, whereas on 'Campaign Pages', we assign
               *extra* overlaying row space to Content Blocks, allowing the image to just optionally display within the extra space.
             */
-            'col-span-3': !image.url && fullWidth,
+            'col-span-3': (!image.url && fullWidth) || footerType,
           })}
         >
           {contentNode}

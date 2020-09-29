@@ -1,11 +1,13 @@
 import React from 'react';
+import { css } from '@emotion/core';
 
 import Embed from '../../utilities/Embed/Embed';
+import starterTextBackground from './VoteExplosion.png';
 import WhoAreYourPeopleForm from './WhoAreYourPeopleForm';
 
 const GetOutTheVoteBlock = () => (
-  <div className="md:bg-blurple-500 grid-wide md:p-6">
-    <div className="bg-white border border-solid border-gray-300 p-3 rounded md:rounded-none">
+  <div className="md:bg-blurple-500 grid-wide py-6 my-6 md:p-6">
+    <div className="bg-white border border-solid border-gray-300 px-5 py-6 rounded md:rounded-none">
       <h2 className="text-base uppercase">Your Friends</h2>
 
       <p className="text-sm">
@@ -20,8 +22,16 @@ const GetOutTheVoteBlock = () => (
         Resource links & conversation starters to get the dialog flowing!
       </p>
 
-      <div className="md:flex">
-        <div className="md:w-1/2 bg-blurple-500 p-6">
+      <div className="md:flex py-6">
+        <div
+          css={css`
+            background-image: url(${starterTextBackground});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+          `}
+          className="md:w-1/2 p-6 mb-6 md:mb-0 md:mr-3 flex items-center"
+        >
           <div className="bg-white bg-opacity-25 border border-solid border-gray-300 p-3">
             <h3 className="italic text-base">Conversation Starters</h3>
             “Hey! Election Day (Tuesday, Nov. 3) is coming up soon, so I wanted
@@ -31,7 +41,10 @@ const GetOutTheVoteBlock = () => (
         </div>
 
         <div className="md:w-1/2">
-          <Embed url="https://www.dosomething.org/us/about/easy-scholarships" />
+          <Embed
+            className="mb-6"
+            url="https://www.dosomething.org/us/about/easy-scholarships"
+          />
           <Embed url="https://www.dosomething.org/us/about/easy-scholarships" />
         </div>
       </div>
