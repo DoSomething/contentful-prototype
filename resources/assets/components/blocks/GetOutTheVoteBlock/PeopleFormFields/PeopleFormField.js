@@ -5,8 +5,9 @@ import classnames from 'classnames';
 const PeopleFormField = ({ row }) => {
   return (
     <div
-      className={classnames('md:flex md:items-center md:py-6', {
+      className={classnames('md:flex md:items-center md:pb-6', {
         'border-b border-gray-400 border-solid': row < 3,
+        'pt-6 md:py-6': row > 1,
       })}
     >
       <div className="md:w-2/5">
