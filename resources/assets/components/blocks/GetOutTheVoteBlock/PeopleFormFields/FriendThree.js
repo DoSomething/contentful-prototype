@@ -26,7 +26,8 @@ const FriendThree = () => {
           <input
             id="voting-location-friend-3-in-person"
             className="mr-2 md:mr-4"
-            name="in-person-3"
+            name="voter-method-3"
+            value="in-person-3"
             type="radio"
             aria-label="voting-location"
             onClick={handleVotingChoiceFriendThree}
@@ -38,7 +39,8 @@ const FriendThree = () => {
           <input
             id="voting-location-friend-3-by-mail"
             className="mr-2 md:mr-4"
-            name="mail-3"
+            name="voter-method-3"
+            value="mail-3"
             type="radio"
             aria-label="voting-location"
             onClick={handleVotingChoiceFriendThree}

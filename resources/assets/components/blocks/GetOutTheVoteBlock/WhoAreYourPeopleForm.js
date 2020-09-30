@@ -1,17 +1,13 @@
 import React from 'react';
 
-import FriendOne from './PeopleFormFields/FriendOne';
-import FriendTwo from './PeopleFormFields/FriendTwo';
-import FriendThree from './PeopleFormFields/FriendThree';
+import PeopleFormField from './PeopleFormFields/PeopleFormField';
 
 const WhoAreYourPeopleForm = () => {
   return (
     <form className="py-6">
-      <FriendOne />
-
-      <FriendTwo />
-
-      <FriendThree />
+      {[0, 1, 2].map(index => (
+        <PeopleFormField key={index} row={index + 1} />
+      ))}
     </form>
   );
 };
