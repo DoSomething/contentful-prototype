@@ -15,7 +15,7 @@ Displays supertitle, title, copy, and image. Commonly used to list steps in a ca
 -   **Image** _(optional)_: An accompanying image displayed alongside the content.
 -   **Image Alignment** _(optional)_: Controls whether to render the image to the right or left of the content (defaults to right).
 -   **Additional Content _(optional)_**: A JSON field, with properties:
-    -   `footerType`: Valid values: `GetOutTheVoteBlock`, [`RequestBallotBlock`](development/features/voter-registration.md#request-ballot-block)
+    -   `footerType`: Valid values: `GetOutTheVoteBlock`, [`CivicEngineVoterWidget`](development/features/voter-registration.md#civicengine-voter-widget)
 
 ## Content Width Span
 
