@@ -16,6 +16,7 @@ import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
 import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
+import ShowSubmissionPage from './pages/ShowSubmissionPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import { getTrackingSource } from '../helpers/voter-registration';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
@@ -90,7 +91,7 @@ const App = ({ store, history }) => {
 
               <Route path="/us/blocks/:id" component={BlockPage} />
 
-              <Route path="/us/posts/:post_id" component={ShowPostPage} />
+              <Route path="/us/posts/:post_id" component={ShowSubmissionPage} />
 
               {featureFlag('dynamic_explore_campaigns') ? (
                 <Route
