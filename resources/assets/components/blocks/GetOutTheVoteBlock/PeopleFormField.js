@@ -11,11 +11,10 @@ const PeopleFormField = ({ row }) => {
   // const [friendVotingMethod, setFriendVothingMethod] = useState('');
   const handleNameChange = event => {
     setFriendName(event.target.value);
-    console.log(friendName);
     const storedValue = get(`VotingMethodInfo_${row}`, 'object');
     console.log(storedValue);
     set(`VotingMethodInfo_${row}`, 'object', {
-      name: friendName || event.target.value,
+      name: event.target.value,
     });
   };
   return (
