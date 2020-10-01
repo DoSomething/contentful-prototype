@@ -15,6 +15,7 @@ const PAGINATED_ACTION_STATS_QUERY = gql`
   query PaginatedActionStatsQuery(
     $actionId: Int
     $cursor: String
+    $groupTypeId: Int
     $location: String
     $schoolId: String
   ) {
@@ -22,6 +23,7 @@ const PAGINATED_ACTION_STATS_QUERY = gql`
       actionId: $actionId
       after: $cursor
       first: 10
+      groupTypeId: $groupTypeId
       location: $location
       orderBy: "impact,desc"
       schoolId: $schoolId
@@ -52,8 +54,17 @@ const Table = tw.table`w-full border border-solid border-gray-200`;
 const TableHeader = tw.thead`bg-blurple-500 font-bold p-4 pr-6 text-left text-white w-full`;
 const TableCell = tw.td`p-2 text-sm md:text-base`;
 
-const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
+const ActionStatsTable = ({
+  actionId,
+  groupTypeId,
+  schoolId,
+  schoolLocation,
+}) => {
   const variables = { actionId };
+
+  if (groupTypeId) {
+    assign(variables, { groupTypeId });
+  }
 
   if (schoolLocation) {
     assign(variables, { location: schoolLocation });
@@ -187,11 +198,13 @@ const ActionStatsTable = ({ actionId, schoolId, schoolLocation }) => {
 
 ActionStatsTable.propTypes = {
   actionId: PropTypes.number.isRequired,
+  groupTypeId: PropTypes.number,
   schoolId: PropTypes.string,
   schoolLocation: PropTypes.string,
 };
 
 ActionStatsTable.defaultProps = {
+  groupTypeId: null,
   schoolId: null,
   schoolLocation: null,
 };

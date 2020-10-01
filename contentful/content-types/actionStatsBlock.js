@@ -36,6 +36,15 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
+  actionStatsBlock
+    .createField('groupTypeId')
+    .name('Group Type ID')
+    .type('Integer')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
   actionStatsBlock.changeFieldControl(
     'internalTitle',
     'builtin',
@@ -46,4 +55,14 @@ module.exports = function(migration) {
   actionStatsBlock.changeFieldControl('actionId', 'builtin', 'numberEditor', {
     helpText: 'The Rogue Action ID to display a leaderboard for.',
   });
+
+  actionStatsBlock.changeFieldControl(
+    'groupTypeId',
+    'builtin',
+    'numberEditor',
+    {
+      helpText:
+        'If set, filters stats to only show schools that have groups in this group type. See https://activity.dosomething.org/groups for list of group types.',
+    },
+  );
 };

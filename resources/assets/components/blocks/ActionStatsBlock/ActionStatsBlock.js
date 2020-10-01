@@ -10,16 +10,20 @@ import SchoolLocationSelect from '../../utilities/UsaStateSelect';
 export const ActionStatsBlockFragment = gql`
   fragment ActionStatsBlockFragment on ActionStatsBlock {
     filterByActionId: actionId
+    filterByGroupTypeId: groupTypeId
   }
 `;
 
-const ActionStatsBlock = ({ filterByActionId }) => {
+const ActionStatsBlock = ({ filterByActionId, filterByGroupTypeId }) => {
   const [schoolId, setSchoolId] = useState(null);
   const [schoolLocation, setSchoolLocation] = useState(null);
 
   return (
     <>
-      <ActionStatsLeaderboard actionId={filterByActionId} />
+      <ActionStatsLeaderboard
+        actionId={filterByActionId}
+        groupTypeId={filterByGroupTypeId}
+      />
 
       <div className="flex bg-gray-100 flex-wrap py-8 px-4 md:px-20 lg:px-4 border border-solid border-gray-200">
         <div className="w-full lg:w-1/5">
@@ -48,6 +52,7 @@ const ActionStatsBlock = ({ filterByActionId }) => {
 
       <ActionStatsTable
         actionId={filterByActionId}
+        groupTypeId={filterByGroupTypeId}
         schoolId={schoolId}
         schoolLocation={schoolLocation}
       />
@@ -57,6 +62,11 @@ const ActionStatsBlock = ({ filterByActionId }) => {
 
 ActionStatsBlock.propTypes = {
   filterByActionId: PropTypes.number.isRequired,
+  filterByGroupTypeId: PropTypes.number,
+};
+
+ActionStatsBlock.defaultProps = {
+  filterByGroupTypeId: null,
 };
 
 export default ActionStatsBlock;

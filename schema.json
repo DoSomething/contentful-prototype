@@ -71,6 +71,33 @@
             "deprecationReason": null
           },
           {
+            "name": "locationVotingInformation",
+            "description": "Get voting information by location.",
+            "args": [
+              {
+                "name": "location",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "LocationVotingInformation",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "embed",
             "description": null,
             "args": [
@@ -1190,6 +1217,16 @@
                 "defaultValue": null
               },
               {
+                "name": "groupTypeId",
+                "description": "The Group Type ID to filter action stats by.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "page",
                 "description": "The page of results to return.",
                 "type": {
@@ -1211,13 +1248,13 @@
               },
               {
                 "name": "orderBy",
-                "description": "How to order the results (e.g. 'id,desc').",
+                "description": "How to order the results (e.g. 'impact,desc').",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"id,desc\""
+                "defaultValue": "\"impact,desc\""
               }
             ],
             "type": {
@@ -1267,6 +1304,16 @@
                 "defaultValue": null
               },
               {
+                "name": "groupTypeId",
+                "description": "The Group Type ID to filter action stats by.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "first",
                 "description": "Get the first N results.",
                 "type": {
@@ -1294,7 +1341,7 @@
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"id,desc\""
+                "defaultValue": "\"impact,desc\""
               }
             ],
             "type": {
@@ -4710,6 +4757,121 @@
                 "name": "Boolean",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LocationVotingInformation",
+        "description": "A set of voting information for a location.",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The unique ID of this location voting information record.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "location",
+            "description": "The ISO-3166-2 location this voting information is for.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "voterRegistrationDeadline",
+            "description": "The deadline for voter registration, e.g. 10/31",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "earlyVotingStarts",
+            "description": "The start date for early voting, e.g. 10/5",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "earlyVotingEnds",
+            "description": "The end date for early voting, e.g. 10/20",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "absenteeBallotRequestDeadline",
+            "description": "The deadline for requesting an absentee ballot, e.g. 9/14",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "absenteeBallotReturnDeadline",
+            "description": "The deadline for returning an absentee ballot, e.g. 9/27",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "absenteeBallotReturnDeadlineType",
+            "description": "The type of deadline for returning an absentee ballot, e.g. received by, postmarked by",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10927,6 +11089,18 @@
                 "name": "Int",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupTypeId",
+            "description": "The group type ID to filter stats by.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
