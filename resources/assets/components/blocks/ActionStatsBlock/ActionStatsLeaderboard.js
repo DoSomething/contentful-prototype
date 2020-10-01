@@ -1,8 +1,8 @@
 import React from 'react';
-import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { assign, get } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
@@ -41,7 +41,7 @@ const ActionStatsLeaderboard = ({ actionId, count, groupTypeId }) => {
   };
 
   if (groupTypeId) {
-    variables.groupTypeId = groupTypeId;
+    assign(variables, { groupTypeId });
   }
 
   const { loading, data, error } = useQuery(SCHOOL_ACTION_STATS_LEADER_QUERY, {
