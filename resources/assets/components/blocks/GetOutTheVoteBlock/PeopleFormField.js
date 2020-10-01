@@ -25,7 +25,7 @@ const PeopleFormField = ({ row }) => {
             name={`voter-method-${row}`}
             value="in-person"
             type="radio"
-            aria-label="voting-method"
+            aria-label="voter-method"
           />
           Voting in-person
         </label>
@@ -36,7 +36,7 @@ const PeopleFormField = ({ row }) => {
             name={`voter-method-${row}`}
             value="mail"
             type="radio"
-            aria-label="voting-method"
+            aria-label="voter-method"
           />
           Voting by Mail
         </label>
