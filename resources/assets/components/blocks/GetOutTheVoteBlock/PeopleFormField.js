@@ -15,7 +15,7 @@ const PeopleFormField = ({ row }) => {
     const storedValue = get(`VotingMethodInfo_${row}`, 'object');
     console.log(storedValue);
     set(`VotingMethodInfo_${row}`, 'object', {
-      name: friendName,
+      name: friendName || event.target.value,
     });
   };
   return (
