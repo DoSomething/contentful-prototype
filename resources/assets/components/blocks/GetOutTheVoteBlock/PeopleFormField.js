@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import { get, set } from '../../../helpers/storage';
+
 const PeopleFormField = ({ row }) => {
+  const friend = get(`VotingMethodInfo_${row}`, 'object');
+  const nameValue = friend ? friend.name : '';
+  const [friendName, setFriendName] = useState(nameValue);
+  // const [friendVotingMethod, setFriendVothingMethod] = useState('');
+  const handleNameChange = event => {
+    setFriendName(event.target.value);
+    console.log(friendName);
+    const storedValue = get(`VotingMethodInfo_${row}`, 'object');
+    console.log(storedValue);
+    set(`VotingMethodInfo_${row}`, 'object', {
+      name: friendName,
+    });
+  };
   return (
     <div
       className={classnames('md:flex md:items-center md:pb-6', {
@@ -15,6 +30,8 @@ const PeopleFormField = ({ row }) => {
           className="w-full border border-dashed rounded border-gray-600 p-3"
           type="text"
           placeholder="Friend's First Name"
+          value={friendName}
+          onChange={handleNameChange}
         />
       </div>
 
