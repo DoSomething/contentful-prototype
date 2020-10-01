@@ -8,13 +8,15 @@ const PeopleFormField = ({ row }) => {
   const friend = get(`VotingMethodInfo_${row}`, 'object');
   const nameValue = friend ? friend.name : '';
   const [friendName, setFriendName] = useState(nameValue);
-  // const [friendVotingMethod, setFriendVothingMethod] = useState('');
   const handleNameChange = event => {
     setFriendName(event.target.value);
-    const storedValue = get(`VotingMethodInfo_${row}`, 'object');
-    console.log(storedValue);
     set(`VotingMethodInfo_${row}`, 'object', {
       name: event.target.value,
+    });
+  };
+  const handleMethodClick = event => {
+    set(`VotingMethodInfo_${row}`, 'object', {
+      votingMethod: event.target.value,
     });
   };
   return (
@@ -42,6 +44,7 @@ const PeopleFormField = ({ row }) => {
             value="in-person"
             type="radio"
             aria-label="voting-method"
+            onClick={handleMethodClick}
           />
           Voting in-person
         </label>
@@ -53,6 +56,7 @@ const PeopleFormField = ({ row }) => {
             value="mail"
             type="radio"
             aria-label="voting-method"
+            onClick={handleMethodClick}
           />
           Voting by Mail
         </label>
