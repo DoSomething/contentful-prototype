@@ -2,8 +2,8 @@ import React from 'react';
 import { css } from '@emotion/core';
 
 import Embed from '../../utilities/Embed/Embed';
+import PeopleFormField from './PeopleFormField';
 import starterTextBackground from './VoteExplosion.png';
-import WhoAreYourPeopleForm from './WhoAreYourPeopleForm';
 
 const GetOutTheVoteBlock = () => (
   <div className="md:bg-blurple-500 grid-wide py-6 my-6 md:p-6">
@@ -14,7 +14,11 @@ const GetOutTheVoteBlock = () => (
         (Don’t worry, we don’t save any info about your friends)
       </p>
 
-      <WhoAreYourPeopleForm />
+      <form className="py-6">
+        {[0, 1, 2].map(index => (
+          <PeopleFormField key={index} row={index + 1} />
+        ))}
+      </form>
 
       <h2 className="text-base uppercase">Voter Resources</h2>
 
