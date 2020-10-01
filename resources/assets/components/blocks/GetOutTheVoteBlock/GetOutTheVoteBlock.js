@@ -47,9 +47,9 @@ const GetOutTheVoteBlock = () => (
         <div className="md:w-1/2">
           <Embed
             className="mb-6"
-            url="https://www.dosomething.org/us/about/easy-scholarships"
+            url=" https://vote-absentee.com/?utm_source=DST"
           />
-          <Embed url="https://www.dosomething.org/us/about/easy-scholarships" />
+          <Embed url="https://www.vote.org/polling-place-locator/" />
         </div>
       </div>
     </div>
