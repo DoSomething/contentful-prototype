@@ -19,24 +19,24 @@ const PeopleFormField = ({ row }) => {
       </div>
 
       <div className="w-full md:w-3/5 flex justify-around py-6 md:py-0">
-        <label htmlFor={`voter-method-${row}`}>
+        <label htmlFor={`voting-method-${row}`}>
           <input
             className="mr-2 md:mr-4"
-            name={`voter-method-${row}`}
+            name={`voting-method-${row}`}
             value="in-person"
             type="radio"
-            aria-label="voter-method"
+            aria-label="voting-method"
           />
           Voting in-person
         </label>
 
-        <label htmlFor={`voter-method-${row}`}>
+        <label htmlFor={`voting-method-${row}`}>
           <input
             className="mr-2 md:mr-4"
-            name={`voter-method-${row}`}
+            name={`voting-method-${row}`}
             value="mail"
             type="radio"
-            aria-label="voter-method"
+            aria-label="voting-method"
           />
           Voting by Mail
         </label>
