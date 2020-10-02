@@ -18,6 +18,10 @@ const ActionStatsBlock = ({ filterByActionId, filterByGroupTypeId }) => {
   const [schoolId, setSchoolId] = useState(null);
   const [schoolLocation, setSchoolLocation] = useState(null);
 
+  // Hiding Load More Button as a quick fix until Rogue pagination errors are fixed.
+  // @see https://www.pivotaltracker.com/story/show/175102031
+  const hideLoadMoreButton = true;
+
   return (
     <>
       <ActionStatsLeaderboard
@@ -53,7 +57,7 @@ const ActionStatsBlock = ({ filterByActionId, filterByGroupTypeId }) => {
       <ActionStatsTable
         actionId={filterByActionId}
         groupTypeId={filterByGroupTypeId}
-        hideLoadMoreButton
+        hideLoadMoreButton={hideLoadMoreButton}
         schoolId={schoolId}
         schoolLocation={schoolLocation}
       />
