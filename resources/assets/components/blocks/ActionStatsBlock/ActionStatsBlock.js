@@ -53,6 +53,7 @@ const ActionStatsBlock = ({ filterByActionId, filterByGroupTypeId }) => {
       <ActionStatsTable
         actionId={filterByActionId}
         groupTypeId={filterByGroupTypeId}
+        hideLoadMoreButton
         schoolId={schoolId}
         schoolLocation={schoolLocation}
       />
