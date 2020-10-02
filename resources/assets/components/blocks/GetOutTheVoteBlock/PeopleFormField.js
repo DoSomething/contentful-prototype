@@ -7,18 +7,27 @@ import { get, set } from '../../../helpers/storage';
 const PeopleFormField = ({ row }) => {
   const friend = get(`VotingMethodInfo_${row}`, 'object');
   const nameValue = friend ? friend.name : '';
+  const votingMethod = friend ? friend.votingMethod : '';
+
   const [friendName, setFriendName] = useState(nameValue);
+  const [friendVotingMethod, setFriendVotingMethod] = useState(votingMethod);
+
   const handleNameChange = event => {
     setFriendName(event.target.value);
     set(`VotingMethodInfo_${row}`, 'object', {
       name: event.target.value,
+      votingMethod: friendVotingMethod,
     });
   };
+
   const handleMethodClick = event => {
+    setFriendVotingMethod(event.target.value);
     set(`VotingMethodInfo_${row}`, 'object', {
+      name: friendName,
       votingMethod: event.target.value,
     });
   };
+
   return (
     <div
       className={classnames('md:flex md:items-center md:pb-6', {
@@ -45,6 +54,7 @@ const PeopleFormField = ({ row }) => {
             type="radio"
             aria-label="voting-method"
             onClick={handleMethodClick}
+            checked={friendVotingMethod === 'in-person'}
           />
           Voting in-person
         </label>
@@ -57,6 +67,7 @@ const PeopleFormField = ({ row }) => {
             type="radio"
             aria-label="voting-method"
             onClick={handleMethodClick}
+            checked={friendVotingMethod === 'mail'}
           />
           Voting by Mail
         </label>
