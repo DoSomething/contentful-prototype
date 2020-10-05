@@ -41,3 +41,23 @@ export function getTrackingSource(sourceDetails, referrerUserId, groupId) {
 
   return getUserId() ? `user:${getUserId()},${result}` : result;
 }
+
+/**
+ * Returns boolean indicating whether user's registration status is considered "registered"
+ *
+ * @param {String} userRegistrationStatus
+ */
+export function isRegisteredStatus(userRegistrationStatus) {
+  if (userRegistrationStatus === ('confirmed' || 'uncertain')) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Returns Url to use when checking voter registration status
+ */
+export function getCheckRegistrationStatusURL() {
+  return 'https://am-i-registered-to-vote.org/dosomething/';
+}
