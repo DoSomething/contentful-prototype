@@ -4,11 +4,15 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
-import { isCurrentPathInPaths, query } from '../../../helpers';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
+import { isCurrentPathInPaths, query } from '../../../helpers';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import { excludedPaths, excludedVoterRegistrationStatuses } from './config';
+import {
+  isRegisteredStatus,
+  getCheckRegistrationStatusURL,
+} from '../../../helpers/voter-registration';
 
 const USER_QUERY = gql`
   query UserSitewideBannerQuery($userId: String!) {
@@ -120,6 +124,26 @@ const SitewideBanner = props => {
         cta="Start Now"
         link="/us/account/refer-friends"
         description="Want to build our youth-led movement? Refer a friend!"
+        handleClose={props.handleClose}
+        handleComplete={props.handleComplete}
+      />,
+      target,
+    );
+  }
+
+  if (
+    /**
+     * Checks for auth user and if the user is self reported to be registered to vote,
+     * Display a reminder to check their status
+     */
+    isAuthenticated() &&
+    isRegisteredStatus(userRegistrationStatus)
+  ) {
+    return createPortal(
+      <SitewideBannerContent
+        cta="Get Started"
+        link={getCheckRegistrationStatusURL()}
+        description="1 in 8 voter registrations are invalid. Take 2 minutes to make sure you're registered at your current address."
         handleClose={props.handleClose}
         handleComplete={props.handleComplete}
       />,
