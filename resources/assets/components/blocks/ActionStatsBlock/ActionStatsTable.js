@@ -57,6 +57,7 @@ const TableCell = tw.td`p-2 text-sm md:text-base`;
 const ActionStatsTable = ({
   actionId,
   groupTypeId,
+  hideLoadMoreButton,
   schoolId,
   schoolLocation,
 }) => {
@@ -180,7 +181,7 @@ const ActionStatsTable = ({
           </tr>
         ) : null}
 
-        {hasNextPage ? (
+        {hasNextPage && !hideLoadMoreButton ? (
           <tr>
             <td className="p-3" colSpan={colSpan}>
               <PrimaryButton
@@ -199,12 +200,14 @@ const ActionStatsTable = ({
 ActionStatsTable.propTypes = {
   actionId: PropTypes.number.isRequired,
   groupTypeId: PropTypes.number,
+  hideLoadMoreButton: PropTypes.bool,
   schoolId: PropTypes.string,
   schoolLocation: PropTypes.string,
 };
 
 ActionStatsTable.defaultProps = {
   groupTypeId: null,
+  hideLoadMoreButton: false,
   schoolId: null,
   schoolLocation: null,
 };
