@@ -103,8 +103,7 @@ Route::view('us/collections/{slug}', 'app');
 Route::get('cache/{cacheId}', 'CacheController');
 
 // Posts
-Route::view('us/posts/{id}', 'app')
-->middleware(['auth', 'role:staff,admin']);
+Route::view('us/posts/{id}', 'app');
 
 // Unknown Route Fallback
 // Ensures we run through web middleware when rendering 404 pages.
