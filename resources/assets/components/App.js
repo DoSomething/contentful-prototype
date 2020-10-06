@@ -91,7 +91,12 @@ const App = ({ store, history }) => {
 
               <Route path="/us/blocks/:id" component={BlockPage} />
 
-              <Route path="/us/posts/:post_id" component={ShowSubmissionPage} />
+              {featureFlag('post_confirmation_page') ? (
+                <Route
+                  path="/us/posts/:post_id"
+                  component={ShowSubmissionPage}
+                />
+              ) : null}
 
               {featureFlag('dynamic_explore_campaigns') ? (
                 <Route
