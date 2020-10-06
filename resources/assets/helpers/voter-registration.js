@@ -1,4 +1,5 @@
 import { getUserId } from './auth';
+import { selfReportedVoterRegistrationConfirmedStatuses } from '../components/utilities/SitewideBanner/config';
 
 /**
  * Returns percentage completed and corresponding label.
@@ -48,7 +49,11 @@ export function getTrackingSource(sourceDetails, referrerUserId, groupId) {
  * @param {String} userRegistrationStatus
  */
 export function isRegisteredStatus(userRegistrationStatus) {
-  if (userRegistrationStatus === ('confirmed' || 'uncertain')) {
+  if (
+    selfReportedVoterRegistrationConfirmedStatuses.includes(
+      userRegistrationStatus,
+    )
+  ) {
     return true;
   }
 
