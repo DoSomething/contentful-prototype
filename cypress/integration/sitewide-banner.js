@@ -73,6 +73,31 @@ describe('Site Wide Banner', () => {
     cy.findByTestId('sitewide-banner').should('have.length', 1);
   });
 
+  it('The Site Wide Banner is displayed with custom messaging for users with self reported VR status', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: {
+        groupTypeId: null,
+      },
+    });
+
+    cy.mockGraphqlOp('UserSitewideBannerQuery', {
+      user: {
+        voterRegistrationStatus: 'CONFIRMED',
+      },
+    });
+
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
+
+    cy.findByTestId('sitewide-banner').should('have.length', 1);
+    cy.findByTestId('sitewide-banner-button').should(
+      'have.attr',
+      'href',
+      'https://am-i-registered-to-vote.org/dosomething/',
+    );
+  });
+
   it('The Site Wide Banner is not displayed on the beta voter registration (OVRD) drive page', () => {
     const user = userFactory();
 
