@@ -1,4 +1,5 @@
 import { getUserId } from './auth';
+import { selfReportedVoterRegistrationConfirmedStatuses } from '../components/utilities/SitewideBanner/config';
 
 /**
  * Returns percentage completed and corresponding label.
@@ -40,4 +41,23 @@ export function getTrackingSource(sourceDetails, referrerUserId, groupId) {
   }
 
   return getUserId() ? `user:${getUserId()},${result}` : result;
+}
+
+/**
+ * Returns boolean indicating whether user's registration status is considered "registered"
+ *
+ * @param {String} userRegistrationStatus
+ * @return {Boolean}
+ */
+export function isRegisteredStatus(userRegistrationStatus) {
+  return selfReportedVoterRegistrationConfirmedStatuses.includes(
+    userRegistrationStatus,
+  );
+}
+
+/**
+ * Returns Url to use when checking voter registration status
+ */
+export function getCheckRegistrationStatusURL() {
+  return 'https://am-i-registered-to-vote.org/dosomething/';
 }

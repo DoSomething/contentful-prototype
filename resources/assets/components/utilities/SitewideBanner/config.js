@@ -18,3 +18,8 @@ export const excludedVoterRegistrationStatuses = [
   'INELIGIBLE',
   'REGISTRATION_COMPLETE',
 ];
+
+export const selfReportedVoterRegistrationConfirmedStatuses = [
+  'CONFIRMED',
+  'UNCERTAIN',
+];
