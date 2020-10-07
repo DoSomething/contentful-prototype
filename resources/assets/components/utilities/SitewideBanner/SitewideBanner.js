@@ -142,6 +142,7 @@ const SitewideBanner = props => {
     return createPortal(
       <SitewideBannerContent
         cta="Get Started"
+        contextSource="voter_registration_lookup_tool"
         link={getCheckRegistrationStatusURL()}
         description="1 in 8 voter registrations are invalid. Take 2 minutes to make sure you're registered at your current address."
         handleClose={props.handleClose}

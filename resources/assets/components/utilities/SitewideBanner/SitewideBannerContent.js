@@ -10,6 +10,7 @@ import CloseButton from '../../artifacts/CloseButton/CloseButton';
 
 const SitewideBannerContent = ({
   cta,
+  contextSource,
   description,
   handleClose,
   handleComplete,
@@ -22,7 +23,7 @@ const SitewideBannerContent = ({
       action: 'button_clicked',
       category: EVENT_CATEGORIES.siteAction,
       label: 'sitewide_banner',
-      context: { contextSource: 'voter_registration' },
+      context: { contextSource },
     });
   };
   return (
@@ -58,10 +59,15 @@ const SitewideBannerContent = ({
 
 SitewideBannerContent.propTypes = {
   cta: PropTypes.string.isRequired,
+  contextSource: PropTypes.string,
   description: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
   handleComplete: PropTypes.func.isRequired,
   link: PropTypes.string.isRequired,
+};
+
+SitewideBannerContent.defaultProps = {
+  contextSource: 'voter_registration',
 };
 
 export default SitewideBannerContent;
