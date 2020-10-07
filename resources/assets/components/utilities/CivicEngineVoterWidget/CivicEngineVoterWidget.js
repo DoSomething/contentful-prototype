@@ -11,7 +11,7 @@ import React from 'react';
  */
 const CivicEngineVoterWidget = () => (
   <iframe
-    height="520"
+    height="180"
     src="https://app.requestballot.civicengine.com/w/address?utm_source=DST"
     title="Voter Widget"
     width="100%"
