@@ -47,17 +47,12 @@ export function getTrackingSource(sourceDetails, referrerUserId, groupId) {
  * Returns boolean indicating whether user's registration status is considered "registered"
  *
  * @param {String} userRegistrationStatus
+ * @return {Boolean}
  */
 export function isRegisteredStatus(userRegistrationStatus) {
-  if (
-    selfReportedVoterRegistrationConfirmedStatuses.includes(
-      userRegistrationStatus,
-    )
-  ) {
-    return true;
-  }
-
-  return false;
+  return selfReportedVoterRegistrationConfirmedStatuses.includes(
+    userRegistrationStatus,
+  );
 }
 
 /**

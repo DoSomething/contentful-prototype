@@ -151,7 +151,6 @@ const SitewideBanner = props => {
     );
   }
 
-  console.log(userRegistrationStatus);
   return createPortal(<SitewideBannerContent {...props} />, target);
 };
 
