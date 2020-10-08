@@ -68,9 +68,10 @@ const ContentBlock = ({
               This is necessary on 'General Pages' or in 'Modals' where the overlaying row width is more restricted,
               and thus the content width is confined to accommodate the image, whereas on 'Campaign Pages', we assign
               *extra* overlaying row space to Content Blocks, allowing the image to just optionally display within the extra space.
+
+              Additionally, if a footer is included, the content should span across the full view.
             */
-            'col-span-3':
-              (!image.url && fullWidth) || footerType === 'GetOutTheVoteBlock',
+            'col-span-3': (!image.url && fullWidth) || footerType,
           })}
         >
           {contentNode}
