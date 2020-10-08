@@ -69,8 +69,8 @@ describe('ContentBlock component', () => {
     });
 
     /** @test */
-    /* 
-    // This test is failing with Invariant Violation: Could not find "client" in the context or passed in as an option. Wrap the root component in an <ApolloProvider>, or pass an ApolloClient instance in via options.
+    /*
+    // @TODO: Fix this failing test: Invariant Violation: Could not find "client" in the context or passed in as an option. Wrap the root component in an <ApolloProvider>, or pass an ApolloClient instance in via options.
     test('displays across the full row if footerType is GetOutTheVoteBlock', () => {
       render(<ContentBlock {...props} additionalContent={{ footerType: 'GetOutTheVoteBlock' }} />);
 
