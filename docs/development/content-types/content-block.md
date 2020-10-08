@@ -29,5 +29,11 @@ But for e.g. General Pages where the content width is truncated to accommodate t
 
 The `fullWidth` prop toggles this behavior.
 
+If a `footerType` is set in Additional Content, the content will span across the full row if:
+
+-   The `footerType` is set to `GetOutTheVoteBlock`
+
+-   Or if `footerType` is set to `CivicEngineVoterWidget`, and not rendered on a campaign page (URL does not contain `/us/campaigns/`)
+
 <!-- ## Content Block Gallery Node -->
 <!-- @TODO: Add documentation pertaining to the Content Block rendered as a Gallery Block reference. -->

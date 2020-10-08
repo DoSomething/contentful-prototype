@@ -37,6 +37,11 @@ const ContentBlock = ({
 }) => {
   const contentNode = content ? <TextContent>{content}</TextContent> : null;
   const { footerType } = additionalContent;
+  const fullWidthFooter =
+    footerType === 'GetOutTheVoteBlock' ||
+    // HACK: Only display CivicEngineVoterWidget as full width when not rendered in a campaign page.
+    (footerType === 'CivicEngineVoterWidget' &&
+      !window.location.pathname.includes('/us/campaigns/'));
 
   return (
     <div className={classnames(className, 'pb-6')}>
@@ -69,9 +74,9 @@ const ContentBlock = ({
               and thus the content width is confined to accommodate the image, whereas on 'Campaign Pages', we assign
               *extra* overlaying row space to Content Blocks, allowing the image to just optionally display within the extra space.
 
-              Additionally, if a footer is included, the content should span across the full view.
+              Additionally, if footer should be rendered full width, span content across full view.
             */
-            'col-span-3': (!image.url && fullWidth) || footerType,
+            'col-span-3': (!image.url && fullWidth) || fullWidthFooter,
           })}
         >
           {contentNode}
