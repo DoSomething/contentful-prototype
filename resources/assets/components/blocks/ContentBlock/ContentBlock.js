@@ -37,9 +37,9 @@ const ContentBlock = ({
 }) => {
   const contentNode = content ? <TextContent>{content}</TextContent> : null;
   const { footerType } = additionalContent;
-  // The CivicEngineVoterWidget should only be full width if not rendered on a campaign page.
   const fullWidthFooter =
     footerType === 'GetOutTheVoteBlock' ||
+    // Only display CivicEngineVoterWidget as full width when not rendered in a campaign page.
     (footerType === 'CivicEngineVoterWidget' &&
       !window.location.pathname.includes('/us/campaigns/'));
 

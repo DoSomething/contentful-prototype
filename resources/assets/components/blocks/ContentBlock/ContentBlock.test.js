@@ -69,10 +69,57 @@ describe('ContentBlock component', () => {
     });
 
     /** @test */
+    /* 
+    // This test is failing with Invariant Violation: Could not find "client" in the context or passed in as an option. Wrap the root component in an <ApolloProvider>, or pass an ApolloClient instance in via options.
+    test('displays across the full row if footerType is GetOutTheVoteBlock', () => {
+      render(<ContentBlock {...props} additionalContent={{ footerType: 'GetOutTheVoteBlock' }} />);
+
+      expect(screen.getByTestId('content-block-content').className).toContain(
+        'col-span-3',
+      );
+    });
+    */
+
+    /** @test */
+    test('displays across the full row if footerType is CivicEngineVoterWidget', () => {
+      render(
+        <ContentBlock
+          {...props}
+          additionalContent={{ footerType: 'CivicEngineVoterWidget' }}
+        />,
+      );
+
+      expect(screen.getByTestId('content-block-content').className).toContain(
+        'col-span-3',
+      );
+    });
+
+    /** @test */
+    test('displays across two-thirds of the row if footerType is CivicEngineVoterWidget and viewed on a campaign page', () => {
+      delete window.location;
+      window.location = new URL(
+        'https://dev.dosomething.org/us/campaigns/test-campaign',
+      );
+
+      render(
+        <ContentBlock
+          {...props}
+          additionalContent={{ footerType: 'CivicEngineVoterWidget' }}
+        />,
+      );
+
+      const contentBlockContent = screen.getByTestId('content-block-content');
+
+      expect(contentBlockContent.className).toContain('col-span-2');
+      expect(contentBlockContent.className).not.toContain('col-span-3');
+    });
+
+    /** @test */
     test('displays across two-thirds of the row if an image is not provided but the fullWidth is not toggled on', () => {
       render(<ContentBlock {...props} image={emptyImage} />);
 
       const contentBlockContent = screen.getByTestId('content-block-content');
+
       expect(contentBlockContent.className).toContain('col-span-2');
       expect(contentBlockContent.className).not.toContain('col-span-3');
     });
@@ -82,6 +129,7 @@ describe('ContentBlock component', () => {
       render(<ContentBlock {...props} fullWidth />);
 
       const contentBlockContent = screen.getByTestId('content-block-content');
+
       expect(contentBlockContent.className).toContain('col-span-2');
       expect(contentBlockContent.className).not.toContain('col-span-3');
     });
@@ -93,7 +141,7 @@ describe('ContentBlock component', () => {
       const wrapper = shallow(
         <ContentBlock
           {...props}
-          additionalContent={{ footerType: 'RequestBallotBlock' }}
+          additionalContent={{ footerType: 'CivicEngineVoterWidget' }}
         />,
       );
 
