@@ -68,9 +68,9 @@ describe('ContentBlock component', () => {
       );
     });
 
-    /** @test */
     /*
     // @TODO: Fix this failing test: Invariant Violation: Could not find "client" in the context or passed in as an option. Wrap the root component in an <ApolloProvider>, or pass an ApolloClient instance in via options.
+    // @see https://github.com/DoSomething/phoenix-next/pull/2386#discussion_r502011280
     test('displays across the full row if footerType is GetOutTheVoteBlock', () => {
       render(<ContentBlock {...props} additionalContent={{ footerType: 'GetOutTheVoteBlock' }} />);
 
@@ -96,10 +96,10 @@ describe('ContentBlock component', () => {
 
     /** @test */
     test('displays across two-thirds of the row if footerType is CivicEngineVoterWidget and viewed on a campaign page', () => {
-      delete window.location;
-      window.location = new URL(
-        'https://dev.dosomething.org/us/campaigns/test-campaign',
-      );
+      // Mock visiting a campaign page.
+      window.jsdom.reconfigure({
+        url: 'https://dev.dosomething.org/us/campaigns/test-campaign',
+      });
 
       render(
         <ContentBlock
