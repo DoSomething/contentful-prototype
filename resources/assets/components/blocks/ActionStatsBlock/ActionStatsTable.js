@@ -131,7 +131,7 @@ const ActionStatsTable = ({
                   Uh oh! Looks like we don’t currently have any schools based on
                   your search criteria. Keep in mind that if your school has 0
                   registrations, it won’t show up in the leaderboard. Still have
-                  questions? Email tej@dosomething.org for help.
+                  questions? Email alisha@dosomething.org for help.
                 </p>
               </div>
             </td>

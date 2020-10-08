@@ -128,7 +128,7 @@ const CampaignSignupForm = props => {
           />
 
           <p className="text-sm text-gray-500 pt-3 md:pt-0">
-            Can&apos;t find your {groupLabel}? Email tej@dosomething.org for
+            Can&apos;t find your {groupLabel}? Email alisha@dosomething.org for
             help.
           </p>
         </div>

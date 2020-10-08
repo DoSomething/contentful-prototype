@@ -49,7 +49,7 @@ const ActionStatsBlock = ({ filterByActionId, filterByGroupTypeId }) => {
 
         <div className="w-full lg:w-2/5 text-sm text-gray-600">
           If your school has <span className="font-bold">0 registrations</span>,
-          it won’t show up in the leaderboard. Email tej@dosomething.org for
+          it won’t show up in the leaderboard. Email alisha@dosomething.org for
           help.
         </div>
       </div>
