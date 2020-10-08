@@ -26,7 +26,7 @@ const GetOutTheVoteBlock = () => (
         Resource links & conversation starters to get the dialog flowing!
       </p>
 
-      <div className="md:flex py-6">
+      <div className="lg:flex py-6">
         <div
           css={css`
             background-image: url(${starterTextBackground});
@@ -34,7 +34,7 @@ const GetOutTheVoteBlock = () => (
             background-repeat: no-repeat;
             background-size: cover;
           `}
-          className="md:w-1/2 p-6 mb-6 md:mb-0 md:mr-3 flex items-center"
+          className="lg:w-1/2 p-6 mb-6 md:mb-0 md:mr-3 flex items-center"
         >
           <div className="bg-white bg-opacity-25 border border-solid border-gray-300 p-3">
             <h3 className="italic text-base">Conversation Starters</h3>
@@ -44,7 +44,7 @@ const GetOutTheVoteBlock = () => (
           </div>
         </div>
 
-        <div className="md:w-1/2">
+        <div className="lg:w-1/2">
           <Embed
             className="mb-6"
             url="https://www.dosomething.org/us/stories/absentee"
