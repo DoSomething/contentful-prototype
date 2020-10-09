@@ -67,16 +67,16 @@ describe('getTrackingSource', () => {
   });
 
   /** @test */
-  it('Appends utm_campaign to source_details if present', () => {
+  it('Appends UTMs to source_details if present', () => {
     global.AUTH = {};
     // Mock visiting with UTM parameters .
     window.jsdom.reconfigure({
       url:
-        'https://dev.dosomething.org/us/?utm_campaign=puppetsloth_youtube_s3e8',
+        'https://dev.dosomething.org/us/?utm_source=scholarship_listing&utm_campaign=fastweb_2020',
     });
 
     expect(getTrackingSource('hellobar')).toEqual(
-      'source:web,source_details:hellobar_puppetsloth_youtube_s3e8',
+      'source:web,source_details:hellobar_scholarship_listing_fastweb_2020',
     );
   });
 });
