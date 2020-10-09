@@ -16,8 +16,14 @@ Before the banner renders on the page, we check the config for any pages that sh
 
 If you want to suppress the banner from a page that may have multiple sub paths but share the same base path, you'll need to add a `*` to the end of the pathname.
 
+## Displaying Sitewide banner content
+
+The content that will be displayed on the banner currently depends on a few variables. We always check if the user is authenticated and voter registration status. If the user has a voter registration status of `uncertain`, `unregistered`, or `confirmed`, the banner display content prompting the user to register to vote.
+
+If any other status is returned we will display another action - For example we've displayed a `Refer-A-Friend` banner in lieu of of the voter registration prompt.
+
 ### Pathnames Currently Excluded:
 
-- `/us/campaigns/ready-vote*`
-- `/us/my-voter-registration-drive`
-- `/us/quiz-results/*`
+-   `/us/campaigns/ready-vote*`
+-   `/us/my-voter-registration-drive`
+-   `/us/quiz-results/*`
