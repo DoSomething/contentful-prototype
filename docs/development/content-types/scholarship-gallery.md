@@ -21,4 +21,4 @@ If the user is unauthenticated, the user will be directed to the campaign action
 ## Under The Hood
 
 **Authentication**: The user's [authentication](https://github.com/DoSomething/phoenix-next/blob/10cf490254ca1dfa99772cbf81918d2ab7800f6c/resources/assets/components/utilities/ScholarshipCard/ScholarshipCard.js#L121) is checked before the gallery block signup component is triggered
-**Validation**: will only create a new signup if necessary, this prevents duplicate signups from a user
+**Validation**: Rogue will only create a new signup if necessary, this prevents duplicate signups from a user
