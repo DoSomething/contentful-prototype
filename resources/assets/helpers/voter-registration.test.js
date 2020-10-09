@@ -65,4 +65,18 @@ describe('getTrackingSource', () => {
       'user:5edfc80ecb4dbf2020580a76,source:web,source_details:abc,group_id=81,referral=true',
     );
   });
+
+  /** @test */
+  it('Appends utm_campaign to source_details if present', () => {
+    global.AUTH = {};
+    // Mock visiting with UTM parameters .
+    window.jsdom.reconfigure({
+      url:
+        'https://dev.dosomething.org/us/?utm_campaign=puppetsloth_youtube_s3e8',
+    });
+
+    expect(getTrackingSource('hellobar')).toEqual(
+      'source:web,source_details:hellobar_puppetsloth_youtube_s3e8',
+    );
+  });
 });
