@@ -1,4 +1,4 @@
-import { query } from './index';
+import { getUtms } from './utm';
 import { getUserId } from './auth';
 import { selfReportedVoterRegistrationConfirmedStatuses } from '../components/utilities/SitewideBanner/config';
 
@@ -33,7 +33,9 @@ export function getGoalInfo(goalAmount, completedAmount) {
  * @return {String}
  */
 export function getTrackingSource(sourceDetails, referrerUserId, groupId) {
-  const utmCampaign = query('utm_campaign');
+  const utmCampaign = getUtms().utm_campaign;
+
+  // If utmCampaign exists, append it to source details value.
   const result = `source:web,source_details:${sourceDetails}${
     utmCampaign ? `_${utmCampaign}` : ''
   }${groupId ? `,group_id=${groupId}` : ''}`;
