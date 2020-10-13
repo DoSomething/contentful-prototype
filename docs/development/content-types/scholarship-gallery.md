@@ -1,6 +1,4 @@
-# Metadata
-
-Scholarship Gallery
+# Scholarship Gallery
 
 ## Overview
 
