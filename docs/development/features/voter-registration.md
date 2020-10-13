@@ -74,7 +74,7 @@ We host customized voter registration drives for influencers on our Instapage, b
 
 A [CivicEngine Voter Widget](https://developers.civicengine.com/docs/widget/) can be embedded in the footer of a [`ContentBlock`](development/content-types/content-block.md#content-type-fields).
 
-The Voter Widget is hosted on BallotReady - for 2020 we subscribed to maintain our own instance of the widget, instead of using the shared TMC instance (switch was made on October 13, 2020 from white-labelled to shared)
+The Voter Widget is hosted on BallotReady - for 2020 we subscribed to maintain our own instance of the widget, instead of using the shared TMC instance (switch was made on October 13, 2020 from shared to white-labelled)
 
 ![Content Block - CivicEngineVoterWidget footerType](../../.gitbook/assets/request-ballot-block.png)
 
