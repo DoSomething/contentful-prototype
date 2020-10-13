@@ -9,13 +9,16 @@ import React from 'react';
  * from Ballot Ready to us says this should still send through the utm_source correctly.
  * @see https://www.pivotaltracker.com/story/show/174199686
  */
-const CivicEngineVoterWidget = () => (
-  <iframe
-    height="180"
-    src="https://app.requestballot.civicengine.com/w/address?utm_source=DST"
-    title="Voter Widget"
-    width="100%"
-  />
-);
+const CivicEngineVoterWidget = () => {
+  // TODO: Append UTM parameters to src URL
+  return (
+    <iframe
+      height="180"
+      src="https://app.dosomething.civicengine.com/w/address"
+      title="Voter Widget"
+      width="100%"
+    />
+  );
+};
 
 export default CivicEngineVoterWidget;
