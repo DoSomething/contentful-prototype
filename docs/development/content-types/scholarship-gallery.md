@@ -1,16 +1,20 @@
 # Metadata
 
+Scholarship Gallery
+
 ## Overview
 
 The Gallery Block Signup allows authenticated users to signup directly for a campaign by clicking the gallery block signup button and being directed to the campaign action page
 
 ! [Example Scholarship Gallery Button](../../.gitbook/assets/scholarship-gallery-signup-example.png)
 
-Once the signup button is clicked by a user who is logged in, the [`CREATE_SIGNUP-MUTATION`] is triggered and will create a signup associated with the [`campaignId`] captured on the [`ScholarshipCard`] and redirect the user to the campaign action page
+Once the signup button is clicked by a user who is logged in, the `CREATE_SIGNUP-MUTATION` is triggered and will create a signup associated with the [`campaignId`] captured on the `ScholarshipCard` and redirect the user to the campaign action page
 
 ! [Example Campaign Action Page Authenticated](../../.gitbook/assets/gallery-signup-campaign-action-page-example.png)
 
-If the user is unauthenticated, the user will be directed to the campaign action page but required to register as a member first. Hence, the 'Join Now' button will appear
+The `GalleryBlockSignup` renders for authenticated users only. If the user is unauthenticated, the `SecondayButton` will be triggered by default in which they will be directed to the campaign landing page.
+
+If the user is unauthenticated, the user will be required to register as a member before signing up for the campaign.
 
 ! [Example Campaign Action Page Unauthenticated](../../.gitbook/assets/gallery-signup-campaign-action-page-unauthenticated-example.png)
 
