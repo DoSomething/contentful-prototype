@@ -4,7 +4,7 @@
 
 Badges are awarded to users based on actions they have taken. The "badges" experience is still a test, and only [a subset of new users](#who-gets-badges) are opted-in.
 
-The `DS_BADGES_TEST` feature flag in _Northstar_ is what toggles the currently running badge test on and off. _Phoenix_ also checks if a user is opted-in to the badges experiment before displaying any badge related content.
+The `DS_BADGES_TEST` feature flag in _Northstar_ is what toggles the currently running badge _test_ on and off, it does _not_ toggle the badge feature itself. The badge feature is controlled by the `badges` feature flag that lives on a user in Northstar. When `DS_BADGES_TEST` is `true`, that means that some users in Northstar are getting `badges` added to their `feature_flags`. Users who have the badges feature flag will _always_ get the badges experience. _Phoenix_ checks if a user has the badges feature flag before displaying any badge related content.
 
 ## Who Gets Badges
 
