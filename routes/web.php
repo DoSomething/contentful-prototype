@@ -102,6 +102,9 @@ Route::view('us/collections/{slug}', 'app');
 // Cache
 Route::get('cache/{cacheId}', 'CacheController');
 
+// Posts
+Route::view('us/posts/{id}', 'app');
+
 // Unknown Route Fallback
 // Ensures we run through web middleware when rendering 404 pages.
 Route::fallback(function () {

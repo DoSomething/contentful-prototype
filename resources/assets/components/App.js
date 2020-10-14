@@ -27,6 +27,7 @@ import DelayedElement from './utilities/DelayedElement/DelayedElement';
 import SitewideBanner from './utilities/SitewideBanner/SitewideBanner';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
 import AccountContainer from './pages/AccountPage/Account/AccountContainer';
+import ShowSubmissionPage from './pages/ShowSubmissionPage/ShowSubmissionPage';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
@@ -94,6 +95,13 @@ const App = ({ store, history }) => {
               <Route path="/us/account" component={AccountContainer} />
 
               <Route path="/us/blocks/:id" component={BlockPage} />
+
+              {featureFlag('post_confirmation_page') ? (
+                <Route
+                  path="/us/posts/:post_id"
+                  component={ShowSubmissionPage}
+                />
+              ) : null}
 
               {featureFlag('dynamic_explore_campaigns') ? (
                 <Route
