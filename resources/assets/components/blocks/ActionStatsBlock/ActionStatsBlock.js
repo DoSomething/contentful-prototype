@@ -37,7 +37,6 @@ const ActionStatsBlock = ({ filterByActionId, filterByGroupTypeId }) => {
 
         <div className="w-full py-3 lg:w-2/5 lg:px-3 lg:py-0">
           <SchoolSelect
-            isDisabled={!schoolLocation}
             onChange={school => setSchoolId(school ? school.id : null)}
             schoolLocation={schoolLocation}
           />
