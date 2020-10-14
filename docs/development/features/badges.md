@@ -2,7 +2,7 @@
 
 ## Overview
 
-Badges are awarded to users based on actions they have taken. Currently, badges is still technically a test, with 70% of _new_ users opted-in to the badges experience, with some exceptions.
+Badges are awarded to users based on actions they have taken. The "badges" experience is still a test, and only [a subset of new users](#who-gets-badges) are opted-in.
 
 The `DS_BADGES_TEST` feature flag in _Northstar_ is what toggles the currently running badge test on and off. _Phoenix_ also checks if a user is opted-in to the badges experiment before displaying any badge related content.
 
