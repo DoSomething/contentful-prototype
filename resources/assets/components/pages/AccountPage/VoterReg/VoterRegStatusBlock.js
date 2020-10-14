@@ -1,7 +1,7 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 
 import checkmark from './checkmark.svg';
