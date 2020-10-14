@@ -1,14 +1,45 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
+import { useQuery } from '@apollo/react-hooks';
 
 import checkmark from './checkmark.svg';
-import rejectedIcon from './rejectedIcon.svg';
 import pendingIcon from './pendingIcon.svg';
+import rejectedIcon from './rejectedIcon.svg';
+import Spinner from '../../../artifacts/Spinner/Spinner';
+import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 
 import './voter-reg.scss';
 
-const VoterRegStatusBlock = ({ status }) => {
-  if (status === 'PENDING') {
+const USER_VOTER_REGISTRATION_STATUS_QUERY = gql`
+  query userVoterRegistrationStatusQuery($userId: String!) {
+    user(id: $userId) {
+      id
+      voterRegistrationStatus
+    }
+  }
+`;
+
+const VoterRegStatusBlock = ({ userId }) => {
+  const options = { variables: { userId } };
+
+  const { loading, error, data } = useQuery(
+    USER_VOTER_REGISTRATION_STATUS_QUERY,
+    options,
+  );
+
+  const registrationStatus = get(data, 'user.voterRegistrationStatus', null);
+
+  if (loading) {
+    return <Spinner className="flex justify-center p-16" />;
+  }
+
+  if (error) {
+    return <ErrorBlock error={error} />;
+  }
+
+  if (registrationStatus === 'UNCERTAIN') {
     return (
       <div className="voter-reg -yellow flex items-center">
         <img className="post-badge icon-clock" src={pendingIcon} alt="hello" />
@@ -18,9 +49,9 @@ const VoterRegStatusBlock = ({ status }) => {
   }
 
   if (
-    status === 'CONFIRMED' ||
-    status === 'REGISTER_FORM' ||
-    status === 'REGISTER_OVR'
+    registrationStatus === 'CONFIRMED' ||
+    registrationStatus === 'REGISTRATION_COMPLETE' ||
+    registrationStatus === 'INELIGIBLE'
   ) {
     return (
       <div className="voter-reg -green flex items-center">
@@ -41,7 +72,7 @@ const VoterRegStatusBlock = ({ status }) => {
 };
 
 VoterRegStatusBlock.propTypes = {
-  status: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default VoterRegStatusBlock;
