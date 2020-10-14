@@ -5,10 +5,9 @@ import { get } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 
 import checkmark from './checkmark.svg';
-import pendingIcon from './pendingIcon.svg';
-import rejectedIcon from './rejectedIcon.svg';
 import Spinner from '../../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
+import { getTrackingSource } from '../../../../helpers/voter-registration';
 
 import './voter-reg.scss';
 
@@ -41,9 +40,18 @@ const VoterRegStatusBlock = ({ userId }) => {
 
   if (registrationStatus === 'UNCERTAIN') {
     return (
-      <div className="voter-reg -yellow flex items-center">
-        <img className="post-badge icon-clock" src={pendingIcon} alt="hello" />
-        <div className="ml-3">Your voter reg status is pending!</div>
+      <div className="voter-reg flex items-center">
+        <div className="m-3">
+          Check your voter registration status{' '}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://am-i-registered-to-vote.org/dosomething/"
+          >
+            here
+          </a>
+          .
+        </div>
       </div>
     );
   }
@@ -55,17 +63,30 @@ const VoterRegStatusBlock = ({ userId }) => {
   ) {
     return (
       <div className="voter-reg -green flex items-center">
-        <img className="post-badge icon-check" src={checkmark} alt="hello" />
-        <div className="ml-3">Your voter reg status is confirmed! Woo!</div>
+        <img
+          className="pl-2 post-badge icon-check"
+          src={checkmark}
+          alt="hello"
+        />
+        <div className="m-3">Your voter registration is confirmed.</div>
       </div>
     );
   }
 
   return (
-    <div className="voter-reg -red flex items-center">
-      <img className="post-badge icon-x" src={rejectedIcon} alt="hello" />
-      <div className="ml-3">
-        We don&#39;t have your voter registration. Register here!
+    <div className="voter-reg flex items-center">
+      <div className="m-3">
+        <p>We don&#39;t have your voter registration.</p>
+        <a
+          href={`https://vote.dosomething.org/?r=${getTrackingSource(
+            'profile',
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-base"
+        >
+          Register here
+        </a>
       </div>
     </div>
   );
