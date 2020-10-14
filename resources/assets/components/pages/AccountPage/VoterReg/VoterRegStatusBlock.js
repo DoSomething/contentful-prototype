@@ -1,31 +1,23 @@
 import React from 'react';
 import { get } from 'lodash';
-import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
 import checkmark from './checkmark.svg';
+import {
+  getTrackingSource,
+  getCheckRegistrationStatusURL,
+  USER_VOTER_REGISTRATION_STATUS_QUERY,
+} from '../../../../helpers/voter-registration';
 import Spinner from '../../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
-import { getTrackingSource } from '../../../../helpers/voter-registration';
 
 import './voter-reg.scss';
 
-const USER_VOTER_REGISTRATION_STATUS_QUERY = gql`
-  query userVoterRegistrationStatusQuery($userId: String!) {
-    user(id: $userId) {
-      id
-      voterRegistrationStatus
-    }
-  }
-`;
-
 const VoterRegStatusBlock = ({ userId }) => {
-  const options = { variables: { userId } };
-
   const { loading, error, data } = useQuery(
     USER_VOTER_REGISTRATION_STATUS_QUERY,
-    options,
+    { variables: { userId } },
   );
 
   const registrationStatus = get(data, 'user.voterRegistrationStatus', null);
@@ -46,7 +38,7 @@ const VoterRegStatusBlock = ({ userId }) => {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://am-i-registered-to-vote.org/dosomething/"
+            href={getCheckRegistrationStatusURL()}
           >
             here
           </a>

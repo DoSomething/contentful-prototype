@@ -1,3 +1,5 @@
+import gql from 'graphql-tag';
+
 import { getUtms } from './utm';
 import { getUserId } from './auth';
 import { selfReportedVoterRegistrationConfirmedStatuses } from '../components/utilities/SitewideBanner/config';
@@ -67,3 +69,12 @@ export function isRegisteredStatus(userRegistrationStatus) {
 export function getCheckRegistrationStatusURL() {
   return 'https://am-i-registered-to-vote.org/dosomething/';
 }
+
+export const USER_VOTER_REGISTRATION_STATUS_QUERY = gql`
+  query UserVoterRegistrationStatusQuery($userId: String!) {
+    user(id: $userId) {
+      id
+      voterRegistrationStatus
+    }
+  }
+`;

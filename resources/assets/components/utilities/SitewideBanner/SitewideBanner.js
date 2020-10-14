@@ -12,16 +12,8 @@ import { excludedPaths, excludedVoterRegistrationStatuses } from './config';
 import {
   isRegisteredStatus,
   getCheckRegistrationStatusURL,
+  USER_VOTER_REGISTRATION_STATUS_QUERY,
 } from '../../../helpers/voter-registration';
-
-const USER_QUERY = gql`
-  query UserSitewideBannerQuery($userId: String!) {
-    user(id: $userId) {
-      id
-      voterRegistrationStatus
-    }
-  }
-`;
 
 const CAMPAIGN_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {
@@ -73,10 +65,13 @@ const SitewideBanner = props => {
   }
 
   const userId = getUserId();
-  const { data: userData, loading: userLoading } = useQuery(USER_QUERY, {
-    variables: { userId },
-    skip: !userId,
-  });
+  const { data: userData, loading: userLoading } = useQuery(
+    USER_VOTER_REGISTRATION_STATUS_QUERY,
+    {
+      variables: { userId },
+      skip: !userId,
+    },
+  );
 
   const campaign = getCampaign();
   const campaignId = campaign ? Number(campaign.campaignId) : null;
