@@ -30,7 +30,10 @@ const VoterRegStatusBlock = ({ userId }) => {
     return <ErrorBlock error={error} />;
   }
 
-  if (registrationStatus === 'UNCERTAIN') {
+  if (
+    registrationStatus === 'UNCERTAIN' ||
+    registrationStatus === 'CONFIRMED'
+  ) {
     return (
       <div className="voter-reg flex items-center">
         <div className="m-3">
@@ -49,7 +52,6 @@ const VoterRegStatusBlock = ({ userId }) => {
   }
 
   if (
-    registrationStatus === 'CONFIRMED' ||
     registrationStatus === 'REGISTRATION_COMPLETE' ||
     registrationStatus === 'INELIGIBLE'
   ) {
