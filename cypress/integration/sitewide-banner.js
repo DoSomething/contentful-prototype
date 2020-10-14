@@ -82,7 +82,7 @@ describe('Site Wide Banner', () => {
       },
     });
 
-    cy.mockGraphqlOp('UserSitewideBannerQuery', {
+    cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
         voterRegistrationStatus: 'CONFIRMED',
       },
