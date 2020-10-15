@@ -14,7 +14,6 @@ import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
 import { env, featureFlag, query } from '../helpers';
-import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import { getTrackingSource } from '../helpers/voter-registration';
@@ -86,11 +85,7 @@ const App = ({ store, history }) => {
 
           <Router history={history}>
             <Switch>
-              <Route
-                exact
-                path="/us"
-                component={featureFlag('new_homepage') ? NewHomePage : HomePage}
-              />
+              <Route exact path="/us" component={HomePage} />
 
               <Route path="/us/account" component={AccountContainer} />
 
