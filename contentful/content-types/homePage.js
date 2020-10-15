@@ -89,37 +89,6 @@ module.exports = function(migration) {
     });
 
   homePage
-    .createField('subTitle')
-    .name('Subtitle')
-    .type('Symbol')
-    .localized(true)
-    .required(true)
-    .validations([])
-    .disabled(true)
-    .omitted(false);
-
-  homePage
-    .createField('blocks')
-    .name('Blocks')
-    .type('Array')
-    .localized(false)
-    .required(true)
-    .validations([])
-    .disabled(true)
-    .omitted(false)
-    .items({
-      type: 'Link',
-
-      validations: [
-        {
-          linkContentType: ['campaign', 'page', 'storyPage'],
-        },
-      ],
-
-      linkType: 'Entry',
-    });
-
-  homePage
     .createField('additionalContent')
     .name('Additional Content')
     .type('Object')
@@ -140,12 +109,6 @@ module.exports = function(migration) {
 
   homePage.changeFieldControl('articles', 'builtin', 'entryLinksEditor', {
     helpText: 'Add articles (Page entries) to showcase on the home page.',
-    bulkEditing: false,
-  });
-
-  homePage.changeFieldControl('subTitle', 'builtin', 'singleLine', {});
-
-  homePage.changeFieldControl('blocks', 'builtin', 'entryLinksEditor', {
     bulkEditing: false,
   });
 
