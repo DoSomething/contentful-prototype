@@ -4,15 +4,17 @@ import { MockedProvider } from '@apollo/react-testing';
 
 import SchoolSelect, { SEARCH_SCHOOLS_QUERY } from './SchoolSelect';
 
-// Mock the AsyncSelect component to make it easy to find.
-// (Needs to be in lower-case form re https://git.io/JvbZ6).
+/**
+ * Mock the AsyncSelect component to make it easy to find. In order to pass a data-test-id,
+ * we'd need to add some custom code that we can skip for now.
+ * @see https://stackoverflow.com/a/57854539
+ *
+ * Note - our identifier needs to be in lower-case form re https://git.io/JvbZ6).
+ */
 jest.mock('react-select/async', () => 'async-select');
 
-// Mock a location.
 const MOCK_LOCATION = 'US-NJ';
 const mockOnChange = () => {};
-
-// Mock the GraphQL query and response.
 const mocks = [
   {
     request: {
@@ -46,14 +48,16 @@ describe('SchoolSelect component', () => {
     });
   });
 
-  /*
+  /**
+  TODO: FIX ME
+
   describe('With a schoolLocation prop', () => {
+    // This line fails with React.Children.only expected to receive a single React element child.
     const wrapper = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <SchoolSelect location={MOCK_LOCATION} onChange={mockOnChange}/>,
       </MockedProvider>,
     );
-
  
     it('renders a enabled select component', async () => {
       const asyncSelect = wrapper.find('async-select');
