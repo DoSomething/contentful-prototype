@@ -8,7 +8,7 @@ import { useApolloClient } from '@apollo/react-hooks';
 import {
   SCHOOL_NOT_AVAILABLE_OPTION_LABEL,
   SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
-} from '../../../constants/school-finder';
+} from '../../constants/school-finder';
 
 const SEARCH_SCHOOLS_QUERY = gql`
   query SearchSchoolsQuery($location: String!, $name: String!) {

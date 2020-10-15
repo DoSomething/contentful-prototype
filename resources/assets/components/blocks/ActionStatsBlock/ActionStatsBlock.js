@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import ActionStatsTable from './ActionStatsTable';
+import SchoolSelect from '../../utilities/SchoolSelect';
 import ActionStatsLeaderboard from './ActionStatsLeaderboard';
-import SchoolSelect from '../CurrentSchoolBlock/SchoolSelect';
 import SchoolLocationSelect from '../../utilities/UsaStateSelect';
 
 export const ActionStatsBlockFragment = gql`

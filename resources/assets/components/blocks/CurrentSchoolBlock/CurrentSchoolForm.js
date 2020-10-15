@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
-import SchoolSelect from './SchoolSelect';
+import SchoolSelect from '../../utilities/SchoolSelect';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import SchoolLocationSelect from '../../utilities/UsaStateSelect';
 
