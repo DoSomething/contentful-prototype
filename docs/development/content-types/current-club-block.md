@@ -2,7 +2,7 @@
 
 ## Overview
 
-the Current Club Block Displays the authenticated user's current club (The Rogue Club matching the `club_id` in their Northstar profile).
+the Current Club Block Displays the authenticated user's current club (The [Rogue Club](https://github.com/DoSomething/rogue/blob/master/docs/features/clubs.md) matching the `club_id` in their Northstar profile).
 
 ![Example Current Club Block Form](../../.gitbook/assets/example-current-club-block.png)
 
