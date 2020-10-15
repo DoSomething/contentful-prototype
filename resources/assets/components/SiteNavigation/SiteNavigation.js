@@ -474,18 +474,20 @@ class SiteNavigation extends React.Component {
 
                     <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
                       <SiteNavigationFeature
-                        imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/6Ko2KXJ0fCKmZIm2G6ATEs/2ef1f7694fb81a824940aa697d27cb9f/COVID_metadata.jpg?fit=fill&h=500&w=1100"
-                        imageAlt="Girl with headphones reading a tablet"
-                        url="/us/collections/corona-virus-campaigns"
-                        title="COVID-19 News & Resources"
-                        text="Resources to stay healthy, fight anxiety, and make a difference on the causes we care about, from mental health to climate change and beyond."
+                        imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/k03WbCKtErFHbmk8gkcdR/17ea0ce8bf7bc82aa0a50ded42b4d369/racial_justice_and_the_election.jpg?fit=fill&h=500&w=1100"
+                        imageAlt="Young person wearing hat and face mask holds up a hand-made Black Lives Matter sign with a crowd of people behind them"
+                        url="/us/collections/racial-justice-election"
+                        title=" Racial Justice & Election 2020"
+                        text="Fight for racial justice by unleashing your power at the ballot box and beyond."
+                        moreLinkText="Get Started"
                         callback={() =>
                           this.analyzeEvent({
                             name:
-                              'clicked_subnav_link_feature_covid_19_collection',
+                              'clicked_subnav_link_feature_racial_justice_and_election_collection',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
-                            label: 'feature_covid_19_collection',
+                            label:
+                              'feature_racial_justice_and_election_collection',
                           })
                         }
                       />
