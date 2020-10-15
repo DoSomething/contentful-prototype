@@ -10,7 +10,7 @@ import SitewideBannerContent from './SitewideBannerContent';
 import { isCurrentPathInPaths, query } from '../../../helpers';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import {
-  isRegisteredStatus,
+  isSelfReportedStatus,
   getCheckRegistrationStatusURL,
   isExcludedVoterRegistrationStatus,
   USER_VOTER_REGISTRATION_STATUS_QUERY,
@@ -123,7 +123,7 @@ const SitewideBanner = props => {
      * Display a reminder to check their status
      */
     isAuthenticated() &&
-    isRegisteredStatus(userRegistrationStatus)
+    isSelfReportedStatus(userRegistrationStatus)
   ) {
     return createPortal(
       <SitewideBannerContent

@@ -1,12 +1,15 @@
 import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 
 import checkmark from './checkmark.svg';
 import {
   getTrackingSource,
+  isSelfReportedStatus,
   getCheckRegistrationStatusURL,
+  isExcludedVoterRegistrationStatus,
   USER_VOTER_REGISTRATION_STATUS_QUERY,
 } from '../../../../helpers/voter-registration';
 import Spinner from '../../../artifacts/Spinner/Spinner';
@@ -22,6 +25,9 @@ const VoterRegStatusBlock = ({ userId }) => {
 
   const registrationStatus = get(data, 'user.voterRegistrationStatus', null);
 
+  const selfReported = isSelfReportedStatus(registrationStatus);
+  const excludedStatus = isExcludedVoterRegistrationStatus(registrationStatus);
+
   if (loading) {
     return <Spinner className="flex justify-center p-16" />;
   }
@@ -30,39 +36,39 @@ const VoterRegStatusBlock = ({ userId }) => {
     return <ErrorBlock error={error} />;
   }
 
-  if (
-    registrationStatus === 'UNCERTAIN' ||
-    registrationStatus === 'CONFIRMED'
-  ) {
+  if (selfReported || excludedStatus) {
     return (
-      <div className="voter-reg flex items-center">
+      <div
+        className={classnames('voter-reg flex items-center', {
+          '-green': excludedStatus || registrationStatus === 'CONFIRMED',
+        })}
+      >
+        {excludedStatus || registrationStatus === 'CONFIRMED' ? (
+          <img
+            className="pl-2 post-badge icon-check"
+            src={checkmark}
+            alt="hello"
+          />
+        ) : null}
         <div className="m-3">
-          Check your voter registration status{' '}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={getCheckRegistrationStatusURL()}
-          >
-            here
-          </a>
-          .
+          {excludedStatus ? (
+            <p>Your voter registration is confirmed.</p>
+          ) : (
+            <p>
+              {registrationStatus === 'CONFIRMED'
+                ? 'You are registered to vote. Confirm that your registration is up-to-date '
+                : 'Check your voter registration status'}{' '}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={getCheckRegistrationStatusURL()}
+              >
+                here
+              </a>
+              .
+            </p>
+          )}
         </div>
-      </div>
-    );
-  }
-
-  if (
-    registrationStatus === 'REGISTRATION_COMPLETE' ||
-    registrationStatus === 'INELIGIBLE'
-  ) {
-    return (
-      <div className="voter-reg -green flex items-center">
-        <img
-          className="pl-2 post-badge icon-check"
-          src={checkmark}
-          alt="hello"
-        />
-        <div className="m-3">Your voter registration is confirmed.</div>
       </div>
     );
   }

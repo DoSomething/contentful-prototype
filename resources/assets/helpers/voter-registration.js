@@ -76,12 +76,12 @@ export function getTrackingSource(sourceDetails, referrerUserId, groupId) {
 }
 
 /**
- * Returns boolean indicating whether user's registration status is considered "registered"
+ * Returns boolean indicating whether user's registration status is considered a self reported "registered"
  *
  * @param {String} userRegistrationStatus
  * @return {Boolean}
  */
-export function isRegisteredStatus(userRegistrationStatus) {
+export function isSelfReportedStatus(userRegistrationStatus) {
   return selfReportedVoterRegistrationStatuses.includes(userRegistrationStatus);
 }
 
