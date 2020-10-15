@@ -8,9 +8,9 @@ import { useApolloClient } from '@apollo/react-hooks';
 import {
   SCHOOL_NOT_AVAILABLE_OPTION_LABEL,
   SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
-} from '../../constants/school-finder';
+} from '../../../constants/school-finder';
 
-const SEARCH_SCHOOLS_QUERY = gql`
+export const SEARCH_SCHOOLS_QUERY = gql`
   query SearchSchoolsQuery($location: String!, $name: String!) {
     searchSchools(location: $location, name: $name) {
       id
@@ -66,6 +66,10 @@ const SchoolSelect = ({
       }
       getOptionValue={school => school.id}
       isClearable
+      /**
+       * Require location before searching by name, to make it easier to find school. For example,
+       * there are hundreds of schools that begin with "Lincoln".
+       */
       isDisabled={!schoolLocation}
       /**
        * Changing per schoolLocation will result in clearing any selected options.
@@ -73,6 +77,7 @@ const SchoolSelect = ({
        * @see https://stackoverflow.com/a/55142916
        */
       key={schoolLocation}
+      // Fetch schools in selected location amd with name matching the user input.
       loadOptions={(input, callback) => {
         /**
          * Avoid querying by empty school name on page load.

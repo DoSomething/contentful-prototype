@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import ActionStatsTable from './ActionStatsTable';
-import SchoolSelect from '../../utilities/SchoolSelect';
 import ActionStatsLeaderboard from './ActionStatsLeaderboard';
 import SchoolLocationSelect from '../../utilities/UsaStateSelect';
+import SchoolSelect from '../../utilities/SchoolSelect/SchoolSelect';
 
 export const ActionStatsBlockFragment = gql`
   fragment ActionStatsBlockFragment on ActionStatsBlock {
