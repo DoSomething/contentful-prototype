@@ -2,7 +2,31 @@ import gql from 'graphql-tag';
 
 import { getUtms } from './utm';
 import { getUserId } from './auth';
-import { selfReportedVoterRegistrationConfirmedStatuses } from '../components/utilities/SitewideBanner/config';
+
+/**
+ * Query used to fetch user voter registration status
+ */
+export const USER_VOTER_REGISTRATION_STATUS_QUERY = gql`
+  query UserVoterRegistrationStatusQuery($userId: String!) {
+    user(id: $userId) {
+      id
+      voterRegistrationStatus
+    }
+  }
+`;
+
+/**
+ * Voter registration statuses for users who shouldn't see voter registration CTAs
+ */
+export const excludedVoterRegistrationStatuses = [
+  'INELIGIBLE',
+  'REGISTRATION_COMPLETE',
+];
+
+/**
+ * Voter registration statuses for users who aren not confirmed by a third party
+ */
+export const selfReportedVoterRegistrationStatuses = ['CONFIRMED', 'UNCERTAIN'];
 
 /**
  * Returns percentage completed and corresponding label.
@@ -58,10 +82,18 @@ export function getTrackingSource(sourceDetails, referrerUserId, groupId) {
  * @return {Boolean}
  */
 export function isRegisteredStatus(userRegistrationStatus) {
-  return selfReportedVoterRegistrationConfirmedStatuses.includes(
-    userRegistrationStatus,
-  );
+  return selfReportedVoterRegistrationStatuses.includes(userRegistrationStatus);
 }
+
+/**
+ * Checks if given voter registration status matches an entry in excluded status config.
+ *
+ * @param {String} voterRegistrationStatus
+ * @return {Boolean}
+ */
+export const isExcludedVoterRegistrationStatus = voterRegistrationStatus => {
+  return excludedVoterRegistrationStatuses.includes(voterRegistrationStatus);
+};
 
 /**
  * Returns Url to use when checking voter registration status
@@ -69,12 +101,3 @@ export function isRegisteredStatus(userRegistrationStatus) {
 export function getCheckRegistrationStatusURL() {
   return 'https://am-i-registered-to-vote.org/dosomething/';
 }
-
-export const USER_VOTER_REGISTRATION_STATUS_QUERY = gql`
-  query UserVoterRegistrationStatusQuery($userId: String!) {
-    user(id: $userId) {
-      id
-      voterRegistrationStatus
-    }
-  }
-`;

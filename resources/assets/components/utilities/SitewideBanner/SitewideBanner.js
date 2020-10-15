@@ -4,14 +4,15 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
+import { excludedPaths } from './config';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
 import { isCurrentPathInPaths, query } from '../../../helpers';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
-import { excludedPaths, excludedVoterRegistrationStatuses } from './config';
 import {
   isRegisteredStatus,
   getCheckRegistrationStatusURL,
+  isExcludedVoterRegistrationStatus,
   USER_VOTER_REGISTRATION_STATUS_QUERY,
 } from '../../../helpers/voter-registration';
 
@@ -23,16 +24,6 @@ const CAMPAIGN_QUERY = gql`
     }
   }
 `;
-
-/**
- * Checks if given voter registration status matches an entry in excluded status config.
- *
- * @param {String} voterRegistrationStatus
- * @return {Boolean}
- */
-const isExcludedVoterRegistrationStatus = voterRegistrationStatus => {
-  return excludedVoterRegistrationStatuses.includes[voterRegistrationStatus];
-};
 
 const SitewideBanner = props => {
   const usePortal = id => {
@@ -112,7 +103,7 @@ const SitewideBanner = props => {
      * Display an refer a friend banner
      */
     isAuthenticated() &&
-    excludedVoterRegistrationStatuses.includes(userRegistrationStatus)
+    isExcludedVoterRegistrationStatus(userRegistrationStatus)
   ) {
     return createPortal(
       <SitewideBannerContent
