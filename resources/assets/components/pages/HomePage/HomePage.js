@@ -33,7 +33,6 @@ const HOME_PAGE_QUERY = gql`
     page: homePage(preview: $preview) {
       id
       title
-      subTitle
       coverImage {
         url
       }
