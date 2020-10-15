@@ -58,8 +58,9 @@ module.exports = function(migration) {
 
       validations: [
         {
-          linkContentType: ['campaign', 'storyPage'],
-          message: 'Only Campaign and StoryPage entries are valid.',
+          linkContentType: ['campaign', 'collectionPage', 'storyPage'],
+          message:
+            'Only Campaign, StoryPage, and CollectionPage entries are valid.',
         },
       ],
 
