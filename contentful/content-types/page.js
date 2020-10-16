@@ -163,6 +163,7 @@ module.exports = function(migration) {
             'callToAction',
             'campaignUpdate',
             'contentBlock',
+            'currentClubBlock',
             'currentSchoolBlock',
             'customBlock',
             'embed',
