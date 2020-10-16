@@ -7,9 +7,10 @@ import { useQuery } from '@apollo/react-hooks';
 import checkmark from './checkmark.svg';
 import {
   getTrackingSource,
-  isSelfReportedStatus,
+  needToVerifyVoterRegStatuses,
   getCheckRegistrationStatusURL,
-  isExcludedVoterRegistrationStatus,
+  verifiedCompletedVoterRegStatuses,
+  verifiedIneligibleVoterRegStatuses,
   USER_VOTER_REGISTRATION_STATUS_QUERY,
 } from '../../../../helpers/voter-registration';
 import Spinner from '../../../artifacts/Spinner/Spinner';
@@ -25,8 +26,10 @@ const VoterRegStatusBlock = ({ userId }) => {
 
   const registrationStatus = get(data, 'user.voterRegistrationStatus', null);
 
-  const selfReported = isSelfReportedStatus(registrationStatus);
-  const excludedStatus = isExcludedVoterRegistrationStatus(registrationStatus);
+  const selfReported = needToVerifyVoterRegStatuses(registrationStatus);
+  const excludedStatus =
+    verifiedIneligibleVoterRegStatuses(registrationStatus) ||
+    verifiedCompletedVoterRegStatuses(registrationStatus);
 
   if (loading) {
     return <Spinner className="flex justify-center p-16" />;

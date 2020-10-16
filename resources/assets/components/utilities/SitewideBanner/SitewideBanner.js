@@ -10,9 +10,10 @@ import SitewideBannerContent from './SitewideBannerContent';
 import { isCurrentPathInPaths, query } from '../../../helpers';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import {
-  isSelfReportedStatus,
+  needToVerifyVoterRegStatuses,
   getCheckRegistrationStatusURL,
-  isExcludedVoterRegistrationStatus,
+  verifiedCompletedVoterRegStatuses,
+  verifiedIneligibleVoterRegStatuses,
   USER_VOTER_REGISTRATION_STATUS_QUERY,
 } from '../../../helpers/voter-registration';
 
@@ -77,6 +78,9 @@ const SitewideBanner = props => {
   );
 
   const userRegistrationStatus = get(userData, 'user.voterRegistrationStatus');
+  const excludedStatus =
+    verifiedIneligibleVoterRegStatuses(userRegistrationStatus) ||
+    verifiedCompletedVoterRegStatuses(userRegistrationStatus);
 
   if (userLoading || campaignLoading) {
     return null;
@@ -88,9 +92,7 @@ const SitewideBanner = props => {
      * on small screen.
      */
     !!get(campaignData, 'campaign.groupTypeId') ||
-    isExcludedVoterRegistrationStatus(
-      get(userData, 'user.voterRegistrationStatus'),
-    )
+    excludedStatus
   ) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
@@ -99,11 +101,11 @@ const SitewideBanner = props => {
 
   if (
     /**
-     * Checks for auth user and if the user is registered to vote,
+     * Checks for auth user and if the user is registered to vote/ineligible,
      * Display an refer a friend banner
      */
     isAuthenticated() &&
-    isExcludedVoterRegistrationStatus(userRegistrationStatus)
+    excludedStatus
   ) {
     return createPortal(
       <SitewideBannerContent
@@ -119,11 +121,11 @@ const SitewideBanner = props => {
 
   if (
     /**
-     * Checks for auth user and if the user is self reported to be registered to vote,
+     * Checks for auth user and if the user is self reported to be registered to vote or uncertain
      * Display a reminder to check their status
      */
     isAuthenticated() &&
-    isSelfReportedStatus(userRegistrationStatus)
+    needToVerifyVoterRegStatuses(userRegistrationStatus)
   ) {
     return createPortal(
       <SitewideBannerContent

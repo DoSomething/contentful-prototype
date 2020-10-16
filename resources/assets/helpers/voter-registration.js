@@ -16,19 +16,6 @@ export const USER_VOTER_REGISTRATION_STATUS_QUERY = gql`
 `;
 
 /**
- * Voter registration statuses for users who shouldn't see voter registration CTAs
- */
-export const excludedVoterRegistrationStatuses = [
-  'INELIGIBLE',
-  'REGISTRATION_COMPLETE',
-];
-
-/**
- * Voter registration statuses for users who aren not confirmed by a third party
- */
-export const selfReportedVoterRegistrationStatuses = ['CONFIRMED', 'UNCERTAIN'];
-
-/**
  * Returns percentage completed and corresponding label.
  *
  * @param {Number} goalAmount
@@ -76,23 +63,35 @@ export function getTrackingSource(sourceDetails, referrerUserId, groupId) {
 }
 
 /**
- * Returns boolean indicating whether user's registration status is considered a self reported "registered"
+ * Returns boolean indicating whether user's registration status is considered a self reported "registered" or not certain
  *
  * @param {String} userRegistrationStatus
  * @return {Boolean}
  */
-export function isSelfReportedStatus(userRegistrationStatus) {
-  return selfReportedVoterRegistrationStatuses.includes(userRegistrationStatus);
+export function needToVerifyVoterRegStatuses(userRegistrationStatus) {
+  return ['CONFIRMED', 'UNCERTAIN'].includes(userRegistrationStatus);
 }
 
 /**
- * Checks if given voter registration status matches an entry in excluded status config.
+ * Checks if given voter registration status is confirmed complete by Rock The Vote status.
  *
  * @param {String} voterRegistrationStatus
  * @return {Boolean}
  */
-export const isExcludedVoterRegistrationStatus = voterRegistrationStatus => {
-  return excludedVoterRegistrationStatuses.includes(voterRegistrationStatus);
+export const verifiedCompletedVoterRegStatuses = voterRegistrationStatus => {
+  return ['REGISTRATION_COMPLETE'].includes(voterRegistrationStatus);
+};
+
+/**
+ * Checks if given voter registration status is in some way ineligible.
+ *
+ * @param {String} voterRegistrationStatus
+ * @return {Boolean}
+ */
+export const verifiedIneligibleVoterRegStatuses = voterRegistrationStatus => {
+  return ['INELIGIBLE', 'REJECTED', 'UNDER_18'].includes(
+    voterRegistrationStatus,
+  );
 };
 
 /**
