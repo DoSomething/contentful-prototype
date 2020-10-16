@@ -26,8 +26,7 @@ const VoterRegStatusBlock = ({ userId }) => {
 
   const registrationStatus = get(data, 'user.voterRegistrationStatus', null);
 
-  const selfReported = needToVerifyVoterRegStatuses(registrationStatus);
-  const excludedStatus =
+  const verifiedRegistrationStatus =
     verifiedIneligibleVoterRegStatuses(registrationStatus) ||
     verifiedCompletedVoterRegStatuses(registrationStatus);
 
@@ -39,14 +38,20 @@ const VoterRegStatusBlock = ({ userId }) => {
     return <ErrorBlock error={error} />;
   }
 
-  if (selfReported || excludedStatus) {
+  if (
+    needToVerifyVoterRegStatuses(registrationStatus) ||
+    verifiedRegistrationStatus
+  ) {
     return (
       <div
         className={classnames('voter-reg flex items-center', {
-          '-green': excludedStatus || registrationStatus === 'CONFIRMED',
+          '-green':
+            verifiedCompletedVoterRegStatuses(registrationStatus) ||
+            registrationStatus === 'CONFIRMED',
         })}
       >
-        {excludedStatus || registrationStatus === 'CONFIRMED' ? (
+        {verifiedCompletedVoterRegStatuses(registrationStatus) ||
+        registrationStatus === 'CONFIRMED' ? (
           <img
             className="pl-2 post-badge icon-check"
             src={checkmark}
@@ -54,7 +59,7 @@ const VoterRegStatusBlock = ({ userId }) => {
           />
         ) : null}
         <div className="m-3">
-          {excludedStatus ? (
+          {verifiedCompletedVoterRegStatuses(registrationStatus) ? (
             <p>Your voter registration is confirmed.</p>
           ) : (
             <p>
