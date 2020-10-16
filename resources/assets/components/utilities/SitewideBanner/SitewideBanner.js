@@ -78,7 +78,7 @@ const SitewideBanner = props => {
   );
 
   const userRegistrationStatus = get(userData, 'user.voterRegistrationStatus');
-  const excludedStatus =
+  const showNonVoterRegistrationContent =
     verifiedIneligibleVoterRegStatuses(userRegistrationStatus) ||
     verifiedCompletedVoterRegStatuses(userRegistrationStatus);
 
@@ -92,7 +92,7 @@ const SitewideBanner = props => {
      * on small screen.
      */
     !!get(campaignData, 'campaign.groupTypeId') ||
-    excludedStatus
+    showNonVoterRegistrationContent
   ) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
@@ -105,7 +105,7 @@ const SitewideBanner = props => {
      * Display an refer a friend banner
      */
     isAuthenticated() &&
-    excludedStatus
+    showNonVoterRegistrationContent
   ) {
     return createPortal(
       <SitewideBannerContent
