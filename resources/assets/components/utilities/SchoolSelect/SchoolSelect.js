@@ -56,47 +56,51 @@ const SchoolSelect = ({
       .catch(error => callback(error));
   }, 250);
 
+  // Wrap with a div to add a data-testid, for testing.
+  // @see https://stackoverflow.com/a/61551935
   return (
-    <AsyncSelect
-      defaultOptions
-      getOptionLabel={school =>
-        school.id === SCHOOL_NOT_AVAILABLE_SCHOOL_ID
-          ? SCHOOL_NOT_AVAILABLE_OPTION_LABEL
-          : `${school.name} - ${school.city}, ${school.location.substring(3)}`
-      }
-      getOptionValue={school => school.id}
-      isClearable
-      /**
-       * Require location before searching by name, to make it easier to find school. For example,
-       * there are hundreds of schools that begin with "Lincoln".
-       */
-      isDisabled={!schoolLocation}
-      /**
-       * Changing per schoolLocation will result in clearing any selected options.
-       * If user selects a school, but then changes location, force reselect.
-       * @see https://stackoverflow.com/a/55142916
-       */
-      key={schoolLocation}
-      // Fetch schools in selected location amd with name matching the user input.
-      loadOptions={(input, callback) => {
-        /**
-         * Avoid querying by empty school name on page load.
-         * @see https://github.com/JedWatson/react-select/issues/614#issuecomment-380763225
-         */
-        if (!input) {
-          return Promise.resolve([]);
+    <div data-testid="school-select">
+      <AsyncSelect
+        defaultOptions
+        getOptionLabel={school =>
+          school.id === SCHOOL_NOT_AVAILABLE_SCHOOL_ID
+            ? SCHOOL_NOT_AVAILABLE_OPTION_LABEL
+            : `${school.name} - ${school.city}, ${school.location.substring(3)}`
         }
+        getOptionValue={school => school.id}
+        isClearable
+        /**
+         * Require location before searching by name, to make it easier to find school. For example,
+         * there are hundreds of schools that begin with "Lincoln".
+         */
+        isDisabled={!schoolLocation}
+        /**
+         * Changing per schoolLocation will result in clearing any selected options.
+         * If user selects a school, but then changes location, force reselect.
+         * @see https://stackoverflow.com/a/55142916
+         */
+        key={schoolLocation}
+        // Fetch schools in selected location amd with name matching the user input.
+        loadOptions={(input, callback) => {
+          /**
+           * Avoid querying by empty school name on page load.
+           * @see https://github.com/JedWatson/react-select/issues/614#issuecomment-380763225
+           */
+          if (!input) {
+            return Promise.resolve([]);
+          }
 
-        return fetchSchools(input, callback);
-      }}
-      noOptionsMessage={({ inputValue }) =>
-        inputValue.length
-          ? `Oops, we can't find a school called "${inputValue}"`
-          : 'Enter your school name'
-      }
-      onChange={onChange}
-      placeholder={placeholder}
-    />
+          return fetchSchools(input, callback);
+        }}
+        noOptionsMessage={({ inputValue }) =>
+          inputValue.length
+            ? `Oops, we can't find a school called "${inputValue}"`
+            : 'Enter your school name'
+        }
+        onChange={onChange}
+        placeholder={placeholder}
+      />
+    </div>
   );
 };
 
