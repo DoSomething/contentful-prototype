@@ -208,22 +208,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
-  page
-    .createField('socialOverride')
-    .name('Social Override')
-    .type('Link')
-    .localized(false)
-    .required(false)
-    .validations([
-      {
-        linkContentType: ['socialOverride'],
-      },
-    ])
-    .disabled(true)
-    .omitted(false)
-    .linkType('Entry');
-
   page
     .createField('additionalContent')
     .name('Additional Content')
@@ -248,13 +232,12 @@ module.exports = function(migration) {
   });
 
   page.changeFieldControl('metadata', 'builtin', 'entryLinkEditor', {});
-
-  page.changeFieldControl('authors', 'builtin', 'entryLinksEditor', {
-    bulkEditing: false,
-  });
+  page.changeFieldControl('authors', 'builtin', 'entryLinksEditor', {});
 
   page.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
     helpText: 'The cover image will display on the page before the content.',
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
   });
 
   page.changeFieldControl('content', 'builtin', 'markdown', {});
@@ -277,6 +260,5 @@ module.exports = function(migration) {
     falseLabel: 'No',
   });
 
-  page.changeFieldControl('socialOverride', 'builtin', 'entryLinkEditor', {});
   page.changeFieldControl('additionalContent', 'builtin', 'objectEditor', {});
 };
