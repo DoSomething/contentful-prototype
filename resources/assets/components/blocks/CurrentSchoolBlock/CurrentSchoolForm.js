@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
-import SchoolSelect from './SchoolSelect';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import SchoolLocationSelect from '../../utilities/UsaStateSelect';
+import SchoolSelect from '../../utilities/SchoolSelect/SchoolSelect';
 
 const USER_SCHOOL_MUTATION = gql`
   mutation UserSchoolMutation($userId: String!, $schoolId: String) {

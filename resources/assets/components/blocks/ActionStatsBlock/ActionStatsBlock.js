@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 
 import ActionStatsTable from './ActionStatsTable';
 import ActionStatsLeaderboard from './ActionStatsLeaderboard';
-import SchoolSelect from '../CurrentSchoolBlock/SchoolSelect';
 import SchoolLocationSelect from '../../utilities/UsaStateSelect';
+import SchoolSelect from '../../utilities/SchoolSelect/SchoolSelect';
 
 export const ActionStatsBlockFragment = gql`
   fragment ActionStatsBlockFragment on ActionStatsBlock {
@@ -17,10 +17,6 @@ export const ActionStatsBlockFragment = gql`
 const ActionStatsBlock = ({ filterByActionId, filterByGroupTypeId }) => {
   const [schoolId, setSchoolId] = useState(null);
   const [schoolLocation, setSchoolLocation] = useState(null);
-
-  // Hiding Load More Button as a quick fix until Rogue pagination errors are fixed.
-  // @see https://www.pivotaltracker.com/story/show/175102031
-  const hideLoadMoreButton = true;
 
   return (
     <>
@@ -41,7 +37,6 @@ const ActionStatsBlock = ({ filterByActionId, filterByGroupTypeId }) => {
 
         <div className="w-full py-3 lg:w-2/5 lg:px-3 lg:py-0">
           <SchoolSelect
-            isDisabled={!schoolLocation}
             onChange={school => setSchoolId(school ? school.id : null)}
             schoolLocation={schoolLocation}
           />
@@ -57,7 +52,6 @@ const ActionStatsBlock = ({ filterByActionId, filterByGroupTypeId }) => {
       <ActionStatsTable
         actionId={filterByActionId}
         groupTypeId={filterByGroupTypeId}
-        hideLoadMoreButton={hideLoadMoreButton}
         schoolId={schoolId}
         schoolLocation={schoolLocation}
       />
