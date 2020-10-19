@@ -22,8 +22,4 @@ The content that will be displayed on the banner currently depends on a few vari
 
 If any other status is returned we will display another action - For example we've displayed a `Refer-A-Friend` banner in lieu of of the voter registration prompt.
 
-### Pathnames Currently Excluded:
-
--   `/us/campaigns/ready-vote*`
--   `/us/my-voter-registration-drive`
--   `/us/quiz-results/*`
+All pathnames can be found here:[excluded path](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/components/utilities/SitewideBanner/config.js)
