@@ -20,6 +20,14 @@ describe('Embed Block Component', () => {
     expect(wrapper.find('TypeFormTemplate').length).toEqual(1);
   });
 
+  test('renders Iframe embed for airtable URL', () => {
+    const wrapper = shallow(
+      <EmbedBlock url="https://airtable.com/embed" id="123" />,
+    );
+
+    expect(wrapper.find('IframeEmbed').length).toEqual(1);
+  });
+
   test('renders Embed component for all other URLs', () => {
     const wrapper = shallow(<EmbedBlock url="https://dosomething.org" />);
 
