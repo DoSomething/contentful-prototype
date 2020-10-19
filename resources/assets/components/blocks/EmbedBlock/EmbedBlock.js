@@ -2,16 +2,10 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import ErrorBlock from '../ErrorBlock/ErrorBlock';
+import Embed from '../../utilities/Embed/Embed';
 import CartoTemplate from './templates/CartoTemplate';
 import TypeFormTemplate from './templates/TypeFormTemplate';
 import IframeEmbed from '../../utilities/IframeEmbed/IframeEmbed';
-
-const PERMITTED_HOSTNAMES = {
-  'airtable.com': 'airtable',
-  'dosomething.carto.com': 'carto',
-  'dosomething.typeform.com': 'typeform',
-};
 
 export const EmbedBlockFragment = gql`
   fragment EmbedBlockFragment on EmbedBlock {
@@ -26,24 +20,18 @@ export const EmbedBlockFragment = gql`
 const EmbedBlock = props => {
   const hostname = new URL(props.url).hostname;
 
-  const domain = PERMITTED_HOSTNAMES[hostname];
-
-  switch (domain) {
-    case 'typeform':
+  switch (hostname) {
+    case 'dosomething.typeform.com':
       return <TypeFormTemplate {...props} />;
 
-    case 'carto':
+    case 'dosomething.carto.com':
       return <CartoTemplate {...props} />;
 
-    case 'airtable':
+    case 'airtable.com':
       return <IframeEmbed {...props} />;
 
     default:
-      return (
-        <ErrorBlock
-          error={`Embed Block URL contains a non permitted hostname. Hostname: ${hostname}`}
-        />
-      );
+      return <Embed url={props.url} badged />;
   }
 };
 
