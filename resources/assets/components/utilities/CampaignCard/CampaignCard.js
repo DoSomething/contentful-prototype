@@ -21,6 +21,10 @@ export const campaignCardFragment = gql`
       id
       path
     }
+    ... on CollectionPage {
+      id
+      path
+    }
   }
 `;
 

@@ -22,36 +22,27 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  homePage
-    .createField('subTitle')
-    .name('Subtitle')
-    .type('Symbol')
-    .localized(true)
-    .required(true)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
 
   homePage
-    .createField('blocks')
-    .name('Blocks')
-    .type('Array')
+    .createField('coverImage')
+    .name('Cover Image')
+    .type('Link')
     .localized(false)
-    .required(true)
-    .validations([])
+    .required(false)
+    .validations([
+      {
+        linkMimetypeGroup: ['image'],
+      },
+      {
+        assetFileSize: {
+          min: null,
+          max: 20971520,
+        },
+      },
+    ])
     .disabled(false)
     .omitted(false)
-    .items({
-      type: 'Link',
-
-      validations: [
-        {
-          linkContentType: ['campaign', 'page', 'storyPage'],
-        },
-      ],
-
-      linkType: 'Entry',
-    });
+    .linkType('Asset');
 
   homePage
     .createField('campaigns')
@@ -67,8 +58,9 @@ module.exports = function(migration) {
 
       validations: [
         {
-          linkContentType: ['campaign', 'storyPage'],
-          message: 'Only Campaign and StoryPage entries are valid.',
+          linkContentType: ['campaign', 'collectionPage', 'storyPage'],
+          message:
+            'Only Campaign, StoryPage, and CollectionPage entries are valid.',
         },
       ],
 
@@ -105,24 +97,25 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  homePage.changeEditorInterface('internalTitle', 'singleLine', {});
-  homePage.changeEditorInterface('title', 'singleLine', {});
-  homePage.changeEditorInterface('subTitle', 'singleLine', {});
+  homePage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {});
+  homePage.changeFieldControl('title', 'builtin', 'singleLine', {});
+  homePage.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {});
 
-  homePage.changeEditorInterface('blocks', 'entryLinksEditor', {
-    bulkEditing: false,
-  });
-
-  homePage.changeEditorInterface('campaigns', 'entryLinksEditor', {
+  homePage.changeFieldControl('campaigns', 'builtin', 'entryLinksEditor', {
     helpText:
-      'Add campaigns (Campaign or StoryPage entries) to showcase on the home page.',
+      'Add campaigns (Campaign, StoryPage, or CollectionPage entries) to showcase on the home page.',
     bulkEditing: false,
   });
 
-  homePage.changeEditorInterface('articles', 'entryLinksEditor', {
+  homePage.changeFieldControl('articles', 'builtin', 'entryLinksEditor', {
     helpText: 'Add articles (Page entries) to showcase on the home page.',
     bulkEditing: false,
   });
 
-  homePage.changeEditorInterface('additionalContent', 'objectEditor', {});
+  homePage.changeFieldControl(
+    'additionalContent',
+    'builtin',
+    'objectEditor',
+    {},
+  );
 };
