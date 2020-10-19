@@ -18,7 +18,9 @@ If you want to suppress the banner from a page that may have multiple sub paths 
 
 ## Displaying Sitewide banner content
 
-The content that will be displayed on the banner currently depends on a few variables. We always check if the user is authenticated and voter registration status. If the user has a voter registration status of `uncertain`, `unregistered`, or `confirmed`, the banner display content prompting the user to register to vote.
+The content that will be displayed on the banner currently depends on a few variables. We check for users that have self reported either confirmed or uncertain when registering with us. If they have either as their voter registration status, they'll see a specific copy to encourage them to double check their status.
+
+Besides self reporting, we check if the user is authenticated and their voter registration status. If the user has a voter registration status of `uncertain`, `unregistered`, or `confirmed`, the banner will display content prompting the user to register to vote.
 
 If any other status is returned we will display another action - For example we've displayed a `Refer-A-Friend` banner in lieu of of the voter registration prompt.
 
