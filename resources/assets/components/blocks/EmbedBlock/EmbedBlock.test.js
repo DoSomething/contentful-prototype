@@ -6,12 +6,14 @@ import EmbedBlock from './EmbedBlock';
 jest.mock('./EmbedBlockContainer.js', () => 'EmbedBlockContainer');
 
 describe('Embed Block Component', () => {
+  /** @test */
   test('renders Carto template for dosomething.carto URL', () => {
     const wrapper = shallow(<EmbedBlock url="https://dosomething.carto.com" />);
 
     expect(wrapper.find('CartoTemplate').length).toEqual(1);
   });
 
+  /** @test */
   test('renders Typeform template for dosomething.typeform URL', () => {
     const wrapper = shallow(
       <EmbedBlock url="https://dosomething.typeform.com" />,
@@ -20,6 +22,7 @@ describe('Embed Block Component', () => {
     expect(wrapper.find('TypeFormTemplate').length).toEqual(1);
   });
 
+  /** @test */
   test('renders Iframe embed for airtable URL', () => {
     const wrapper = shallow(
       <EmbedBlock url="https://airtable.com/embed" id="123" />,
@@ -28,6 +31,7 @@ describe('Embed Block Component', () => {
     expect(wrapper.find('IframeEmbed').length).toEqual(1);
   });
 
+  /** @test */
   test('renders Embed component for all other URLs', () => {
     const wrapper = shallow(<EmbedBlock url="https://dosomething.org" />);
 
