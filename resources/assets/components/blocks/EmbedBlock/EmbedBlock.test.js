@@ -3,8 +3,6 @@ import { shallow } from 'enzyme';
 
 import EmbedBlock from './EmbedBlock';
 
-jest.mock('./EmbedBlockContainer.js', () => 'EmbedBlockContainer');
-
 describe('Embed Block Component', () => {
   /** @test */
   test('renders Carto template for dosomething.carto URL', () => {
