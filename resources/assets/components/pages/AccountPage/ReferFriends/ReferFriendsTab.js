@@ -40,7 +40,7 @@ const ReferFriendsTab = () => {
           title="Refer a friend!"
           description={
             referralIncentive
-              ? 'When your friend signs up for their first DoSomething campaign, you’ll both enter for a chance to win a $10 gift card! Every 2 weeks, we’ll randomly select 25 winners. The more friends you refer, the more chances you have to win. (P.S. There’s no limit on how many friends you can refer!)'
+              ? 'When your friend signs up for their first DoSomething campaign, you’ll both enter for a chance to win a $10 gift card! Every month, we’ll randomly select 50 winners. The more friends you refer, the more chances you have to win. (P.S. There’s no limit on how many friends you can refer!)'
               : 'Share the link below with a friend and invite them to sign up for their first DoSomething campaign! As soon as your friend signs up, you’ll see their name in the Your Referrals section below. Let’s Do This.'
           }
           link={referFriendsLink}
