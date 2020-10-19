@@ -458,6 +458,26 @@
                   "ofType": null
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "page",
+                "description": "The page of results to return.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": "1"
+              },
+              {
+                "name": "count",
+                "description": "The number of results per page.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": "20"
               }
             ],
             "type": {
@@ -468,6 +488,49 @@
                 "name": "Club",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "paginatedClubs",
+            "description": "Get a Relay-style paginated collection of clubs.",
+            "args": [
+              {
+                "name": "first",
+                "description": "Get the first N results.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": "20"
+              },
+              {
+                "name": "after",
+                "description": "The cursor to return results after.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "name",
+                "description": "The club name to filter clubs by.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ClubCollection",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5550,8 +5613,20 @@
             "deprecationReason": null
           },
           {
+            "name": "votingMethod",
+            "description": "How user plans on voting in upcoming election (e.g. 'in_person', 'mail', 'early')",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "votingPlanAttendingWith",
-            "description": "Who user plans to attend polls with to vote in upcoming election.",
+            "description": "Who user plans to attend polls with to vote in upcoming election if voting in-person.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -5563,7 +5638,7 @@
           },
           {
             "name": "votingPlanMethodOfTransport",
-            "description": "How user plans to get to the polls to vote in upcoming election.",
+            "description": "How user plans to get to the polls to vote in upcoming election if voting in-person.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -5575,7 +5650,7 @@
           },
           {
             "name": "votingPlanTimeOfDay",
-            "description": "What time of day user plans to get the polls to vote in upcoming election.",
+            "description": "What time of day user plans to get the polls to vote in upcoming election if voting in-person.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -6259,6 +6334,30 @@
             "deprecationReason": null
           },
           {
+            "name": "clubId",
+            "description": "The associated user activity club ID for this post.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "club",
+            "description": "The associated user activity club for this post.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Club",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "groupId",
             "description": "The associated user activity group ID for this post.",
             "args": [],
@@ -6685,6 +6784,30 @@
             "deprecationReason": null
           },
           {
+            "name": "clubId",
+            "description": "The associated user activity club ID for this signup.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "club",
+            "description": "The associated user activity club for this signup.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Club",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "groupId",
             "description": "The associated user activity group ID for this signup.",
             "args": [],
@@ -6759,6 +6882,137 @@
           {
             "name": "user",
             "description": "The user who created this signup.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "User",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Club",
+        "description": "A DoSomething club.",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The unique ID for this club.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": "The club name.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "leaderId",
+            "description": "The Northstar ID of the club leader.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "city",
+            "description": "The club city.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "location",
+            "description": "The club ISO-3166-2 location.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "schoolId",
+            "description": "The club school ID.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this club was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this club was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "leader",
+            "description": "The leader of the club.",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -7389,137 +7643,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Club",
-        "description": "A DoSomething club.",
-        "fields": [
-          {
-            "name": "id",
-            "description": "The unique ID for this club.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": "The club name.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "leaderId",
-            "description": "The Northstar ID of the club leader.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "city",
-            "description": "The club city.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "location",
-            "description": "The club ISO-3166-2 location.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "schoolId",
-            "description": "The club school ID.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": "The time this club was last modified.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": "The time when this club was originally created.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "leader",
-            "description": "The leader of the club.",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "CampaignCollection",
         "description": "A paginated list of campaigns. This is a 'Connection' in Relay's parlance, and\nfollows the [Relay Cursor Connections](https://dfurn.es/338oQ6i) specification.",
         "fields": [
@@ -7592,6 +7715,92 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "Campaign",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ClubCollection",
+        "description": "A paginated list of clubs. This is a 'Connection' in Relay's parlance, and\nfollows the [Relay Cursor Connections](https://dfurn.es/338oQ6i) specification.",
+        "fields": [
+          {
+            "name": "edges",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ClubEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pageInfo",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PageInfo",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ClubEdge",
+        "description": "a Club in a paginated list.",
+        "fields": [
+          {
+            "name": "cursor",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "node",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Club",
                 "ofType": null
               }
             },
@@ -16870,30 +17079,6 @@
           {
             "name": "description",
             "description": "The user-facing description for this voter registration drive block.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "approvedPostCountActionId",
-            "description": "If set, the count of current user's approved posts for this action will appear in the sidebar.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "approvedPostCountLabel",
-            "description": "Label text for sidebar if the approvedPostCountActionId is set.",
             "args": [],
             "type": {
               "kind": "SCALAR",
