@@ -23,7 +23,6 @@ const contentfulBlockQueryResult = {
   block: {
     id: blockId,
     __typename: 'VoterRegistrationReferralsBlock',
-    approvedPostCountActionId: 21,
     title: faker.company.catchPhrase(),
   },
 };
