@@ -19,7 +19,7 @@ const SiteFooter = () => {
                 href="https://www.tiktok.com/@dosomething"
                 title="dosomething on Tik Tok"
                 className="hover:text-white"
-                style={{ padding: 'inherit' }}
+                style={{ padding: 0 }}
               >
                 <TikTokIcon />
               </a>
