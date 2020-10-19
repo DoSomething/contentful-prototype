@@ -6,7 +6,6 @@
 
 import url from 'url';
 import qs from 'query-string';
-import '@testing-library/cypress/add-commands';
 
 import schema from '../../schema.json';
 import { campaignPath } from '../fixtures/constants';
@@ -14,6 +13,7 @@ import { mocks, operations } from '../fixtures/graphql';
 import { existingSignup, emptyResponse } from '../fixtures/signups';
 
 // Register Cypress plugins:
+import '@testing-library/cypress/add-commands';
 import 'cypress-graphql-mock';
 import 'cypress-file-upload';
 
