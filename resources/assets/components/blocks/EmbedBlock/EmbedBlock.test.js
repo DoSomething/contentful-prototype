@@ -20,9 +20,9 @@ describe('Embed Block Component', () => {
     expect(wrapper.find('TypeFormTemplate').length).toEqual(1);
   });
 
-  test('renders ErrorBlock if a non-permitted URL is passed', () => {
+  test('renders Embed component for all other URLs', () => {
     const wrapper = shallow(<EmbedBlock url="https://dosomething.org" />);
 
-    expect(wrapper.find('ErrorBlock').length).toEqual(1);
+    expect(wrapper.find('Embed').length).toEqual(1);
   });
 });
