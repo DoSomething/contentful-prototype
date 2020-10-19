@@ -1,5 +1,6 @@
 import React from 'react';
 
+import TikTokIcon from './TikTokIcon';
 import { query } from '../../../helpers';
 
 const SiteFooter = () => {
@@ -15,20 +16,11 @@ const SiteFooter = () => {
           <ul>
             <li>
               <a
-                href="https://www.facebook.com/dosomething"
-                className="social-icon -facebook"
-                title="dosomething on Facebook"
+                href="https://www.tiktok.com/@dosomething"
+                title="dosomething on Tik Tok"
+                className="hover:text-white"
               >
-                <span>dosomething on Facebook</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://twitter.com/dosomething"
-                className="social-icon -twitter"
-                title="@dosomething on Twitter"
-              >
-                <span>@dosomething on Twitter</span>
+                <TikTokIcon />
               </a>
             </li>
             <li>
@@ -42,11 +34,20 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
-                href="http://dosomething.tumblr.com"
-                className="social-icon -tumblr"
-                title="dosomething on Tumblr"
+                href="https://twitter.com/dosomething"
+                className="social-icon -twitter"
+                title="@dosomething on Twitter"
               >
-                <span>dosomething on Tumblr</span>
+                <span>@dosomething on Twitter</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/dosomething"
+                className="social-icon -facebook"
+                title="dosomething on Facebook"
+              >
+                <span>dosomething on Facebook</span>
               </a>
             </li>
             <li>
@@ -56,15 +57,6 @@ const SiteFooter = () => {
                 title="dosomething on Snapchat"
               >
                 <span>dosomething on Snapchat</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="http://weheartit.com/dosomething"
-                className="social-icon -weheartit"
-                title="dosomething on We Heart It"
-              >
-                <span>dosomething on We Heart It</span>
               </a>
             </li>
             <li>
