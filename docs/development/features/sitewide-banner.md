@@ -16,8 +16,12 @@ Before the banner renders on the page, we check the config for any pages that sh
 
 If you want to suppress the banner from a page that may have multiple sub paths but share the same base path, you'll need to add a `*` to the end of the pathname.
 
-### Pathnames Currently Excluded:
+## Displaying Sitewide banner content
 
-- `/us/campaigns/ready-vote*`
-- `/us/my-voter-registration-drive`
-- `/us/quiz-results/*`
+The content that will be displayed on the banner currently depends on a few variables. We check for users that have self reported either confirmed or uncertain when registering with us. If they have either as their voter registration status, they'll see a specific copy to encourage them to double check their status.
+
+Besides self reporting, we check if the user is authenticated and their voter registration status. If the user has a voter registration status of `uncertain`, `unregistered`, or `confirmed`, the banner will display content prompting the user to register to vote.
+
+If any other status is returned we will display another action - For example we've displayed a `Refer-A-Friend` banner in lieu of of the voter registration prompt.
+
+All pathnames can be found here:[excluded path](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/components/utilities/SitewideBanner/config.js)
