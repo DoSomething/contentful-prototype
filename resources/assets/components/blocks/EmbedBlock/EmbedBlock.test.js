@@ -5,10 +5,12 @@ import EmbedBlock from './EmbedBlock';
 
 describe('Embed Block Component', () => {
   /** @test */
-  test('renders Carto template for dosomething.carto URL', () => {
-    const wrapper = shallow(<EmbedBlock url="https://dosomething.carto.com" />);
+  test('renders Iframe embed for dosomething.carto URL', () => {
+    const wrapper = shallow(
+      <EmbedBlock url="https://dosomething.carto.com" id="123" />,
+    );
 
-    expect(wrapper.find('CartoTemplate').length).toEqual(1);
+    expect(wrapper.find('IframeEmbed').length).toEqual(1);
   });
 
   /** @test */

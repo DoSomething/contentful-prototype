@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Embed from '../../utilities/Embed/Embed';
-import CartoTemplate from './templates/CartoTemplate';
 import TypeFormTemplate from './templates/TypeFormTemplate';
 import IframeEmbed from '../../utilities/IframeEmbed/IframeEmbed';
 
@@ -25,8 +24,6 @@ const EmbedBlock = props => {
       return <TypeFormTemplate {...props} />;
 
     case 'dosomething.carto.com':
-      return <CartoTemplate {...props} />;
-
     case 'airtable.com':
       return <IframeEmbed {...props} />;
 
