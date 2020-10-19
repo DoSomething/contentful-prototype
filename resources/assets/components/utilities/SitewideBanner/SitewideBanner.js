@@ -12,8 +12,8 @@ import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import {
   needToVerifyVoterRegStatuses,
   getCheckRegistrationStatusURL,
-  verifiedCompletedVoterRegStatuses,
-  verifiedIneligibleVoterRegStatuses,
+  isVerifiedCompletedVoterRegStatuses,
+  isVerifiedIneligibleVoterRegStatuses,
   USER_VOTER_REGISTRATION_STATUS_QUERY,
 } from '../../../helpers/voter-registration';
 
@@ -79,8 +79,8 @@ const SitewideBanner = props => {
 
   const userRegistrationStatus = get(userData, 'user.voterRegistrationStatus');
   const showNonVoterRegistrationContent =
-    verifiedIneligibleVoterRegStatuses(userRegistrationStatus) ||
-    verifiedCompletedVoterRegStatuses(userRegistrationStatus);
+    isVerifiedIneligibleVoterRegStatuses(userRegistrationStatus) ||
+    isVerifiedCompletedVoterRegStatuses(userRegistrationStatus);
 
   if (userLoading || campaignLoading) {
     return null;

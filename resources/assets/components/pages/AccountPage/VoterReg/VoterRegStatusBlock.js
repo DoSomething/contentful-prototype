@@ -9,8 +9,8 @@ import {
   getTrackingSource,
   needToVerifyVoterRegStatuses,
   getCheckRegistrationStatusURL,
-  verifiedCompletedVoterRegStatuses,
-  verifiedIneligibleVoterRegStatuses,
+  isVerifiedCompletedVoterRegStatuses,
+  isVerifiedIneligibleVoterRegStatuses,
   USER_VOTER_REGISTRATION_STATUS_QUERY,
 } from '../../../../helpers/voter-registration';
 import Spinner from '../../../artifacts/Spinner/Spinner';
@@ -27,8 +27,8 @@ const VoterRegStatusBlock = ({ userId }) => {
   const registrationStatus = get(data, 'user.voterRegistrationStatus', null);
 
   const verifiedRegistrationStatus =
-    verifiedIneligibleVoterRegStatuses(registrationStatus) ||
-    verifiedCompletedVoterRegStatuses(registrationStatus);
+    isVerifiedIneligibleVoterRegStatuses(registrationStatus) ||
+    isVerifiedCompletedVoterRegStatuses(registrationStatus);
 
   if (loading) {
     return <Spinner className="flex justify-center p-16" />;
@@ -46,11 +46,11 @@ const VoterRegStatusBlock = ({ userId }) => {
       <div
         className={classnames('voter-reg flex items-center', {
           '-green':
-            verifiedCompletedVoterRegStatuses(registrationStatus) ||
+            isVerifiedCompletedVoterRegStatuses(registrationStatus) ||
             registrationStatus === 'CONFIRMED',
         })}
       >
-        {verifiedCompletedVoterRegStatuses(registrationStatus) ||
+        {isVerifiedCompletedVoterRegStatuses(registrationStatus) ||
         registrationStatus === 'CONFIRMED' ? (
           <img
             className="pl-2 post-badge icon-check"
@@ -58,8 +58,9 @@ const VoterRegStatusBlock = ({ userId }) => {
             alt="hello"
           />
         ) : null}
+
         <div className="m-3">
-          {verifiedCompletedVoterRegStatuses(registrationStatus) ? (
+          {isVerifiedCompletedVoterRegStatuses(registrationStatus) ? (
             <p>Your voter registration is confirmed.</p>
           ) : (
             <p>

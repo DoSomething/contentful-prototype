@@ -78,7 +78,7 @@ export function needToVerifyVoterRegStatuses(userRegistrationStatus) {
  * @param {String} voterRegistrationStatus
  * @return {Boolean}
  */
-export const verifiedCompletedVoterRegStatuses = voterRegistrationStatus => {
+export const isVerifiedCompletedVoterRegStatuses = voterRegistrationStatus => {
   return ['REGISTRATION_COMPLETE'].includes(voterRegistrationStatus);
 };
 
@@ -88,7 +88,7 @@ export const verifiedCompletedVoterRegStatuses = voterRegistrationStatus => {
  * @param {String} voterRegistrationStatus
  * @return {Boolean}
  */
-export const verifiedIneligibleVoterRegStatuses = voterRegistrationStatus => {
+export const isVerifiedIneligibleVoterRegStatuses = voterRegistrationStatus => {
   return ['INELIGIBLE', 'REJECTED', 'UNDER_18'].includes(
     voterRegistrationStatus,
   );
