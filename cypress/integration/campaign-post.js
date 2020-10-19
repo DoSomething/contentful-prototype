@@ -94,11 +94,7 @@ describe('Campaign Post', () => {
 
     cy.get('.photo-submission-action').within(() => {
       // Choose an image to upload as a photo post:
-      const fileName = 'upload.jpg';
-      cy.fixture(fileName).then(fileContent => {
-        const payload = { fileContent, fileName, mimeType: 'image/jpeg' };
-        cy.get('input[type="file"]').upload(payload, { subjectType: 'input' });
-      });
+      cy.get('input[type="file"]').attachFile('upload.jpg');
 
       // Fill out other fields:
       cy.get('[name="caption"]').type("Let's do this!");
