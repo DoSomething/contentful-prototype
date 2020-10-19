@@ -4,17 +4,15 @@ import classnames from 'classnames';
 
 import AnalyticsWaypoint from '../AnalyticsWaypoint/AnalyticsWaypoint';
 
-const IframeEmbed = ({ className, id, url }) => {
-  return (
-    <div id={id} className={classnames('embed', className)}>
-      <AnalyticsWaypoint name="embed-top" context={{ blockId: id }} />
+const IframeEmbed = ({ className, id, url }) => (
+  <div id={id} className={classnames('embed', className)}>
+    <AnalyticsWaypoint name="embed-top" context={{ blockId: id }} />
 
-      <iframe title={`embed ${id}`} src={url} width="100%" height="520" />
+    <iframe title={`embed ${id}`} src={url} width="100%" height="520" />
 
-      <AnalyticsWaypoint name="embed-bottom" context={{ blockId: id }} />
-    </div>
-  );
-};
+    <AnalyticsWaypoint name="embed-bottom" context={{ blockId: id }} />
+  </div>
+);
 
 IframeEmbed.propTypes = {
   className: PropTypes.string,
