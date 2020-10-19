@@ -9,10 +9,6 @@ import IframeEmbed from '../../utilities/IframeEmbed/IframeEmbed';
 export const EmbedBlockFragment = gql`
   fragment EmbedBlockFragment on EmbedBlock {
     url
-    previewImage {
-      url(w: 700, h: 700)
-      description
-    }
   }
 `;
 

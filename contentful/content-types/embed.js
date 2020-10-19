@@ -23,26 +23,6 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  embed
-    .createField('previewImage')
-    .name('Preview Image')
-    .type('Link')
-    .localized(false)
-    .required(false)
-    .validations([
-      {
-        linkMimetypeGroup: ['image'],
-      },
-      {
-        assetFileSize: {
-          max: 20971520,
-        },
-      },
-    ])
-    .disabled(false)
-    .omitted(false)
-    .linkType('Asset');
-
   embed.changeFieldControl('internalTitle', 'builtin', 'singleLine', {
     helpText:
       'This title is used internally to help find this content. It will not be displayed anywhere on the rendered web page.',
