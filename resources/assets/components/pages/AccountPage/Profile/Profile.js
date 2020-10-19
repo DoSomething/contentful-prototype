@@ -10,7 +10,7 @@ import {
   getUtmContext,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
-// import VoterRegStatusBlock from './VoterRegStatusBlock';
+import VoterRegStatusBlock from '../VoterReg/VoterRegStatusBlock';
 
 const Profile = props => (
   <React.Fragment>
@@ -49,6 +49,10 @@ const Profile = props => (
       </div>
     </div>
     <div className="grid-wide-1/3 my-6">
+      <h2 className="text-lg">Registration Status</h2>
+      <div className="my-3">
+        <VoterRegStatusBlock userId={props.user.id} />
+      </div>
       <h2 className="text-lg">Data and Privacy</h2>
       <ul className="mt-3">
         <li>
@@ -85,14 +89,6 @@ const Profile = props => (
         </li>
       </ul>
     </div>
-    {/* Commenting this out until we have proper Voter registration info being pulled from Rogue.
-      <div className="float-right clear-right pt-3">
-        <h2>Registration Status</h2>
-        <div className="mt-6">
-          <VoterRegStatusBlock status={props.user.voterRegistrationStatus} />
-        </div>
-      </div>
-    */}
   </React.Fragment>
 );
 
@@ -103,7 +99,6 @@ Profile.propTypes = {
     email: PropTypes.string,
     mobile: PropTypes.string,
     birthdate: PropTypes.string,
-    voterRegistrationStatus: PropTypes.string,
     id: PropTypes.string.isRequired,
   }).isRequired,
 };

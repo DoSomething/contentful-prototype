@@ -4,24 +4,18 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
+import { excludedPaths } from './config';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
 import { isCurrentPathInPaths, query } from '../../../helpers';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
-import { excludedPaths, excludedVoterRegistrationStatuses } from './config';
 import {
-  isRegisteredStatus,
+  needToVerifyVoterRegStatuses,
   getCheckRegistrationStatusURL,
+  isVerifiedCompletedVoterRegStatuses,
+  isVerifiedIneligibleVoterRegStatuses,
+  USER_VOTER_REGISTRATION_STATUS_QUERY,
 } from '../../../helpers/voter-registration';
-
-const USER_QUERY = gql`
-  query UserSitewideBannerQuery($userId: String!) {
-    user(id: $userId) {
-      id
-      voterRegistrationStatus
-    }
-  }
-`;
 
 const CAMPAIGN_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {
@@ -31,16 +25,6 @@ const CAMPAIGN_QUERY = gql`
     }
   }
 `;
-
-/**
- * Checks if given voter registration status matches an entry in excluded status config.
- *
- * @param {String} voterRegistrationStatus
- * @return {Boolean}
- */
-const isExcludedVoterRegistrationStatus = voterRegistrationStatus => {
-  return excludedVoterRegistrationStatuses.includes[voterRegistrationStatus];
-};
 
 const SitewideBanner = props => {
   const usePortal = id => {
@@ -73,10 +57,13 @@ const SitewideBanner = props => {
   }
 
   const userId = getUserId();
-  const { data: userData, loading: userLoading } = useQuery(USER_QUERY, {
-    variables: { userId },
-    skip: !userId,
-  });
+  const { data: userData, loading: userLoading } = useQuery(
+    USER_VOTER_REGISTRATION_STATUS_QUERY,
+    {
+      variables: { userId },
+      skip: !userId,
+    },
+  );
 
   const campaign = getCampaign();
   const campaignId = campaign ? Number(campaign.campaignId) : null;
@@ -91,6 +78,9 @@ const SitewideBanner = props => {
   );
 
   const userRegistrationStatus = get(userData, 'user.voterRegistrationStatus');
+  const showNonVoterRegistrationContent =
+    isVerifiedIneligibleVoterRegStatuses(userRegistrationStatus) ||
+    isVerifiedCompletedVoterRegStatuses(userRegistrationStatus);
 
   if (userLoading || campaignLoading) {
     return null;
@@ -102,9 +92,7 @@ const SitewideBanner = props => {
      * on small screen.
      */
     !!get(campaignData, 'campaign.groupTypeId') ||
-    isExcludedVoterRegistrationStatus(
-      get(userData, 'user.voterRegistrationStatus'),
-    )
+    showNonVoterRegistrationContent
   ) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
@@ -113,11 +101,11 @@ const SitewideBanner = props => {
 
   if (
     /**
-     * Checks for auth user and if the user is registered to vote,
+     * Checks for auth user and if the user is registered to vote/ineligible,
      * Display an refer a friend banner
      */
     isAuthenticated() &&
-    excludedVoterRegistrationStatuses.includes(userRegistrationStatus)
+    showNonVoterRegistrationContent
   ) {
     return createPortal(
       <SitewideBannerContent
@@ -133,11 +121,11 @@ const SitewideBanner = props => {
 
   if (
     /**
-     * Checks for auth user and if the user is self reported to be registered to vote,
+     * Checks for auth user and if the user is self reported to be registered to vote or uncertain
      * Display a reminder to check their status
      */
     isAuthenticated() &&
-    isRegisteredStatus(userRegistrationStatus)
+    needToVerifyVoterRegStatuses(userRegistrationStatus)
   ) {
     return createPortal(
       <SitewideBannerContent

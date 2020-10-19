@@ -14,12 +14,4 @@ export const excludedPaths = [
   '/us/quiz-results/*',
 ];
 
-export const excludedVoterRegistrationStatuses = [
-  'INELIGIBLE',
-  'REGISTRATION_COMPLETE',
-];
-
-export const selfReportedVoterRegistrationConfirmedStatuses = [
-  'CONFIRMED',
-  'UNCERTAIN',
-];
+export default excludedPaths;

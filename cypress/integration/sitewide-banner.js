@@ -42,7 +42,7 @@ describe('Site Wide Banner', () => {
       },
     });
 
-    cy.mockGraphqlOp('UserSitewideBannerQuery', {
+    cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
         voterRegistrationStatus: null,
       },
@@ -62,7 +62,7 @@ describe('Site Wide Banner', () => {
       },
     });
 
-    cy.mockGraphqlOp('UserSitewideBannerQuery', {
+    cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
         voterRegistrationStatus: 'UNREGISTERED',
       },
@@ -82,7 +82,7 @@ describe('Site Wide Banner', () => {
       },
     });
 
-    cy.mockGraphqlOp('UserSitewideBannerQuery', {
+    cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
         voterRegistrationStatus: 'CONFIRMED',
       },
@@ -188,7 +188,7 @@ describe('Site Wide Banner', () => {
       },
     });
 
-    cy.mockGraphqlOp('UserSitewideBannerQuery', {
+    cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
         voterRegistrationStatus: 'UNREGISTERED',
       },
