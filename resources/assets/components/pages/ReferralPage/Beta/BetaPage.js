@@ -55,7 +55,7 @@ const BetaPage = () => {
                 <div className="my-6">
                   <p>
                     {referralIncentive
-                      ? `${firstName} invited you to join this campaign (and enter for a chance to win a $10 gift card) through DoSomething! Once you sign up for the campaign below, you and ${firstName} will both have a chance at the gift card! We’ll select 25 winners every 2 weeks.`
+                      ? `${firstName} invited you to join this campaign (and enter for a chance to win a $10 gift card) through DoSomething! Once you sign up for the campaign below, you and ${firstName} will both have a chance at the gift card! We’ll select 50 winners every month.`
                       : `Your friend ${firstName} thinks that you'd be interested in joining DoSomething, the largest not-for-profit exclusively focused on young people and social change! Sign up for your first campaign. Let's do this!`}
                   </p>
                 </div>
