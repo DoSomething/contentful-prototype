@@ -12,6 +12,9 @@ import { defaultReferralCampaignId } from '../fixtures/constants';
 Cypress.on('window:before:load', window => {
   const document = window.document;
 
+  // Clear session storage between tests:
+  window.sessionStorage.clear();
+
   // Custom ENV variables for the testing environment.
   window.ENV = {
     APP_ENV: 'development',

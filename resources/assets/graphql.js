@@ -4,7 +4,7 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { ApolloClient } from 'apollo-client';
 import { setContext } from 'apollo-link-context';
-import { BatchHttpLink } from 'apollo-link-batch-http';
+import { HttpLink } from 'apollo-link-http';
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries';
 import {
   InMemoryCache,
@@ -51,7 +51,7 @@ export default uri => {
 
   // Create the HTTP link! This is our terminating link that batches up
   // GraphQL queries and makes the actual HTTP request to our server.
-  const httpLink = new BatchHttpLink({ uri });
+  const httpLink = new HttpLink({ uri });
 
   return new ApolloClient({
     link: ApolloLink.from([errorLink, authLink, persistedLink, httpLink]),
