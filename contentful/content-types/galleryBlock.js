@@ -24,6 +24,21 @@ module.exports = function(migration) {
     .omitted(false);
 
   galleryBlock
+    .createField('galleryType')
+    .name('Gallery Type')
+    .type('Symbol')
+    .localized(false)
+    .required(true)
+    .validations([
+      {
+        in: ['Campaign', 'Scholarship', 'Page', 'Person', 'External Link'],
+        message: 'Please choose a gallery type.',
+      },
+    ])
+    .disabled(false)
+    .omitted(false);
+
+  galleryBlock
     .createField('blocks')
     .name('Blocks')
     .type('Array')
@@ -37,7 +52,13 @@ module.exports = function(migration) {
 
       validations: [
         {
-          linkContentType: ['campaign', 'contentBlock', 'page', 'person'],
+          linkContentType: [
+            'campaign',
+            'contentBlock',
+            'page',
+            'person',
+            'storyPage',
+          ],
         },
       ],
 
@@ -89,8 +110,14 @@ module.exports = function(migration) {
   galleryBlock.changeFieldControl('internalTitle', 'builtin', 'singleLine', {});
   galleryBlock.changeFieldControl('title', 'builtin', 'singleLine', {});
 
+  galleryBlock.changeFieldControl('galleryType', 'builtin', 'dropdown', {
+    helpText: 'Choose a gallery type that matches your content.',
+  });
+
   galleryBlock.changeFieldControl('blocks', 'builtin', 'entryLinksEditor', {
     bulkEditing: false,
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
   });
 
   galleryBlock.changeFieldControl('itemsPerRow', 'builtin', 'radio', {
