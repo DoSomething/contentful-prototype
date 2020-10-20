@@ -74,6 +74,7 @@ const Embed = props => {
             <div
               className={classnames({ 'media-video': embed.type === 'VIDEO' })}
               dangerouslySetInnerHTML={{ __html: embed.html }}
+              data-testid="embed-html"
             />
           ) : (
             <a

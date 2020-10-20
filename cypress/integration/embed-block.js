@@ -4,6 +4,8 @@ import { userFactory } from '../fixtures/user';
 describe('Embed Block', () => {
   beforeEach(() => cy.configureMocks());
 
+  const blockId = 'abcdefghi123456789';
+
   /** @test */
   it('renders a Typeform embed for Typeform URLs with the user ID as a hidden field', () => {
     const typeformUrl = 'https://dosomething.typeform.com/to/iEdy7C';
@@ -36,7 +38,7 @@ describe('Embed Block', () => {
       },
     });
 
-    cy.visit('us/blocks/123');
+    cy.visit(`us/blocks/${blockId}`);
 
     cy.get('iframe')
       .should('have.attr', 'src')
@@ -55,7 +57,7 @@ describe('Embed Block', () => {
       },
     });
 
-    cy.visit('us/blocks/123');
+    cy.visit(`us/blocks/${blockId}`);
 
     cy.get('iframe')
       .should('have.attr', 'src')
@@ -73,48 +75,76 @@ describe('Embed Block', () => {
       },
     });
 
-    cy.visit('us/blocks/123');
+    cy.visit(`us/blocks/${blockId}`);
 
     cy.get('iframe')
       .should('have.attr', 'src')
       .and('include', airtable);
   });
 
-  /** @test */
-  it('renders a badged link embed for other URLs', () => {
-    const url = 'https://vote.dosomething.org';
+  context('Default URLs', () => {
+    /** @test */
+    it('renders an Embed link if no HTML provided', () => {
+      const url = 'https://vote.dosomething.org';
 
-    cy.mockGraphqlOp('ContentfulBlockQuery', {
-      block: {
-        __typename: 'EmbedBlock',
-        url,
-      },
+      cy.mockGraphqlOp('ContentfulBlockQuery', {
+        block: {
+          __typename: 'EmbedBlock',
+          url,
+        },
+      });
+
+      const embedTitle = 'Vote!';
+      const embedDescription = 'Cast your vote and your soul is safe.';
+      const embedProviderName = 'Puppet Sloth';
+
+      cy.mockGraphqlOp('EmbedQuery', {
+        embed: {
+          title: embedTitle,
+          providerName: embedProviderName,
+          description: embedDescription,
+          html: null,
+        },
+      });
+
+      cy.visit(`us/blocks/${blockId}`);
+
+      cy.findByTestId('embed').within(() => {
+        cy.get('a')
+          .should('have.attr', 'href')
+          .and('include', url);
+
+        cy.findByTestId('embed-title').contains(embedTitle);
+        cy.findByTestId('embed-description').contains(embedDescription);
+        cy.findByTestId('embed-provider-name').contains(embedProviderName);
+        cy.findByTestId('embed-badge');
+      });
     });
 
-    const embedTitle = 'Vote!';
-    const embedDescription = 'Cast your vote and your soul is safe.';
-    const embedProviderName = 'Puppet Sloth';
+    it('renders the provided HTML', () => {
+      cy.mockGraphqlOp('ContentfulBlockQuery', {
+        block: {
+          __typename: 'EmbedBlock',
+          url: 'https://www.youtube.com/watch?v=jtzr1cOPvfU',
+        },
+      });
 
-    cy.mockGraphqlOp('EmbedQuery', {
-      embed: {
-        title: embedTitle,
-        providerName: embedProviderName,
-        description: embedDescription,
-        html: null,
-      },
-    });
+      const providerHTML =
+        '<h1 data-testid="provider-html">I am provider HTML. Embed me please, k thx.</h1>';
 
-    cy.visit('us/blocks/123');
+      cy.mockGraphqlOp('EmbedQuery', {
+        embed: {
+          html: providerHTML,
+        },
+      });
 
-    cy.findByTestId('embed').within(() => {
-      cy.get('a')
-        .should('have.attr', 'href')
-        .and('include', url);
+      cy.visit(`us/blocks/${blockId}`);
 
-      cy.findByTestId('embed-title').contains(embedTitle);
-      cy.findByTestId('embed-description').contains(embedDescription);
-      cy.findByTestId('embed-provider-name').contains(embedProviderName);
-      cy.findByTestId('embed-badge');
+      cy.findByTestId('embed').within(() => {
+        cy.findByTestId('embed-html').within(() => {
+          cy.findByTestId('provider-html');
+        });
+      });
     });
   });
 });
