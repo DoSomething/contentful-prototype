@@ -16,7 +16,7 @@ Cypress.on('window:before:load', window => {
   window.sessionStorage.clear();
 
   // Custom ENV variables for the testing environment.
-  window.window.ENV = {
+  window.ENV = {
     APP_ENV: 'development',
     FEATURE_FLAGS: {
       nps_survey: false,
