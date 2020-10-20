@@ -220,6 +220,12 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             >
               <div className="bg-blurple-500 py-4 grid-wide xl:grid xl:grid-cols-3">
                 <ImpactStatistic
+                  campaignName="We are The Voters"
+                  impactLabel="Voters Registered"
+                  impactValue="350,000"
+                />
+
+                <ImpactStatistic
                   campaignName="Teens for Jeans"
                   impactLabel="Jeans Donated"
                   impactValue="5 million"
@@ -229,12 +235,6 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   campaignName="GTFO (Get The Filter Out)"
                   impactLabel="Cigarette Butts Collected"
                   impactValue="3.7 million"
-                />
-
-                <ImpactStatistic
-                  campaignName="Power to the Period"
-                  impactLabel="Period Products Donated"
-                  impactValue="585,965"
                 />
               </div>
             </div>
