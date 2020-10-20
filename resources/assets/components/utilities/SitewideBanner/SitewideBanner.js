@@ -15,11 +15,11 @@ import CtaPopover from '../CtaPopover/CtaPopover';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
 import DelayedElement from '../DelayedElement/DelayedElement';
-import { isCurrentPathInPaths, query, featureFlag } from '../../../helpers';
 import { excludedPaths, newsLetterWidgetPaths } from './config';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import CtaPopoverEmailForm from '../CtaPopover/CtaPopoverEmailForm';
 import DismissableElement from '../DismissableElement/DismissableElement';
+import { isCurrentPathInPaths, query, featureFlag } from '../../../helpers';
 
 const CAMPAIGN_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {
