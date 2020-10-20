@@ -144,6 +144,7 @@
     "@apollo/react-testing": "^3.1.4",
     "@babel/core": "^7.12.3",
     "@babel/preset-flow": "^7.12.1",
+    "@cypress/webpack-preprocessor": "^5.4.8",
     "@dosomething/babel-preset": "^3.2.0",
     "@dosomething/eslint-config": "^5.0.1",
     "@dosomething/webpack-config": "^6.0.0",
