@@ -57,6 +57,7 @@ const Embed = props => {
         'bg-white border border-solid border-transparent-black-10 border-no-clip overflow-hidden rounded',
         className,
       )}
+      data-testid="embed"
     >
       <Query query={EMBED_QUERY} variables={{ url }}>
         {({ loading, error, data }) => {
@@ -92,14 +93,17 @@ const Embed = props => {
                 />
                 <div className="flex-auto p-3">
                   <div className="my-3 mr-3">
-                    <h3>
+                    <h3 data-testid="embed-title">
                       {isLoaded ? (
                         truncate(embed ? embed.title : url, { length: 60 })
                       ) : (
                         <PlaceholderText size="medium" />
                       )}
                     </h3>
-                    <p className="text-gray-600 font-normal">
+                    <p
+                      className="text-gray-600 font-normal"
+                      data-testid="embed-description"
+                    >
                       {isLoaded ? (
                         truncate(embed ? embed.description : '', {
                           length: 240,
@@ -108,7 +112,10 @@ const Embed = props => {
                         <PlaceholderText size="large" />
                       )}
                     </p>
-                    <p className="text-gray-700 text-sm mt-3 font-bold uppercase">
+                    <p
+                      className="text-gray-700 text-sm mt-3 font-bold uppercase"
+                      data-testid="embed-provider-name"
+                    >
                       {isLoaded ? (
                         truncate(embed ? embed.providerName : 'External Link', {
                           length: 60,
@@ -120,7 +127,10 @@ const Embed = props => {
                   </div>
                 </div>
                 {badged ? (
-                  <div className="bg-blue-500 hover:bg-blue-300 flex-initial flex item-center justify-center p-3 border-none">
+                  <div
+                    className="bg-blue-500 hover:bg-blue-300 flex-initial flex item-center justify-center p-3 border-none"
+                    data-testid="embed-badge"
+                  >
                     <img src={linkIcon} alt="link" />
                   </div>
                 ) : null}
