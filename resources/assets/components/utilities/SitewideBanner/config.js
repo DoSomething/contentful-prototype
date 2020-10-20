@@ -14,4 +14,10 @@ export const excludedPaths = [
   '/us/quiz-results/*',
 ];
 
-export default excludedPaths;
+/**
+ * Paths to check for when we want to display the newsletter popover
+ */
+export const newsLetterWidgetPaths = [
+  '/us/about/easy-scholarships',
+  'us/facts/*',
+];

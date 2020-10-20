@@ -4,11 +4,6 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
-import { excludedPaths } from './config';
-import { getCampaign } from '../../../helpers/campaign';
-import SitewideBannerContent from './SitewideBannerContent';
-import { isCurrentPathInPaths, query } from '../../../helpers';
-import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import {
   needToVerifyVoterRegStatuses,
   getCheckRegistrationStatusURL,
@@ -16,6 +11,15 @@ import {
   isVerifiedIneligibleVoterRegStatuses,
   USER_VOTER_REGISTRATION_STATUS_QUERY,
 } from '../../../helpers/voter-registration';
+import CtaPopover from '../CtaPopover/CtaPopover';
+import { getCampaign } from '../../../helpers/campaign';
+import SitewideBannerContent from './SitewideBannerContent';
+import DelayedElement from '../DelayedElement/DelayedElement';
+import { isCurrentPathInPaths, query, featureFlag } from '../../../helpers';
+import { excludedPaths, newsLetterWidgetPaths } from './config';
+import { getUserId, isAuthenticated } from '../../../helpers/auth';
+import CtaPopoverEmailForm from '../CtaPopover/CtaPopoverEmailForm';
+import DismissableElement from '../DismissableElement/DismissableElement';
 
 const CAMPAIGN_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {
@@ -44,7 +48,33 @@ const SitewideBanner = props => {
   const target = usePortal('banner-portal');
   const hiddenAttributeDataTestId = 'sitewide-banner-hidden';
 
-  // First check if this path is excluded, to avoid making unnecessary GraphQL requests.
+  // Check if this path is to scholarships page, to display the popover instead of site wide banner.
+  if (
+    featureFlag('sitewide_popover_cta') &&
+    isCurrentPathInPaths(newsLetterWidgetPaths)
+  ) {
+    return createPortal(
+      <DismissableElement
+        name="cta_popover_scholarship_email"
+        context={{ contextSource: 'newsletter_scholarships' }}
+        render={(handleClose, handleComplete) => (
+          <DelayedElement delay={3}>
+            <CtaPopover
+              title="Pays To Do Good"
+              content="Want to earn easy scholarships for volunteering?
+            Subscribe to DoSomething's monthly scholarship email."
+              handleClose={handleClose}
+            >
+              <CtaPopoverEmailForm handleComplete={handleComplete} />
+            </CtaPopover>
+          </DelayedElement>
+        )}
+      />,
+      target,
+    );
+  }
+
+  // Check if this path is excluded, to avoid making unnecessary GraphQL requests.
   if (isCurrentPathInPaths(excludedPaths)) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
