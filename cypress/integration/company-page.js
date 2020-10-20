@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
-const exampleAboutPage = require('../fixtures/contentful/exampleAboutPage');
+
+import exampleAboutPage from '../fixtures/contentful/exampleAboutPage';
 
 describe('Company Page', () => {
   // Configure a new "mock" server before each test:
