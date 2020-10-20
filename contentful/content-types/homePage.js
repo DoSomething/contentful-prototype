@@ -103,8 +103,10 @@ module.exports = function(migration) {
 
   homePage.changeFieldControl('campaigns', 'builtin', 'entryLinksEditor', {
     helpText:
-      'Add campaigns (Campaign, StoryPage, or CollectionPage entries) to showcase on the home page.',
+      'Add campaigns (Campaign, StoryPage, or CollectionPage (https://bit.ly/2HlM3Mk) entries) to showcase on the home page.',
     bulkEditing: false,
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
   });
 
   homePage.changeFieldControl('articles', 'builtin', 'entryLinksEditor', {
