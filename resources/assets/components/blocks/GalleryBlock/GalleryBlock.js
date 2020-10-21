@@ -12,7 +12,7 @@ import CampaignCard, {
 import ScholarshipCard, {
   scholarshipCardFragment,
 } from '../../utilities/ScholarshipCard/ScholarshipCard';
-import PageCard from '../../utilities/PageCard/PageCard';
+import PageCard, { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 
 export const GalleryBlockFragment = gql`
@@ -41,11 +41,13 @@ export const GalleryBlockFragment = gql`
       }
       ...CampaignCard
       ...ScholarshipCard
+      ...PageCard
     }
   }
 
   ${campaignCardFragment}
   ${scholarshipCardFragment}
+  ${pageCardFragment}
 `;
 
 const renderBlock = (blockType, block, imageAlignment, imageFit) => {
