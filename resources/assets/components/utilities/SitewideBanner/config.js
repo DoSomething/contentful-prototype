@@ -19,5 +19,8 @@ export const excludedPaths = [
  */
 export const newsLetterWidgetPaths = [
   '/us/about/easy-scholarships',
-  'us/facts/*',
+  '/us/articles/how-to-apply-for-scholarships-like-a-pro',
+  '/us/articles/6-free-places-to-find-no-essay-scholarships',
+  '/us/articles/10-places-to-find-scholarships-for-high-school-seniors',
+  '/us/articles/scholarship-winners',
 ];
