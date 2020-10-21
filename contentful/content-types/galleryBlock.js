@@ -31,7 +31,7 @@ module.exports = function(migration) {
     .required(true)
     .validations([
       {
-        in: ['Campaign', 'Scholarship', 'Page', 'Person', 'External Link'],
+        in: ['Campaign', 'Scholarship', 'Page', 'Person', 'Content Block'],
         message: 'Please choose a gallery type.',
       },
     ])
