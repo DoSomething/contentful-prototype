@@ -15,11 +15,11 @@ import CtaPopover from '../CtaPopover/CtaPopover';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBannerContent from './SitewideBannerContent';
 import DelayedElement from '../DelayedElement/DelayedElement';
-import { excludedPaths, newsLetterWidgetPaths } from './config';
+import { isCurrentPathInPaths, query } from '../../../helpers';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import CtaPopoverEmailForm from '../CtaPopover/CtaPopoverEmailForm';
+import { excludedPaths, scholarshipsNewsletterPaths } from './config';
 import DismissableElement from '../DismissableElement/DismissableElement';
-import { isCurrentPathInPaths, query, featureFlag } from '../../../helpers';
 
 const CAMPAIGN_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {
@@ -48,11 +48,8 @@ const SitewideBanner = props => {
   const target = usePortal('banner-portal');
   const hiddenAttributeDataTestId = 'sitewide-banner-hidden';
 
-  // Check if this path is to scholarships page, to display the popover instead of site wide banner.
-  if (
-    featureFlag('sitewide_popover_cta') &&
-    isCurrentPathInPaths(newsLetterWidgetPaths)
-  ) {
+  // Check if this path is to scholarships page or specified article pages to display the popover instead of site wide banner.
+  if (isCurrentPathInPaths(scholarshipsNewsletterPaths)) {
     return createPortal(
       <DismissableElement
         name="cta_popover_scholarship_email"

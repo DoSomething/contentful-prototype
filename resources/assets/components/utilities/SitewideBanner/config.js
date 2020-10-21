@@ -17,7 +17,7 @@ export const excludedPaths = [
 /**
  * Paths to check for when we want to display the newsletter popover
  */
-export const newsLetterWidgetPaths = [
+export const scholarshipsNewsletterPaths = [
   '/us/about/easy-scholarships',
   '/us/articles/how-to-apply-for-scholarships-like-a-pro',
   '/us/articles/6-free-places-to-find-no-essay-scholarships',

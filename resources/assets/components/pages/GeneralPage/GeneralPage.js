@@ -10,15 +10,11 @@ import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
 import ArticleHeader from '../../utilities/ArticleHeader';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
-import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
-import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
-import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
-import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 /**
@@ -34,7 +30,6 @@ const GeneralPage = props => {
     subTitle,
     coverImage,
     content,
-    additionalContent,
     blocks,
     displaySocialShare,
     isAuthenticated,
@@ -130,28 +125,6 @@ const GeneralPage = props => {
             buttonText={ctaCopy.buttonText}
           />
         ) : null}
-        {get(
-          additionalContent,
-          'display_scholarship_newsletter_cta_popover',
-          false,
-        ) === true ? (
-          <DismissableElement
-            name="cta_popover_scholarship_email"
-            context={{ contextSource: 'newsletter_scholarships' }}
-            render={(handleClose, handleComplete) => (
-              <DelayedElement delay={3}>
-                <CtaPopover
-                  title="PAYS TO DO GOOD"
-                  content="Want to earn easy scholarships for volunteering?
-                Subscribe to DoSomething's monthly scholarship email."
-                  handleClose={handleClose}
-                >
-                  <CtaPopoverEmailForm handleComplete={handleComplete} />
-                </CtaPopover>
-              </DelayedElement>
-            )}
-          />
-        ) : null}
       </main>
 
       <SiteFooter />
@@ -169,7 +142,6 @@ GeneralPage.propTypes = {
     description: PropTypes.string,
   }),
   content: PropTypes.string,
-  additionalContent: PropTypes.object,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   displaySocialShare: PropTypes.bool,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -180,7 +152,6 @@ GeneralPage.defaultProps = {
   authors: [],
   coverImage: {},
   content: null,
-  additionalContent: {},
   subTitle: null,
   displaySocialShare: false,
 };
