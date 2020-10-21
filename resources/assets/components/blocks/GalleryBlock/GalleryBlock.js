@@ -36,9 +36,6 @@ export const GalleryBlockFragment = gql`
         type
         twitterId
       }
-      ... on Page {
-        slug
-      }
       ...CampaignCard
       ...ScholarshipCard
       ...PageCard
