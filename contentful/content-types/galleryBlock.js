@@ -111,10 +111,13 @@ module.exports = function(migration) {
   galleryBlock.changeFieldControl('title', 'builtin', 'singleLine', {});
 
   galleryBlock.changeFieldControl('galleryType', 'builtin', 'dropdown', {
-    helpText: 'Choose a gallery type that matches your content.',
+    helpText:
+      'Choose a gallery type that directly matches your referenced entry types. ("Scholarship": a list of Campaigns embellished with scholarship info. The "External Link" has been updated to "Content Block").',
   });
 
   galleryBlock.changeFieldControl('blocks', 'builtin', 'entryLinksEditor', {
+    helpText:
+      "The list of entries displayed in the gallery. These entries must all be of the *same type*, e.g. a list of Campaign entries. You shouldn't mix and match content types.",
     bulkEditing: false,
     showLinkEntityAction: true,
     showCreateEntityAction: true,
