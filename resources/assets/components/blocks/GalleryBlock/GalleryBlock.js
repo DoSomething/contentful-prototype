@@ -76,7 +76,7 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
         />
       );
 
-    case 'EXTERNAL_LINK':
+    case 'CONTENT_BLOCK':
     case 'ContentBlock':
       return (
         <ContentBlockGalleryItem
@@ -141,7 +141,7 @@ GalleryBlock.propTypes = {
     'CAMPAIGN',
     'SCHOLARSHIP',
     'PAGE',
-    'EXTERNAL_LINK',
+    'CONTENT_BLOCK',
   ]),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
