@@ -23,11 +23,11 @@ import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
 import TypeFormEmbed from './utilities/TypeFormEmbed/TypeFormEmbed';
 import AlphaReferralPage from './pages/ReferralPage/Alpha/AlphaPage';
 import DelayedElement from './utilities/DelayedElement/DelayedElement';
-import SitewideBanner from './utilities/SitewideBanner/SitewideBanner';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
 import AccountContainer from './pages/AccountPage/Account/AccountContainer';
 import ShowSubmissionPage from './pages/ShowSubmissionPage/ShowSubmissionPage';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
+import PopoverDispatcher from './utilities/PopoverDispatcher/PopoverDispatcher';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
 import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/VoterRegistrationDrivePage';
@@ -48,7 +48,7 @@ const App = ({ store, history }) => {
             daysToReRender={7}
             context={{ contextSource: 'voter_registration' }}
             render={(handleClose, handleComplete) => (
-              <SitewideBanner
+              <PopoverDispatcher
                 cta="Get Started"
                 description="Make your voice heard. Register to vote in less than 2 minutes."
                 handleClose={handleClose}
