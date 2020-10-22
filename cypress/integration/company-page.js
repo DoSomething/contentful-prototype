@@ -29,9 +29,7 @@ describe('Company Page', () => {
       },
     });
 
-    cy.withFeatureFlags({
-      sitewide_popover_cta: true,
-    }).visit(`/us/about/easy-scholarships`);
+    cy.visit(`/us/about/easy-scholarships`);
 
     cy.contains('Pays To Do Good');
   });
@@ -44,9 +42,7 @@ describe('Company Page', () => {
       },
     });
 
-    cy.withFeatureFlags({
-      sitewide_popover_cta: true,
-    }).visit(`/us/about/easy-scholarships`);
+    cy.visit(`/us/about/easy-scholarships`);
 
     cy.route({
       method: 'POST',
@@ -70,9 +66,7 @@ describe('Company Page', () => {
       },
     });
 
-    cy.withFeatureFlags({
-      sitewide_popover_cta: true,
-    }).visit(`/us/about/easy-scholarships`);
+    cy.visit(`/us/about/easy-scholarships`);
 
     cy.route({
       method: 'POST',
