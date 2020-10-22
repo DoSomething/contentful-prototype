@@ -8,6 +8,7 @@ import { modifiers } from '../../../helpers';
 import './figure.scss';
 
 export const BaseFigure = ({
+  attributes,
   alignment,
   verticalAlignment,
   media,
@@ -21,6 +22,7 @@ export const BaseFigure = ({
       className,
       modifiers(alignment, verticalAlignment, size),
     )}
+    {...attributes}
   >
     <div className="figure__media">{media}</div>
     <div className="figure__body">{children}</div>
@@ -28,6 +30,7 @@ export const BaseFigure = ({
 );
 
 BaseFigure.propTypes = {
+  attributes: PropTypes.object,
   className: PropTypes.string,
   children: PropTypes.node,
   alignment: PropTypes.oneOf([
@@ -42,6 +45,7 @@ BaseFigure.propTypes = {
 };
 
 BaseFigure.defaultProps = {
+  attributes: {},
   className: null,
   alignment: null,
   children: null,

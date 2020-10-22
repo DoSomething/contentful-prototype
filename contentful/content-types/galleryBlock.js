@@ -24,6 +24,21 @@ module.exports = function(migration) {
     .omitted(false);
 
   galleryBlock
+    .createField('galleryType')
+    .name('Gallery Type')
+    .type('Symbol')
+    .localized(false)
+    .required(true)
+    .validations([
+      {
+        in: ['Campaign', 'Scholarship', 'Page', 'Person', 'Content Block'],
+        message: 'Please choose a gallery type.',
+      },
+    ])
+    .disabled(false)
+    .omitted(false);
+
+  galleryBlock
     .createField('blocks')
     .name('Blocks')
     .type('Array')
@@ -37,7 +52,13 @@ module.exports = function(migration) {
 
       validations: [
         {
-          linkContentType: ['campaign', 'contentBlock', 'page', 'person'],
+          linkContentType: [
+            'campaign',
+            'contentBlock',
+            'page',
+            'person',
+            'storyPage',
+          ],
         },
       ],
 
@@ -89,8 +110,17 @@ module.exports = function(migration) {
   galleryBlock.changeFieldControl('internalTitle', 'builtin', 'singleLine', {});
   galleryBlock.changeFieldControl('title', 'builtin', 'singleLine', {});
 
+  galleryBlock.changeFieldControl('galleryType', 'builtin', 'dropdown', {
+    helpText:
+      'Choose a gallery type that directly matches your referenced entry types. ("Scholarship": a list of Campaigns embellished with scholarship info. The "External Link" has been updated to "Content Block").',
+  });
+
   galleryBlock.changeFieldControl('blocks', 'builtin', 'entryLinksEditor', {
+    helpText:
+      "The list of entries displayed in the gallery. These entries must all be of the *same type*, e.g. a list of Campaign entries. You shouldn't mix and match content types.",
     bulkEditing: false,
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
   });
 
   galleryBlock.changeFieldControl('itemsPerRow', 'builtin', 'radio', {

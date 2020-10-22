@@ -23,6 +23,7 @@ const ContentBlockGalleryItem = ({
 
   return (
     <Figure
+      attributes={{ 'data-testid': 'content-block-gallery-item' }}
       alt={showcaseImage.description || `${showcaseTitle}-photo`}
       image={contentfulImageUrl(
         get(showcaseImage, 'url'),
