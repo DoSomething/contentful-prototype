@@ -13,7 +13,9 @@ export const pageCardFragment = gql`
     showcaseImage {
       url
     }
-    slug
+    ... on Page {
+      slug
+    }
   }
 `;
 
