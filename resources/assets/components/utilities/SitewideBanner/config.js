@@ -14,4 +14,13 @@ export const excludedPaths = [
   '/us/quiz-results/*',
 ];
 
-export default excludedPaths;
+/**
+ * Paths to check for when we want to display the newsletter popover
+ */
+export const scholarshipsNewsletterPaths = [
+  '/us/about/easy-scholarships',
+  '/us/articles/6-free-places-to-find-no-essay-scholarships',
+  '/us/articles/10-places-to-find-scholarships-for-high-school-seniors',
+  '/us/articles/how-to-apply-for-scholarships-like-a-pro',
+  '/us/articles/scholarship-winners',
+];
