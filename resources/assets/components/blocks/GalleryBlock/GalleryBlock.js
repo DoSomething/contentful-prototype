@@ -12,7 +12,7 @@ import CampaignCard, {
 import ScholarshipCard, {
   scholarshipCardFragment,
 } from '../../utilities/ScholarshipCard/ScholarshipCard';
-import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
+import PageCard, { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 
 export const GalleryBlockFragment = gql`
@@ -36,16 +36,15 @@ export const GalleryBlockFragment = gql`
         type
         twitterId
       }
-      ... on Page {
-        slug
-      }
       ...CampaignCard
       ...ScholarshipCard
+      ...PageCard
     }
   }
 
   ${campaignCardFragment}
   ${scholarshipCardFragment}
+  ${pageCardFragment}
 `;
 
 const renderBlock = (blockType, block, imageAlignment, imageFit) => {
@@ -65,16 +64,7 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
 
     case 'PAGE':
     case 'Page':
-      // @TODO: Replace with Page Card
-      return (
-        <PageGalleryItem
-          key={block.id}
-          showcaseTitle={fields.title}
-          showcaseDescription={fields.subTitle}
-          showcaseImage={fields.coverImage}
-          {...fields}
-        />
-      );
+      return <PageCard key={block.id} page={fields} />;
 
     // @TODO: Deprecate 'EXTERNAL_LINK' once we've deployed GraphQL schema updates in https://git.io/JTuoE.
     case 'EXTERNAL_LINK':
