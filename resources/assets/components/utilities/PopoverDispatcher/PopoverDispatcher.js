@@ -18,8 +18,11 @@ import DelayedElement from '../DelayedElement/DelayedElement';
 import { isCurrentPathInPaths, query } from '../../../helpers';
 import CtaPopoverEmailForm from './CtaPopover/CtaPopoverEmailForm';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
-import { excludedPaths, scholarshipsNewsletterPaths } from './config';
 import DismissableElement from '../DismissableElement/DismissableElement';
+import {
+  siteWideBannerExcludedPaths,
+  scholarshipsNewsletterPaths,
+} from './config';
 
 const CAMPAIGN_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {
@@ -72,7 +75,7 @@ const PopoverDispatcher = props => {
   }
 
   // Check if this path is excluded, to avoid making unnecessary GraphQL requests.
-  if (isCurrentPathInPaths(excludedPaths)) {
+  if (isCurrentPathInPaths(siteWideBannerExcludedPaths)) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
     return null;
