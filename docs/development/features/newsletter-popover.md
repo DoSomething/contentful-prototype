@@ -1,10 +1,10 @@
 # Scholarship Newsletter Popover
 
-The Scholarship Newsletter Popover is a Cta Popover utility that displays the `CtaPopoverEmailForm` for unauthenticated users only, allowing them the opportunity to sign up for our newsletter service. The popover is only displayed on the `/about/easy-scholarships page` or pages configured with `additionalContent.display_scholarship_newsletter_cta_popover`.
+The Scholarship Newsletter Popover is a Cta Popover utility that displays the `CtaPopoverEmailForm` for unauthenticated users only, allowing them the opportunity to sign up for our newsletter service. The popover is only displayed on the paths defined in the `scholarshipsNewsletterPaths` collection found in the [popover dispatcher config](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/components/utilities/PopoverDispatcher/config.js).
 
 ! [Example Cta Popover Email Form](../../.gitbook/assets/newsletter-popover-example.png)
 
-The `CtaPopoverEmailForm` will appear after 5 seconds of an unauthenticated visit prompting the user to enter their email address. If the user dismisses the element, the element will not appear for 30 days. How? The `CtaPopoverEmailForm` uses the `handleDismissal` and `handleCompletion` callback methods from the [DismissableElement](https://github.com/DoSomething/phoenix-next/blob/master/docs/development/features/dismissable-element.md#dismissable-element).
+The `CtaPopoverEmailForm` will appear after 3 seconds of an unauthenticated visit prompting the user to enter their email address. If the user dismisses the element, the element will not appear for 30 days. How? The `CtaPopoverEmailForm` uses the `handleDismissal` and `handleCompletion` callback methods from the [DismissableElement](https://github.com/DoSomething/phoenix-next/blob/master/docs/development/features/dismissable-element.md#dismissable-element).
 
 `handleDismissal` stores a timestamp of when the element was dismissed. It validates the amount of time passed since the element was dismissed and if it's less than 30 days, the `CtaPopoverEmailForm` will not render.
 
