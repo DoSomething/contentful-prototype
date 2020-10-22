@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import { get, isString, first } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
-import { tabularLog } from '../../../helpers/api';
-import PrimaryButton from '../Button/PrimaryButton';
-import { env, report } from '../../../helpers/index';
+import { tabularLog } from '../../../../helpers/api';
+import PrimaryButton from '../../Button/PrimaryButton';
+import { env, report } from '../../../../helpers/index';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
-} from '../../../helpers/analytics';
+} from '../../../../helpers/analytics';
 
 const CtaPopoverEmailForm = ({ handleComplete }) => {
   const [emailValue, setEmailValue] = useState('');
