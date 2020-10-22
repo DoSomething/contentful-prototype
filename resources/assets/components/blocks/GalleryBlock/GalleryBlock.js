@@ -76,8 +76,6 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
         />
       );
 
-    // @TODO: Deprecate 'EXTERNAL_LINK' once we've deployed GraphQL schema updates in https://git.io/JTuoE.
-    case 'EXTERNAL_LINK':
     case 'CONTENT_BLOCK':
     case 'ContentBlock':
       return (
@@ -144,7 +142,6 @@ GalleryBlock.propTypes = {
     'SCHOLARSHIP',
     'PAGE',
     'CONTENT_BLOCK',
-    'EXTERNAL_LINK',
   ]),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
