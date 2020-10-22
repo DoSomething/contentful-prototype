@@ -8,7 +8,7 @@ The `CtaPopoverEmailForm` will appear after 5 seconds of an unauthenticated visi
 
 `handleDismissal` stores a timestamp of when the element was dismissed. It validates the amount of time passed since the element was dismissed and if it's less than 30 days, the `CtaPopoverEmailForm` will not render.
 
-`handleCompletion` is triggered when the user submits their email and it permanently hides the popover fot that user.
+`handleCompletion` is triggered when the user submits their email and it permanently hides the popover for that user.
 
 If the user enters their email address, the form will post to Northstar storing these 4 fields of data:
 
@@ -19,6 +19,6 @@ If the user enters their email address, the form will post to Northstar storing 
         source_detail: 'scholarship_newsletter-cta_scholarship-page',
 ```
 
-The user will then be enrolled in our scholarship newsletter subscriptions and see a confirmation for submitting their email.
+The user will then be enrolled in our scholarship newsletter subscription and see a confirmation for submitting their email.
 
 ! [Example Cta Popover Email Form](../../.gitbook/assets/newsletter-popover-affirmation-example.png)
