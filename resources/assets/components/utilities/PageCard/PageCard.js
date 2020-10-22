@@ -7,6 +7,7 @@ import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
 
 export const pageCardFragment = gql`
   fragment PageCard on Showcasable {
+    id
     showcaseTitle
     showcaseDescription
     showcaseImage {
