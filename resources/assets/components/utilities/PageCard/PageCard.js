@@ -6,7 +6,7 @@ import { propType } from 'graphql-anywhere';
 import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
 
 export const pageCardFragment = gql`
-  fragment PageCard on Page {
+  fragment PageCard on Showcaseable {
     id
     showcaseTitle
     showcaseDescription
