@@ -13532,18 +13532,6 @@
             "deprecationReason": null
           },
           {
-            "name": "previewImage",
-            "description": "A preview image of the embed content. If set, replaces the embed on smaller screens.",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Asset",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "internalTitle",
             "description": "The internal-facing title for this block.",
             "args": [],
@@ -13897,7 +13885,7 @@
             "deprecationReason": null
           },
           {
-            "name": "EXTERNAL_LINK",
+            "name": "CONTENT_BLOCK",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
