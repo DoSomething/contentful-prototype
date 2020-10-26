@@ -1,9 +1,20 @@
 import React from 'react';
+import gql from 'graphql-tag';
 
+import { query } from '../../../helpers';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
+export const GET_AFFIRMATION_CONTENT = gql`
+  query submissionActionIdQuery($id: String!) {
+    block(id: $submissionActionId)
+  }
+`;
+
 const ShowSubmissionPage = () => {
+  const submissionActionId = query('submissionActionId');
+  console.log(submissionActionId);
+
   return (
     <>
       <SiteNavigationContainer />
