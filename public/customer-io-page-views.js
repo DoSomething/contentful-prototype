@@ -29,8 +29,10 @@ if (query.test_cio_pageview && query.user_id) {
     for (c = 0; c < b.length; c++) {
       _cio[b[c]] = a(b[c]);
     }
+
     var t = document.createElement('script'),
       s = document.getElementsByTagName('script')[0];
+ 
     t.async = true;
     t.id = 'cio-tracker';
     t.setAttribute('data-site-id', 'c4797aae91625d7068c9');
