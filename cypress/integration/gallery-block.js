@@ -5,7 +5,7 @@ describe('Gallery Block', () => {
   beforeEach(() => cy.configureMocks());
 
   /** @test */
-  it.only('renders a ContentBlockGalleryItem component for "CONTENT_BLOCK" blocks', () => {
+  it('renders a ContentBlockGalleryItem component for "CONTENT_BLOCK" blocks', () => {
     cy.mockGraphqlOp('ContentfulBlockQuery', {
       block: {
         __typename: 'GalleryBlock',
