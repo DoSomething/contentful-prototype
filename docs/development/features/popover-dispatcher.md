@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a feature used to display various banners and popover elements throughout the site. It checks what type of page we're on based on it's pathname, and from there displays (or does not display) the correct element.
+This is a feature used to display various banners and popover elements throughout the site. It checks what type of page we're on based on its pathname, and from there displays (or does not display) the correct element.
 
 ## Adding Pathnames to Dispatcher
 

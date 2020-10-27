@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
 import {
+  getTrackingSource,
   needToVerifyVoterRegStatuses,
   getCheckRegistrationStatusURL,
   isVerifiedCompletedVoterRegStatuses,
@@ -170,7 +171,15 @@ const PopoverDispatcher = props => {
     );
   }
 
-  return createPortal(<SitewideBanner {...props} />, target);
+  return createPortal(
+    <SitewideBanner
+      cta="Get Started"
+      description="Make your voice heard. Register to vote in less than 2 minutes."
+      link={`https://vote.dosomething.org/?r=${getTrackingSource('hellobar')}`}
+      {...props}
+    />,
+    target,
+  );
 };
 
 export default PopoverDispatcher;

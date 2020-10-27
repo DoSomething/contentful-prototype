@@ -16,7 +16,6 @@ import CausePage from './pages/CausePage/CausePage';
 import { env, featureFlag, query } from '../helpers';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
-import { getTrackingSource } from '../helpers/voter-registration';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
@@ -49,13 +48,8 @@ const App = ({ store, history }) => {
             context={{ contextSource: 'voter_registration' }}
             render={(handleClose, handleComplete) => (
               <PopoverDispatcher
-                cta="Get Started"
-                description="Make your voice heard. Register to vote in less than 2 minutes."
                 handleClose={handleClose}
                 handleComplete={handleComplete}
-                link={`https://vote.dosomething.org/?r=${getTrackingSource(
-                  'hellobar',
-                )}`}
               />
             )}
           />

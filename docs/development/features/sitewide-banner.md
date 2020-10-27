@@ -16,9 +16,9 @@ Before the banner renders on the page, we check the config for any pages that sh
 
 ## Displaying Sitewide banner content
 
-The content that will be displayed on the banner currently depends on a few variables. We check for users that have self reported either `confirmed` or `uncertain` when registering with us. If they have either as their voter registration status, they'll see a specific copy to encourage them to double check their status.
+The content that will be displayed on the banner currently depends on a few variables. If a user has a self reported voter registration status of either `confirmed` or `uncertain`, they'll see specific copy to encourage them to double check their status.
 
-Besides self reporting, we check if the user is authenticated and their voter registration status. If the user has a voter registration status of `unregistered` or they have no status saved to their profile, the banner will display content prompting the user to register to vote.
+If user's status isn't self reported or verified to be complete/ineligible, the banner will display content prompting the user to register to vote.
 
 If their status is `registration_complete` we will display another action - For example we've displayed a `Refer-A-Friend` banner in lieu of of the voter registration prompt.
 
