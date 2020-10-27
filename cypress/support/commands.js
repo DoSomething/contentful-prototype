@@ -229,6 +229,8 @@ Cypress.Commands.add('authVisitBlockPermalink', function(
     cy.login(user)
       .withState(contentfulCampaign)
       .visit(path);
+
+    return;
   }
 
   cy.login(user).visit(path);
