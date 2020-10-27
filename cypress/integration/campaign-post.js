@@ -7,9 +7,6 @@ import { campaignId, POSTS_API } from '../fixtures/constants';
 import { newTextPost, newPhotoPost } from '../fixtures/posts';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
-const SIGNUPS_API = `/api/v2/campaigns/${campaignId}/signups`;
-const CAMPAIGN_POSTS_API = `/api/v2/campaigns/${campaignId}/posts`;
-
 describe('Campaign Post', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
