@@ -2,14 +2,13 @@
 
 import { MockList } from 'graphql-tools';
 import { userFactory } from '../fixtures/user';
-import { campaignId } from '../fixtures/constants';
 import { existingSignup } from '../fixtures/signups';
+import { campaignId, POSTS_API } from '../fixtures/constants';
 import { newTextPost, newPhotoPost } from '../fixtures/posts';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const SIGNUPS_API = `/api/v2/campaigns/${campaignId}/signups`;
 const CAMPAIGN_POSTS_API = `/api/v2/campaigns/${campaignId}/posts`;
-const POSTS_API = `/api/v2/posts`;
 
 describe('Campaign Post', () => {
   // Configure a new "mock" server before each test:
