@@ -34,6 +34,35 @@ export const newTextPost = (campaignId, user, text) => ({
 });
 
 /**
+ * A newly created share post.
+ *
+ * @param {Object} user
+ */
+export const newSharePost = user => ({
+  data: {
+    id: 1780,
+    signup_id: 1454,
+    type: 'text',
+    action: 'default',
+    action_id: '5',
+    campaign_id: '9001',
+    quantity: null,
+    reactions: { reacted: false, total: null },
+    status: 'pending',
+    location: null,
+    location_name: null,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    northstar_id: user.id,
+    tags: [],
+    source: 'dev-oauth',
+    source_details: '{}',
+    remote_addr: '0.0.0.0',
+    details: null,
+  },
+});
+
+/**
  * A newly created photo post.
  *
  * @param {String} campaignId
