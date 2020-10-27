@@ -5,7 +5,7 @@
  * ineligible to vote.
  */
 // An asterik can be used to exclude all children of a path, e.g. /us/campaigns/ready-vote/*
-export const siteWideBannerExcludedPaths = [
+export const sitewideBannerExcludedPaths = [
   '/us/campaigns/ready-vote',
   '/us/campaigns/ready-vote/*',
   '/us/my-voter-registration-drive',

@@ -21,7 +21,7 @@ import CtaPopoverEmailForm from './CtaPopover/CtaPopoverEmailForm';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import DismissableElement from '../DismissableElement/DismissableElement';
 import {
-  siteWideBannerExcludedPaths,
+  sitewideBannerExcludedPaths,
   scholarshipsNewsletterPaths,
 } from './config';
 
@@ -76,7 +76,7 @@ const PopoverDispatcher = props => {
   }
 
   // Check if this path is excluded, to avoid making unnecessary GraphQL requests.
-  if (isCurrentPathInPaths(siteWideBannerExcludedPaths)) {
+  if (isCurrentPathInPaths(sitewideBannerExcludedPaths)) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
     return null;
