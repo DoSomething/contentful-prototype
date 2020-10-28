@@ -3,11 +3,10 @@
 import { cloneDeep } from 'lodash';
 import { userFactory } from '../fixtures/user';
 import { campaignId } from '../fixtures/constants';
-import { campaignPath } from '../fixtures/constants';
 import { emptyResponse, newSignup } from '../fixtures/signups';
+import { campaignPath, CAMPAIGN_API } from '../fixtures/constants';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
-const API = `/api/v2/campaigns/${campaignId}`;
 // Text included in the campaign blurb.
 const exampleBlurb = `Did you know that the world's oldest cat`;
 const exampleReferralCampaign = cloneDeep(exampleCampaign);
@@ -65,8 +64,11 @@ describe('Campaign Signup', () => {
     cy.findByTestId('landing-page-content').should('have.length', 1);
 
     // Mock the responses we'll be expecting once we hit "Join Now":
-    cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
-    cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+    cy.route(
+      `${CAMPAIGN_API}/signups?filter[northstar_id]=${user.id}`,
+      emptyResponse,
+    );
+    cy.route('POST', `${CAMPAIGN_API}/signups`, newSignup(campaignId, user));
 
     // We should see the affirmation modal after clicking signup button:
     cy.contains('button', 'Join Us')
@@ -95,7 +97,7 @@ describe('Campaign Signup', () => {
     cy.findByTestId('join-group-signup-form').should('not.exist');
 
     // Mock the response we'll be expecting once we hit "Join Now":
-    cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+    cy.route('POST', `${CAMPAIGN_API}/signups`, newSignup(campaignId, user));
 
     // Click "Join Now" & should get the affirmation modal:
     cy.contains('button', 'Join Us').click();
@@ -117,10 +119,15 @@ describe('Campaign Signup', () => {
       );
 
       // Mock the responses we'll be expecting once we hit the signup button:
-      cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
-      cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
-        'signupRequest',
+      cy.route(
+        `${CAMPAIGN_API}/signups?filter[northstar_id]=${user.id}`,
+        emptyResponse,
       );
+      cy.route(
+        'POST',
+        `${CAMPAIGN_API}/signups`,
+        newSignup(campaignId, user),
+      ).as('signupRequest');
 
       cy.contains('button', 'Join Us')
         .click()
@@ -156,9 +163,11 @@ describe('Campaign Signup', () => {
             );
 
           // Mock the response we'll be expecting once we hit the signup button:
-          cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
-            'signupRequest',
-          );
+          cy.route(
+            'POST',
+            `${CAMPAIGN_API}/signups`,
+            newSignup(campaignId, user),
+          ).as('signupRequest');
 
           cy.mockGraphqlOp('ReferralUserQuery', {
             user: {
@@ -189,7 +198,11 @@ describe('Campaign Signup', () => {
           }).authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
 
           // Mock the response we'll be expecting once we hit "Join Now":
-          cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+          cy.route(
+            'POST',
+            `${CAMPAIGN_API}/signups`,
+            newSignup(campaignId, user),
+          );
 
           // Click "Join Now" & should get the affirmation modal:
           cy.contains('button', 'Join Us').click();
@@ -213,7 +226,11 @@ describe('Campaign Signup', () => {
           cy.authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
 
           // Mock the response we'll be expecting once we hit "Join Now":
-          cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+          cy.route(
+            'POST',
+            `${CAMPAIGN_API}/signups`,
+            newSignup(campaignId, user),
+          );
 
           // Click "Join Now" & should get the affirmation modal:
           cy.contains('button', 'Join Us').click();
@@ -236,7 +253,7 @@ describe('Campaign Signup', () => {
       cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
       // Mock the response we'll be expecting once we hit "Join Now":
-      cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+      cy.route('POST', `${CAMPAIGN_API}/signups`, newSignup(campaignId, user));
 
       // Click "Join Now" & should get the affirmation modal:
       cy.contains('button', 'Join Us').click();
@@ -332,12 +349,14 @@ describe('Campaign Signup', () => {
 
         // Mock the responses we'll be expecting once we hit the signup button:
         cy.route(
-          `${API}/signups?filter[northstar_id]=${user.id}`,
+          `${CAMPAIGN_API}/signups?filter[northstar_id]=${user.id}`,
           emptyResponse,
         );
-        cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
-          'signupRequest',
-        );
+        cy.route(
+          'POST',
+          `${CAMPAIGN_API}/signups`,
+          newSignup(campaignId, user),
+        ).as('signupRequest');
 
         cy.contains('button', 'Join Group')
           .click()
@@ -386,12 +405,14 @@ describe('Campaign Signup', () => {
 
         // Mock the responses we'll be expecting once we hit the signup button:
         cy.route(
-          `${API}/signups?filter[northstar_id]=${user.id}`,
+          `${CAMPAIGN_API}/signups?filter[northstar_id]=${user.id}`,
           emptyResponse,
         );
-        cy.route('POST', `${API}/signups`, newSignup(campaignId, user)).as(
-          'signupRequest',
-        );
+        cy.route(
+          'POST',
+          `${CAMPAIGN_API}/signups`,
+          newSignup(campaignId, user),
+        ).as('signupRequest');
 
         cy.contains('button', 'Join Group')
           .click()
