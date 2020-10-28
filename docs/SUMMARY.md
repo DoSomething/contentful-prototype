@@ -25,6 +25,7 @@
     -   [Metadata](development/content-types/metadata.md)
     -   [Page](development/content-types/page.md)
     -   [Selection Submission Action](development/content-types/selection-submission-action.md)
+    -   [Share Action](development/content-types/share-action.md)
     -   [Signup Referrals Block](development/content-types/signup-referrals-block.md)
     -   [Social Drive Action](development/content-types/social-drive-action.md)
     -   [Voter Registration Action](development/content-types/voter-registration-action.md)
