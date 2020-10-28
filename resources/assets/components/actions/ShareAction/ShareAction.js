@@ -64,7 +64,7 @@ class ShareAction extends PostForm {
     const { actionId, pageId, campaignId, link } = this.props;
 
     const formFields = withoutNulls({
-      action, // @TODO: deprecate
+      action, // @TODO: deprecate once the Action ID is a guaranteed property.
       type: SOCIAL_SHARE_TYPE,
       id: pageId, // @TODO: rename property to pageId? Other actions use the blockId?
       action_id: actionId,
@@ -77,15 +77,23 @@ class ShareAction extends PostForm {
       },
     });
 
-    // Send request to store the social share post.
-    this.props.storeCampaignPost(campaignId, {
+    const data = {
       action, // @TODO: deprecate
       actionId,
       blockId: this.props.id,
       body: formatPostPayload(formFields),
+      campaignId,
       pageId,
       type: SOCIAL_SHARE_TYPE,
-    });
+    };
+
+    // Send request to store the social share post.
+    if (actionId) {
+      // If we have an Action ID, we can POST directly to our Posts API.
+      this.props.storePost(data);
+    } else {
+      this.props.storeCampaignPost(campaignId, data);
+    }
   };
 
   handleFacebookClick = url => {
@@ -102,8 +110,12 @@ class ShareAction extends PostForm {
 
     showFacebookShareDialog(url)
       .then(() => {
-        // Send share post to Rogue for authenticated users
-        if (this.props.isAuthenticated && this.props.campaignId) {
+        // Send share post to Rogue for authenticated users,
+        // when we have an action ID or campaign ID to identify this post.
+        if (
+          this.props.isAuthenticated &&
+          (this.props.campaignId || this.props.actionId)
+        ) {
           const puckId = `phoenix_${userId}_${Date.now()}`;
 
           trackingData = { ...trackingData, puck_id: puckId };
@@ -190,6 +202,7 @@ class ShareAction extends PostForm {
               {hideEmbed ? null : <Embed className="mb-3" url={link} />}
 
               <PrimaryButton
+                attributes={{ 'data-testid': 'share-action-button' }}
                 className="block mt-6 text-lg w-full"
                 onClick={() => handleShareClick(href)}
                 text={`Share on ${isFacebook ? 'Facebook' : 'Twitter'}`}
