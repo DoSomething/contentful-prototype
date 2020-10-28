@@ -116,6 +116,7 @@ class ShareAction extends PostForm {
           this.props.isAuthenticated &&
           (this.props.campaignId || this.props.actionId)
         ) {
+          // @TODO: Look into if we can deprecate this (https://git.io/JT15O).
           const puckId = `phoenix_${userId}_${Date.now()}`;
 
           trackingData = { ...trackingData, puck_id: puckId };
