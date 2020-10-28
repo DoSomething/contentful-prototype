@@ -40,6 +40,7 @@
     -   [General Buttons](development/features/general-buttons.md)
     -   [Groups](development/features/groups.md)
     -   [Paginated Campaign Gallery](development/features/paginated-campaign-gallery.md)
+    -   [Popover Dispatcher](development/features/popover-dispatcher.md)
     -   [Refer A Friend](development/features/referral-pages.md)
     -   [Referrals Gallery](development/features/referrals-gallery.md)
     -   [Sitewide Banner](development/features/sitewide-banner.md)
