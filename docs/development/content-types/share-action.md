@@ -4,7 +4,7 @@
 
 Displays a card with text, a link embed, and a button to share the link on social media (Twitter or Facebook).
 
-![Example Social Drive Action](../../.gitbook/assets/share-action.png)
+![Example Share Action](../../.gitbook/assets/share-action.png)
 
 ## Content Type Fields
 
