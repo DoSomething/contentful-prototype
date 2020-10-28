@@ -5,9 +5,6 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
 import {
-  getTrackingSource,
-  needToVerifyVoterRegStatuses,
-  getCheckRegistrationStatusURL,
   isVerifiedCompletedVoterRegStatuses,
   isVerifiedIneligibleVoterRegStatuses,
   USER_VOTER_REGISTRATION_STATUS_QUERY,
@@ -18,7 +15,7 @@ import SitewideBanner from './SitewideBanner/SitewideBanner';
 import DelayedElement from '../DelayedElement/DelayedElement';
 import { isCurrentPathInPaths, query } from '../../../helpers';
 import CtaPopoverEmailForm from './CtaPopover/CtaPopoverEmailForm';
-import { getUserId, isAuthenticated } from '../../../helpers/auth';
+import { getUserId } from '../../../helpers/auth';
 import DismissableElement from '../DismissableElement/DismissableElement';
 import {
   sitewideBannerExcludedPaths,
@@ -34,7 +31,7 @@ const CAMPAIGN_QUERY = gql`
   }
 `;
 
-const PopoverDispatcher = props => {
+const PopoverDispatcher = () => {
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
 
@@ -130,53 +127,21 @@ const PopoverDispatcher = props => {
     return null;
   }
 
-  if (
-    /**
-     * Checks for auth user and if the user is registered to vote/ineligible,
-     * Display an refer a friend banner
-     */
-    isAuthenticated() &&
-    showNonVoterRegistrationContent
-  ) {
-    return createPortal(
-      <SitewideBanner
-        cta="Start Now"
-        link="/us/account/refer-friends"
-        description="Want to build our youth-led movement? Refer a friend!"
-        handleClose={props.handleClose}
-        handleComplete={props.handleComplete}
-      />,
-      target,
-    );
-  }
-
-  if (
-    /**
-     * Checks for auth user and if the user is self reported to be registered to vote or uncertain
-     * Display a reminder to check their status
-     */
-    isAuthenticated() &&
-    needToVerifyVoterRegStatuses(userRegistrationStatus)
-  ) {
-    return createPortal(
-      <SitewideBanner
-        cta="Get Started"
-        contextSource="voter_registration_lookup_tool"
-        link={getCheckRegistrationStatusURL()}
-        description="1 in 8 voter registrations are invalid. Take 2 minutes to make sure you're registered at your current address."
-        handleClose={props.handleClose}
-        handleComplete={props.handleComplete}
-      />,
-      target,
-    );
-  }
-
   return createPortal(
-    <SitewideBanner
-      cta="Get Started"
-      description="Make your voice heard. Register to vote in less than 2 minutes."
-      link={`https://vote.dosomething.org/?r=${getTrackingSource('hellobar')}`}
-      {...props}
+    <DismissableElement
+      name="sitewide_banner_call_to_action"
+      daysToReRender={7}
+      context={{ contextSource: 'refer_a_friend' }}
+      render={(handleClose, handleComplete) => (
+        <SitewideBanner
+          contextSource="refer_a_friend"
+          cta="Start Now"
+          link="/us/account/refer-friends"
+          description="Want to build our youth-led movement? Refer a friend!"
+          handleClose={handleClose}
+          handleComplete={handleComplete}
+        />
+      )}
     />,
     target,
   );
