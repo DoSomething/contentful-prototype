@@ -1,21 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react';
 import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
+import React, { useState, useRef, useEffect } from 'react';
 
-import Embed from '../Embed/Embed';
-import LinkIcon from './link-icon.svg';
-import { postRequest } from '../../../helpers/api';
-import SocialShareTray from '../SocialShareTray/SocialShareTray';
 import {
   appendToQuery,
   dynamicString,
   env,
   withoutTokens,
 } from '../../../helpers';
+import Embed from '../Embed/Embed';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
+import LinkIcon from './link-icon.svg';
+import { postRequest } from '../../../helpers/api';
+import SocialShareTray from '../SocialShareTray/SocialShareTray';
 
 import './short-link-share.scss';
 
@@ -50,7 +50,6 @@ const ShortLinkShare = ({
    * Executes API request to shorten given longUrl, and saves result to shortUrl on state.
    *
    * Debounce the API request to shorten our long URL.
-   * @see https://gist.github.com/simonw/c29de00c20fde731243cbac8568a3d7f
    *
    * @param {String} fullUrl
    */
