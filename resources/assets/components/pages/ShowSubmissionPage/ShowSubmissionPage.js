@@ -1,7 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 
-import { query } from '../../../helpers';
+import Card from '../../utilities/Card/Card';
+import Spinner from '../../artifacts/Spinner/Spinner';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
@@ -11,9 +13,15 @@ export const GET_AFFIRMATION_CONTENT = gql`
   }
 `;
 
-const ShowSubmissionPage = () => {
-  const submissionActionId = query('submissionActionId');
-  console.log(submissionActionId);
+const ShowSubmissionPage = id => {
+  const { loading, error, data } = useQuery(GET_AFFIRMATION_CONTENT, {
+    variables: { id },
+    skip: !id,
+  });
+
+  <Card className="bordered rounded" title={title}>
+    {loading ? <Spinner className="flex justify-center p-16" /> : null}
+  </Card>;
 
   return (
     <>
