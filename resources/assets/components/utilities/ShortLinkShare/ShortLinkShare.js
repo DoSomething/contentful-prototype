@@ -1,6 +1,4 @@
-/* global document */
-
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -21,82 +19,62 @@ import {
 
 import './short-link-share.scss';
 
-class ShortLinkShare extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: true,
-      longUrl: this.getLongUrl(),
-      shortUrl: null,
-    };
-
-    this.linkInput = React.createRef();
-
-    /**
-     * Debounce the API request to shorten our long URL.
-     * @see https://gist.github.com/simonw/c29de00c20fde731243cbac8568a3d7f
-     */
-    this.getShortUrl = debounce(this.getShortUrl, 300);
-  }
-
-  componentDidMount() {
-    this.getShortUrl(this.state.longUrl);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.longUrl !== prevState.longUrl) {
-      this.getShortUrl(this.state.longUrl);
-    }
-  }
-
-  onChange() {
-    this.props.onChange(this.state.shortUrl);
-  }
-
+const ShortLinkShare = ({
+  campaignId,
+  link,
+  onChange,
+  pageId,
+  queryOptions,
+  token,
+  userId,
+}) => {
   /**
    * Replaces any userId tokens, and appends query string if given.
    *
    * @param {Object} query
    * @return {String}
    */
-  getLongUrl(query) {
-    const result = dynamicString(this.props.link, {
-      userId: this.props.userId,
+  const getLongUrl = query => {
+    const result = dynamicString(link, {
+      userId,
     });
 
     return query ? appendToQuery(query, result).href : result;
-  }
+  };
+
+  const [loading, setLoading] = useState(true);
+  const [longUrl, setLongUrl] = useState(getLongUrl());
+  const [shortUrl, setShortUrl] = useState(null);
 
   /**
-   * Executes API request to shorten given longUrl, and saves result to state.shortUrl.
+   * Executes API request to shorten given longUrl, and saves result to shortUrl on state.
    *
-   * @param {String} longUrl
+   * Debounce the API request to shorten our long URL.
+   * @see https://gist.github.com/simonw/c29de00c20fde731243cbac8568a3d7f
+   *
+   * @param {String} fullUrl
    */
-  getShortUrl(longUrl) {
-    this.setState({ loading: true });
+  const getShortUrl = debounce(fullUrl => {
+    setLoading(true);
 
-    postRequest(
-      env('BERTLY_URL'),
-      { url: withoutTokens(longUrl) },
-      this.props.token,
-    )
+    postRequest(env('BERTLY_URL'), { url: withoutTokens(fullUrl) }, token)
       .then(apiResponse => {
-        this.setState({ loading: false, shortUrl: apiResponse.url_short });
-        this.onChange();
+        setLoading(false);
+        setShortUrl(apiResponse.url_short);
+        onChange(shortUrl);
       })
       .catch(() => {
-        this.setState({
-          loading: false,
-          // Fallback to the long URL if API request fails.
-          shortUrl: longUrl,
-        });
-        this.onChange();
+        setLoading(false);
+        // Fallback to the long URL if API request fails.
+        setShortUrl(fullUrl);
+        onChange(shortUrl);
       });
-  }
+  }, 300);
 
-  handleCopyLinkClick = () => {
-    this.linkInput.current.select();
+  const linkInput = useRef();
+
+  const handleCopyLinkClick = () => {
+    linkInput.current.select();
 
     document.execCommand('copy');
 
@@ -105,66 +83,61 @@ class ShortLinkShare extends React.Component {
       category: EVENT_CATEGORIES.campaignAction,
       label: 'copy_to_clipboard',
       context: {
-        campaignId: this.props.campaignId,
-        pageId: this.props.pageId,
-        url: this.props.link,
+        campaignId,
+        pageId,
+        url: link,
       },
     });
   };
 
-  render() {
-    const { link, queryOptions } = this.props;
+  useEffect(() => {
+    getShortUrl(longUrl);
+  }, [longUrl]);
 
-    const { loading, longUrl, shortUrl } = this.state;
-
-    return (
-      <div className="short-link-share">
-        {queryOptions ? (
-          React.cloneElement(queryOptions, {
-            onChange: queryStr =>
-              this.setState({
-                longUrl: this.getLongUrl(queryStr),
-              }),
-          })
-        ) : (
-          <div className="p-3">
-            <Embed url={longUrl} />
-          </div>
-        )}
-
-        <div className="p-3 link-area">
-          <div className="link-bar">
-            <input
-              readOnly
-              type="text"
-              ref={this.linkInput}
-              className="text-field link"
-              value={loading ? 'Loading...' : shortUrl}
-              disabled={loading}
-            />
-
-            <button
-              type="button"
-              className="text-field link-copy-button py-2"
-              onClick={this.handleCopyLinkClick}
-              disabled={loading}
-            >
-              <img className="mr-1" src={LinkIcon} alt="link" />
-
-              <p className="text-sm font-bold text-white">Copy link</p>
-            </button>
-          </div>
+  return (
+    <div className="short-link-share">
+      {queryOptions ? (
+        React.cloneElement(queryOptions, {
+          onChange: queryStr => setLongUrl(getLongUrl(queryStr)),
+        })
+      ) : (
+        <div className="p-3">
+          <Embed url={longUrl} />
         </div>
+      )}
 
-        <SocialShareTray
-          shareLink={shortUrl}
-          trackLink={link}
-          title={queryOptions ? null : 'Share on Social Media'}
-        />
+      <div className="p-3 link-area">
+        <div className="link-bar">
+          <input
+            readOnly
+            type="text"
+            ref={linkInput}
+            className="text-field link"
+            value={loading ? 'Loading...' : shortUrl}
+            disabled={loading}
+          />
+
+          <button
+            type="button"
+            className="text-field link-copy-button py-2"
+            onClick={handleCopyLinkClick}
+            disabled={loading}
+          >
+            <img className="mr-1" src={LinkIcon} alt="link" />
+
+            <p className="text-sm font-bold text-white">Copy link</p>
+          </button>
+        </div>
       </div>
-    );
-  }
-}
+
+      <SocialShareTray
+        shareLink={shortUrl}
+        trackLink={link}
+        title={queryOptions ? null : 'Share on Social Media'}
+      />
+    </div>
+  );
+};
 
 ShortLinkShare.propTypes = {
   campaignId: PropTypes.string,
