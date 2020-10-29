@@ -44,7 +44,7 @@ const ShortLinkShare = ({
 
   const [loading, setLoading] = useState(true);
   const [longUrl, setLongUrl] = useState(getLongUrl());
-  const [shortUrl, setShortUrl] = useState(null);
+  const [shortUrl, setShortUrl] = useState(getLongUrl());
 
   /**
    * Executes API request to shorten given longUrl, and saves result to shortUrl on state.
