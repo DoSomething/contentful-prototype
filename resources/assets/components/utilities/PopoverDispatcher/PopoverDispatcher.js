@@ -129,9 +129,8 @@ const PopoverDispatcher = () => {
 
   return createPortal(
     <DismissableElement
-      name="sitewide_banner_call_to_action"
+      name="sitewide_banner_refer_friends"
       daysToReRender={7}
-      context={{ contextSource: 'refer_a_friend' }}
       render={(handleClose, handleComplete) => (
         <SitewideBanner
           contextSource="refer_a_friend"
