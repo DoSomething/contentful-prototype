@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ShareAction from './ShareAction';
 import { getUserId, isAuthenticated } from '../../../selectors/user';
-import { storeCampaignPost } from '../../../actions/post';
+import { storeCampaignPost, storePost } from '../../../actions/post';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -30,6 +30,7 @@ const mapStateToProps = (state, ownProps) => {
  */
 const actionCreators = {
   storeCampaignPost,
+  storePost,
 };
 
 // Export the container component.

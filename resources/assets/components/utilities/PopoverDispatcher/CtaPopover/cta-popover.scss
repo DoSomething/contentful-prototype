@@ -1,0 +1,41 @@
+@import '../../../../scss/next-toolbox.scss';
+
+.cta-popover {
+    background: url('./cta-popover-bg.svg');
+    background-size: cover;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+
+    position: fixed;
+    bottom: theme('spacing.3');
+    right: 0;
+    margin: 0 theme('spacing.3');
+    max-width: 500px;
+    z-index: $sticky-cta-zindex;
+
+    @include media($medium) {
+        bottom: inherit;
+        top: 120px;
+        max-width: 400px;
+    }
+
+    // Ensure the popover isn't drawn past the edge of the chrome into the 'gray space'
+    // once the wrapper maxes out at 1440px.
+    @media (min-width: 1440px) {
+        // Calculates the current 'grey space' on the right of the viewport by subtracting the space occupied by
+        // the chrome, and dividing the remainder in two to subtract the space on the left of the chrome.
+        right: calc((100vw - 1440px) / 2);
+    }
+
+    .cta-popover__title {
+        // Ensure the title doesn't overlap the close button.
+        max-width: 90%;
+    }
+
+    .cta-popover__button {
+        width: 100%;
+
+        @include media($medium) {
+            width: 130px;
+        }
+    }
+}

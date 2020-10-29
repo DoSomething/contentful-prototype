@@ -5,21 +5,25 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
 import {
+  getTrackingSource,
   needToVerifyVoterRegStatuses,
   getCheckRegistrationStatusURL,
   isVerifiedCompletedVoterRegStatuses,
   isVerifiedIneligibleVoterRegStatuses,
   USER_VOTER_REGISTRATION_STATUS_QUERY,
 } from '../../../helpers/voter-registration';
-import CtaPopover from '../CtaPopover/CtaPopover';
+import CtaPopover from './CtaPopover/CtaPopover';
 import { getCampaign } from '../../../helpers/campaign';
-import SitewideBannerContent from './SitewideBannerContent';
+import SitewideBanner from './SitewideBanner/SitewideBanner';
 import DelayedElement from '../DelayedElement/DelayedElement';
 import { isCurrentPathInPaths, query } from '../../../helpers';
+import CtaPopoverEmailForm from './CtaPopover/CtaPopoverEmailForm';
 import { getUserId, isAuthenticated } from '../../../helpers/auth';
-import CtaPopoverEmailForm from '../CtaPopover/CtaPopoverEmailForm';
-import { excludedPaths, scholarshipsNewsletterPaths } from './config';
 import DismissableElement from '../DismissableElement/DismissableElement';
+import {
+  sitewideBannerExcludedPaths,
+  scholarshipsNewsletterPaths,
+} from './config';
 
 const CAMPAIGN_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {
@@ -30,7 +34,7 @@ const CAMPAIGN_QUERY = gql`
   }
 `;
 
-const SitewideBanner = props => {
+const PopoverDispatcher = props => {
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
 
@@ -45,7 +49,7 @@ const SitewideBanner = props => {
     return rootElem.current;
   };
 
-  const target = usePortal('banner-portal');
+  const target = usePortal('popover-portal');
   const hiddenAttributeDataTestId = 'sitewide-banner-hidden';
 
   // Check if this path is to scholarships page or specified article pages to display the popover instead of site wide banner.
@@ -72,7 +76,7 @@ const SitewideBanner = props => {
   }
 
   // Check if this path is excluded, to avoid making unnecessary GraphQL requests.
-  if (isCurrentPathInPaths(excludedPaths)) {
+  if (isCurrentPathInPaths(sitewideBannerExcludedPaths)) {
     target.setAttribute('data-testid', hiddenAttributeDataTestId);
 
     return null;
@@ -135,7 +139,7 @@ const SitewideBanner = props => {
     showNonVoterRegistrationContent
   ) {
     return createPortal(
-      <SitewideBannerContent
+      <SitewideBanner
         cta="Start Now"
         link="/us/account/refer-friends"
         description="Want to build our youth-led movement? Refer a friend!"
@@ -155,7 +159,7 @@ const SitewideBanner = props => {
     needToVerifyVoterRegStatuses(userRegistrationStatus)
   ) {
     return createPortal(
-      <SitewideBannerContent
+      <SitewideBanner
         cta="Get Started"
         contextSource="voter_registration_lookup_tool"
         link={getCheckRegistrationStatusURL()}
@@ -167,7 +171,15 @@ const SitewideBanner = props => {
     );
   }
 
-  return createPortal(<SitewideBannerContent {...props} />, target);
+  return createPortal(
+    <SitewideBanner
+      cta="Get Started"
+      description="Make your voice heard. Register to vote in less than 2 minutes."
+      link={`https://vote.dosomething.org/?r=${getTrackingSource('hellobar')}`}
+      {...props}
+    />,
+    target,
+  );
 };
 
-export default SitewideBanner;
+export default PopoverDispatcher;
