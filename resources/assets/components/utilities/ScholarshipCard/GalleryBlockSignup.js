@@ -33,7 +33,8 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
     `OneClickSignupCampaignId:${campaignId}`,
   );
 
-  const handleScholarshipCardShareClick = () => {
+  const handleScholarshipCardShareClick = event => {
+    event.preventDefault();
     trackAnalyticsEvent('clicked_scholarship_gallery_block_apply_now', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.siteAction,
@@ -44,17 +45,18 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
         campaignId,
       },
     });
+
+    if (!isAuthenticated()) {
+      authenticate({ campaignId });
+    }
+    handleSignup();
   };
 
-  if (isAuthenticated() && flash.campaignId) {
-    handleSignup();
-    return <Spinner className="flex justify-center p-4" />;
-  }
-
-  if (!isAuthenticated()) {
-    authenticate({ campaignId });
-    return <Spinner className="flex justify-center p-4" />;
-  }
+  useEffect(() => {
+    if (isAuthenticated() && flash.campaignId === campaignId) {
+      handleSignup();
+    }
+  }, [flash]);
 
   if (loading) {
     return <Spinner className="flex justify-center p-4" />;
