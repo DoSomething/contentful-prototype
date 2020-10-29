@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
-import ShortLinkShare from './ShortLinkShare';
+// import ShortLinkShare from './ShortLinkShare';
+import ShortLinkShareUpdate from './ShortLinkShareUpdate';
 import { getUserId } from '../../../selectors/user';
 
 /**
@@ -14,4 +15,4 @@ const mapStateToProps = state => ({
 });
 
 // Export the container component.
-export default connect(mapStateToProps)(ShortLinkShare);
+export default connect(mapStateToProps)(ShortLinkShareUpdate);
