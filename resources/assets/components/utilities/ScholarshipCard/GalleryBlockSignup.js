@@ -75,7 +75,6 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   return (
     <SecondaryButton
       className="w-full"
-      href={path}
       text="Apply Now"
       onClick={handleScholarshipCardShareClick}
     />
