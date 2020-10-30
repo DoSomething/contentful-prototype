@@ -42,17 +42,7 @@ const App = ({ store, history }) => {
             /* If we're in "chromeless" mode, open all links in new windows: */
             <base target="_blank" />
           ) : null}
-          <DismissableElement
-            name="sitewide_banner_call_to_action"
-            daysToReRender={7}
-            context={{ contextSource: 'voter_registration' }}
-            render={(handleClose, handleComplete) => (
-              <PopoverDispatcher
-                handleClose={handleClose}
-                handleComplete={handleComplete}
-              />
-            )}
-          />
+          <PopoverDispatcher />
           {featureFlag('sitewide_nps_survey') &&
           window.location.pathname !== '/us' ? (
             <TrafficDistribution percentage={5} feature="nps_survey">

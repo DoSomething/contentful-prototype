@@ -67,7 +67,7 @@ SitewideBannerContent.propTypes = {
 };
 
 SitewideBannerContent.defaultProps = {
-  contextSource: 'voter_registration',
+  contextSource: 'sitewide_banner',
 };
 
 export default SitewideBannerContent;
