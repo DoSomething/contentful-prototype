@@ -133,7 +133,7 @@ const PopoverDispatcher = () => {
       daysToReRender={7}
       render={(handleClose, handleComplete) => (
         <SitewideBanner
-          contextSource="refer_a_friend"
+          contextSource="refer_friends"
           cta="Start Now"
           link="/us/account/refer-friends"
           description="Want to build our youth-led movement? Refer a friend!"
