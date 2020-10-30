@@ -47,10 +47,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
       },
     });
 
-    if (!isAuthenticated()) {
-      authenticate({ campaignId });
-    }
-    handleSignup();
+    isAuthenticated() ? handleSignup() : authenticate({ campaignId });
   };
 
   useEffect(() => {
