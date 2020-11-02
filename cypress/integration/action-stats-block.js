@@ -47,7 +47,7 @@ describe('Action Stats Block', () => {
     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
   });
 
-  it('Displays leaderboard and table with load more button if first page has more results', () => {
+  it('Displays leaderboard and table that paginates through results', () => {
     cy.mockGraphqlOp('SchoolActionStatsLeaderQuery', {
       schoolActionStats: topThreeStats,
     });
@@ -65,5 +65,24 @@ describe('Action Stats Block', () => {
     cy.authVisitBlockPermalink(user, blockId);
 
     cy.findAllByTestId('load-more-stats-button').should('have.length', 1);
+
+    cy.mockGraphqlOp('PaginatedActionStatsQuery', {
+      paginatedSchoolActionStats: {
+        edges: [
+          schoolActionStat(43),
+          schoolActionStat(23),
+          schoolActionStat(12),
+        ].map(stat => {
+          return { node: stat };
+        }),
+        pageInfo: {
+          hasNextPage: false,
+        },
+      },
+    });
+
+    cy.findAllByTestId('load-more-stats-button').click();
+
+    cy.findAllByTestId('load-more-stats-button').should('have.length', 0);
   });
 });
