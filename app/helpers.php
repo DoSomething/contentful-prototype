@@ -473,3 +473,36 @@ function generate_streamed_csv($columns, $records)
 
     return fclose($file);
 }
+
+/**
+ * Determine if we should track a Customer.io page view.
+ *
+ * @return bool
+ */
+function should_track_customer_io_page_view()
+{
+    // Ensure we have a Customer.io space ID.
+    if !(config('services.analytics.customer_io_id')) {
+        return false;
+    }
+
+    // If the user is authenticated, we'll want to track their page view.
+    if (auth()->check()) {
+        return true;
+    }
+
+    // Otherwise, we'll only track the page view if we determine that they're visting a link recieved via a DoSomething SMS.
+    return request()->query('user_id') && request()->query('utm_medium') === 'sms';
+}
+
+/**
+ * Get the user ID to identify the user for a customer.io pageview event.
+ *
+ * @return string
+ */
+function get_user_id_for_customer_io()
+{
+    // We'll either grab the authenticated user's ID,
+    // or rely on the user_id query parameter for SMS links.
+    return auth()->id() ?: request()->query('user_id');
+}

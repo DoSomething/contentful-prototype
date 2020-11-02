@@ -1,4 +1,4 @@
-@if(config('services.analytics.customer_io_id') && auth()->check())
+@if(should_track_customer_io_page_view())
     <script type="text/javascript">
         var _cio = _cio || [];
 
@@ -15,6 +15,6 @@
             s.parentNode.insertBefore(t, s);
         })();
 
-        _cio.identify({id: '{{ auth()->id() }}'});
+        _cio.identify({id: '{{ get_user_id_for_customer_io() }}' });
     </script>
 @endif
