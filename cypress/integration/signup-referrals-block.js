@@ -78,7 +78,7 @@ describe('Signup Referrals Block', () => {
       );
     });
 
-    it('Displays singular text if one unique referrerd user was found', () => {
+    it('Displays singular text if one unique referred user was found', () => {
       const user = userFactory();
 
       cy.mockGraphqlOp('SignupReferrals', {
