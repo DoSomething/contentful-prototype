@@ -51,6 +51,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   };
 
   useEffect(() => {
+    // If we're returning from the authentication flow with a "flashed" campaign ID, complete the signup:
     if (isAuthenticated() && flash.campaignId === campaignId) {
       handleSignup();
     }
