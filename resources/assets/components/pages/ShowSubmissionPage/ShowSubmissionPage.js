@@ -32,18 +32,17 @@ const ShowSubmissionPage = () => {
           </h1>
           <Query query={GET_AFFIRMATION_CONTENT} variables={{ id }}>
             {data => {
-              return (
-                data.block.affirmationContent || (
-                  <p>
-                    <TextContent className="mb-6">
-                      {data.block.affirmationContent}
-                    </TextContent>
-                    Thanks for joining the movement! After we review your
-                    submission, we&apos;ll add it to the public gallery
-                    alongside submissions from all the other members taking
-                    action in this campaign.
-                  </p>
-                )
+              return data.block.affirmationContent ? (
+                <TextContent className="mb-6">
+                  {data.block.affirmationContent}
+                </TextContent>
+              ) : (
+                <p>
+                  Thanks for joining the movement! After we review your
+                  submission, we&apos;ll add it to the public gallery alongside
+                  submissions from all the other members taking action in this
+                  campaign.
+                </p>
               );
             }}
           </Query>
