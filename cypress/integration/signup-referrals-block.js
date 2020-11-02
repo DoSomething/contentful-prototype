@@ -72,6 +72,10 @@ describe('Signup Referrals Block', () => {
         'You have referred 1 person so far who has signed up for a campaign.',
       );
       cy.findAllByTestId('referrals-gallery').should('have.length', 1);
+      cy.findAllByTestId('referral-list-item-completed').should(
+        'have.length',
+        1,
+      );
     });
 
     it('Displays singular text if one unique referrerd user was found', () => {
@@ -90,6 +94,10 @@ describe('Signup Referrals Block', () => {
         'You have referred 1 person so far who has signed up for a campaign.',
       );
       cy.findAllByTestId('referrals-gallery').should('have.length', 1);
+      cy.findAllByTestId('referral-list-item-completed').should(
+        'have.length',
+        1,
+      );
     });
 
     it('Displays plural text if signup referrals were found for more than 1 unique referred user', () => {
@@ -108,6 +116,10 @@ describe('Signup Referrals Block', () => {
         'You have referred 2 people so far who have signed up for a campaign.',
       );
       cy.findAllByTestId('referrals-gallery').should('have.length', 1);
+      cy.findAllByTestId('referral-list-item-completed').should(
+        'have.length',
+        2,
+      );
     });
   });
 });
