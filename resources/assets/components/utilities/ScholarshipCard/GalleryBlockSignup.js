@@ -1,11 +1,17 @@
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 import SecondaryButton from '../Button/SecondaryButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
+import { useGate, isAuthenticated } from '../../../helpers/auth';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+  getPageContext,
+} from '../../../helpers/analytics';
 
 export const CREATE_SIGNUP_MUTATION = gql`
   mutation CampaignSignupMutation($campaignId: Int!) {
@@ -14,6 +20,7 @@ export const CREATE_SIGNUP_MUTATION = gql`
     }
   }
 `;
+
 const GalleryBlockSignup = ({ campaignId, path }) => {
   const [handleSignup, { loading, data, error }] = useMutation(
     CREATE_SIGNUP_MUTATION,
@@ -21,6 +28,34 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
       variables: { campaignId },
     },
   );
+
+  const [flash, authenticate] = useGate(
+    `OneClickSignupCampaignId:${campaignId}`,
+  );
+
+  const handleScholarshipCardShareClick = event => {
+    event.preventDefault();
+
+    trackAnalyticsEvent('clicked_scholarship_gallery_block_apply_now', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.siteAction,
+      label: 'scholarship_gallery_card',
+      context: {
+        url: path,
+        ...getPageContext(),
+        campaignId,
+      },
+    });
+
+    return isAuthenticated() ? handleSignup() : authenticate({ campaignId });
+  };
+
+  useEffect(() => {
+    // If we're returning from the authentication flow with a "flashed" campaign ID, complete the signup:
+    if (isAuthenticated() && flash.campaignId === campaignId) {
+      handleSignup();
+    }
+  }, [flash]);
 
   if (loading) {
     return <Spinner className="flex justify-center p-4" />;
@@ -40,7 +75,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
     <SecondaryButton
       className="w-full"
       text="Apply Now"
-      onClick={handleSignup}
+      onClick={handleScholarshipCardShareClick}
     />
   );
 };
