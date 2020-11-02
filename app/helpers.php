@@ -482,7 +482,7 @@ function generate_streamed_csv($columns, $records)
 function should_track_customer_io_page_view()
 {
     // Ensure we have a Customer.io space ID.
-    if !(config('services.analytics.customer_io_id')) {
+    if (! config('services.analytics.customer_io_id')) {
         return false;
     }
 
