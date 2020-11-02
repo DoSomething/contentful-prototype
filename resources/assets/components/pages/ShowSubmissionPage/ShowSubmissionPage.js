@@ -1,9 +1,10 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import { query } from '../../../helpers';
 import Query from '../../Query';
+import { query } from '../../../helpers';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import TextContent from '../../utilities/TextContent/TextContent';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 export const GET_AFFIRMATION_CONTENT = gql`
@@ -34,6 +35,9 @@ const ShowSubmissionPage = () => {
               return (
                 data.block.affirmationContent || (
                   <p>
+                    <TextContent className="mb-6">
+                      {data.block.affirmationContent}
+                    </TextContent>
                     Thanks for joining the movement! After we review your
                     submission, we&apos;ll add it to the public gallery
                     alongside submissions from all the other members taking
