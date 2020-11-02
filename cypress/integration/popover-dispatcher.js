@@ -33,71 +33,6 @@ describe('Site Wide Banner', () => {
     cy.findByTestId('sitewide-banner').should('have.length', 1);
   });
 
-  it('The Site Wide Banner is displayed for users with null voter reg status', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        groupTypeId: null,
-      },
-    });
-
-    cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
-      user: {
-        voterRegistrationStatus: null,
-      },
-    });
-
-    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
-
-    cy.findByTestId('sitewide-banner').should('have.length', 1);
-  });
-
-  it('The Site Wide Banner is displayed for users when voter reg status is not excluded', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        groupTypeId: null,
-      },
-    });
-
-    cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
-      user: {
-        voterRegistrationStatus: 'UNREGISTERED',
-      },
-    });
-
-    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
-
-    cy.findByTestId('sitewide-banner').should('have.length', 1);
-  });
-
-  it('The Site Wide Banner is displayed with custom messaging for users with self reported VR status', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        groupTypeId: null,
-      },
-    });
-
-    cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
-      user: {
-        voterRegistrationStatus: 'CONFIRMED',
-      },
-    });
-
-    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
-
-    cy.findByTestId('sitewide-banner').should('have.length', 1);
-    cy.findByTestId('sitewide-banner-button').should(
-      'have.attr',
-      'href',
-      'https://am-i-registered-to-vote.org/dosomething/',
-    );
-  });
-
   it('The Site Wide Banner is not displayed on the beta voter registration (OVRD) drive page', () => {
     const user = userFactory();
 
@@ -174,34 +109,7 @@ describe('Site Wide Banner', () => {
     cy.findByTestId('sitewide-banner-button').should(
       'have.attr',
       'href',
-      'https://vote.dosomething.org/?r=source:web,source_details:hellobar',
-    );
-  });
-
-  /** @test */
-  it('Sets up the correct tracking source for the RTV redirect URL for an authenticated user', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('CampaignBannerQuery', {
-      campaign: {
-        groupTypeId: null,
-      },
-    });
-
-    cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
-      user: {
-        voterRegistrationStatus: 'UNREGISTERED',
-      },
-    });
-
-    // Log in & visit the campaign pitch page:
-    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
-
-    cy.findByTestId('sitewide-banner-button').should('have.length', 1);
-    cy.findByTestId('sitewide-banner-button').should(
-      'have.attr',
-      'href',
-      `https://vote.dosomething.org/?r=user:${user.id},source:web,source_details:hellobar`,
+      '/us/account/refer-friends',
     );
   });
 });
