@@ -1,5 +1,6 @@
 @if(should_track_customer_io_page_view())
     <script type="text/javascript">
+        {{-- https://customer.io/docs/javascript-quick-start --}}
         var _cio = _cio || [];
 
         (function() {

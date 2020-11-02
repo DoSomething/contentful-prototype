@@ -6,9 +6,11 @@ We track a series of analytics events and user interactions throughout the user 
 
 We use a few analytics services in Phoenix to track our events:
 
-- [Google Tag Manager](https://marketingplatform.google.com/about/tag-manager/). Events are also dispatched to GTM via the [Data Layer](https://support.google.com/tagmanager/answer/6164391?hl=en), and are dispatched over to Google Analytics).
+-   [Google Tag Manager](https://marketingplatform.google.com/about/tag-manager/). Events are also dispatched to GTM via the [Data Layer](https://support.google.com/tagmanager/answer/6164391?hl=en), and are dispatched over to Google Analytics).
 
-- [Snowplow](https://snowplowanalytics.com/). We dispatch events using the [Snowplow JS Tracker](https://github.com/snowplow/snowplow-javascript-tracker), which pushes events to our Snowplow config & data warehouse via [Fivetran](https://fivetran.com/).
+-   [Snowplow](https://snowplowanalytics.com/). We dispatch events using the [Snowplow JS Tracker](https://github.com/snowplow/snowplow-javascript-tracker), which pushes events to our Snowplow config & data warehouse via [Fivetran](https://fivetran.com/).
+
+-   [Customer.io](customer.io). We embed a [customer.io JS tracking snippet](https://git.io/JTdzk) to track [page views](https://customer.io/docs/pageviews) for authenticated users or users visiting a DoSomething SMS link (containing `utm_medium=sms` and `user_id` query parameters). _This excludes pages loaded without a full page refresh (e.g. switching tabs on the Account page), since the script is rendered from the server side on the initial page load_.
 
 ## Tracking an Event
 
@@ -16,9 +18,9 @@ _@TODO: Update this with the new naming conventions based on the assorted `metad
 
 To track a new event, simply import the `trackAnalyticsEvent` method from `/resources/assets/helpers/analytics.js` and pass it an object containing the following fields:
 
-- `metadata`: an object containing the `noun`, `verb`, optional `adjective`, `category`, `target`, and optional `label`.
-- `context` _(optional)_: an object containing contextual event information e.g. the `pageId` where the event took place.
-- `service` _optional_: define the singular service to track the event (e.g. `ga`). (The event will be dispatched to _all_ services by default).
+-   `metadata`: an object containing the `noun`, `verb`, optional `adjective`, `category`, `target`, and optional `label`.
+-   `context` _(optional)_: an object containing contextual event information e.g. the `pageId` where the event took place.
+-   `service` _optional_: define the singular service to track the event (e.g. `ga`). (The event will be dispatched to _all_ services by default).
 
 See listed events below for some examples.
 
@@ -69,15 +71,15 @@ We also track a Google Analytics [Pageview event](https://support.google.com/ana
 
 Here's a list of active [waypoint events]('../features/analytics-waypoint.md') labeled by their respective `context.name`s:
 
-- `petition_submission_action-top`, `petition_submission_action-bottom`
-- `text_submission_action-top`, `text_submission_action-top`
-- `section_block-top`, `section_block-bottom`
-- `voter_registration_action-top`, `voter_registration_action-bottom`
-- `share_action-top`, `share_action-bottom`
-- `link_action-top`, `link_action-bottom`
-- `photo_submission_action-top`, `photo_submission_action-bottom`
-- `landing_page_cta-top`, `landing_page_cta-bottom`
-- `embed-top`, `embed-bottom`
+-   `petition_submission_action-top`, `petition_submission_action-bottom`
+-   `text_submission_action-top`, `text_submission_action-top`
+-   `section_block-top`, `section_block-bottom`
+-   `voter_registration_action-top`, `voter_registration_action-bottom`
+-   `share_action-top`, `share_action-bottom`
+-   `link_action-top`, `link_action-bottom`
+-   `photo_submission_action-top`, `photo_submission_action-bottom`
+-   `landing_page_cta-top`, `landing_page_cta-bottom`
+-   `embed-top`, `embed-bottom`
 
 ### Events tracked by [Northstar](https://github.com/DoSomething/northstar)
 
