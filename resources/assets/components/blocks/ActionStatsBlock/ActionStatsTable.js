@@ -184,6 +184,7 @@ const ActionStatsTable = ({
           <tr>
             <td className="p-3" colSpan={colSpan}>
               <PrimaryButton
+                attributes={{ 'data-testid': 'load-more-stats-button' }}
                 onClick={handleViewMore}
                 isDisabled={loading}
                 text="Load More"

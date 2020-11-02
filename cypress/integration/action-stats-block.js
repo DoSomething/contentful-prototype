@@ -15,25 +15,47 @@ const contentfulBlockQueryResult = {
   },
 };
 
+/**
+ * @param {Number} impact
+ * @return {Object}
+ */
+function schoolActionStat(impact) {
+  const schoolId = faker.random.uuid();
+
+  return {
+    actionId,
+    impact,
+    location: `US-${faker.address.stateAbbr()}`,
+    schoolId,
+    school: {
+      id: schoolId,
+      city: faker.address.city(),
+      name: faker.company.companyName(),
+    },
+  };
+}
+
+const topThreeStats = [
+  schoolActionStat(200),
+  schoolActionStat(140),
+  schoolActionStat(78),
+];
+
 describe('Action Stats Block', () => {
   beforeEach(() => {
     cy.configureMocks();
     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
   });
 
-  it('Displays leaderboard and table with load more if more than 10 records', () => {
+  it('Displays leaderboard and table with load more button if first page has more results', () => {
     cy.mockGraphqlOp('SchoolActionStatsLeaderQuery', {
-      schoolActionStats: [
-        { actionId, schoolId: '11122016', impact: 20 },
-        { actionId, schoolId: '21022010', impact: 14 },
-      ],
+      schoolActionStats: topThreeStats,
     });
     cy.mockGraphqlOp('PaginatedActionStatsQuery', {
       paginatedSchoolActionStats: {
-        edges: [
-          { actionId, schoolId: '11122016' },
-          { actionId, schoolId: '21022010' },
-        ],
+        edges: topThreeStats.map(stat => {
+          return { node: stat };
+        }),
         pageInfo: {
           hasNextPage: true,
         },
@@ -42,6 +64,6 @@ describe('Action Stats Block', () => {
 
     cy.authVisitBlockPermalink(user, blockId);
 
-    cy.contains('leaderboard');
+    cy.findAllByTestId('load-more-stats-button').should('have.length', 1);
   });
 });
