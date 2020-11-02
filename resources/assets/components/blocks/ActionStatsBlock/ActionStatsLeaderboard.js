@@ -57,7 +57,7 @@ const ActionStatsLeaderboard = ({ actionId, count, groupTypeId }) => {
   }
 
   return (
-    <>
+    <div data-testid="action-stats-leaderboard">
       {loading ? (
         <Spinner className="flex justify-center" />
       ) : (
@@ -65,6 +65,7 @@ const ActionStatsLeaderboard = ({ actionId, count, groupTypeId }) => {
           {leaders.map(leader => {
             const { impact, school, location, id } = leader;
             let circleBgColor;
+
             rank += 1;
 
             switch (rank) {
@@ -90,6 +91,7 @@ const ActionStatsLeaderboard = ({ actionId, count, groupTypeId }) => {
                 key={id}
               >
                 <div
+                  data-testid="action-stats-leaderboard-rank"
                   className={classnames(
                     'mx-auto md:mr-4 rounded-full h-20 w-20 flex items-center justify-center',
                     circleBgColor,
@@ -102,6 +104,7 @@ const ActionStatsLeaderboard = ({ actionId, count, groupTypeId }) => {
 
                 <div className="md:w-3/5 mt-6 md:mt-0 text-center md:text-left md:pr-4">
                   <h2 className="text-lg">{school.name}</h2>
+
                   <h3 className="font-bold text-sm text-gray-600 uppercase">
                     {school.city}, {location.substring(3)}
                   </h3>
@@ -111,6 +114,7 @@ const ActionStatsLeaderboard = ({ actionId, count, groupTypeId }) => {
                   <h2 className="font-normal font-league-gothic pr-3 text-3xl md:w-1/4">
                     {impact}
                   </h2>
+
                   <span className="font-bold text-gray-600 text-base uppercase md:w-3/4">
                     Registrations
                   </span>
@@ -120,7 +124,7 @@ const ActionStatsLeaderboard = ({ actionId, count, groupTypeId }) => {
           })}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

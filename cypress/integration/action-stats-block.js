@@ -5,7 +5,6 @@ import { userFactory } from '../fixtures/user';
 
 const actionId = faker.random.number();
 const blockId = '51SWUaRvyhsJsTWHRGGfjK';
-const user = userFactory();
 
 const contentfulBlockQueryResult = {
   block: {
@@ -16,6 +15,8 @@ const contentfulBlockQueryResult = {
 };
 
 /**
+ * Returns an mock instance of the SchoolActionStat type.
+ *
  * @param {Number} impact
  * @return {Object}
  */
@@ -62,7 +63,20 @@ describe('Action Stats Block', () => {
       },
     });
 
-    cy.authVisitBlockPermalink(user, blockId);
+    cy.visit(`/us/blocks/${blockId}`);
+
+    cy.nth('[data-testid=action-stats-leaderboard-rank]', 0).should(
+      'have.class',
+      'bg-yellow-500',
+    );
+    cy.nth('[data-testid=action-stats-leaderboard-rank]', 1).should(
+      'have.class',
+      'bg-purple-500',
+    );
+    cy.nth('[data-testid=action-stats-leaderboard-rank]', 2).should(
+      'have.class',
+      'bg-blurple-500',
+    );
 
     cy.findAllByTestId('load-more-stats-button').should('have.length', 1);
 
