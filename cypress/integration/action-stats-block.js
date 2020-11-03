@@ -1,7 +1,6 @@
 /// <reference types="Cypress" />
-import faker from 'faker';
 
-import { userFactory } from '../fixtures/user';
+import faker from 'faker';
 
 const actionId = faker.random.number();
 const blockId = '51SWUaRvyhsJsTWHRGGfjK';
