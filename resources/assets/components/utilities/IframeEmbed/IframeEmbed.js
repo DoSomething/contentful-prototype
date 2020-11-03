@@ -5,7 +5,11 @@ import classnames from 'classnames';
 import AnalyticsWaypoint from '../AnalyticsWaypoint/AnalyticsWaypoint';
 
 const IframeEmbed = ({ className, id, url }) => (
-  <div id={id} className={classnames('embed', className)}>
+  <div
+    id={id}
+    className={classnames('embed', className)}
+    data-testid="iframe-embed"
+  >
     <AnalyticsWaypoint name="embed-top" context={{ blockId: id }} />
 
     <iframe title={`embed ${id}`} src={url} width="100%" height="520" />

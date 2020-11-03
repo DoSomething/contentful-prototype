@@ -40,9 +40,11 @@ describe('Embed Block', () => {
 
     cy.visit(`us/blocks/${blockId}`);
 
-    cy.get('iframe')
-      .should('have.attr', 'src')
-      .and('include', cartoUrl);
+    cy.findByTestId('iframe-embed').within(() => {
+      cy.get('iframe')
+        .should('have.attr', 'src')
+        .and('include', cartoUrl);
+    });
   });
 
   /** @test */
@@ -59,9 +61,11 @@ describe('Embed Block', () => {
 
     cy.visit(`us/blocks/${blockId}`);
 
-    cy.get('iframe')
-      .should('have.attr', 'src')
-      .and('include', cartoUrl);
+    cy.findByTestId('iframe-embed').within(() => {
+      cy.get('iframe')
+        .should('have.attr', 'src')
+        .and('include', cartoUrl);
+    });
   });
 
   /** @test */
@@ -77,9 +81,11 @@ describe('Embed Block', () => {
 
     cy.visit(`us/blocks/${blockId}`);
 
-    cy.get('iframe')
-      .should('have.attr', 'src')
-      .and('include', airtable);
+    cy.findByTestId('iframe-embed').within(() => {
+      cy.get('iframe')
+        .should('have.attr', 'src')
+        .and('include', airtable);
+    });
   });
 
   context('Default URLs', () => {
