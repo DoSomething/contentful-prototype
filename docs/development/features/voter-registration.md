@@ -168,15 +168,15 @@ Voter registration features built in 2020.
 
 **OVRD**
 
--   An OVRD alpha page is a campaign action page, which displays `VoterRegistrationDriveAction` and `VoterRegistrationReferralsBlock` entries in its `blocks` field.
+An OVRD alpha page is a campaign action page, which displays `VoterRegistrationDriveAction` and `VoterRegistrationReferralsBlock` entries in its `blocks` field.
 
-    -   [Individual](https://qa.dosomething.org/us/campaigns/online-registration-drive/action)
-    -   [Group](https://qa.dosomething.org/us/campaigns/nhs-online-voter-registration-drives/action) -- Note, you must join a group from the campaign landing page to avoid action page errors.
+-   [Individual](https://qa.dosomething.org/us/campaigns/online-registration-drive/action)
+-   [Group](https://qa.dosomething.org/us/campaigns/nhs-online-voter-registration-drives/action) -- Note, you must join a group from the campaign landing page to avoid action page errors.
 
--   The OVRD beta page is hardcoded to render a `VoterRegistrationDrivePage` component at path `/us/my-voter-registration-drive`.
+The OVRD beta page is hardcoded to render a `VoterRegistrationDrivePage` component at path `/us/my-voter-registration-drive`.
 
-    -   [Individual](https://qa.dosomething.org/us/my-voter-registration-drive?referrer_user_id=5547be89469c64ec7d8b518d&voting-reasons=covid-relief%2Cclimate-change%2Cjob-creation%2Cracial-justice%2Cgun-violence)
-    -   [Group](https://qa.dosomething.org/us/my-voter-registration-drive?group_id=15897&referrer_user_id=5547be89469c64ec7d8b518d&voting-reasons=covid-relief%2Cclimate-change%2Cjob-creation%2Cracial-justice%2Cgun-violence)
+-   [Individual](https://qa.dosomething.org/us/my-voter-registration-drive?referrer_user_id=5547be89469c64ec7d8b518d&voting-reasons=covid-relief%2Cclimate-change%2Cjob-creation%2Cracial-justice%2Cgun-violence)
+-   [Group](https://qa.dosomething.org/us/my-voter-registration-drive?group_id=15897&referrer_user_id=5547be89469c64ec7d8b518d&voting-reasons=covid-relief%2Cclimate-change%2Cjob-creation%2Cracial-justice%2Cgun-violence)
 
 **Misc**
 
