@@ -123,7 +123,10 @@ const ActionStatsTable = ({
         <tbody>
           <tr>
             <td className="bg-gray-100 px-10 pt-10 pb-32" colSpan={colSpan}>
-              <div className="bg-white p-6 rounded">
+              <div
+                className="bg-white p-6 rounded"
+                data-testid="action-stats-not-found"
+              >
                 <h3>No Schools Found</h3>
 
                 <p>
@@ -144,7 +147,7 @@ const ActionStatsTable = ({
     <Table>
       {header}
 
-      <tbody>
+      <tbody data-testid="action-stats-table-body">
         {stats.map(({ node, cursor }) => {
           const { impact, location, school } = node;
 
