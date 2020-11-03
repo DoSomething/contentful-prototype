@@ -154,6 +154,14 @@ Dev Quiz Results:
 -   [1lvJHhlJqQSgKgwIwUymQ8](https://dev.dosomething.org/us/quiz-results/1lvJHhlJqQSgKgwIwUymQ8)
 -   [2KfkCOTi7u4CqAyyCuGyci](https://dev.dosomething.org/us/quiz-results/2KfkCOTi7u4CqAyyCuGyci)
 
+**Related links:**
+
+-   [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the [Campaign Playbook](https://docs.google.com/document/d/1iOFgNNNN0ry9zyyRyxcuLI-tZm2CKkcPLbfUMos9WcI/edit?usp=sharing).
+
+**Notes:**
+
+-   Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
+
 ## Appendix
 
 Voter registration features built in 2020.
@@ -181,11 +189,3 @@ These are instances of the `VoterRegistrationDrivePage` component.
 -   [GOTV Block (`GetOutTheVoteBlock`)](https://qa.dosomething.org/us/blocks/1og1KarU9jfFFVrQXXJnxU)
 
 -   [CivicEngine Voter Widget (`CivicEngineVoterWidget`)](https://qa.dosomething.org/us/blocks/5Ckp8JDZD9ZlqsIJoNb8ZS)
-
-**Related links:**
-
--   [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the [Campaign Playbook](https://docs.google.com/document/d/1iOFgNNNN0ry9zyyRyxcuLI-tZm2CKkcPLbfUMos9WcI/edit?usp=sharing).
-
-**Notes:**
-
--   Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
