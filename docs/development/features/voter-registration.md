@@ -154,6 +154,34 @@ Dev Quiz Results:
 -   [1lvJHhlJqQSgKgwIwUymQ8](https://dev.dosomething.org/us/quiz-results/1lvJHhlJqQSgKgwIwUymQ8)
 -   [2KfkCOTi7u4CqAyyCuGyci](https://dev.dosomething.org/us/quiz-results/2KfkCOTi7u4CqAyyCuGyci)
 
+## Appendix
+
+Voter registration features built in 2020.
+
+**Alpha pages**
+
+These are campaign action pages which display `VoterRegistrationDriveAction` and `VoterRegistrationReferralsBlock` entries in the `blocks` field.
+
+-   [Individual](https://qa.dosomething.org/us/campaigns/online-registration-drive/action)
+-   [Group](https://qa.dosomething.org/us/campaigns/nhs-online-voter-registration-drives/action) -- Note, you must be signed up for this campaign a group from the landing page to avoid error blocks on the action page.
+
+**Beta page**
+
+These are instances of the `VoterRegistrationDrivePage` component.
+
+-   [Individual](https://qa.dosomething.org/us/my-voter-registration-drive?referrer_user_id=5547be89469c64ec7d8b518d&voting-reasons=covid-relief%2Cclimate-change%2Cjob-creation%2Cracial-justice%2Cgun-violence)
+-   [Group](https://qa.dosomething.org/us/my-voter-registration-drive?group_id=15897&referrer_user_id=5547be89469c64ec7d8b518d&voting-reasons=covid-relief%2Cclimate-change%2Cjob-creation%2Cracial-justice%2Cgun-violence)
+
+**Misc**
+
+-   [Quiz Result (`QuizResultPage`)](https://qa.dosomething.org/us/quiz-results/2byOD44hZk6b8XlmnjGKlm)
+
+-   [Leaderboard (`ActionStatsBlock`)](https://qa.dosomething.org/us/blocks/4p6V5CC5DGqehKkjhfSslN)
+
+-   [GOTV Block (`GetOutTheVoteBlock`)](https://qa.dosomething.org/us/blocks/1og1KarU9jfFFVrQXXJnxU)
+
+-   [CivicEngine Voter Widget (`CivicEngineVoterWidget`)](https://qa.dosomething.org/us/blocks/5Ckp8JDZD9ZlqsIJoNb8ZS)
+
 **Related links:**
 
 -   [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the [Campaign Playbook](https://docs.google.com/document/d/1iOFgNNNN0ry9zyyRyxcuLI-tZm2CKkcPLbfUMos9WcI/edit?usp=sharing).
