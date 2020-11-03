@@ -46,7 +46,7 @@ const SignupReferralsBlock = ({ title }) => (
 
         return (
           <>
-            <p className="mb-3">
+            <p className="mb-3" data-testid="referrals-count-description">
               You have referred{' '}
               <strong>
                 {numberOfReferrals} {pluralize('person', numberOfReferrals)}
