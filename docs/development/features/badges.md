@@ -63,3 +63,7 @@ There is currently no easy way for an admin to see which badges a user has, thou
 ### Badges Version 2
 
 Coming soon!
+
+### Retired Badges (badges in a past life)
+
+-   **Registered Voter** - Awarded when a user's `voter_registration_status` is `CONFIRMED` (they told us they are registered) or `REGISTRATION_COMPLETE` (they registered through us)
