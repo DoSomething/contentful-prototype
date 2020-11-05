@@ -7,9 +7,6 @@ import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
 import './badges-tab.scss';
 
-const CONFIRMED = 'CONFIRMED';
-const REGISTRATION_COMPLETE = 'REGISTRATION_COMPLETE';
-
 const SIGNUP_COUNT_BADGE = gql`
   query SignupsCountQuery($userId: String!) {
     signupsCount(userId: $userId, limit: 2)
@@ -31,15 +28,6 @@ const NEWSLETTER_BADGE = gql`
   query SubscriptionTopicsBadgeQuery($userId: String!) {
     user(id: $userId) {
       emailSubscriptionTopics
-    }
-  }
-`;
-
-const VOTER_BADGE = gql`
-  query VoterRegBadgeQuery($userId: String!) {
-    user(id: $userId) {
-      id
-      voterRegistrationStatus
     }
   }
 `;
@@ -122,24 +110,6 @@ const badgeModalContent = {
         Want to unlock this badge?{' '}
         <a href="/us/account/subscriptions">Sign up for The Breakdown</a>, our
         current events newsletter.
-      </span>
-    ),
-  },
-  voterBadge: {
-    title: 'REGISTERED VOTER',
-    earnedText:
-      'Congratulations! You just took a step towards changing the future of our country *and* earned this badge. By registering to vote, you’re basically the G.O.A.T',
-    unearnedText: (
-      <span>
-        Unlock this badge by taking 2 minutes to{' '}
-        <a
-          href="https://vote.dosomething.org/?r=campaignID:8017,campaignRunID:8022,source:web,source_details:badges"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          register to vote
-        </a>{' '}
-        at your current address.
       </span>
     ),
   },
@@ -293,38 +263,6 @@ class BadgesTab extends React.Component {
                     text="News Expert"
                   >
                     <p>News Expert</p>
-                  </Badge>
-                </div>
-              </li>
-            )}
-          </Query>
-
-          <Query query={VOTER_BADGE} variables={{ userId }}>
-            {data => (
-              <li>
-                <div
-                  onClick={() =>
-                    this.showModal(
-                      'voterBadge',
-                      data.user.voterRegistrationStatus === CONFIRMED ||
-                        data.user.voterRegistrationStatus ===
-                          REGISTRATION_COMPLETE,
-                    )
-                  }
-                  role="button"
-                  tabIndex={0}
-                  className="clickable-badge"
-                >
-                  <Badge
-                    earned={
-                      data.user.voterRegistrationStatus === CONFIRMED ||
-                      data.user.voterRegistrationStatus ===
-                        REGISTRATION_COMPLETE
-                    }
-                    name="voterBadge"
-                    text="Registered Voter"
-                  >
-                    <p>Registered Voter</p>
                   </Badge>
                 </div>
               </li>

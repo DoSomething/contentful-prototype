@@ -29,7 +29,6 @@ Unless specified, badges will only show up in the Badges tab of the user profile
 -   **2 Staff Faves** - This badge remains hidden until earned. Awarded when a second post gets tagged with `good-submission`.
 -   **3 Staff Faves** - This badge remains hidden until earned. Awarded when a third post gets tagged with `good-submission`.
 -   **News Expert** - Awarded when a user's `email_subscription_topics` contains "news" (which means that they are subscribed to The Breakdown)
--   **Registered Voter** - Awarded when a user's `voter_registration_status` is `CONFIRMED` (they told us they are registered) or `REGISTRATION_COMPLETE` (they registered through us)
 
 ## Viewing Badges
 
@@ -64,3 +63,7 @@ There is currently no easy way for an admin to see which badges a user has, thou
 ### Badges Version 2
 
 Coming soon!
+
+### Retired Badges (badges in a past life)
+
+-   **Registered Voter** - Awarded when a user's `voter_registration_status` is `CONFIRMED` (they told us they are registered) or `REGISTRATION_COMPLETE` (they registered through us)
