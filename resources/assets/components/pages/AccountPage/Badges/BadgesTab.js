@@ -7,9 +7,6 @@ import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
 import './badges-tab.scss';
 
-const CONFIRMED = 'CONFIRMED';
-const REGISTRATION_COMPLETE = 'REGISTRATION_COMPLETE';
-
 const SIGNUP_COUNT_BADGE = gql`
   query SignupsCountQuery($userId: String!) {
     signupsCount(userId: $userId, limit: 2)
