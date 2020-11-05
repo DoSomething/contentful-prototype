@@ -24,6 +24,7 @@ const CONGRESSWEB_SDK =
 const SOFT_EDGE_AUTOFILL_QUERY = gql`
   query SoftEdgeAutofillQuery($userId: String!) {
     user(id: $userId) {
+      id
       memberId: id
       firstName
       lastName
