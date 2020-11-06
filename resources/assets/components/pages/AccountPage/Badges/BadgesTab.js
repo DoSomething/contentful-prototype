@@ -5,6 +5,11 @@ import gql from 'graphql-tag';
 import Badge from './Badge';
 import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../../helpers/analytics';
+
 import './badges-tab.scss';
 
 const SIGNUP_COUNT_BADGE = gql`
@@ -129,13 +134,42 @@ class BadgesTab extends React.Component {
   }
 
   showModal(name, earned) {
+    const modalEarned = earned ? 'earned' : 'unearned';
+    // Track modal open event.
+    trackAnalyticsEvent(`opened_modal_${modalEarned}_badge_${name}`, {
+      action: 'modal_opened',
+      category: EVENT_CATEGORIES.modal,
+      label: type,
+      context: {
+        actionId,
+        blockId,
+        campaignId,
+        pageId,
+      },
+    });
+
     this.setState({
       modalName: name,
       modalEarned: earned,
     });
   }
 
-  closeModal() {
+  closeModal(name, earned) {
+    const modalEarned = earned ? 'earned' : 'unearned';
+
+    // Track modal closed event.
+    trackAnalyticsEvent(`closed_modal_${modalEarned}_badge_${name}`, {
+      action: 'modal_closed',
+      category: EVENT_CATEGORIES.modal,
+      label: type,
+      context: {
+        actionId,
+        blockId,
+        campaignId,
+        pageId,
+      },
+    });
+
     this.setState({
       modalName: '',
     });
@@ -336,7 +370,10 @@ class BadgesTab extends React.Component {
         </ul>
         {this.state.modalName ? (
           <BadgeModal
-            onClose={this.closeModal}
+            onClose={this.closeModal(
+              this.state.modalName,
+              this.state.modalEarned,
+            )}
             earned={this.state.modalEarned}
             name={this.state.modalName}
           >
