@@ -7,6 +7,7 @@ import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
 import {
   EVENT_CATEGORIES,
+  getPageContext,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
 
@@ -139,12 +140,10 @@ class BadgesTab extends React.Component {
     trackAnalyticsEvent(`opened_modal_${modalEarned}_badge_${name}`, {
       action: 'modal_opened',
       category: EVENT_CATEGORIES.modal,
-      label: type,
+      label: 'BADGES_MODAL',
       context: {
-        actionId,
-        blockId,
-        campaignId,
-        pageId,
+        url: window.location.href,
+        ...getPageContext(),
       },
     });
 
@@ -154,21 +153,22 @@ class BadgesTab extends React.Component {
     });
   }
 
-  closeModal(name, earned) {
-    const modalEarned = earned ? 'earned' : 'unearned';
+  closeModal() {
+    const modalEarned = this.state.modalEarned ? 'earned' : 'unearned';
 
     // Track modal closed event.
-    trackAnalyticsEvent(`closed_modal_${modalEarned}_badge_${name}`, {
-      action: 'modal_closed',
-      category: EVENT_CATEGORIES.modal,
-      label: type,
-      context: {
-        actionId,
-        blockId,
-        campaignId,
-        pageId,
+    trackAnalyticsEvent(
+      `closed_modal_${modalEarned}_badge_${this.state.modalName}`,
+      {
+        action: 'modal_closed',
+        category: EVENT_CATEGORIES.modal,
+        label: 'BADGES_MODAL',
+        context: {
+          url: window.location.href,
+          ...getPageContext(),
+        },
       },
-    });
+    );
 
     this.setState({
       modalName: '',
@@ -370,10 +370,7 @@ class BadgesTab extends React.Component {
         </ul>
         {this.state.modalName ? (
           <BadgeModal
-            onClose={this.closeModal(
-              this.state.modalName,
-              this.state.modalEarned,
-            )}
+            onClose={this.closeModal}
             earned={this.state.modalEarned}
             name={this.state.modalName}
           >
