@@ -5,6 +5,12 @@ import gql from 'graphql-tag';
 import Badge from './Badge';
 import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
+import {
+  EVENT_CATEGORIES,
+  getPageContext,
+  trackAnalyticsEvent,
+} from '../../../../helpers/analytics';
+
 import './badges-tab.scss';
 
 const SIGNUP_COUNT_BADGE = gql`
@@ -129,6 +135,18 @@ class BadgesTab extends React.Component {
   }
 
   showModal(name, earned) {
+    const modalEarned = earned ? 'earned' : 'unearned';
+    // Track modal open event.
+    trackAnalyticsEvent(`opened_modal_${modalEarned}_badge_${name}`, {
+      action: 'modal_opened',
+      category: EVENT_CATEGORIES.modal,
+      label: 'BADGES_MODAL',
+      context: {
+        url: window.location.href,
+        ...getPageContext(),
+      },
+    });
+
     this.setState({
       modalName: name,
       modalEarned: earned,
@@ -136,6 +154,22 @@ class BadgesTab extends React.Component {
   }
 
   closeModal() {
+    const modalEarned = this.state.modalEarned ? 'earned' : 'unearned';
+
+    // Track modal closed event.
+    trackAnalyticsEvent(
+      `closed_modal_${modalEarned}_badge_${this.state.modalName}`,
+      {
+        action: 'modal_closed',
+        category: EVENT_CATEGORIES.modal,
+        label: 'BADGES_MODAL',
+        context: {
+          url: window.location.href,
+          ...getPageContext(),
+        },
+      },
+    );
+
     this.setState({
       modalName: '',
     });
