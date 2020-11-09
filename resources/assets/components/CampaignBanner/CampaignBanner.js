@@ -23,6 +23,7 @@ import ProgressBar from '../utilities/ProgressBar/ProgressBar';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
 import CampaignInfoBlock from '../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
@@ -85,10 +86,11 @@ const CampaignBanner = ({
   }
 
   const groupType = get(data, 'campaign.groupType', null);
+  const currentImpactTotal = env('DS_GO_GREENER_QUANTITY', 0);
 
   const { goal, percentage } = getGoalInfo(
     env('DS_GO_GREENER_GOAL', 0),
-    env('DS_GO_GREENER_QUANTITY', 0),
+    currentImpactTotal,
   );
 
   return (
@@ -103,15 +105,24 @@ const CampaignBanner = ({
             data-testid="campaign-banner-primary-content"
             className="grid-wide-7/10 mb-6"
           >
-            <div className="mb-6">
-              <ProgressBar percentage={percentage} />
-              <p className="text-lg">
-                <span className="font-bold">
-                  2,500 lbs of CO2 saved so far.
-                </span>
-                {` `}Help us get to {goal}!
-              </p>
-            </div>
+            {numCampaignId === 9109 || numCampaignId === 9006 ? (
+              <SixpackExperiment
+                title="Progress Bar Experiment"
+                convertableActions={['signup']}
+                alternatives={[
+                  // The displaying the progress bar is the default, or control test alternative.
+                  <div className="mb-6">
+                    <ProgressBar percentage={percentage} />
+                    <p className="text-lg">
+                      <span className="font-bold">
+                        {currentImpactTotal} lbs of CO2 saved so far.
+                      </span>
+                      {` `}Help us get to {goal}!
+                    </p>
+                  </div>,
+                ]}
+              />
+            ) : null}
             <TextContent>{content}</TextContent>
 
             {affiliateSponsors.length ? (

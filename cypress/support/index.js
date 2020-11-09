@@ -31,7 +31,6 @@ Cypress.on('window:before:load', window => {
     NORTHSTAR_URL: 'https://identity-dev.dosomething.org',
     DS_GO_GREENER_QUANTITY: 1204,
     DS_GO_GREENER_GOAL: 2500,
-    DS_GO_GREENER_CAMPAIGN_ID: 9006,
   };
 
   // Remove built-in 'fetch' support since it cannot yet be mocked by Cypress.
