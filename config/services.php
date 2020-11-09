@@ -62,5 +62,5 @@ return [
     'go-greener-campaign' => [
         'goal' => env('DS_GO_GREENER_GOAL'),
         'quantity' => env('DS_GO_GREENER_QUANTITY'),
-    ]
+    ],
 ];
