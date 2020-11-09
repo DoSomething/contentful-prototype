@@ -73,7 +73,7 @@ export const operations = {
  */
 export const mocks = {
   // Custom scalars:
-  AbsoluteUrl: () => 'https://www.example.com/',
+  URL: () => 'https://www.example.com/',
   DateTime: () => new Date().toISOString(),
   JSON: () => ({}),
 
