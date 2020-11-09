@@ -16,7 +16,7 @@ import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
 
 const EMBED_QUERY = gql`
-  query EmbedQuery($url: AbsoluteUrl!) {
+  query EmbedQuery($url: URL!) {
     embed(url: $url) {
       type
       title
