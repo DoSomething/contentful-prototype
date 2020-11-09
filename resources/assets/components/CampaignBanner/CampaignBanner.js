@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
 import {
+  env,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
   isCurrentPathInPaths,
@@ -85,7 +86,10 @@ const CampaignBanner = ({
 
   const groupType = get(data, 'campaign.groupType', null);
 
-  const { goal, percentage } = getGoalInfo(5000, 2500);
+  const { goal, percentage } = getGoalInfo(
+    env('DS_GO_GREENER_GOAL', 0),
+    env('DS_GO_GREENER_QUANTITY', 0),
+  );
 
   return (
     <>

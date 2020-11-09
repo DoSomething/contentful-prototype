@@ -58,4 +58,9 @@ return [
         'url' => 'https://app.contentful.com',
         'cache' => env('CONTENTFUL_CACHE', true),
     ],
+
+    'go-greener-campaign' => [
+        'goal' => env('DS_GO_GREENER_GOAL'),
+        'quantity' => env('DS_GO_GREENER_QUANTITY'),
+    ]
 ];
