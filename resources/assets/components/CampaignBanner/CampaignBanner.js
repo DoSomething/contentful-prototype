@@ -17,6 +17,8 @@ import Spinner from '../artifacts/Spinner/Spinner';
 import CampaignHeader from '../utilities/CampaignHeader';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import CoverImage from '../utilities/CoverImage/CoverImage';
+import { getGoalInfo } from '../../helpers/voter-registration';
+import ProgressBar from '../utilities/ProgressBar/ProgressBar';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
 import CampaignInfoBlock from '../blocks/CampaignInfoBlock/CampaignInfoBlock';
@@ -83,6 +85,8 @@ const CampaignBanner = ({
 
   const groupType = get(data, 'campaign.groupType', null);
 
+  const { goal, percentage } = getGoalInfo(5000, 2500);
+
   return (
     <>
       <CoverImage coverImage={coverImage} />
@@ -95,6 +99,15 @@ const CampaignBanner = ({
             data-testid="campaign-banner-primary-content"
             className="grid-wide-7/10 mb-6"
           >
+            <div className="mb-6">
+              <ProgressBar percentage={percentage} />
+              <p className="text-lg">
+                <span className="font-bold">
+                  2,500 lbs of CO2 saved so far.
+                </span>
+                {` `}Help us get to {goal}!
+              </p>
+            </div>
             <TextContent>{content}</TextContent>
 
             {affiliateSponsors.length ? (
