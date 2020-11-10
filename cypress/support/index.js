@@ -29,8 +29,6 @@ Cypress.on('window:before:load', window => {
     SIXPACK_BASE_URL: 'http://sixpack.test', // Our Sixpack service will throw an error if this isn't set.
     CONTENTFUL_USE_PREVIEW_API: false,
     NORTHSTAR_URL: 'https://identity-dev.dosomething.org',
-    DS_GO_GREENER_QUANTITY: 1204,
-    DS_GO_GREENER_GOAL: 2500,
   };
 
   // Remove built-in 'fetch' support since it cannot yet be mocked by Cypress.

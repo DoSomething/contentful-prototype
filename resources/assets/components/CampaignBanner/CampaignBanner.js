@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
 import {
-  env,
+  featureFlag,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
   isCurrentPathInPaths,
@@ -86,12 +86,10 @@ const CampaignBanner = ({
   }
 
   const groupType = get(data, 'campaign.groupType', null);
-  const currentImpactTotal = env('DS_GO_GREENER_QUANTITY', 0);
+  const impactGoal = featureFlag('go_greener_campaign_goal');
+  const currentImpactTotal = featureFlag('go_greener_campaign_goal');
 
-  const { goal, percentage } = getGoalInfo(
-    env('DS_GO_GREENER_GOAL', 0),
-    currentImpactTotal,
-  );
+  const { goal, percentage } = getGoalInfo(impactGoal, currentImpactTotal);
 
   return (
     <>
@@ -105,7 +103,7 @@ const CampaignBanner = ({
             data-testid="campaign-banner-primary-content"
             className="grid-wide-7/10 mb-6"
           >
-            {numCampaignId === 9109 || numCampaignId === 9006 ? (
+            {numCampaignId === 9109 || numCampaignId === 9001 ? (
               <SixpackExperiment
                 title="Progress Bar Experiment"
                 convertableActions={['signup']}
