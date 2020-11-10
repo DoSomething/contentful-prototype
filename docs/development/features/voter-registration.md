@@ -161,3 +161,29 @@ Dev Quiz Results:
 **Notes:**
 
 -   Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
+
+## Appendix
+
+Voter registration features built in 2020.
+
+**OVRD**
+
+An OVRD alpha page is a campaign action page, which displays `VoterRegistrationDriveAction` and `VoterRegistrationReferralsBlock` entries in its `blocks` field.
+
+-   [Individual](https://qa.dosomething.org/us/campaigns/online-registration-drive/action)
+-   [Group](https://qa.dosomething.org/us/campaigns/nhs-online-voter-registration-drives/action) -- Note, you must join a group from the campaign landing page to avoid action page errors.
+
+The OVRD beta page is hardcoded to render a `VoterRegistrationDrivePage` component at path `/us/my-voter-registration-drive`.
+
+-   [Individual](https://qa.dosomething.org/us/my-voter-registration-drive?referrer_user_id=5547be89469c64ec7d8b518d&voting-reasons=covid-relief%2Cclimate-change%2Cjob-creation%2Cracial-justice%2Cgun-violence)
+-   [Group](https://qa.dosomething.org/us/my-voter-registration-drive?group_id=15897&referrer_user_id=5547be89469c64ec7d8b518d&voting-reasons=covid-relief%2Cclimate-change%2Cjob-creation%2Cracial-justice%2Cgun-violence)
+
+**Misc**
+
+-   [Quiz Result (`QuizResultPage`)](https://qa.dosomething.org/us/quiz-results/2byOD44hZk6b8XlmnjGKlm)
+
+-   [Leaderboard (`ActionStatsBlock`)](https://qa.dosomething.org/us/blocks/4p6V5CC5DGqehKkjhfSslN)
+
+-   [GOTV Block (`GetOutTheVoteBlock`)](https://qa.dosomething.org/us/blocks/1og1KarU9jfFFVrQXXJnxU)
+
+-   [CivicEngine Voter Widget (`CivicEngineVoterWidget`)](https://qa.dosomething.org/us/blocks/5Ckp8JDZD9ZlqsIJoNb8ZS)
