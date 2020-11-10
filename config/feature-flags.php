@@ -23,4 +23,6 @@ return [
     'refer_friends_incentive' => env('DS_ENABLE_REFER_FRIENDS_INCENTIVE', false),
     'sitewide_nps_survey' => env('DS_ENABLE_SITEWIDE_NPS_SURVEY', false),
     'volunteer_credits' => env('DS_ENABLE_VOLUNTEER_CREDITS', false),
+    'go_greener_campaign_goal' => env('DS_GO_GREENER_GOAL', null),
+    'go_greener_campaign_quantity' => env('DS_GO_GREENER_QUANTITY', 0),
 ];

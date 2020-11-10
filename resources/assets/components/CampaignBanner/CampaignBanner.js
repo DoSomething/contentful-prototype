@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
 import {
+  featureFlag,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
   isCurrentPathInPaths,
@@ -17,9 +18,12 @@ import Spinner from '../artifacts/Spinner/Spinner';
 import CampaignHeader from '../utilities/CampaignHeader';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import CoverImage from '../utilities/CoverImage/CoverImage';
+import { getGoalInfo } from '../../helpers/voter-registration';
+import ProgressBar from '../utilities/ProgressBar/ProgressBar';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
 import CampaignInfoBlock from '../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
@@ -82,6 +86,10 @@ const CampaignBanner = ({
   }
 
   const groupType = get(data, 'campaign.groupType', null);
+  const impactGoal = featureFlag('go_greener_campaign_goal');
+  const currentImpactTotal = featureFlag('go_greener_campaign_quantity');
+
+  const { goal, percentage } = getGoalInfo(impactGoal, currentImpactTotal);
 
   return (
     <>
@@ -95,6 +103,23 @@ const CampaignBanner = ({
             data-testid="campaign-banner-primary-content"
             className="grid-wide-7/10 mb-6"
           >
+            {numCampaignId === 9109 || numCampaignId === 9001 ? (
+              <SixpackExperiment
+                internalTitle="Campaign Progress Bar Experiment"
+                convertableActions={['signup']}
+                alternatives={[
+                  <div className="mb-6" testName="Progress Bar Visible">
+                    <ProgressBar percentage={percentage} />
+                    <p className="text-lg">
+                      <span className="font-bold">
+                        {currentImpactTotal} lbs of CO2 saved so far.
+                      </span>
+                      {` `}Help us get to {goal}!
+                    </p>
+                  </div>,
+                ]}
+              />
+            ) : null}
             <TextContent>{content}</TextContent>
 
             {affiliateSponsors.length ? (
