@@ -106,6 +106,7 @@ class SixpackExperiment extends React.Component {
         get(alternative, 'fields.internalTitle') ||
         get(alternative, 'fields.title');
     }
+
     return testAlternativeName;
   };
 
