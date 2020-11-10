@@ -87,7 +87,7 @@ const CampaignBanner = ({
 
   const groupType = get(data, 'campaign.groupType', null);
   const impactGoal = featureFlag('go_greener_campaign_goal');
-  const currentImpactTotal = featureFlag('go_greener_campaign_goal');
+  const currentImpactTotal = featureFlag('go_greener_campaign_quantity');
 
   const { goal, percentage } = getGoalInfo(impactGoal, currentImpactTotal);
 
@@ -105,11 +105,11 @@ const CampaignBanner = ({
           >
             {numCampaignId === 9109 || numCampaignId === 9001 ? (
               <SixpackExperiment
-                title="Progress Bar Experiment"
+                internalTitle="Campaign Progress Bar Experiment"
                 convertableActions={['signup']}
                 alternatives={[
                   // The displaying the progress bar is the default, or control test alternative.
-                  <div className="mb-6">
+                  <div className="mb-6" testName="Progress Bar Visible">
                     <ProgressBar percentage={percentage} />
                     <p className="text-lg">
                       <span className="font-bold">
