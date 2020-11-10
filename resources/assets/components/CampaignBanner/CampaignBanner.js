@@ -108,7 +108,6 @@ const CampaignBanner = ({
                 internalTitle="Campaign Progress Bar Experiment"
                 convertableActions={['signup']}
                 alternatives={[
-                  // Displaying the progress bar is the default, or control test alternative.
                   <div className="mb-6" testName="Progress Bar Visible">
                     <ProgressBar percentage={percentage} />
                     <p className="text-lg">
