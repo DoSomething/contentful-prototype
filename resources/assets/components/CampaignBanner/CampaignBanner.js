@@ -6,10 +6,10 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
 import {
-  featureFlag,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
   isCurrentPathInPaths,
+  siteConfig,
 } from '../../helpers';
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
@@ -86,8 +86,10 @@ const CampaignBanner = ({
   }
 
   const groupType = get(data, 'campaign.groupType', null);
-  const impactGoal = featureFlag('go_greener_campaign_goal');
-  const currentImpactTotal = featureFlag('go_greener_campaign_quantity');
+  const impactGoal = Number(siteConfig('go_greener_campaign_goal', null));
+  const currentImpactTotal = Number(
+    siteConfig('go_greener_campaign_quantity', 0),
+  );
 
   const { goal, percentage } = getGoalInfo(impactGoal, currentImpactTotal);
 
@@ -112,9 +114,10 @@ const CampaignBanner = ({
                     <ProgressBar percentage={percentage} />
                     <p className="text-lg">
                       <span className="font-bold">
-                        {currentImpactTotal} lbs of CO2 saved so far.
+                        {`${currentImpactTotal.toLocaleString()}`} lbs of CO2
+                        saved so far.
                       </span>
-                      {` `}Help us get to {goal}!
+                      {` `}Help us get to {`${goal.toLocaleString()}`}!
                     </p>
                   </div>,
                 ]}
