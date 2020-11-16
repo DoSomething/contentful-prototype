@@ -41,6 +41,7 @@ const ScholarshipCard = ({ campaign }) => {
     scholarshipAmount,
     scholarshipDeadline,
     showcaseImage,
+    campaignTitle,
     campaignId,
     staffPick,
     path,
@@ -98,7 +99,11 @@ const ScholarshipCard = ({ campaign }) => {
           </div>
         </div>
 
-        <GalleryBlockSignup campaignId={campaignId} path={path} />
+        <GalleryBlockSignup
+          campaignId={campaignId}
+          campaignTitle={campaignTitle}
+          path={path}
+        />
       </div>
     </article>
   );
