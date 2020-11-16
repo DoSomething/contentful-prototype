@@ -86,8 +86,10 @@ const CampaignBanner = ({
   }
 
   const groupType = get(data, 'campaign.groupType', null);
-  const impactGoal = featureFlag('go_greener_campaign_goal');
-  const currentImpactTotal = featureFlag('go_greener_campaign_quantity');
+  const impactGoal = Number(featureFlag('go_greener_campaign_goal'));
+  const currentImpactTotal = Number(
+    featureFlag('go_greener_campaign_quantity'),
+  );
 
   const { goal, percentage } = getGoalInfo(impactGoal, currentImpactTotal);
 
@@ -112,9 +114,10 @@ const CampaignBanner = ({
                     <ProgressBar percentage={percentage} />
                     <p className="text-lg">
                       <span className="font-bold">
-                        {currentImpactTotal} lbs of CO2 saved so far.
+                        {`${currentImpactTotal.toLocaleString()}`} lbs of CO2
+                        saved so far.
                       </span>
-                      {` `}Help us get to {goal}!
+                      {` `}Help us get to {`${goal.toLocaleString()}`}!
                     </p>
                   </div>,
                 ]}
