@@ -6,10 +6,10 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
 import {
-  featureFlag,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
   isCurrentPathInPaths,
+  siteConfig,
 } from '../../helpers';
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
@@ -86,9 +86,9 @@ const CampaignBanner = ({
   }
 
   const groupType = get(data, 'campaign.groupType', null);
-  const impactGoal = Number(featureFlag('go_greener_campaign_goal'));
+  const impactGoal = Number(siteConfig('go_greener_campaign_goal', null));
   const currentImpactTotal = Number(
-    featureFlag('go_greener_campaign_quantity'),
+    siteConfig('go_greener_campaign_quantity', 0),
   );
 
   const { goal, percentage } = getGoalInfo(impactGoal, currentImpactTotal);
