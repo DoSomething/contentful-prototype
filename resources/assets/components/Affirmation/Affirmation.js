@@ -34,7 +34,6 @@ const USER_QUERY = gql`
   query UserAccountAndSignupsCountQuery($userId: String!) {
     user(id: $userId) {
       id
-      hasBadgesFlag: hasFeatureFlag(feature: "badges")
     }
     signupsCount(userId: $userId, limit: 2)
   }
@@ -60,7 +59,7 @@ const Affirmation = ({
       <Query query={USER_QUERY} variables={{ userId }}>
         {res => (
           <React.Fragment>
-            {get(res, 'user.hasBadgesFlag', false) && res.signupsCount === 1 ? (
+            {res.signupsCount === 1 ? (
               <Badge
                 earned
                 className="badge p-3"
