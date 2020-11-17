@@ -18,7 +18,6 @@ const ACCOUNT_QUERY = gql`
       birthdate
       email
       emailSubscriptionTopics
-      hasBadgesFlag: hasFeatureFlag(feature: "badges")
     }
   }
 `;

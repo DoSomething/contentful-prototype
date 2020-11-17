@@ -18,12 +18,7 @@ const AccountRoute = props => (
       path="/us/account/campaigns"
       render={() => <UserPostsQuery userId={props.userId} />}
     />
-    {props.user.hasBadgesFlag ? (
-      <Route
-        path="/us/account/badges"
-        render={() => <BadgesTab {...props} />}
-      />
-    ) : null}
+    <Route path="/us/account/badges" render={() => <BadgesTab {...props} />} />
     {featureFlag('volunteer_credits') ? (
       <Route path="/us/account/credits" component={Credits} />
     ) : null}
@@ -45,9 +40,11 @@ const AccountRoute = props => (
 
 AccountRoute.propTypes = {
   userId: PropTypes.string.isRequired,
-  user: PropTypes.shape({
-    hasBadgesFlag: PropTypes.bool,
-  }).isRequired,
+  user: PropTypes.object,
+};
+
+AccountRoute.defaultProps = {
+  user: {},
 };
 
 export default AccountRoute;

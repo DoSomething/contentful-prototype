@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { featureFlag } from '../../../../helpers';
 import NavigationLink from '../../../utilities/NavigationLink/NavigationLink';
@@ -16,7 +15,7 @@ const handleAccountNavTabClick = tabName => {
   });
 };
 
-const AccountNavigation = props => (
+const AccountNavigation = () => (
   <nav className="base-12-grid page-navigation py-3 md:py-6 -no-fade">
     <div className="grid-wide nav-items -mx-3">
       <NavigationLink
@@ -32,14 +31,12 @@ const AccountNavigation = props => (
       >
         Campaigns
       </NavigationLink>
-      {props.user.hasBadgesFlag ? (
-        <NavigationLink
-          to="/us/account/badges"
-          onClick={() => handleAccountNavTabClick('badges')}
-        >
-          Badges
-        </NavigationLink>
-      ) : null}
+      <NavigationLink
+        to="/us/account/badges"
+        onClick={() => handleAccountNavTabClick('badges')}
+      >
+        Badges
+      </NavigationLink>
       {featureFlag('volunteer_credits') ? (
         <NavigationLink
           to="/us/account/credits"
@@ -71,11 +68,5 @@ const AccountNavigation = props => (
     </div>
   </nav>
 );
-
-AccountNavigation.propTypes = {
-  user: PropTypes.shape({
-    hasBadgesFlag: PropTypes.bool,
-  }).isRequired,
-};
 
 export default AccountNavigation;
