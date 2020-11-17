@@ -1,22 +1,11 @@
 import React from 'react';
-import gql from 'graphql-tag';
 
 import Query from '../../Query';
 import { query } from '../../../helpers';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
-
-export const CONTENTFUL_BLOCK_QUERY = gql`
-  query ContentfulBlockQuery($id: String!) {
-    block(id: $id) {
-      id
-      ... on PhotoSubmissionBlock {
-        affirmationContent
-      }
-    }
-  }
-`;
+import { CONTENTFUL_BLOCK_QUERY } from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const ShowSubmissionPage = () => {
   const id = query('submissionActionId');
@@ -32,7 +21,10 @@ const ShowSubmissionPage = () => {
             We Got Your Submission
           </h1>
           {id ? (
-            <Query query={CONTENTFUL_BLOCK_QUERY} variables={{ id }}>
+            <Query
+              query={CONTENTFUL_BLOCK_QUERY}
+              variables={{ id, preview: false }}
+            >
               {data =>
                 data.block.affirmationContent ? (
                   <TextContent className="mb-6">

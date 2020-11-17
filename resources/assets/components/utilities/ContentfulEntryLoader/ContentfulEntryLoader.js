@@ -35,7 +35,7 @@ import { SelectionSubmissionBlockFragment } from '../../actions/SelectionSubmiss
 import { VoterRegistrationDriveBlockFragment } from '../../actions/VoterRegistrationDriveAction/VoterRegistrationDriveAction';
 import { VoterRegistrationReferralsBlockFragment } from '../../blocks/VoterRegistrationReferralsBlock/VoterRegistrationReferralsBlock';
 
-const CONTENTFUL_BLOCK_QUERY = gql`
+export const CONTENTFUL_BLOCK_QUERY = gql`
   query ContentfulBlockQuery($id: String!, $preview: Boolean!) {
     block(id: $id, preview: $preview) {
       id
