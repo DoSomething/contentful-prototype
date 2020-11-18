@@ -11,6 +11,7 @@ const ShowSubmissionPage = () => {
   const id = query('submissionActionId');
   const defaultContent =
     'Thanks for joining the movement! After we review your submission, we&apos;ll add it to the public gallery alongside submissions from all the other members taking action in this campaign.';
+
   return (
     <>
       <SiteNavigationContainer />
