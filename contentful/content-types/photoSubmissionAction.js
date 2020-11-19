@@ -208,7 +208,7 @@ module.exports = function(migration) {
     'singleLine',
     {
       helpText:
-        'The placeholder for the quantity field (defaults to "Quantity # (e.g. 300)").',
+        'The placeholder for the quantity field (defaults to "Use numbers (e.g. 1)").',
     },
   );
 
