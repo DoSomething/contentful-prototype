@@ -14,6 +14,7 @@ return [
     |
     */
 
+    'algolia_campaigns_search' => env('DS_ENABLE_ALGOLIA_CAMPAIGNS_SEARCH', false),
     'cause_preferences' => env('DS_ENABLE_CAUSE_INTERESTS_PAGE', false),
     'dynamic_explore_campaigns' => env('DS_ENABLE_DYNAMIC_CAMPAIGNS_PAGE', false),
     'hide_campaigns' => env('DS_ENABLE_HIDE_CAMPAIGNS', false),
