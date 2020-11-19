@@ -153,7 +153,7 @@ const PaginatedCampaignGallery = ({
   }
 
   return (
-    <div className={className} data-ref="paginated-campaign-gallery">
+    <div className={className} data-testid="paginated-campaign-gallery">
       <GalleryBlock
         blocks={campaignWebsites}
         galleryType="CAMPAIGN"
