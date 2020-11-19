@@ -589,7 +589,7 @@ PhotoSubmissionAction.defaultProps = {
   informationTitle: 'More Info',
   numberOfParticipantsFieldLabel: null,
   quantityFieldLabel: 'How many items are in this photo?',
-  quantityFieldPlaceholder: 'Quantity # (e.g. 300)',
+  quantityFieldPlaceholder: 'Use numbers (e.g. 1)',
   showQuantityField: true,
   title: 'Submit your photo',
   userId: null,
