@@ -37,11 +37,7 @@ Route::view('/us/account/{clientRoute?}', 'app')
     ->middleware('auth');
 
 // Campaigns index
-if (config('feature-flags.dynamic_explore_campaigns')) {
-    Route::view('us/campaigns', 'app');
-} else {
-    Route::get('us/campaigns', 'CampaignController@index');
-}
+Route::view('us/campaigns', 'app');
 
 Route::redirect('campaigns', 'us/campaigns');
 
