@@ -51,30 +51,6 @@ class CampaignRepository
     }
 
     /**
-     * Get all campaigns using pagination.
-     *
-     * @param  int $count
-     * @param  int $page
-     * @return \Illuminate\Support\Collection
-     */
-    public function getAllCampaignsPaginated($count = 24, $page = 1)
-    {
-        // Return an empty collection if page is 0 or negative.
-        if (intval($page) <= 0) {
-            return collect();
-        }
-
-        // Calculate number to multiply count by, to get number of items to skip in collection query.
-        $multiplier = intval($page) - 1;
-
-        $skip = $count * $multiplier;
-
-        $campaigns = $this->getAll($count, $skip);
-
-        return collect($campaigns);
-    }
-
-    /**
      * Get all campaigns sorted by open status, and staff pick status.
      *
      * @return \Illuminate\Support\Collection
