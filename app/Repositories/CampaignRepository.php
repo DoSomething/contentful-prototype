@@ -31,19 +31,13 @@ class CampaignRepository
     /**
      * Get all campaigns.
      *
-     * @param  int|null $limit
-     * @param  int|null $skip
      * @return array
      */
-    public function getAll($limit = null, $skip = null)
+    public function getAll()
     {
-        $cacheKey = 'campaigns';
-        $cacheKey = $limit ? $cacheKey.':limit='.$limit : $cacheKey;
-        $cacheKey = $skip ? $cacheKey.':skip='.$skip : $cacheKey;
+        $options = ['includeDepth' => 1];
 
-        $options = ['includeDepth' => 1, 'limit' => $limit, 'skip' => $skip];
-
-        $campaigns = remember($cacheKey, 15, function () use ($options) {
+        $campaigns = remember('campaigns', 15, function () use ($options) {
             return $this->getEntriesAsJson('campaign', $options);
         });
 
