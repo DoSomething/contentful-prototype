@@ -51,6 +51,42 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
   ${campaignCardFragment}
 `;
 
+const SEARCH_CAMPAIGNS_QUERY = gql`
+  query SearchCampaignQuery(
+    $causes: [String]
+    $cursor: String
+    $first: Int
+    $isOpen: Boolean
+    $orderBy: String
+  ) {
+    campaigns: searchCampaigns(
+      cursor: $cursor
+      causes: $causes
+      perPage: $first
+      hasWebsite: true
+      isOpen: $isOpen
+      orderBy: $orderBy
+    ) {
+      edges {
+        cursor
+        node {
+          id
+          groupTypeId
+          campaignWebsite {
+            ...CampaignCard
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+
+  ${campaignCardFragment}
+`;
+
 const PaginatedCampaignGallery = ({
   className,
   itemsPerRow,
@@ -58,7 +94,9 @@ const PaginatedCampaignGallery = ({
   variables,
 }) => {
   const { error, loading, data, fetchMore } = useQuery(
-    PAGINATED_CAMPAIGNS_QUERY,
+    featureFlag('algolia_campaigns_search')
+      ? SEARCH_CAMPAIGNS_QUERY
+      : PAGINATED_CAMPAIGNS_QUERY,
     {
       variables: { ...variables },
       notifyOnNetworkStatusChange: true,
@@ -115,7 +153,7 @@ const PaginatedCampaignGallery = ({
   }
 
   return (
-    <div className={className} data-ref="paginated-campaign-gallery">
+    <div className={className} data-testid="paginated-campaign-gallery">
       <GalleryBlock
         blocks={campaignWebsites}
         galleryType="CAMPAIGN"

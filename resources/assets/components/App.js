@@ -82,13 +82,11 @@ const App = ({ store, history }) => {
                 />
               ) : null}
 
-              {featureFlag('dynamic_explore_campaigns') ? (
-                <Route
-                  exact
-                  path="/us/campaigns"
-                  component={CampaignsIndexPage}
-                />
-              ) : null}
+              <Route
+                exact
+                path="/us/campaigns"
+                component={CampaignsIndexPage}
+              />
 
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
 
