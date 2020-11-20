@@ -17,7 +17,6 @@ trait QueriesContentful
      * @param  array  $options
      * @param  int    $options['includeDepth']
      * @param  string $options['limit']
-     * @param  string $options['skip']
      * @param  string $options['query']
      * @return string
      */
@@ -28,7 +27,6 @@ trait QueriesContentful
                 ->setInclude(Arr::get($options, 'includeDepth', 0))
                 ->orderBy('sys.updatedAt', true)
                 ->setLimit(Arr::get($options, 'limit'))
-                ->setSkip(Arr::get($options, 'skip'))
                 ->where('query', Arr::get($options, 'query'));
 
         $entries = app('contentful.delivery')->getEntries($query)->getItems();
