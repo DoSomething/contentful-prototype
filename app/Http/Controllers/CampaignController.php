@@ -26,31 +26,6 @@ class CampaignController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        $count = 36;
-        $page = intval($request->query('page', 1));
-
-        $campaigns = $this->campaignRepository->getAllCampaignsPaginated($count, $page);
-
-        if (! $campaigns->count()) {
-            return redirect('/us/campaigns');
-        }
-
-        return view('campaigns.index', [
-            'campaigns' => $campaigns,
-            'count' => $count,
-            'headTitle' => 'Social Change Volunteer Opportunities',
-            'nextPage' => $page + 1,
-            'previousPage' => $page - 1,
-        ]);
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $slug
