@@ -57,7 +57,12 @@ const CausePageTemplate = ({
               className="grid-full"
               itemsPerRow={4}
               title="Campaigns"
-              variables={{ isOpen: true, first: 12, causes: [slug] }}
+              variables={{
+                isOpen: true,
+                first: 12,
+                causes: [slug],
+                orderBy: 'start_date,desc',
+              }}
             />
           </div>
 
