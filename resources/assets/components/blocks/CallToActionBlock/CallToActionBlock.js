@@ -40,6 +40,10 @@ const CallToActionBlock = ({ id }) => {
     return <Spinner className="flex justify-center p-2" />;
   }
 
+  if (!data.block) {
+    return <ErrorBlock error="Block does not exist." />;
+  }
+
   const {
     superTitle,
     title,
