@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
 
-import { tailwind } from '../../../helpers';
+import { env, tailwind } from '../../../helpers';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 
 const CALL_TO_ACTION_QUERY = gql`
-  query CallToActionBlockQuery($id: String!) {
-    block(id: $id) {
+  query CallToActionBlockQuery($id: String!, $preview: Boolean!) {
+    block(id: $id, preview: $preview) {
       id
       ... on CallToActionBlock {
         superTitle
@@ -28,7 +28,7 @@ const CALL_TO_ACTION_QUERY = gql`
 
 const CallToActionBlock = ({ id }) => {
   const { data, loading, error } = useQuery(CALL_TO_ACTION_QUERY, {
-    variables: { id },
+    variables: { id, preview: env('CONTENTFUL_USE_PREVIEW_API', false) },
   });
 
   if (error) {
