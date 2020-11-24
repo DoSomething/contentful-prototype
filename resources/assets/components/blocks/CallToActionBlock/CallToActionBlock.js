@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
 
+import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { env, tailwind } from '../../../helpers';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
@@ -32,7 +33,7 @@ const CallToActionBlock = ({ id }) => {
   });
 
   if (error) {
-    return <p>Something went wrong!</p>;
+    return <ErrorBlock error={error} />;
   }
 
   if (loading) {
