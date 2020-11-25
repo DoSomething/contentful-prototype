@@ -22,7 +22,7 @@ const ElementButton = ({
   return (
     <button
       className={classnames('btn', className, { 'is-loading': isLoading })}
-      disabled={isDisabled}
+      disabled={isDisabled || isLoading}
       onClick={onClick}
       type={type}
       {...attributes}
