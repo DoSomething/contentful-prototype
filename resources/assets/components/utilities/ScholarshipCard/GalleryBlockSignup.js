@@ -38,7 +38,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   } = useQuery(SEARCH_USER_CAMPAIGN_QUERY, {
     variables: {
       userId: window.AUTH.id,
-      campaignId: campaignId,
+      campaignId,
     },
     skip: !window.AUTH.id,
   });
