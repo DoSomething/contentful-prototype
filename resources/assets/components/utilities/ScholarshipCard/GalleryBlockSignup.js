@@ -105,7 +105,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   return (
     <SecondaryButton
       className="w-full"
-      text={textToDisplay(campaignData.signups[0].campaignId)}
+      text={textToDisplay(campaignData.signups.length)}
       href={path}
       onClick={handleScholarshipCardShareClick}
     />
