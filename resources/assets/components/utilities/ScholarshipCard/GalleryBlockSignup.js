@@ -40,6 +40,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
       userId: window.AUTH.id.toString(),
       campaignId: campaignId.toString(),
     },
+    skip: !window.AUTH.id,
   });
 
   const [handleSignup, { loading, data, error }] = useMutation(
@@ -54,8 +55,6 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   const [flash, authenticate] = useGate(
     `OneClickSignupCampaignId:${campaignId}`,
   );
-
-  console.log('campaignData.signups.campaignId :', campaignData);
 
   const textToDisplay = userSignedUpForThisCampaign => {
     return userSignedUpForThisCampaign ? 'View Application' : 'Apply Now';
