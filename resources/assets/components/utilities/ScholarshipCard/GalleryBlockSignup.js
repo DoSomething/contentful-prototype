@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import SecondaryButton from '../Button/SecondaryButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
@@ -21,17 +21,44 @@ export const CREATE_SIGNUP_MUTATION = gql`
   }
 `;
 
+export const SEARCH_USER_CAMPAIGN_QUERY = gql`
+  query SearchUserCampaignQuery($userId: String!, $campaignId: String!) {
+    signups(userId: $userId, campaignId: $campaignId) {
+      id
+      campaignId
+    }
+  }
+`;
+
 const GalleryBlockSignup = ({ campaignId, path }) => {
+  const {
+    data: campaignData,
+    loading: loadingCampaign,
+    error: errorCampaign,
+  } = useQuery(SEARCH_USER_CAMPAIGN_QUERY, {
+    variables: {
+      userId: window.AUTH.id,
+      campaignId,
+    },
+    skip: !window.AUTH.id,
+  });
+
   const [handleSignup, { loading, data, error }] = useMutation(
     CREATE_SIGNUP_MUTATION,
     {
-      variables: { campaignId },
+      variables: {
+        campaignId,
+      },
     },
   );
 
   const [flash, authenticate] = useGate(
     `OneClickSignupCampaignId:${campaignId}`,
   );
+
+  const textToDisplay = userSignedUpForThisCampaign => {
+    return userSignedUpForThisCampaign ? 'View Application' : 'Apply Now';
+  };
 
   const handleScholarshipCardShareClick = event => {
     event.preventDefault();
@@ -47,7 +74,11 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
       },
     });
 
-    return isAuthenticated() ? handleSignup() : authenticate({ campaignId });
+    return isAuthenticated()
+      ? handleSignup()
+      : authenticate({
+          campaignId,
+        });
   };
 
   useEffect(() => {
@@ -57,7 +88,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
     }
   }, [flash]);
 
-  if (loading) {
+  if (loading || loadingCampaign) {
     return <Spinner className="flex justify-center p-4" />;
   }
 
@@ -67,14 +98,15 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
     return <Spinner className="flex justify-center p-4" />;
   }
 
-  if (error) {
+  if (error || errorCampaign) {
     return <ErrorBlock error={error} />;
   }
 
   return (
     <SecondaryButton
       className="w-full"
-      text="Apply Now"
+      text={textToDisplay(campaignData.signups.length)}
+      href={path}
       onClick={handleScholarshipCardShareClick}
     />
   );
