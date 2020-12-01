@@ -37,8 +37,8 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
     error: errorCampaign,
   } = useQuery(SEARCH_USER_CAMPAIGN_QUERY, {
     variables: {
-      userId: window.AUTH.id,
-      campaignId,
+      userId: window.AUTH.id.toString(),
+      campaignId: campaignId.toString(),
     },
     skip: !window.AUTH.id,
   });
@@ -55,10 +55,6 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   const [flash, authenticate] = useGate(
     `OneClickSignupCampaignId:${campaignId}`,
   );
-
-  const textToDisplay = userSignedUpForThisCampaign => {
-    return userSignedUpForThisCampaign ? 'View Application' : 'Apply Now';
-  };
 
   const handleScholarshipCardShareClick = event => {
     event.preventDefault();
@@ -105,7 +101,11 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   return (
     <SecondaryButton
       className="w-full"
-      text={textToDisplay(campaignData.signups.length)}
+      text={
+        campaignData && campaignData.signups.length
+          ? 'View Application'
+          : 'Apply Now'
+      }
       href={path}
       onClick={handleScholarshipCardShareClick}
     />
