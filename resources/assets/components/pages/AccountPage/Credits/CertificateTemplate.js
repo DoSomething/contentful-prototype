@@ -283,10 +283,6 @@ const CertificateTemplate = ({ certificatePost }) => {
                   Sahara at {'\n'}
                   <Text style={{ fontWeight: 'bold' }}>
                     volunteer@dosomething.org
-                  </Text>{' '}
-                  or call{' '}
-                  <Text style={{ fontWeight: 'bold' }}>
-                    (212) 254-2390, Ext. 203
                   </Text>
                 </Text>
               </View>
