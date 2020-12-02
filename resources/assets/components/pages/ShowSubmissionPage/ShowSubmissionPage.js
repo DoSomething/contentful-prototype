@@ -37,10 +37,6 @@ const ShowSubmissionPage = ({ match }) => {
 
   const postImageUrl = get(postData, 'post.url', null);
 
-  if (loading) {
-    return <Spinner />;
-  }
-
   if (error) {
     return <ErrorBlock error={error} />;
   }
@@ -49,14 +45,18 @@ const ShowSubmissionPage = ({ match }) => {
     <>
       <SiteNavigationContainer />
 
-      <main className="base-12-grid">
-        <div className="grid-wide flex">
+      <div className="base-12-grid bg-white">
+        <main className="grid-wide lg:flex">
           {postImageUrl ? (
-            <div className="w-1/3">
-              <img alt="Reportback submission" src={postImageUrl} />
+            <div className="lg:w-1/3 p-6">
+              {loading ? (
+                <Spinner />
+              ) : (
+                <img alt="Reportback submission" src={postImageUrl} />
+              )}
             </div>
           ) : null}
-          <div className="w-2/3">
+          <div className="lg:w-2/3 p-6">
             <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
               We Got Your Submission
             </h1>
@@ -77,10 +77,11 @@ const ShowSubmissionPage = ({ match }) => {
               <TextContent className="mb-6">{defaultContent}</TextContent>
             )}
           </div>
-        </div>
+        
 
         <RecommendedCampaignsGallery />
       </main>
+      </div>
       <SiteFooter />
     </>
   );
