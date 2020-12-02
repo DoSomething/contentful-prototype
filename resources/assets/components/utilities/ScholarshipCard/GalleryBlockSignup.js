@@ -37,7 +37,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
     error: errorCampaign,
   } = useQuery(SEARCH_USER_CAMPAIGN_QUERY, {
     variables: {
-      userId: getUserId,
+      userId: getUserId(),
       campaignId: campaignId.toString(),
     },
     skip: !window.AUTH.id,
