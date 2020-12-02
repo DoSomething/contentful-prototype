@@ -6,7 +6,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import SecondaryButton from '../Button/SecondaryButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
-import { useGate, isAuthenticated } from '../../../helpers/auth';
+import { useGate, isAuthenticated, getUserId } from '../../../helpers/auth';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -37,8 +37,8 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
     error: errorCampaign,
   } = useQuery(SEARCH_USER_CAMPAIGN_QUERY, {
     variables: {
-      userId: window.AUTH.id,
-      campaignId,
+      userId: getUserId(),
+      campaignId: campaignId.toString(),
     },
     skip: !window.AUTH.id,
   });
@@ -55,10 +55,6 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   const [flash, authenticate] = useGate(
     `OneClickSignupCampaignId:${campaignId}`,
   );
-
-  const textToDisplay = userSignedUpForThisCampaign => {
-    return userSignedUpForThisCampaign ? 'View Application' : 'Apply Now';
-  };
 
   const handleScholarshipCardShareClick = event => {
     event.preventDefault();
@@ -105,7 +101,11 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
   return (
     <SecondaryButton
       className="w-full"
-      text={textToDisplay(campaignData.signups.length)}
+      text={
+        campaignData && campaignData.signups.length
+          ? 'View Application'
+          : 'Apply Now'
+      }
       href={path}
       onClick={handleScholarshipCardShareClick}
     />
