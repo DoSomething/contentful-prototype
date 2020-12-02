@@ -6,7 +6,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import SecondaryButton from '../Button/SecondaryButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
-import { useGate, isAuthenticated } from '../../../helpers/auth';
+import { useGate, isAuthenticated, getUserId } from '../../../helpers/auth';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -37,7 +37,7 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
     error: errorCampaign,
   } = useQuery(SEARCH_USER_CAMPAIGN_QUERY, {
     variables: {
-      userId: window.AUTH.id.toString(),
+      userId: getUserId,
       campaignId: campaignId.toString(),
     },
     skip: !window.AUTH.id,
