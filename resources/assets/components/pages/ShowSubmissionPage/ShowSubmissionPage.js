@@ -35,7 +35,7 @@ const ShowSubmissionPage = ({ match }) => {
     },
   });
 
-  const postImageURL = get(postData, 'post.url', null);
+  const postImageUrl = get(postData, 'post.url', null);
 
   if (loading) {
     return <Spinner />;
@@ -49,27 +49,34 @@ const ShowSubmissionPage = ({ match }) => {
     <>
       <SiteNavigationContainer />
 
-      <main>
-        <div>
-          <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
-            We Got Your Submission
-          </h1>
-          {id ? (
-            <Query
-              query={CONTENTFUL_BLOCK_QUERY}
-              variables={{ id, preview: false }}
-            >
-              {data =>
-                data.block.affirmationContent ? (
-                  <TextContent className="mb-6">
-                    {data.block.affirmationContent}
-                  </TextContent>
-                ) : null
-              }
-            </Query>
-          ) : (
-            <TextContent className="mb-6">{defaultContent}</TextContent>
-          )}
+      <main className="base-12-grid">
+        <div className="grid-wide flex">
+          {postImageUrl ? (
+            <div className="w-1/3">
+              <img alt="Reportback submission" src={postImageUrl} />
+            </div>
+          ) : null}
+          <div className="w-2/3">
+            <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
+              We Got Your Submission
+            </h1>
+            {id ? (
+              <Query
+                query={CONTENTFUL_BLOCK_QUERY}
+                variables={{ id, preview: false }}
+              >
+                {data =>
+                  data.block.affirmationContent ? (
+                    <TextContent className="mb-6">
+                      {data.block.affirmationContent}
+                    </TextContent>
+                  ) : null
+                }
+              </Query>
+            ) : (
+              <TextContent className="mb-6">{defaultContent}</TextContent>
+            )}
+          </div>
         </div>
 
         <RecommendedCampaignsGallery />
