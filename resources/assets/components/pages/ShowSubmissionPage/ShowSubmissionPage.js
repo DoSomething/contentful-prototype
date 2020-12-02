@@ -4,6 +4,7 @@ import Query from '../../Query';
 import { query } from '../../../helpers';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
+import RecommendedCampaignsGallery from './RecommendedCampaignsGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import { CONTENTFUL_BLOCK_QUERY } from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
@@ -40,6 +41,8 @@ const ShowSubmissionPage = () => {
             </p>
           )}
         </div>
+
+        <RecommendedCampaignsGallery />
       </main>
       <SiteFooter />
     </>
