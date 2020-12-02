@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -28,13 +29,13 @@ const ShowSubmissionPage = ({ match }) => {
     'Thanks for joining the movement! After we review your submission, we&apos;ll add it to the public gallery alongside submissions from all the other members taking action in this campaign.';
   const postId = Number(match.params.post_id);
 
-  const { loading, error, postData } = useQuery(CAMPAIGN_POST_QUERY, {
+  const { loading, error, data: postData } = useQuery(CAMPAIGN_POST_QUERY, {
     variables: {
       postId,
     },
   });
 
-  // const post = postData
+  const postImageURL = get(postData, 'post.url', null);
 
   if (loading) {
     return <Spinner />;
@@ -43,8 +44,6 @@ const ShowSubmissionPage = ({ match }) => {
   if (error) {
     return <ErrorBlock error={error} />;
   }
-
-  console.log('this is the post', postData);
 
   return (
     <>
