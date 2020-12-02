@@ -270,23 +270,19 @@ const CertificateTemplate = ({ certificatePost }) => {
             <View style={[styles.flex, { lineHeight: 1.1 }]}>
               <View style={{ width: '50%' }}>
                 <Text style={{ marginTop: 10, fontWeight: 'bold' }}>
-                  Maddy Allison
+                  Sahara Lake
                 </Text>
                 <Text style={{ fontStyle: 'italic' }}>
-                  Community Associate, DoSomething.org
+                  Senior Manager, Community Impact
                 </Text>
               </View>
 
               <View style={{ width: '50%' }}>
                 <Text style={{ marginTop: 10, textAlign: 'right' }}>
                   For questions and verification issues, please reach out to
-                  Maddy at {'\n'}
+                  Sahara at {'\n'}
                   <Text style={{ fontWeight: 'bold' }}>
                     volunteer@dosomething.org
-                  </Text>{' '}
-                  or call{' '}
-                  <Text style={{ fontWeight: 'bold' }}>
-                    (212) 254-2390, Ext. 203
                   </Text>
                 </Text>
               </View>
