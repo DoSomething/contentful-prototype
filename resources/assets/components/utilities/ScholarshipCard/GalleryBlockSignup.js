@@ -138,8 +138,7 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
       }
       href={path}
       onClick={() => {
-        handleScholarshipCardShareClick();
-        handleScholarshipButtonAnalytic();
+        campaignData && campaignData.signups.length ? handleScholarshipButtonAnalytic() : handleScholarshipCardShareClick();
       }}
     />
   );
