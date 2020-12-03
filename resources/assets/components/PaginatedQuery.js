@@ -10,7 +10,7 @@ import ErrorBlock from './blocks/ErrorBlock/ErrorBlock';
  * Fetch results via GraphQL using a useQuery hook.
  */
 const PaginatedQuery = ({ query, queryName, variables, count, children }) => {
-  const { error, loading, data, fetchMore, networkStatus } = useQuery(query, {
+  const { error, data, fetchMore, networkStatus } = useQuery(query, {
     variables: {
       ...variables,
       count,
