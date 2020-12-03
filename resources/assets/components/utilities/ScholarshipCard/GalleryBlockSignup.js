@@ -97,6 +97,7 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
       context: {
         url: path,
         campaignId,
+        ...getPageContext(),
       },
     });
   };
