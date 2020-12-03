@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -132,9 +131,11 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
       }
       href={path}
       onClick={() => {
-        campaignData && campaignData.signups.length
-          ? handleScholarshipButtonAnalytic()
-          : handleScholarshipCardShareClick();
+        if (campaignData && campaignData.signups.length) {
+          handleScholarshipButtonAnalytic();
+        } else {
+          handleScholarshipCardShareClick();
+        }
       }}
     />
   );
