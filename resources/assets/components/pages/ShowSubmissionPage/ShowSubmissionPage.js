@@ -46,8 +46,8 @@ const ShowSubmissionPage = ({ match }) => {
     <>
       <SiteNavigationContainer />
 
-      <div className="base-12-grid bg-white">
-        <main className="grid-wide lg:flex">
+      <main className="base-12-grid">
+        <div className="grid-wide lg:flex bg-white">
           {postImageUrl ? (
             <div className="w-1/2 md:w-1/4 pt-6 lg:p-6">
               {loading ? (
@@ -86,11 +86,13 @@ const ShowSubmissionPage = ({ match }) => {
               <TextContent className="mb-6">{defaultContent}</TextContent>
             )}
           </div>
-        
+        </div>
 
-        <RecommendedCampaignsGallery />
+        <div className="grid-wide">
+          <RecommendedCampaignsGallery />
+        </div>
       </main>
-      </div>
+
       <SiteFooter />
     </>
   );
