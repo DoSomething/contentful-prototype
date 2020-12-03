@@ -30,7 +30,7 @@ export const SEARCH_USER_CAMPAIGN_QUERY = gql`
   }
 `;
 
-const GalleryBlockSignup = ({ campaignId, path }) => {
+const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
   const {
     data: campaignData,
     loading: loadingCampaign,
@@ -48,6 +48,17 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
     {
       variables: {
         campaignId,
+      },
+      onCompleted: () => {
+        trackAnalyticsEvent('completed_signup', {
+          action: 'signup_completed',
+          category: EVENT_CATEGORIES.campaignAction,
+          label: campaignTitle,
+          context: {
+            url: path,
+            contextSource: 'scholarship_card',
+          },
+        });
       },
     },
   );
@@ -75,6 +86,25 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
       : authenticate({
           campaignId,
         });
+  };
+
+  const handleScholarshipButtonAnalytic = event => {
+    event.preventDefault();
+
+    if (campaignData && campaignData.signups.length) {
+      trackAnalyticsEvent(
+        'clicked_scholarship_gallery_block_view_application',
+        {
+          action: 'button_clicked',
+          category: EVENT_CATEGORIES.siteAction,
+          label: 'scholarship_gallery_card',
+          context: {
+            url: path,
+            campaignId,
+          },
+        },
+      );
+    }
   };
 
   useEffect(() => {
@@ -107,17 +137,22 @@ const GalleryBlockSignup = ({ campaignId, path }) => {
           : 'Apply Now'
       }
       href={path}
-      onClick={handleScholarshipCardShareClick}
+      onClick={() => {
+        handleScholarshipCardShareClick();
+        handleScholarshipButtonAnalytic();
+      }}
     />
   );
 };
 
 GalleryBlockSignup.propTypes = {
   campaignId: PropTypes.number,
+  campaignTitle: PropTypes.string,
   path: PropTypes.string,
 };
 GalleryBlockSignup.defaultProps = {
   campaignId: null,
+  campaignTitle: null,
   path: null,
 };
 

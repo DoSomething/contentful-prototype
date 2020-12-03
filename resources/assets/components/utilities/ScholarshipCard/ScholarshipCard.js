@@ -47,9 +47,18 @@ const ScholarshipCard = ({ campaign }) => {
   } = campaign;
 
   const srcset = contentfulImageSrcset(showcaseImage.url, [
-    { height: 205, width: 365 },
-    { height: 410, width: 730 },
-    { height: 820, width: 1460 },
+    {
+      height: 205,
+      width: 365,
+    },
+    {
+      height: 410,
+      width: 730,
+    },
+    {
+      height: 820,
+      width: 1460,
+    },
   ]);
 
   return (
@@ -59,47 +68,50 @@ const ScholarshipCard = ({ campaign }) => {
           alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
           srcSet={srcset}
           src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
-        />
+        />{' '}
       </a>
-
       <div className="bg-white border-b-2 border-l-2 border-r-2 border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b">
+        {' '}
         {staffPick ? (
           <div className="absolute bg-purple-500 font-bold left-0 px-3 py-1 text-base text-white top-0 uppercase">
-            Featured
+            Featured{' '}
           </div>
         ) : null}
-
         <h1 className="font-bold mb-2 text-base">
           <a
             className="text-blurple-500 hover:text-blurple-300 cursor-pointer"
             href={path}
           >
-            {showcaseTitle}
-          </a>
+            {showcaseTitle}{' '}
+          </a>{' '}
         </h1>
-
-        <p className="flex-grow">{showcaseDescription}</p>
+        <p className="flex-grow"> {showcaseDescription} </p>{' '}
         <div className="pt-4">
           <div className="float-left pr-8">
-            <h4 className="font-bold uppercase text-gray-600">Amount</h4>
+            <h4 className="font-bold uppercase text-gray-600"> Amount </h4>{' '}
             <p className="">
+              {' '}
               {scholarshipAmount
                 ? `$${scholarshipAmount.toLocaleString()}`
-                : 'N/A'}
-            </p>
-          </div>
+                : 'N/A'}{' '}
+            </p>{' '}
+          </div>{' '}
           <div className="float-left pr-8">
-            <h4 className="font-bold uppercase text-gray-600">Deadline</h4>
+            <h4 className="font-bold uppercase text-gray-600"> Deadline </h4>{' '}
             <p className="pb-4">
+              {' '}
               {scholarshipDeadline
                 ? getHumanFriendlyDate(scholarshipDeadline)
-                : 'N/A'}
-            </p>
-          </div>
+                : 'N/A'}{' '}
+            </p>{' '}
+          </div>{' '}
         </div>
-
-        <GalleryBlockSignup campaignId={campaignId} path={path} />
-      </div>
+        <GalleryBlockSignup
+          campaignId={campaignId}
+          campaignTitle={showcaseTitle}
+          path={path}
+        />{' '}
+      </div>{' '}
     </article>
   );
 };
