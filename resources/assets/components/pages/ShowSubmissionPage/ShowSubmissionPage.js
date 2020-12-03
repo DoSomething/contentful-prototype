@@ -49,17 +49,21 @@ const ShowSubmissionPage = ({ match }) => {
       <div className="base-12-grid bg-white">
         <main className="grid-wide lg:flex">
           {postImageUrl ? (
-            <div className="lg:w-1/3 p-6">
+            <div className="w-1/2 md:w-1/4 pt-6 md:p-6">
               {loading ? (
                 <Spinner />
               ) : (
-                <img alt="Reportback submission" src={postImageUrl} />
+                <img
+                  className="border-2 border-gray-400 border-solid"
+                  alt="Reportback submission"
+                  src={postImageUrl}
+                />
               )}
             </div>
           ) : null}
           <div
-            className={classnames('p-6', {
-              'lg:w-2/3 ': postImageUrl,
+            className={classnames('py-3 lg:p-6', {
+              'lg:w-3/4 ': postImageUrl,
             })}
           >
             <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
