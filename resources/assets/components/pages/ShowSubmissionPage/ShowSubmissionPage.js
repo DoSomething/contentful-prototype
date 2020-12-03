@@ -1,6 +1,7 @@
 import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
+import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
@@ -56,7 +57,11 @@ const ShowSubmissionPage = ({ match }) => {
               )}
             </div>
           ) : null}
-          <div className="lg:w-2/3 p-6">
+          <div
+            className={classnames('p-6', {
+              'lg:w-2/3 ': postImageUrl,
+            })}
+          >
             <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
               We Got Your Submission
             </h1>
