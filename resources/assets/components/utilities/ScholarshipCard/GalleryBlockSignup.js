@@ -94,7 +94,6 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
       category: EVENT_CATEGORIES.siteAction,
       label: 'scholarship_gallery_card',
       context: {
-        url: path,
         campaignId,
         ...getPageContext(),
       },
