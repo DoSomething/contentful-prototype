@@ -49,7 +49,7 @@ const ShowSubmissionPage = ({ match }) => {
       <div className="base-12-grid bg-white">
         <main className="grid-wide lg:flex">
           {postImageUrl ? (
-            <div className="w-1/2 md:w-1/4 pt-6 md:p-6">
+            <div className="w-1/2 md:w-1/4 pt-6 lg:p-6">
               {loading ? (
                 <Spinner />
               ) : (
