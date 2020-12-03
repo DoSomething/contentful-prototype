@@ -57,6 +57,7 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
           context: {
             url: path,
             contextSource: 'scholarship_card',
+            ...getPageContext(),
           },
         });
       },
