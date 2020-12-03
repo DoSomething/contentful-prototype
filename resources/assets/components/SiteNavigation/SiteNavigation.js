@@ -477,8 +477,8 @@ class SiteNavigation extends React.Component {
                         imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/k03WbCKtErFHbmk8gkcdR/17ea0ce8bf7bc82aa0a50ded42b4d369/racial_justice_and_the_election.jpg?fit=fill&h=500&w=1100"
                         imageAlt="Young person wearing hat and face mask holds up a hand-made Black Lives Matter sign with a crowd of people behind them"
                         url="/us/collections/racial-justice-election"
-                        title=" Racial Justice & Election 2020"
-                        text="Fight for racial justice by unleashing your power at the ballot box and beyond."
+                        title="Racial Justice Hub"
+                        text="Read articles, find resources, and take action to fight for racial justice."
                         moreLinkText="Get Started"
                         callback={() =>
                           this.analyzeEvent({
