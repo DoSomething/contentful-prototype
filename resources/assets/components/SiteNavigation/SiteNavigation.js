@@ -483,11 +483,10 @@ class SiteNavigation extends React.Component {
                         callback={() =>
                           this.analyzeEvent({
                             name:
-                              'clicked_subnav_link_feature_racial_justice_and_election_collection',
+                              'clicked_subnav_link_feature_racial_justice_collection',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
-                            label:
-                              'feature_racial_justice_and_election_collection',
+                            label: 'feature_racial_justice_collection',
                           })
                         }
                       />
