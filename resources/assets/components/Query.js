@@ -1,32 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Query as ApolloQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 
-import { NetworkStatus } from '../constants';
-import ErrorBlock from './blocks/ErrorBlock/ErrorBlock';
 import Spinner from './artifacts/Spinner/Spinner';
+import ErrorBlock from './blocks/ErrorBlock/ErrorBlock';
 
 /**
- * Fetch results via GraphQL using a query component.
+ * Fetch results via GraphQL using the useQuery hook.
  */
-const Query = ({ query, variables, children, hideSpinner }) => (
-  <ApolloQuery query={query} variables={variables} notifyOnNetworkStatusChange>
-    {result => {
-      // On initial load, just display a loading spinner.
-      if (result.networkStatus === NetworkStatus.LOADING) {
-        return hideSpinner ? null : (
-          <Spinner className="flex justify-center p-6" />
-        );
-      }
+const Query = ({ query, variables, children, hideSpinner }) => {
+  const { error, loading, data } = useQuery(query, { variables });
 
-      if (result.error) {
-        return <ErrorBlock error={result.error} />;
-      }
+  // On initial load, just display a loading spinner.
+  if (loading) {
+    return hideSpinner ? null : <Spinner className="flex justify-center p-6" />;
+  }
 
-      return children(result.data);
-    }}
-  </ApolloQuery>
-);
+  if (error) {
+    return <ErrorBlock error={error} />;
+  }
+
+  return children(data);
+};
 
 Query.propTypes = {
   query: PropTypes.object.isRequired,
