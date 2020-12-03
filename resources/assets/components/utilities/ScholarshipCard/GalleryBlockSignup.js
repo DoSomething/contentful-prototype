@@ -88,7 +88,7 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
         });
   };
 
-  const handleScholarshipButtonAnalytic = () => {
+  const handleViewApplicationButtonClick = () => {
     trackAnalyticsEvent('clicked_scholarship_gallery_block_view_application', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.siteAction,
@@ -132,7 +132,7 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
       href={path}
       onClick={() => {
         if (campaignData && campaignData.signups.length) {
-          handleScholarshipButtonAnalytic();
+          handleViewApplicationButtonClick();
         } else {
           handleScholarshipCardShareClick();
         }
