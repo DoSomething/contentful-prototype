@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { NetworkStatus } from '../constants';
 import Spinner from './artifacts/Spinner/Spinner';
 import ErrorBlock from './blocks/ErrorBlock/ErrorBlock';
+import { updateQuery } from '../helpers';
 
 /**
  * Fetch results via GraphQL using a useQuery hook.
@@ -41,19 +42,7 @@ const PaginatedQuery = ({ query, queryName, variables, count, children }) => {
             // Use ceil to force an integer in case we have less results data than the count!
             Math.ceil(data[queryName].length / count) + 1,
         },
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          if (!fetchMoreResult[queryName]) {
-            return previousResult;
-          }
-
-          return {
-            ...previousResult,
-            [queryName]: [
-              ...previousResult[queryName],
-              ...fetchMoreResult[queryName],
-            ],
-          };
-        },
+        updateQuery,
       }),
   });
 };
