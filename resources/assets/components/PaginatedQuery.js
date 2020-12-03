@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
+import { updateQuery } from '../helpers';
 import { NetworkStatus } from '../constants';
 import Spinner from './artifacts/Spinner/Spinner';
 import ErrorBlock from './blocks/ErrorBlock/ErrorBlock';
-import { updateQuery } from '../helpers';
 
 /**
  * Fetch results via GraphQL using a useQuery hook.
