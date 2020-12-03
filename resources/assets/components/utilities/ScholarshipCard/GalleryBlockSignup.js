@@ -88,23 +88,16 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
         });
   };
 
-  const handleScholarshipButtonAnalytic = event => {
-    event.preventDefault();
-
-    if (campaignData && campaignData.signups.length) {
-      trackAnalyticsEvent(
-        'clicked_scholarship_gallery_block_view_application',
-        {
-          action: 'button_clicked',
-          category: EVENT_CATEGORIES.siteAction,
-          label: 'scholarship_gallery_card',
-          context: {
-            url: path,
-            campaignId,
-          },
-        },
-      );
-    }
+  const handleScholarshipButtonAnalytic = () => {
+    trackAnalyticsEvent('clicked_scholarship_gallery_block_view_application', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.siteAction,
+      label: 'scholarship_gallery_card',
+      context: {
+        url: path,
+        campaignId,
+      },
+    });
   };
 
   useEffect(() => {
@@ -138,7 +131,9 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
       }
       href={path}
       onClick={() => {
-        campaignData && campaignData.signups.length ? handleScholarshipButtonAnalytic() : handleScholarshipCardShareClick();
+        campaignData && campaignData.signups.length
+          ? handleScholarshipButtonAnalytic()
+          : handleScholarshipCardShareClick();
       }}
     />
   );
