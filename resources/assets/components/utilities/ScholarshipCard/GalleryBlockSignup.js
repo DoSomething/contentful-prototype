@@ -67,9 +67,7 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
     `OneClickSignupCampaignId:${campaignId}`,
   );
 
-  const handleScholarshipCardShareClick = event => {
-    event.preventDefault();
-
+  const handleScholarshipCardShareClick = () => {
     trackAnalyticsEvent('clicked_scholarship_gallery_block_apply_now', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.siteAction,
