@@ -45,54 +45,58 @@ const ShowSubmissionPage = ({ match }) => {
     <>
       <SiteNavigationContainer />
 
-      <main className="base-12-grid">
-        <div className="grid-wide lg:flex bg-white px-6">
-          {postImageUrl && !loading ? (
-            <div className="w-1/2 md:w-1/4 pt-6">
-              <img
-                className="border-2 border-gray-400 border-solid"
-                alt="Reportback submission"
-                src={postImageUrl}
-              />
-            </div>
-          ) : null}
-          <div
-            className={classnames('py-3 lg:p-6', {
-              'lg:w-3/4 ': postImageUrl,
-            })}
-          >
-            <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
-              We Got Your Submission
-            </h1>
+      <main>
+        <div className="base-12-grid bg-white">
+          <div className="grid-wide lg:flex px-2 md:px-4 lg:px-6">
+            {postImageUrl && !loading ? (
+              <div className="w-1/2 md:w-1/4 pt-6 lg:pb-4">
+                <img
+                  className="border-2 border-gray-400 border-solid"
+                  alt="Reportback submission"
+                  src={postImageUrl}
+                />
+              </div>
+            ) : null}
+            <div
+              className={classnames('py-3 lg:p-6', {
+                'lg:w-3/4 ': postImageUrl,
+              })}
+            >
+              <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
+                We Got Your Submission
+              </h1>
 
-            {id ? (
-              <Query
-                query={CONTENTFUL_BLOCK_QUERY}
-                variables={{
-                  id,
-                  preview: env('CONTENTFUL_USE_PREVIEW_API', false),
-                }}
-              >
-                {data =>
-                  data.block.affirmationContent ? (
-                    <TextContent className="mb-6">
-                      {data.block.affirmationContent}
-                    </TextContent>
-                  ) : null
-                }
-              </Query>
-            ) : (
-              <TextContent className="mb-6">{defaultContent}</TextContent>
-            )}
+              {id ? (
+                <Query
+                  query={CONTENTFUL_BLOCK_QUERY}
+                  variables={{
+                    id,
+                    preview: env('CONTENTFUL_USE_PREVIEW_API', false),
+                  }}
+                >
+                  {data =>
+                    data.block.affirmationContent ? (
+                      <TextContent className="mb-6">
+                        {data.block.affirmationContent}
+                      </TextContent>
+                    ) : null
+                  }
+                </Query>
+              ) : (
+                <TextContent className="mb-6">{defaultContent}</TextContent>
+              )}
+            </div>
           </div>
         </div>
 
-        <div className="grid-wide m-6">
-          <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
-            More Scholarship Opportunities
-          </h1>
+        <div className="base-12-grid">
+          <div className="grid-wide mt-6 mx-2 md:mx-4 lg:mx-6">
+            <h2 className="uppercase text-2xl md:text-3xl font-league-gothic font-normal">
+              More Scholarship Opportunities
+            </h2>
 
-          <RecommendedCampaignsGallery />
+            <RecommendedCampaignsGallery />
+          </div>
         </div>
       </main>
 
