@@ -46,9 +46,9 @@ const ShowSubmissionPage = ({ match }) => {
       <SiteNavigationContainer />
 
       <main className="base-12-grid">
-        <div className="grid-wide lg:flex bg-white">
+        <div className="grid-wide lg:flex bg-white px-6">
           {postImageUrl && !loading ? (
-            <div className="w-1/2 md:w-1/4 pt-6 lg:p-6">
+            <div className="w-1/2 md:w-1/4 pt-6">
               <img
                 className="border-2 border-gray-400 border-solid"
                 alt="Reportback submission"
@@ -64,6 +64,7 @@ const ShowSubmissionPage = ({ match }) => {
             <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
               We Got Your Submission
             </h1>
+
             {id ? (
               <Query
                 query={CONTENTFUL_BLOCK_QUERY}
@@ -86,7 +87,11 @@ const ShowSubmissionPage = ({ match }) => {
           </div>
         </div>
 
-        <div className="grid-wide">
+        <div className="grid-wide m-6">
+          <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
+            More Scholarship Opportunities
+          </h1>
+
           <RecommendedCampaignsGallery />
         </div>
       </main>
