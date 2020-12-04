@@ -67,7 +67,9 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
     `OneClickSignupCampaignId:${campaignId}`,
   );
 
-  const handleScholarshipCardShareClick = () => {
+  const handleScholarshipCardShareClick = event => {
+    event.preventDefault();
+
     trackAnalyticsEvent('clicked_scholarship_gallery_block_apply_now', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.siteAction,
@@ -128,13 +130,11 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
           : 'Apply Now'
       }
       href={path}
-      onClick={() => {
-        if (campaignData && campaignData.signups.length) {
-          handleViewApplicationButtonClick();
-        } else {
-          handleScholarshipCardShareClick();
-        }
-      }}
+      onClick={
+        campaignData && campaignData.signups.length
+          ? handleViewApplicationButtonClick
+          : handleScholarshipCardShareClick
+      }
     />
   );
 };
