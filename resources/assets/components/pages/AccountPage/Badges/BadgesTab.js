@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import Badge from './Badge';
 import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
+import RewardsFaq from './RewardsFaq';
 import {
   EVENT_CATEGORIES,
   getPageContext,
@@ -12,6 +13,7 @@ import {
 } from '../../../../helpers/analytics';
 
 import './badges-tab.scss';
+import { featureFlag } from '../../../../helpers';
 
 const SIGNUP_COUNT_BADGE = gql`
   query SignupsCountQuery($userId: String!) {
@@ -384,6 +386,8 @@ class BadgesTab extends React.Component {
             </p>
           </BadgeModal>
         ) : null}
+
+        {featureFlag('rewards_levels') ? <RewardsFaq /> : null}
       </div>
     );
   }
