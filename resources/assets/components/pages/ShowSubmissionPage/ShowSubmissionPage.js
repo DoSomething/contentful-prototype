@@ -49,7 +49,7 @@ const ShowSubmissionPage = ({ match }) => {
         <div className="base-12-grid bg-white">
           <div className="grid-wide lg:flex px-2 md:px-4 lg:px-6">
             {postImageUrl && !loading ? (
-              <div className="w-1/2 md:w-1/4 pt-6">
+              <div className="w-1/2 md:w-1/4 pt-6 lg:pb-4">
                 <img
                   className="border-2 border-gray-400 border-solid"
                   alt="Reportback submission"
