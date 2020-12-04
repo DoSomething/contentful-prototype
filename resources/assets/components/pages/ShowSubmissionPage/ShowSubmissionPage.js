@@ -6,8 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Query from '../../Query';
-import { query } from '../../../helpers';
-import Spinner from '../../artifacts/Spinner/Spinner';
+import { env, query } from '../../../helpers';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -15,8 +14,8 @@ import RecommendedCampaignsGallery from './RecommendedCampaignsGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import { CONTENTFUL_BLOCK_QUERY } from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
-const CAMPAIGN_POST_QUERY = gql`
-  query CampaignInfoQuery($postId: Int!) {
+const POST_QUERY = gql`
+  query PostQuery($postId: Int!) {
     post(id: $postId) {
       id
       url
@@ -30,7 +29,7 @@ const ShowSubmissionPage = ({ match }) => {
     'Thanks for joining the movement! After we review your submission, we&apos;ll add it to the public gallery alongside submissions from all the other members taking action in this campaign.';
   const postId = Number(match.params.post_id);
 
-  const { loading, error, data: postData } = useQuery(CAMPAIGN_POST_QUERY, {
+  const { loading, error, data: postData } = useQuery(POST_QUERY, {
     variables: {
       postId,
     },
@@ -48,17 +47,13 @@ const ShowSubmissionPage = ({ match }) => {
 
       <main className="base-12-grid">
         <div className="grid-wide lg:flex bg-white">
-          {postImageUrl ? (
+          {postImageUrl && !loading ? (
             <div className="w-1/2 md:w-1/4 pt-6 lg:p-6">
-              {loading ? (
-                <Spinner />
-              ) : (
-                <img
-                  className="border-2 border-gray-400 border-solid"
-                  alt="Reportback submission"
-                  src={postImageUrl}
-                />
-              )}
+              <img
+                className="border-2 border-gray-400 border-solid"
+                alt="Reportback submission"
+                src={postImageUrl}
+              />
             </div>
           ) : null}
           <div
@@ -72,7 +67,10 @@ const ShowSubmissionPage = ({ match }) => {
             {id ? (
               <Query
                 query={CONTENTFUL_BLOCK_QUERY}
-                variables={{ id, preview: false }}
+                variables={{
+                  id,
+                  preview: env('CONTENTFUL_USE_PREVIEW_API', false),
+                }}
               >
                 {data =>
                   data.block.affirmationContent ? (
