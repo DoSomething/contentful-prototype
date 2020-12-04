@@ -11,9 +11,9 @@ import {
   getPageContext,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
+import { featureFlag } from '../../../../helpers';
 
 import './badges-tab.scss';
-import { featureFlag } from '../../../../helpers';
 
 const SIGNUP_COUNT_BADGE = gql`
   query SignupsCountQuery($userId: String!) {
