@@ -35,7 +35,7 @@ const AccountNavigation = () => (
         to="/us/account/badges"
         onClick={() => handleAccountNavTabClick('badges')}
       >
-        Badges
+        {featureFlag('rewards_levels') ? 'Rewards' : 'Badges'}
       </NavigationLink>
       {featureFlag('volunteer_credits') ? (
         <NavigationLink
