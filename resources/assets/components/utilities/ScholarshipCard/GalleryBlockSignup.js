@@ -130,13 +130,11 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
           : 'Apply Now'
       }
       href={path}
-      onClick={() => {
-        if (campaignData && campaignData.signups.length) {
-          handleViewApplicationButtonClick();
-        } else {
-          handleScholarshipCardShareClick();
-        }
-      }}
+      onClick={
+        campaignData && campaignData.signups.length
+          ? handleViewApplicationButtonClick
+          : handleScholarshipCardShareClick
+      }
     />
   );
 };
