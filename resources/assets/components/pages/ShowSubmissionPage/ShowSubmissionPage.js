@@ -87,7 +87,7 @@ const ShowSubmissionPage = ({ match }) => {
           </div>
         </div>
 
-        <div className="grid-wide m-6">
+        <div className="grid-wide m-6 mb-16">
           <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
             More Scholarship Opportunities
           </h1>
