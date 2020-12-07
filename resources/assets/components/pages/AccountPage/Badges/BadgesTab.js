@@ -5,11 +5,13 @@ import gql from 'graphql-tag';
 import Badge from './Badge';
 import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
+import RewardsFaq from './RewardsFaq';
 import {
   EVENT_CATEGORIES,
   getPageContext,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
+import { featureFlag } from '../../../../helpers';
 
 import './badges-tab.scss';
 
@@ -384,6 +386,8 @@ class BadgesTab extends React.Component {
             </p>
           </BadgeModal>
         ) : null}
+
+        {featureFlag('rewards_levels') ? <RewardsFaq /> : null}
       </div>
     );
   }
