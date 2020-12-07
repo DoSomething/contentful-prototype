@@ -14,6 +14,7 @@ const SCHOLARSHIP_CAMPAIGNS_QUERY = gql`
       perPage: 3
       hasWebsite: true
       hasScholarship: true
+      isGroupCampaign: false
       isOpen: true
       orderBy: "start_date,desc"
       excludeIds: $excludeIds
