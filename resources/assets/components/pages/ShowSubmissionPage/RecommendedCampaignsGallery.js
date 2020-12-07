@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 
 import Query from '../../Query';
@@ -32,7 +33,9 @@ const RecommendedCampaignsGallery = () => (
   <Query query={SCHOLARSHIP_CAMPAIGNS_QUERY}>
     {result => (
       <GalleryBlock
-        blocks={result.campaigns.edges.map(edge => edge.node.campaignWebsite)}
+        blocks={(get(result, 'campaigns.edges') || []).map(
+          edge => edge.node.campaignWebsite,
+        )}
         galleryType="SCHOLARSHIP"
         itemsPerRow={3}
         imageAlignment="LEFT"
