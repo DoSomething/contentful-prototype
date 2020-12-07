@@ -7,6 +7,8 @@ const Details = tw.details`pb-4`;
 const Summary = tw.summary`font-bold text-base cursor-pointer`;
 const DetailsParagraph = tw.p`pt-2`;
 
+// needs terms and conditions link
+
 const RewardsFaq = () => (
   <>
     <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6 pt-10">
@@ -16,10 +18,13 @@ const RewardsFaq = () => (
         <Summary>How does DoSomething&apos;s Rewards program work?</Summary>
 
         <DetailsParagraph>
-          Share the link above with your friend, either via text, email, or
-          social media. Using that link, your friend will create a DoSomething
-          account and then sign up for a campaign. When they sign up, you’ll see
-          their name in the “Your Referrals” section. Yep, that easy.
+          Earn badges to level up. Enjoy your rewards. Let’s Do This!
+        </DetailsParagraph>
+        <DetailsParagraph>
+          (The fine print, because our lawyers said so: Under the current terms
+          and conditions of our program, rewards do not reset. DoSomething
+          reserves the right to reset rewards in the future. See the terms and
+          conditions.)
         </DetailsParagraph>
       </Details>
 
@@ -27,8 +32,29 @@ const RewardsFaq = () => (
         <Summary>How do the additional scholarship entries work?</Summary>
 
         <DetailsParagraph>
-          We’ll email it to you using the same email address used to create your
-          DoSomething account.
+          Once you reach a new level, you will earn the additional scholarship
+          entries for all future campaigns that you complete. For instance, if
+          you become a Doer and complete a DoSomething campaign, you’ll earn 2
+          chances to win that campaign’s scholarship instead of one. As a
+          SuperDoer, you’ll earn 3 scholarship entries instead of 1 entry. And
+          as a Legend you’ll earn 4 scholarship entries instead of 1. This
+          applies to all campaigns you complete.
+        </DetailsParagraph>
+        <DetailsParagraph>
+          For most campaigns, simply completing the campaign earns you a
+          scholarship entry. For campaigns where the impact you make determines
+          your entries into the scholarship contest, your chances to win will be
+          multiplied by your impact. For example, take a campaign that offers a
+          scholarship entry for each pair of jeans you donate. If you’re a
+          SuperDoer (3x scholarship entries) and donate 10 pairs of jeans, your
+          impact will be multiplied by 3 and you’ll earn 30 entries into the
+          scholarship contest.
+        </DetailsParagraph>
+        <DetailsParagraph>
+          <a href="/us/about/easy-scholarships" target="_blank">
+            Learn more about DoSomething scholarships
+          </a>
+          .
         </DetailsParagraph>
       </Details>
 
@@ -36,10 +62,7 @@ const RewardsFaq = () => (
         <Summary>What are the terms and conditions?</Summary>
 
         <DetailsParagraph>
-          This offer is for a limited time only. See the{' '}
-          <a href="/us/refer-a-friend-official-rules" target="_blank">
-            Refer A Friend Official Rules.
-          </a>
+          See DoSomething Rewards terms and conditions.
         </DetailsParagraph>
       </Details>
     </div>
