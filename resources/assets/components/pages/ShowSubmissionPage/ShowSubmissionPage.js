@@ -89,7 +89,7 @@ const ShowSubmissionPage = ({ match }) => {
           </div>
         </div>
 
-        <div className="base-12-grid">
+        <div className="base-12-grid mb-16">
           <div className="grid-wide mt-6 mx-2 md:mx-4 lg:mx-6">
             <h2 className="uppercase text-2xl md:text-3xl font-league-gothic font-normal">
               More Scholarship Opportunities
