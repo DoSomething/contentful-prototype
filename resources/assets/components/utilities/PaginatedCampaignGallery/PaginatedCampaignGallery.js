@@ -55,6 +55,7 @@ const SEARCH_CAMPAIGNS_QUERY = gql`
   query SearchCampaignQuery(
     $causes: [String]
     $cursor: String
+    $excludeIds: [Int]
     $first: Int
     $isOpen: Boolean
     $orderBy: String
@@ -62,8 +63,10 @@ const SEARCH_CAMPAIGNS_QUERY = gql`
     campaigns: searchCampaigns(
       cursor: $cursor
       causes: $causes
+      excludeIds: $excludeIds
       perPage: $first
       hasWebsite: true
+      isGroupCampaign: false
       isOpen: $isOpen
       orderBy: $orderBy
     ) {
@@ -71,7 +74,6 @@ const SEARCH_CAMPAIGNS_QUERY = gql`
         cursor
         node {
           id
-          groupTypeId
           campaignWebsite {
             ...CampaignCard
           }
@@ -102,7 +104,7 @@ const PaginatedCampaignGallery = ({
       ? SEARCH_CAMPAIGNS_QUERY
       : PAGINATED_CAMPAIGNS_QUERY,
     {
-      variables: { ...variables },
+      variables: { ...variables, excludeIds },
       notifyOnNetworkStatusChange: true,
     },
   );
