@@ -105,7 +105,7 @@ const GalleryBlock = props => {
   const galleryLayout = galleryLayouts[itemsPerRow];
 
   return (
-    <div className="gallery-block">
+    <div className="gallery-block" data-testid="gallery-block">
       {title ? <SectionHeader underlined title={title} /> : null}
 
       <Gallery type={galleryLayout} className="-mx-3 mt-3">
