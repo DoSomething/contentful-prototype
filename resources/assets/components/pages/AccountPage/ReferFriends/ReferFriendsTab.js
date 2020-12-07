@@ -1,16 +1,14 @@
 import React from 'react';
-import tw from 'twin.macro';
 
 import { featureFlag } from '../../../../helpers';
+import Details from '../../../utilities/FaqElements/Details';
+import Summary from '../../../utilities/FaqElements/Summary';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 import { getReferFriendsLink } from '../../../../helpers/refer-friends';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
+import DetailsParagraph from '../../../utilities/FaqElements/DetailsParagraph';
 import SocialDriveAction from '../../../actions/SocialDriveAction/SocialDriveAction';
 import SignupReferralsBlock from '../../../blocks/SignupReferralsBlock/SignupReferralsBlock';
-
-const Details = tw.details`pb-4`;
-const Summary = tw.summary`font-bold text-base cursor-pointer`;
-const DetailsParagraph = tw.p`pt-2`;
 
 const ReferFriendsTab = () => {
   const referralIncentive = featureFlag('refer_friends_incentive');
@@ -57,55 +55,56 @@ const ReferFriendsTab = () => {
 
         {referralIncentive ? (
           <Details>
-            <Summary>Who can I refer?</Summary>
+            <Summary summaryText="Who can I refer?" />
 
-            <p className="pt-2">
-              To earn the chance to win a $10 gift card, you need to refer NEW
-              members to DoSomething!
-            </p>
+            <DetailsParagraph
+              detailsText="To earn the chance to win a $10 gift card, you need to refer NEW
+              members to DoSomething!"
+            />
 
-            <p className="mt-0 pt-2">
-              Referring someone who already has a DoSomething account is an
+            <DetailsParagraph
+              className="mt-0"
+              detailsText="Referring someone who already has a DoSomething account is an
               awesome way to build our movement, but unfortunately, referring
-              them won’t enter you for a chance at the gift card.
-            </p>
+              them won’t enter you for a chance at the gift card."
+            />
           </Details>
         ) : (
           <Details>
-            <Summary>Why should I refer a friend?</Summary>
+            <Summary summaryText="Why should I refer a friend?" />
 
-            <DetailsParagraph>
-              You’ll help your friend join our youth-led movement for good, make
+            <DetailsParagraph
+              detailsText="You’ll help your friend join our youth-led movement for good, make
               an impact on the causes they care about, and have the chance to
-              earn scholarships for volunteering.
-            </DetailsParagraph>
+              earn scholarships for volunteering."
+            />
           </Details>
         )}
 
         <Details>
-          <Summary>How do I know that I’ve referred a friend?</Summary>
+          <Summary summaryText="How do I know that I’ve referred a friend?" />
 
-          <DetailsParagraph>
-            Share the link above with your friend, either via text, email, or
+          <DetailsParagraph
+            detailsText="Share the link above with your friend, either via text, email, or
             social media. Using that link, your friend will create a DoSomething
             account and then sign up for a campaign. When they sign up, you’ll
-            see their name in the “Your Referrals” section. Yep, that easy.
-          </DetailsParagraph>
+            see their name in the “Your Referrals” section. Yep, that easy."
+          />
         </Details>
 
         {referralIncentive ? (
           <Details>
-            <Summary>How will I receive my gift card if I win?</Summary>
+            <Summary summaryText="How will I receive my gift card if I win?" />
 
-            <DetailsParagraph>
-              We’ll email it to you using the same email address used to create
-              your DoSomething account.
-            </DetailsParagraph>
+            <DetailsParagraph
+              detailsText="We’ll email it to you using the same email address used to create
+              your DoSomething account."
+            />
           </Details>
         ) : null}
 
         <Details>
-          <Summary>Where can I find the full rules?</Summary>
+          <Summary summaryText="Where can I find the full rules?" />
 
           <DetailsParagraph>
             This offer is for a limited time only. See the{' '}
