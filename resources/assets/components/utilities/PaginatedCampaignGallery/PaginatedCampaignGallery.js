@@ -55,6 +55,7 @@ const SEARCH_CAMPAIGNS_QUERY = gql`
   query SearchCampaignQuery(
     $causes: [String]
     $cursor: String
+    $excludeIds: [Int]
     $first: Int
     $isOpen: Boolean
     $orderBy: String
@@ -62,8 +63,10 @@ const SEARCH_CAMPAIGNS_QUERY = gql`
     campaigns: searchCampaigns(
       cursor: $cursor
       causes: $causes
+      excludeIds: $excludeIds
       perPage: $first
       hasWebsite: true
+      isGroupCampaign: false
       isOpen: $isOpen
       orderBy: $orderBy
     ) {
@@ -71,7 +74,6 @@ const SEARCH_CAMPAIGNS_QUERY = gql`
         cursor
         node {
           id
-          groupTypeId
           campaignWebsite {
             ...CampaignCard
           }
@@ -93,12 +95,16 @@ const PaginatedCampaignGallery = ({
   title,
   variables,
 }) => {
+  const excludeIds = (siteConfig('hide_campaign_ids') || []).map(id =>
+    Number(id),
+  );
+
   const { error, loading, data, fetchMore } = useQuery(
     featureFlag('algolia_campaigns_search')
       ? SEARCH_CAMPAIGNS_QUERY
       : PAGINATED_CAMPAIGNS_QUERY,
     {
-      variables: { ...variables },
+      variables: { ...variables, excludeIds },
       notifyOnNetworkStatusChange: true,
     },
   );
@@ -120,16 +126,11 @@ const PaginatedCampaignGallery = ({
   const campaigns = get(data, 'campaigns.edges', []);
 
   // Optionally, exclude any Group Campaigns, or Campaigns included in our list of Campaign ID's to hide from website discovery.
-  const filteredCampaigns = featureFlag('hide_campaigns')
-    ? campaigns.filter(
-        campaign =>
-          !get(campaign, 'node.groupTypeId') &&
-          !siteConfig('hide_campaign_ids').includes(
-            // Our filter will be a list of Strings but the Campaign IDs will be integers.
-            String(get(campaign, 'node.id')),
-          ),
-      )
-    : campaigns;
+  const filteredCampaigns = campaigns.filter(
+    campaign =>
+      !get(campaign, 'node.groupTypeId') &&
+      !excludeIds.includes(get(campaign, 'node.id')),
+  );
 
   // Parse out the nested campaign website nodes so we can pass them to the Gallery Block.
   const campaignWebsites = filteredCampaigns.map(edge =>
