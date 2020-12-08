@@ -62,7 +62,10 @@ const ScholarshipCard = ({ campaign }) => {
   ]);
 
   return (
-    <article className="flex flex-col h-full relative text-left">
+    <article
+      className="flex flex-col h-full relative text-left"
+      data-testid="scholarship-card"
+    >
       <a className="block cursor-pointer" href={path}>
         <img
           alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}

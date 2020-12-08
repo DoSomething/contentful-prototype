@@ -18,6 +18,7 @@ const POST_QUERY = gql`
   query PostQuery($postId: Int!) {
     post(id: $postId) {
       id
+      campaignId
       url
     }
   }
@@ -35,7 +36,7 @@ const ShowSubmissionPage = ({ match }) => {
     },
   });
 
-  const postImageUrl = get(postData, 'post.url', null);
+  const { url: postImageUrl, campaignId } = get(postData, 'post') || {};
 
   if (error) {
     return <ErrorBlock error={error} />;
@@ -49,7 +50,10 @@ const ShowSubmissionPage = ({ match }) => {
         <div className="base-12-grid bg-white">
           <div className="grid-wide lg:flex px-2 md:px-4 lg:px-6">
             {postImageUrl && !loading ? (
-              <div className="w-1/2 md:w-1/4 pt-6 lg:pb-4">
+              <div
+                className="w-1/2 md:w-1/4 pt-6 lg:pb-4"
+                data-testid="post-submission-image"
+              >
                 <img
                   className="border-2 border-gray-400 border-solid"
                   alt="Reportback submission"
@@ -95,7 +99,11 @@ const ShowSubmissionPage = ({ match }) => {
               More Scholarship Opportunities
             </h2>
 
-            <RecommendedCampaignsGallery />
+            <RecommendedCampaignsGallery
+              variables={{
+                excludeIds: campaignId ? [Number(campaignId)] : [],
+              }}
+            />
           </div>
         </div>
       </main>
