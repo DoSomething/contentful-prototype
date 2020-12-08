@@ -55,56 +55,56 @@ const ReferFriendsTab = () => {
 
         {referralIncentive ? (
           <Details>
-            <Summary summaryText="Who can I refer?" />
+            <Summary text="Who can I refer?" />
 
-            <DetailsParagraph
-              detailsText="To earn the chance to win a $10 gift card, you need to refer NEW
-              members to DoSomething!"
-            />
+            <DetailsParagraph>
+              {' '}
+              To earn the chance to win a $10 gift card, you need to refer NEW
+              members to DoSomething!
+            </DetailsParagraph>
 
-            <DetailsParagraph
-              className="mt-0"
-              detailsText="Referring someone who already has a DoSomething account is an
+            <DetailsParagraph className="mt-0">
+              Referring someone who already has a DoSomething account is an
               awesome way to build our movement, but unfortunately, referring
-              them won’t enter you for a chance at the gift card."
-            />
+              them won’t enter you for a chance at the gift card.
+            </DetailsParagraph>
           </Details>
         ) : (
           <Details>
-            <Summary summaryText="Why should I refer a friend?" />
+            <Summary text="Why should I refer a friend?" />
 
-            <DetailsParagraph
-              detailsText="You’ll help your friend join our youth-led movement for good, make
+            <DetailsParagraph>
+              You’ll help your friend join our youth-led movement for good, make
               an impact on the causes they care about, and have the chance to
-              earn scholarships for volunteering."
-            />
+              earn scholarships for volunteering.
+            </DetailsParagraph>
           </Details>
         )}
 
         <Details>
-          <Summary summaryText="How do I know that I’ve referred a friend?" />
+          <Summary text="How do I know that I’ve referred a friend?" />
 
-          <DetailsParagraph
-            detailsText="Share the link above with your friend, either via text, email, or
+          <DetailsParagraph>
+            Share the link above with your friend, either via text, email, or
             social media. Using that link, your friend will create a DoSomething
             account and then sign up for a campaign. When they sign up, you’ll
-            see their name in the “Your Referrals” section. Yep, that easy."
-          />
+            see their name in the “Your Referrals” section. Yep, that easy.
+          </DetailsParagraph>
         </Details>
 
         {referralIncentive ? (
           <Details>
-            <Summary summaryText="How will I receive my gift card if I win?" />
+            <Summary text="How will I receive my gift card if I win?" />
 
-            <DetailsParagraph
-              detailsText="We’ll email it to you using the same email address used to create
-              your DoSomething account."
-            />
+            <DetailsParagraph>
+              We’ll email it to you using the same email address used to create
+              your DoSomething account.
+            </DetailsParagraph>
           </Details>
         ) : null}
 
         <Details>
-          <Summary summaryText="Where can I find the full rules?" />
+          <Summary text="Where can I find the full rules?" />
 
           <DetailsParagraph>
             This offer is for a limited time only. See the{' '}

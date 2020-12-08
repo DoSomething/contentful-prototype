@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const DetailsParagraph = ({ children, className, detailsText }) => (
-  <p className={classnames(className, 'pt-2')}>{children || detailsText}</p>
+const DetailsParagraph = ({ children, className }) => (
+  <p className={classnames(className, 'pt-2')}>{children}</p>
 );
 
 DetailsParagraph.propTypes = {
@@ -11,13 +11,11 @@ DetailsParagraph.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.object,
-  ]),
+  ]).isRequired,
   className: PropTypes.string,
-  detailsText: PropTypes.string.isRequired,
 };
 
 DetailsParagraph.defaultProps = {
-  children: null,
   className: null,
 };
 
