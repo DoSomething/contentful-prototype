@@ -9,7 +9,8 @@ describe('Campaign Index Page', () => {
     it('Renders a paginated campaign gallery', () => {
       cy.mockGraphqlOp('PaginatedCampaignQuery', {
         paginatedCampaigns: {
-          edges: MockList(36, { node: {} }),
+          // Ensure the results aren't group campaigns since we'll manually filter those out.
+          edges: MockList(36, { node: { groupTypeId: null } }),
         },
       });
 
