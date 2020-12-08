@@ -129,7 +129,10 @@ const PopoverDispatcher = () => {
 
   return createPortal(
     <DismissableElement
-      name="sitewide_banner_go_greener_campaign"
+      name="sitewide_banner"
+      context={{
+        contextSource: 'go_greener_campaign',
+      }}
       daysToReRender={7}
       render={(handleClose, handleComplete) => (
         <SitewideBanner
