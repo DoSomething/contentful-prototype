@@ -4,7 +4,7 @@
 
 This is a banner feature that is displayed site wide when turned on. In the past, we partnered with a 3rd party service to achieve this (HelloBar), but ran into some unforeseen and hard to troubleshoot bugs. And so, HowdyBar was born!
 
-We use this feature to display important info to our users in a prominent banner across the top of the site. It is currently hardcoded to link to our [refer a friend page](/development/features/referral-pages.md).
+We use this feature to display important info to our users in a prominent banner across the top of the site. It is currently hardcoded to link to our [go greener campaign](https://www.dosomething.org/us/campaigns/go-there-greener).
 
 The `SitewideBanner` can be used in conjunction with a `DismissableElement` or other wrapper components. We currently display the `SitewideBanner` via the `PopoverDispatcher`, which keeps track of what kind of banner or popover should be displayed on different pages.
 
