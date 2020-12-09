@@ -14,9 +14,9 @@ import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
-import { withoutUndefined, withoutNulls } from '../../../helpers';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
+import { withoutUndefined, withoutNulls, featureFlag } from '../../../helpers';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import {
   calculateDifference,
@@ -66,9 +66,15 @@ class PhotoSubmissionAction extends PostForm {
       // Resetting the submission item so that this won't be triggered continually for further renders.
       nextProps.resetPostSubmissionItem(nextProps.id);
 
+      if (featureFlag('post_confirmation_page')) {
+        // Redirect the user to the post submission page.
+        window.location = `/us/posts/${response.data.id}?submissionActionId=${nextProps.id}`;
+      }
+
       return {
         shouldResetForm: true,
-        showModal: true,
+        // Don't display the modal if we're redirecting the user to the post submission page.
+        showModal: !featureFlag('post_confirmation_page'),
       };
     }
 
