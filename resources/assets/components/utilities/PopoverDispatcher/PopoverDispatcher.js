@@ -129,14 +129,17 @@ const PopoverDispatcher = () => {
 
   return createPortal(
     <DismissableElement
-      name="sitewide_banner_refer_friends"
+      name="sitewide_banner"
+      context={{
+        contextSource: 'go_greener_campaign',
+      }}
       daysToReRender={7}
       render={(handleClose, handleComplete) => (
         <SitewideBanner
-          contextSource="refer_friends"
-          cta="Start Now"
-          link="/us/account/refer-friends"
-          description="Want to build our youth-led movement? Refer a friend!"
+          contextSource="go_greener_campaign"
+          cta="Get Started"
+          link="/us/campaigns/go-there-greener"
+          description="Travel more sustainably for a day. You’ll earn a chance to win a $1,500 scholarship"
           handleClose={handleClose}
           handleComplete={handleComplete}
         />
