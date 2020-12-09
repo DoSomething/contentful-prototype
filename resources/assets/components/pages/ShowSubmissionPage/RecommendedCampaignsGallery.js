@@ -37,7 +37,10 @@ const RecommendedCampaignsGallery = ({ excludeCampaignIds }) => (
   <Query
     query={SCHOLARSHIP_CAMPAIGNS_QUERY}
     variables={{
-      excludeIds: [...excludeCampaignIds, ...siteConfig('hide_campaign_ids')],
+      excludeIds: [
+        ...excludeCampaignIds,
+        ...siteConfig('hide_campaign_ids', []),
+      ],
     }}
   >
     {result => (

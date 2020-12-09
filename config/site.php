@@ -19,5 +19,5 @@ return [
     'default_referral_campaign_id' => env('DS_DEFAULT_REFERRAL_CAMPAIGN_ID'),
     'go_greener_campaign_goal' => env('DS_GO_GREENER_GOAL'),
     'go_greener_campaign_quantity' => env('DS_GO_GREENER_QUANTITY'),
-    'hide_campaign_ids' => array_map('intval', array_filter(explode(',', env('DS_HIDE_CAMPAIGN_IDS')))),
+    'hide_campaign_ids' => array_map('intval', array_filter(explode(',', env('DS_HIDE_CAMPAIGN_IDS', [])))),
 ];
