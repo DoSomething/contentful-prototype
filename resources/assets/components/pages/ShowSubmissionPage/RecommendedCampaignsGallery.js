@@ -33,14 +33,11 @@ const SCHOLARSHIP_CAMPAIGNS_QUERY = gql`
   ${scholarshipCardFragment}
 `;
 
-const RecommendedCampaignsGallery = ({ variables }) => (
+const RecommendedCampaignsGallery = ({ excludeCampaignIds }) => (
   <Query
     query={SCHOLARSHIP_CAMPAIGNS_QUERY}
     variables={{
-      excludeIds: [
-        ...(variables.excludeIds || []),
-        ...siteConfig('hide_campaign_ids'),
-      ],
+      excludeIds: [...excludeCampaignIds, ...siteConfig('hide_campaign_ids')],
     }}
   >
     {result => (
@@ -57,13 +54,11 @@ const RecommendedCampaignsGallery = ({ variables }) => (
 );
 
 RecommendedCampaignsGallery.propTypes = {
-  variables: PropTypes.shape({
-    excludeIds: PropTypes.arrayOf(PropTypes.number),
-  }),
+  excludeCampaignIds: PropTypes.arrayOf(PropTypes.number),
 };
 
 RecommendedCampaignsGallery.defaultProps = {
-  variables: {},
+  excludeCampaignIds: [],
 };
 
 export default RecommendedCampaignsGallery;
