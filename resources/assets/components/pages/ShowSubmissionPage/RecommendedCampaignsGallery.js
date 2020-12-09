@@ -39,7 +39,7 @@ const RecommendedCampaignsGallery = ({ variables }) => (
     variables={{
       excludeIds: [
         ...(variables.excludeIds || []),
-        ...siteConfig('hide_campaign_ids', []).map(id => Number(id)),
+        ...siteConfig('hide_campaign_ids'),
       ],
     }}
   >

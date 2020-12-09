@@ -211,9 +211,7 @@ describe('Cause Page', () => {
       },
     });
 
-    cy.withSiteConfig({ hide_campaign_ids: ['1'] }).visit(
-      '/us/causes/education',
-    );
+    cy.withSiteConfig({ hide_campaign_ids: [1] }).visit('/us/causes/education');
 
     cy.findAllByTestId('campaign-card').should('have.length', 1);
   });
