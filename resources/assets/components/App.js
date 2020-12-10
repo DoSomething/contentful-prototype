@@ -8,6 +8,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 
 import graphqlClient from '../graphql';
 import ErrorPage from './pages/ErrorPage';
+import AuthGate from './utilities/AuthGate';
 import Modal from './utilities/Modal/Modal';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
@@ -78,7 +79,11 @@ const App = ({ store, history }) => {
               {featureFlag('post_confirmation_page') ? (
                 <Route
                   path="/us/posts/:post_id"
-                  component={ShowSubmissionPage}
+                  render={routeProps => (
+                    <AuthGate>
+                      <ShowSubmissionPage match={routeProps.match} />
+                    </AuthGate>
+                  )}
                 />
               ) : null}
 

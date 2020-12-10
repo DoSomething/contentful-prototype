@@ -2,11 +2,14 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import classnames from 'classnames';
+import { Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Query from '../../Query';
 import { env, query } from '../../../helpers';
+import { getUserId } from '../../../helpers/auth';
+import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -19,6 +22,7 @@ const POST_QUERY = gql`
     post(id: $postId) {
       id
       campaignId
+      userId
       url
     }
   }
@@ -36,10 +40,19 @@ const ShowSubmissionPage = ({ match }) => {
     },
   });
 
-  const { url: postImageUrl, campaignId } = get(postData, 'post') || {};
+  const { url: postImageUrl, campaignId, userId } = get(postData, 'post') || {};
+
+  if (loading) {
+    return <Placeholder />;
+  }
 
   if (error) {
     return <ErrorBlock error={error} />;
+  }
+
+  // This page is gated to the post's author.
+  if (getUserId() !== userId) {
+    return <Redirect to="/us/account/campaigns" />;
   }
 
   return (
@@ -47,9 +60,12 @@ const ShowSubmissionPage = ({ match }) => {
       <SiteNavigationContainer />
 
       <main>
-        <div className="base-12-grid bg-white">
+        <div
+          className="base-12-grid bg-white"
+          data-testid="show-submission-page"
+        >
           <div className="grid-wide lg:flex px-2 md:px-4 lg:px-6">
-            {postImageUrl && !loading ? (
+            {postImageUrl ? (
               <div
                 className="w-1/2 md:w-1/4 pt-6 lg:pb-4"
                 data-testid="post-submission-image"
