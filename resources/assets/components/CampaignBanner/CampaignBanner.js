@@ -11,6 +11,7 @@ import {
   isCurrentPathInPaths,
   siteConfig,
 } from '../../helpers';
+import { UNGATED_SESSION_KEY } from '../Campaign/CampaignRoute/CampaignRoute';
 import Modal from '../utilities/Modal/Modal';
 import ContentfulEntry from '../ContentfulEntry';
 import partnerScholarshipQuizPaths from './config';
@@ -140,7 +141,8 @@ const CampaignBanner = ({
             data-testid="campaign-banner-secondary-content"
             className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3"
           >
-            {!isAffiliated ? (
+            {!isAffiliated &&
+            !window.sessionStorage.getItem(UNGATED_SESSION_KEY) ? (
               <div
                 data-testid="campaign-banner-signup-button"
                 className={classnames(
@@ -229,7 +231,8 @@ const CampaignBanner = ({
                   : null
               }
             >
-              {!isAffiliated ? (
+              {!isAffiliated &&
+              !window.sessionStorage.getItem(UNGATED_SESSION_KEY) ? (
                 <div
                   data-testid="scholarship-modal-signup-button"
                   className={`pt-6 ${!groupType ? 'w-2/3 sm:w-1/2' : null}`}
