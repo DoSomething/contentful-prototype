@@ -4,6 +4,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Redirect } from 'react-router-dom';
 import { get, has, invert, mapValues } from 'lodash';
 
 import PostForm from '../PostForm';
@@ -66,15 +67,13 @@ class PhotoSubmissionAction extends PostForm {
       // Resetting the submission item so that this won't be triggered continually for further renders.
       nextProps.resetPostSubmissionItem(nextProps.id);
 
-      if (featureFlag('post_confirmation_page')) {
-        // Redirect the user to the post submission page.
-        window.location = `/us/posts/${response.data.id}?submissionActionId=${nextProps.id}`;
-      }
+      // If the feature is toggled on, we'll redirect to the show submission page instead of displaying the affirmation modal.
+      const redirectToSubmissionPage = featureFlag('post_confirmation_page');
 
       return {
         shouldResetForm: true,
-        // Don't display the modal if we're redirecting the user to the post submission page.
-        showModal: !featureFlag('post_confirmation_page'),
+        redirectToSubmissionPage,
+        showModal: !redirectToSubmissionPage,
       };
     }
 
@@ -294,6 +293,18 @@ class PhotoSubmissionAction extends PostForm {
    */
   render() {
     const submissionItem = this.props.submissions.items[this.props.id];
+
+    if (this.state.redirectToSubmissionPage) {
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: `/us/posts/${submissionItem.data.id}`,
+            search: `submissionActionId=${this.props.id}`,
+          }}
+        />
+      );
+    }
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
