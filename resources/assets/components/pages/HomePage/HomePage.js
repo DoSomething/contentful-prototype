@@ -268,20 +268,27 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 </h2>
 
                 <p className="mb-3 text-lg">
-                  Choose a campaign below to make an impact and enter for a
-                  chance to{' '}
+                  Choose a campaign below to make an impact,{' '}
                   <a
                     href="/us/about/easy-scholarships"
                     className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
                     data-label="campaign_section_earn_scholarships"
                   >
-                    earn scholarships
+                    win scholarships
+                  </a>
+                  , and{' '}
+                  <a
+                    href="/us/about/volunteer-hours"
+                    className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
+                    data-label="campaign_section_earn_volunteer_credits"
+                  >
+                    earn volunteer credits
                   </a>
                   .
                 </p>
 
                 <p className="mb-6 lg:mb-8 mt-0 text-lg">
-                  (Talk about a win-win.)
+                  Talk about a win-win-win.
                 </p>
 
                 {/*
