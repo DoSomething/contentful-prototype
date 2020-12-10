@@ -37,7 +37,7 @@ describe('Show Submission Page', () => {
 
     cy.mockGraphqlOp('PostQuery', {
       post: {
-        campaignId: 1,
+        campaignId: '1',
         userId: user.id,
       },
     });

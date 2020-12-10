@@ -116,9 +116,7 @@ const ShowSubmissionPage = ({ match }) => {
             </h2>
 
             <RecommendedCampaignsGallery
-              variables={{
-                excludeIds: campaignId ? [Number(campaignId)] : [],
-              }}
+              excludeCampaignIds={campaignId ? [Number(campaignId)] : []}
             />
           </div>
         </div>
