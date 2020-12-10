@@ -60,7 +60,10 @@ const ShowSubmissionPage = ({ match }) => {
       <SiteNavigationContainer />
 
       <main>
-        <div className="base-12-grid bg-white">
+        <div
+          className="base-12-grid bg-white"
+          data-testid="show-submission-page"
+        >
           <div className="grid-wide lg:flex px-2 md:px-4 lg:px-6">
             {postImageUrl ? (
               <div
