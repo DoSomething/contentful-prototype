@@ -9,7 +9,7 @@ describe('Show Submission Page', () => {
   it('Displays the post image, default affirmation content, and a gallery block for the recommended campaigns', () => {
     cy.mockGraphqlOp('PostQuery', {
       post: {
-        campaignId: 1,
+        campaignId: '1',
       },
     });
 

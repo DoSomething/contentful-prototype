@@ -95,9 +95,7 @@ const PaginatedCampaignGallery = ({
   title,
   variables,
 }) => {
-  const excludeIds = (siteConfig('hide_campaign_ids') || []).map(id =>
-    Number(id),
-  );
+  const excludeIds = siteConfig('hide_campaign_ids', []);
 
   const { error, loading, data, fetchMore } = useQuery(
     featureFlag('algolia_campaigns_search')
