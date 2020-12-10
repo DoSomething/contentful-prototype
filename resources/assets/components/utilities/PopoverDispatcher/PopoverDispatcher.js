@@ -40,7 +40,9 @@ const PopoverDispatcher = () => {
     useEffect(() => {
       const mainContainer = document.getElementById(id);
 
-      mainContainer.prepend(rootElem.current);
+      if (mainContainer) {
+        mainContainer.prepend(rootElem.current);
+      }
     }, []);
 
     return rootElem.current;
