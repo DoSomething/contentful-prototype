@@ -10,6 +10,7 @@ import { isCampaignSignUpInState } from '../../../selectors/signup';
  */
 const mapStateToProps = state => ({
   affirmation: state.campaign.affirmation,
+  campaignId: state.campaign.campaignId,
   endDate: state.campaign.endDate,
   hasCommunityPage: Boolean(
     state.campaign.pages.find(

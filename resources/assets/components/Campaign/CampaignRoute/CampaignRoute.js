@@ -12,6 +12,23 @@ import LandingPage from '../../pages/LandingPage/LandingPage';
 import PostSignupModal from '../../pages/PostSignupModal/PostSignupModal';
 import CampaignClosedPage from '../../pages/CampaignPage/CampaignClosedPage';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
+import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
+
+export const UNGATED_SESSION_KEY = 'ungated_session';
+
+const UngatedCampaignRedirect = props => {
+  const { baseUrl } = props;
+
+  window.sessionStorage.setItem(UNGATED_SESSION_KEY, JSON.stringify('ungated'));
+  return (
+    <Redirect
+      to={{
+        pathname: join(baseUrl, 'action'),
+        search: window.location.search,
+      }}
+    />
+  );
+};
 
 const CampaignRoute = props => {
   const {
@@ -23,12 +40,12 @@ const CampaignRoute = props => {
     location,
     match,
     shouldShowAffirmation,
+    campaignId,
   } = props;
 
   const isClosed = isCampaignClosed(endDate);
-
+  const campaignIdToNumber = Number(campaignId);
   const baseUrl = match.url;
-
   return (
     <>
       {shouldShowAffirmation ? (
@@ -86,8 +103,27 @@ const CampaignRoute = props => {
               );
             }
 
+            if (campaignIdToNumber === 9108 || campaignIdToNumber === 9001) {
+              return (
+                <SixpackExperiment
+                  internalTitle="ungated or gated campaign"
+                  convertableActions={['reportback']}
+                  control={
+                    <LandingPage
+                      testName="gated campaign"
+                      content={get(props.landingPage, 'fields.content')}
+                    />
+                  }
+                  alternatives={[
+                    <UngatedCampaignRedirect
+                      baseUrl={baseUrl}
+                      testName="ungated campaign"
+                    />,
+                  ]}
+                />
+              );
+            }
             return (
-              // @TODO: Add support for SixpackExperiment components (https://bit.ly/2T99sUl).
               <LandingPage content={get(props.landingPage, 'fields.content')} />
             );
           }}
@@ -113,7 +149,10 @@ const CampaignRoute = props => {
               );
             }
 
-            if (!isSignedUp) {
+            if (
+              !isSignedUp &&
+              !window.sessionStorage.getItem(UNGATED_SESSION_KEY)
+            ) {
               return (
                 <Redirect
                   to={{
@@ -142,11 +181,20 @@ CampaignRoute.propTypes = {
   location: ReactRouterPropTypes.location.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   shouldShowAffirmation: PropTypes.bool.isRequired,
+  campaignId: PropTypes.string,
+};
+
+UngatedCampaignRedirect.propTypes = {
+  baseUrl: PropTypes.string,
 };
 
 CampaignRoute.defaultProps = {
   endDate: null,
   landingPage: {},
+  campaignId: null,
+};
+UngatedCampaignRedirect.defaultProps = {
+  baseUrl: null,
 };
 
 export default CampaignRoute;
