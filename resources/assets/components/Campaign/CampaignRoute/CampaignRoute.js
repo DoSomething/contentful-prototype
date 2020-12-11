@@ -17,14 +17,16 @@ import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperime
 export const UNGATED_SESSION_KEY = 'ungated_session';
 
 const UngatedCampaignRedirect = props => {
-  const { baseUrl } = props;
+  const { baseUrl, location } = props;
 
+  // TODO: Should this be in a useEffect?
   window.sessionStorage.setItem(UNGATED_SESSION_KEY, JSON.stringify('ungated'));
+
   return (
     <Redirect
       to={{
         pathname: join(baseUrl, 'action'),
-        search: window.location.search,
+        search: location.search,
       }}
     />
   );
@@ -117,6 +119,7 @@ const CampaignRoute = props => {
                   alternatives={[
                     <UngatedCampaignRedirect
                       baseUrl={baseUrl}
+                      location={location}
                       testName="ungated campaign"
                     />,
                   ]}
@@ -186,6 +189,7 @@ CampaignRoute.propTypes = {
 
 UngatedCampaignRedirect.propTypes = {
   baseUrl: PropTypes.string,
+  location: ReactRouterPropTypes.location.isRequired,
 };
 
 CampaignRoute.defaultProps = {
@@ -193,6 +197,7 @@ CampaignRoute.defaultProps = {
   landingPage: {},
   campaignId: null,
 };
+
 UngatedCampaignRedirect.defaultProps = {
   baseUrl: null,
 };
