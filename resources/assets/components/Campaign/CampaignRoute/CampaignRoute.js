@@ -103,8 +103,6 @@ const CampaignRoute = props => {
               );
             }
 
-            // @TODO: Add support for SixpackExperiment components (https://bit.ly/2T99sUl).
-
             if (campaignIdToNumber === 9108 || campaignIdToNumber === 9001) {
               return (
                 <SixpackExperiment
