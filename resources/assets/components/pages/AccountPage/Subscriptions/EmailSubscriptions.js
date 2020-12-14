@@ -39,7 +39,7 @@ const EmailSubscriptions = () => (
 
 EmailSubscriptions.propTypes = {
   user: PropTypes.shape({
-    emailSubscriptionTopics: PropTypes.array,
+    emailSubscriptionTopics: PropTypes.arrayOf(PropTypes.string),
     id: PropTypes.string,
   }).isRequired,
 };
