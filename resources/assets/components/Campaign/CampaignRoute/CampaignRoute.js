@@ -14,9 +14,7 @@ import CampaignClosedPage from '../../pages/CampaignPage/CampaignClosedPage';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
 import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
 
-const UngatedCampaignRedirect = props => {
-  const { baseUrl, campaignIdToNumber } = props;
-
+const UngatedCampaignRedirect = ({ baseUrl, campaignIdToNumber }) => {
   useEffect(() => {
     window.sessionStorage.setItem('ungated_session', JSON.stringify('ungated'));
   }, [campaignIdToNumber]);
