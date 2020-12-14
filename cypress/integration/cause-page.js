@@ -132,93 +132,87 @@ describe('Cause Page', () => {
     });
   });
 
-  context('With "Hide Campaigns" feature flag enabled', () => {
-    /** @test */
-    it('Does not display group campaigns', () => {
-      cy.mockGraphqlOp('CausePageQuery', {
-        causePageBySlug: {
-          slug: 'education',
-        },
-      });
-
-      // Stub the query to have a 'next page' so we show the 'view more' button.
-      cy.mockGraphqlOp('PaginatedCampaignQuery', {
-        paginatedCampaigns: {
-          edges: [
-            {
-              node: {
-                id: 1,
-                groupTypeId: null,
-              },
-            },
-            {
-              node: {
-                id: 2,
-                groupTypeId: null,
-              },
-            },
-            {
-              node: {
-                id: 3,
-                groupTypeId: 1,
-              },
-            },
-          ],
-          pageInfo: {
-            hasNextPage: true,
-          },
-        },
-      });
-
-      cy.withFeatureFlags({ hide_campaigns: true })
-        .withSiteConfig({ hide_campaign_ids: [] })
-        .visit('/us/causes/education');
-
-      cy.findAllByTestId('campaign-card').should('have.length', 2);
+  /** @test */
+  it('Does not display group campaigns', () => {
+    cy.mockGraphqlOp('CausePageQuery', {
+      causePageBySlug: {
+        slug: 'education',
+      },
     });
 
-    /** @test */
-    it('Does not display campaigns with IDs listed as "hidden"', () => {
-      cy.mockGraphqlOp('CausePageQuery', {
-        causePageBySlug: {
-          slug: 'education',
-        },
-      });
-
-      // Stub the query to have a 'next page' so we show the 'view more' button.
-      cy.mockGraphqlOp('PaginatedCampaignQuery', {
-        paginatedCampaigns: {
-          edges: [
-            {
-              node: {
-                id: 1,
-                groupTypeId: null,
-              },
+    // Stub the query to have a 'next page' so we show the 'view more' button.
+    cy.mockGraphqlOp('PaginatedCampaignQuery', {
+      paginatedCampaigns: {
+        edges: [
+          {
+            node: {
+              id: 1,
+              groupTypeId: null,
             },
-            {
-              node: {
-                id: 2,
-                groupTypeId: null,
-              },
-            },
-            {
-              node: {
-                id: 3,
-                groupTypeId: 1,
-              },
-            },
-          ],
-          pageInfo: {
-            hasNextPage: true,
           },
+          {
+            node: {
+              id: 2,
+              groupTypeId: null,
+            },
+          },
+          {
+            node: {
+              id: 3,
+              groupTypeId: 1,
+            },
+          },
+        ],
+        pageInfo: {
+          hasNextPage: true,
         },
-      });
-
-      cy.withFeatureFlags({ hide_campaigns: true })
-        .withSiteConfig({ hide_campaign_ids: ['1'] })
-        .visit('/us/causes/education');
-
-      cy.findAllByTestId('campaign-card').should('have.length', 1);
+      },
     });
+
+    cy.withSiteConfig({ hide_campaign_ids: [] }).visit('/us/causes/education');
+
+    cy.findAllByTestId('campaign-card').should('have.length', 2);
+  });
+
+  /** @test */
+  it('Does not display campaigns with IDs listed as "hidden"', () => {
+    cy.mockGraphqlOp('CausePageQuery', {
+      causePageBySlug: {
+        slug: 'education',
+      },
+    });
+
+    // Stub the query to have a 'next page' so we show the 'view more' button.
+    cy.mockGraphqlOp('PaginatedCampaignQuery', {
+      paginatedCampaigns: {
+        edges: [
+          {
+            node: {
+              id: 1,
+              groupTypeId: null,
+            },
+          },
+          {
+            node: {
+              id: 2,
+              groupTypeId: null,
+            },
+          },
+          {
+            node: {
+              id: 3,
+              groupTypeId: 1,
+            },
+          },
+        ],
+        pageInfo: {
+          hasNextPage: true,
+        },
+      },
+    });
+
+    cy.withSiteConfig({ hide_campaign_ids: [1] }).visit('/us/causes/education');
+
+    cy.findAllByTestId('campaign-card').should('have.length', 1);
   });
 });

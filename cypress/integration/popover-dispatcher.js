@@ -109,7 +109,7 @@ describe('Site Wide Banner', () => {
     cy.findByTestId('sitewide-banner-button').should(
       'have.attr',
       'href',
-      '/us/account/refer-friends',
+      '/us/campaigns/go-there-greener',
     );
   });
 });

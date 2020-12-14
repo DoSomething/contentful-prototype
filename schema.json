@@ -38,6 +38,16 @@
                 "defaultValue": null
               },
               {
+                "name": "isGroupCampaign",
+                "description": "Search for only group or non-group campaigns.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "hasScholarship",
                 "description": "Search for campaigns that have or do not have a scholarship.",
                 "type": {
@@ -98,6 +108,20 @@
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "excludeIds",
+                "description": "Exclude campaigns with specified IDs",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
                 },
                 "defaultValue": null
               }

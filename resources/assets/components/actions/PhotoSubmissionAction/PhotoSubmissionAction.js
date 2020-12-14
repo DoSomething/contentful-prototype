@@ -4,6 +4,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Redirect } from 'react-router-dom';
 import { get, has, invert, mapValues } from 'lodash';
 
 import PostForm from '../PostForm';
@@ -14,9 +15,9 @@ import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
-import { withoutUndefined, withoutNulls } from '../../../helpers';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
+import { withoutUndefined, withoutNulls, featureFlag } from '../../../helpers';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import {
   calculateDifference,
@@ -66,9 +67,13 @@ class PhotoSubmissionAction extends PostForm {
       // Resetting the submission item so that this won't be triggered continually for further renders.
       nextProps.resetPostSubmissionItem(nextProps.id);
 
+      // If the feature is toggled on, we'll redirect to the show submission page instead of displaying the affirmation modal.
+      const redirectToSubmissionPage = featureFlag('post_confirmation_page');
+
       return {
         shouldResetForm: true,
-        showModal: true,
+        redirectToSubmissionPage,
+        showModal: !redirectToSubmissionPage,
       };
     }
 
@@ -288,6 +293,18 @@ class PhotoSubmissionAction extends PostForm {
    */
   render() {
     const submissionItem = this.props.submissions.items[this.props.id];
+
+    if (this.state.redirectToSubmissionPage) {
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: `/us/posts/${submissionItem.data.id}`,
+            search: `submissionActionId=${this.props.id}`,
+          }}
+        />
+      );
+    }
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 

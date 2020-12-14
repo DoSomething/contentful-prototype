@@ -116,21 +116,16 @@ const SiteFooter = () => {
           <h4>Get Involved</h4>
           <ul>
             <li>
-              <a href="https://vote.dosomething.org/workwithus">
-                Get Out the Vote!
-              </a>
+              <a href="/us/articles/clubs-notify-me">DoSomething Clubs</a>
             </li>
             <li>
-              <a href="/us/about/easy-scholarships">Scholarships</a>
+              <a href="/us/about/volunteer-hours">Volunteer Hours</a>
             </li>
             <li>
               <a href="/us/about/join-our-team">Jobs</a>
             </li>
             <li>
               <a href="/us/about/internships">Internships</a>
-            </li>
-            <li>
-              <a href="/us/articles/clubs-notify-me">DoSomething Clubs</a>
             </li>
             <li>
               <a href="/us/about/donate">Donate</a>
