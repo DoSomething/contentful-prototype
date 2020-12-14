@@ -107,22 +107,16 @@ const CampaignBanner = ({
             className="grid-wide-7/10 mb-6"
           >
             {numCampaignId === 9109 || numCampaignId === 9001 ? (
-              <SixpackExperiment
-                internalTitle="Campaign Progress Bar Experiment"
-                convertableActions={['signup']}
-                alternatives={[
-                  <div className="mb-6" testName="Progress Bar Visible">
-                    <ProgressBar percentage={percentage} />
-                    <p className="text-lg">
-                      <span className="font-bold">
-                        {`${currentImpactTotal.toLocaleString()}`} lbs of CO2
-                        saved so far.
-                      </span>
-                      {` `}Help us get to {`${goal.toLocaleString()}`}!
-                    </p>
-                  </div>,
-                ]}
-              />
+              <div className="mb-6" testName="Progress Bar Visible">
+                <ProgressBar percentage={percentage} />
+                <p className="text-lg">
+                  <span className="font-bold">
+                    {`${currentImpactTotal.toLocaleString()}`} lbs of CO2 saved
+                    so far.
+                  </span>
+                  {` `}Help us get to {`${goal.toLocaleString()}`}!
+                </p>
+              </div>
             ) : null}
             <TextContent>{content}</TextContent>
 
