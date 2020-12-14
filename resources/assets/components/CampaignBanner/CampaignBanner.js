@@ -23,7 +23,6 @@ import ProgressBar from '../utilities/ProgressBar/ProgressBar';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
 import CampaignInfoBlock from '../blocks/CampaignInfoBlock/CampaignInfoBlock';
-import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
@@ -106,22 +105,16 @@ const CampaignBanner = ({
             className="grid-wide-7/10 mb-6"
           >
             {numCampaignId === 9109 || numCampaignId === 9001 ? (
-              <SixpackExperiment
-                internalTitle="Campaign Progress Bar Experiment"
-                convertableActions={['signup']}
-                alternatives={[
-                  <div className="mb-6" testName="Progress Bar Visible">
-                    <ProgressBar percentage={percentage} />
-                    <p className="text-lg">
-                      <span className="font-bold">
-                        {`${currentImpactTotal.toLocaleString()}`} lbs of CO2
-                        saved so far.
-                      </span>
-                      {` `}Help us get to {`${goal.toLocaleString()}`}!
-                    </p>
-                  </div>,
-                ]}
-              />
+              <div className="mb-6">
+                <ProgressBar percentage={percentage} />
+                <p className="text-lg">
+                  <span className="font-bold">
+                    {`${currentImpactTotal.toLocaleString()}`} lbs of CO2 saved
+                    so far.
+                  </span>
+                  {` `}Help us get to {`${goal.toLocaleString()}`}!
+                </p>
+              </div>
             ) : null}
             <TextContent>{content}</TextContent>
 
