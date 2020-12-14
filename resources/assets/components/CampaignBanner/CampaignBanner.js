@@ -106,7 +106,7 @@ const CampaignBanner = ({
             className="grid-wide-7/10 mb-6"
           >
             {numCampaignId === 9109 || numCampaignId === 9001 ? (
-              <div className="mb-6" testName="Progress Bar Visible">
+              <div className="mb-6">
                 <ProgressBar percentage={percentage} />
                 <p className="text-lg">
                   <span className="font-bold">
