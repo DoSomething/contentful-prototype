@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { join } from 'path';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
@@ -15,9 +15,12 @@ import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContaine
 import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
 
 const UngatedCampaignRedirect = props => {
-  const { baseUrl } = props;
+  const { baseUrl, campaignIdToNumber } = props;
 
-  window.sessionStorage.setItem('ungated_session', JSON.stringify('ungated'));
+  useEffect(() => {
+    window.sessionStorage.setItem('ungated_session', JSON.stringify('ungated'));
+  }, [campaignIdToNumber]);
+
   return (
     <Redirect
       to={{
@@ -115,6 +118,7 @@ const CampaignRoute = props => {
                   alternatives={[
                     <UngatedCampaignRedirect
                       baseUrl={baseUrl}
+                      campaignIdToNumber={campaignIdToNumber}
                       testName="ungated campaign"
                     />,
                   ]}
@@ -184,6 +188,7 @@ CampaignRoute.propTypes = {
 
 UngatedCampaignRedirect.propTypes = {
   baseUrl: PropTypes.string,
+  campaignIdToNumber: PropTypes.number,
 };
 
 CampaignRoute.defaultProps = {
@@ -193,6 +198,7 @@ CampaignRoute.defaultProps = {
 };
 UngatedCampaignRedirect.defaultProps = {
   baseUrl: null,
+  campaignIdToNumber: null,
 };
 
 export default CampaignRoute;
