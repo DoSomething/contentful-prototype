@@ -14,12 +14,10 @@ import CampaignClosedPage from '../../pages/CampaignPage/CampaignClosedPage';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
 import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
 
-export const UNGATED_SESSION_KEY = 'ungated_session';
-
 const UngatedCampaignRedirect = props => {
   const { baseUrl } = props;
 
-  window.sessionStorage.setItem(UNGATED_SESSION_KEY, JSON.stringify('ungated'));
+  window.sessionStorage.setItem('ungated_session', JSON.stringify('ungated'));
   return (
     <Redirect
       to={{
@@ -151,7 +149,7 @@ const CampaignRoute = props => {
 
             if (
               !isSignedUp &&
-              !window.sessionStorage.getItem(UNGATED_SESSION_KEY)
+              !window.sessionStorage.getItem('ungated_session')
             ) {
               return (
                 <Redirect
