@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import { Redirect } from 'react-router-dom';
 import { get, has, invert, mapValues } from 'lodash';
 
+import Query from '../../Query';
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
 import PostCreatedModal from '../PostCreatedModal';
@@ -48,6 +49,15 @@ export const PhotoSubmissionBlockFragment = gql`
     informationTitle
     informationContent
     affirmationContent
+  }
+`;
+
+const ACTION_QUERY = gql`
+  query ActionQuery($actionId: Int!) {
+    action(id: $actionId) {
+      id
+      volunteerCredit
+    }
   }
 `;
 
@@ -104,6 +114,7 @@ class PhotoSubmissionAction extends PostForm {
       showModal: false,
       signup: null,
       whyParticipatedValue: '',
+      hoursValue: '',
     };
   }
 
@@ -147,6 +158,7 @@ class PhotoSubmissionAction extends PostForm {
       file: 'media',
       text: 'caption',
       why_participated: 'whyParticipated',
+      hours: 'hours',
     };
 
     if (this.props.showQuantityField) {
@@ -283,6 +295,7 @@ class PhotoSubmissionAction extends PostForm {
       signup,
       whyParticipatedValue: '',
       numberOfParticipantsValue: '',
+      hoursValue: '',
     });
   };
 
@@ -466,6 +479,43 @@ class PhotoSubmissionAction extends PostForm {
                             </p>
                           ) : null}
                         </div>
+                      ) : null}
+                      {featureFlag('hours_reportback_field') &&
+                      this.props.actionId ? (
+                        <Query
+                          query={ACTION_QUERY}
+                          variables={{ actionId: this.props.actionId }}
+                          hideSpinner
+                        >
+                          {response =>
+                            get(response, 'action.volunteerCredit') ? (
+                              <div className="form-item">
+                                <label
+                                  className={classnames('field-label', {
+                                    'has-error': has(errors, 'hours'),
+                                  })}
+                                  htmlFor="hours"
+                                >
+                                  How many hours did this action take?
+                                  <input
+                                    className={classnames('text-field', {
+                                      'has-error shake': has(errors, 'hours'),
+                                    })}
+                                    type="number"
+                                    step="0.1"
+                                    id="hours"
+                                    name="hours"
+                                    placeholder={`Use numbers (e.g. "1.5" or "3")`}
+                                    value={this.state.hoursValue}
+                                    onChange={this.handleChange}
+                                    required
+                                    min={0.1}
+                                  />
+                                </label>
+                              </div>
+                            ) : null
+                          }
+                        </Query>
                       ) : null}
 
                       {this.props.numberOfParticipantsFieldLabel ? (
