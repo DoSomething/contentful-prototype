@@ -12,6 +12,7 @@ const parseUtmQuery = () =>
     utm_source: query('utm_source'),
     utm_medium: query('utm_medium'),
     utm_campaign: query('utm_campaign'),
+    utm_content: query('utm_content'),
   });
 
 /**
