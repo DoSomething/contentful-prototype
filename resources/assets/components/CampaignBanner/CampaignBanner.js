@@ -23,6 +23,7 @@ import ProgressBar from '../utilities/ProgressBar/ProgressBar';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
 import CampaignInfoBlock from '../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
@@ -95,6 +96,15 @@ const CampaignBanner = ({
   return (
     <>
       <CoverImage coverImage={coverImage} />
+
+      {numCampaignId === 9108 || numCampaignId === 9001 ? (
+        <SixpackExperiment
+          internalTitle="ungated or gated campaign"
+          convertableActions={['reportbackPost']}
+          control={<></>}
+          alternatives={[<span testName="ungated campaign" />]}
+        />
+      ) : null}
 
       <div className="clearfix bg-gray-100">
         <div className="base-12-grid py-3 md:py-6">
