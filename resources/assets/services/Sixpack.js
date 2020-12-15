@@ -47,7 +47,6 @@ class Sixpack {
    * @return {Promise}
    */
   convert(experimentName) {
-    console.log('convert:', experimentName);
     const kpi = this.experiments[experimentName].kpi;
 
     return new Promise((resolve, reject) => {
@@ -75,8 +74,6 @@ class Sixpack {
    * @return {Void}
    */
   convertOnAction(action) {
-    console.log('convertOnAction:', action);
-    console.log('this.experiments:', this.experiments);
     const matchingExperiments = Object.keys(this.experiments).filter(
       experimentName =>
         this.experiments[experimentName].convertableActions.includes(action),
