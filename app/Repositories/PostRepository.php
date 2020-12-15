@@ -49,16 +49,22 @@ class PostRepository
             $payload['file'] = fopen($payload['file']->getPathname(), 'r');
         }
 
-        $multipartData = collect($payload)->map(function ($value, $key) {
-            if ($key === 'number_of_participants' && ! is_null($value)) {
-                return ['name' => 'details', 'contents' => json_encode(['number_of_participants' => $value])];
-            }
+        // We assign certain "informal" Rogue Post values to the details field.
+        $details = array_filter([
+            'number_of_participants' => collect($payload)->pull('number_of_participants'),
+        ]);
 
+        // Map the post's values into the expected multipart data format.
+        $multipartData = collect($payload)->map(function ($value, $key) {
             return ['name' => $key, 'contents' => $value];
-        })->values()->toArray();
+        });
+
+        if (! empty($details)) {
+            $multipartData->push(['name' => 'details', 'contents' => json_encode($details)]);
+        }
 
         return $this->rogue->withToken(token())->send('POST', 'v3/posts', [
-            'multipart' => $multipartData,
+            'multipart' => $multipartData->values()->toArray(),
         ]);
     }
 }
