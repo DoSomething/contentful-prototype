@@ -1,6 +1,7 @@
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
@@ -142,26 +143,37 @@ const CampaignBanner = ({
             data-testid="campaign-banner-secondary-content"
             className="grid-wide-3/10 mb-6 xxl:row-start-1 xxl:row-span-3"
           >
-            {!loading ? (
-              <CampaignSignupFormContainer
-                className="block md:mb-3 p-6 text-lg w-full"
-                groupType={groupType}
-                text={
-                  isScholarshipAffiliateReferral()
-                    ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
-                    : undefined
-                }
-                contextSource="campaign_landing_page"
-              />
-            ) : (
-              <Spinner className="flex justify-center p-6 mb-3" />
-            )}
+            {!isAffiliated &&
+            !window.sessionStorage.getItem('ungated_session') ? (
+              <div
+                data-testid="campaign-banner-signup-button"
+                className={classnames(
+                  'bg-white bottom-0 md:bottom-auto left-0 md:left-auto p-3 md:static md:p-0 w-full md:w-auto z-10 md:z-auto',
+                  { fixed: !groupType },
+                )}
+              >
+                {!loading ? (
+                  <CampaignSignupFormContainer
+                    className="block md:mb-3 p-6 text-lg w-full"
+                    groupType={groupType}
+                    text={
+                      isScholarshipAffiliateReferral()
+                        ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+                        : undefined
+                    }
+                    contextSource="campaign_landing_page"
+                  />
+                ) : (
+                  <Spinner className="flex justify-center p-6 mb-3" />
+                )}
 
-            {/* TODO: Move this into the CampaignSignupForm */}
-            {affiliateOptInContent ? (
-              <AffiliateOptInToggleContainer
-                affiliateOptInContent={affiliateOptInContent}
-              />
+                {/* TODO: Move this into the CampaignSignupForm */}
+                {affiliateOptInContent ? (
+                  <AffiliateOptInToggleContainer
+                    affiliateOptInContent={affiliateOptInContent}
+                  />
+                ) : null}
+              </div>
             ) : null}
 
             <CampaignInfoBlock
