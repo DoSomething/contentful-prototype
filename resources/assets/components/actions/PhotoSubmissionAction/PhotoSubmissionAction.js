@@ -4,7 +4,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Redirect } from 'react-router-dom';
 import { get, has, invert, mapValues } from 'lodash';
 
 import PostForm from '../PostForm';
@@ -70,9 +69,13 @@ class PhotoSubmissionAction extends PostForm {
       // If the feature is toggled on, we'll redirect to the show submission page instead of displaying the affirmation modal.
       const redirectToSubmissionPage = featureFlag('post_confirmation_page');
 
+      if (redirectToSubmissionPage) {
+        // @TODO: Use <Redirect> once https://git.io/JL3Bc is resolved.
+        window.location = `/us/posts/${response.data.id}?submissionActionId=${nextProps.id}`;
+      }
+
       return {
         shouldResetForm: true,
-        redirectToSubmissionPage,
         showModal: !redirectToSubmissionPage,
       };
     }
@@ -293,18 +296,6 @@ class PhotoSubmissionAction extends PostForm {
    */
   render() {
     const submissionItem = this.props.submissions.items[this.props.id];
-
-    if (this.state.redirectToSubmissionPage) {
-      return (
-        <Redirect
-          push
-          to={{
-            pathname: `/us/posts/${submissionItem.data.id}`,
-            search: `submissionActionId=${this.props.id}`,
-          }}
-        />
-      );
-    }
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
