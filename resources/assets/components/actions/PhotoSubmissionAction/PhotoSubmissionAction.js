@@ -70,9 +70,12 @@ class PhotoSubmissionAction extends PostForm {
       // If the feature is toggled on, we'll redirect to the show submission page instead of displaying the affirmation modal.
       const redirectToSubmissionPage = featureFlag('post_confirmation_page');
 
+      if (redirectToSubmissionPage) {
+        window.location = `/us/posts/${response.data.id}?submissionActionId=${nextProps.id}`;
+      }
+
       return {
         shouldResetForm: true,
-        redirectToSubmissionPage,
         showModal: !redirectToSubmissionPage,
       };
     }
@@ -293,18 +296,6 @@ class PhotoSubmissionAction extends PostForm {
    */
   render() {
     const submissionItem = this.props.submissions.items[this.props.id];
-
-    if (this.state.redirectToSubmissionPage) {
-      return (
-        <Redirect
-          push
-          to={{
-            pathname: `/us/posts/${submissionItem.data.id}`,
-            search: `submissionActionId=${this.props.id}`,
-          }}
-        />
-      );
-    }
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
