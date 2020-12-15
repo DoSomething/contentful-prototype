@@ -106,7 +106,7 @@ const CampaignRoute = props => {
               return (
                 <SixpackExperiment
                   internalTitle="ungated or gated campaign"
-                  convertableActions={['reportback']}
+                  convertableActions={['reportbackPost']}
                   control={
                     <LandingPage
                       testName="gated campaign"
