@@ -70,6 +70,7 @@ class PhotoSubmissionAction extends PostForm {
       const redirectToSubmissionPage = featureFlag('post_confirmation_page');
 
       if (redirectToSubmissionPage) {
+        // @TODO: Use <Redirect> once https://git.io/JL3Bc is resolved.
         window.location = `/us/posts/${response.data.id}?submissionActionId=${nextProps.id}`;
       }
 
