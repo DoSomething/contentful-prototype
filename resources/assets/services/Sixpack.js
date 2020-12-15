@@ -91,9 +91,6 @@ class Sixpack {
    * @return {Promise}
    */
   participate(experimentName, testAlternatives = [], options = {}) {
-    console.log('participate:', experimentName);
-    console.log('testAlternatives:', testAlternatives);
-
     return new Promise((resolve, reject) => {
       this.client.participate(
         experimentName,
