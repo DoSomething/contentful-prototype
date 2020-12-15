@@ -4,7 +4,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Redirect } from 'react-router-dom';
 import { get, has, invert, mapValues } from 'lodash';
 
 import PostForm from '../PostForm';
