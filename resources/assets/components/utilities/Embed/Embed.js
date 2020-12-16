@@ -14,7 +14,10 @@ import linkIcon from './link_icon.svg';
 import { isExternal } from '../../../helpers';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 const EMBED_QUERY = gql`
   query EmbedQuery($url: URL!) {
