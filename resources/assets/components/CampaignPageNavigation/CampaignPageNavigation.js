@@ -25,10 +25,10 @@ const CampaignPageNavigation = ({
     slug: prepareCampaignPageSlug(campaignSlug, page.fields.slug),
     title: page.fields.title,
   }));
-
   return campaignPages.length ? (
     <PageNavigation pages={campaignPages}>
-      {isAffiliated ? null : (
+      {isAffiliated ||
+      window.sessionStorage.getItem('ungated_session') ? null : (
         <CampaignSignupFormContainer className="inline-block -inline nav-button" />
       )}
     </PageNavigation>
