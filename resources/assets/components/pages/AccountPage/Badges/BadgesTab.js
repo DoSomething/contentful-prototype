@@ -12,6 +12,7 @@ import {
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
 import { featureFlag } from '../../../../helpers';
+import RewardLevelsTable from './RewardLevelsTable';
 
 import './badges-tab.scss';
 
@@ -386,6 +387,8 @@ class BadgesTab extends React.Component {
             </p>
           </BadgeModal>
         ) : null}
+
+        {featureFlag('rewards_levels') ? <RewardLevelsTable /> : null}
 
         {featureFlag('rewards_levels') ? <RewardsFaq /> : null}
       </div>
