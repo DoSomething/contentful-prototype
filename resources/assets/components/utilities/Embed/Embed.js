@@ -55,7 +55,7 @@ const Embed = props => {
   const handleEmbedBlock = () => {
     trackAnalyticsEvent('clicked_link_embed', {
       action: 'element_clicked',
-      category: EVENT_CATEGORIES.site_action,
+      category: EVENT_CATEGORIES.siteAction,
       label: 'embed',
       context: {
         url,
