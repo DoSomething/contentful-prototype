@@ -82,7 +82,7 @@ const CallToAction = ({
         </div>
       ) : null}
 
-      {isSignedUp ? null : (
+      {isSignedUp || window.sessionStorage.getItem('ungated_session') ? null : (
         <CampaignSignupFormContainer
           text={
             isScholarshipAffiliateReferral()
