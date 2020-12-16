@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { isActionPage, isAuthenticated } from '../../helpers';
+import { isActionPage } from '../../helpers';
 import { prepareCampaignPageSlug } from '../../helpers/campaign';
 import PageNavigation from '../utilities/PageNavigation/PageNavigation';
 import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
@@ -25,10 +25,10 @@ const CampaignPageNavigation = ({
     slug: prepareCampaignPageSlug(campaignSlug, page.fields.slug),
     title: page.fields.title,
   }));
-  console.log('isAuthenticated:', isAuthenticated());
   return campaignPages.length ? (
     <PageNavigation pages={campaignPages}>
-      {!isAffiliated || isAuthenticated() ? null : (
+      {isAffiliated ||
+      window.sessionStorage.getItem('ungated_session') ? null : (
         <CampaignSignupFormContainer className="inline-block -inline nav-button" />
       )}
     </PageNavigation>
