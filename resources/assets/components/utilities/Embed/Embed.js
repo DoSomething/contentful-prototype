@@ -14,6 +14,7 @@ import linkIcon from './link_icon.svg';
 import { isExternal } from '../../../helpers';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 const EMBED_QUERY = gql`
   query EmbedQuery($url: URL!) {
@@ -51,6 +52,17 @@ const Embed = props => {
   };
   */
 
+  const handleEmbedBlock = () => {
+    trackAnalyticsEvent('clicked_link_embed', {
+      action: 'element_clicked',
+      category: EVENT_CATEGORIES.site_action,
+      label: 'embed',
+      context: {
+        url,
+      },
+    });
+  };
+
   return (
     <div
       className={classnames(
@@ -81,6 +93,7 @@ const Embed = props => {
               href={url}
               className="block no-underline hover:no-underline"
               target={isExternal(url) ? '_blank' : '_self'}
+              onClick={handleEmbedBlock}
               rel="noopener noreferrer"
             >
               <div
