@@ -9,7 +9,7 @@ const TableHeader = tw.thead`font-bold p-4 pr-6 text-center w-full border-solid 
 const TableCell = tw.td`p-2 text-sm text-center md:text-base border-solid border-l border-b border-gray-400`;
 
 const RewardLevelsTable = () => {
-  const badges = 3;
+  const badges = 6;
 
   const header = (
     <TableHeader>
@@ -31,12 +31,23 @@ const RewardLevelsTable = () => {
     </TableHeader>
   );
 
+  const userLevelLabel = badgeNumber => {
+    let userLevel = 'Doer';
+    if (badgeNumber >= 6) {
+      userLevel = 'Legend';
+    } else if (badgeNumber > 2) {
+      userLevel = 'SuperDoer';
+    }
+
+    return userLevel;
+  };
+
   return (
     <div>
       <SectionHeader title="my rewards" />
 
       <p className="text-gray-600">
-        You currently enjoy all the perks of a SuperDoer!
+        You currently enjoy all the perks of a {userLevelLabel(badges)}!
       </p>
 
       <Table>
