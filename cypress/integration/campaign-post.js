@@ -65,6 +65,31 @@ describe('Campaign Post', () => {
     );
   });
 
+  it.only('Create a petition-text post', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('ActionAndUserByIdQuery', {
+      action: {
+        collectSchoolId: false,
+      },
+      user: {
+        schoolId: null,
+      },
+    });
+
+    // Log in & visit the campaign action page:
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
+
+    const text = 'I made my cat a full English breakfast, with coffee & cream.';
+    const response = newTextPost(campaignId, user, text);
+    cy.route('POST', POSTS_API, response).as('submitPost');
+
+    cy.get('.petition-submission-action textarea').type(text);
+    cy.get('.petition-submission-action button[type="submit"]').click();
+
+    cy.contains('Thanks for signing the petition!');
+  });
+
   it('Create a photo post', () => {
     const user = userFactory();
 

@@ -123,6 +123,10 @@ export default {
               },
             },
             {
+              id: '74LtFv1QWIvW67MtzDnzwA',
+              type: 'petitionSubmissionAction',
+            },
+            {
               id: '6orwgSeryEmhc5G40QShBh',
               type: 'contentBlock',
               fields: {
