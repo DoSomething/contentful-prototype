@@ -26,7 +26,7 @@ const RewardLevelsTable = () => {
           }
         >
           Doer <br />{' '}
-          <span className="font-normal text-xs md:text-sm">2 badges</span>
+          <span className="font-normal text-xs md:text-base">2 badges</span>
         </TableCellCenter>
 
         <TableCellCenter
@@ -37,14 +37,14 @@ const RewardLevelsTable = () => {
           }
         >
           SuperDoer <br />{' '}
-          <span className="font-normal text-xs md:text-sm">4 badges</span>
+          <span className="font-normal text-xs md:text-base">4 badges</span>
         </TableCellCenter>
 
         <TableCellCenter
           className={badges >= 6 ? 'bg-yellow-500 bg-opacity-25' : 'bg-white'}
         >
           Legend <br />{' '}
-          <span className="font-normal text-xs md:text-sm">6 badges</span>
+          <span className="font-normal text-xs md:text-base">6 badges</span>
         </TableCellCenter>
       </tr>
     </TableHeader>
