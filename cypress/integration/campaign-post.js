@@ -181,6 +181,12 @@ describe('Campaign Post', () => {
         const response = newPhotoPost(campaignId, user);
         cy.route('POST', POSTS_API, response).as('submitPost');
 
+        cy.mockGraphqlOp('PostQuery', {
+          post: {
+            userId: user.id,
+          },
+        });
+
         // Submit the form, and assert we made the API request:
         cy.contains('Submit a new photo').click();
         cy.wait('@submitPost');
@@ -190,6 +196,8 @@ describe('Campaign Post', () => {
         // We should have appended the Photo Submission Action ID as a query parameter.
         cy.location('search').should('eq', '?submissionActionId=id');
       });
+
+      cy.contains('We Got Your Submission');
     });
   });
 });
