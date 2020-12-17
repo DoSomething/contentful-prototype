@@ -7,6 +7,7 @@ import { Query as ApolloQuery } from 'react-apollo';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
+import { featureFlag } from '../../../helpers';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import FormValidation from '../../utilities/Form/FormValidation';
@@ -63,9 +64,17 @@ class PetitionSubmissionAction extends PostForm {
       // Resetting the submission item so that this won't be triggered continually for further renders.
       nextProps.resetPostSubmissionItem(nextProps.id);
 
+      // If the feature is toggled on, we'll redirect to the show submission page instead of displaying the affirmation modal.
+      const redirectToSubmissionPage = featureFlag('post_confirmation_page');
+
+      if (redirectToSubmissionPage) {
+        // @TODO: Use <Redirect> once https://git.io/JL3Bc is resolved.
+        window.location = `/us/posts/${response.data.id}?submissionActionId=${nextProps.id}`;
+      }
+
       return {
         submitted: true,
-        showModal: true,
+        showModal: !redirectToSubmissionPage,
         textValue: '',
       };
     }
