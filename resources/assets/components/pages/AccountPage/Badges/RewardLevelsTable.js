@@ -4,9 +4,9 @@ import { css } from '@emotion/core';
 
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
-const Table = tw.table`w-full border border-solid border-gray-200`;
-const TableHeader = tw.thead`bg-blurple-500 font-bold p-4 pr-6 text-left text-white w-full`;
-const TableCell = tw.td`p-2 text-sm md:text-base`;
+const Table = tw.table`md:w-3/4`;
+const TableHeader = tw.thead`font-bold p-4 pr-6 text-center w-full border-solid border-b-4 border-gray-400`;
+const TableCell = tw.td`p-2 text-sm text-center md:text-base border-solid border-l border-b border-gray-400`;
 
 const RewardLevelsTable = () => {
   const badges = 3;
@@ -16,11 +16,17 @@ const RewardLevelsTable = () => {
       <tr>
         <TableCell />
 
-        <TableCell>Doer</TableCell>
+        <TableCell>
+          Doer <span className="font-normal">2 badges</span>
+        </TableCell>
 
-        <TableCell>SuperDoer</TableCell>
+        <TableCell>
+          SuperDoer <span className="font-normal">4 badges</span>
+        </TableCell>
 
-        <TableCell>Legend</TableCell>
+        <TableCell>
+          Legend <span className="font-normal">6 badges</span>
+        </TableCell>
       </tr>
     </TableHeader>
   );
@@ -42,33 +48,33 @@ const RewardLevelsTable = () => {
           >
             <TableCell>2x Scholarship entries</TableCell>
 
-            <TableCell>X</TableCell>
+            <TableCell>{badges >= 2 && badges < 4 ? 'X' : null}</TableCell>
 
-            <TableCell>X</TableCell>
+            <TableCell />
 
-            <TableCell>X</TableCell>
+            <TableCell />
           </tr>
           <tr
             css={css`{background-color: #${badges >= 4 ? 'f4f9ff' : 'ffffff'}`}
           >
             <TableCell>3x Scholarship entries</TableCell>
 
-            <TableCell>X</TableCell>
+            <TableCell />
 
-            <TableCell>X</TableCell>
+            <TableCell>{badges >= 4 && badges < 6 ? 'X' : null}</TableCell>
 
-            <TableCell>X</TableCell>
+            <TableCell />
           </tr>
           <tr
             css={css`{background-color: #${badges >= 6 ? 'f4f9ff' : 'ffffff'}`}
           >
             <TableCell>4x Scholarship entries</TableCell>
 
-            <TableCell>X</TableCell>
+            <TableCell />
 
-            <TableCell>X</TableCell>
+            <TableCell />
 
-            <TableCell>X</TableCell>
+            <TableCell>{badges >= 6 ? 'X' : null}</TableCell>
           </tr>
         </tbody>
       </Table>
