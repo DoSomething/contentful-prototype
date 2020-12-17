@@ -65,7 +65,7 @@ describe('Campaign Post', () => {
     );
   });
 
-  it.only('Create a petition-text post', () => {
+  it('Create a petition-text post', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('ActionAndUserByIdQuery', {
