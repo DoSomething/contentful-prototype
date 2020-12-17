@@ -111,6 +111,46 @@ describe('Campaign Post', () => {
   });
 
   context('When the post_confirmation_page feature flag is on', () => {
+    it('Redirects to the show submission page after a successful text post submission', () => {
+      const user = userFactory();
+
+      cy.mockGraphqlOp('ActionAndUserByIdQuery', {
+        action: {
+          collectSchoolId: false,
+        },
+        user: {
+          schoolId: null,
+        },
+      });
+
+      // Log in & visit the campaign action page:
+      cy.withFeatureFlags({
+        post_confirmation_page: true,
+      }).authVisitCampaignWithSignup(user, exampleCampaign);
+
+      const text =
+        'I made my cat a full English breakfast, with coffee & cream.';
+      const response = newTextPost(campaignId, user, text);
+      cy.route('POST', POSTS_API, response).as('submitPost');
+
+      cy.mockGraphqlOp('PostQuery', {
+        post: {
+          userId: user.id,
+        },
+      });
+
+      cy.get('.text-submission-action textarea').type(text);
+      cy.get('.text-submission-action button[type="submit"]').click();
+      cy.wait('@submitPost');
+
+      // We should be redirected to the show submission page after submitting a post.
+      cy.location('pathname').should('eq', `/us/posts/${response.data.id}`);
+      // We should have appended the Photo Submission Action ID as a query parameter.
+      cy.location('search').should('eq', '?submissionActionId=id');
+
+      cy.contains('We Got Your Submission');
+    });
+
     it('Redirects to the show submission page after a successful photo post submission', () => {
       const user = userFactory();
 
@@ -141,6 +181,12 @@ describe('Campaign Post', () => {
         const response = newPhotoPost(campaignId, user);
         cy.route('POST', POSTS_API, response).as('submitPost');
 
+        cy.mockGraphqlOp('PostQuery', {
+          post: {
+            userId: user.id,
+          },
+        });
+
         // Submit the form, and assert we made the API request:
         cy.contains('Submit a new photo').click();
         cy.wait('@submitPost');
@@ -150,6 +196,8 @@ describe('Campaign Post', () => {
         // We should have appended the Photo Submission Action ID as a query parameter.
         cy.location('search').should('eq', '?submissionActionId=id');
       });
+
+      cy.contains('We Got Your Submission');
     });
   });
 });

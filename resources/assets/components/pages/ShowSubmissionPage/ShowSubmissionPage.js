@@ -79,7 +79,8 @@ const ShowSubmissionPage = ({ match }) => {
             ) : null}
             <div
               className={classnames('py-3 lg:p-6', {
-                'lg:w-3/4 ': postImageUrl,
+                'lg:w-3/4': postImageUrl,
+                'lg:pl-0': !postImageUrl,
               })}
             >
               <h1 className="uppercase text-3xl md:text-4xl font-league-gothic font-normal">
