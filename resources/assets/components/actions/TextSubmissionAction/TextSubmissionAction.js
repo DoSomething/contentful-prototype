@@ -10,10 +10,10 @@ import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import FormValidation from '../../utilities/Form/FormValidation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
-import { withoutUndefined, withoutNulls } from '../../../helpers';
 import { getFieldErrors, formatPostPayload } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
+import { featureFlag, withoutUndefined, withoutNulls } from '../../../helpers';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import {
   EVENT_CATEGORIES,
@@ -45,8 +45,16 @@ class TextSubmissionAction extends PostForm {
       // Resetting the submission item so that this won't be triggered continually for further renders.
       nextProps.resetPostSubmissionItem(nextProps.id);
 
+      // If the feature is toggled on, we'll redirect to the show submission page instead of displaying the affirmation modal.
+      const redirectToSubmissionPage = featureFlag('post_confirmation_page');
+
+      if (redirectToSubmissionPage) {
+        // @TODO: Use <Redirect> once https://git.io/JL3Bc is resolved.
+        window.location = `/us/posts/${response.data.id}?submissionActionId=${nextProps.id}`;
+      }
+
       return {
-        showModal: true,
+        showModal: !redirectToSubmissionPage,
         textValue: '',
       };
     }
