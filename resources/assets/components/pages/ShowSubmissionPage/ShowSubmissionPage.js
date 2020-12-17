@@ -95,15 +95,11 @@ const ShowSubmissionPage = ({ match }) => {
                     preview: env('CONTENTFUL_USE_PREVIEW_API', false),
                   }}
                 >
-                  {data =>
-                    data.block.affirmationContent ? (
-                      <TextContent className="mb-6">
-                        {data.block.affirmationContent}
-                      </TextContent>
-                    ) : (
-                      defaultContent
-                    )
-                  }
+                  {data => (
+                    <TextContent className="mb-6">
+                      {data.block.affirmationContent || defaultContent}
+                    </TextContent>
+                  )}
                 </Query>
               ) : (
                 <TextContent className="mb-6">{defaultContent}</TextContent>
