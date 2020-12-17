@@ -100,7 +100,9 @@ const ShowSubmissionPage = ({ match }) => {
                       <TextContent className="mb-6">
                         {data.block.affirmationContent}
                       </TextContent>
-                    ) : null
+                    ) : (
+                      defaultContent
+                    )
                   }
                 </Query>
               ) : (
