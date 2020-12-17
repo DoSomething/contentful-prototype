@@ -1,44 +1,51 @@
 import React from 'react';
 import tw from 'twin.macro';
-import { css } from '@emotion/core';
 
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const Table = tw.table`md:w-3/4 my-6`;
 const TableHeader = tw.thead`font-bold p-4 pr-6 text-center w-full border-solid border-b-4 border-gray-400`;
-const TableCell = tw.td`p-2 text-sm text-center md:text-base border-solid border-l border-b border-gray-400`;
+const TableCellLeft = tw.td`p-3 text-sm text-left md:text-base border-solid border-b border-gray-400`;
+const TableCellLeftBottom = tw.td`p-2 text-sm text-left md:text-base`;
+const TableCellCenter = tw.td`p-2 text-sm text-center md:text-base border-solid border-l border-b border-gray-400 items-center justify-center`;
+const TableCellCenterBottom = tw.td`p-2 text-sm text-center md:text-base border-solid border-l border-gray-400 items-center justify-center`;
+const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
 const RewardLevelsTable = () => {
-  const badges = 6;
+  // @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
+  const badges = 4;
 
   const header = (
     <TableHeader>
       <tr>
-        <TableCell />
+        <TableCellLeft />
 
-        <TableCell
+        <TableCellCenter
           className={
             badges >= 2 && badges < 4 ? 'bg-teal-500 bg-opacity-25' : 'bg-white'
           }
         >
-          Doer <span className="font-normal">2 badges</span>
-        </TableCell>
+          Doer <br />{' '}
+          <span className="font-normal text-xs md:text-sm">2 badges</span>
+        </TableCellCenter>
 
-        <TableCell
+        <TableCellCenter
           className={
             badges >= 4 && badges < 6
               ? 'bg-purple-500 bg-opacity-25'
               : 'bg-white'
           }
         >
-          SuperDoer <span className="font-normal">4 badges</span>
-        </TableCell>
+          SuperDoer <br />{' '}
+          <span className="font-normal text-xs md:text-sm">4 badges</span>
+        </TableCellCenter>
 
-        <TableCell
+        <TableCellCenter
           className={badges >= 6 ? 'bg-yellow-500 bg-opacity-25' : 'bg-white'}
         >
-          Legend <span className="font-normal">6 badges</span>
-        </TableCell>
+          Legend <br />{' '}
+          <span className="font-normal text-xs md:text-sm">6 badges</span>
+        </TableCellCenter>
       </tr>
     </TableHeader>
   );
@@ -67,19 +74,19 @@ const RewardLevelsTable = () => {
 
         <tbody data-testid="action-stats-table-body">
           <tr>
-            <TableCell>2x Scholarship entries</TableCell>
+            <TableCellLeft>2x Scholarship entries</TableCellLeft>
 
-            <TableCell
+            <TableCellCenter
               className={
                 badges >= 2 && badges < 4
                   ? 'bg-teal-500 bg-opacity-25'
                   : 'bg-white'
               }
             >
-              {badges >= 2 && badges < 4 ? 'X' : null}
-            </TableCell>
+              {badges >= 2 && badges < 4 ? <TableMarker /> : null}
+            </TableCellCenter>
 
-            <TableCell
+            <TableCellCenter
               className={
                 badges >= 4 && badges < 6
                   ? 'bg-purple-500 bg-opacity-25'
@@ -87,16 +94,16 @@ const RewardLevelsTable = () => {
               }
             />
 
-            <TableCell
+            <TableCellCenter
               className={
                 badges >= 6 ? 'bg-yellow-500 bg-opacity-25' : 'bg-white'
               }
             />
           </tr>
           <tr>
-            <TableCell>3x Scholarship entries</TableCell>
+            <TableCellLeft>3x Scholarship entries</TableCellLeft>
 
-            <TableCell
+            <TableCellCenter
               className={
                 badges >= 2 && badges < 4
                   ? 'bg-teal-500 bg-opacity-25'
@@ -104,26 +111,26 @@ const RewardLevelsTable = () => {
               }
             />
 
-            <TableCell
+            <TableCellCenter
               className={
                 badges >= 4 && badges < 6
                   ? 'bg-purple-500 bg-opacity-25'
                   : 'bg-white'
               }
             >
-              {badges >= 4 && badges < 6 ? 'X' : null}
-            </TableCell>
+              {badges >= 4 && badges < 6 ? <TableMarker /> : null}
+            </TableCellCenter>
 
-            <TableCell
+            <TableCellCenter
               className={
                 badges >= 6 ? 'bg-yellow-500 bg-opacity-25' : 'bg-white'
               }
             />
           </tr>
           <tr>
-            <TableCell>4x Scholarship entries</TableCell>
+            <TableCellLeftBottom>4x Scholarship entries</TableCellLeftBottom>
 
-            <TableCell
+            <TableCellCenterBottom
               className={
                 badges >= 2 && badges < 4
                   ? 'bg-teal-500 bg-opacity-25'
@@ -131,7 +138,7 @@ const RewardLevelsTable = () => {
               }
             />
 
-            <TableCell
+            <TableCellCenterBottom
               className={
                 badges >= 4 && badges < 6
                   ? 'bg-purple-500 bg-opacity-25'
@@ -139,13 +146,13 @@ const RewardLevelsTable = () => {
               }
             />
 
-            <TableCell
+            <TableCellCenterBottom
               className={
                 badges >= 6 ? 'bg-yellow-500 bg-opacity-25' : 'bg-white'
               }
             >
-              {badges >= 6 ? 'X' : null}
-            </TableCell>
+              {badges >= 6 ? <TableMarker /> : null}
+            </TableCellCenterBottom>
           </tr>
         </tbody>
       </Table>
