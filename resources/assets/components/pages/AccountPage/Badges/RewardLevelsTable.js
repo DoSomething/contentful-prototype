@@ -13,7 +13,7 @@ const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
 const RewardLevelsTable = () => {
   // @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
-  const badges = 6;
+  const badges = 4;
 
   const header = (
     <TableHeader>
@@ -83,7 +83,7 @@ const RewardLevelsTable = () => {
                   : 'bg-white'
               }
             >
-              {badges >= 2 && badges < 4 ? <TableMarker /> : null}
+              <TableMarker />
             </TableCellCenter>
 
             <TableCellCenter
@@ -118,7 +118,7 @@ const RewardLevelsTable = () => {
                   : 'bg-white'
               }
             >
-              {badges >= 4 && badges < 6 ? <TableMarker /> : null}
+              <TableMarker />
             </TableCellCenter>
 
             <TableCellCenter
@@ -151,7 +151,7 @@ const RewardLevelsTable = () => {
                 badges >= 6 ? 'bg-yellow-500 bg-opacity-25' : 'bg-white'
               }
             >
-              {badges >= 6 ? <TableMarker /> : null}
+              <TableMarker />
             </TableCellCenterBottom>
           </tr>
         </tbody>
