@@ -13,7 +13,20 @@ const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
 const RewardLevelsTable = () => {
   // @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
-  const badges = 4;
+  const badges = 6;
+
+  const userLevelLabel = badgeNumber => {
+    let userLevel;
+    if (badgeNumber >= 6) {
+      userLevel = 'Legend';
+    } else if (badgeNumber > 3) {
+      userLevel = 'SuperDoer';
+    } else if (badgeNumber >= 2) {
+      userLevel = 'Doer';
+    }
+
+    return userLevel;
+  };
 
   const header = (
     <TableHeader>
@@ -22,7 +35,9 @@ const RewardLevelsTable = () => {
 
         <TableCellCenter
           className={
-            badges >= 2 && badges < 4 ? 'bg-teal-500 bg-opacity-25' : 'bg-white'
+            userLevelLabel(badges) === 'Doer'
+              ? 'bg-teal-500 bg-opacity-25'
+              : 'bg-white'
           }
         >
           <span className="px-4">Doer</span> <br />{' '}
@@ -31,7 +46,7 @@ const RewardLevelsTable = () => {
 
         <TableCellCenter
           className={
-            badges >= 4 && badges < 6
+            userLevelLabel(badges) === 'SuperDoer'
               ? 'bg-purple-500 bg-opacity-25'
               : 'bg-white'
           }
@@ -41,7 +56,11 @@ const RewardLevelsTable = () => {
         </TableCellCenter>
 
         <TableCellCenter
-          className={badges >= 6 ? 'bg-yellow-500 bg-opacity-25' : 'bg-white'}
+          className={
+            userLevelLabel(badges) === 'Legend'
+              ? 'bg-yellow-500 bg-opacity-25'
+              : 'bg-white'
+          }
         >
           Legend <br />{' '}
           <span className="font-normal text-xs md:text-base">6 badges</span>
@@ -49,17 +68,6 @@ const RewardLevelsTable = () => {
       </tr>
     </TableHeader>
   );
-
-  const userLevelLabel = badgeNumber => {
-    let userLevel = 'Doer';
-    if (badgeNumber >= 6) {
-      userLevel = 'Legend';
-    } else if (badgeNumber > 3) {
-      userLevel = 'SuperDoer';
-    }
-
-    return userLevel;
-  };
 
   return (
     <div className="pt-10">
@@ -78,7 +86,7 @@ const RewardLevelsTable = () => {
 
             <TableCellCenter
               className={
-                badges >= 2 && badges < 4
+                userLevelLabel(badges) === 'Doer'
                   ? 'bg-teal-500 bg-opacity-25'
                   : 'bg-white'
               }
@@ -88,7 +96,7 @@ const RewardLevelsTable = () => {
 
             <TableCellCenter
               className={
-                badges >= 4 && badges < 6
+                userLevelLabel(badges) === 'SuperDoer'
                   ? 'bg-purple-500 bg-opacity-25'
                   : 'bg-white'
               }
@@ -96,7 +104,9 @@ const RewardLevelsTable = () => {
 
             <TableCellCenter
               className={
-                badges >= 6 ? 'bg-yellow-500 bg-opacity-25' : 'bg-white'
+                userLevelLabel(badges) === 'Legend'
+                  ? 'bg-yellow-500 bg-opacity-25'
+                  : 'bg-white'
               }
             />
           </tr>
@@ -105,7 +115,7 @@ const RewardLevelsTable = () => {
 
             <TableCellCenter
               className={
-                badges >= 2 && badges < 4
+                userLevelLabel(badges) === 'Doer'
                   ? 'bg-teal-500 bg-opacity-25'
                   : 'bg-white'
               }
@@ -113,7 +123,7 @@ const RewardLevelsTable = () => {
 
             <TableCellCenter
               className={
-                badges >= 4 && badges < 6
+                userLevelLabel(badges) === 'SuperDoer'
                   ? 'bg-purple-500 bg-opacity-25'
                   : 'bg-white'
               }
@@ -123,7 +133,9 @@ const RewardLevelsTable = () => {
 
             <TableCellCenter
               className={
-                badges >= 6 ? 'bg-yellow-500 bg-opacity-25' : 'bg-white'
+                userLevelLabel(badges) === 'Legend'
+                  ? 'bg-yellow-500 bg-opacity-25'
+                  : 'bg-white'
               }
             />
           </tr>
@@ -132,7 +144,7 @@ const RewardLevelsTable = () => {
 
             <TableCellCenterBottom
               className={
-                badges >= 2 && badges < 4
+                userLevelLabel(badges) === 'Doer'
                   ? 'bg-teal-500 bg-opacity-25'
                   : 'bg-white'
               }
@@ -140,7 +152,7 @@ const RewardLevelsTable = () => {
 
             <TableCellCenterBottom
               className={
-                badges >= 4 && badges < 6
+                userLevelLabel(badges) === 'SuperDoer'
                   ? 'bg-purple-500 bg-opacity-25'
                   : 'bg-white'
               }
@@ -148,7 +160,9 @@ const RewardLevelsTable = () => {
 
             <TableCellCenterBottom
               className={
-                badges >= 6 ? 'bg-yellow-500 bg-opacity-25' : 'bg-white'
+                userLevelLabel(badges) === 'Legend'
+                  ? 'bg-yellow-500 bg-opacity-25'
+                  : 'bg-white'
               }
             >
               <TableMarker />
