@@ -11,17 +11,19 @@ import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
 import snapchatIcon from './snapchatIcon.svg';
 import messengerIcon from './messengerIcon.svg';
-import { loadFacebookSDK } from '../../../helpers/facebook';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 import {
+  facebookMessengerShare,
+  loadFacebookSDK,
+  showFacebookSendDialog,
+  showFacebookShareDialog,
+} from '../../../helpers/facebook';
+import {
   loadSnapchatSDK,
   handleTwitterShareClick,
-  showFacebookShareDialog,
-  showFacebookSendDialog,
-  facebookMessengerShare,
   getFormattedScreenSize,
   handleSnapchatShareClick,
 } from '../../../helpers';
@@ -42,6 +44,8 @@ class SocialShareTray extends React.Component {
     }
   }
 
+  // @TODO is this a duplicate of the helper function in helpers/facebook.js?
+  // Import the function instead and use here?
   handleFacebookShareClick = (shareLink, trackLink) => {
     trackAnalyticsEvent('clicked_share_facebook', {
       action: 'button_clicked',
