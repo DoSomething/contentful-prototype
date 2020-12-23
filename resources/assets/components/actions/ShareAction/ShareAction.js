@@ -9,6 +9,7 @@ import Embed from '../../utilities/Embed/Embed';
 import Modal from '../../utilities/Modal/Modal';
 import PostCreatedModal from '../PostCreatedModal';
 import { formatPostPayload } from '../../../helpers/forms';
+import { loadFacebookSDK } from '../../../helpers/facebook';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -20,7 +21,6 @@ import {
 } from '../../../helpers/analytics';
 import {
   dynamicString,
-  loadFacebookSDK,
   showFacebookShareDialog,
   showTwitterSharePrompt,
   withoutNulls,

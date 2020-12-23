@@ -11,12 +11,12 @@ import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
 import snapchatIcon from './snapchatIcon.svg';
 import messengerIcon from './messengerIcon.svg';
+import { loadFacebookSDK } from '../../../helpers/facebook';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 import {
-  loadFacebookSDK,
   loadSnapchatSDK,
   handleTwitterShareClick,
   showFacebookShareDialog,

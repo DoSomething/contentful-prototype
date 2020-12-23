@@ -217,6 +217,7 @@ export function isDevEnvironment() {
 
 /**
  * Check to see if user is a DS.org staffer.
+ * @todo move to helpers/auth.js
  *
  * @return {Boolean}
  */
@@ -452,6 +453,7 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
  *
  * @param  {String}  endDate
  * @return {Boolean}
+ * @todo move to helpers/campaign.js
  */
 export function isCampaignClosed(endDate) {
   if (!endDate) {
@@ -548,32 +550,6 @@ export function query(key, url = window.location) {
   const search = queryString.parse(url.search);
 
   return search[key];
-}
-
-/**
- * Load and return the Facebook SDK.
- */
-export function loadFacebookSDK() {
-  return new Promise(resolve => {
-    if (document.getElementById('facebook-jssdk')) {
-      resolve(window.FB);
-    }
-
-    // Set init callback for once we've loaded Facebook's SDK:
-    window.fbAsyncInit = () => {
-      window.FB.init({
-        appId: env('FACEBOOK_APP_ID'),
-        version: 'v2.8',
-      });
-
-      resolve(window.FB);
-    };
-
-    const script = document.createElement('script');
-    script.id = 'facebook-jssdk';
-    script.src = '//connect.facebook.net/en_US/sdk.js';
-    document.head.append(script);
-  });
 }
 
 /**
