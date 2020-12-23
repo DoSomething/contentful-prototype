@@ -1,4 +1,4 @@
-/* global window, document, Blob, URL, snap */
+/* global window, document, Blob, URL */
 
 import queryString from 'query-string';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
@@ -21,7 +21,6 @@ import {
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
 import tailwindVariables from '../../../tailwind.variables';
-import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
 // Helper Constants
 export const EMPTY_IMAGE =
@@ -553,22 +552,6 @@ export function query(key, url = window.location) {
 }
 
 /**
- * Load and return the Snapchat SDK.
- */
-export function loadSnapchatSDK() {
-  const script = document.createElement('script');
-  script.id = 'snapkit-creative-kit-sdk';
-  script.src = 'https://sdk.snapkit.com/js/v1/create.js';
-  document.head.append(script);
-
-  window.snapKitInit = function() {
-    snap.creativekit.initalizeShareButtons(
-      document.getElementsByClassName('snapchat-share-button'),
-    );
-  };
-}
-
-/**
  * Open a dialog and run a callback when it closes.
  *
  * @param {String} href
@@ -605,22 +588,6 @@ export function openDialog(href, callback, width = 550, height = 420) {
   if (callback) {
     interval = setInterval(check, 1000);
   }
-}
-
-/**
- * Handle click event from a Snapchat share button
- *
- * @param {String} href
- * @param {Object} trackingData
- *
- */
-export function handleSnapchatShareClick(href, trackingData) {
-  trackAnalyticsEvent('clicked_share_snapchat', {
-    action: 'button_clicked',
-    category: EVENT_CATEGORIES.socialShare,
-    label: 'snapchat',
-    context: { ...trackingData, url: href },
-  });
 }
 
 /**

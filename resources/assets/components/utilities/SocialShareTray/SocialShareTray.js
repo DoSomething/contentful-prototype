@@ -17,16 +17,16 @@ import {
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 import {
+  handleSnapchatShareClick,
+  loadSnapchatSDK,
+} from '../../../helpers/snapchat';
+import {
   facebookMessengerShare,
   loadFacebookSDK,
   showFacebookSendDialog,
   showFacebookShareDialog,
 } from '../../../helpers/facebook';
-import {
-  loadSnapchatSDK,
-  getFormattedScreenSize,
-  handleSnapchatShareClick,
-} from '../../../helpers';
+import { getFormattedScreenSize } from '../../../helpers';
 
 class SocialShareTray extends React.Component {
   componentDidMount() {
