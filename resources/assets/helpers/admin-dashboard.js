@@ -1,5 +1,4 @@
 /* global document */
-/* eslint-disable import/prefer-default-export */
 
 import { toggleClassHandler } from '.';
 
@@ -11,3 +10,5 @@ export function bindAdminDashboardEvents() {
 
   toggleClassHandler(adminDashboardToggle, adminDashboard, 'is-visible');
 }
+
+export default null;
