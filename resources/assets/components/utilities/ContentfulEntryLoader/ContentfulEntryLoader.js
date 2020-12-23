@@ -30,7 +30,7 @@ import { SignupReferralsBlockFragment } from '../../blocks/SignupReferralsBlock/
 import { TextSubmissionBlockFragment } from '../../actions/TextSubmissionAction/TextSubmissionAction';
 import { PhotoSubmissionBlockFragment } from '../../actions/PhotoSubmissionAction/PhotoSubmissionAction';
 import { VoterRegistrationBlockFragment } from '../../actions/VoterRegistrationAction/VoterRegistrationAction';
-import { PetitionSubmissionBlockFragment } from '../../actions/PetitionSubmissioncAction/PetitionSubmissionAction';
+import { PetitionSubmissionBlockFragment } from '../../actions/PetitionSubmissionAction/PetitionSubmissionAction';
 import { SelectionSubmissionBlockFragment } from '../../actions/SelectionSubmissionAction/SelectionSubmissionAction';
 import { VoterRegistrationDriveBlockFragment } from '../../actions/VoterRegistrationDriveAction/VoterRegistrationDriveAction';
 import { VoterRegistrationReferralsBlockFragment } from '../../blocks/VoterRegistrationReferralsBlock/VoterRegistrationReferralsBlock';
