@@ -10,6 +10,7 @@ import Modal from '../../utilities/Modal/Modal';
 import PostCreatedModal from '../PostCreatedModal';
 import { formatPostPayload } from '../../../helpers/forms';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import { showTwitterSharePrompt } from '../../../helpers/twitter';
 import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
 import TextContent from '../../utilities/TextContent/TextContent';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
@@ -22,11 +23,7 @@ import {
   loadFacebookSDK,
   showFacebookShareDialog,
 } from '../../../helpers/facebook';
-import {
-  dynamicString,
-  showTwitterSharePrompt,
-  withoutNulls,
-} from '../../../helpers';
+import { dynamicString, withoutNulls } from '../../../helpers';
 
 export const ShareBlockFragment = gql`
   fragment ShareBlockFragment on ShareBlock {

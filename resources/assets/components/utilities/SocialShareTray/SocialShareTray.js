@@ -11,6 +11,7 @@ import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
 import snapchatIcon from './snapchatIcon.svg';
 import messengerIcon from './messengerIcon.svg';
+import { handleTwitterShareClick } from '../../../helpers/twitter';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -23,7 +24,6 @@ import {
 } from '../../../helpers/facebook';
 import {
   loadSnapchatSDK,
-  handleTwitterShareClick,
   getFormattedScreenSize,
   handleSnapchatShareClick,
 } from '../../../helpers';
