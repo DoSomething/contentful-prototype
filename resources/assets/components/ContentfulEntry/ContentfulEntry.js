@@ -29,7 +29,7 @@ import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/Pho
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationDriveAction from '../actions/VoterRegistrationDriveAction/VoterRegistrationDriveAction';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
-import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
+import PetitionSubmissionActionContainer from '../actions/PetitionSubmissionAction/PetitionSubmissionActionContainer';
 import VoterRegistrationReferralsBlock from '../blocks/VoterRegistrationReferralsBlock/VoterRegistrationReferralsBlock';
 import SelectionSubmissionActionContainer from '../actions/SelectionSubmissionAction/SelectionSubmissionActionContainer';
 
