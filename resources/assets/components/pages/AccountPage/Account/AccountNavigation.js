@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { featureFlag } from '../../../../helpers';
+import { featureFlag } from '../../../../helpers/env';
 import NavigationLink from '../../../utilities/NavigationLink/NavigationLink';
 import {
   EVENT_CATEGORIES,

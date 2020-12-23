@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { featureFlag } from '../../../../helpers';
+import { featureFlag } from '../../../../helpers/env';
 import Details from '../../../utilities/FaqElements/Details';
 import Summary from '../../../utilities/FaqElements/Summary';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';

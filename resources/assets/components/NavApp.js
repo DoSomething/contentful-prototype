@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from 'react-apollo';
 import { Router, Route, Switch } from 'react-router-dom';
 
-import { env } from '../helpers';
+import { env } from '../helpers/env';
 import graphqlClient from '../graphql';
 import { initializeStore } from '../store/store';
 import SiteNavigationContainer from './SiteNavigation/SiteNavigationContainer';

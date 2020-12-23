@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import FormItem from './FormItem';
-import { env } from '../../../../helpers/index';
+import { env } from '../../../../helpers/env';
+import VoterRegStatusBlock from '../VoterReg/VoterRegStatusBlock';
 import {
   EVENT_CATEGORIES,
   getPageContext,
   getUtmContext,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
-import VoterRegStatusBlock from '../VoterReg/VoterRegStatusBlock';
 
 const Profile = props => (
   <React.Fragment>

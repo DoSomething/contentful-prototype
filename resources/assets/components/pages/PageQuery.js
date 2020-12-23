@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
 import ErrorPage from './ErrorPage';
+import { env } from '../../helpers/env';
 import NotFoundPage from './NotFoundPage';
-import { env } from '../../helpers';
 import Placeholder from '../utilities/Placeholder';
 
 const PageQuery = ({ query, variables, children }) => {
