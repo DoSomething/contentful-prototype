@@ -1,0 +1,17 @@
+@import '../../../scss/next-toolbox.scss';
+
+.petition-submission-action {
+    .petition-textarea {
+        height: 122px;
+    }
+
+    .affirmation-message {
+        color: theme('colors.green.700');
+        font-size: $font-medium;
+    }
+
+    .petition-signature-label,
+    .petition-signature {
+        font-size: 21px;
+    }
+}
