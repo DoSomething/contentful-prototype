@@ -1,4 +1,3 @@
-import { siteConfig } from './env';
 import {
   makeHash,
   modifiers,
