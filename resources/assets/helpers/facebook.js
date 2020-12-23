@@ -1,3 +1,5 @@
+/* global window, document */
+
 import { env, makeUrl, openDialog } from '.';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
