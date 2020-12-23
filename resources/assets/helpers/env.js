@@ -13,6 +13,17 @@ export function env(key, defaultVal) {
 }
 
 /**
+ * Check to see if running in a development enviroment.
+ *
+ * @return {Boolean}
+ */
+export function isDevEnvironment() {
+  return ['local', 'development'].includes(
+    get(window.ENV, 'APP_ENV', 'production'),
+  );
+}
+
+/**
  * Get feature flag value from window.ENV
  *
  * @param  {String} feature
@@ -32,17 +43,6 @@ export function featureFlag(feature, defaultVal) {
  */
 export function siteConfig(config, defaultVal) {
   return get(env('SITE'), config, defaultVal);
-}
-
-/**
- * Check to see if running in a development enviroment.
- *
- * @return {Boolean}
- */
-export function isDevEnvironment() {
-  return ['local', 'development'].includes(
-    get(window.ENV, 'APP_ENV', 'production'),
-  );
 }
 
 export default null;
