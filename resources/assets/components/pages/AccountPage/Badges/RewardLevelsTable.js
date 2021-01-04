@@ -102,6 +102,7 @@ const RewardLevelsTable = () => {
 
             <TableCellCenter />
           </tr>
+
           <tr className="w-full">
             <TableCellLeft>3x Scholarship entries</TableCellLeft>
 
@@ -113,6 +114,7 @@ const RewardLevelsTable = () => {
 
             <TableCellCenter />
           </tr>
+
           <tr className="w-full">
             <TableCellLeftBottom>4x Scholarship entries</TableCellLeftBottom>
 
