@@ -360,7 +360,7 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
  *
  * @param  {String}  endDate
  * @return {Boolean}
- * @todo move to helpers/campaign.js move to helpers/campaign.js
+ * @todo move to helpers/campaign.js
  */
 export function isCampaignClosed(endDate) {
   if (!endDate) {
