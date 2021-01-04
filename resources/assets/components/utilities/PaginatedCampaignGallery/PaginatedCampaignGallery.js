@@ -4,16 +4,17 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
+import { updateQuery } from '../../../helpers';
+import ElementButton from '../Button/ElementButton';
+import Spinner from '../../artifacts/Spinner/Spinner';
+import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
+import { featureFlag, siteConfig } from '../../../helpers/env';
+import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
+import { campaignCardFragment } from '../CampaignCard/CampaignCard';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
-import ElementButton from '../Button/ElementButton';
-import Spinner from '../../artifacts/Spinner/Spinner';
-import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
-import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
-import { campaignCardFragment } from '../CampaignCard/CampaignCard';
-import { featureFlag, siteConfig, updateQuery } from '../../../helpers';
 
 const PAGINATED_CAMPAIGNS_QUERY = gql`
   query PaginatedCampaignQuery(

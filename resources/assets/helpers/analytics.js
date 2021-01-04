@@ -9,7 +9,7 @@ import {
   startCase,
 } from 'lodash';
 
-import { getUtms } from './utm';
+import { getUtms } from './url';
 import { debug, stringifyNestedObjects, withoutValueless } from '.';
 
 /**

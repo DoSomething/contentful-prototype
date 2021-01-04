@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import { votingReasons } from './config';
-import { query } from '../../../helpers';
 import GroupTypeLink from './GroupTypeLink';
 import ReferralsInfo from './ReferralsInfo';
+import { query } from '../../../helpers/url';
 import backgroundVrImage from './VoterRegistration-Pattern.png';
 import CampaignHeader from '../../utilities/CampaignHeader';
 

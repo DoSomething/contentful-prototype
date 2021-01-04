@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-import {
-  getMillisecondsFromDays,
-  isTimestampValid,
-  query,
-} from '../../../helpers';
+import { query } from '../../../helpers/url';
+import { getMillisecondsFromDays, isTimestampValid } from '../../../helpers';
 import { get as getStorage, set as setStorage } from '../../../helpers/storage';
 import {
   EVENT_CATEGORIES,

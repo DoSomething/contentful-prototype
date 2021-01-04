@@ -1,6 +1,5 @@
-/* global window, document, Blob, URL, snap */
+/* global window, document, Blob */
 
-import queryString from 'query-string';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
 import {
   get,
@@ -13,55 +12,18 @@ import {
   isObjectLike,
   isUndefined,
   mapValues,
-  merge,
   mergeWith,
   omitBy,
 } from 'lodash';
 
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
+import { appendToQuery, query } from './url';
 import tailwindVariables from '../../../tailwind.variables';
-import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
 // Helper Constants
 export const EMPTY_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-
-/**
- * Append query parameters to a URL even if it already has existing parameters.
- *
- * @param  {Object} additionalParameters
- * @param  {String} href
- * @return {URL}
- */
-export function appendToQuery(
-  additionalParameters,
-  href = window.location.href,
-) {
-  const urlObject = new URL(href, window.location.origin);
-
-  const mergedParameters = merge(
-    queryString.parse(urlObject.search),
-    additionalParameters,
-  );
-
-  urlObject.search = queryString.stringify(mergedParameters);
-
-  return urlObject;
-}
-
-/**
- * Return a boolean indicating whether the provided URL is external to the site.
- *
- * @param  {String} url
- * @return {Boolean}
- */
-export function isExternal(url) {
-  return (
-    new URL(String(url), window.location.origin).hostname !==
-    window.location.hostname
-  );
-}
 
 /**
  * Return a boolean indicating whether the provided argument is an empty string.
@@ -205,18 +167,8 @@ export function isAuthenticated() {
 }
 
 /**
- * Check to see if running in a development enviroment.
- *
- * @return {Boolean}
- */
-export function isDevEnvironment() {
-  return ['local', 'development'].includes(
-    get(window.ENV, 'APP_ENV', 'production'),
-  );
-}
-
-/**
  * Check to see if user is a DS.org staffer.
+ * @todo move to helpers/auth.js
  *
  * @return {Boolean}
  */
@@ -452,6 +404,7 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
  *
  * @param  {String}  endDate
  * @return {Boolean}
+ * @todo move to helpers/campaign.js
  */
 export function isCampaignClosed(endDate) {
   if (!endDate) {
@@ -491,185 +444,6 @@ export function findById(array, compareId) {
 }
 
 /**
- * Get a value from the window.ENV
- *
- * @param  {String} key
- * @return {String}
- */
-export function env(key, defaultVal) {
-  return get(window.ENV, key, defaultVal);
-}
-
-/**
- * Get feature flag value from window.ENV
- *
- * @param  {String} feature
- * @param  {*}      defaultVal
- * @return {*}
- */
-export function featureFlag(feature, defaultVal) {
-  return get(env('FEATURE_FLAGS'), feature, defaultVal);
-}
-
-/**
- * Get site config value from window.ENV
- *
- * @param  {String} config
- * @param  {*}      defaultVal
- * @return {*}
- */
-export function siteConfig(config, defaultVal) {
-  return get(env('SITE'), config, defaultVal);
-}
-
-/**
- * Construct absolute URL with query params.
- *
- * @param {String} url
- * @param {Object} query
- * @return {URL}
- */
-export function makeUrl(path, queryParameters) {
-  const urlObject = new URL(String(path));
-  urlObject.search = queryString.stringify(queryParameters);
-
-  return urlObject;
-}
-
-/**
- * Get the query-string value at the given key.
- *
- * @param  {String}   key
- * @param  {URL|Location}   url
- * @return {String|Undefined}
- */
-export function query(key, url = window.location) {
-  // Ensure we have a URL object from the location.
-  const search = queryString.parse(url.search);
-
-  return search[key];
-}
-
-/**
- * Load and return the Facebook SDK.
- */
-export function loadFacebookSDK() {
-  return new Promise(resolve => {
-    if (document.getElementById('facebook-jssdk')) {
-      resolve(window.FB);
-    }
-
-    // Set init callback for once we've loaded Facebook's SDK:
-    window.fbAsyncInit = () => {
-      window.FB.init({
-        appId: env('FACEBOOK_APP_ID'),
-        version: 'v2.8',
-      });
-
-      resolve(window.FB);
-    };
-
-    const script = document.createElement('script');
-    script.id = 'facebook-jssdk';
-    script.src = '//connect.facebook.net/en_US/sdk.js';
-    document.head.append(script);
-  });
-}
-
-/**
- * Load and return the Snapchat SDK.
- */
-export function loadSnapchatSDK() {
-  const script = document.createElement('script');
-  script.id = 'snapkit-creative-kit-sdk';
-  script.src = 'https://sdk.snapkit.com/js/v1/create.js';
-  document.head.append(script);
-
-  window.snapKitInit = function() {
-    snap.creativekit.initalizeShareButtons(
-      document.getElementsByClassName('snapchat-share-button'),
-    );
-  };
-}
-
-/**
- * Share a link by generating a Facebook dialog.
- * Get a callback if the share is successful or not.
- *
- * @param  {Object}  options
- * @return {Promise}
- */
-export function showFacebookDialog(options) {
-  return new Promise((resolve, reject) => {
-    const handler = success => (success ? resolve() : reject());
-    return window.FB.ui(options, handler);
-  });
-}
-
-/**
- * Generate a Facebook Share Dialog
- *
- * @param {String} href
- * @param {String} quote
- */
-export function showFacebookShareDialog(href, quote = null) {
-  return showFacebookDialog({
-    method: 'share',
-    quote,
-    href,
-  });
-}
-
-/**
- * Generate a Facebook Send Dialog
- *
- * @param {String} href
- */
-export function showFacebookSendDialog(href) {
-  return showFacebookDialog({
-    method: 'send',
-    link: href,
-  });
-}
-
-/**
- * Share a link via the Facebook Messenger app (for mobile devices).
- * Get a callback if the user is presumed to have been redirected to the
- * application or not.
- *
- * @param  {String}  href
- * @return {Promise}
- */
-export function facebookMessengerShare(href) {
-  // Capture if the user leaves the page (presumably meaning they've been successfully redirected to the Messenger app.)
-  let switchedToApp = false;
-  window.onblur = () => (switchedToApp = true);
-
-  return new Promise((resolve, reject) => {
-    const messengerAppUrl = makeUrl('fb-messenger://share', {
-      link: href,
-      app_id: env('FACEBOOK_APP_ID'),
-    });
-    window.location = messengerAppUrl.href;
-
-    setTimeout(() => {
-      // If our client still has not left the page, and the page is still in focus,
-      // they presumably don't have the Messenger app.
-      if (!switchedToApp && window.document.hasFocus()) {
-        reject();
-        // eslint-disable-next-line no-alert
-        window.alert(
-          'Sorry, you need to have the Facebook Messenger app installed to send a message.',
-        );
-      } else {
-        window.onblur = null;
-        resolve();
-      }
-    }, 1500);
-  });
-}
-
-/**
  * Open a dialog and run a callback when it closes.
  *
  * @param {String} href
@@ -706,89 +480,6 @@ export function openDialog(href, callback, width = 550, height = 420) {
   if (callback) {
     interval = setInterval(check, 1000);
   }
-}
-
-/**
- * Share a link by opening a Facebook share prompt.
- *
- * @param  {String} href
- * @param  {String} quote
- */
-export function showFacebookSharePrompt(href, callback) {
-  const intent = makeUrl('https://www.facebook.com/dialog/share', {
-    app_id: env('FACEBOOK_APP_ID'),
-    href,
-  });
-
-  openDialog(intent, callback);
-}
-
-/**
- * Share a link by opening a Twitter share prompt.
- *
- * @param  {String} href
- * @param  {String} quote
- */
-export function showTwitterSharePrompt(href, quote = '', callback) {
-  const intent = makeUrl('https://twitter.com/intent/tweet', {
-    url: href,
-    text: quote,
-  });
-
-  openDialog(intent, callback);
-}
-
-/**
- * Handle click event from Facebook share button
- *
- * @param {String} href
- * @param {Object} trackingData
- */
-export function handleFacebookShareClick(href, trackingData) {
-  trackAnalyticsEvent('clicked_share_facebook', {
-    action: 'button_clicked',
-    category: EVENT_CATEGORIES.socialShare,
-    label: 'facebook',
-    context: { ...trackingData, url: href },
-  });
-
-  // @todo 12/13/2018: Use the showFacebookShareDialog to track
-  // 'completed' and 'cancelled' events as well.
-  showFacebookSharePrompt(href);
-}
-
-/**
- * Handle click event from a Snapchat share button
- *
- * @param {String} href
- * @param {Object} trackingData
- *
- */
-export function handleSnapchatShareClick(href, trackingData) {
-  trackAnalyticsEvent('clicked_share_snapchat', {
-    action: 'button_clicked',
-    category: EVENT_CATEGORIES.socialShare,
-    label: 'snapchat',
-    context: { ...trackingData, url: href },
-  });
-}
-
-/**
- * Handle click event from a Twitter share button
- *
- * @param {String} href
- * @param {Object} trackingData
- * @param {String} quote
- */
-export function handleTwitterShareClick(href, trackingData, quote = '') {
-  trackAnalyticsEvent('clicked_share_twitter', {
-    action: 'button_clicked',
-    category: EVENT_CATEGORIES.socialShare,
-    label: 'twitter',
-    context: { ...trackingData, url: href },
-  });
-
-  showTwitterSharePrompt(href, quote);
 }
 
 /**
@@ -1009,26 +700,3 @@ export function getMillisecondsFromDays(days) {
   // @TODO make this more flexible, ie. get milliseconds from hours vs days etc
   return days * 1440 * 60 * 1000;
 }
-
-/**
- * Checks if current path matches an item in given paths array.
- *
- * @param {Array} paths
- * @return {Boolean}
- */
-export const isCurrentPathInPaths = paths => {
-  const pathname = window.location.pathname;
-
-  return paths.find(path => {
-    if (path.includes('*')) {
-      const pathWithoutAsterisk = path.slice(0, -1);
-
-      return (
-        pathname.includes(pathWithoutAsterisk) &&
-        pathname.length > pathWithoutAsterisk.length
-      );
-    }
-
-    return path === pathname;
-  });
-};

@@ -4,9 +4,10 @@ import { split } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import { query } from '../../../helpers/url';
 import PaginatedQuery from '../../PaginatedQuery';
 import ScrollConcierge from '../../ScrollConcierge';
-import { query, withoutValueless } from '../../../helpers';
+import { withoutValueless } from '../../../helpers';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';

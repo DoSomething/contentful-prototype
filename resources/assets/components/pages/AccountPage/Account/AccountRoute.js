@@ -6,7 +6,7 @@ import Credits from '../Credits/Credits';
 import Profile from '../Profile/Profile';
 import BadgesTab from '../Badges/BadgesTab';
 import Interests from '../Interests/Interests';
-import { featureFlag } from '../../../../helpers';
+import { featureFlag } from '../../../../helpers/env';
 import UserPostsQuery from '../Campaigns/UserPostsQuery';
 import DeleteAccountTab from '../Profile/DeleteAccountTab';
 import Subscriptions from '../Subscriptions/Subscriptions';

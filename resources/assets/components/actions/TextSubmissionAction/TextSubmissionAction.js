@@ -6,14 +6,15 @@ import { get, has, invert, mapValues } from 'lodash';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
+import { featureFlag } from '../../../helpers/env';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import FormValidation from '../../utilities/Form/FormValidation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import { withoutUndefined, withoutNulls } from '../../../helpers';
 import { getFieldErrors, formatPostPayload } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
-import { featureFlag, withoutUndefined, withoutNulls } from '../../../helpers';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import {
   EVENT_CATEGORIES,

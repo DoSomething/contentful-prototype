@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { featureFlag } from '../../helpers';
 import Modal from '../utilities/Modal/Modal';
+import { featureFlag } from '../../helpers/env';
 import NotificationContainer from '../Notification';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import SiteFooter from '../utilities/SiteFooter/SiteFooter';

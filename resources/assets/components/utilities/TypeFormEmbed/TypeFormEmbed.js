@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import * as typeformEmbed from '@typeform/embed';
 import React, { useRef, useEffect } from 'react';
 
-import { makeUrl, withoutNulls } from '../../../helpers';
+import { makeUrl } from '../../../helpers/url';
+import { withoutNulls } from '../../../helpers';
 
 const DISPLAY_STYLES = {
   block: {

@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
-import { featureFlag } from '../../helpers';
+import { featureFlag } from '../../helpers/env';
 import { isAuthenticated } from '../../helpers/auth';
 import ContentfulEntryLoader from '../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 

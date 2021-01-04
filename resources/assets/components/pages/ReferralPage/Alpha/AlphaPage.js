@@ -2,7 +2,7 @@ import React from 'react';
 
 import ErrorPage from '../../ErrorPage';
 import Card from '../../../utilities/Card/Card';
-import { featureFlag } from '../../../../helpers';
+import { featureFlag } from '../../../../helpers/env';
 import ArticleHeader from '../../../utilities/ArticleHeader';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import { getReferFriendsLink } from '../../../../helpers/refer-friends';
