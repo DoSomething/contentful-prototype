@@ -84,6 +84,7 @@ const RewardLevelsTable = () => {
             }
           />
         </colgroup>
+
         {header}
 
         <tbody data-testid="rewards-levels-table-body">
