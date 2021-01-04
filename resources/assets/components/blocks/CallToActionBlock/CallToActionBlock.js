@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
 
+import { env } from '../../../helpers/env';
+import { tailwind } from '../../../helpers';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
-import { env, tailwind } from '../../../helpers';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 

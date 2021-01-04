@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Query from '../../Query';
-import { siteConfig } from '../../../helpers';
+import { siteConfig } from '../../../helpers/env';
 import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
 import { scholarshipCardFragment } from '../../utilities/ScholarshipCard/ScholarshipCard';
 

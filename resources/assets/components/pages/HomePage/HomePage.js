@@ -7,6 +7,7 @@ import { React, Fragment } from 'react';
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
+import { featureFlag } from '../../../helpers/env';
 import * as NewsletterImages from './NewsletterImages';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
@@ -23,7 +24,6 @@ import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDist
 import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
 import {
   contentfulImageUrl,
-  featureFlag,
   isAuthenticated,
   tailwind,
 } from '../../../helpers';

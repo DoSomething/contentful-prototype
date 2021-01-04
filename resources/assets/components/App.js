@@ -6,15 +6,16 @@ import { ApolloProvider } from '@apollo/react-common';
 import { Provider as ReduxProvider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 
+import { query } from '../helpers/url';
 import graphqlClient from '../graphql';
 import ErrorPage from './pages/ErrorPage';
 import AuthGate from './utilities/AuthGate';
 import Modal from './utilities/Modal/Modal';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
+import { env, featureFlag } from '../helpers/env';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
-import { env, featureFlag, query } from '../helpers';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';

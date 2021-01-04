@@ -2,7 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import { env } from '../../helpers';
+import { env } from '../../helpers/env';
 import graphqlClient from '../../graphql';
 
 export const USER_ACTION_SCHOOL_ID_QUERY = gql`

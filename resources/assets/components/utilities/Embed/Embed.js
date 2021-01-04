@@ -11,7 +11,7 @@ import { Query } from 'react-apollo';
 
 import LazyImage from '../LazyImage';
 import linkIcon from './link_icon.svg';
-import { isExternal } from '../../../helpers';
+import { isExternal } from '../../../helpers/url';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
 

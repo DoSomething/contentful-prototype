@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { isExternal } from '../../../helpers';
+import { isExternal } from '../../../helpers/url';
 
 /**
  * Basic button link (<a>) with minimal styles.

@@ -9,15 +9,16 @@ import { get, has, invert, mapValues } from 'lodash';
 import Query from '../../Query';
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
+import { featureFlag } from '../../../helpers/env';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import { withoutUndefined, withoutNulls } from '../../../helpers';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
-import { withoutUndefined, withoutNulls, featureFlag } from '../../../helpers';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import {
   calculateDifference,

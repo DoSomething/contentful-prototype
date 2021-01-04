@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { getUtms } from './utm';
+import { getUtms } from './url';
 import { getUserId } from './auth';
 
 /**

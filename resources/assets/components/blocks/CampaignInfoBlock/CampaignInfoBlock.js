@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
-import { featureFlag, getHumanFriendlyDate } from '../../../helpers';
+import { featureFlag } from '../../../helpers/env';
+import { getHumanFriendlyDate } from '../../../helpers';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,

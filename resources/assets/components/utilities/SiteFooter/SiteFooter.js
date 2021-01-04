@@ -1,11 +1,11 @@
 import React from 'react';
 
 import TikTokIcon from './TikTokIcon';
-import { query } from '../../../helpers';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
+import { query } from '../../../helpers/url';
 
 const SiteFooter = () => {
   // Hide footer if we're in "chromeless" mode, e.g. for an embed:

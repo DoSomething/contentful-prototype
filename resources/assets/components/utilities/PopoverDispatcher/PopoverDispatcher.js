@@ -4,23 +4,23 @@ import { createPortal } from 'react-dom';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useRef, useEffect } from 'react';
 
-import {
-  isVerifiedCompletedVoterRegStatuses,
-  isVerifiedIneligibleVoterRegStatuses,
-  USER_VOTER_REGISTRATION_STATUS_QUERY,
-} from '../../../helpers/voter-registration';
 import CtaPopover from './CtaPopover/CtaPopover';
+import { getUserId } from '../../../helpers/auth';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBanner from './SitewideBanner/SitewideBanner';
 import DelayedElement from '../DelayedElement/DelayedElement';
-import { isCurrentPathInPaths, query } from '../../../helpers';
+import { isCurrentPathInPaths, query } from '../../../helpers/url';
 import CtaPopoverEmailForm from './CtaPopover/CtaPopoverEmailForm';
-import { getUserId } from '../../../helpers/auth';
 import DismissableElement from '../DismissableElement/DismissableElement';
 import {
   sitewideBannerExcludedPaths,
   scholarshipsNewsletterPaths,
 } from './config';
+import {
+  isVerifiedCompletedVoterRegStatuses,
+  isVerifiedIneligibleVoterRegStatuses,
+  USER_VOTER_REGISTRATION_STATUS_QUERY,
+} from '../../../helpers/voter-registration';
 
 const CAMPAIGN_QUERY = gql`
   query CampaignSitewideBannerQuery($campaignId: Int!) {

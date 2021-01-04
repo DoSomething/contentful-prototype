@@ -11,8 +11,8 @@ import {
 import QueryOptions from './QueryOptions';
 import Card from '../../utilities/Card/Card';
 import { PHOENIX_URL } from '../../../constants';
-import { appendToQuery } from '../../../helpers';
 import { getUserId } from '../../../helpers/auth';
+import { appendToQuery } from '../../../helpers/url';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PreviewImage from './voter-registration-drive-page.png';

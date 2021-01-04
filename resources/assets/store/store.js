@@ -2,10 +2,10 @@ import localforage from 'localforage';
 import { isNull, merge } from 'lodash';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
+import { query } from '../helpers/url';
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
 import { loadStorage } from '../helpers/storage';
-import { query } from '../helpers';
 import { getCampaignSignups, startQueue } from '../actions';
 import { isCampaignSignUpInState } from '../selectors/signup';
 import { getUserId, isAuthenticated } from '../selectors/user';

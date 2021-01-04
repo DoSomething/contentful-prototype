@@ -5,16 +5,12 @@ import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
-import {
-  isScholarshipAffiliateReferral,
-  getScholarshipAffiliateLabel,
-  isCurrentPathInPaths,
-  siteConfig,
-} from '../../helpers';
 import Modal from '../utilities/Modal/Modal';
+import { siteConfig } from '../../helpers/env';
 import ContentfulEntry from '../ContentfulEntry';
 import partnerScholarshipQuizPaths from './config';
 import Spinner from '../artifacts/Spinner/Spinner';
+import { isCurrentPathInPaths } from '../../helpers/url';
 import CampaignHeader from '../utilities/CampaignHeader';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import CoverImage from '../utilities/CoverImage/CoverImage';
@@ -27,6 +23,10 @@ import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment'
 import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
+import {
+  isScholarshipAffiliateReferral,
+  getScholarshipAffiliateLabel,
+} from '../../helpers';
 import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import ScholarshipReferralVoterRegistrationBlock from '../blocks/ScholarshipReferralVoterRegistrationBlock/ScholarshipReferralVoterRegistrationBlock';
 
