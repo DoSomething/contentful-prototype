@@ -35,7 +35,7 @@ const SiteFooter = () => {
                 title="dosomething on Tik Tok"
                 className="hover:text-white"
                 style={{ padding: 0 }}
-                onClick={handleFooterTracking('Tik Tok')}
+                onClick={handleFooterTracking('tiktok')}
               >
                 <TikTokIcon />
               </a>
@@ -45,7 +45,7 @@ const SiteFooter = () => {
                 href="http://instagram.com/dosomething"
                 className="social-icon -instagram"
                 title="@dosomething on Instagram"
-                onClick={handleFooterTracking('Instagram')}
+                onClick={handleFooterTracking('instagram')}
               >
                 <span>@dosomething on Instagram</span>
               </a>
@@ -55,7 +55,7 @@ const SiteFooter = () => {
                 href="https://twitter.com/dosomething"
                 className="social-icon -twitter"
                 title="@dosomething on Twitter"
-                onClick={handleFooterTracking('Twitter')}
+                onClick={handleFooterTracking('twitter')}
               >
                 <span>@dosomething on Twitter</span>
               </a>
@@ -65,7 +65,7 @@ const SiteFooter = () => {
                 href="https://www.facebook.com/dosomething"
                 className="social-icon -facebook"
                 title="dosomething on Facebook"
-                onClick={handleFooterTracking('Facebook')}
+                onClick={handleFooterTracking('facebook')}
               >
                 <span>dosomething on Facebook</span>
               </a>
@@ -75,7 +75,7 @@ const SiteFooter = () => {
                 href="https://www.snapchat.com/add/dosomething"
                 className="social-icon -snapchat"
                 title="dosomething on Snapchat"
-                onClick={handleFooterTracking('Snapchat')}
+                onClick={handleFooterTracking('snapchat')}
               >
                 <span>dosomething on Snapchat</span>
               </a>
@@ -85,7 +85,7 @@ const SiteFooter = () => {
                 href="http://www.youtube.com/user/DoSomething1"
                 className="social-icon -youtube"
                 title="dosomething1 on YouTube"
-                onClick={handleFooterTracking('YouTube')}
+                onClick={handleFooterTracking('youTube')}
               >
                 <span>dosomething1 on YouTube</span>
               </a>
