@@ -38,7 +38,7 @@ import NavApp from './components/NavApp';
 
 // DOM Helpers
 import { ready, debug } from './helpers';
-import { persistUtms } from './helpers/utm';
+import { persistUtms } from './helpers/url';
 import { init as historyInit } from './history';
 import { bindTokenRefreshEvent } from './helpers/auth';
 import { bindFlashMessageEvents } from './helpers/flash-message';

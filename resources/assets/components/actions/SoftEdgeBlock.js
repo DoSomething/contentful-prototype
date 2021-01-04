@@ -6,8 +6,9 @@ import React, { useEffect, useRef } from 'react';
 import useScript, { ScriptStatus } from '@charlietango/use-script';
 
 import Card from '../utilities/Card/Card';
+import { makeUrl } from '../../helpers/url';
+import { withoutNulls } from '../../helpers';
 import Spinner from '../artifacts/Spinner/Spinner';
-import { makeUrl, withoutNulls } from '../../helpers';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
 export const SoftEdgeBlockFragment = gql`

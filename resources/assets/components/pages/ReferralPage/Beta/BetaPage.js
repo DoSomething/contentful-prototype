@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 
 import Query from '../../../Query';
 import ErrorPage from '../../ErrorPage';
-import { query } from '../../../../helpers';
+import { query } from '../../../../helpers/url';
 import CampaignLink from './BetaPageCampaignLink';
 import GiftCardHandImage from './gift-card-hand.svg';
 import ArticleHeader from '../../../utilities/ArticleHeader';

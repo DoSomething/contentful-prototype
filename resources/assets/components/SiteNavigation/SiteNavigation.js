@@ -11,7 +11,7 @@ import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
-import { query } from '../../helpers';
+import { query } from '../../helpers/url';
 import {
   EVENT_CATEGORIES,
   getUtmContext,

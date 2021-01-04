@@ -1,5 +1,5 @@
-import { getUtms } from '../helpers/utm';
-import { query, withoutValueless } from '../helpers';
+import { withoutValueless } from '../helpers';
+import { getUtms, query } from '../helpers/url';
 import { getCampaignDataForNorthstar } from './campaign';
 import { getStoryPageDataForNorthstar } from './storyPage';
 

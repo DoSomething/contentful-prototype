@@ -6,8 +6,9 @@ import Embed from '../Embed/Embed';
 import LinkIcon from './link-icon.svg';
 import { env } from '../../../helpers/env';
 import { postRequest } from '../../../helpers/api';
+import { appendToQuery } from '../../../helpers/url';
+import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../SocialShareTray/SocialShareTray';
-import { appendToQuery, dynamicString, withoutTokens } from '../../../helpers';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
