@@ -3,12 +3,12 @@ import gql from 'graphql-tag';
 import { css } from '@emotion/core';
 import { propType } from 'graphql-anywhere';
 
+import { tailwind } from '../../../helpers';
 import PrimaryButton from '../Button/PrimaryButton';
 import {
   contentfulImageUrl,
   contentfulImageSrcset,
-  tailwind,
-} from '../../../helpers';
+} from '../../../helpers/contentful';
 
 export const campaignCardFeaturedFragment = gql`
   fragment CampaignCardFeatured on Showcasable {

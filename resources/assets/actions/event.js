@@ -1,7 +1,8 @@
 import * as actions from '.';
+import { isTimestampValid } from '../helpers';
 import { isAuthenticated } from '../selectors/user';
+import { contentfulImageUrl } from '../helpers/contentful';
 import { getArray, EVENT_STORAGE_KEY } from '../helpers/storage';
-import { isTimestampValid, contentfulImageUrl } from '../helpers';
 
 // Action: remove completed event from storage.
 export function completedEvent(index) {

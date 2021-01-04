@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import LazyImage from '../../../utilities/LazyImage';
-import {
-  contentfulImageUrl,
-  getFormattedScreenSize,
-} from '../../../../helpers';
+import { getFormattedScreenSize } from '../../../../helpers';
+import { contentfulImageUrl } from '../../../../helpers/contentful';
 
 const CampaignPreview = ({ campaignWebsite }) => {
   const {

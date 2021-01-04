@@ -16,9 +16,9 @@ import {
   omitBy,
 } from 'lodash';
 
+import { query } from './url';
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
-import { appendToQuery, query } from './url';
 import tailwindVariables from '../../../tailwind.variables';
 
 // Helper Constants
@@ -78,50 +78,6 @@ export function withoutUndefined(data) {
  */
 export function withoutValueless(data) {
   return omitBy(omitBy(omitBy(data, isNil), isEmptyArray), isEmptyString);
-}
-
-/**
- * Generate a Contentful Image URL with added url parameters.
- *
- * @param  {String} url
- * @param  {String} width
- * @param  {String} height
- * @param  {String} fit
- * @return {String}
- */
-export function contentfulImageUrl(
-  url,
-  width = null,
-  height = null,
-  fit = null,
-) {
-  if (!url) {
-    return undefined;
-  }
-
-  const params = withoutNulls({
-    w: width, // eslint-disable-line id-length
-    h: height, // eslint-disable-line id-length
-    fit,
-  });
-
-  return Object.keys(params).length ? appendToQuery(params, url).href : url;
-}
-
-/**
- * Generate srcset value at specified sizes for a Contentful Image URL.
- *
- * @param {String} url
- * @param {Object} sizes
- */
-export function contentfulImageSrcset(url, sizes) {
-  const sources = sizes.map(size => {
-    return `${contentfulImageUrl(url, size.width, size.height, 'fill')} ${
-      size.width
-    }w`;
-  });
-
-  return sources.join(', ');
 }
 
 /**
@@ -404,7 +360,7 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
  *
  * @param  {String}  endDate
  * @return {Boolean}
- * @todo move to helpers/campaign.js
+ * @todo move to helpers/campaign.js move to helpers/campaign.js
  */
 export function isCampaignClosed(endDate) {
   if (!endDate) {
@@ -489,6 +445,7 @@ export function openDialog(href, callback, width = 550, height = 420) {
  * @param  {Object} state
  * @param  {String} identifier
  * @return {Object|Undefined}
+ * @todo rename to findContentfulEntryInCampaign and move to helpers/campaign.js
  */
 export function findContentfulEntry(state, identifier) {
   const campaign = state.campaign;
@@ -499,27 +456,6 @@ export function findContentfulEntry(state, identifier) {
     contentfulEntries,
     entry =>
       entry.id === identifier || get(entry, 'fields.slug') === identifier,
-  );
-}
-
-/**
- * Get the content type of the given entry, including custom
- * overrides for "Custom Block" or "Campaign Action Step" or
- * manual re-assignments.
- *
- * @param  {Object} json
- * @param  {String} default
- * @return {String}
- */
-export function parseContentfulType(json, defaultType) {
-  // Figure out the "type" of this entry based on 'customType' field, Contentful machine name,
-  // or the 'type' set in the API transformer. If none of those match, use the given default.
-  return (
-    json.__typename ||
-    get(json, 'fields.customType') ||
-    get(json, 'type.sys.id') ||
-    get(json, 'type') ||
-    defaultType
   );
 }
 

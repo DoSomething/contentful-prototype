@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 
-import { contentfulImageUrl } from '../helpers';
+import { contentfulImageUrl } from '../helpers/contentful';
 
 /**
  * Get Story Page data to showcase story page context in Northstar login interface.

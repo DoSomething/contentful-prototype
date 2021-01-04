@@ -10,7 +10,7 @@ import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import { isExternal } from './url';
-import { contentfulImageUrl } from '.';
+import { contentfulImageUrl } from './contentful';
 import ContentfulAsset from '../components/utilities/ContentfulAsset/ContentfulAsset';
 import ContentfulEntryLoader from '../components/utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 

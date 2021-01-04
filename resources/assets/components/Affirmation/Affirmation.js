@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import Query from '../Query';
 import Card from '../utilities/Card/Card';
 import Byline from '../utilities/Byline/Byline';
-import { contentfulImageUrl } from '../../helpers';
 import Badge from '../pages/AccountPage/Badges/Badge';
+import { contentfulImageUrl } from '../../helpers/contentful';
 import TextContent from '../utilities/TextContent/TextContent';
 import CtaReferralPageBannerContainer from '../utilities/CtaReferralPageBanner/CtaReferralPageBannerContainer';
 

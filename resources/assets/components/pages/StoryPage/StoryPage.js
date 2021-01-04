@@ -6,11 +6,8 @@ import PropTypes from 'prop-types';
 import ContentfulEntry from '../../ContentfulEntry';
 import PageInfoBar from '../../PageInfoBar/PageInfoBar';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import {
-  contentfulImageUrl,
-  withoutNulls,
-  isAuthenticated,
-} from '../../../helpers';
+import { contentfulImageUrl } from '../../../helpers/contentful';
+import { withoutNulls, isAuthenticated } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 

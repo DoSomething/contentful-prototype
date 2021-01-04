@@ -9,9 +9,11 @@ import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
 import { featureFlag } from '../../../helpers/env';
 import * as NewsletterImages from './NewsletterImages';
+import { isAuthenticated, tailwind } from '../../../helpers';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
+import { contentfulImageUrl } from '../../../helpers/contentful';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
@@ -22,11 +24,6 @@ import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoi
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
-import {
-  contentfulImageUrl,
-  isAuthenticated,
-  tailwind,
-} from '../../../helpers';
 
 const HOME_PAGE_QUERY = gql`
   query HomePageQuery($preview: Boolean!) {

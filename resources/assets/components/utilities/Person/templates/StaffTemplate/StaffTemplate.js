@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import PropTypes from 'prop-types';
 
 import { Figure } from '../../../Figure/Figure';
-import { contentfulImageUrl } from '../../../../../helpers';
+import { contentfulImageUrl } from '../../../../../helpers/contentful';
 
 const StaffTemplate = props => {
   const {

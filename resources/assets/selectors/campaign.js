@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 
-import { contentfulImageUrl } from '../helpers';
+import { contentfulImageUrl } from '../helpers/contentful';
 
 /**
  * Get the Campaign additional content from the state.

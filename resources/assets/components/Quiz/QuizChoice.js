@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../utilities/Card/Card';
-import { contentfulImageUrl } from '../../helpers';
+import { contentfulImageUrl } from '../../helpers/contentful';
 
 const QuizChoice = props => {
   const {
