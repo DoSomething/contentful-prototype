@@ -6,6 +6,7 @@ import Badge from './Badge';
 import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
 import RewardsFaq from './RewardsFaq';
+import RewardLevelsTable from './RewardLevelsTable';
 import { featureFlag } from '../../../../helpers/env';
 import {
   EVENT_CATEGORIES,
@@ -386,6 +387,8 @@ class BadgesTab extends React.Component {
             </p>
           </BadgeModal>
         ) : null}
+
+        {featureFlag('rewards_levels') ? <RewardLevelsTable /> : null}
 
         {featureFlag('rewards_levels') ? <RewardsFaq /> : null}
       </div>
