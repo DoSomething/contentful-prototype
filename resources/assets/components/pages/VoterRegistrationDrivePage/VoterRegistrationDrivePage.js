@@ -4,8 +4,8 @@ import { useQuery } from 'react-apollo';
 
 import ErrorPage from '../ErrorPage';
 import { gqlVariables } from './config';
-import { query } from '../../../helpers';
 import NotFoundPage from '../NotFoundPage';
+import { query } from '../../../helpers/url';
 import Modal from '../../utilities/Modal/Modal';
 import Placeholder from '../../utilities/Placeholder';
 import { isDevEnvironment } from '../../../helpers/env';

@@ -10,6 +10,7 @@ import { siteConfig } from '../../helpers/env';
 import ContentfulEntry from '../ContentfulEntry';
 import partnerScholarshipQuizPaths from './config';
 import Spinner from '../artifacts/Spinner/Spinner';
+import { isCurrentPathInPaths } from '../../helpers/url';
 import CampaignHeader from '../utilities/CampaignHeader';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import CoverImage from '../utilities/CoverImage/CoverImage';
@@ -22,12 +23,11 @@ import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment'
 import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
-import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
-  isCurrentPathInPaths,
 } from '../../helpers';
+import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import ScholarshipReferralVoterRegistrationBlock from '../blocks/ScholarshipReferralVoterRegistrationBlock/ScholarshipReferralVoterRegistrationBlock';
 
 const CAMPAIGN_BANNER_QUERY = gql`

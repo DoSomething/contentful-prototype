@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { getUtms } from '../../../helpers/utm';
-import { appendToQuery } from '../../../helpers';
+import { appendToQuery, getUtms } from '../../../helpers/url';
 
 /*
  * Renders a CivicEngine Voter Widget via the Bronze Level embed.

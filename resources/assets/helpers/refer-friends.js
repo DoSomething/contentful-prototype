@@ -1,4 +1,4 @@
-import { query } from '.';
+import { query } from './url';
 import { getUserId } from './auth';
 import { siteConfig } from './env';
 import { PHOENIX_URL } from '../constants';

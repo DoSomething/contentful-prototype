@@ -7,8 +7,8 @@ import { useQuery } from '@apollo/react-hooks';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Query from '../../Query';
-import { query } from '../../../helpers';
 import { env } from '../../../helpers/env';
+import { query } from '../../../helpers/url';
 import { getUserId } from '../../../helpers/auth';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';

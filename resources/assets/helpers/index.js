@@ -1,6 +1,5 @@
-/* global window, document, Blob, URL */
+/* global window, document, Blob */
 
-import queryString from 'query-string';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
 import {
   get,
@@ -13,54 +12,18 @@ import {
   isObjectLike,
   isUndefined,
   mapValues,
-  merge,
   mergeWith,
   omitBy,
 } from 'lodash';
 
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
+import { appendToQuery, query } from './url';
 import tailwindVariables from '../../../tailwind.variables';
 
 // Helper Constants
 export const EMPTY_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-
-/**
- * Append query parameters to a URL even if it already has existing parameters.
- *
- * @param  {Object} additionalParameters
- * @param  {String} href
- * @return {URL}
- */
-export function appendToQuery(
-  additionalParameters,
-  href = window.location.href,
-) {
-  const urlObject = new URL(href, window.location.origin);
-
-  const mergedParameters = merge(
-    queryString.parse(urlObject.search),
-    additionalParameters,
-  );
-
-  urlObject.search = queryString.stringify(mergedParameters);
-
-  return urlObject;
-}
-
-/**
- * Return a boolean indicating whether the provided URL is external to the site.
- *
- * @param  {String} url
- * @return {Boolean}
- */
-export function isExternal(url) {
-  return (
-    new URL(String(url), window.location.origin).hostname !==
-    window.location.hostname
-  );
-}
 
 /**
  * Return a boolean indicating whether the provided argument is an empty string.
@@ -481,34 +444,6 @@ export function findById(array, compareId) {
 }
 
 /**
- * Construct absolute URL with query params.
- *
- * @param {String} url
- * @param {Object} query
- * @return {URL}
- */
-export function makeUrl(path, queryParameters) {
-  const urlObject = new URL(String(path));
-  urlObject.search = queryString.stringify(queryParameters);
-
-  return urlObject;
-}
-
-/**
- * Get the query-string value at the given key.
- *
- * @param  {String}   key
- * @param  {URL|Location}   url
- * @return {String|Undefined}
- */
-export function query(key, url = window.location) {
-  // Ensure we have a URL object from the location.
-  const search = queryString.parse(url.search);
-
-  return search[key];
-}
-
-/**
  * Open a dialog and run a callback when it closes.
  *
  * @param {String} href
@@ -765,26 +700,3 @@ export function getMillisecondsFromDays(days) {
   // @TODO make this more flexible, ie. get milliseconds from hours vs days etc
   return days * 1440 * 60 * 1000;
 }
-
-/**
- * Checks if current path matches an item in given paths array.
- *
- * @param {Array} paths
- * @return {Boolean}
- */
-export const isCurrentPathInPaths = paths => {
-  const pathname = window.location.pathname;
-
-  return paths.find(path => {
-    if (path.includes('*')) {
-      const pathWithoutAsterisk = path.slice(0, -1);
-
-      return (
-        pathname.includes(pathWithoutAsterisk) &&
-        pathname.length > pathWithoutAsterisk.length
-      );
-    }
-
-    return path === pathname;
-  });
-};

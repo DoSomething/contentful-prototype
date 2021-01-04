@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { makeUrl } from '../../helpers';
+import { makeUrl } from '../../helpers/url';
 import { HELP_REQUEST_LINK } from '../../constants';
 
 const ErrorDetails = ({ error }) => {

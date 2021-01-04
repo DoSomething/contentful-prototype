@@ -9,7 +9,8 @@ import markdownItCollapsible from 'markdown-it-collapsible';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-import { contentfulImageUrl, isExternal } from '.';
+import { isExternal } from './url';
+import { contentfulImageUrl } from '.';
 import ContentfulAsset from '../components/utilities/ContentfulAsset/ContentfulAsset';
 import ContentfulEntryLoader from '../components/utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 

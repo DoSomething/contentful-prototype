@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import Card from '../utilities/Card/Card';
-import { getUtms } from '../../helpers/utm';
 import { siteConfig } from '../../helpers/env';
+import { getUtms, query } from '../../helpers/url';
 import GroupFinder from './GroupFinder/GroupFinder';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
-import { isCampaignClosed, query, withoutNulls } from '../../helpers';
+import { isCampaignClosed, withoutNulls } from '../../helpers';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
 
 const CampaignSignupForm = props => {
