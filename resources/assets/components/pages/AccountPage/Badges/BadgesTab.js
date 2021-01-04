@@ -6,13 +6,13 @@ import Badge from './Badge';
 import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
 import RewardsFaq from './RewardsFaq';
+import RewardLevelsTable from './RewardLevelsTable';
+import { featureFlag } from '../../../../helpers/env';
 import {
   EVENT_CATEGORIES,
   getPageContext,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
-import { featureFlag } from '../../../../helpers';
-import RewardLevelsTable from './RewardLevelsTable';
 
 import './badges-tab.scss';
 

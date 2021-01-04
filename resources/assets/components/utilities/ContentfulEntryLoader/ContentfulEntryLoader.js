@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
 
 import NotFound from '../../NotFound';
-import { env } from '../../../helpers';
+import { env } from '../../../helpers/env';
 import ContentfulEntry from '../../ContentfulEntry';
 import { QuizBlockFragment } from '../../Quiz/Quiz';
 import Spinner from '../../artifacts/Spinner/Spinner';

@@ -2,20 +2,16 @@ import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useState, useRef, useEffect } from 'react';
 
-import {
-  appendToQuery,
-  dynamicString,
-  env,
-  withoutTokens,
-} from '../../../helpers';
 import Embed from '../Embed/Embed';
+import LinkIcon from './link-icon.svg';
+import { env } from '../../../helpers/env';
+import { postRequest } from '../../../helpers/api';
+import SocialShareTray from '../SocialShareTray/SocialShareTray';
+import { appendToQuery, dynamicString, withoutTokens } from '../../../helpers';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
-import LinkIcon from './link-icon.svg';
-import { postRequest } from '../../../helpers/api';
-import SocialShareTray from '../SocialShareTray/SocialShareTray';
 
 import './short-link-share.scss';
 

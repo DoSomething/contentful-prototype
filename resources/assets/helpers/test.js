@@ -4,7 +4,6 @@ import {
   pluralize,
   dynamicString,
   contentfulImageUrl,
-  siteConfig,
 } from './index';
 
 /**
@@ -125,27 +124,4 @@ test('pluralizes words', () => {
   expect(pluralize(0, 'item', 'items')).toEqual('items');
   expect(pluralize(1, 'item', 'items')).toEqual('item');
   expect(pluralize(2, 'item', 'items')).toEqual('items');
-});
-
-/**
- * Test siteConfig()
- */
-describe('siteConfig helper', () => {
-  /** @test */
-  test('it returns a site config variable from window.ENV', () => {
-    global.ENV = {
-      SITE: { 'configuration-strategy': 'alpha_delta_strategy' },
-    };
-
-    expect(siteConfig('configuration-strategy')).toEqual(
-      'alpha_delta_strategy',
-    );
-  });
-
-  /** @test */
-  test("it doesn't fail when there's no config", () => {
-    global.ENV = null;
-
-    expect(siteConfig('configuration-strategy')).toBe(undefined);
-  });
 });

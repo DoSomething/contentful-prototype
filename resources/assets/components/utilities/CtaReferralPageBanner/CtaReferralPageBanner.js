@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
 
-import { featureFlag, tailwind, query, report } from '../../../helpers';
+import { featureFlag } from '../../../helpers/env';
+import { tailwind, query, report } from '../../../helpers';
 import GiftCardHandLargeImage from './gift-card-hand-large.svg';
 import GiftCardHandSmallImage from './gift-card-hand-small.svg';
 import { REFERRAL_USER_QUERY } from '../../pages/ReferralPage/Beta/BetaPage';

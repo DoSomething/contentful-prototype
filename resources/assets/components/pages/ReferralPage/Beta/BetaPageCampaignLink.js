@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
 import Query from '../../../Query';
-import { env } from '../../../../helpers';
+import { env } from '../../../../helpers/env';
 import Embed from '../../../utilities/Embed/Embed';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 
