@@ -62,6 +62,7 @@ const RewardLevelsTable = () => {
       <Table>
         <colgroup>
           <col />
+
           <col
             className={
               userLevelLabel(badges) === 'Doer'
@@ -69,6 +70,7 @@ const RewardLevelsTable = () => {
                 : 'bg-white'
             }
           />
+
           <col
             className={
               userLevelLabel(badges) === 'SuperDoer'
@@ -76,6 +78,7 @@ const RewardLevelsTable = () => {
                 : 'bg-white'
             }
           />
+
           <col
             className={
               userLevelLabel(badges) === 'Legend'
