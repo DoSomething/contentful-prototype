@@ -13,7 +13,7 @@ const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
 const RewardLevelsTable = () => {
   // @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
-  const badges = 6;
+  const badges = 2;
 
   const userLevelLabel = badgeNumber => {
     let userLevel;
@@ -33,35 +33,17 @@ const RewardLevelsTable = () => {
       <tr>
         <TableCellLeft />
 
-        <TableCellCenter
-          className={
-            userLevelLabel(badges) === 'Doer'
-              ? 'bg-teal-500 bg-opacity-25'
-              : 'bg-white'
-          }
-        >
+        <TableCellCenter>
           <span className="px-4">Doer</span> <br />{' '}
           <span className="font-normal text-xs md:text-base">2 badges</span>
         </TableCellCenter>
 
-        <TableCellCenter
-          className={
-            userLevelLabel(badges) === 'SuperDoer'
-              ? 'bg-purple-500 bg-opacity-25'
-              : 'bg-white'
-          }
-        >
+        <TableCellCenter>
           SuperDoer <br />{' '}
           <span className="font-normal text-xs md:text-base">4 badges</span>
         </TableCellCenter>
 
-        <TableCellCenter
-          className={
-            userLevelLabel(badges) === 'Legend'
-              ? 'bg-yellow-500 bg-opacity-25'
-              : 'bg-white'
-          }
-        >
+        <TableCellCenter>
           Legend <br />{' '}
           <span className="font-normal text-xs md:text-base">6 badges</span>
         </TableCellCenter>
@@ -78,93 +60,69 @@ const RewardLevelsTable = () => {
       </p>
 
       <Table>
+        <colgroup>
+          <col />
+
+          <col
+            className={
+              userLevelLabel(badges) === 'Doer'
+                ? 'bg-teal-500 bg-opacity-25'
+                : 'bg-white'
+            }
+          />
+
+          <col
+            className={
+              userLevelLabel(badges) === 'SuperDoer'
+                ? 'bg-purple-500 bg-opacity-25'
+                : 'bg-white'
+            }
+          />
+
+          <col
+            className={
+              userLevelLabel(badges) === 'Legend'
+                ? 'bg-yellow-500 bg-opacity-25'
+                : 'bg-white'
+            }
+          />
+        </colgroup>
+
         {header}
 
         <tbody data-testid="rewards-levels-table-body">
           <tr className="w-full">
             <TableCellLeft>2x Scholarship entries</TableCellLeft>
 
-            <TableCellCenter
-              className={
-                userLevelLabel(badges) === 'Doer'
-                  ? 'bg-teal-500 bg-opacity-25'
-                  : 'bg-white'
-              }
-            >
+            <TableCellCenter>
               <TableMarker />
             </TableCellCenter>
 
-            <TableCellCenter
-              className={
-                userLevelLabel(badges) === 'SuperDoer'
-                  ? 'bg-purple-500 bg-opacity-25'
-                  : 'bg-white'
-              }
-            />
+            <TableCellCenter />
 
-            <TableCellCenter
-              className={
-                userLevelLabel(badges) === 'Legend'
-                  ? 'bg-yellow-500 bg-opacity-25'
-                  : 'bg-white'
-              }
-            />
+            <TableCellCenter />
           </tr>
+
           <tr className="w-full">
             <TableCellLeft>3x Scholarship entries</TableCellLeft>
 
-            <TableCellCenter
-              className={
-                userLevelLabel(badges) === 'Doer'
-                  ? 'bg-teal-500 bg-opacity-25'
-                  : 'bg-white'
-              }
-            />
+            <TableCellCenter />
 
-            <TableCellCenter
-              className={
-                userLevelLabel(badges) === 'SuperDoer'
-                  ? 'bg-purple-500 bg-opacity-25'
-                  : 'bg-white'
-              }
-            >
+            <TableCellCenter>
               <TableMarker />
             </TableCellCenter>
 
-            <TableCellCenter
-              className={
-                userLevelLabel(badges) === 'Legend'
-                  ? 'bg-yellow-500 bg-opacity-25'
-                  : 'bg-white'
-              }
-            />
+            <TableCellCenter />
           </tr>
+
           <tr className="w-full">
             <TableCellLeftBottom>4x Scholarship entries</TableCellLeftBottom>
 
-            <TableCellCenterBottom
-              className={
-                userLevelLabel(badges) === 'Doer'
-                  ? 'bg-teal-500 bg-opacity-25'
-                  : 'bg-white'
-              }
-            />
+            <TableCellCenterBottom />
 
-            <TableCellCenterBottom
-              className={
-                userLevelLabel(badges) === 'SuperDoer'
-                  ? 'bg-purple-500 bg-opacity-25'
-                  : 'bg-white'
-              }
-            />
+            <TableCellCenterBottom />
 
-            <TableCellCenterBottom
-              className={
-                userLevelLabel(badges) === 'Legend'
-                  ? 'bg-yellow-500 bg-opacity-25'
-                  : 'bg-white'
-              }
-            >
+            <TableCellCenterBottom>
               <TableMarker />
             </TableCellCenterBottom>
           </tr>
