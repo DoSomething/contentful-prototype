@@ -3,7 +3,10 @@ import gql from 'graphql-tag';
 import { propType } from 'graphql-anywhere';
 
 import SecondaryButton from '../Button/SecondaryButton';
-import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
+import {
+  contentfulImageSrcset,
+  contentfulImageUrl,
+} from '../../../helpers/contentful';
 
 export const campaignCardFragment = gql`
   fragment CampaignCard on Showcasable {

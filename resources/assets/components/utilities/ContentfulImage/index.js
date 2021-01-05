@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { contentfulImageUrl } from '../../../helpers';
+import { contentfulImageUrl } from '../../../helpers/contentful';
 
 const ContentfulImage = ({ url, width, height, fit }) => (
   <img alt="" src={contentfulImageUrl(url, width, height, fit)} />

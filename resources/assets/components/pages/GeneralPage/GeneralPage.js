@@ -4,6 +4,7 @@ import React from 'react';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
 
+import { withoutNulls } from '../../../helpers';
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
 import { REGISTER_CTA_COPY } from '../../../constants';
@@ -11,8 +12,8 @@ import AuthorBio from '../../utilities/Author/AuthorBio';
 import ArticleHeader from '../../utilities/ArticleHeader';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import { contentfulImageUrl } from '../../../helpers/contentful';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';

@@ -3,11 +3,11 @@ import gql from 'graphql-tag';
 import { propType } from 'graphql-anywhere';
 
 import GalleryBlockSignup from './GalleryBlockSignup';
+import { getHumanFriendlyDate } from '../../../helpers';
 import {
   contentfulImageSrcset,
   contentfulImageUrl,
-  getHumanFriendlyDate,
-} from '../../../helpers';
+} from '../../../helpers/contentful';
 
 // Write a graphql query to get campaign information for a specific id
 export const scholarshipCardFragment = gql`

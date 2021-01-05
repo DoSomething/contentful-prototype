@@ -3,7 +3,10 @@ import gql from 'graphql-tag';
 import { get } from 'lodash';
 import { propType } from 'graphql-anywhere';
 
-import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
+import {
+  contentfulImageSrcset,
+  contentfulImageUrl,
+} from '../../../helpers/contentful';
 
 export const pageCardFragment = gql`
   fragment PageCard on Showcasable {

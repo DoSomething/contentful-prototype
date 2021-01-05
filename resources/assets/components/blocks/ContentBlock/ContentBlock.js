@@ -5,7 +5,7 @@ import classnames from 'classnames';
 
 import LazyImage from '../../utilities/LazyImage';
 import ContentBlockFooter from './ContentBlockFooter';
-import { contentfulImageUrl } from '../../../helpers';
+import { contentfulImageUrl } from '../../../helpers/contentful';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 

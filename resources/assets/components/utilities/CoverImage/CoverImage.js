@@ -2,7 +2,10 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import { contentfulImageUrl, contentfulImageSrcset } from '../../../helpers';
+import {
+  contentfulImageUrl,
+  contentfulImageSrcset,
+} from '../../../helpers/contentful';
 
 const CoverImage = ({ attributes, coverImage }) => {
   const srcset = contentfulImageSrcset(get(coverImage, 'url'), [

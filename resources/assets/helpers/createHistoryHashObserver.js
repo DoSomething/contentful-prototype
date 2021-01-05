@@ -5,6 +5,7 @@ import { scrollToElement } from './scroll';
 /**
  * Enhance router to scroll to elements for anchor links.
  * @see <https://git.io/vATNf>
+ * @todo might be best to move into the url.js helper file.
  *
  * @param {History} history
  * @param {Number} timeout - millisecond delay before looking for element

@@ -8,7 +8,7 @@ import { propType } from 'graphql-anywhere';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import Byline from '../../utilities/Byline/Byline';
-import { contentfulImageUrl } from '../../../helpers';
+import { contentfulImageUrl } from '../../../helpers/contentful';
 import TextContent from '../../utilities/TextContent/TextContent';
 import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
 

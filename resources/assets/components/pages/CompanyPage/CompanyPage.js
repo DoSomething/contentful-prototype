@@ -3,10 +3,11 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
+import { withoutNulls } from '../../../helpers';
 import LazyImage from '../../utilities/LazyImage';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import { contentfulImageUrl } from '../../../helpers/contentful';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 export const COMPANY_PAGE_QUERY = gql`
