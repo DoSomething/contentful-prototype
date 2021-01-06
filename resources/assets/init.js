@@ -44,6 +44,7 @@ import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
 import {
   bindTokenRefreshEvent,
+  getUserId,
   isAuthenticated,
   isStaff,
 } from './helpers/auth';
@@ -73,8 +74,8 @@ ready(() => {
   bindTokenRefreshEvent();
 
   // If available, set User ID for Snowplow analytics.
-  if (typeof window.snowplow === 'function' && window.AUTH.id) {
-    const analyticsEvent = ['setUserId', window.AUTH.id];
+  if (typeof window.snowplow === 'function' && getUserId()) {
+    const analyticsEvent = ['setUserId', getUserId()];
 
     analyze('snowplow', analyticsEvent, payload => {
       window.snowplow(...payload);
