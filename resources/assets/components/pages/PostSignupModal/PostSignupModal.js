@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 import { withoutNulls } from '../../../helpers';
 import SlideshowContainer from '../../Slideshow';
-import AffirmationContainer from '../../Affirmation/AffirmationContainer';
+import Affirmation from '../../Affirmation/Affirmation';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const PostSignupModal = ({ affirmation, onClose }) => (
   <div className="modal__slide">
     <SlideshowContainer slideshowId="post-signup-modal" hideCloseButton>
       {affirmation.type === 'affirmation' ? (
-        <AffirmationContainer
+        <Affirmation
           {...withoutNulls(affirmation.fields)}
           author={get(affirmation, 'fields.author.fields')}
           onClose={onClose}

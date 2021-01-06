@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Loader from '../utilities/Loader';
 import { report, withoutNulls } from '../../helpers';
+import Affirmation from '../Affirmation/Affirmation';
 import SoftEdgeBlock from '../actions/SoftEdgeBlock';
 import EmbedBlock from '../blocks/EmbedBlock/EmbedBlock';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
@@ -13,7 +14,6 @@ import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import CampaignUpdate from '../blocks/CampaignUpdate/CampaignUpdate';
-import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import ActionStatsBlock from '../blocks/ActionStatsBlock/ActionStatsBlock';
 import CurrentClubBlock from '../blocks/CurrentClubBlock/CurrentClubBlock';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
@@ -68,12 +68,7 @@ class ContentfulEntry extends React.Component {
         return <ActionStatsBlock {...withoutNulls(json)} />;
 
       case 'AffirmationBlock':
-        return (
-          <AffirmationContainer
-            userId={window.AUTH.id}
-            {...withoutNulls(json)}
-          />
-        );
+        return <Affirmation userId={window.AUTH.id} {...withoutNulls(json)} />;
 
       case 'callToAction':
       case 'CallToActionBlock':
