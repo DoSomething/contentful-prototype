@@ -13,13 +13,13 @@ const SiteFooter = () => {
     return null;
   }
 
-  const handleFooterTracking = linkName => {
+  const handleFooterTracking = (linkName, url) => {
     trackAnalyticsEvent(`clicked_footer_link_${linkName}`, {
       action: 'link_clicked',
       category: EVENT_CATEGORIES.siteAction,
       label: `footer_${linkName}`,
       context: {
-        url: window.location.href,
+        url,
       },
     });
   };
@@ -35,7 +35,9 @@ const SiteFooter = () => {
                 title="dosomething on Tik Tok"
                 className="hover:text-white"
                 style={{ padding: 0 }}
-                onClick={handleFooterTracking('tiktok')}
+                onClick={event =>
+                  handleFooterTracking('tiktok', event.target.href)
+                }
               >
                 <TikTokIcon />
               </a>
@@ -45,7 +47,9 @@ const SiteFooter = () => {
                 href="http://instagram.com/dosomething"
                 className="social-icon -instagram"
                 title="@dosomething on Instagram"
-                onClick={handleFooterTracking('instagram')}
+                onClick={event =>
+                  handleFooterTracking('instagram', event.target.href)
+                }
               >
                 <span>@dosomething on Instagram</span>
               </a>
@@ -55,7 +59,9 @@ const SiteFooter = () => {
                 href="https://twitter.com/dosomething"
                 className="social-icon -twitter"
                 title="@dosomething on Twitter"
-                onClick={handleFooterTracking('twitter')}
+                onClick={event =>
+                  handleFooterTracking('twitter', event.target.href)
+                }
               >
                 <span>@dosomething on Twitter</span>
               </a>
@@ -65,7 +71,9 @@ const SiteFooter = () => {
                 href="https://www.facebook.com/dosomething"
                 className="social-icon -facebook"
                 title="dosomething on Facebook"
-                onClick={handleFooterTracking('facebook')}
+                onClick={event =>
+                  handleFooterTracking('facebook', event.target.href)
+                }
               >
                 <span>dosomething on Facebook</span>
               </a>
@@ -75,7 +83,9 @@ const SiteFooter = () => {
                 href="https://www.snapchat.com/add/dosomething"
                 className="social-icon -snapchat"
                 title="dosomething on Snapchat"
-                onClick={handleFooterTracking('snapchat')}
+                onClick={event =>
+                  handleFooterTracking('snapchat', event.target.href)
+                }
               >
                 <span>dosomething on Snapchat</span>
               </a>
@@ -85,7 +95,9 @@ const SiteFooter = () => {
                 href="http://www.youtube.com/user/DoSomething1"
                 className="social-icon -youtube"
                 title="dosomething1 on YouTube"
-                onClick={handleFooterTracking('youtube')}
+                onClick={event =>
+                  handleFooterTracking('youtube', event.target.href)
+                }
               >
                 <span>dosomething1 on YouTube</span>
               </a>
@@ -96,24 +108,64 @@ const SiteFooter = () => {
           <h4>Who We Are</h4>
           <ul>
             <li>
-              <a href="https://join.dosomething.org/">
+              <a
+                href="https://join.dosomething.org/"
+                onClick={event =>
+                  handleFooterTracking('who_we_are', event.target.href)
+                }
+              >
                 What is DoSomething.org?
               </a>
             </li>
             <li>
-              <a href="/us/about/our-people">Our Team</a>
+              <a
+                href="/us/about/our-people"
+                onClick={event =>
+                  handleFooterTracking('our_team', event.target.href)
+                }
+              >
+                Our Team
+              </a>
             </li>
             <li>
-              <a href="/us/about/our-financials">Our Financials</a>
+              <a
+                href="/us/about/our-financials"
+                onClick={event =>
+                  handleFooterTracking('our_financials', event.target.href)
+                }
+              >
+                Our Financials
+              </a>
             </li>
             <li>
-              <a href="/us/about/our-press">Press</a>
+              <a
+                href="/us/about/our-press"
+                onClick={event =>
+                  handleFooterTracking('our_press', event.target.href)
+                }
+              >
+                Press
+              </a>
             </li>
             <li>
-              <a href="https://lets.dosomething.org/">Articles</a>
+              <a
+                href="https://lets.dosomething.org/"
+                onClick={event =>
+                  handleFooterTracking('articles', event.target.href)
+                }
+              >
+                Articles
+              </a>
             </li>
             <li>
-              <a href="/us/about/contact-us">Contact Us</a>
+              <a
+                href="/us/about/contact-us"
+                onClick={event =>
+                  handleFooterTracking('contact_us', event.target.href)
+                }
+              >
+                Contact Us
+              </a>
             </li>
           </ul>
         </div>
@@ -121,15 +173,34 @@ const SiteFooter = () => {
           <h4>Our Friends</h4>
           <ul>
             <li>
-              <a href="http://dosomethingstrategic.org/">
+              <a
+                href="http://dosomethingstrategic.org/"
+                onClick={event =>
+                  handleFooterTracking('our_friends', event.target.href)
+                }
+              >
                 DoSomethingStrategic.org
               </a>
             </li>
             <li>
-              <a href="/us/about/our-partners">Partners</a>
+              <a
+                href="/us/about/our-partners"
+                onClick={event =>
+                  handleFooterTracking('our_partners', event.target.href)
+                }
+              >
+                Partners
+              </a>
             </li>
             <li>
-              <a href="/us/about/hotline-list">Crisis Hotlines</a>
+              <a
+                href="/us/about/hotline-list"
+                onClick={event =>
+                  handleFooterTracking('crisis_hotlines', event.target.href)
+                }
+              >
+                Crisis Hotlines
+              </a>
             </li>
           </ul>
         </div>
@@ -137,22 +208,64 @@ const SiteFooter = () => {
           <h4>Get Involved</h4>
           <ul>
             <li>
-              <a href="/us/articles/clubs-notify-me">DoSomething Clubs</a>
+              <a
+                href="/us/articles/clubs-notify-me"
+                onClick={event =>
+                  handleFooterTracking('dosomething_clubs', event.target.href)
+                }
+              >
+                DoSomething Clubs
+              </a>
             </li>
             <li>
-              <a href="/us/about/volunteer-hours">Volunteer Hours</a>
+              <a
+                href="/us/about/volunteer-hours"
+                onClick={event =>
+                  handleFooterTracking('volunteer_hours', event.target.href)
+                }
+              >
+                Volunteer Hours
+              </a>
             </li>
             <li>
-              <a href="/us/about/join-our-team">Jobs</a>
+              <a
+                href="/us/about/join-our-team"
+                onClick={event =>
+                  handleFooterTracking('jobs', event.target.href)
+                }
+              >
+                Jobs
+              </a>
             </li>
             <li>
-              <a href="/us/about/internships">Internships</a>
+              <a
+                href="/us/about/internships"
+                onClick={event =>
+                  handleFooterTracking('internships', event.target.href)
+                }
+              >
+                Internships
+              </a>
             </li>
             <li>
-              <a href="/us/about/donate">Donate</a>
+              <a
+                href="/us/about/donate"
+                onClick={event =>
+                  handleFooterTracking('donate', event.target.href)
+                }
+              >
+                Donate
+              </a>
             </li>
             <li>
-              <a href="https://help.dosomething.org/hc/en-us">Help Center</a>
+              <a
+                href="https://help.dosomething.org/hc/en-us"
+                onClick={event =>
+                  handleFooterTracking('help_center', event.target.href)
+                }
+              >
+                Help Center
+              </a>
             </li>
           </ul>
         </div>
@@ -160,10 +273,24 @@ const SiteFooter = () => {
       <div className="footer__subfooter border-gray-700">
         <ul>
           <li>
-            <a href="/us/about/terms-service">Terms of Service</a>
+            <a
+              href="/us/about/terms-service"
+              onClick={event =>
+                handleFooterTracking('terms_of_service', event.target.href)
+              }
+            >
+              Terms of Service
+            </a>
           </li>
           <li>
-            <a href="/us/about/privacy-policy">Privacy Policy</a>
+            <a
+              href="/us/about/privacy-policy"
+              onClick={event =>
+                handleFooterTracking('privacy_policy', event.target.href)
+              }
+            >
+              Privacy Policy
+            </a>
           </li>
         </ul>
       </div>
