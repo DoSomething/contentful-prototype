@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
 import Affirmation from './Affirmation';
-import { getUserId } from '../../selectors/user';
+import { getUserId } from '../../helpers/auth';
 
-const mapStateToProps = state => ({
-  userId: getUserId(state),
+const mapStateToProps = () => ({
+  userId: getUserId(),
 });
 
 export default connect(mapStateToProps)(Affirmation);

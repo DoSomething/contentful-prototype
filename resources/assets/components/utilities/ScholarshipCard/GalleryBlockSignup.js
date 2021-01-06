@@ -6,7 +6,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import SecondaryButton from '../Button/SecondaryButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
-import { useGate, isAuthenticated, getUserId } from '../../../helpers/auth';
+import { getUserId, isAuthenticated, useGate } from '../../../helpers/auth';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,

@@ -4,8 +4,7 @@ import { get } from 'lodash';
 import localforage from 'localforage';
 
 import { getDataForNorthstar } from '../selectors';
-import { isAuthenticated } from '../selectors/user';
-import { buildAuthRedirectUrl } from '../helpers/auth';
+import { buildAuthRedirectUrl, isAuthenticated } from '../helpers/auth';
 
 /**
  * Middleware for handling Authenticated actions.
@@ -14,7 +13,7 @@ const requiresAuthenticationMiddleware = ({ getState }) => next => action => {
   const state = getState();
   const requiresAuth = get(action, 'payload.requiresAuthentication', false);
 
-  if (requiresAuth && !isAuthenticated(state)) {
+  if (requiresAuth && !isAuthenticated()) {
     const actionId = `auth:${Date.now()}`;
 
     localforage.setItem(actionId, action).then(() => {

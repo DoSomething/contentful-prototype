@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
 import { dynamicString } from '../../../../helpers';
+import { getUserId } from '../../../../helpers/auth';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
@@ -32,8 +33,9 @@ const DefaultTemplate = props => {
     pageId,
     source,
     title,
-    userId,
   } = props;
+
+  const userId = getUserId();
 
   const href = dynamicString(link, {
     userId,
@@ -108,7 +110,6 @@ DefaultTemplate.propTypes = {
   pageId: PropTypes.string,
   source: PropTypes.string,
   title: PropTypes.string.isRequired,
-  userId: PropTypes.string,
 };
 
 DefaultTemplate.defaultProps = {
@@ -118,7 +119,6 @@ DefaultTemplate.defaultProps = {
   content: null,
   pageId: null,
   source: 'web',
-  userId: null,
 };
 
 export default DefaultTemplate;

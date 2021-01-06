@@ -6,10 +6,11 @@ import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
+import { tailwind } from '../../../helpers';
 import Modal from '../../utilities/Modal/Modal';
 import { featureFlag } from '../../../helpers/env';
 import * as NewsletterImages from './NewsletterImages';
-import { isAuthenticated, tailwind } from '../../../helpers';
+import { isAuthenticated } from '../../../helpers/auth';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import HomePageCampaignGallery from './HomePageCampaignGallery';

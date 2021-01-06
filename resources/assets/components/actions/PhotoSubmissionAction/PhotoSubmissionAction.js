@@ -9,6 +9,7 @@ import { get, has, invert, mapValues } from 'lodash';
 import Query from '../../Query';
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
+import { getUserId } from '../../../helpers/auth';
 import { featureFlag } from '../../../helpers/env';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
@@ -120,6 +121,8 @@ class PhotoSubmissionAction extends PostForm {
       whyParticipatedValue: '',
       hoursValue: '',
     };
+
+    this.userId = getUserId();
   }
 
   /**
@@ -130,7 +133,7 @@ class PhotoSubmissionAction extends PostForm {
   componentDidMount() {
     if (this.props.campaignId) {
       const request = getUserCampaignSignups(
-        this.props.userId,
+        this.userId,
         this.props.campaignId,
       );
 
@@ -325,7 +328,7 @@ class PhotoSubmissionAction extends PostForm {
     );
 
     // If we don't have an authenticated user, then this is a story page
-    if (!this.props.userId) {
+    if (!this.userId) {
       return (
         <>
           <div className="clearfix">
@@ -597,7 +600,7 @@ class PhotoSubmissionAction extends PostForm {
             affirmationContent={this.props.affirmationContent}
             onClose={() => this.setState({ showModal: false })}
             title="We got your photo!"
-            userId={this.props.userId}
+            userId={this.userId}
           />
         ) : null}
       </>
@@ -629,7 +632,6 @@ PhotoSubmissionAction.propTypes = {
     items: PropTypes.object,
   }).isRequired,
   title: PropTypes.string,
-  userId: PropTypes.string,
   whyParticipatedFieldLabel: PropTypes.string,
   whyParticipatedFieldPlaceholder: PropTypes.string,
 };
@@ -651,7 +653,6 @@ PhotoSubmissionAction.defaultProps = {
   quantityFieldPlaceholder: 'Use numbers (e.g. 1)',
   showQuantityField: true,
   title: 'Submit your photo',
-  userId: null,
   whyParticipatedFieldLabel: 'Why is this campaign important to you?',
   whyParticipatedFieldPlaceholder:
     "No need to write an essay, but we'd love to see why this matters to you!",

@@ -7,8 +7,8 @@ import initialState from './initialState';
 import customMiddlewares from './middlewares';
 import { loadStorage } from '../helpers/storage';
 import { getCampaignSignups, startQueue } from '../actions';
+import { getUserId, isAuthenticated } from '../helpers/auth';
 import { isCampaignSignUpInState } from '../selectors/signup';
-import { getUserId, isAuthenticated } from '../selectors/user';
 
 /**
  * Create a new instance of the Redux store using the given
@@ -57,18 +57,18 @@ export function initializeStore(store) {
   // already have signup record in the state store.
   if (
     campaignId &&
-    isAuthenticated(state) &&
+    isAuthenticated() &&
     !isCampaignSignUpInState(state, campaignId)
   ) {
     store.dispatch(
       getCampaignSignups(campaignId, {
-        filter: { northstar_id: getUserId(state) },
+        filter: { northstar_id: getUserId() },
       }),
     );
   }
 
   // Dispatch any queued post-auth actions if available.
-  if (isAuthenticated(state) && query('actionId')) {
+  if (isAuthenticated() && query('actionId')) {
     const actionId = decodeURIComponent(query('actionId'));
 
     localforage.getItem(actionId).then(action => {

@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 
-import { getUserId } from '../../../selectors/user';
 import SelectionSubmissionAction from './SelectionSubmissionAction';
 import { resetPostSubmissionItem, storePost } from '../../../actions/post';
 
@@ -11,7 +10,6 @@ const mapStateToProps = state => ({
   campaignId: state.campaign.campaignId,
   pageId: state.campaign.id || state.page.id,
   submissions: state.postSubmissions,
-  userId: getUserId(state),
 });
 
 /**

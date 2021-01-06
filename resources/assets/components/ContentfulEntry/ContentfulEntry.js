@@ -21,10 +21,10 @@ import CallToActionBlock from '../blocks/CallToActionBlock/CallToActionBlock';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import SocialDriveAction from '../actions/SocialDriveAction/SocialDriveAction';
 import CampaignDashboard from '../utilities/CampaignDashboard/CampaignDashboard';
+import CurrentSchoolBlock from '../blocks/CurrentSchoolBlock/CurrentSchoolBlock';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import SignupReferralsBlock from '../blocks/SignupReferralsBlock/SignupReferralsBlock';
-import CurrentSchoolBlockContainer from '../blocks/CurrentSchoolBlock/CurrentSchoolBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
@@ -114,7 +114,7 @@ class ContentfulEntry extends React.Component {
         return <CurrentClubBlock {...withoutNulls(json)} />;
 
       case 'CurrentSchoolBlock':
-        return <CurrentSchoolBlockContainer {...withoutNulls(json)} />;
+        return <CurrentSchoolBlock {...withoutNulls(json)} />;
 
       case 'EmbedBlock':
         return (

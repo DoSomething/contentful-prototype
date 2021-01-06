@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import Query from '../Query';
 import Card from '../utilities/Card/Card';
+import { getUserId } from '../../helpers/auth';
 import Byline from '../utilities/Byline/Byline';
 import Badge from '../pages/AccountPage/Badges/Badge';
 import { contentfulImageUrl } from '../../helpers/contentful';
@@ -50,13 +51,12 @@ const Affirmation = ({
   header,
   onClose,
   quote,
-  userId,
 }) => (
   <Card className="affirmation rounded" title={header}>
     {quote ? <TextContent className="pt-3 px-3">{quote}</TextContent> : null}
 
-    {userId ? (
-      <Query query={USER_QUERY} variables={{ userId }}>
+    {getUserId() ? (
+      <Query query={USER_QUERY} variables={{ userId: getUserId() }}>
         {res => (
           <React.Fragment>
             {res.signupsCount === 1 ? (
@@ -119,7 +119,6 @@ Affirmation.propTypes = {
   header: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   quote: PropTypes.string,
-  userId: PropTypes.string.isRequired,
 };
 
 Affirmation.defaultProps = {

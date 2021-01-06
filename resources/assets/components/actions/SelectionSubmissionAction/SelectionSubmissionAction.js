@@ -7,6 +7,7 @@ import { Query } from 'react-apollo';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
+import { getUserId } from '../../../helpers/auth';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import FormValidation from '../../utilities/Form/FormValidation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
@@ -108,8 +109,9 @@ class SelectionSubmissionAction extends PostForm {
       selectionPlaceholderOption,
       selectionOptions,
       submissions,
-      userId,
     } = this.props;
+
+    const userId = getUserId();
 
     const submissionItem = submissions.items[id];
 
@@ -221,7 +223,6 @@ SelectionSubmissionAction.propTypes = {
   submissions: PropTypes.shape({
     items: PropTypes.object,
   }).isRequired,
-  userId: PropTypes.string.isRequired,
   title: PropTypes.string,
 };
 
