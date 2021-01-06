@@ -14,8 +14,6 @@ const SiteFooter = () => {
   }
 
   const handleFooterTracking = (linkName, url) => {
-    console.log('url:', url);
-
     trackAnalyticsEvent(`clicked_footer_link_${linkName}`, {
       action: 'link_clicked',
       category: EVENT_CATEGORIES.siteAction,
