@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 
-import { getUserId } from '../../../selectors/user';
 import VoterRegistrationAction from './VoterRegistrationAction';
 
 /**
@@ -9,7 +8,6 @@ import VoterRegistrationAction from './VoterRegistrationAction';
 const mapStateToProps = state => ({
   campaignId: state.campaign.campaignId,
   pageId: state.campaign.id || state.page.id,
-  userId: getUserId(state),
 });
 
 /**

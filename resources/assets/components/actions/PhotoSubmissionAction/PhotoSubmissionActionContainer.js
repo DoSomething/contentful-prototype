@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 
-import { getUserId } from '../../../selectors/user';
 import { getDataForNorthstar } from '../../../selectors';
 import { buildAuthRedirectUrl } from '../../../helpers/auth';
 import PhotoSubmissionAction from './PhotoSubmissionAction';
@@ -14,11 +13,10 @@ const mapStateToProps = state => {
   const northstarData = getDataForNorthstar(state);
 
   return {
+    authRegisterUrl: buildAuthRedirectUrl(northstarData),
     campaignId: state.campaign.campaignId,
     pageId: state.campaign.id || state.page.id,
     submissions: state.postSubmissions,
-    userId: getUserId(state),
-    authRegisterUrl: buildAuthRedirectUrl(northstarData),
   };
 };
 

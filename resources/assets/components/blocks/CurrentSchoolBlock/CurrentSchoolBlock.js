@@ -2,8 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import Card from '../../utilities/Card/Card';
 import Query from '../../Query';
+import Card from '../../utilities/Card/Card';
+import { getUserId } from '../../../helpers/auth';
 import CurrentSchoolImpact from './CurrentSchoolImpact';
 import CurrentSchoolForm from './CurrentSchoolForm';
 
@@ -40,10 +41,9 @@ const CurrentSchoolBlock = ({
   schoolNotAvailableDescription,
   selectSchoolTitle,
   selectSchoolDescription,
-  userId,
 }) => (
   <div className="school-finder">
-    <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
+    <Query query={USER_SCHOOL_QUERY} variables={{ userId: getUserId() }}>
       {result => {
         const { schoolId, school } = result.user;
 
@@ -70,7 +70,7 @@ const CurrentSchoolBlock = ({
               </div>
             ) : (
               <CurrentSchoolForm
-                userId={userId}
+                userId={getUserId()}
                 description={selectSchoolDescription}
               />
             )}
@@ -88,7 +88,6 @@ CurrentSchoolBlock.propTypes = {
   selectSchoolDescription: PropTypes.string,
   selectSchoolTitle: PropTypes.string,
   schoolNotAvailableDescription: PropTypes.string,
-  userId: PropTypes.string.isRequired,
 };
 
 CurrentSchoolBlock.defaultProps = {

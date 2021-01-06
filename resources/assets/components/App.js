@@ -21,11 +21,11 @@ import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
+import AccountQuery from './pages/AccountPage/Account/AccountQuery';
 import TypeFormEmbed from './utilities/TypeFormEmbed/TypeFormEmbed';
 import AlphaReferralPage from './pages/ReferralPage/Alpha/AlphaPage';
 import DelayedElement from './utilities/DelayedElement/DelayedElement';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
-import AccountContainer from './pages/AccountPage/Account/AccountContainer';
 import ShowSubmissionPage from './pages/ShowSubmissionPage/ShowSubmissionPage';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import PopoverDispatcher from './utilities/PopoverDispatcher/PopoverDispatcher';
@@ -73,7 +73,7 @@ const App = ({ store, history }) => {
             <Switch>
               <Route exact path="/us" component={HomePage} />
 
-              <Route path="/us/account" component={AccountContainer} />
+              <Route path="/us/account" component={AccountQuery} />
 
               <Route path="/us/blocks/:id" component={BlockPage} />
 

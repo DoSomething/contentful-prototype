@@ -2,15 +2,14 @@ import { connect } from 'react-redux';
 
 import PageDispatcher from './PageDispatcher';
 import { getDataForNorthstar } from '../../selectors';
-import { isAuthenticated } from '../../selectors/user';
-import { buildAuthRedirectUrl } from '../../helpers/auth';
+import { buildAuthRedirectUrl, isAuthenticated } from '../../helpers/auth';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
   ...state.page,
-  isAuthenticated: isAuthenticated(state),
+  isAuthenticated: isAuthenticated(),
   authUrl: buildAuthRedirectUrl(getDataForNorthstar(state)),
 });
 

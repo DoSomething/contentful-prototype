@@ -6,6 +6,7 @@ import { get, has, invert, mapValues } from 'lodash';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
+import { getUserId } from '../../../helpers/auth';
 import { featureFlag } from '../../../helpers/env';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
@@ -74,6 +75,8 @@ class TextSubmissionAction extends PostForm {
       showModal: false,
       textValue: '',
     };
+
+    this.userId = getUserId();
   }
 
   handleChange = event => {
@@ -237,7 +240,7 @@ class TextSubmissionAction extends PostForm {
             context={context}
             onClose={() => this.setState({ showModal: false })}
             title="We got your message!"
-            userId={this.props.userId}
+            userId={this.userId}
           />
         ) : null}
       </>
@@ -268,7 +271,6 @@ TextSubmissionAction.propTypes = {
   textFieldLabel: PropTypes.string,
   textFieldPlaceholder: PropTypes.string,
   title: PropTypes.string,
-  userId: PropTypes.string.isRequired,
 };
 
 TextSubmissionAction.defaultProps = {

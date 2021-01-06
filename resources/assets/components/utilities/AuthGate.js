@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Placeholder from './Placeholder';
-import { isAuthenticated, buildAuthRedirectUrl } from '../../helpers/auth';
+import { buildAuthRedirectUrl, isAuthenticated } from '../../helpers/auth';
 
 const AuthGate = ({ children }) => {
   if (isAuthenticated()) {

@@ -40,9 +40,14 @@ import NavApp from './components/NavApp';
 import { ready, debug } from './helpers';
 import { persistUtms } from './helpers/url';
 import { init as historyInit } from './history';
-import { bindTokenRefreshEvent } from './helpers/auth';
 import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
+import {
+  bindTokenRefreshEvent,
+  getUserId,
+  isAuthenticated,
+  isStaff,
+} from './helpers/auth';
 import {
   analyze,
   trackAnalyticsLinkClick,
@@ -69,8 +74,8 @@ ready(() => {
   bindTokenRefreshEvent();
 
   // If available, set User ID for Snowplow analytics.
-  if (typeof window.snowplow === 'function' && window.AUTH.id) {
-    const analyticsEvent = ['setUserId', window.AUTH.id];
+  if (typeof window.snowplow === 'function' && getUserId()) {
+    const analyticsEvent = ['setUserId', getUserId()];
 
     analyze('snowplow', analyticsEvent, payload => {
       window.snowplow(...payload);
@@ -87,7 +92,7 @@ ready(() => {
   renderEnvironmentBadge();
 
   // Add event listeners for the Admin Dashboard.
-  if (window.AUTH.isAuthenticated && window.AUTH.role !== 'user') {
+  if (isAuthenticated() && isStaff()) {
     bindAdminDashboardEvents();
   }
 

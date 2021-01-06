@@ -9,8 +9,8 @@ import Card from '../Card/Card';
 import PostBadge from './PostBadge';
 import LazyImage from '../LazyImage';
 import ReviewLink from './ReviewLink';
-import { isAuthenticated, isStaff } from '../../../helpers';
 import ReactionButton from '../ReactionButton/ReactionButton';
+import { isAuthenticated, isStaff } from '../../../helpers/auth';
 
 export const postCardFragment = gql`
   fragment PostCard on Post {

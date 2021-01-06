@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import { withoutNulls } from '../../../helpers';
+import { getUserId } from '../../../helpers/auth';
 import PaginatedQuery from '../../PaginatedQuery';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
@@ -44,9 +45,10 @@ const SubmissionGalleryBlockQuery = ({
   actionId,
   campaignId,
   className,
-  userId,
   type,
 }) => {
+  const userId = getUserId();
+
   let variables = withoutNulls({ campaignId, userId, type });
 
   // @TODO remove this logic and campaignId support when we backfill all TSA's with actionIds.
@@ -83,14 +85,12 @@ SubmissionGalleryBlockQuery.propTypes = {
   campaignId: PropTypes.string,
   className: PropTypes.string,
   type: PropTypes.string.isRequired,
-  userId: PropTypes.string,
 };
 
 SubmissionGalleryBlockQuery.defaultProps = {
   actionId: null,
   campaignId: null,
   className: null,
-  userId: null,
 };
 
 // Export the GraphQL query component.

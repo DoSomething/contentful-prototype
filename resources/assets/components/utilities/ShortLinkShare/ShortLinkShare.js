@@ -5,6 +5,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Embed from '../Embed/Embed';
 import LinkIcon from './link-icon.svg';
 import { env } from '../../../helpers/env';
+import { getUserId } from '../../../helpers/auth';
 import { postRequest } from '../../../helpers/api';
 import { appendToQuery } from '../../../helpers/url';
 import { dynamicString, withoutTokens } from '../../../helpers';
@@ -23,8 +24,9 @@ const ShortLinkShare = ({
   pageId,
   queryOptions,
   token,
-  userId,
 }) => {
+  const userId = getUserId();
+
   /**
    * Replaces any userId tokens, and appends query string if given.
    *
@@ -146,7 +148,6 @@ ShortLinkShare.propTypes = {
    */
   queryOptions: PropTypes.element,
   token: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
 };
 
 ShortLinkShare.defaultProps = {

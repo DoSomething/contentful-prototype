@@ -2,7 +2,7 @@ import { isArray } from 'lodash';
 import { connect } from 'react-redux';
 
 import ShareAction from './ShareAction';
-import { getUserId, isAuthenticated } from '../../../selectors/user';
+import { getUserId, isAuthenticated } from '../../../helpers/auth';
 import { storeCampaignPost, storePost } from '../../../actions/post';
 
 /**
@@ -17,10 +17,10 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     campaignId: state.campaign.campaignId,
-    isAuthenticated: isAuthenticated(state),
+    isAuthenticated: isAuthenticated(),
     pageId: state.campaign.id || state.page.id,
     socialPlatform: socialPlatform || 'facebook',
-    userId: getUserId(state),
+    userId: getUserId(),
   };
 };
 

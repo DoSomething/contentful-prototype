@@ -1,6 +1,6 @@
 import * as actions from '.';
 import { isTimestampValid } from '../helpers';
-import { isAuthenticated } from '../selectors/user';
+import { isAuthenticated } from '../helpers/auth';
 import { contentfulImageUrl } from '../helpers/contentful';
 import { getArray, EVENT_STORAGE_KEY } from '../helpers/storage';
 
@@ -11,7 +11,7 @@ export function completedEvent(index) {
 
 // Action: run through all of the events in the queue.
 export function startQueue() {
-  return (dispatch, getState) => {
+  return dispatch => {
     const queue = getArray('queue', EVENT_STORAGE_KEY);
 
     queue.forEach((event, index) => {
@@ -25,10 +25,9 @@ export function startQueue() {
       );
 
       // Check if the user successfully authenticated
-      const state = getState();
       let shouldFireEvent = isValidTimestamp;
       if (shouldFireEvent && event.requiresAuth) {
-        shouldFireEvent = isAuthenticated(state);
+        shouldFireEvent = isAuthenticated();
       }
 
       if (shouldFireEvent) {

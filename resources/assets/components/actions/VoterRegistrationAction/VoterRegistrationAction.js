@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
 import { dynamicString } from '../../../helpers';
+import { getUserId } from '../../../helpers/auth';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import TextContent from '../../utilities/TextContent/TextContent';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
@@ -22,7 +23,9 @@ export const VoterRegistrationBlockFragment = gql`
 `;
 
 const VoterRegistrationAction = props => {
-  const { campaignId, content, blockId, link, pageId, userId } = props;
+  const { campaignId, content, blockId, link, pageId } = props;
+
+  const userId = getUserId();
 
   const tokens = {
     userId,
@@ -79,7 +82,6 @@ VoterRegistrationAction.propTypes = {
   content: PropTypes.string,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
 };
 
 VoterRegistrationAction.defaultProps = {

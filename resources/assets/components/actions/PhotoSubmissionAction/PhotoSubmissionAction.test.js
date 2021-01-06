@@ -8,6 +8,11 @@ jest.mock('../../../helpers/api');
 describe('PhotoSubmissionAction component', () => {
   const id = 'abcdefghi123456789';
 
+  const MOCK_USER_ID = '666655554444333322221111';
+
+  // Mock the user ID we fetch from the window.
+  global.AUTH = { id: MOCK_USER_ID };
+
   const wrapper = shallow(
     <PhotoSubmissionAction
       automatedTest
@@ -22,7 +27,6 @@ describe('PhotoSubmissionAction component', () => {
         isPending: false,
         items: {},
       }}
-      userId="666655554444333322221111"
     />,
   );
 

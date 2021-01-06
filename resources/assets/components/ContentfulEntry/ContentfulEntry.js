@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Loader from '../utilities/Loader';
 import { report, withoutNulls } from '../../helpers';
+import Affirmation from '../Affirmation/Affirmation';
 import SoftEdgeBlock from '../actions/SoftEdgeBlock';
 import EmbedBlock from '../blocks/EmbedBlock/EmbedBlock';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
@@ -13,7 +14,6 @@ import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import CampaignUpdate from '../blocks/CampaignUpdate/CampaignUpdate';
-import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import ActionStatsBlock from '../blocks/ActionStatsBlock/ActionStatsBlock';
 import CurrentClubBlock from '../blocks/CurrentClubBlock/CurrentClubBlock';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
@@ -21,10 +21,10 @@ import CallToActionBlock from '../blocks/CallToActionBlock/CallToActionBlock';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import SocialDriveAction from '../actions/SocialDriveAction/SocialDriveAction';
 import CampaignDashboard from '../utilities/CampaignDashboard/CampaignDashboard';
+import CurrentSchoolBlock from '../blocks/CurrentSchoolBlock/CurrentSchoolBlock';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import SignupReferralsBlock from '../blocks/SignupReferralsBlock/SignupReferralsBlock';
-import CurrentSchoolBlockContainer from '../blocks/CurrentSchoolBlock/CurrentSchoolBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
@@ -68,12 +68,7 @@ class ContentfulEntry extends React.Component {
         return <ActionStatsBlock {...withoutNulls(json)} />;
 
       case 'AffirmationBlock':
-        return (
-          <AffirmationContainer
-            userId={window.AUTH.id}
-            {...withoutNulls(json)}
-          />
-        );
+        return <Affirmation userId={window.AUTH.id} {...withoutNulls(json)} />;
 
       case 'callToAction':
       case 'CallToActionBlock':
@@ -114,7 +109,7 @@ class ContentfulEntry extends React.Component {
         return <CurrentClubBlock {...withoutNulls(json)} />;
 
       case 'CurrentSchoolBlock':
-        return <CurrentSchoolBlockContainer {...withoutNulls(json)} />;
+        return <CurrentSchoolBlock {...withoutNulls(json)} />;
 
       case 'EmbedBlock':
         return (

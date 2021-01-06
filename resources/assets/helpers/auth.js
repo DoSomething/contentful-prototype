@@ -1,5 +1,6 @@
 /* global window */
-import { isEmpty } from 'lodash';
+
+import { get, isEmpty } from 'lodash';
 import queryString from 'query-string';
 
 import { withoutValueless } from '.';
@@ -74,18 +75,13 @@ export function buildAuthRedirectUrl(options = null, actionId = null) {
 }
 
 /**
- * Is the user authenticated?
- *
- * @return {Boolean}
- */
-export const isAuthenticated = () => window.AUTH.isAuthenticated;
-
-/**
  * Get the user id.
  *
  * @return {String}
  */
-export const getUserId = () => window.AUTH.id;
+export function getUserId() {
+  return get(window.AUTH, 'id', null);
+}
 
 /**
  * Get the user auth token.
@@ -93,6 +89,26 @@ export const getUserId = () => window.AUTH.id;
  * @return {String}
  */
 export const getUserToken = () => window.AUTH.token;
+
+/**
+ * Check to see if user is authenticated.
+ *
+ * @return {Boolean}
+ */
+export function isAuthenticated() {
+  return get(window.AUTH, 'isAuthenticated', false);
+}
+
+/**
+ * Check to see if user is a DS.org staffer.
+ *
+ * @return {Boolean}
+ */
+export function isStaff() {
+  const role = get(window.AUTH, 'role', 'user');
+
+  return ['staff', 'admin'].includes(role);
+}
 
 /**
  * This hook allows a component to trigger an authentication gate, and

@@ -5,9 +5,9 @@ import { useQuery } from '@apollo/react-hooks';
 
 import QuizResult from './QuizResult';
 import Quiz, { QuizBlockFragment } from './Quiz';
-import { useGate, isAuthenticated } from '../../helpers/auth';
 import ScrollConcierge from '../ScrollConcierge';
 import Spinner from '../artifacts/Spinner/Spinner';
+import { useGate, isAuthenticated } from '../../helpers/auth';
 
 export const QUIZ_QUERY = gql`
   query QuizBlockQuery($id: String!) {

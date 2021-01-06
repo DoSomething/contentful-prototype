@@ -6,16 +6,14 @@ import {
   storeCampaignPost,
   storePost,
 } from '../../../actions/post';
-import { getUserId } from '../../../selectors/user';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  pageId: state.campaign.id || state.page.id,
   campaignId: state.campaign.campaignId,
+  pageId: state.campaign.id || state.page.id,
   submissions: state.postSubmissions,
-  userId: getUserId(state),
 });
 
 /**

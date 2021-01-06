@@ -7,6 +7,7 @@ import { Query as ApolloQuery } from 'react-apollo';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
+import { getUserId } from '../../../helpers/auth';
 import { featureFlag } from '../../../helpers/env';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
@@ -120,8 +121,9 @@ class PetitionSubmissionAction extends PostForm {
       submissions,
       title,
       textFieldPlaceholder,
-      userId,
     } = this.props;
+
+    const userId = getUserId();
 
     const submissionItem = submissions.items[id];
 
@@ -142,6 +144,7 @@ class PetitionSubmissionAction extends PostForm {
             name="petition_submission_action-top"
             context={{ blockId: id }}
           />
+
           <ApolloQuery
             query={PETITION_SUBMISSION_BLOCK_QUERY}
             variables={{ userId, actionIds: [actionId] }}
@@ -224,6 +227,7 @@ class PetitionSubmissionAction extends PostForm {
               );
             }}
           </ApolloQuery>
+
           <AnalyticsWaypoint
             name="petition_submission_action-bottom"
             context={{ blockId: id }}
@@ -246,7 +250,7 @@ class PetitionSubmissionAction extends PostForm {
             affirmationContent={this.props.affirmationContent}
             onClose={() => this.setState({ showModal: false })}
             title="We got your signature!"
-            userId={this.props.userId}
+            userId={userId}
           />
         ) : null}
       </React.Fragment>
@@ -271,7 +275,6 @@ PetitionSubmissionAction.propTypes = {
   }).isRequired,
   textFieldPlaceholder: PropTypes.string,
   title: PropTypes.string,
-  userId: PropTypes.string,
 };
 
 PetitionSubmissionAction.defaultProps = {
@@ -283,7 +286,6 @@ PetitionSubmissionAction.defaultProps = {
   informationContent:
     'Your first name and email will be added to our petition. We do not collect any additional information.',
   informationTitle: 'More Info',
-  userId: null,
 };
 
 export default PetitionSubmissionAction;

@@ -113,28 +113,6 @@ export function withoutTokens(string) {
 }
 
 /**
- * Check to see if user is authenticated.
- *
- * @return {Boolean}
- * @todo move to helpers/auth.js
- */
-export function isAuthenticated() {
-  return get(window.AUTH, 'isAuthenticated', false);
-}
-
-/**
- * Check to see if user is a DS.org staffer.
- * @todo move to helpers/auth.js
- *
- * @return {Boolean}
- */
-export function isStaff() {
-  const role = get(window.AUTH, 'role', 'user');
-
-  return ['staff', 'admin'].includes(role);
-}
-
-/**
  * Wait until the DOM is ready.
  *
  * @param {Function} fn

@@ -2,8 +2,7 @@ import { connect } from 'react-redux';
 
 import SiteNavigation from './SiteNavigation';
 import { getDataForNorthstar } from '../../selectors';
-import { isAuthenticated } from '../../selectors/user';
-import { buildAuthRedirectUrl } from '../../helpers/auth';
+import { buildAuthRedirectUrl, isAuthenticated } from '../../helpers/auth';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -14,7 +13,7 @@ const mapStateToProps = state => {
   return {
     authLoginUrl: buildAuthRedirectUrl({ ...northstarData, mode: 'login' }),
     authRegisterUrl: buildAuthRedirectUrl(northstarData),
-    isAuthenticated: isAuthenticated(state),
+    isAuthenticated: isAuthenticated(),
   };
 };
 

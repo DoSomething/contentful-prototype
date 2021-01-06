@@ -5,7 +5,7 @@ import { get } from 'lodash';
 
 import apiRequest from './api';
 import { PHOENIX_URL } from '../constants';
-import { getUserId } from '../selectors/user';
+import { getUserId } from '../helpers/auth';
 import {
   SIGNUP_CREATED,
   OPENED_POST_SIGNUP_MODAL,
@@ -81,7 +81,7 @@ export function getCampaignSignups(id = null, query = {}) {
         campaignId,
         failure: GET_CAMPAIGN_SIGNUPS_FAILED,
         meta: {
-          northstarId: getUserId(state),
+          northstarId: getUserId(),
         },
         pending: GET_CAMPAIGN_SIGNUPS_PENDING,
         query,
