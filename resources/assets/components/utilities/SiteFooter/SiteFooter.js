@@ -36,7 +36,7 @@ const SiteFooter = () => {
                 className="hover:text-white"
                 style={{ padding: 0 }}
                 onClick={event =>
-                  handleFooterTracking('tik_tok', event.target.href)
+                  handleFooterTracking('tiktok', event.target.href)
                 }
               >
                 <TikTokIcon />
