@@ -6,8 +6,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Modal from '../../utilities/Modal/Modal';
-import { isCampaignClosed } from '../../../helpers';
 import BlockPage from '../../pages/BlockPage/BlockPage';
+import { isCampaignClosed } from '../../../helpers/campaign';
 import LandingPage from '../../pages/LandingPage/LandingPage';
 import PostSignupModal from '../../pages/PostSignupModal/PostSignupModal';
 import CampaignClosedPage from '../../pages/CampaignPage/CampaignClosedPage';

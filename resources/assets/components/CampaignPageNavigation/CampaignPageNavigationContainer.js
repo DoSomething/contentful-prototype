@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { isCampaignClosed } from '../../helpers';
 import { isSignedUp } from '../../selectors/signup';
+import { isCampaignClosed } from '../../helpers/campaign';
 import CampaignPageNavigation from './CampaignPageNavigation';
 
 const mapStateToProps = state => ({

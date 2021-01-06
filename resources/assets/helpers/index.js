@@ -1,9 +1,8 @@
 /* global window, document, Blob */
 
-import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
+import { format, getTime, isWithinInterval } from 'date-fns';
 import {
   get,
-  find,
   isArray,
   isEmpty,
   isNil,
@@ -334,21 +333,6 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
 }
 
 /**
- * Check if the given campaign is closed.
- *
- * @param  {String}  endDate
- * @return {Boolean}
- * @todo move to helpers/campaign.js
- */
-export function isCampaignClosed(endDate) {
-  if (!endDate) {
-    return false;
-  }
-
-  return isBefore(endDate, new Date());
-}
-
-/**
  * Check if specified date occurred within the last specified minutes.
  *
  * @param  {Date|String|Number}  date
@@ -414,27 +398,6 @@ export function openDialog(href, callback, width = 550, height = 420) {
   if (callback) {
     interval = setInterval(check, 1000);
   }
-}
-
-/**
- * Find an entry from within the campaign by given ID or Slug param.
- * (Returns false if not found).
- *
- * @param  {Object} state
- * @param  {String} identifier
- * @return {Object|Undefined}
- * @todo rename to findContentfulEntryInCampaign and move to helpers/campaign.js
- */
-export function findContentfulEntry(state, identifier) {
-  const campaign = state.campaign;
-
-  const contentfulEntries = [].concat(campaign.pages, campaign.quizzes);
-
-  return find(
-    contentfulEntries,
-    entry =>
-      entry.id === identifier || get(entry, 'fields.slug') === identifier,
-  );
 }
 
 /**
@@ -508,16 +471,6 @@ export function stringifyNestedObjects(data) {
 
     return value;
   });
-}
-
-/**
- * Determine if a page is an 'Action' page.
- *
- * @param  {Object} page
- * @return {Boolean}
- */
-export function isActionPage(page) {
-  return page.type === 'page' && page.fields.slug.endsWith('action');
 }
 
 /**
