@@ -14,8 +14,6 @@ const SiteFooter = () => {
   }
 
   const handleFooterTracking = (linkName, url) => {
-    console.log('url:', url);
-
     trackAnalyticsEvent(`clicked_footer_link_${linkName}`, {
       action: 'link_clicked',
       category: EVENT_CATEGORIES.siteAction,
@@ -38,7 +36,7 @@ const SiteFooter = () => {
                 className="hover:text-white"
                 style={{ padding: 0 }}
                 onClick={event =>
-                  handleFooterTracking('tiktok', event.target.href)
+                  handleFooterTracking('tik_tok', event.target.href)
                 }
               >
                 <TikTokIcon />
@@ -113,7 +111,7 @@ const SiteFooter = () => {
               <a
                 href="https://join.dosomething.org/"
                 onClick={event =>
-                  handleFooterTracking('whoWeAre', event.target.href)
+                  handleFooterTracking('who_we_are', event.target.href)
                 }
               >
                 What is DoSomething.org?
@@ -123,7 +121,7 @@ const SiteFooter = () => {
               <a
                 href="/us/about/our-people"
                 onClick={event =>
-                  handleFooterTracking('ourTeam', event.target.href)
+                  handleFooterTracking('our_team', event.target.href)
                 }
               >
                 Our Team
@@ -133,7 +131,7 @@ const SiteFooter = () => {
               <a
                 href="/us/about/our-financials"
                 onClick={event =>
-                  handleFooterTracking('ourFinancials', event.target.href)
+                  handleFooterTracking('our_financials', event.target.href)
                 }
               >
                 Our Financials
@@ -143,7 +141,7 @@ const SiteFooter = () => {
               <a
                 href="/us/about/our-press"
                 onClick={event =>
-                  handleFooterTracking('ourPress', event.target.href)
+                  handleFooterTracking('our_press', event.target.href)
                 }
               >
                 Press
@@ -163,7 +161,7 @@ const SiteFooter = () => {
               <a
                 href="/us/about/contact-us"
                 onClick={event =>
-                  handleFooterTracking('contactUs', event.target.href)
+                  handleFooterTracking('contact_us', event.target.href)
                 }
               >
                 Contact Us
@@ -178,7 +176,7 @@ const SiteFooter = () => {
               <a
                 href="http://dosomethingstrategic.org/"
                 onClick={event =>
-                  handleFooterTracking('ourFriends', event.target.href)
+                  handleFooterTracking('our_friends', event.target.href)
                 }
               >
                 DoSomethingStrategic.org
@@ -188,7 +186,7 @@ const SiteFooter = () => {
               <a
                 href="/us/about/our-partners"
                 onClick={event =>
-                  handleFooterTracking('ourPartners', event.target.href)
+                  handleFooterTracking('our_partners', event.target.href)
                 }
               >
                 Partners
@@ -198,7 +196,7 @@ const SiteFooter = () => {
               <a
                 href="/us/about/hotline-list"
                 onClick={event =>
-                  handleFooterTracking('crisisHotlines', event.target.href)
+                  handleFooterTracking('crisis_hotlines', event.target.href)
                 }
               >
                 Crisis Hotlines
@@ -213,7 +211,7 @@ const SiteFooter = () => {
               <a
                 href="/us/articles/clubs-notify-me"
                 onClick={event =>
-                  handleFooterTracking('doSomethingClubs', event.target.href)
+                  handleFooterTracking('doSomething_clubs', event.target.href)
                 }
               >
                 DoSomething Clubs
@@ -223,7 +221,7 @@ const SiteFooter = () => {
               <a
                 href="/us/about/volunteer-hours"
                 onClick={event =>
-                  handleFooterTracking('volunteerHours', event.target.href)
+                  handleFooterTracking('volunteer_hours', event.target.href)
                 }
               >
                 Volunteer Hours
@@ -263,7 +261,7 @@ const SiteFooter = () => {
               <a
                 href="https://help.dosomething.org/hc/en-us"
                 onClick={event =>
-                  handleFooterTracking('helpCenter', event.target.href)
+                  handleFooterTracking('help_center', event.target.href)
                 }
               >
                 Help Center
@@ -278,7 +276,7 @@ const SiteFooter = () => {
             <a
               href="/us/about/terms-service"
               onClick={event =>
-                handleFooterTracking('termsOfservice', event.target.href)
+                handleFooterTracking('terms_of_service', event.target.href)
               }
             >
               Terms of Service
@@ -288,7 +286,7 @@ const SiteFooter = () => {
             <a
               href="/us/about/privacy-policy"
               onClick={event =>
-                handleFooterTracking('privacyPolicy', event.target.href)
+                handleFooterTracking('privacy_policy', event.target.href)
               }
             >
               Privacy Policy
