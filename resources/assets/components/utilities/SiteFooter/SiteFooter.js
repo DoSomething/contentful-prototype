@@ -211,7 +211,7 @@ const SiteFooter = () => {
               <a
                 href="/us/articles/clubs-notify-me"
                 onClick={event =>
-                  handleFooterTracking('doSomething_clubs', event.target.href)
+                  handleFooterTracking('dosomething_clubs', event.target.href)
                 }
               >
                 DoSomething Clubs
