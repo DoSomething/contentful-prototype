@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import { tailwind } from '../../resources/assets/helpers';
+import { tailwind } from '../../resources/assets/helpers/display';
 import exampleFactPage from '../fixtures/contentful/exampleFactPage';
 
 // Return array of viewport sizes based on Tailwind configuration.
