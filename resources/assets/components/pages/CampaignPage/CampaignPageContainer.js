@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
-import { isCampaignClosed } from '../../../helpers';
+import { isCampaignClosed } from '../../../helpers/campaign';
 
 /**
  * Provide state from the Redux store as props for this component.
