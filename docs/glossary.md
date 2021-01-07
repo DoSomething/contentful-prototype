@@ -8,7 +8,7 @@ For more information about file structure choices and contributing to this codeb
 
 ### Action
 
-Including `Action` in the name of your file means that component is correlated to a user taking an action within the context of a page in Contentful.
+Files defined as an `Action` are components correlated to a user taking an action within the context of a page in Contentful (`SocialDriveAction` or `PhotoSubmissionAction`).
 
 ### Artifact
 
