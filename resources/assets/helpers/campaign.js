@@ -1,3 +1,5 @@
+/* global window */
+
 import { join } from 'path';
 import { find, get } from 'lodash';
 import gql from 'graphql-tag';
