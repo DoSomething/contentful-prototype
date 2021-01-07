@@ -1,6 +1,6 @@
 /* global document */
 
-import { toggleClassHandler } from '.';
+import { toggleClassHandler } from './display';
 
 export function bindAdminDashboardEvents() {
   const adminDashboard = document.getElementById('admin-dashboard');

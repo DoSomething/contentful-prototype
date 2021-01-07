@@ -1,8 +1,8 @@
 /* global window, document */
 
 import { env } from './env';
-import { openDialog } from '.';
 import { makeUrl } from './url';
+import { openDialog } from './display';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
 /**

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-import { tailwind } from '../../helpers';
+import { tailwind } from '../../helpers/display';
 import TextContent from './TextContent/TextContent';
 import StatCard, { STAT_PROPS } from './StatCard/StatCard';
 import { contentfulImageUrl } from '../../helpers/contentful';

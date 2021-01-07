@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-import { tailwind } from '../../../helpers';
+import { tailwind } from '../../../helpers/display';
 import StartedRegistrationImage from './started-registration.svg';
 import CompletedRegistrationImage from './completed-registration.svg';
 

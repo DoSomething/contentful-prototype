@@ -1,7 +1,7 @@
 /* global document */
 /* eslint-disable import/prefer-default-export */
 
-import { toggleClassHandler } from '.';
+import { toggleClassHandler } from './display';
 
 export function bindFlashMessageEvents() {
   const flashMessage = document.getElementById('flash-message');

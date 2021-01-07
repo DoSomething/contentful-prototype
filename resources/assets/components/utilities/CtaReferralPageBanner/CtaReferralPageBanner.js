@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
 
+import { report } from '../../../helpers';
 import { query } from '../../../helpers/url';
 import { featureFlag } from '../../../helpers/env';
-import { tailwind, report } from '../../../helpers';
+import { tailwind } from '../../../helpers/display';
 import GiftCardHandLargeImage from './gift-card-hand-large.svg';
 import GiftCardHandSmallImage from './gift-card-hand-small.svg';
 import { REFERRAL_USER_QUERY } from '../../pages/ReferralPage/Beta/BetaPage';

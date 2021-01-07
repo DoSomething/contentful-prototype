@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import LazyImage from '../LazyImage';
-import { modifiers } from '../../../helpers';
+import { modifiers } from '../../../helpers/display';
 
 import './figure.scss';
 

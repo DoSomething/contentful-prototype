@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { css } from '@emotion/core';
 import { propType } from 'graphql-anywhere';
 
-import { tailwind } from '../../../helpers';
+import { tailwind } from '../../../helpers/display';
 import PrimaryButton from '../Button/PrimaryButton';
 import {
   contentfulImageUrl,

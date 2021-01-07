@@ -3,8 +3,8 @@ import tw from 'twin.macro';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
 
-import { tailwind } from '../../../../helpers';
 import CampaignPreview from './CampaignPreview';
+import { tailwind } from '../../../../helpers/display';
 import { certificatePostType } from './CertificateTemplate';
 import CertificateDownloadButton from './CertificateDownloadButton';
 
