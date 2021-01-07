@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 
-import { modifiers } from '../../helpers';
+import { modifiers } from '../../helpers/display';
+
 import './flex.scss';
 
 export const Flex = ({ id, className = null, children }) => (
