@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 
-import { sixpack } from '../helpers';
+import { sixpack } from '../helpers/analytics';
 
 const sixpackExperimentsMiddleware = () => next => action => {
   const convertableActionName = get(

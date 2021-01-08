@@ -5,7 +5,7 @@ import { get, snakeCase } from 'lodash';
 
 import Empty from '../Empty';
 import Placeholder from '../Placeholder';
-import { sixpack } from '../../../helpers';
+import { sixpack } from '../../../helpers/analytics';
 import ContentfulEntryLoader from '../ContentfulEntryLoader/ContentfulEntryLoader';
 
 export const SixpackExperimentBlockFragment = gql`

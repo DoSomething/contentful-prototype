@@ -10,6 +10,7 @@ import {
 } from 'lodash';
 
 import { getUtms } from './url';
+import Sixpack from '../services/Sixpack';
 import { debug, stringifyNestedObjects, withoutValueless } from '.';
 
 /**
@@ -125,31 +126,6 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
 }
 
 /**
- * Dispatch analytics event to specified service, or all services by default.
- *
- * @param  {String}      category
- * @param  {String}      name
- * @param  {Object|Null} [data]
- * @param  {String|Null} [service]
- * @return {void}
- */
-const sendToServices = (name, category, action, label, data, service) => {
-  switch (service) {
-    case 'google':
-      analyzeWithGoogle(name, category, action, label, data);
-      break;
-
-    case 'snowplow':
-      analyzeWithSnowplow(name, category, action, label, data);
-      break;
-
-    default:
-      analyzeWithGoogle(name, category, action, label, data);
-      analyzeWithSnowplow(name, category, action, label, data);
-  }
-};
-
-/**
  * Format analytics event noun string.
  *
  * @param  {String} string
@@ -202,6 +178,49 @@ export function getUtmContext() {
 
   // For analytics, we prefer camelCased keys:
   return mapKeys(utms, (value, key) => camelCase(key));
+}
+
+/**
+ * Dispatch analytics event to specified service, or all services by default.
+ *
+ * @param  {String}      category
+ * @param  {String}      name
+ * @param  {Object|Null} [data]
+ * @param  {String|Null} [service]
+ * @return {void}
+ */
+const sendToServices = (name, category, action, label, data, service) => {
+  switch (service) {
+    case 'google':
+      analyzeWithGoogle(name, category, action, label, data);
+      break;
+
+    case 'snowplow':
+      analyzeWithSnowplow(name, category, action, label, data);
+      break;
+
+    default:
+      analyzeWithGoogle(name, category, action, label, data);
+      analyzeWithSnowplow(name, category, action, label, data);
+  }
+};
+
+/*
+ * Variable that stores single instance of Sixpack.
+ */
+let sixpackInstance = null;
+
+/**
+ * Get instance of Sixpack class.
+ *
+ * @return {Sixpack}
+ */
+export function sixpack() {
+  if (!sixpackInstance) {
+    sixpackInstance = new Sixpack();
+  }
+
+  return sixpackInstance;
 }
 
 /**
