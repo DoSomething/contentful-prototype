@@ -4,7 +4,7 @@ import Media from 'react-media';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-import { tailwind } from '../../../../helpers';
+import { tailwind } from '../../../../helpers/display';
 import { certificatePostType } from './CertificateTemplate';
 import VolunteerCreditsTableRow from './VolunteerCreditsTableRow';
 

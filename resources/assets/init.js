@@ -37,7 +37,8 @@ import App from './components/App';
 import NavApp from './components/NavApp';
 
 // DOM Helpers
-import { ready, debug } from './helpers';
+import { debug } from './helpers';
+import { ready } from './helpers/display';
 import { persistUtms } from './helpers/url';
 import { init as historyInit } from './history';
 import { bindFlashMessageEvents } from './helpers/flash-message';

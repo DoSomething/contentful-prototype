@@ -6,9 +6,9 @@ import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
-import { tailwind } from '../../../helpers';
 import Modal from '../../utilities/Modal/Modal';
 import { featureFlag } from '../../../helpers/env';
+import { tailwind } from '../../../helpers/display';
 import * as NewsletterImages from './NewsletterImages';
 import { isAuthenticated } from '../../../helpers/auth';
 import HomePageArticleGallery from './HomePageArticleGallery';

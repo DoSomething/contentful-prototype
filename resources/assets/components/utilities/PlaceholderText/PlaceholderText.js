@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from '@emotion/core';
 
-import { tailwind } from '../../../helpers';
+import { tailwind } from '../../../helpers/display';
 
 const shimmer = keyframes`
   0% {

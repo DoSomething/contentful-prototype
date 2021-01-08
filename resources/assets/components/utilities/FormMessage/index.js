@@ -3,7 +3,8 @@ import { has } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { makeHash, modifiers } from '../../../helpers';
+import { makeHash } from '../../../helpers';
+import { modifiers } from '../../../helpers/display';
 
 import './form-message.scss';
 

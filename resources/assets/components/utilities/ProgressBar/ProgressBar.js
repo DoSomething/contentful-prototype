@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-import { tailwind } from '../../../helpers';
+import { tailwind } from '../../../helpers/display';
 
 const ProgressBar = ({ percentage }) => {
   const tailwindYellow = tailwind('colors.yellow');

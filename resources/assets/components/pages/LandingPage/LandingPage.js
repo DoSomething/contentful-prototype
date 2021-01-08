@@ -5,7 +5,7 @@ import tw from 'twin.macro';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-import { tailwind } from '../../../helpers';
+import { tailwind } from '../../../helpers/display';
 import TextContent from '../../utilities/TextContent/TextContent';
 import PageInfoBarContainer from '../../PageInfoBar/PageInfoBarContainer';
 import CampaignBannerContainer from '../../CampaignBanner/CampaignBannerContainer';
