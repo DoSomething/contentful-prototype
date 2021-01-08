@@ -73,7 +73,14 @@ const App = ({ store, history }) => {
             <Switch>
               <Route exact path="/us" component={HomePage} />
 
-              <Route path="/us/account" component={AccountQuery} />
+              <Route
+                path="/us/account"
+                render={() => (
+                  <AuthGate>
+                    <AccountQuery />
+                  </AuthGate>
+                )}
+              />
 
               <Route path="/us/blocks/:id" component={BlockPage} />
 
