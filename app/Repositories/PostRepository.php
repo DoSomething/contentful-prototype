@@ -52,7 +52,6 @@ class PostRepository
         // We assign certain "informal" Rogue Post values to the details field.
         $details = array_filter([
             'number_of_participants' => collect($payload)->pull('number_of_participants'),
-            'hours' => collect($payload)->pull('hours'),
         ]);
 
         // Map the post's values into the expected multipart data format.

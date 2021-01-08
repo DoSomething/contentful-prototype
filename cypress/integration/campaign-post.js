@@ -135,6 +135,74 @@ describe('Campaign Post', () => {
     cy.contains('We got your photo!');
   });
 
+  context('When the hours reportback field feature flag is on', () => {
+    const user = userFactory();
+
+    context('for a volunteer credit action', () => {
+      it('displays the hours_spent reportback field', () => {
+        cy.mockGraphqlOp('ActionAndUserByIdQuery', {
+          action: {
+            collectSchoolId: false,
+            volunteerCredit: true,
+          },
+          user: {
+            schoolId: null,
+          },
+        });
+
+        // Log in & visit the campaign action page:
+        cy.withFeatureFlags({
+          hours_reportback_field: true,
+        }).authVisitCampaignWithSignup(user, exampleCampaign);
+
+        cy.findByTestId('hours_spent').should('have.length', 1);
+
+        cy.get('.photo-submission-action').within(() => {
+          // Choose an image to upload as a photo post:
+          cy.get('input[type="file"]').attachFile('upload.jpg');
+
+          // Fill out other fields:
+          cy.get('[name="caption"]').type("Let's do this!");
+          cy.get('[name="quantity"]').type('1');
+          cy.get('[name="hoursSpent"]').type('1.5');
+          cy.get('[name="whyParticipated"]').type('Testing');
+
+          // Mock the backend response:
+          const response = newPhotoPost(campaignId, user);
+          cy.route('POST', POSTS_API, response).as('submitPost');
+
+          // Submit the form, and assert we made the API request:
+          cy.contains('Submit a new photo').click();
+          cy.wait('@submitPost');
+        });
+
+        // We should see the affirmation modal after submitting a post:
+        cy.contains('We got your photo!');
+      });
+    });
+
+    context('For a non volunteer credit action', () => {
+      it('Does not display the hours_spent reportback field', () => {
+        cy.mockGraphqlOp('ActionAndUserByIdQuery', {
+          action: {
+            collectSchoolId: false,
+            volunteerCredit: false,
+          },
+          user: {
+            schoolId: null,
+          },
+        });
+
+        // Log in & visit the campaign action page:
+        cy.withFeatureFlags({
+          hours_reportback_field: true,
+        }).authVisitCampaignWithSignup(user, exampleCampaign);
+
+        cy.findByTestId('hours_spent').should('have.length', 0);
+      });
+    });
+  });
+
   context('When the post_confirmation_page feature flag is on', () => {
     it('Redirects to the show submission page after a successful text post submission', () => {
       const user = userFactory();
