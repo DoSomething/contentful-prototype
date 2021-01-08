@@ -484,7 +484,10 @@ class PhotoSubmissionAction extends PostForm {
                         >
                           {response =>
                             get(response, 'action.volunteerCredit') ? (
-                              <div className="form-item">
+                              <div
+                                className="form-item"
+                                data-testid="hours_spent"
+                              >
                                 <label
                                   className={classnames('field-label', {
                                     'has-error': has(errors, 'hoursSpent'),
