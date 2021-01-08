@@ -1,3 +1,5 @@
+/* global Date, JSON, Math, Object */
+
 import {
   isArray,
   isEmpty,
