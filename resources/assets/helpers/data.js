@@ -1,5 +1,3 @@
-/* global Date, JSON, Math, Object */
-
 import {
   isArray,
   isEmpty,
@@ -12,8 +10,8 @@ import {
 } from 'lodash';
 
 /**
- * Convert an number to a string. (Supports 0-10)
- * @param  {Number} number
+ * Convert an int to a string. (Supports 0-10)
+ * @param  {int} number
  * @return {String}
  */
 export function convertNumberToWord(number) {
@@ -78,7 +76,7 @@ export function generateUniqueId() {
 /**
  * Return a boolean indicating whether the provided argument is an empty array.
  *
- * @param  {*} data
+ * @param  {Mixed}  data
  * @return {Boolean}
  */
 export function isEmptyArray(data) {
@@ -92,7 +90,7 @@ export function isEmptyArray(data) {
 /**
  * Return a boolean indicating whether the provided argument is an empty string.
  *
- * @param  {*} data
+ * @param  {Mixed}  data
  * @return {Boolean}
  */
 export function isEmptyString(data) {
