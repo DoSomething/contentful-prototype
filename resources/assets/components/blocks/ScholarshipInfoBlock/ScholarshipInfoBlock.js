@@ -6,15 +6,16 @@ import { css } from '@emotion/core';
 import { useQuery } from 'react-apollo';
 import React, { Fragment, useState } from 'react';
 
+import { report } from '../../../helpers';
 import Card from '../../utilities/Card/Card';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import ScholarshipActionType from './ScholarshipActionType';
 import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
 import ScholarshipRequirements from './ScholarshipRequirements';
 import ScholarshipInstructions from './ScholarshipInstructions';
+import { getHumanFriendlyDate } from '../../../helpers/datetime';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
-import { getHumanFriendlyDate, report } from '../../../helpers';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
 import ScholarshipInfoBlockTitle from '../../utilities/ScholarshipInfoBlockTitle/ScholarshipInfoBlockTitle';
 
