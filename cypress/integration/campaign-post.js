@@ -138,15 +138,15 @@ describe('Campaign Post', () => {
   context('When the hours reportback field feature flag is on', () => {
     const user = userFactory();
 
-    context('For a volunteer credit action', () => {
-      it('Displays the hours_spent reportback field', () => {
+    context('for a volunteer credit action', () => {
+      it('displays the hours_spent reportback field', () => {
         cy.mockGraphqlOp('ActionAndUserByIdQuery', {
           action: {
             collectSchoolId: false,
+            volunteerCredit: true,
           },
           user: {
             schoolId: null,
-            volunteerCredit: true,
           },
         });
 
@@ -186,10 +186,10 @@ describe('Campaign Post', () => {
         cy.mockGraphqlOp('ActionAndUserByIdQuery', {
           action: {
             collectSchoolId: false,
+            volunteerCredit: false,
           },
           user: {
             schoolId: null,
-            volunteerCredit: false,
           },
         });
 
