@@ -1,5 +1,5 @@
 import { modifiers } from './display';
-import { makeHash, pluralize, dynamicString } from './index';
+import { makeHash, pluralize, dynamicString } from './data';
 
 /**
  * Test dynamicString()
