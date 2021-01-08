@@ -33,7 +33,11 @@ const Profile = props => (
         title="Password"
         value="&#9679; &#9679; &#9679; &#9679; &#9679; &#9679;"
       />
-      <FormItem title="Email" value={props.user.email} />
+      <FormItem
+        dataTestId="user-email"
+        title="Email"
+        value={props.user.email}
+      />
       {props.user.mobile ? (
         <FormItem title="Phone Number" value={props.user.mobile} />
       ) : null}

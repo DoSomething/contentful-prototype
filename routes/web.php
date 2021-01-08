@@ -33,8 +33,7 @@ Route::redirect('/next/logout', '/deauthorize', 302);
 // Profile
 Route::redirect('/northstar/{id}', '/us/account');
 Route::view('/us/account/{clientRoute?}', 'app')
-    ->where('clientRoute', '.*')
-    ->middleware('auth');
+    ->where('clientRoute', '.*');
 
 // Campaigns index
 Route::view('us/campaigns', 'app');
