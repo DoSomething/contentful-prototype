@@ -119,7 +119,7 @@ class PhotoSubmissionAction extends PostForm {
       showModal: false,
       signup: null,
       whyParticipatedValue: '',
-      hoursValue: '',
+      hoursSpentValue: '',
     };
 
     this.userId = getUserId();
@@ -165,7 +165,7 @@ class PhotoSubmissionAction extends PostForm {
       file: 'media',
       text: 'caption',
       why_participated: 'whyParticipated',
-      hours: 'hours',
+      hours_spent: 'hoursSpent',
     };
 
     if (this.props.showQuantityField) {
@@ -302,7 +302,7 @@ class PhotoSubmissionAction extends PostForm {
       signup,
       whyParticipatedValue: '',
       numberOfParticipantsValue: '',
-      hoursValue: '',
+      hoursSpentValue: '',
     });
   };
 
@@ -487,21 +487,24 @@ class PhotoSubmissionAction extends PostForm {
                               <div className="form-item">
                                 <label
                                   className={classnames('field-label', {
-                                    'has-error': has(errors, 'hours'),
+                                    'has-error': has(errors, 'hoursSpent'),
                                   })}
-                                  htmlFor="hours"
+                                  htmlFor="hoursSpent"
                                 >
                                   How many hours did this action take?
                                   <input
                                     className={classnames('text-field', {
-                                      'has-error shake': has(errors, 'hours'),
+                                      'has-error shake': has(
+                                        errors,
+                                        'hoursSpent',
+                                      ),
                                     })}
                                     type="number"
                                     step="0.1"
-                                    id="hours"
-                                    name="hours"
+                                    id="hoursSpent"
+                                    name="hoursSpent"
                                     placeholder={`Use numbers (e.g. "1.5" or "3")`}
-                                    value={this.state.hoursValue}
+                                    value={this.state.hoursSpentValue}
                                     onChange={this.handleChange}
                                     required
                                     min={0.1}
