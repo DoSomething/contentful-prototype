@@ -3,11 +3,14 @@ import { userFactory } from '../fixtures/user';
 describe('User Profile Page', () => {
   beforeEach(() => cy.configureMocks());
   /** @test */
-  it('Renders Voter Registration Call to Action in Registration Status', () => {
+  it('Renders User Account Page if that User is Logged In', () => {
     const user = userFactory();
-    cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
+    cy.mockGraphqlOp('AccountQuery', {
       user: {
-        voterRegistrationStatus: 'UNREGISTERED',
+        lastName: 'Tester',
+        birthdate: Date(),
+        email: 'tester@mail.com',
+        emailSubscriptionTopics: ['COMMUNITY'],
       },
     });
     cy.login(user);
