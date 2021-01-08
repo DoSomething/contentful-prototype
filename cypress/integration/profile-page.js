@@ -3,7 +3,7 @@ import { userFactory } from '../fixtures/user';
 describe('User Profile Page', () => {
   beforeEach(() => cy.configureMocks());
   /** @test */
-  it('Renders User Account Page if that User is Logged In', () => {
+  it('Renders user Account Page if that user is logged in', () => {
     const user = userFactory();
     cy.mockGraphqlOp('AccountQuery', {
       user: {
@@ -15,7 +15,12 @@ describe('User Profile Page', () => {
     });
     cy.login(user);
     cy.visit(`/us/account`);
-    // cy.findByTestId('unregistered-status').should('have.length', 1);
-    // cy.findByTestId('quiz-result-page').should('have.length', 0);
+    cy.findByTestId('user-email').should('contain', 'tester@mail.com');
+  });
+
+  /** @test */
+  it('Does not render user Account Page if not logged in', () => {
+    cy.visit(`/us/account`);
+    cy.findByTestId('user-email').should('have.length', 0);
   });
 });

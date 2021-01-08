@@ -84,7 +84,7 @@ const VoterRegStatusBlock = ({ userId }) => {
 
   return (
     <div className="voter-reg flex items-center">
-      <div className="m-3">
+      <div className="m-3" data-testid="unregistered-status">
         <p>We don&#39;t have your voter registration.</p>
         <a
           href={`https://vote.dosomething.org/?r=${getTrackingSource(
