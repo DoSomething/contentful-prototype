@@ -503,7 +503,7 @@ class PhotoSubmissionAction extends PostForm {
                                       ),
                                     })}
                                     type="number"
-                                    step="0.1"
+                                    step="0.01"
                                     id="hoursSpent"
                                     name="hoursSpent"
                                     placeholder={`Use numbers (e.g. "1.5" or "3")`}
