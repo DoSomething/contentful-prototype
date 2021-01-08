@@ -24,6 +24,7 @@
     -   [Landing Page](development/content-types/landing-page.md)
     -   [Metadata](development/content-types/metadata.md)
     -   [Page](development/content-types/page.md)
+    -   [Photo Submission Action](development/content-types/photo-submission-action.md)
     -   [Selection Submission Action](development/content-types/selection-submission-action.md)
     -   [Share Action](development/content-types/share-action.md)
     -   [Signup Referrals Block](development/content-types/signup-referrals-block.md)
