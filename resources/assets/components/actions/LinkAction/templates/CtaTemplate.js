@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../../utilities/Card/Card';
-import { dynamicString } from '../../../../helpers';
+import { dynamicString } from '../../../../helpers/data';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import {

@@ -17,7 +17,7 @@ import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
-import { withoutUndefined, withoutNulls } from '../../../helpers';
+import { withoutUndefined, withoutNulls } from '../../../helpers/data';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';

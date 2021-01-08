@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 
-import { withoutNulls } from '.';
+import { withoutNulls } from './data';
 import { appendToQuery } from './url';
 
 /**

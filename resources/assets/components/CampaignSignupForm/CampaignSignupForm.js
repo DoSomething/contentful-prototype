@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import Card from '../utilities/Card/Card';
-import { withoutNulls } from '../../helpers';
 import { siteConfig } from '../../helpers/env';
+import { withoutNulls } from '../../helpers/data';
 import { getUtms, query } from '../../helpers/url';
 import GroupFinder from './GroupFinder/GroupFinder';
 import { isCampaignClosed } from '../../helpers/campaign';

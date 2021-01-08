@@ -3,7 +3,7 @@
 import queryString from 'query-string';
 import { merge, isEmpty } from 'lodash';
 
-import { withoutValueless } from '.';
+import { withoutValueless } from './data';
 
 const UTM_SESSION_KEY = 'ds_utm_params';
 

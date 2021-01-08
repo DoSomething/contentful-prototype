@@ -7,7 +7,7 @@ import useScript, { ScriptStatus } from '@charlietango/use-script';
 
 import Card from '../utilities/Card/Card';
 import { makeUrl } from '../../helpers/url';
-import { withoutNulls } from '../../helpers';
+import { withoutNulls } from '../../helpers/data';
 import Spinner from '../artifacts/Spinner/Spinner';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 

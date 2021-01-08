@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { report } from '../../helpers';
 import Loader from '../utilities/Loader';
-import { report, withoutNulls } from '../../helpers';
+import { withoutNulls } from '../../helpers/data';
 import Affirmation from '../Affirmation/Affirmation';
 import SoftEdgeBlock from '../actions/SoftEdgeBlock';
 import EmbedBlock from '../blocks/EmbedBlock/EmbedBlock';

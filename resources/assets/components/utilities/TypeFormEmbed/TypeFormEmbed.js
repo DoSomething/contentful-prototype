@@ -3,7 +3,7 @@ import * as typeformEmbed from '@typeform/embed';
 import React, { useRef, useEffect } from 'react';
 
 import { makeUrl } from '../../../helpers/url';
-import { withoutNulls } from '../../../helpers';
+import { withoutNulls } from '../../../helpers/data';
 
 const DISPLAY_STYLES = {
   block: {

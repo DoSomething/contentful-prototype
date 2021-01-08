@@ -2,9 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import { withoutNulls } from '../../../helpers';
 import { getUserId } from '../../../helpers/auth';
 import PaginatedQuery from '../../PaginatedQuery';
+import { withoutNulls } from '../../../helpers/data';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';

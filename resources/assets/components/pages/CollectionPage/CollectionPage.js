@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
-import { withoutNulls } from '../../../helpers';
+import { withoutNulls } from '../../../helpers/data';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import CuratedPageBanner from '../../utilities/CuratedPageBanner';
 import TextContent from '../../utilities/TextContent/TextContent';

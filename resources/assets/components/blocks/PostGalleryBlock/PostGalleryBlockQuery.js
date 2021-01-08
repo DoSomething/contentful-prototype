@@ -7,7 +7,7 @@ import classnames from 'classnames';
 import { query } from '../../../helpers/url';
 import PaginatedQuery from '../../PaginatedQuery';
 import ScrollConcierge from '../../ScrollConcierge';
-import { withoutValueless } from '../../../helpers';
+import { withoutValueless } from '../../../helpers/data';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';

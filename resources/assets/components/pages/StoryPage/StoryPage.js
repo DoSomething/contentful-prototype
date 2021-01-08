@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withoutNulls } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
+import { withoutNulls } from '../../../helpers/data';
 import { isAuthenticated } from '../../../helpers/auth';
 import PageInfoBar from '../../PageInfoBar/PageInfoBar';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';

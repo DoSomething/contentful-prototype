@@ -13,6 +13,7 @@ import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { showTwitterSharePrompt } from '../../../helpers/twitter';
 import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
 import TextContent from '../../utilities/TextContent/TextContent';
+import { dynamicString, withoutNulls } from '../../../helpers/data';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import {
@@ -23,7 +24,6 @@ import {
   loadFacebookSDK,
   showFacebookShareDialog,
 } from '../../../helpers/facebook';
-import { dynamicString, withoutNulls } from '../../../helpers';
 
 export const ShareBlockFragment = gql`
   fragment ShareBlockFragment on ShareBlock {

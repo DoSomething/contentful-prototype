@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { withoutNulls } from '../../../../helpers';
+import { withoutNulls } from '../../../../helpers/data';
 import CauseFilter from '../CampaignFilters/CauseFilter/CauseFilter';
 
 const renderedFilterMenu = props => {

@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
-import { withoutNulls } from '../../../helpers';
 import LazyImage from '../../utilities/LazyImage';
+import { withoutNulls } from '../../../helpers/data';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl } from '../../../helpers/contentful';
 import TextContent from '../../utilities/TextContent/TextContent';

@@ -4,9 +4,9 @@ import React from 'react';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
 
-import { withoutNulls } from '../../../helpers';
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
+import { withoutNulls } from '../../../helpers/data';
 import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
 import ArticleHeader from '../../utilities/ArticleHeader';

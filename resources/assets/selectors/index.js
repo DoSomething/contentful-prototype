@@ -1,5 +1,5 @@
-import { withoutValueless } from '../helpers';
 import { getUtms, query } from '../helpers/url';
+import { withoutValueless } from '../helpers/data';
 import { getCampaignDataForNorthstar } from './campaign';
 import { getStoryPageDataForNorthstar } from './storyPage';
 
