@@ -12,8 +12,8 @@ import {
 } from 'lodash';
 
 /**
- * Convert an int to a string. (Supports 0-10)
- * @param  {int} number
+ * Convert an number to a string. (Supports 0-10)
+ * @param  {Number} number
  * @return {String}
  */
 export function convertNumberToWord(number) {
