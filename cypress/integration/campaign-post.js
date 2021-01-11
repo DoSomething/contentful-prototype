@@ -96,10 +96,15 @@ describe('Campaign Post', () => {
     cy.mockGraphqlOp('ActionAndUserByIdQuery', {
       action: {
         collectSchoolId: false,
-        volunteerCredit: false,
       },
       user: {
         schoolId: null,
+      },
+    });
+
+    cy.mockGraphqlOp('ActionQuery', {
+      action: {
+        volunteerCredit: false,
       },
     });
 
@@ -136,17 +141,22 @@ describe('Campaign Post', () => {
     cy.contains('We got your photo!');
   });
 
-  context('for a volunteer credit action', () => {
+  context('For a volunteer credit action', () => {
     const user = userFactory();
 
     it('displays the hours_spent reportback field', () => {
       cy.mockGraphqlOp('ActionAndUserByIdQuery', {
         action: {
           collectSchoolId: false,
-          volunteerCredit: true,
         },
         user: {
           schoolId: null,
+        },
+      });
+
+      cy.mockGraphqlOp('ActionQuery', {
+        action: {
+          volunteerCredit: true,
         },
       });
 
@@ -177,24 +187,31 @@ describe('Campaign Post', () => {
       // We should see the affirmation modal after submitting a post:
       cy.contains('We got your photo!');
     });
+  });
 
-    context('For a non volunteer credit action', () => {
-      it('Does not display the hours_spent reportback field', () => {
-        cy.mockGraphqlOp('ActionAndUserByIdQuery', {
-          action: {
-            collectSchoolId: false,
-            volunteerCredit: false,
-          },
-          user: {
-            schoolId: null,
-          },
-        });
+  context('For a non volunteer credit action', () => {
+    const user = userFactory();
 
-        // Log in & visit the campaign action page:
-        cy.authVisitCampaignWithSignup(user, exampleCampaign);
-
-        cy.findByTestId('hours_spent').should('have.length', 0);
+    it('Does not display the hours_spent reportback field', () => {
+      cy.mockGraphqlOp('ActionAndUserByIdQuery', {
+        action: {
+          collectSchoolId: false,
+        },
+        user: {
+          schoolId: null,
+        },
       });
+
+      cy.mockGraphqlOp('ActionQuery', {
+        action: {
+          volunteerCredit: false,
+        },
+      });
+
+      // Log in & visit the campaign action page:
+      cy.authVisitCampaignWithSignup(user, exampleCampaign);
+
+      cy.findByTestId('hours_spent').should('have.length', 0);
     });
   });
 
@@ -245,10 +262,15 @@ describe('Campaign Post', () => {
       cy.mockGraphqlOp('ActionAndUserByIdQuery', {
         action: {
           collectSchoolId: false,
-          volunteerCredit: false,
         },
         user: {
           schoolId: null,
+        },
+      });
+
+      cy.mockGraphqlOp('ActionQuery', {
+        action: {
+          volunteerCredit: false,
         },
       });
 
