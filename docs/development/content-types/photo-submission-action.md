@@ -16,6 +16,6 @@ Once the user submits the form successfully, they will be redirected to the Show
 
 ## Hours Spent Field
 
-If the `DS_ENABLE_HOURS_REPORTBACK_FIELD` is set to `true`, and the associated Rogue Action for this Photo Submission Action (queried using the assign **Action ID** field) qualifies for Volunteer Credit, we display the Hours Spent input field, allowing the user to submit the time they've spent on this action.
+If the associated Rogue Action for this Photo Submission Action (queried using the assign **Action ID** field) qualifies for Volunteer Credit, we display the Hours Spent input field, allowing the user to submit the time they've spent on this action.
 
 ![Example Photo Submission Action With Hours Spent Field](../../.gitbook/assets/photo-submission-action-hours-spent.png)
