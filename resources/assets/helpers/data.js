@@ -12,7 +12,7 @@ import {
 } from 'lodash';
 
 /**
- * Convert an int to a string. (Supports 0-10)
+ * Convert a number to a string. (Supports 0-10)
  * @param  {Number} number
  * @return {String}
  */
