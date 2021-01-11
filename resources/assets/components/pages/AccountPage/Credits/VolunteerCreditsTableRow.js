@@ -29,6 +29,7 @@ const VolunteerCreditsTableRow = ({ certificatePost }) => {
     actionLabel,
     dateCompleted,
     volunteerHours,
+    hoursSpentLabel,
   } = certificatePost;
 
   return (
@@ -41,7 +42,7 @@ const VolunteerCreditsTableRow = ({ certificatePost }) => {
             </TableData>
             <TableData>{actionLabel}</TableData>
             <TableData>{dateCompleted}</TableData>
-            <TableData>{volunteerHours}</TableData>
+            <TableData>{hoursSpentLabel || volunteerHours}</TableData>
             <TableData>
               <CertificateDownloadButton certificatePost={certificatePost} />
             </TableData>
@@ -52,7 +53,10 @@ const VolunteerCreditsTableRow = ({ certificatePost }) => {
 
             <ul className="py-5">
               <PostDetail detail="Action Type" value={actionLabel} />
-              <PostDetail detail="Volunteer Hours" value={volunteerHours} />
+              <PostDetail
+                detail="Volunteer Hours"
+                value={hoursSpentLabel || volunteerHours}
+              />
               <PostDetail detail="Date Completed" value={dateCompleted} />
             </ul>
 
