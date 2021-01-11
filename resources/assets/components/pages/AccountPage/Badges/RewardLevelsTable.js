@@ -2,6 +2,7 @@ import React from 'react';
 import tw from 'twin.macro';
 import { css } from '@emotion/core';
 
+import { query } from '../../../../helpers/url';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const Table = tw.table`my-6 w-full lg:w-3/4`;
@@ -14,7 +15,7 @@ const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
 const RewardLevelsTable = () => {
   // @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
-  const badges = 6;
+  const badges = query('badges') || 4;
 
   const userLevelLabel = badgeNumber => {
     let userLevel;
