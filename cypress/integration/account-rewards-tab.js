@@ -2,8 +2,9 @@ import { userFactory } from '../fixtures/user';
 
 describe('User Profile Page', () => {
   beforeEach(() => cy.configureMocks());
+
   /** @test */
-  it('Renders user Account Page if that user is logged in', () => {
+  it('Displays the users current earned badges', () => {
     const user = userFactory();
     cy.mockGraphqlOp('AccountQuery', {
       user: {
@@ -14,13 +15,7 @@ describe('User Profile Page', () => {
       },
     });
     cy.login(user);
-    cy.visit(`/us/account`);
-    cy.findByTestId('user-email').should('contain', 'tester@mail.com');
-  });
-
-  /** @test */
-  it('Does not render user Account Page if not logged in', () => {
-    cy.visit(`/us/account`);
+    cy.visit(`/us/account/badges`);
     cy.findByTestId('user-email').should('have.length', 0);
   });
 });
