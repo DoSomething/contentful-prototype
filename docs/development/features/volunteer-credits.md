@@ -6,8 +6,6 @@ We offer Volunteer Credit certification for certain social good actions on our w
 
 Once a user has signed up, and reported back for a volunteer credit-worthy campaign, they can navigate to `/us/account/credits` and download a PDF certificate accreditation for their work.
 
-_Currently, the Volunteer Credit features are hidden behind the `DS_ENABLE_VOLUNTEER_CREDITS` environment variable._
-
 ## Rogue Actions
 
 In order to denote a particular campaign Action as volunteer credit (VC) worthy, an admin must set the Volunteer Credit (`volunteer_credit`) field to `true`. This can be done from the Rogue website on any particular action page (https://activity.dosomething.org/actions/:id).

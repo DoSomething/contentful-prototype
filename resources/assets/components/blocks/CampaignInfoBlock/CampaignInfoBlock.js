@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
-import { featureFlag } from '../../../helpers/env';
 import { getHumanFriendlyDate } from '../../../helpers';
 import {
   EVENT_CATEGORIES,
@@ -134,7 +133,7 @@ const CampaignInfoBlock = ({
                   <dd>{actionItem.actionLabel}</dd>
                 </>
               ) : null}
-              {featureFlag('volunteer_credits') && actionItem ? (
+              {actionItem ? (
                 <>
                   <dt>Volunteer Credit</dt>
                   <dd data-testid="volunteer-credit-value">

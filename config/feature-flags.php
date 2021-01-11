@@ -21,6 +21,5 @@ return [
     'quiz_result_page' =>  env('DS_ENABLE_QUIZ_RESULT_PAGE', false),
     'refer_friends_incentive' => env('DS_ENABLE_REFER_FRIENDS_INCENTIVE', false),
     'sitewide_nps_survey' => env('DS_ENABLE_SITEWIDE_NPS_SURVEY', false),
-    'volunteer_credits' => env('DS_ENABLE_VOLUNTEER_CREDITS', false),
     'rewards_levels' => env('DS_ENABLE_REWARDS_LEVELS', false),
 ];
