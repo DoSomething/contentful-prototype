@@ -1,10 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import pluralize from 'pluralize';
+import prettyMilliseconds from 'pretty-ms';
 import { get, groupBy, last } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 
 import { getUserId } from '../../../../helpers/auth';
+import { featureFlag } from '../../../../helpers/env';
 import Spinner from '../../../artifacts/Spinner/Spinner';
 import { getHumanFriendlyDate } from '../../../../helpers';
 import VolunteerCreditsTable from './VolunteerCreditsTable';
@@ -24,6 +26,7 @@ export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
           id
           createdAt
           quantity
+          hoursSpent
           status
           url
           actionDetails {
@@ -113,6 +116,22 @@ const VolunteerCreditsQuery = () => {
         0,
       );
 
+      // Calculate total hours spent from all accepted posts.
+      const hoursSpent = acceptedPosts.reduce(
+        (totalHoursSpent, post) => totalHoursSpent + (post.hoursSpent || 0),
+        0,
+      );
+
+      // Generate human-friendly hoursSpent label. (1.5 -> "1 hour 30 minutes").
+      const hoursSpentLabel =
+        hoursSpent && featureFlag('hours_spent_in_vc_certificates')
+          ? prettyMilliseconds(
+              // Multiply by minutes * seconds * milliseconds:
+              hoursSpent * 60 * 60 * 1000,
+              { verbose: true },
+            )
+          : null;
+
       // Generate human-friendly impact label based on quantity and action noun + verb.
       // Will be 'null' for actions where we don't collect quantity info, or where total impact tallies to 0.
       const impactLabel = quantity
@@ -133,6 +152,7 @@ const VolunteerCreditsQuery = () => {
         dateCompleted: getHumanFriendlyDate(createdAt),
         volunteerHours: timeCommitmentLabel,
         impactLabel,
+        hoursSpentLabel,
         photo,
         pending,
         user: data.user,

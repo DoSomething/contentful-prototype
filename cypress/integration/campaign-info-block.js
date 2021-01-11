@@ -104,9 +104,7 @@ describe('Campaign Info Block', () => {
         }),
       });
 
-      cy.withFeatureFlags({ volunteer_credits: true }).anonVisitCampaign(
-        exampleCampaign,
-      );
+      cy.anonVisitCampaign(exampleCampaign);
 
       cy.findByTestId('campaign-info-block-container').within(() => {
         cy.contains('Volunteer Credit');
@@ -129,9 +127,7 @@ describe('Campaign Info Block', () => {
         }),
       });
 
-      cy.withFeatureFlags({ volunteer_credits: true }).anonVisitCampaign(
-        exampleCampaign,
-      );
+      cy.anonVisitCampaign(exampleCampaign);
 
       cy.findByTestId('campaign-info-block-container').within(() => {
         cy.contains('Volunteer Credit');

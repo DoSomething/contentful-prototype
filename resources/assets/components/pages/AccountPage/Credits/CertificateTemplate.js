@@ -39,6 +39,7 @@ export const certificatePostType = PropTypes.shape({
     ),
   }),
   actionLabel: PropTypes.string.isRequired,
+  hoursSpentLabel: PropTypes.string,
   dateCompleted: PropTypes.string.isRequired,
   volunteerHours: PropTypes.string.isRequired,
   impactLabel: PropTypes.string,
@@ -224,7 +225,10 @@ const CertificateTemplate = ({ certificatePost }) => {
                     <Text style={styles.postDetailsTitle}>
                       Volunteer Hours*
                     </Text>
-                    <Text>{certificatePost.volunteerHours}</Text>
+                    <Text>
+                      {certificatePost.hoursSpentLabel ||
+                        certificatePost.volunteerHours}
+                    </Text>
                   </View>
                 </View>
 

@@ -19,9 +19,9 @@ const AccountRoute = props => (
       render={() => <UserPostsQuery userId={props.userId} />}
     />
     <Route path="/us/account/badges" render={() => <BadgesTab {...props} />} />
-    {featureFlag('volunteer_credits') ? (
-      <Route path="/us/account/credits" component={Credits} />
-    ) : null}
+
+    <Route path="/us/account/credits" component={Credits} />
+
     {featureFlag('cause_preferences') ? (
       <Route path="/us/account/interests" render={() => <Interests />} />
     ) : null}

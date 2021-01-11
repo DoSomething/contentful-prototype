@@ -475,8 +475,7 @@ class PhotoSubmissionAction extends PostForm {
                           ) : null}
                         </div>
                       ) : null}
-                      {featureFlag('hours_reportback_field') &&
-                      this.props.actionId ? (
+                      {this.props.actionId ? (
                         <Query
                           query={ACTION_QUERY}
                           variables={{ actionId: this.props.actionId }}

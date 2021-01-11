@@ -81,6 +81,7 @@ export const newPhotoPost = (campaignId, user) => ({
       text: "Let's do this!",
     },
     quantity: 1,
+    hours_spent: null,
     reactions: { reacted: false, total: null },
     status: 'pending',
     location: null,

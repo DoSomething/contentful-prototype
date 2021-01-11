@@ -41,14 +41,14 @@ const AccountNavigation = () => (
       >
         {featureFlag('rewards_levels') ? 'Rewards' : 'Badges'}
       </NavigationLink>
-      {featureFlag('volunteer_credits') ? (
-        <NavigationLink
-          to="/us/account/credits"
-          onClick={() => handleAccountNavTabClick('credits')}
-        >
-          Credits
-        </NavigationLink>
-      ) : null}
+
+      <NavigationLink
+        to="/us/account/credits"
+        onClick={() => handleAccountNavTabClick('credits')}
+      >
+        Credits
+      </NavigationLink>
+
       {featureFlag('cause_preferences') ? (
         <NavigationLink
           to="/us/account/interests"
