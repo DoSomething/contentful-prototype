@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getHumanFriendlyDate } from '../../../helpers';
+import { getHumanFriendlyDate } from '../../../helpers/datetime';
 import PageInfoBarContainer from '../../PageInfoBar/PageInfoBarContainer';
 import CampaignBannerContainer from '../../CampaignBanner/CampaignBannerContainer';
 

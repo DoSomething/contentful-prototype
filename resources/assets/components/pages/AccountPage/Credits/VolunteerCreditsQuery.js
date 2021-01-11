@@ -8,9 +8,9 @@ import { useQuery } from '@apollo/react-hooks';
 import { getUserId } from '../../../../helpers/auth';
 import { featureFlag } from '../../../../helpers/env';
 import Spinner from '../../../artifacts/Spinner/Spinner';
-import { getHumanFriendlyDate } from '../../../../helpers';
 import VolunteerCreditsTable from './VolunteerCreditsTable';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
+import { getHumanFriendlyDate } from '../../../../helpers/datetime';
 
 export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
   query volunteerCreditPostsQuery($userId: String!) {

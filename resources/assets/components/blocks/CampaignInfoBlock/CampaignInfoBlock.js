@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
-import { getHumanFriendlyDate } from '../../../helpers';
+import { getHumanFriendlyDate } from '../../../helpers/datetime';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
