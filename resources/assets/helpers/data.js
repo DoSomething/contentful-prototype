@@ -78,7 +78,7 @@ export function generateUniqueId() {
 /**
  * Return a boolean indicating whether the provided argument is an empty array.
  *
- * @param  {Mixed}  data
+ * @param  {*} data
  * @return {Boolean}
  */
 export function isEmptyArray(data) {
@@ -92,7 +92,7 @@ export function isEmptyArray(data) {
 /**
  * Return a boolean indicating whether the provided argument is an empty string.
  *
- * @param  {Mixed}  data
+ * @param  {*} data
  * @return {Boolean}
  */
 export function isEmptyString(data) {
