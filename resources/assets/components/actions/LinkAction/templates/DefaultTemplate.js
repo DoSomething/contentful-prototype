@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
-import { dynamicString } from '../../../../helpers';
 import { getUserId } from '../../../../helpers/auth';
+import { dynamicString } from '../../../../helpers/data';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';

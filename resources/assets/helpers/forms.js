@@ -2,8 +2,8 @@
 
 import { forEach, get, isInteger } from 'lodash';
 
-import { withoutValueless } from '.';
 import { getUtms, query } from './url';
+import { withoutValueless } from './data';
 
 /**
  * Calculate the difference between a total value and a submitted value.

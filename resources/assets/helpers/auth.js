@@ -3,7 +3,7 @@
 import { get, isEmpty } from 'lodash';
 import queryString from 'query-string';
 
-import { withoutValueless } from '.';
+import { withoutValueless } from './data';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
 /**

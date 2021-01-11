@@ -26,7 +26,7 @@ import {
   showFacebookSendDialog,
   showFacebookShareDialog,
 } from '../../../helpers/facebook';
-import { getFormattedScreenSize } from '../../../helpers';
+import { getFormattedScreenSize } from '../../../helpers/display';
 
 class SocialShareTray extends React.Component {
   componentDidMount() {

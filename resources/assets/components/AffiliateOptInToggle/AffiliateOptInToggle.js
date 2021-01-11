@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withoutNulls } from '../../helpers';
+import { withoutNulls } from '../../helpers/data';
 import TextContent from '../utilities/TextContent/TextContent';
 
 import './affiliate-opt-in-toggle.scss';

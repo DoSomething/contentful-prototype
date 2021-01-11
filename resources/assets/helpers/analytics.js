@@ -9,9 +9,10 @@ import {
   startCase,
 } from 'lodash';
 
+import { debug } from '.';
 import { getUtms } from './url';
 import Sixpack from '../services/Sixpack';
-import { debug, stringifyNestedObjects, withoutValueless } from '.';
+import { stringifyNestedObjects, withoutValueless } from './data';
 
 /**
  * App name prefix used for event naming.

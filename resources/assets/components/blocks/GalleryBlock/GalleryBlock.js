@@ -2,8 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import { withoutNulls } from '../../../helpers';
 import Person from '../../utilities/Person/Person';
+import { withoutNulls } from '../../../helpers/data';
 import Gallery from '../../utilities/Gallery/Gallery';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import CampaignCard, {

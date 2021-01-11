@@ -12,7 +12,7 @@ import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import FormValidation from '../../utilities/Form/FormValidation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
-import { withoutUndefined, withoutNulls } from '../../../helpers';
+import { withoutUndefined, withoutNulls } from '../../../helpers/data';
 import { getFieldErrors, formatPostPayload } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';

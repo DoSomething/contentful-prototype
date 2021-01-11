@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import QuizChoice from './QuizChoice';
-import { convertNumberToWord } from '../../helpers';
+import { convertNumberToWord } from '../../helpers/data';
 import SectionHeader from '../utilities/SectionHeader/SectionHeader';
 
 const QuizQuestion = props => {

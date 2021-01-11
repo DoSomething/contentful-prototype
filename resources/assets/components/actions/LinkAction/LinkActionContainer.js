@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import LinkAction from './LinkAction';
-import { withoutNulls } from '../../../helpers';
+import { withoutNulls } from '../../../helpers/data';
 
 /**
  * Provide state from the Redux store as props for this component.

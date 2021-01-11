@@ -2,8 +2,8 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import { withoutNulls } from '../../../helpers';
 import SlideshowContainer from '../../Slideshow';
+import { withoutNulls } from '../../../helpers/data';
 import Affirmation from '../../Affirmation/Affirmation';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 

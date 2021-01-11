@@ -9,6 +9,32 @@ export const EMPTY_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 /**
+ * Get a formatted name (small, medium, large)
+ * of the current display size.
+ *
+ * @param  {int} width - Defaults to the screen width
+ * @return {String}
+ */
+export function getFormattedScreenSize(screenWidth = window.innerWidth) {
+  const breakpoints = [
+    {
+      name: 'small',
+      test: width => width <= 759,
+    },
+    {
+      name: 'medium',
+      test: width => width >= 760 && width <= 959,
+    },
+    {
+      name: 'large',
+      test: width => width >= 960,
+    },
+  ];
+
+  return breakpoints.find(breakpoint => breakpoint.test(screenWidth)).name;
+}
+
+/**
  * Prefix a class name or array of class names.
  * @param {String|Array} names
  */

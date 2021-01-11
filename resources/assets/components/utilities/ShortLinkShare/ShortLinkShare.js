@@ -8,8 +8,8 @@ import { env } from '../../../helpers/env';
 import { getUserId } from '../../../helpers/auth';
 import { postRequest } from '../../../helpers/api';
 import { appendToQuery } from '../../../helpers/url';
-import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../SocialShareTray/SocialShareTray';
+import { dynamicString, withoutTokens } from '../../../helpers/data';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
