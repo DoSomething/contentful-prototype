@@ -187,7 +187,7 @@ class BadgesTab extends React.Component {
         <p className="text-gray-600">
           Earn badges and rewards for making a difference.
         </p>
-        <ul className="gallery-grid-sextet -mx-3">
+        <ul data-testId="badges-list" className="gallery-grid-sextet -mx-3">
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
             {data => (
               <li>
@@ -198,6 +198,7 @@ class BadgesTab extends React.Component {
                   role="button"
                   tabIndex={0}
                   className="clickable-badge"
+                  data-testId="signup-badge"
                 >
                   <Badge
                     earned={data.signupsCount > 0}
