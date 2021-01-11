@@ -38,4 +38,36 @@ describe('User Account Rewards Tab', () => {
     cy.get('.modal-portal > .wrapper.modal-container').click('topRight');
     cy.findByTestId('badges-modal').should('have.length', 0);
   });
+
+  /** @test */
+  it('Displays the rewards details table', () => {
+    const user = userFactory();
+    cy.mockGraphqlOp('AccountQuery', {
+      user: {
+        lastName: 'Tester',
+        birthdate: Date(),
+        email: 'tester@mail.com',
+      },
+    });
+
+    cy.login(user);
+    cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/badges`);
+    cy.findByTestId('rewards-info-table').should('have.length', 1);
+  });
+
+  /** @test */
+  it('Displays the rewards FAQ', () => {
+    const user = userFactory();
+    cy.mockGraphqlOp('AccountQuery', {
+      user: {
+        lastName: 'Tester',
+        birthdate: Date(),
+        email: 'tester@mail.com',
+      },
+    });
+
+    cy.login(user);
+    cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/badges`);
+    cy.findByTestId('rewards-tab-faq').should('have.length', 1);
+  });
 });

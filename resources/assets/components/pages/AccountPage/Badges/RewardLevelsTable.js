@@ -66,7 +66,7 @@ const RewardLevelsTable = () => {
   );
 
   return (
-    <div className="pt-10">
+    <div data-testId="rewards-info-table" className="pt-10">
       <SectionHeader title="my rewards" />
 
       <p className="text-gray-600">
