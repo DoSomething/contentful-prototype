@@ -1,19 +1,20 @@
 import React from 'react';
 import tw from 'twin.macro';
+import { css } from '@emotion/core';
 
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const Table = tw.table`my-6 w-full lg:w-3/4`;
 const TableHeader = tw.thead`font-bold p-4 pr-6 text-center w-full border-solid border-b-4 border-gray-400`;
 const TableCellLeft = tw.td`p-3 text-sm text-left md:text-base border-solid border-b border-gray-400`;
-const TableCellLeftBottom = tw.td`p-2 text-sm text-left md:text-base`;
+const TableCellLeftBottom = tw.td`p-3 text-sm text-left md:text-base`;
 const TableCellCenter = tw.td`p-2 text-sm text-center md:text-base border-solid border-l border-b border-gray-400 align-middle`;
 const TableCellCenterBottom = tw.td`p-2 text-sm text-center md:text-base border-solid border-l border-gray-400 align-middle`;
 const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
 const RewardLevelsTable = () => {
   // @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
-  const badges = 2;
+  const badges = 6;
 
   const userLevelLabel = badgeNumber => {
     let userLevel;
@@ -27,6 +28,18 @@ const RewardLevelsTable = () => {
 
     return userLevel;
   };
+
+  const doerHighlight = css`
+    background-color: rgba(47, 227, 218, 0.15);
+  `;
+
+  const superDoerHighlight = css`
+    background-color: rgba(193, 125, 228, 0.15);
+  `;
+
+  const legendHighlight = css`
+    background-color: rgba(251, 209, 51, 0.15);
+  `;
 
   const header = (
     <TableHeader>
@@ -63,28 +76,16 @@ const RewardLevelsTable = () => {
         <colgroup>
           <col />
 
+          <col css={userLevelLabel(badges) === 'Doer' ? doerHighlight : null} />
+
           <col
-            className={
-              userLevelLabel(badges) === 'Doer'
-                ? 'bg-teal-500 bg-opacity-25'
-                : 'bg-white'
+            css={
+              userLevelLabel(badges) === 'SuperDoer' ? superDoerHighlight : null
             }
           />
 
           <col
-            className={
-              userLevelLabel(badges) === 'SuperDoer'
-                ? 'bg-purple-500 bg-opacity-25'
-                : 'bg-white'
-            }
-          />
-
-          <col
-            className={
-              userLevelLabel(badges) === 'Legend'
-                ? 'bg-yellow-500 bg-opacity-25'
-                : 'bg-white'
-            }
+            css={userLevelLabel(badges) === 'Legend' ? legendHighlight : null}
           />
         </colgroup>
 
