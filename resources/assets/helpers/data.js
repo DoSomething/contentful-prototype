@@ -1,3 +1,5 @@
+/* global Date, JSON, Math, Object */
+
 import {
   isArray,
   isEmpty,
@@ -11,7 +13,7 @@ import {
 
 /**
  * Convert an int to a string. (Supports 0-10)
- * @param  {int} number
+ * @param  {Number} number
  * @return {String}
  */
 export function convertNumberToWord(number) {
@@ -76,7 +78,7 @@ export function generateUniqueId() {
 /**
  * Return a boolean indicating whether the provided argument is an empty array.
  *
- * @param  {Mixed}  data
+ * @param  {*} data
  * @return {Boolean}
  */
 export function isEmptyArray(data) {
@@ -90,7 +92,7 @@ export function isEmptyArray(data) {
 /**
  * Return a boolean indicating whether the provided argument is an empty string.
  *
- * @param  {Mixed}  data
+ * @param  {*} data
  * @return {Boolean}
  */
 export function isEmptyString(data) {
