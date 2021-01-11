@@ -96,6 +96,7 @@ describe('Campaign Post', () => {
     cy.mockGraphqlOp('ActionAndUserByIdQuery', {
       action: {
         collectSchoolId: false,
+        volunteerCredit: false,
       },
       user: {
         schoolId: null,
@@ -244,6 +245,7 @@ describe('Campaign Post', () => {
       cy.mockGraphqlOp('ActionAndUserByIdQuery', {
         action: {
           collectSchoolId: false,
+          volunteerCredit: false,
         },
         user: {
           schoolId: null,
