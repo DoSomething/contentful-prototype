@@ -26,7 +26,7 @@ describe('User Account Rewards Tab', () => {
   });
 
   /** @test */
-  it('Displays the correct text for an un earned badge', () => {
+  it('Displays the correct text for an unearned badge', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('SignupsCountQuery', {
@@ -42,7 +42,7 @@ describe('User Account Rewards Tab', () => {
   });
 
   /** @test */
-  it('Displays the correct text for an un earned badge', () => {
+  it('Displays the correct text for an earned badge', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('SignupsCountQuery', {
