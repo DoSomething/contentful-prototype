@@ -6,13 +6,6 @@ describe('User Account Rewards Tab', () => {
   /** @test */
   it('Displays the list of badges', () => {
     const user = userFactory();
-    cy.mockGraphqlOp('AccountQuery', {
-      user: {
-        lastName: 'Tester',
-        birthdate: Date(),
-        email: 'tester@mail.com',
-      },
-    });
 
     cy.login(user);
     cy.visit(`/us/account/badges`);
@@ -22,13 +15,6 @@ describe('User Account Rewards Tab', () => {
   /** @test */
   it('Opens a badge details modal when a badge is clicked', () => {
     const user = userFactory();
-    cy.mockGraphqlOp('AccountQuery', {
-      user: {
-        lastName: 'Tester',
-        birthdate: Date(),
-        email: 'tester@mail.com',
-      },
-    });
 
     cy.login(user);
     cy.visit(`/us/account/badges`);
@@ -40,15 +26,40 @@ describe('User Account Rewards Tab', () => {
   });
 
   /** @test */
+  it('Displays the correct text for an un earned badge', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('SignupsCountQuery', {
+      signupsCount: 0,
+    });
+
+    cy.login(user);
+    cy.visit(`/us/account/badges`);
+
+    cy.findByTestId('signup-badge').click();
+    cy.findByTestId('badges-modal').should('have.length', 1);
+    cy.findByTestId('unearned-badge-text').should('have.length', 1);
+  });
+
+  /** @test */
+  it('Displays the correct text for an un earned badge', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('SignupsCountQuery', {
+      signupsCount: 1,
+    });
+
+    cy.login(user);
+    cy.visit(`/us/account/badges`);
+
+    cy.findByTestId('signup-badge').click();
+    cy.findByTestId('badges-modal').should('have.length', 1);
+    cy.findByTestId('earned-badge-text').should('have.length', 1);
+  });
+
+  /** @test */
   it('Displays the rewards details table', () => {
     const user = userFactory();
-    cy.mockGraphqlOp('AccountQuery', {
-      user: {
-        lastName: 'Tester',
-        birthdate: Date(),
-        email: 'tester@mail.com',
-      },
-    });
 
     cy.login(user);
     cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/badges`);
@@ -58,13 +69,6 @@ describe('User Account Rewards Tab', () => {
   /** @test */
   it('Displays the rewards FAQ', () => {
     const user = userFactory();
-    cy.mockGraphqlOp('AccountQuery', {
-      user: {
-        lastName: 'Tester',
-        birthdate: Date(),
-        email: 'tester@mail.com',
-      },
-    });
 
     cy.login(user);
     cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/badges`);

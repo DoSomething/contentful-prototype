@@ -381,7 +381,13 @@ class BadgesTab extends React.Component {
             <h1 className="font-league-gothic text-2xl">
               {badgeModalContent[this.state.modalName].title}
             </h1>
-            <p>
+            <p
+              data-testId={
+                this.state.modalEarned
+                  ? 'earned-badge-text'
+                  : 'unearned-badge-text'
+              }
+            >
               {this.state.modalEarned
                 ? badgeModalContent[this.state.modalName].earnedText
                 : badgeModalContent[this.state.modalName].unearnedText}
