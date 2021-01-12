@@ -32,7 +32,6 @@ describe('User Account Profile Tab', () => {
 
     cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
-        id: user.id,
         voterRegistrationStatus: 'UNREGISTERED',
       },
     });
@@ -48,7 +47,6 @@ describe('User Account Profile Tab', () => {
 
     cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
-        id: user.id,
         voterRegistrationStatus: 'REGISTRATION_COMPLETE',
       },
     });
@@ -64,7 +62,6 @@ describe('User Account Profile Tab', () => {
 
     cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
-        id: user.id,
         voterRegistrationStatus: 'UNCERTAIN',
       },
     });
