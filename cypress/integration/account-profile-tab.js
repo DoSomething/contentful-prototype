@@ -10,14 +10,14 @@ describe('User Account Profile Tab', () => {
         firstName: user.firstName,
         lastName: 'Tester',
         email: 'tester@mail.com',
-        birthdate: '10/12/1994',
+        birthdate: '1994-10-12',
       },
     });
     cy.login(user);
     cy.visit(`/us/account`);
     cy.findByTestId('user-email').should('contain', 'tester@mail.com');
     cy.findByTestId('user-name').should('contain', `${user.firstName} Tester`);
-    cy.findByTestId('user-birthdate').should('contain', '10/12/1994');
+    cy.findByTestId('user-birthdate').should('contain', '1994-10-12');
   });
 
   /** @test */
