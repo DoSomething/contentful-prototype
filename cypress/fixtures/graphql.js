@@ -76,6 +76,7 @@ export const mocks = {
   // Custom scalars:
   URL: () => 'https://www.example.com/',
   DateTime: () => new Date().toISOString(),
+  Date: () => new Date().toISOString(),
   JSON: () => ({}),
 
   // If the field is a string & not mocked, default to showing the

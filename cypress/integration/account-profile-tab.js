@@ -7,15 +7,17 @@ describe('User Account Profile Tab', () => {
     const user = userFactory();
     cy.mockGraphqlOp('AccountQuery', {
       user: {
+        firstName: user.firstName,
         lastName: 'Tester',
-        birthdate: Date(),
         email: 'tester@mail.com',
-        emailSubscriptionTopics: ['COMMUNITY'],
+        birthdate: '10/12/1994',
       },
     });
     cy.login(user);
     cy.visit(`/us/account`);
     cy.findByTestId('user-email').should('contain', 'tester@mail.com');
+    cy.findByTestId('user-name').should('contain', `${user.firstName} Tester`);
+    cy.findByTestId('user-birthdate').should('contain', '10/12/1994');
   });
 
   /** @test */
@@ -27,12 +29,6 @@ describe('User Account Profile Tab', () => {
   /** @test */
   it('Shows the user as unregistered based on their voter registration status', () => {
     const user = userFactory();
-    cy.mockGraphqlOp('AccountQuery', {
-      user: {
-        birthdate: Date(),
-        email: 'tester@mail.com',
-      },
-    });
 
     cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
@@ -49,12 +45,6 @@ describe('User Account Profile Tab', () => {
   /** @test */
   it('Shows the user as registered based on their voter registration status', () => {
     const user = userFactory();
-    cy.mockGraphqlOp('AccountQuery', {
-      user: {
-        birthdate: Date(),
-        email: 'tester@mail.com',
-      },
-    });
 
     cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
@@ -71,12 +61,6 @@ describe('User Account Profile Tab', () => {
   /** @test */
   it('Shows the user as uncertain based on their voter registration status', () => {
     const user = userFactory();
-    cy.mockGraphqlOp('AccountQuery', {
-      user: {
-        birthdate: Date(),
-        email: 'tester@mail.com',
-      },
-    });
 
     cy.mockGraphqlOp('UserVoterRegistrationStatusQuery', {
       user: {
