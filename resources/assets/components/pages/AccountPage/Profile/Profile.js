@@ -23,11 +23,16 @@ const Profile = props => (
     <div className="grid-wide-2/3 my-6">
       <h2 className="text-lg">Profile Info</h2>
       <FormItem
+        dataTestId="user-name"
         title="Name"
         value={`${props.user.firstName} ${props.user.lastName}`}
       />
       {props.user.birthdate ? (
-        <FormItem title="Birthday" value={props.user.birthdate} />
+        <FormItem
+          title="Birthday"
+          value={props.user.birthdate}
+          dataTestId="user-birthdate"
+        />
       ) : null}
       <FormItem
         title="Password"

@@ -9,7 +9,10 @@ import DetailsParagraph from '../../../utilities/FaqElements/DetailsParagraph';
 
 const RewardsFaq = () => (
   <>
-    <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6 pt-10">
+    <div
+      data-testId="rewards-tab-faq"
+      className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6 pt-10"
+    >
       <SectionHeader title="faqs" />
 
       <Details>
