@@ -50,7 +50,7 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
   switch (post.type) {
     case 'text':
       media = (
-        <div data-testId="text-post-caption" className="flex-grow px-3 py-6">
+        <div data-testid="text-post-caption" className="flex-grow px-3 py-6">
           <p className="italic text-black text-lg word-break">{post.text}</p>
         </div>
       );
@@ -81,7 +81,7 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <h4
-                data-testId={
+                data-testid={
                   isAnonymous ? 'anonymous-post-author' : 'post-author'
                 }
                 className="font-bold m-0 text-base"
@@ -116,7 +116,7 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
           ) : null}
 
           {post.type !== 'text' && post.text && !hideCaption ? (
-            <p data-testId="photo-post-caption" className="text-gray-600 mt-3">
+            <p data-testid="photo-post-caption" className="text-gray-600 mt-3">
               {post.text}
             </p>
           ) : null}
