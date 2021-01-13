@@ -4,8 +4,8 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 
-import { report } from '../../../helpers';
 import { env } from '../../../helpers/env';
+import { report } from '../../../helpers/monitoring';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
 

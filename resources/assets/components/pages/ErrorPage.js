@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
-import { report } from '../../helpers';
+import { report } from '../../helpers/monitoring';
 import ErrorDetails from '../utilities/ErrorDetails';
 import SiteFooter from '../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';

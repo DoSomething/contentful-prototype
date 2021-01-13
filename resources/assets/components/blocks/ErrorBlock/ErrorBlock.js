@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 
 import errorIcon from './error_icon.svg';
-import { report } from '../../../helpers';
 import Card from '../../utilities/Card/Card';
+import { report } from '../../../helpers/monitoring';
 import ErrorDetails from '../../utilities/ErrorDetails';
 
 const ErrorBlock = ({ error }) => {
