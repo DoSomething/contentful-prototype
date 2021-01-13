@@ -61,11 +61,11 @@ const VoterRegStatusBlock = ({ userId }) => {
 
         <div className="m-3">
           {isVerifiedCompletedVoterRegStatuses(registrationStatus) ? (
-            <p data-testId="complete-registration-status">
+            <p data-testid="complete-registration-status">
               Your voter registration is confirmed.
             </p>
           ) : (
-            <p data-testId="uncertain-registration-status">
+            <p data-testid="uncertain-registration-status">
               {registrationStatus === 'CONFIRMED'
                 ? 'You are registered to vote. Confirm that your registration is up-to-date '
                 : 'Check your voter registration status'}{' '}
