@@ -105,6 +105,7 @@ export const mocks = {
     quantity: () => Math.ceil(Math.random() * 99),
     reactions: () => Math.floor(Math.random() * 30),
     impact: () => `${Math.ceil(Math.random() * 99)} things done`,
+    hoursSpent: () => parseFloat(Math.random().toString()),
   }),
   Campaign: () => ({
     endDate: () => addMonths(new Date(), 1).toISOString(),
