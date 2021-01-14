@@ -6,9 +6,9 @@ import { css } from '@emotion/core';
 import { useQuery } from 'react-apollo';
 import React, { Fragment, useState } from 'react';
 
-import { report } from '../../../helpers';
 import Card from '../../utilities/Card/Card';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
+import { report } from '../../../helpers/monitoring';
 import ScholarshipActionType from './ScholarshipActionType';
 import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
 import ScholarshipRequirements from './ScholarshipRequirements';
