@@ -224,15 +224,22 @@ export function parseRichTextDocument(
         </p>
       ),
       [INLINES.HYPERLINK]: node => {
-        const external = isExternal(node.data.uri);
+        // If this is an external link, open it in a new tab:
+        if (isExternal(node.data.url)) {
+          return (
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={node.data.uri}
+              style={{ color: hyperlinkColor }}
+            >
+              {node.content[0].value}
+            </a>
+          );
+        }
 
         return (
-          <a
-            href={node.data.uri}
-            target={external ? '_blank' : '_self'}
-            rel={external ? 'noopener noreferrer' : ''}
-            style={{ color: hyperlinkColor }}
-          >
+          <a href={node.data.uri} style={{ color: hyperlinkColor }}>
             {node.content[0].value}
           </a>
         );
