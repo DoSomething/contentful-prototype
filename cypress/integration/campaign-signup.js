@@ -317,7 +317,7 @@ describe('Campaign Signup', () => {
       // since the user is already signed up for this campaign:
       cy
         .findByTestId('campaign-info-block-scholarship-details')
-        .should('not.contain', 'Apply Now');
+        .should('not.exist');
   });
 
   context('Campaign ID configured with a group type', () => {

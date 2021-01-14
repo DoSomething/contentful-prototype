@@ -61,9 +61,11 @@ const VoterRegStatusBlock = ({ userId }) => {
 
         <div className="m-3">
           {isVerifiedCompletedVoterRegStatuses(registrationStatus) ? (
-            <p>Your voter registration is confirmed.</p>
+            <p data-testid="complete-registration-status">
+              Your voter registration is confirmed.
+            </p>
           ) : (
-            <p>
+            <p data-testid="uncertain-registration-status">
               {registrationStatus === 'CONFIRMED'
                 ? 'You are registered to vote. Confirm that your registration is up-to-date '
                 : 'Check your voter registration status'}{' '}
@@ -83,7 +85,10 @@ const VoterRegStatusBlock = ({ userId }) => {
   }
 
   return (
-    <div className="voter-reg flex items-center">
+    <div
+      data-testid="unregistered-voting-status"
+      className="voter-reg flex items-center"
+    >
       <div className="m-3" data-testid="unregistered-status">
         <p>We don&#39;t have your voter registration.</p>
         <a

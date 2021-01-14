@@ -9,8 +9,8 @@ import {
   startCase,
 } from 'lodash';
 
-import { debug } from '.';
 import { getUtms } from './url';
+import { debug } from './monitoring';
 import Sixpack from '../services/Sixpack';
 import { stringifyNestedObjects, withoutValueless } from './data';
 

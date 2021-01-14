@@ -2,8 +2,11 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import { query } from '../../../helpers/url';
-import { getMillisecondsFromDays, isTimestampValid } from '../../../helpers';
 import { get as getStorage, set as setStorage } from '../../../helpers/storage';
+import {
+  getMillisecondsFromDays,
+  isTimestampValid,
+} from '../../../helpers/datetime';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,

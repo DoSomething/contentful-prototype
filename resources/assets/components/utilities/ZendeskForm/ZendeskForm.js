@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 
 import Card from '../Card/Card';
-import { report } from '../../../helpers';
 import { postRequest } from '../../../helpers/api';
 import PrimaryButton from '../Button/PrimaryButton';
 import { getUserToken } from '../../../helpers/auth';
+import { report } from '../../../helpers/monitoring';
 import { HELP_LINK, HELP_REQUEST_LINK } from '../../../constants';
 
 const ZendeskForm = ({ campaignId, campaignName, faqLink }) => {
