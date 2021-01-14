@@ -41,11 +41,67 @@ describe('User Account Volunteer Credits Tab', () => {
   });
 
   /** @test */
-  it('Has a PDF of the certificate to download', () => {});
+  it('Has a PDF of the certificate to download', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('volunteerCreditPostsQuery', {
+      paginatedPosts: {
+        edges: [
+          {
+            node: {
+              status: 'ACCEPTED',
+            },
+          },
+        ],
+      },
+    });
+
+    cy.login(user);
+    cy.visit(`/us/account/credits`);
+    cy.findByTestId('user-credits-table').should('have.length', 1);
+  });
 
   /** @test */
-  it('Disables the download button if the reportback is pending', () => {});
+  it('Disables the download button if the reportback is pending', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('volunteerCreditPostsQuery', {
+      paginatedPosts: {
+        edges: [
+          {
+            node: {
+              status: 'PENDING',
+            },
+          },
+        ],
+      },
+    });
+
+    cy.login(user);
+    cy.visit(`/us/account/credits`);
+    cy.findByTestId('volunteer-credit-download-button').should('be.disabled');
+  });
 
   /** @test */
-  it('Enables download once the reportback is approved', () => {});
+  it('Enables download once the reportback is approved', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('volunteerCreditPostsQuery', {
+      paginatedPosts: {
+        edges: [
+          {
+            node: {
+              status: 'ACCEPTED',
+            },
+          },
+        ],
+      },
+    });
+
+    cy.login(user);
+    cy.visit(`/us/account/credits`);
+    cy.findByTestId('volunteer-credit-download-button').should(
+      'not.be.disabled',
+    );
+  });
 });
