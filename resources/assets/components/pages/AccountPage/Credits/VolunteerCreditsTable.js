@@ -12,7 +12,10 @@ const TableHeader = tw.th`bg-blurple-500 font-bold p-4 pr-6 text-left text-white
 
 const VolunteerCreditsTable = ({ certificatePosts }) =>
   certificatePosts.length ? (
-    <table className="border border-solid border-gray-200 border-collapse w-full">
+    <table
+      data-testid="user-credits-table"
+      className="border border-solid border-gray-200 border-collapse w-full"
+    >
       <thead>
         <tr>
           <TableHeader>Campaign Info</TableHeader>
