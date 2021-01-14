@@ -12,20 +12,32 @@ describe('User Account Email Subscriptions Tab', () => {
 
     cy.mockGraphqlOp('AccountQuery', {
       // Get back a particular user and subscription topics
-      user: root => ({
+      user: {
         firstName: 'Delilah',
         emailSubscriptionTopics: ['COMMUNITY', 'NEWS', 'LIFESTYLE'],
-      }),
+      },
     });
 
     // Log in & visit the subscription center:
-    cy.login(user).visit('/us/account/profile/subscriptions');
+    cy.login(user).visit('/us/account/subscriptions');
 
     // We should see the user's name and the correct subscription topics checked
     cy.contains('Welcome, Delilah!');
-    cy.get('input[name=COMMUNITY]').should('be.checked');
-    cy.get('input[name=NEWS]').should('be.checked');
-    cy.get('input[name=LIFESTYLE]').should('be.checked');
-    cy.get('input[name=SCHOLARSHIPS]').should('not.be.checked');
+    cy.findByTestId('community-newsletter-subscription').should(
+      'contain',
+      'Unsubscribe',
+    );
+    cy.findByTestId('news-newsletter-subscription').should(
+      'contain',
+      'Unsubscribe',
+    );
+    cy.findByTestId('lifestyle-newsletter-subscription').should(
+      'contain',
+      'Unsubscribe',
+    );
+    cy.findByTestId('scholarships-newsletter-subscription').should(
+      'contain',
+      'Subscribe',
+    );
   });
 });

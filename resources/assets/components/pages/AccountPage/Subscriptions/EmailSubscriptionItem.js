@@ -33,6 +33,7 @@ const EMAIL_SUBSCRIPTION_MUTATION = gql`
   }
 `;
 const EmailSubscriptionItem = ({
+  attributes,
   topic,
   name,
   image,
@@ -74,6 +75,7 @@ const EmailSubscriptionItem = ({
             <Spinner className="flex justify-center p-2" />
           ) : (
             <ToggleButton
+              attributes={attributes}
               activateText="Subscribe"
               deactivateText="Unsubscribe"
               isDisabled={modifying}
@@ -97,11 +99,16 @@ const EmailSubscriptionItem = ({
 };
 
 EmailSubscriptionItem.propTypes = {
+  attributes: PropTypes.object,
   topic: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   descriptionHeader: PropTypes.string.isRequired,
+};
+
+EmailSubscriptionItem.defaultProps = {
+  attributes: null,
 };
 
 export default EmailSubscriptionItem;
