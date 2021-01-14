@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 import { userFactory } from '../fixtures/user';
 
 describe('User Account Profile Tab', () => {
