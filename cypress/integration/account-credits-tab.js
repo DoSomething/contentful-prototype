@@ -25,11 +25,13 @@ describe('User Account Volunteer Credits Tab', () => {
 
     cy.mockGraphqlOp('volunteerCreditPostsQuery', {
       paginatedPosts: {
-        edges: {
-          node: {
-            status: 'ACCEPTED',
+        edges: [
+          {
+            node: {
+              status: 'ACCEPTED',
+            },
           },
-        },
+        ],
       },
     });
 

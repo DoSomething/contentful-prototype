@@ -6472,6 +6472,18 @@
             "deprecationReason": null
           },
           {
+            "name": "hoursSpent",
+            "description": "The number of hours spent for this post.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "impact",
             "description": "The human-readable impact (quantity, noun, and verb).",
             "args": [],
@@ -7336,6 +7348,16 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Float",
+        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -14874,6 +14896,18 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action",
+            "description": "The action that this topic should create photo posts for.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Action",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
