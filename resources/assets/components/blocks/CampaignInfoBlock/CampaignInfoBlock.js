@@ -1,10 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
+import Tooltip from '../../utilities/Tooltip';
 import { getHumanFriendlyDate } from '../../../helpers';
+import TooltipQuestionMark from './TooltipQuestionMark.svg';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -32,6 +35,24 @@ const CAMPAIGN_INFO_QUERY = gql`
     }
   }
 `;
+
+const CampaignInfoBlockTooltip = ({ tooltipContent }) => (
+  <Tooltip tooltipContent={tooltipContent}>
+    <div
+      className="pl-1"
+      css={css`
+        width: 20px;
+      `}
+    >
+      <img alt="Question mark" src={TooltipQuestionMark} />
+    </div>
+  </Tooltip>
+);
+
+CampaignInfoBlockTooltip.propTypes = {
+  tooltipContent: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    .isRequired,
+};
 
 const CampaignInfoBlock = ({
   campaignId,
@@ -124,7 +145,14 @@ const CampaignInfoBlock = ({
               {actionItem && actionItem.timeCommitmentLabel ? (
                 <>
                   <dt>Time</dt>
-                  <dd>{actionItem.timeCommitmentLabel}</dd>
+                  <dd>
+                    <div className="flex">
+                      {actionItem.timeCommitmentLabel}
+                      {actionItem.volunteerCredit ? (
+                        <CampaignInfoBlockTooltip tooltipContent="This is the estimate time it takes to complete this action. For volunteer credit certificates, the time you enter will show up on your certificate." />
+                      ) : null}
+                    </div>
+                  </dd>
                 </>
               ) : null}
               {actionItem && actionItem.actionLabel ? (
@@ -137,7 +165,20 @@ const CampaignInfoBlock = ({
                 <>
                   <dt>Volunteer Credit</dt>
                   <dd data-testid="volunteer-credit-value">
-                    {actionItem.volunteerCredit ? 'Yes' : 'No'}
+                    <div className="flex">
+                      {actionItem.volunteerCredit ? 'Yes' : 'No'}
+                      {actionItem.volunteerCredit ? (
+                        <CampaignInfoBlockTooltip
+                          tooltipContent={
+                            <>
+                              When you complete this campaign you&apos;ll be
+                              able to download a certificate verifying your
+                              participation. <a href="/">Learn more</a>
+                            </>
+                          }
+                        />
+                      ) : null}
+                    </div>
                   </dd>
                 </>
               ) : null}
