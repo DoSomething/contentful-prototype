@@ -2,13 +2,11 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Popover, ArrowContainer } from 'react-tiny-popover';
 
-import { getFormattedScreenSize } from '../../helpers/display';
+import { getFormattedScreenSize, tailwind } from '../../helpers/display';
 
 const Tooltip = ({ children, tooltipContent }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [closeTimeout, setCloseTimeout] = useState(null);
-
-  const tooltipColor = '#4a5667';
 
   const isSmallScreen = getFormattedScreenSize() === 'small';
 
@@ -24,20 +22,13 @@ const Tooltip = ({ children, tooltipContent }) => {
           position={position}
           childRect={childRect}
           popoverRect={popoverRect}
-          arrowColor={tooltipColor}
+          arrowColor={tailwind('colors').gray['700']}
           arrowSize={15}
         >
           <div
             onMouseEnter={() => clearTimeout(closeTimeout)}
             onMouseLeave={() => setIsOpen(false)}
-            style={{
-              backgroundColor: tooltipColor,
-              color: 'white',
-              padding: 15,
-              borderRadius: 5,
-              maxWidth: 400,
-              fontSize: 14,
-            }}
+            className="bg-gray-700 text-white text-sm p-4 rounded-md max-w-sm"
           >
             {tooltipContent}
           </div>
