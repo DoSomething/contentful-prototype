@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Popover, ArrowContainer } from 'react-tiny-popover';
 
 import { getFormattedScreenSize, tailwind } from '../../helpers/display';
@@ -9,6 +9,16 @@ const Tooltip = ({ children, tooltipContent }) => {
   const [closeTimeout, setCloseTimeout] = useState(null);
 
   const isSmallScreen = getFormattedScreenSize() === 'small';
+
+  if (isSmallScreen) {
+    const closeOnScroll = () => setIsOpen(false);
+
+    useEffect(() => {
+      window.addEventListener('scroll', closeOnScroll);
+
+      return () => window.removeEventListener('scroll', closeOnScroll);
+    }, []);
+  }
 
   return (
     // https://github.com/alexkatz/react-tiny-popover#api
