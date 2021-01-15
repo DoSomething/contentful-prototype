@@ -15,7 +15,6 @@ return [
     */
 
     'algolia_campaigns_search' => env('DS_ENABLE_ALGOLIA_CAMPAIGNS_SEARCH', false),
-    'cause_preferences' => env('DS_ENABLE_CAUSE_INTERESTS_PAGE', false),
     'hours_spent_in_vc_certificates' => env('DS_ENABLE_HOURS_SPENT_IN_VC_CERTIFICATES', false),
     'nps_survey' => env('DS_ENABLE_NPS_SURVEY', false),
     'post_confirmation_page' => env('DS_ENABLE_POST_CONFIRMATION_PAGE', false),
