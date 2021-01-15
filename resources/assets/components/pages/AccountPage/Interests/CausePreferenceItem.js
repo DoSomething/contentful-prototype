@@ -33,7 +33,7 @@ const CAUSE_PREFERENCE_MUTATION = gql`
   }
 `;
 
-const CausePreferenceItem = ({ cause, description, title }) => {
+const CausePreferenceItem = ({ attributes, cause, description, title }) => {
   const options = { variables: { userId: window.AUTH.id } };
 
   // Make the initial query to get the user's subscriptions
@@ -62,6 +62,7 @@ const CausePreferenceItem = ({ cause, description, title }) => {
           <Spinner className="flex justify-center p-2" />
         ) : (
           <ToggleButton
+            attributes={attributes}
             activateText="Follow"
             className="w-full"
             deactivateText="Unfollow"
@@ -84,12 +85,14 @@ const CausePreferenceItem = ({ cause, description, title }) => {
 };
 
 CausePreferenceItem.propTypes = {
+  attributes: PropTypes.object,
   cause: PropTypes.string.isRequired,
   description: PropTypes.string,
   title: PropTypes.string,
 };
 
 CausePreferenceItem.defaultProps = {
+  attributes: null,
   description: null,
   title: null,
 };
