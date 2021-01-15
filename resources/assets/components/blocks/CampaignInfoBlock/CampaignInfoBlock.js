@@ -148,9 +148,13 @@ const CampaignInfoBlock = ({
                   <dd>
                     <div className="flex">
                       {actionItem.timeCommitmentLabel}
-                      {actionItem.volunteerCredit ? (
-                        <CampaignInfoBlockTooltip tooltipContent="This is the estimate time it takes to complete this action. For volunteer credit certificates, the time you enter will show up on your certificate." />
-                      ) : null}
+                      <CampaignInfoBlockTooltip
+                        tooltipContent={`This is the estimated time it takes to complete this action${
+                          actionItem.volunteerCredit
+                            ? '. For volunteer credit certificates, the time you enter will show up on your certificate'
+                            : ''
+                        }.`}
+                      />
                     </div>
                   </dd>
                 </>
@@ -167,17 +171,36 @@ const CampaignInfoBlock = ({
                   <dd data-testid="volunteer-credit-value">
                     <div className="flex">
                       {actionItem.volunteerCredit ? 'Yes' : 'No'}
-                      {actionItem.volunteerCredit ? (
-                        <CampaignInfoBlockTooltip
-                          tooltipContent={
+                      <CampaignInfoBlockTooltip
+                        tooltipContent={
+                          actionItem.volunteerCredit ? (
                             <>
                               When you complete this campaign you&apos;ll be
                               able to download a certificate verifying your
-                              participation. <a href="/">Learn more</a>
+                              participation.{' '}
+                              <a
+                                href="/us/about/volunteer-hours"
+                                target="_blank"
+                              >
+                                Learn more
+                              </a>
+                              .
                             </>
-                          }
-                        />
-                      ) : null}
+                          ) : (
+                            <>
+                              This campaign is not eligible for a certificate of
+                              proof for volunteer hours.{' '}
+                              <a
+                                href="/us/about/volunteer-hours"
+                                target="_blank"
+                              >
+                                We have plenty of campaigns that are
+                              </a>
+                              !!
+                            </>
+                          )
+                        }
+                      />
                     </div>
                   </dd>
                 </>
