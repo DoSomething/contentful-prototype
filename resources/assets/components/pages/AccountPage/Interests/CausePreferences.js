@@ -64,6 +64,7 @@ const CausePreferences = () => {
       {Object.keys(causeItems).map(cause => (
         <CausePreferenceItem
           key={`${cause.toLowerCase()}_item`}
+          attributes={{ 'data-testid': `${cause.toLowerCase()}-interest` }}
           cause={cause}
           title={causeItems[cause].title}
           description={causeItems[cause].description}

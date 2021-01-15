@@ -49,20 +49,20 @@ const AccountNavigation = () => (
         Credits
       </NavigationLink>
 
-      {featureFlag('cause_preferences') ? (
-        <NavigationLink
-          to="/us/account/interests"
-          onClick={() => handleAccountNavTabClick('interests')}
-        >
-          Interests
-        </NavigationLink>
-      ) : null}
+      <NavigationLink
+        to="/us/account/interests"
+        onClick={() => handleAccountNavTabClick('interests')}
+      >
+        Interests
+      </NavigationLink>
+
       <NavigationLink
         to="/us/account/subscriptions"
         onClick={() => handleAccountNavTabClick('subscriptions')}
       >
         Subscriptions
       </NavigationLink>
+
       <NavigationLink
         to="/us/account/refer-friends"
         onClick={() => handleAccountNavTabClick('refer-friends')}

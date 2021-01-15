@@ -6,6 +6,7 @@ describe('User Account Email Subscriptions Tab', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
 
+  /** @test */
   it('View existing subscriptions', () => {
     // This user is just for auth purposes
     const user = userFactory();
