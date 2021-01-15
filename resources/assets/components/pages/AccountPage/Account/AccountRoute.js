@@ -6,7 +6,6 @@ import Credits from '../Credits/Credits';
 import Profile from '../Profile/Profile';
 import BadgesTab from '../Badges/BadgesTab';
 import Interests from '../Interests/Interests';
-import { featureFlag } from '../../../../helpers/env';
 import UserPostsQuery from '../Campaigns/UserPostsQuery';
 import DeleteAccountTab from '../Profile/DeleteAccountTab';
 import Subscriptions from '../Subscriptions/Subscriptions';
@@ -18,22 +17,25 @@ const AccountRoute = props => (
       path="/us/account/campaigns"
       render={() => <UserPostsQuery userId={props.userId} />}
     />
+
     <Route path="/us/account/badges" render={() => <BadgesTab {...props} />} />
 
     <Route path="/us/account/credits" component={Credits} />
 
-    {featureFlag('cause_preferences') ? (
-      <Route path="/us/account/interests" render={() => <Interests />} />
-    ) : null}
+    <Route path="/us/account/interests" render={() => <Interests />} />
+
     <Route
       path="/us/account/subscriptions"
       render={() => <Subscriptions {...props} />}
     />
+
     <Route
       path="/us/account/delete"
       render={() => <DeleteAccountTab {...props} />}
     />
+
     <Route path="/us/account/refer-friends" component={ReferFriendsTab} />
+
     <Route path="/us/account" render={() => <Profile {...props} />} />
   </Switch>
 );

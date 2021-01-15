@@ -23,10 +23,7 @@ describe('User Account Interests Tab', () => {
     });
 
     // Log in & visit the interests tab:
-    cy.login(user);
-    cy.withFeatureFlags({ cause_preferences: true }).visit(
-      '/us/account/interests',
-    );
+    cy.login(user).visit('/us/account/interests');
 
     // We should see the user's preferred interests
     cy.findByTestId('environment-interest').should('contain', 'Unfollow');
