@@ -148,6 +148,7 @@ const CampaignInfoBlock = ({
                   <dd>
                     <div className="flex">
                       {actionItem.timeCommitmentLabel}
+
                       <CampaignInfoBlockTooltip
                         tooltipContent={`This is the estimated time it takes to complete this action${
                           actionItem.volunteerCredit
@@ -171,6 +172,7 @@ const CampaignInfoBlock = ({
                   <dd data-testid="volunteer-credit-value">
                     <div className="flex">
                       {actionItem.volunteerCredit ? 'Yes' : 'No'}
+
                       <CampaignInfoBlockTooltip
                         tooltipContent={
                           actionItem.volunteerCredit ? (
