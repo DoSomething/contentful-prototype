@@ -216,7 +216,7 @@ describe('Campaign Post', () => {
   });
 
   context('When the post_confirmation_page feature flag is on', () => {
-    it('Redirects to the show submission page after a successful text post submission', () => {
+    it.only('Redirects to the show submission page after a successful text post submission', () => {
       const user = userFactory();
 
       cy.mockGraphqlOp('ActionAndUserByIdQuery', {
@@ -247,6 +247,10 @@ describe('Campaign Post', () => {
       cy.get('.text-submission-action textarea').type(text);
       cy.get('.text-submission-action button[type="submit"]').click();
       cy.wait('@submitPost');
+
+      cy.window().then(win => {
+        cy.log(`AUTH.id: ${win.AUTH.id}`);
+      });
 
       // We should be redirected to the show submission page after submitting a post.
       cy.location('pathname').should('eq', `/us/posts/${response.data.id}`);

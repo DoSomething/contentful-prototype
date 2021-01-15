@@ -53,6 +53,9 @@ const ShowSubmissionPage = ({ match }) => {
 
   // This page is gated to the post's author.
   if (getUserId() !== userId) {
+    window.Cypress.log(`Post ID: ${userId}`);
+    window.Cypress.log(`User ID: ${getUserId()}`);
+
     return <Redirect to="/us/account/campaigns" />;
   }
 
