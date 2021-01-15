@@ -7,6 +7,7 @@ import EmailSubscriptionItem from './EmailSubscriptionItem';
 const EmailSubscriptions = () => (
   <div className="gallery-grid gallery-grid-quartet my-6 -mx-3">
     <EmailSubscriptionItem
+      attributes={{ 'data-testid': 'community-newsletter-subscription' }}
       topic="COMMUNITY"
       name="What You're Doing"
       image={NewsletterImages.CommunityNewsletter}
@@ -14,6 +15,7 @@ const EmailSubscriptions = () => (
       description="A roundup of photos, writing, and stories of impact from the DoSomething community and members like you."
     />
     <EmailSubscriptionItem
+      attributes={{ 'data-testid': 'news-newsletter-subscription' }}
       topic="NEWS"
       name="The Breakdown"
       image={NewsletterImages.NewsNewsletter}
@@ -21,6 +23,7 @@ const EmailSubscriptions = () => (
       description="Don’t just read the news…*change* the news. Our current events newsletter has headlines, along with immediate ways to impact them."
     />
     <EmailSubscriptionItem
+      attributes={{ 'data-testid': 'lifestyle-newsletter-subscription' }}
       topic="LIFESTYLE"
       name="The Boost"
       image={NewsletterImages.LifestyleNewsletter}
@@ -28,6 +31,7 @@ const EmailSubscriptions = () => (
       description="Stories of incredible young people, actionable how-tos, inspirational playlists, and other content to live your best life and help others do the same."
     />
     <EmailSubscriptionItem
+      attributes={{ 'data-testid': 'scholarships-newsletter-subscription' }}
       topic="SCHOLARSHIPS"
       name="Pays to Do Good"
       image={NewsletterImages.ScholarshipNewsletter}
