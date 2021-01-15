@@ -6,8 +6,8 @@ import { css } from '@emotion/core';
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
 import Tooltip from '../../utilities/Tooltip';
-import { getHumanFriendlyDate } from '../../../helpers';
 import TooltipQuestionMark from './TooltipQuestionMark.svg';
+import { getHumanFriendlyDate } from '../../../helpers/datetime';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,

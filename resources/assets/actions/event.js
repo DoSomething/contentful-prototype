@@ -1,6 +1,6 @@
 import * as actions from '.';
-import { isTimestampValid } from '../helpers';
 import { isAuthenticated } from '../helpers/auth';
+import { isTimestampValid } from '../helpers/datetime';
 import { contentfulImageUrl } from '../helpers/contentful';
 import { getArray, EVENT_STORAGE_KEY } from '../helpers/storage';
 

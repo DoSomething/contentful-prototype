@@ -4,9 +4,9 @@ import { get, isString, first } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
 import { env } from '../../../../helpers/env';
-import { report } from '../../../../helpers/index';
 import { tabularLog } from '../../../../helpers/api';
 import PrimaryButton from '../../Button/PrimaryButton';
+import { report } from '../../../../helpers/monitoring';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,

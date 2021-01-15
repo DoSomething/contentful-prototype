@@ -3,10 +3,11 @@
 import { get } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
-import { report, isWithinMinutes } from '../helpers';
 import { PHOENIX_URL } from '../constants';
+import { report } from '../helpers/monitoring';
 import { API } from '../constants/action-types';
 import { getUserToken } from '../selectors/user';
+import { isWithinMinutes } from '../helpers/datetime';
 import { getRequest, setRequestHeaders, tabularLog } from '../helpers/api';
 import {
   EVENT_CATEGORIES,

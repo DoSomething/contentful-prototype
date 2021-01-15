@@ -122,6 +122,7 @@ const CertificateDownloadButton = ({ certificatePost }) => {
 
   return (
     <PrimaryButton
+      attributes={{ 'data-testid': 'volunteer-credit-download-button' }}
       type="button"
       className="w-full py-4 text-lg capitalize"
       isDisabled={certificatePost.pending || loading}

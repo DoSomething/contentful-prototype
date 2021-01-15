@@ -187,7 +187,7 @@ class BadgesTab extends React.Component {
         <p className="text-gray-600">
           Earn badges and rewards for making a difference.
         </p>
-        <ul className="gallery-grid-sextet -mx-3">
+        <ul data-testid="badges-list" className="gallery-grid-sextet -mx-3">
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
             {data => (
               <li>
@@ -198,6 +198,7 @@ class BadgesTab extends React.Component {
                   role="button"
                   tabIndex={0}
                   className="clickable-badge"
+                  data-testid="signup-badge"
                 >
                   <Badge
                     earned={data.signupsCount > 0}
@@ -380,7 +381,13 @@ class BadgesTab extends React.Component {
             <h1 className="font-league-gothic text-2xl">
               {badgeModalContent[this.state.modalName].title}
             </h1>
-            <p>
+            <p
+              data-testid={
+                this.state.modalEarned
+                  ? 'earned-badge-text'
+                  : 'unearned-badge-text'
+              }
+            >
               {this.state.modalEarned
                 ? badgeModalContent[this.state.modalName].earnedText
                 : badgeModalContent[this.state.modalName].unearnedText}

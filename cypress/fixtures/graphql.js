@@ -76,6 +76,7 @@ export const mocks = {
   // Custom scalars:
   URL: () => 'https://www.example.com/',
   DateTime: () => new Date().toISOString(),
+  Date: () => new Date().toISOString().slice(0, 10),
   JSON: () => ({}),
 
   // If the field is a string & not mocked, default to showing the
@@ -104,6 +105,7 @@ export const mocks = {
     quantity: () => Math.ceil(Math.random() * 99),
     reactions: () => Math.floor(Math.random() * 30),
     impact: () => `${Math.ceil(Math.random() * 99)} things done`,
+    hoursSpent: () => parseFloat(Math.random().toString()),
   }),
   Campaign: () => ({
     endDate: () => addMonths(new Date(), 1).toISOString(),
