@@ -287,7 +287,8 @@ const CertificateTemplate = ({ certificatePost }) => {
                   Sahara at {'\n'}
                   <Text style={{ fontWeight: 'bold' }}>
                     volunteer@dosomething.org
-                  </Text>
+                  </Text>{' '}
+                  or (212)-254-2390
                 </Text>
               </View>
             </View>
@@ -303,9 +304,10 @@ const CertificateTemplate = ({ certificatePost }) => {
               *DoSomething.org is the largest not-for-profit exclusively for
               young people and social change. We encourage self-directed
               activism and volunteerism through our structured campaign
-              programs. Estimated hours are based on our calculations of the
-              average time it would take to complete the action specified in the
-              campaign program.
+              programs.{' '}
+              {certificatePost.hoursSpentLabel
+                ? 'Volunteer hours are input by participants and verified by a DoSomething staff member based on their photo.'
+                : 'Estimated hours are based on our calculations of the average time it would take to complete the action specified in the campaign program.'}
             </Text>
           </View>
         </View>
