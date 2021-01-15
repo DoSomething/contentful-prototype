@@ -54,7 +54,9 @@ const ReferFriendsTab = () => {
         <SectionHeader underlined title="faq" />
 
         {referralIncentive ? (
-          <Details>
+          <Details
+            attributes={{ 'data-testid': 'refer-a-friend-incentive-details' }}
+          >
             <Summary text="Who can I refer?" />
 
             <DetailsParagraph>
@@ -70,7 +72,9 @@ const ReferFriendsTab = () => {
             </DetailsParagraph>
           </Details>
         ) : (
-          <Details>
+          <Details
+            attributes={{ 'data-testid': 'refer-a-friend-regular-details' }}
+          >
             <Summary text="Why should I refer a friend?" />
 
             <DetailsParagraph>
@@ -93,7 +97,11 @@ const ReferFriendsTab = () => {
         </Details>
 
         {referralIncentive ? (
-          <Details>
+          <Details
+            attributes={{
+              'data-testid': 'refer-a-friend-receive-incentive-details',
+            }}
+          >
             <Summary text="How will I receive my gift card if I win?" />
 
             <DetailsParagraph>
@@ -108,7 +116,11 @@ const ReferFriendsTab = () => {
 
           <DetailsParagraph>
             This offer is for a limited time only. See the{' '}
-            <a href="/us/refer-a-friend-official-rules" target="_blank">
+            <a
+              data-testid="refer-a-friend-official-rules"
+              href="/us/refer-a-friend-official-rules"
+              target="_blank"
+            >
               Refer A Friend Official Rules.
             </a>
           </DetailsParagraph>
