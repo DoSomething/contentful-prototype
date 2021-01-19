@@ -249,7 +249,11 @@ describe('Campaign Post', () => {
       cy.wait('@submitPost');
 
       cy.window().then(win => {
-        cy.log(`AUTH.id: ${win.AUTH.id}`);
+        Cypress.log({ name: 'win ID', message: `AUTH.id: ${win.AUTH.id}` });
+        Cypress.log({
+          name: 'post user ID',
+          message: `post.userId: ${user.id}`,
+        });
       });
 
       // We should be redirected to the show submission page after submitting a post.
@@ -306,6 +310,14 @@ describe('Campaign Post', () => {
         cy.contains('Submit a new photo').click();
         cy.wait('@submitPost');
 
+        cy.window().then(win => {
+          Cypress.log({ name: 'win ID', message: `AUTH.id: ${win.AUTH.id}` });
+          Cypress.log({
+            name: 'post user ID',
+            message: `post.userId: ${user.id}`,
+          });
+        });
+
         // We should be redirected to the show submission page after submitting a post.
         cy.location('pathname').should('eq', `/us/posts/${response.data.id}`);
         // We should have appended the Photo Submission Action ID as a query parameter.
@@ -347,6 +359,14 @@ describe('Campaign Post', () => {
       });
 
       cy.wait('@submitPost');
+
+      cy.window().then(win => {
+        Cypress.log({ name: 'win ID', message: `AUTH.id: ${win.AUTH.id}` });
+        Cypress.log({
+          name: 'post user ID',
+          message: `post.userId: ${user.id}`,
+        });
+      });
 
       // We should be redirected to the show submission page after submitting a post.
       cy.location('pathname').should('eq', `/us/posts/${response.data.id}`);
