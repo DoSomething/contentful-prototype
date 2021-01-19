@@ -585,7 +585,6 @@ class SiteNavigation extends React.Component {
                           </a>
                           <a
                             href="/us/about/volunteer-hours"
-                            className="block"
                             onClick={() => {
                               this.handleOnClickLink({
                                 name: 'clicked_subnav_link_benefits_volunteer',
