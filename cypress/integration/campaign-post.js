@@ -216,7 +216,7 @@ describe('Campaign Post', () => {
   });
 
   context('When the post_confirmation_page feature flag is on', () => {
-    it.only('Redirects to the show submission page after a successful text post submission', () => {
+    it('Redirects to the show submission page after a successful text post submission', () => {
       const user = userFactory();
 
       cy.mockGraphqlOp('ActionAndUserByIdQuery', {
