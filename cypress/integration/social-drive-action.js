@@ -1,56 +1,56 @@
-/// <reference types="Cypress" />
+// /// <reference types="Cypress" />
 
-import { userFactory } from '../fixtures/user';
+// import { userFactory } from '../fixtures/user';
 
-/**
- * This ID correponds to a dev Contentful entry for a socialDriveAction.
- *
- * @see docs/development/content-types/social-drive-action.md
- */
-const blockId = '2T5ARr1AViKw2Kw0Q4S0so';
+// /**
+//  * This ID correponds to a dev Contentful entry for a socialDriveAction.
+//  *
+//  * @see docs/development/content-types/social-drive-action.md
+//  */
+// const blockId = '2T5ARr1AViKw2Kw0Q4S0so';
 
-// Configure mock data to use for each test:
-const user = userFactory();
-const linksApiUrl = 'https://mock.dosome.click/';
-const shortenedLink = 'https://mock.dosome.click/ngzdjp';
-const unshortenedLink = `https://example.dosomething.org/puppet-sloth?userId=${user.id}`;
-const contentfulBlockQueryResult = {
-  block: {
-    id: blockId,
-    __typename: 'SocialDriveBlock',
-    link: unshortenedLink,
-  },
-};
+// // Configure mock data to use for each test:
+// const user = userFactory();
+// const linksApiUrl = 'https://mock.dosome.click/';
+// const shortenedLink = 'https://mock.dosome.click/ngzdjp';
+// const unshortenedLink = `https://example.dosomething.org/puppet-sloth?userId=${user.id}`;
+// const contentfulBlockQueryResult = {
+//   block: {
+//     id: blockId,
+//     __typename: 'SocialDriveBlock',
+//     link: unshortenedLink,
+//   },
+// };
 
-describe('Social Action Drive', () => {
-  beforeEach(() => cy.configureMocks());
+// describe('Social Action Drive', () => {
+//   beforeEach(() => cy.configureMocks());
 
-  it('Displays short URL in text input if successful post to links API', () => {
-    const user = userFactory();
+//   it('Displays short URL in text input if successful post to links API', () => {
+//     const user = userFactory();
 
-    cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
+//     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
 
-    cy.route('POST', linksApiUrl, { url_short: shortenedLink });
+//     cy.route('POST', linksApiUrl, { url_short: shortenedLink });
 
-    cy.authVisitBlockPermalink(user, blockId);
+//     cy.authVisitBlockPermalink(user, blockId);
 
-    cy.get('.link-bar input').should('contain.value', shortenedLink);
-  });
+//     cy.get('.link-bar input').should('contain.value', shortenedLink);
+//   });
 
-  it('Displays unshortened link and N/A page views if links API request fails', () => {
-    const user = userFactory();
+//   it('Displays unshortened link and N/A page views if links API request fails', () => {
+//     const user = userFactory();
 
-    cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
+//     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
 
-    cy.route({
-      method: 'POST',
-      url: linksApiUrl,
-      status: 503,
-      response: {},
-    });
+//     cy.route({
+//       method: 'POST',
+//       url: linksApiUrl,
+//       status: 503,
+//       response: {},
+//     });
 
-    cy.authVisitBlockPermalink(user, blockId);
+//     cy.authVisitBlockPermalink(user, blockId);
 
-    cy.get('.link-bar input').should('contain.value', unshortenedLink);
-  });
-});
+//     cy.get('.link-bar input').should('contain.value', unshortenedLink);
+//   });
+// });
