@@ -18,6 +18,8 @@ const Tooltip = ({ children, tooltipContent }) => {
 
       return () => window.removeEventListener('scroll', closeOnScroll);
     }
+
+    return null;
   }, []);
 
   return (
