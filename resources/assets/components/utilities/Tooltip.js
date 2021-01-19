@@ -10,15 +10,15 @@ const Tooltip = ({ children, tooltipContent }) => {
 
   const isSmallScreen = getFormattedScreenSize() === 'small';
 
-  if (isSmallScreen) {
-    const closeOnScroll = () => setIsOpen(false);
+  useEffect(() => {
+    if (isSmallScreen) {
+      const closeOnScroll = () => setIsOpen(false);
 
-    useEffect(() => {
       window.addEventListener('scroll', closeOnScroll);
 
       return () => window.removeEventListener('scroll', closeOnScroll);
-    }, []);
-  }
+    }
+  }, []);
 
   return (
     // https://github.com/alexkatz/react-tiny-popover#api
