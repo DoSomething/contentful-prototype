@@ -154,6 +154,7 @@
     "@testing-library/dom": "7.26.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^10.4.9",
+    "@testing-library/user-event": "^12.6.0",
     "apollo": "^2.32.1",
     "autoprefixer": "^9.8.6",
     "babel-plugin-macros": "^2.8.0",

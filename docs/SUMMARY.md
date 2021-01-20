@@ -50,6 +50,7 @@
         -   [Code Tests](development/features/sixpack/sixpack-code-tests.md)
         -   [Contentful Tests](development/features/sixpack/sixpack-contentful-tests.md)
         -   [Testing Tips](development/features/sixpack/sixpack-testing-tips.md)
+    -   [Tooltip](development/features/tooltip.md)
     -   [Traffic Distribution](development/features/traffic-distribution.md)
     -   [Volunteer Credits](development/features/volunteer-credits.md)
     -   [Voter Registration](development/features/voter-registration.md)

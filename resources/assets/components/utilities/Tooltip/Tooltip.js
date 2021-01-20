@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Popover, ArrowContainer } from 'react-tiny-popover';
 
-import { getFormattedScreenSize, tailwind } from '../../helpers/display';
+import { getFormattedScreenSize, tailwind } from '../../../helpers/display';
 
 const Tooltip = ({ children, tooltipContent }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +38,7 @@ const Tooltip = ({ children, tooltipContent }) => {
           arrowSize={15}
         >
           <div
+            data-testid="tooltip-content"
             onMouseEnter={() => clearTimeout(closeTimeout)}
             onMouseLeave={() => setIsOpen(false)}
             className="bg-gray-700 text-white text-sm p-4 rounded-md max-w-sm"
@@ -48,6 +49,7 @@ const Tooltip = ({ children, tooltipContent }) => {
       )}
     >
       <button
+        data-testid="tooltip-target"
         type="button"
         tabIndex={0}
         onMouseEnter={() => setIsOpen(true)}

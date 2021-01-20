@@ -89,50 +89,84 @@ describe('Campaign Info Block', () => {
     });
   });
 
-  describe('Displays the Volunteer Credit value', () => {
-    /** @test */
-    it('Displays Yes when the action earns volunteer credit', () => {
-      cy.mockGraphqlOp('CampaignInfoQuery', {
-        campaign: (root, { campaignId }) => ({
-          id: campaignId,
-          actions: () => [
-            {
-              ...scholarshipAndReportbackAction,
-              volunteerCredit: true,
-            },
-          ],
-        }),
-      });
+  describe('Displays the Volunteer Credit value and proper tooltip content', () => {
+    context('when the action qualifies for volunteer credit', () => {
+      /** @test */
+      it('Displays Yes and surfaces the correct tooltip info', () => {
+        cy.mockGraphqlOp('CampaignInfoQuery', {
+          campaign: (root, { campaignId }) => ({
+            id: campaignId,
+            actions: () => [
+              {
+                ...scholarshipAndReportbackAction,
+                volunteerCredit: true,
+              },
+            ],
+          }),
+        });
 
-      cy.anonVisitCampaign(exampleCampaign);
+        cy.anonVisitCampaign(exampleCampaign);
 
-      cy.findByTestId('campaign-info-block-container').within(() => {
-        cy.contains('Volunteer Credit');
-
+        cy.findByTestId('volunteer-credit-column').contains('Volunteer Credit');
         cy.findByTestId('volunteer-credit-value').contains('Yes');
+
+        cy.findByTestId('time-commitment-value').within(() => {
+          cy.findByTestId('tooltip-target').click();
+        });
+
+        cy.findByTestId('tooltip-content').contains(
+          'This is the estimated time it takes to complete this action. For volunteer credit certificates, the time you enter will show up on your certificate',
+        );
+
+        cy.findByTestId('volunteer-credit-value').within(() => {
+          cy.findByTestId('tooltip-target').click();
+        });
+
+        cy.findByTestId('tooltip-content').contains(
+          "When you complete this campaign you'll be able to download a certificate verifying your participation.",
+        );
       });
     });
 
-    /** @test */
-    it('Displays No when the action does not earn volunteer credit', () => {
-      cy.mockGraphqlOp('CampaignInfoQuery', {
-        campaign: (root, { campaignId }) => ({
-          id: campaignId,
-          actions: () => [
-            {
-              ...scholarshipAndReportbackAction,
-              volunteerCredit: false,
-            },
-          ],
-        }),
-      });
+    context('When the action does not qualify for volunteer credit', () => {
+      /** @test */
+      it('Displays No and surfaces the correct tooltip content', () => {
+        cy.mockGraphqlOp('CampaignInfoQuery', {
+          campaign: (root, { campaignId }) => ({
+            id: campaignId,
+            actions: () => [
+              {
+                ...scholarshipAndReportbackAction,
+                volunteerCredit: false,
+              },
+            ],
+          }),
+        });
 
-      cy.anonVisitCampaign(exampleCampaign);
+        cy.anonVisitCampaign(exampleCampaign);
 
-      cy.findByTestId('campaign-info-block-container').within(() => {
-        cy.contains('Volunteer Credit');
-
+        cy.findByTestId('volunteer-credit-column').contains('Volunteer Credit');
         cy.findByTestId('volunteer-credit-value').contains('No');
+
+        cy.findByTestId('time-commitment-value').within(() => {
+          cy.findByTestId('tooltip-target').click();
+        });
+
+        cy.findByTestId('tooltip-content').contains(
+          'This is the estimated time it takes to complete this action.',
+        );
+        cy.findByTestId('tooltip-content').should(
+          'not.contain',
+          'For volunteer credit certificates, the time you enter will show up on your certificate',
+        );
+
+        cy.findByTestId('volunteer-credit-value').within(() => {
+          cy.findByTestId('tooltip-target').click();
+        });
+
+        cy.findByTestId('tooltip-content').contains(
+          'This campaign is not eligible for a certificate of proof for volunteer hours.',
+        );
       });
     });
   });

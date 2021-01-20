@@ -5,7 +5,7 @@ import { css } from '@emotion/core';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
-import Tooltip from '../../utilities/Tooltip';
+import Tooltip from '../../utilities/Tooltip/Tooltip';
 import TooltipQuestionMark from './TooltipQuestionMark.svg';
 import { getHumanFriendlyDate } from '../../../helpers/datetime';
 import {
@@ -145,7 +145,7 @@ const CampaignInfoBlock = ({
               {actionItem && actionItem.timeCommitmentLabel ? (
                 <>
                   <dt>Time</dt>
-                  <dd>
+                  <dd data-testid="time-commitment-value">
                     <div className="flex">
                       {actionItem.timeCommitmentLabel}
 
@@ -168,7 +168,9 @@ const CampaignInfoBlock = ({
               ) : null}
               {actionItem ? (
                 <>
-                  <dt>Volunteer Credit</dt>
+                  <dt data-testid="volunteer-credit-column">
+                    Volunteer Credit
+                  </dt>
                   <dd data-testid="volunteer-credit-value">
                     <div className="flex">
                       {actionItem.volunteerCredit ? 'Yes' : 'No'}
