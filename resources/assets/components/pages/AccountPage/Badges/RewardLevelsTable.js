@@ -1,8 +1,8 @@
 import React from 'react';
 import tw from 'twin.macro';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-import { query } from '../../../../helpers/url';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const Table = tw.table`my-6 w-full lg:w-3/4`;
@@ -13,10 +13,7 @@ const TableCellCenter = tw.td`p-2 text-sm text-center md:text-base border-solid 
 const TableCellCenterBottom = tw.td`p-2 text-sm text-center md:text-base border-solid border-l border-gray-400 align-middle`;
 const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
-const RewardLevelsTable = () => {
-  // @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
-  const badges = query('badges') || 4;
-
+const RewardLevelsTable = ({ badges }) => {
   const userLevelLabel = badgeNumber => {
     let userLevel;
     if (badgeNumber >= 6) {
@@ -132,6 +129,10 @@ const RewardLevelsTable = () => {
       </Table>
     </div>
   );
+};
+
+RewardLevelsTable.propTypes = {
+  badges: PropTypes.number.isRequired,
 };
 
 export default RewardLevelsTable;

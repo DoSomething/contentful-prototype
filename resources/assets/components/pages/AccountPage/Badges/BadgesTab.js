@@ -6,7 +6,9 @@ import Badge from './Badge';
 import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
 import RewardsFaq from './RewardsFaq';
+import { query } from '../../../../helpers/url';
 import RewardLevelsTable from './RewardLevelsTable';
+import RewardsProgressBar from './RewardsProgressBar';
 import { featureFlag } from '../../../../helpers/env';
 import {
   EVENT_CATEGORIES,
@@ -44,6 +46,9 @@ const NEWSLETTER_BADGE = gql`
 const exploreCampaignsLink = text => {
   return <a href="/us/campaigns">{text}</a>;
 };
+
+// @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
+const badges = query('badges') || 4;
 
 const badgeModalContent = {
   signupBadge: {
@@ -183,6 +188,10 @@ class BadgesTab extends React.Component {
 
     return (
       <div className="grid-wide bg-gray pb-6 wrapper">
+        {featureFlag('rewards_levels') ? (
+          <RewardsProgressBar totalBadges={badges} />
+        ) : null}
+
         <h1 className="text-xl">Badges</h1>
         <p className="text-gray-600">
           Earn badges and rewards for making a difference.
@@ -395,7 +404,9 @@ class BadgesTab extends React.Component {
           </BadgeModal>
         ) : null}
 
-        {featureFlag('rewards_levels') ? <RewardLevelsTable /> : null}
+        {featureFlag('rewards_levels') ? (
+          <RewardLevelsTable badges={badges} />
+        ) : null}
 
         {featureFlag('rewards_levels') ? <RewardsFaq /> : null}
       </div>
