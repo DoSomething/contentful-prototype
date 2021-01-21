@@ -40,22 +40,8 @@ const previewImageCss = css`
 const Embed = props => {
   const { url, badged, className } = props;
 
-  // @TODO: Add onClick once LinkAction no longer calls Embed (causes duplicate events)
-  // @see https://github.com/DoSomething/phoenix-next/pull/1598#issuecomment-532744108
-  /*
-  const onClick = () => {
-    trackAnalyticsEvent('clicked_link_embed', {
-      action: 'link_clicked',
-      category: EVENT_CATEGORIES.siteAction,
-      label: 'embed',
-      context: {
-        url,
-      },
-    });
-  };
-  */
+  const handleClick = () => {
 
-  const handleEmbedBlock = () => {
     trackAnalyticsEvent('clicked_link_embed', {
       action: 'element_clicked',
       category: EVENT_CATEGORIES.siteAction,
@@ -96,7 +82,7 @@ const Embed = props => {
               href={url}
               className="block no-underline hover:no-underline"
               target={isExternal(url) ? '_blank' : '_self'}
-              onClick={handleEmbedBlock}
+              onClick={handleClick}
               rel="noopener noreferrer"
             >
               <div
