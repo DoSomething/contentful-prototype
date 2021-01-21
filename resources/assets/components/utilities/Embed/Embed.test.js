@@ -1,8 +1,5 @@
-/* global jsdom */
-
 import React from 'react';
 import { mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
 import { MockedProvider } from '@apollo/react-testing';
 
 import Embed, { EMBED_QUERY } from './Embed';
