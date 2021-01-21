@@ -19,7 +19,7 @@ import {
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 
-const EMBED_QUERY = gql`
+export const EMBED_QUERY = gql`
   query EmbedQuery($url: URL!) {
     embed(url: $url) {
       type
