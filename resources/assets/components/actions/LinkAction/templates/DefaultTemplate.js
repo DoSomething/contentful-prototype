@@ -50,8 +50,9 @@ const DefaultTemplate = props => {
   const context = { blockId: id, campaignId, pageId };
 
   // If no content is provided, show as an embed.
-  // HACK: We've deprecated this functionality in favor of using the Embed Block.
+  // @HACK: We've deprecated this functionality in favor of using the Embed Block.
   // This will now only apply to Link Actions created before 01/22/2021.
+  // @TODO: Backfill legacy Link Actions with no content to Embed blocks.
   if (!content && isBefore(createdAt, new Date('01/22/2021'))) {
     return (
       <div
