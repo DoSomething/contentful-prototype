@@ -44,10 +44,10 @@ describe('Embed component', () => {
     expect(trackEventMock).toHaveBeenCalled();
   });
 
-  describe('with the noTrack prop', () => {
+  describe('with the dontTrack prop', () => {
     const wrapper = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <Embed url="https://ds.co" noTrack />
+        <Embed url="https://ds.co" dontTrack />
       </MockedProvider>,
     );
 

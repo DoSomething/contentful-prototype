@@ -38,10 +38,10 @@ const previewImageCss = css`
 `;
 
 const Embed = props => {
-  const { url, badged, className, noTrack } = props;
+  const { url, badged, className, dontTrack } = props;
 
   const handleClick = () => {
-    if (noTrack) {
+    if (dontTrack) {
       return;
     }
 
@@ -153,13 +153,13 @@ Embed.propTypes = {
   className: PropTypes.string,
   url: PropTypes.string.isRequired,
   badged: PropTypes.bool,
-  noTrack: PropTypes.bool,
+  dontTrack: PropTypes.bool,
 };
 
 Embed.defaultProps = {
   className: null,
   badged: false,
-  noTrack: false,
+  dontTrack: false,
 };
 
 export default Embed;

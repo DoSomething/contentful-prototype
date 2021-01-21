@@ -61,7 +61,7 @@ const DefaultTemplate = props => {
         className="link-wrapper"
       >
         {/* Don't track the click event on the Embed since we're tracking the click here for the Link Action. */}
-        <Embed url={link} badged noTrack />
+        <Embed url={link} badged dontTrack />
 
         {affiliateLogo ? (
           <AffiliatePromotion
