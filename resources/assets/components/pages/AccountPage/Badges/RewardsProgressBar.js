@@ -12,9 +12,9 @@ const RewardsProgressBar = ({ totalBadges }) => {
     <>
       <SectionHeader title={`You're a ${userLevelLabel(totalBadges)}`} />
 
-      <p>
-        You earned <em>${totalBadges} out of 6 badges</em>, which makes you a $
-        {userLevelLabel(totalBadges)}. You're almost there!
+      <p className="pt-6 pb-3 text-lg">
+        You earned <b>{totalBadges} out of 6 badges</b>, which makes you a{' '}
+        {userLevelLabel(totalBadges)}. You&apos;re almost there!
       </p>
       <ProgressBar percentage={percentage} />
     </>
