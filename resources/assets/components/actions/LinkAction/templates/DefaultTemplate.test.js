@@ -18,6 +18,7 @@ describe('DefaultTemplate component', () => {
     id: '1234567890',
     title: 'Click on this link!',
     link: 'https://dosomething.org',
+    createdAt: '2020-10-20T20:34:27.427Z',
   };
 
   describe('without content', () => {
@@ -95,6 +96,17 @@ describe('DefaultTemplate component', () => {
 
     it('renders a AffiliatePromotion component', () => {
       expect(wrapper.find('AffiliatePromotion')).toHaveLength(1);
+    });
+  });
+
+  describe('new link actions', () => {
+    const wrapper = shallow(
+      <DefaultTemplate {...props} createdAt="2021-01-25T20:34:27.427Z" />,
+    );
+
+    it('renders a Card component with a button even if the content is not populated', () => {
+      expect(wrapper.find('Card')).toHaveLength(1);
+      expect(wrapper.find('Card').find('PrimaryButton')).toHaveLength(1);
     });
   });
 });

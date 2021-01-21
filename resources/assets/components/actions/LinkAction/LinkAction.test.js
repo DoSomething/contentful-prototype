@@ -8,6 +8,7 @@ describe('LinkAction component', () => {
     id: '1234',
     title: 'Click on this link!',
     link: 'https://dosomething.org',
+    createdAt: '2020-10-20T20:34:27.427Z',
   };
 
   const wrapper = shallow(<LinkAction {...props} />);
