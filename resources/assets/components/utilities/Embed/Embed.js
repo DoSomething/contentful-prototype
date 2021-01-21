@@ -38,9 +38,12 @@ const previewImageCss = css`
 `;
 
 const Embed = props => {
-  const { url, badged, className } = props;
+  const { url, badged, className, noTrack } = props;
 
   const handleClick = () => {
+    if (noTrack) {
+      return;
+    }
 
     trackAnalyticsEvent('clicked_link_embed', {
       action: 'element_clicked',
@@ -150,11 +153,13 @@ Embed.propTypes = {
   className: PropTypes.string,
   url: PropTypes.string.isRequired,
   badged: PropTypes.bool,
+  noTrack: PropTypes.bool,
 };
 
 Embed.defaultProps = {
   className: null,
   badged: false,
+  noTrack: false,
 };
 
 export default Embed;
