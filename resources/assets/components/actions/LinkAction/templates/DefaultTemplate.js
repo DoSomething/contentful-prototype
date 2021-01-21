@@ -60,7 +60,8 @@ const DefaultTemplate = props => {
         onClick={() => analyzeClick(href, context)}
         className="link-wrapper"
       >
-        <Embed url={link} badged />
+        {/* Don't track the click event on the Embed since we're tracking the click here for the Link Action. */}
+        <Embed url={link} badged noTrack />
 
         {affiliateLogo ? (
           <AffiliatePromotion
