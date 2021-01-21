@@ -13,20 +13,19 @@ const TableCellCenter = tw.td`p-2 text-sm text-center md:text-base border-solid 
 const TableCellCenterBottom = tw.td`p-2 text-sm text-center md:text-base border-solid border-l border-gray-400 align-middle`;
 const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
+export const userLevelLabel = badgeNumber => {
+  let userLevel;
+  if (badgeNumber >= 6) {
+    userLevel = 'Legend';
+  } else if (badgeNumber > 3) {
+    userLevel = 'SuperDoer';
+  } else if (badgeNumber >= 2) {
+    userLevel = 'Doer';
+  }
+
+  return userLevel;
+};
 const RewardLevelsTable = ({ badges }) => {
-  const userLevelLabel = badgeNumber => {
-    let userLevel;
-    if (badgeNumber >= 6) {
-      userLevel = 'Legend';
-    } else if (badgeNumber > 3) {
-      userLevel = 'SuperDoer';
-    } else if (badgeNumber >= 2) {
-      userLevel = 'Doer';
-    }
-
-    return userLevel;
-  };
-
   const doerHighlight = css`
     background-color: rgba(47, 227, 218, 0.15);
   `;
