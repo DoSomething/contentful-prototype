@@ -216,7 +216,7 @@ describe('Campaign Post', () => {
   });
 
   context('When the post_confirmation_page feature flag is on', () => {
-    it('Redirects to the show submission page after a successful text post submission', () => {
+    it.only('Redirects to the show submission page after a successful text post submission', () => {
       const user = userFactory();
 
       cy.mockGraphqlOp('ActionAndUserByIdQuery', {
@@ -248,13 +248,18 @@ describe('Campaign Post', () => {
       cy.get('.text-submission-action button[type="submit"]').click();
       cy.wait('@submitPost');
 
-      cy.window().then(win => {
-        Cypress.log({ name: 'win ID', message: `AUTH.id: ${win.AUTH.id}` });
-        Cypress.log({
-          name: 'post user ID',
-          message: `post.userId: ${user.id}`,
+      cy.get('#systems-info').then(el => {
+        cy.window().then(win => {
+          el[0].innerHTML = `AUTH.id: ${win.AUTH.id}. post.userId: ${user.id}`;
+          Cypress.log({ name: 'win ID', message: `AUTH.id: ${win.AUTH.id}` });
+          Cypress.log({
+            name: 'post user ID',
+            message: `post.userId: ${user.id}`,
+          });
         });
       });
+
+      cy.wait(5000);
 
       // We should be redirected to the show submission page after submitting a post.
       cy.location('pathname').should('eq', `/us/posts/${response.data.id}`);
@@ -310,13 +315,17 @@ describe('Campaign Post', () => {
         cy.contains('Submit a new photo').click();
         cy.wait('@submitPost');
 
-        cy.window().then(win => {
-          Cypress.log({ name: 'win ID', message: `AUTH.id: ${win.AUTH.id}` });
-          Cypress.log({
-            name: 'post user ID',
-            message: `post.userId: ${user.id}`,
+        cy.get('#systems-info').then(el => {
+          cy.window().then(win => {
+            el[0].innerHTML = `AUTH.id: ${win.AUTH.id}. post.userId: ${user.id}`;
+            Cypress.log({ name: 'win ID', message: `AUTH.id: ${win.AUTH.id}` });
+            Cypress.log({
+              name: 'post user ID',
+              message: `post.userId: ${user.id}`,
+            });
           });
         });
+        cy.wait(5000);
 
         // We should be redirected to the show submission page after submitting a post.
         cy.location('pathname').should('eq', `/us/posts/${response.data.id}`);
@@ -360,13 +369,17 @@ describe('Campaign Post', () => {
 
       cy.wait('@submitPost');
 
-      cy.window().then(win => {
-        Cypress.log({ name: 'win ID', message: `AUTH.id: ${win.AUTH.id}` });
-        Cypress.log({
-          name: 'post user ID',
-          message: `post.userId: ${user.id}`,
+      cy.get('#systems-info').then(el => {
+        cy.window().then(win => {
+          el[0].innerHTML = `AUTH.id: ${win.AUTH.id}. post.userId: ${user.id}`;
+          Cypress.log({ name: 'win ID', message: `AUTH.id: ${win.AUTH.id}` });
+          Cypress.log({
+            name: 'post user ID',
+            message: `post.userId: ${user.id}`,
+          });
         });
       });
+      cy.wait(5000);
 
       // We should be redirected to the show submission page after submitting a post.
       cy.location('pathname').should('eq', `/us/posts/${response.data.id}`);

@@ -28,6 +28,8 @@
         @include('partials.admin-dashboard')
     @endif
 
+    <h1 class="text-center" id="systems-info">HI!</h1>
+
     @if (session('flash_message'))
         @include('partials.flash-message')
     @endif
