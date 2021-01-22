@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 
 import { tailwind } from '../../../helpers/display';
 
-const ProgressBar = ({ percentage }) => {
+const ProgressBar = ({ percentage, multiLevel, levelCount }) => {
   const tailwindYellow = tailwind('colors.yellow');
 
   const progressBarContainer = css`
@@ -19,6 +19,17 @@ const ProgressBar = ({ percentage }) => {
     border-radius: inherit;
   `;
 
+  if (multiLevel) {
+    return (
+      <div className="relative bg-gray-200" css={progressBarContainer}>
+        <div
+          css={progressBar}
+          style={{ width: `${percentage > 100 ? 100 : percentage}%` }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="relative bg-gray-200" css={progressBarContainer}>
       <div
@@ -30,7 +41,14 @@ const ProgressBar = ({ percentage }) => {
 };
 
 ProgressBar.propTypes = {
+  levelCount: PropTypes.number,
+  multiLevel: PropTypes.bool,
   percentage: PropTypes.number.isRequired,
+};
+
+ProgressBar.defaultProps = {
+  levelCount: null,
+  multiLevel: null,
 };
 
 export default ProgressBar;

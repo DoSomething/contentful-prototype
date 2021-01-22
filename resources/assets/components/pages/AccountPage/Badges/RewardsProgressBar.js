@@ -16,7 +16,7 @@ const RewardsProgressBar = ({ totalBadges }) => {
         You earned <b>{totalBadges} out of 6 badges</b>, which makes you a{' '}
         {userLevelLabel(totalBadges)}. You&apos;re almost there!
       </p>
-      <ProgressBar percentage={percentage} />
+      <ProgressBar percentage={percentage} multiLevel levelCount={3} />
     </>
   );
 };
