@@ -22,6 +22,7 @@
     -   [Current School Block](development/content-types/current-school-block.md)
     -   [Embed](development/content-types/embed.md)
     -   [Landing Page](development/content-types/landing-page.md)
+    -   [Link Action](development/content-types/link-action.md)
     -   [Metadata](development/content-types/metadata.md)
     -   [Page](development/content-types/page.md)
     -   [Photo Submission Action](development/content-types/photo-submission-action.md)
