@@ -14,8 +14,12 @@ import linkIcon from './link_icon.svg';
 import { isExternal } from '../../../helpers/url';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
-const EMBED_QUERY = gql`
+export const EMBED_QUERY = gql`
   query EmbedQuery($url: URL!) {
     embed(url: $url) {
       type
@@ -34,14 +38,15 @@ const previewImageCss = css`
 `;
 
 const Embed = props => {
-  const { url, badged, className } = props;
+  const { url, badged, className, dontTrack } = props;
 
-  // @TODO: Add onClick once LinkAction no longer calls Embed (causes duplicate events)
-  // @see https://github.com/DoSomething/phoenix-next/pull/1598#issuecomment-532744108
-  /*
-  const onClick = () => {
+  const handleClick = () => {
+    if (dontTrack) {
+      return;
+    }
+
     trackAnalyticsEvent('clicked_link_embed', {
-      action: 'link_clicked',
+      action: 'element_clicked',
       category: EVENT_CATEGORIES.siteAction,
       label: 'embed',
       context: {
@@ -49,7 +54,6 @@ const Embed = props => {
       },
     });
   };
-  */
 
   return (
     <div
@@ -81,6 +85,7 @@ const Embed = props => {
               href={url}
               className="block no-underline hover:no-underline"
               target={isExternal(url) ? '_blank' : '_self'}
+              onClick={handleClick}
               rel="noopener noreferrer"
             >
               <div
@@ -148,11 +153,13 @@ Embed.propTypes = {
   className: PropTypes.string,
   url: PropTypes.string.isRequired,
   badged: PropTypes.bool,
+  dontTrack: PropTypes.bool,
 };
 
 Embed.defaultProps = {
   className: null,
   badged: false,
+  dontTrack: false,
 };
 
 export default Embed;

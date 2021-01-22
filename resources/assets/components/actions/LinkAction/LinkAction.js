@@ -20,6 +20,7 @@ export const LinkBlockFragment = gql`
     }
     template
     additionalContent
+    createdAt
   }
 `;
 

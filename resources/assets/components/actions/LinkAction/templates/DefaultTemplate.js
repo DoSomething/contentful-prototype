@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isBefore } from 'date-fns';
 
 import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
@@ -28,6 +29,7 @@ const DefaultTemplate = props => {
     buttonText,
     campaignId,
     content,
+    createdAt,
     id,
     link,
     pageId,
@@ -48,7 +50,10 @@ const DefaultTemplate = props => {
   const context = { blockId: id, campaignId, pageId };
 
   // If no content is provided, show as an embed.
-  if (!content) {
+  // @HACK: We've deprecated this functionality in favor of using the Embed Block.
+  // This will now only apply to Link Actions created before 01/22/2021.
+  // @TODO: Backfill legacy Link Actions with no content to Embed blocks.
+  if (!content && isBefore(createdAt, new Date('01/22/2021'))) {
     return (
       <div
         role="button"
@@ -56,7 +61,8 @@ const DefaultTemplate = props => {
         onClick={() => analyzeClick(href, context)}
         className="link-wrapper"
       >
-        <Embed url={link} badged />
+        {/* Don't track the click event on the Embed since we're tracking the click here for the Link Action. */}
+        <Embed url={link} badged dontTrack />
 
         {affiliateLogo ? (
           <AffiliatePromotion
@@ -105,6 +111,7 @@ DefaultTemplate.propTypes = {
   buttonText: PropTypes.string,
   campaignId: PropTypes.string,
   content: PropTypes.string,
+  createdAt: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
