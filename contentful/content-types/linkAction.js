@@ -34,15 +34,25 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
+
   linkAction
     .createField('link')
     .name('Link')
     .type('Symbol')
     .localized(false)
     .required(true)
-    .validations([])
+    .validations([
+      {
+        regexp: {
+          pattern:
+            '^((ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?$|tel\\:?\\d[ -.]?\\(?\\d\\d\\d\\)?[ -.]?\\d\\d\\d[ -.]?\\d\\d\\d\\d$)',
+          flags: null,
+        },
+      },
+    ])
     .disabled(false)
     .omitted(false);
+
   linkAction
     .createField('buttonText')
     .name('Button Text')
@@ -125,6 +135,8 @@ module.exports = function(migration) {
     'additionalContent',
     'builtin',
     'objectEditor',
-    {},
+    {
+      helpText: 'Used for quiz results (set "sourceDetails" property)',
+    },
   );
 };
