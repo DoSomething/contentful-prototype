@@ -3,7 +3,7 @@ module.exports = function(migration) {
     .createContentType('embed')
     .name('Embed')
     .description(
-      'Embeds content directly onto page for supported URLs (Airtable, Carto, Youtube, Typeform) or displays an embedded link to the page by default.',
+      'Embeds content directly onto page for supported URLs (Airtable, DoSomething CartoDB, Youtube, DoSomething Typeform).',
     )
     .displayField('internalTitle');
 

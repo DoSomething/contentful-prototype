@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Embed from '../../utilities/Embed/Embed';
+import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import TypeFormTemplate from './templates/TypeFormTemplate';
 import IframeEmbed from '../../utilities/IframeEmbed/IframeEmbed';
 
@@ -23,8 +24,14 @@ const EmbedBlock = props => {
     case 'airtable.com':
       return <IframeEmbed {...props} />;
 
-    default:
+    case 'www.youtube.com':
+    case 'youtu.be':
       return <Embed url={props.url} badged />;
+
+    default:
+      return (
+        <ErrorBlock error={`${props.url} is not a supported embeddable URL.`} />
+      );
   }
 };
 
