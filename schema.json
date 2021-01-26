@@ -18,11 +18,83 @@
             "description": null,
             "args": [
               {
-                "name": "term",
-                "description": "The search term specified or an empty string.",
+                "name": "actionTypes",
+                "description": "Filter by campaigns containing these action types.",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "causes",
+                "description": "Filter by campaigns containing these causes.",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "cursor",
+                "description": "Pagination search cursor for the specified search location.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "excludeIds",
+                "description": "Exclude campaigns with specified IDs",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "hasScholarship",
+                "description": "Search for campaigns that have or do not have a scholarship.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "hasWebsite",
+                "description": "Filter for campaigns that have a Contentful campaign associated.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "isOnline",
+                "description": "Filter by campaigns that are online or offline.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -48,35 +120,11 @@
                 "defaultValue": null
               },
               {
-                "name": "hasScholarship",
-                "description": "Search for campaigns that have or do not have a scholarship.",
+                "name": "orderBy",
+                "description": "How to order the results (e.g. 'start_date,desc').",
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "causes",
-                "description": "Filter by campaigns containing these causes.",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "hasWebsite",
-                "description": "Filter for campaigns that have a Contentful campaign associated.",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -92,8 +140,8 @@
                 "defaultValue": null
               },
               {
-                "name": "orderBy",
-                "description": "How to order the results (e.g. 'start_date,desc').",
+                "name": "term",
+                "description": "The search term specified or an empty string.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
@@ -102,24 +150,14 @@
                 "defaultValue": null
               },
               {
-                "name": "cursor",
-                "description": "Pagination search cursor for the specified search location.",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "excludeIds",
-                "description": "Exclude campaigns with specified IDs",
+                "name": "timeCommitments",
+                "description": "Filter by campaigns containing these time commitments",
                 "type": {
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   }
                 },
@@ -2500,22 +2538,6 @@
             "deprecationReason": null
           },
           {
-            "name": "webSignupConfirmations",
-            "description": "Get all web signup confirmations.",
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "WebSignupConfirmation",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "conversation",
             "description": "Get a conversation by ID.",
             "args": [
@@ -2831,8 +2853,8 @@
       },
       {
         "kind": "SCALAR",
-        "name": "Boolean",
-        "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "name": "Int",
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -2841,8 +2863,8 @@
       },
       {
         "kind": "SCALAR",
-        "name": "Int",
-        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "name": "Boolean",
+        "description": "The `Boolean` scalar type represents `true` or `false`.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -3451,6 +3473,18 @@
           },
           {
             "name": "timeCommitmentLabel",
+            "description": "How long will this action take to complete? (human readable format)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "timeCommitment",
             "description": "How long will this action take to complete?",
             "args": [],
             "type": {
@@ -4294,6 +4328,11 @@
             "kind": "OBJECT",
             "name": "ContentBlock",
             "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ExternalLinkBlock",
+            "ofType": null
           }
         ]
       },
@@ -4624,6 +4663,11 @@
           {
             "kind": "OBJECT",
             "name": "EmbedBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ExternalLinkBlock",
             "ofType": null
           },
           {
@@ -9947,73 +9991,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "WebSignupConfirmation",
-        "description": "Confirmation to send a user when they sign up for a campaign from web.",
-        "fields": [
-          {
-            "name": "id",
-            "description": "The entry id",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "campaignId",
-            "description": "The campaign ID that the user signed up for.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "topic",
-            "description": "The topic to change user conversation to.",
-            "args": [],
-            "type": {
-              "kind": "INTERFACE",
-              "name": "Topic",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "campaign",
-            "description": "The campaign that this web signup confirmation is for.",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Campaign",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "Mutation",
         "description": "The mutation root of our GraphQL schema. Start here if you want to write data",
         "fields": [
@@ -12193,18 +12170,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "webSignup",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "INTERFACE",
-              "name": "Topic",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -13691,6 +13656,172 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ExternalLinkBlock",
+        "description": null,
+        "fields": [
+          {
+            "name": "title",
+            "description": "Overrides the provider title.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
+            "description": "Overrides the provider description.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": "The external URL.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "URL",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "image",
+            "description": "Overrides the provider image",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseTitle",
+            "description": "The showcase title (the title field.)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseDescription",
+            "description": "The showcase description (the description field.)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseImage",
+            "description": "The showcase image (the image field.)",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The Contentful ID for this entry.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this entry was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this entry was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Block",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Showcasable",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "FaqAnswerTopic",
         "description": "FAQ topic",
         "fields": [
@@ -13976,6 +14107,12 @@
           },
           {
             "name": "CONTENT_BLOCK",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EXTERNAL_LINK",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
