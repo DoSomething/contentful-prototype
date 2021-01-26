@@ -14,6 +14,9 @@ import ScholarshipCard, {
 } from '../../utilities/ScholarshipCard/ScholarshipCard';
 import PageCard, { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
+import ExternalLinkCard, {
+  ExternalLinkBlockFragment,
+} from '../../utilities/ExternalLinkCard/ExternalLinkCard';
 
 export const GalleryBlockFragment = gql`
   fragment GalleryBlockFragment on GalleryBlock {
@@ -39,12 +42,14 @@ export const GalleryBlockFragment = gql`
       ...CampaignCard
       ...ScholarshipCard
       ...PageCard
+      ...ExternalLinkBlockFragment
     }
   }
 
   ${campaignCardFragment}
   ${scholarshipCardFragment}
   ${pageCardFragment}
+  ${ExternalLinkBlockFragment}
 `;
 
 const renderBlock = (blockType, block, imageAlignment, imageFit) => {
@@ -77,6 +82,15 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
           {...fields}
           imageAlignment={imageAlignment}
           imageFit={imageFit}
+        />
+      );
+
+    case 'EXTERNAL_LINK':
+      return (
+        <ExternalLinkCard
+          key={block.id}
+          {...fields}
+          url={fields.externalLinkUrl}
         />
       );
 
@@ -132,6 +146,7 @@ GalleryBlock.propTypes = {
     'SCHOLARSHIP',
     'PAGE',
     'CONTENT_BLOCK',
+    'EXTERNAL_LINK',
   ]),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,

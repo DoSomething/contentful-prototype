@@ -31,7 +31,15 @@ module.exports = function(migration) {
     .required(true)
     .validations([
       {
-        in: ['Campaign', 'Scholarship', 'Page', 'Person', 'Content Block'],
+        in: [
+          'Campaign',
+          'Scholarship',
+          'Page',
+          'Person',
+          'Content Block',
+          'External Link',
+        ],
+
         message: 'Please choose a gallery type.',
       },
     ])
@@ -55,6 +63,7 @@ module.exports = function(migration) {
           linkContentType: [
             'campaign',
             'contentBlock',
+            'externalLink',
             'page',
             'person',
             'storyPage',
@@ -112,7 +121,7 @@ module.exports = function(migration) {
 
   galleryBlock.changeFieldControl('galleryType', 'builtin', 'dropdown', {
     helpText:
-      'Choose a gallery type that directly matches your referenced entry types. ("Scholarship": a list of Campaigns embellished with scholarship info. The "External Link" has been updated to "Content Block").',
+      'Choose a gallery type that directly matches your referenced entry types. ("Scholarship": a list of Campaigns embellished with scholarship info).',
   });
 
   galleryBlock.changeFieldControl('blocks', 'builtin', 'entryLinksEditor', {
