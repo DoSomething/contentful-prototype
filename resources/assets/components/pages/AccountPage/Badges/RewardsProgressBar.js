@@ -37,7 +37,7 @@ const RewardsProgressBar = ({ totalBadges }) => {
   };
 
   return (
-    <div className="pb-12">
+    <div>
       <SectionHeader title={`You're a ${userLevelLabel(totalBadges)}`} />
 
       <p className="pt-6 pb-3 text-lg">

@@ -15,7 +15,10 @@ const MultiLevelProgressBar = ({
   // mobile sizing
   // verbiage for when you have 1 badge??
   return (
-    <div className="grid grid-cols-3 bg-gray-300" css={progressBarContainer}>
+    <div
+      className="grid grid-cols-3 bg-gray-300 pr-4 lg:pr-0 mb-10"
+      css={progressBarContainer}
+    >
       <div className="relative">
         <div
           className="bg-teal-500 h-full"
