@@ -14,7 +14,7 @@ const TableCellCenterBottom = tw.td`p-2 text-sm text-center md:text-base border-
 const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
 export const userLevelLabel = badgeNumber => {
-  let userLevel;
+  let userLevel = 'member';
   if (badgeNumber >= 6) {
     userLevel = 'Legend';
   } else if (badgeNumber > 3) {

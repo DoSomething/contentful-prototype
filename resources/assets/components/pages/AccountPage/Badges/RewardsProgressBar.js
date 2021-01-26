@@ -42,7 +42,11 @@ const RewardsProgressBar = ({ totalBadges }) => {
 
       <p className="pt-6 pb-3 text-lg">
         You earned <b>{totalBadges} out of 6 badges</b>, which makes you a{' '}
-        {userLevelLabel(totalBadges)}. You&apos;re almost there!
+        {userLevelLabel(totalBadges)}.{' '}
+        {userLevelLabel(totalBadges) === 'Legend'
+          ? 'Congrats'
+          : "You're almost there"}
+        !
       </p>
       <MultiLevelProgressBar
         levelOneProgress={doerProgress(totalBadges)}
