@@ -48,7 +48,7 @@ const exploreCampaignsLink = text => {
 };
 
 // @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
-const badges = query('badges') || 4;
+const badges = Number(query('badges')) || 0;
 
 const badgeModalContent = {
   signupBadge: {

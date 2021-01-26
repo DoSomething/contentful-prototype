@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getGoalInfo } from '../../../../helpers/voter-registration';
-import ProgressBar from '../../../utilities/ProgressBar/ProgressBar';
-import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 import { userLevelLabel } from './RewardLevelsTable';
+import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
+import MultiLevelProgressBar from '../../../utilities/ProgressBar/MultiLevelProgressBar';
 
 const RewardsProgressBar = ({ totalBadges }) => {
-  const { percentage } = getGoalInfo(6, totalBadges);
   return (
     <>
       <SectionHeader title={`You're a ${userLevelLabel(totalBadges)}`} />
@@ -16,7 +14,7 @@ const RewardsProgressBar = ({ totalBadges }) => {
         You earned <b>{totalBadges} out of 6 badges</b>, which makes you a{' '}
         {userLevelLabel(totalBadges)}. You&apos;re almost there!
       </p>
-      <ProgressBar percentage={percentage} multiLevel levelCount={3} />
+      <MultiLevelProgressBar currentAmount={totalBadges} />
     </>
   );
 };
