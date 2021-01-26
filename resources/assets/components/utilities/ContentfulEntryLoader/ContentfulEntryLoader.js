@@ -19,6 +19,7 @@ import { ImagesBlockFragment } from '../../blocks/ImagesBlock/ImagesBlock';
 import { ShareBlockFragment } from '../../actions/ShareAction/ShareAction';
 import { GalleryBlockFragment } from '../../blocks/GalleryBlock/GalleryBlock';
 import { ContentBlockFragment } from '../../blocks/ContentBlock/ContentBlock';
+import { ExternalLinkBlockFragment } from '../ExternalLinkCard/ExternalLinkCard';
 import { CampaignDashboardFragment } from '../CampaignDashboard/CampaignDashboard';
 import { SixpackExperimentBlockFragment } from '../SixpackExperiment/SixpackExperiment';
 import { CampaignUpdateBlockFragment } from '../../blocks/CampaignUpdate/CampaignUpdate';
@@ -84,6 +85,9 @@ export const CONTENTFUL_BLOCK_QUERY = gql`
       ... on CampaignUpdateBlock {
         ...CampaignUpdateBlockFragment
       }
+      ... on ExternalLinkBlock {
+        ...ExternalLinkBlockFragment
+      }
       ... on TextSubmissionBlock {
         ...TextSubmissionBlockFragment
       }
@@ -127,6 +131,7 @@ export const CONTENTFUL_BLOCK_QUERY = gql`
   ${SocialDriveBlockFragment}
   ${PostGalleryBlockFragment}
   ${CampaignDashboardFragment}
+  ${ExternalLinkBlockFragment}
   ${CurrentSchoolBlockFragment}
   ${CampaignUpdateBlockFragment}
   ${TextSubmissionBlockFragment}
