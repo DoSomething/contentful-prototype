@@ -2,6 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
+const SingleLevel = ({ levelProgress, color }) => (
+  <div className="relative">
+    <div
+      className={`${color} h-full`}
+      css={css`
+        width: ${levelProgress};
+        border-radius: 50px;
+      `}
+    />
+
+    <div
+      className={`${color} h-8 w-8 absolute border border-solid border-white rounded-full z-10`}
+      css={css`
+        top: -8px;
+        right: -16px;
+      `}
+    />
+  </div>
+);
+
+SingleLevel.propTypes = {
+  color: PropTypes.string.isRequired,
+  levelProgress: PropTypes.string.isRequired,
+};
+
 const MultiLevelProgressBar = ({
   levelOneProgress,
   levelTwoProgress,
@@ -17,61 +42,11 @@ const MultiLevelProgressBar = ({
       className="grid grid-cols-3 bg-gray-300 pr-4 lg:pr-0 mb-10 w-full"
       css={progressBarContainer}
     >
-      <div className="relative">
-        <div
-          className="bg-teal-500 h-full"
-          style={{
-            width: levelOneProgress,
-            'border-radius': '50px',
-          }}
-        />
+      <SingleLevel levelProgress={levelOneProgress} color="bg-teal-500" />
 
-        <div
-          className="bg-teal-500 h-8 w-8 absolute border border-solid border-white rounded-full z-10"
-          style={{
-            top: '-8px',
-            right: '-16px',
-          }}
-        />
-      </div>
+      <SingleLevel levelProgress={levelTwoProgress} color="bg-purple-400" />
 
-      <div className="relative">
-        <div
-          className="bg-purple-400 h-full"
-          style={{
-            width: levelTwoProgress,
-            'border-top-right-radius': '50px',
-            'border-bottom-right-radius': '50px',
-          }}
-        />
-
-        <div
-          className="bg-purple-400 h-8 w-8 absolute top-0 right-0 border border-solid border-white rounded-full z-10"
-          style={{
-            top: '-8px',
-            right: '-16px',
-          }}
-        />
-      </div>
-
-      <div className="relative">
-        <div
-          className="bg-yellow-400 h-full"
-          style={{
-            width: levelThreeProgress,
-            'border-top-right-radius': '50px',
-            'border-bottom-right-radius': '50px',
-          }}
-        />
-
-        <div
-          className="bg-yellow-400 h-8 w-8 absolute top-0 right-0 border border-solid border-white rounded-full"
-          style={{
-            top: '-8px',
-            right: '-16px',
-          }}
-        />
-      </div>
+      <SingleLevel levelProgress={levelThreeProgress} color="bg-yellow-400" />
     </div>
   );
 };
