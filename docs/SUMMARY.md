@@ -21,6 +21,7 @@
     -   [Current Club Block](development/content-types/current-club-block.md)
     -   [Current School Block](development/content-types/current-school-block.md)
     -   [Embed](development/content-types/embed.md)
+    -   [External Link](development/content-types/external-link.md)
     -   [Landing Page](development/content-types/landing-page.md)
     -   [Link Action](development/content-types/link-action.md)
     -   [Metadata](development/content-types/metadata.md)
