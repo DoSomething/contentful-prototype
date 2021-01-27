@@ -16,7 +16,9 @@ describe('Gallery Block', () => {
 
     cy.visit('us/blocks/abcdefghi123456789');
 
-    cy.findByTestId('content-block-gallery-item');
+    cy.findByTestId('gallery-block').within(() => {
+      cy.findByTestId('content-block-gallery-item');
+    });
   });
 
   /** @test */
@@ -31,7 +33,7 @@ describe('Gallery Block', () => {
 
     cy.visit('us/blocks/abcdefghi123456789');
 
-    cy.findByTestId('content-block-gallery-item').within(() => {
+    cy.findByTestId('gallery-block').within(() => {
       cy.findByTestId('external-link-card');
     });
   });
