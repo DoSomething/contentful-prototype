@@ -11,7 +11,10 @@ const ErrorBlock = ({ error }) => {
   useEffect(() => report(error), [error]);
 
   return (
-    <Card className="rounded bordered p-3">
+    <Card
+      attributes={{ 'data-testid': 'error-block' }}
+      className="rounded bordered p-3"
+    >
       <img src={errorIcon} alt="Error" className="mx-auto my-8" />
       <p className="text-center my-4">
         <strong>Something went wrong!</strong> Try refreshing the page - it may
