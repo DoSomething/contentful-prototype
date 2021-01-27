@@ -209,16 +209,6 @@ const SiteFooter = () => {
           <ul>
             <li>
               <a
-                href="/us/articles/clubs-notify-me"
-                onClick={event =>
-                  handleFooterTracking('dosomething_clubs', event.target.href)
-                }
-              >
-                DoSomething Clubs
-              </a>
-            </li>
-            <li>
-              <a
                 href="/us/about/volunteer-hours"
                 onClick={event =>
                   handleFooterTracking('volunteer_hours', event.target.href)
