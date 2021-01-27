@@ -2,9 +2,7 @@
 
 ## Overview
 
-Renders embedded content using the provided URL. For supported hosts, the content is embedded directly as an Iframe onto the page. Otherwise, the content is rendered as an embedded link.
-
-![Embed Link](../../.gitbook/assets/embed-link.png)
+Renders embedded content using the provided URL. For supported hosts, the content is embedded directly as an Iframe onto the page. Otherwise, we return an Error Block.
 
 ![Embed Iframe (Typeform)](../../.gitbook/assets/embed-typeform.png)
 

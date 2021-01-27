@@ -32,9 +32,22 @@ describe('Embed Block Component', () => {
   });
 
   /** @test */
+  test('renders Embed component for youtube URLs', () => {
+    let wrapper = shallow(
+      <EmbedBlock url="https://www.youtube.com/watch?v=123" />,
+    );
+
+    expect(wrapper.find('Embed').length).toEqual(1);
+
+    wrapper = shallow(<EmbedBlock url="https://youtu.be/123" />);
+
+    expect(wrapper.find('Embed').length).toEqual(1);
+  });
+
+  /** @test */
   test('renders Embed component for all other URLs', () => {
     const wrapper = shallow(<EmbedBlock url="https://dosomething.org" />);
 
-    expect(wrapper.find('Embed').length).toEqual(1);
+    expect(wrapper.find('ErrorBlock').length).toEqual(1);
   });
 });

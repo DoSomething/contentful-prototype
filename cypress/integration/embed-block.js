@@ -88,69 +88,45 @@ describe('Embed Block', () => {
     });
   });
 
-  context('Default URLs', () => {
-    /** @test */
-    it('renders an Embed link if no HTML provided', () => {
-      const url = 'https://vote.dosomething.org';
-
-      cy.mockGraphqlOp('ContentfulBlockQuery', {
-        block: {
-          __typename: 'EmbedBlock',
-          url,
-        },
-      });
-
-      const embedTitle = 'Vote!';
-      const embedDescription = 'Cast your vote and your soul is safe.';
-      const embedProviderName = 'Puppet Sloth';
-
-      cy.mockGraphqlOp('EmbedQuery', {
-        embed: {
-          title: embedTitle,
-          providerName: embedProviderName,
-          description: embedDescription,
-          html: null,
-        },
-      });
-
-      cy.visit(`us/blocks/${blockId}`);
-
-      cy.findByTestId('embed').within(() => {
-        cy.get('a')
-          .should('have.attr', 'href')
-          .and('include', url);
-
-        cy.findByTestId('embed-title').contains(embedTitle);
-        cy.findByTestId('embed-description').contains(embedDescription);
-        cy.findByTestId('embed-provider-name').contains(embedProviderName);
-        cy.findByTestId('embed-badge');
-      });
+  it('renders the provided HTML in an Embed for Youtube links', () => {
+    cy.mockGraphqlOp('ContentfulBlockQuery', {
+      block: {
+        __typename: 'EmbedBlock',
+        url: 'https://www.youtube.com/watch?v=jtzr1cOPvfU',
+      },
     });
 
-    it('renders the provided HTML', () => {
-      cy.mockGraphqlOp('ContentfulBlockQuery', {
-        block: {
-          __typename: 'EmbedBlock',
-          url: 'https://www.youtube.com/watch?v=jtzr1cOPvfU',
-        },
-      });
+    const providerHTML =
+      '<h1 data-testid="provider-html">I am provider HTML. Embed me please, k thx.</h1>';
 
-      const providerHTML =
-        '<h1 data-testid="provider-html">I am provider HTML. Embed me please, k thx.</h1>';
+    cy.mockGraphqlOp('EmbedQuery', {
+      embed: {
+        html: providerHTML,
+      },
+    });
 
-      cy.mockGraphqlOp('EmbedQuery', {
-        embed: {
-          html: providerHTML,
-        },
-      });
+    cy.visit(`us/blocks/${blockId}`);
 
-      cy.visit(`us/blocks/${blockId}`);
-
-      cy.findByTestId('embed').within(() => {
-        cy.findByTestId('embed-html').within(() => {
-          cy.findByTestId('provider-html');
-        });
+    cy.findByTestId('embed').within(() => {
+      cy.findByTestId('embed-html').within(() => {
+        cy.findByTestId('provider-html');
       });
     });
+  });
+
+  /** @test */
+  it('renders an ErrorBlock for unsupported embed URLs', () => {
+    const url = 'https://vote.dosomething.org';
+
+    cy.mockGraphqlOp('ContentfulBlockQuery', {
+      block: {
+        __typename: 'EmbedBlock',
+        url,
+      },
+    });
+
+    cy.visit(`us/blocks/${blockId}`);
+
+    cy.findByTestId('error-block');
   });
 });

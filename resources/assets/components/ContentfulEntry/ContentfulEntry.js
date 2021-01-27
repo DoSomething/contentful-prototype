@@ -19,6 +19,7 @@ import ActionStatsBlock from '../blocks/ActionStatsBlock/ActionStatsBlock';
 import CurrentClubBlock from '../blocks/CurrentClubBlock/CurrentClubBlock';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import CallToActionBlock from '../blocks/CallToActionBlock/CallToActionBlock';
+import ExternalLinkCard from '../utilities/ExternalLinkCard/ExternalLinkCard';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import SocialDriveAction from '../actions/SocialDriveAction/SocialDriveAction';
 import CampaignDashboard from '../utilities/CampaignDashboard/CampaignDashboard';
@@ -118,6 +119,14 @@ class ContentfulEntry extends React.Component {
             className={className}
             id={json.id}
             {...withoutNulls(json)}
+          />
+        );
+
+      case 'ExternalLinkBlock':
+        return (
+          <ExternalLinkCard
+            {...withoutNulls(json)}
+            url={json.externalLinkUrl}
           />
         );
 
