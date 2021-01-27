@@ -534,7 +534,7 @@ class SiteNavigation extends React.Component {
                             name: 'clicked_nav_link_benefits',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
-                            label: 'benefits_scholarships',
+                            label: 'benefits',
                           })
                         }
                       >
