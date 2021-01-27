@@ -577,12 +577,14 @@ class SiteNavigation extends React.Component {
                                   'clicked_subnav_link_benefits_scholarships',
                                 action: 'link_clicked',
                                 category: EVENT_CATEGORIES.navigation,
-                                label: 'benefits',
+                                label: 'benefits_scholarships',
                               });
                             }}
                           >
                             Scholarships
                           </a>
+                        </li>
+                        <li>
                           <a
                             href="/us/about/volunteer-hours"
                             onClick={() => {
@@ -590,7 +592,7 @@ class SiteNavigation extends React.Component {
                                 name: 'clicked_subnav_link_benefits_volunteer',
                                 action: 'link_clicked',
                                 category: EVENT_CATEGORIES.navigation,
-                                label: 'benefits',
+                                label: 'benefits_volunteer',
                               });
                             }}
                           >
@@ -603,7 +605,7 @@ class SiteNavigation extends React.Component {
                     <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
                       <SiteNavigationFeature
                         imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/5atz8qkRKqMd6RnNbu8TyS/e2856278db6218801d07ecc6326b3b81/strenth_though_service_header_photo_Artboard_1_copy_5.png"
-                        imageAlt="volunteer hours"
+                        imageAlt="Image with text in center that reads 'Strength Through Service' and is surround by illustration of hands with hearts in their palms, reaching towards the text"
                         url="/us/about/benefits"
                         title="Volunteer Credits"
                         text="Earn a certificate verifying your volunteer hours"
@@ -614,7 +616,7 @@ class SiteNavigation extends React.Component {
                               'clicked_subnav_link_feature_benefits_volunteer_hours',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
-                            label: 'benefits',
+                            label: 'feature_benefits_volunteer_hours',
                           })
                         }
                       />
