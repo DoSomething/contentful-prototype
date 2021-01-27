@@ -47,7 +47,6 @@
     <div class="footer__column -links">
         <h4>Get Involved</h4>
         <ul>
-          <li><a href="{{ config('app.url') }}/us/articles/clubs-notify-me">DoSomething Clubs</a></li>
           <li><a href="{{ config('app.url') }}/us/about/volunteer-hours">Volunteer Hours</a></li>
           <li><a href="{{ config('app.url') }}/us/about/join-our-team">Jobs</a></li>
           <li><a href="{{ config('app.url') }}/us/about/internships">Internships</a></li>
