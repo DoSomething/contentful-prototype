@@ -14,10 +14,10 @@ const TableCellCenterBottom = tw.td`p-2 text-sm text-center md:text-base border-
 const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
 export const userLevelLabel = badgeNumber => {
-  let userLevel = 'member';
+  let userLevel = 'Member';
   if (badgeNumber >= 6) {
     userLevel = 'Legend';
-  } else if (badgeNumber > 3) {
+  } else if (badgeNumber >= 4) {
     userLevel = 'SuperDoer';
   } else if (badgeNumber >= 2) {
     userLevel = 'Doer';
@@ -25,7 +25,7 @@ export const userLevelLabel = badgeNumber => {
 
   return userLevel;
 };
-const RewardLevelsTable = ({ badges }) => {
+const RewardLevelsTable = ({ totalBadges }) => {
   const doerHighlight = css`
     background-color: rgba(47, 227, 218, 0.15);
   `;
@@ -66,23 +66,29 @@ const RewardLevelsTable = ({ badges }) => {
       <SectionHeader title="my rewards" />
 
       <p className="text-gray-600">
-        You currently enjoy all the perks of a {userLevelLabel(badges)}!
+        You currently enjoy all the perks of a {userLevelLabel(totalBadges)}!
       </p>
 
       <Table>
         <colgroup>
           <col />
 
-          <col css={userLevelLabel(badges) === 'Doer' ? doerHighlight : null} />
+          <col
+            css={userLevelLabel(totalBadges) === 'Doer' ? doerHighlight : null}
+          />
 
           <col
             css={
-              userLevelLabel(badges) === 'SuperDoer' ? superDoerHighlight : null
+              userLevelLabel(totalBadges) === 'SuperDoer'
+                ? superDoerHighlight
+                : null
             }
           />
 
           <col
-            css={userLevelLabel(badges) === 'Legend' ? legendHighlight : null}
+            css={
+              userLevelLabel(totalBadges) === 'Legend' ? legendHighlight : null
+            }
           />
         </colgroup>
 
@@ -131,7 +137,7 @@ const RewardLevelsTable = ({ badges }) => {
 };
 
 RewardLevelsTable.propTypes = {
-  badges: PropTypes.number.isRequired,
+  totalBadges: PropTypes.number.isRequired,
 };
 
 export default RewardLevelsTable;

@@ -405,7 +405,7 @@ class BadgesTab extends React.Component {
         ) : null}
 
         {featureFlag('rewards_levels') ? (
-          <RewardLevelsTable badges={badges} />
+          <RewardLevelsTable totalBadges={badges} />
         ) : null}
 
         {featureFlag('rewards_levels') ? <RewardsFaq /> : null}

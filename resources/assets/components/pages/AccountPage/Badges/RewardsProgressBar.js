@@ -48,6 +48,7 @@ const RewardsProgressBar = ({ totalBadges }) => {
           : "You're almost there"}
         !
       </p>
+
       <MultiLevelProgressBar
         levelOneProgress={doerProgress(totalBadges)}
         levelTwoProgress={superDoerProgress(totalBadges)}
