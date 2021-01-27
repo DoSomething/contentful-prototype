@@ -6,7 +6,6 @@ import { get, groupBy, last } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 
 import { getUserId } from '../../../../helpers/auth';
-import { featureFlag } from '../../../../helpers/env';
 import Spinner from '../../../artifacts/Spinner/Spinner';
 import VolunteerCreditsTable from './VolunteerCreditsTable';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
@@ -123,14 +122,13 @@ const VolunteerCreditsQuery = () => {
       );
 
       // Generate human-friendly hoursSpent label. (1.5 -> "1 hour 30 minutes").
-      const hoursSpentLabel =
-        hoursSpent && featureFlag('hours_spent_in_vc_certificates')
-          ? prettyMilliseconds(
-              // Multiply by minutes * seconds * milliseconds:
-              hoursSpent * 60 * 60 * 1000,
-              { verbose: true },
-            )
-          : null;
+      const hoursSpentLabel = hoursSpent
+        ? prettyMilliseconds(
+            // Multiply by minutes * seconds * milliseconds:
+            hoursSpent * 60 * 60 * 1000,
+            { verbose: true },
+          )
+        : null;
 
       // Generate human-friendly impact label based on quantity and action noun + verb.
       // Will be 'null' for actions where we don't collect quantity info, or where total impact tallies to 0.
