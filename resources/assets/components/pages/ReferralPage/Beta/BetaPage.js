@@ -5,7 +5,6 @@ import Query from '../../../Query';
 import ErrorPage from '../../ErrorPage';
 import { query } from '../../../../helpers/url';
 import CampaignLink from './BetaPageCampaignLink';
-import GiftCardHandImage from './gift-card-hand.svg';
 import ArticleHeader from '../../../utilities/ArticleHeader';
 import { siteConfig, featureFlag } from '../../../../helpers/env';
 import { getReferralCampaignId } from '../../../../helpers/refer-friends';
@@ -48,10 +47,6 @@ const BetaPage = () => {
             <div className="grid-narrow">
               <div className="my-6">
                 <ArticleHeader title={`${firstName} invited you!`} />
-
-                <div className="my-6">
-                  <img src={GiftCardHandImage} alt="Hand with money envelope" />
-                </div>
 
                 <div className="my-6">
                   <p>
