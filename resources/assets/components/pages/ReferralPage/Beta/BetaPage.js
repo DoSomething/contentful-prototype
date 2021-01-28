@@ -56,7 +56,10 @@ const BetaPage = () => {
                   </p>
                 </div>
 
-                <div className="my-6">
+                <div
+                  className="my-6"
+                  data-testid="primary-campaign-referral-link"
+                >
                   <CampaignLink campaignId={campaignId} userId={userId} />
                 </div>
 
