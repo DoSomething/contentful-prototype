@@ -13,6 +13,7 @@ exports[`ContentBlock component does not include SectionHeader when there's no t
       <LazyImage
         alt="cool image of http://image.com"
         asBackground={false}
+        attributes={null}
         className={null}
         css={null}
         src="http://image.com/?fit=fill&h=600&w=600"
@@ -53,6 +54,7 @@ exports[`ContentBlock component renders proper child components when image is se
       <LazyImage
         alt="cool image of http://image.com"
         asBackground={false}
+        attributes={null}
         className={null}
         css={null}
         src="http://image.com/?fit=fill&h=600&w=600"
