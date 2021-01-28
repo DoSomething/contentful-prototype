@@ -51,8 +51,14 @@ const RewardsProgressBar = ({ totalBadges }) => {
 
       <MultiLevelProgressBar
         levelOneProgress={doerProgress(totalBadges)}
+        levelOneLabel="Doer"
+        levelOneSubLabel="2 Badges"
         levelTwoProgress={superDoerProgress(totalBadges)}
+        levelTwoLabel="SuperDoer"
+        levelTwoSubLabel="4 Badges"
         levelThreeProgress={legendProgress(totalBadges)}
+        levelThreeLabel="Legend"
+        levelThreeSubLabel="6 Badges"
       />
     </div>
   );
