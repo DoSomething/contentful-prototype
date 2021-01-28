@@ -471,7 +471,6 @@ class SiteNavigation extends React.Component {
                         </li>
                       </ul>
                     </section>
-
                     <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
                       <SiteNavigationFeature
                         imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/k03WbCKtErFHbmk8gkcdR/17ea0ce8bf7bc82aa0a50ded42b4d369/racial_justice_and_the_election.jpg?fit=fill&h=500&w=1100"
@@ -511,20 +510,134 @@ class SiteNavigation extends React.Component {
               ) : null}
             </li>
 
-            <li className="menu-nav__item">
-              <a
-                href="/us/about/easy-scholarships"
-                onClick={() =>
-                  this.handleOnClickLink({
-                    name: 'clicked_nav_link_scholarships',
-                    action: 'link_clicked',
-                    category: EVENT_CATEGORIES.navigation,
-                    label: 'scholarships',
-                  })
-                }
+            <li
+              className={classnames('menu-nav__item', {
+                'is-active': this.state.activeSubNav === 'BenefitsSubNav',
+              })}
+              onMouseEnter={() => this.handleMouseEnter('BenefitsSubNav')}
+              onMouseLeave={() => this.handleMouseLeave('BenefitsSubNav')}
+            >
+              <Media
+                queries={{
+                  large: '(min-width: 960px)',
+                }}
               >
-                Scholarships
-              </a>
+                {matches => (
+                  <>
+                    {matches.large ? (
+                      <a
+                        id="main-nav__benefits"
+                        href="/us/about/benefits"
+                        onClick={() =>
+                          this.handleOnClickLink({
+                            name: 'clicked_nav_link_benefits',
+                            action: 'link_clicked',
+                            category: EVENT_CATEGORIES.navigation,
+                            label: 'benefits',
+                          })
+                        }
+                      >
+                        Benefits
+                        <span className="main-nav__arrow" />
+                      </a>
+                    ) : (
+                      <a
+                        id="main-nav__benefits"
+                        href="/"
+                        onClick={e =>
+                          this.handleOnClickToggle(e, 'BenefitsSubNav', {
+                            name: 'clicked_nav_link_benefits',
+                            action: 'link_clicked',
+                            category: EVENT_CATEGORIES.navigation,
+                            label: 'benefits_scholarships',
+                          })
+                        }
+                      >
+                        Benefits
+                        <span className="main-nav__arrow" />
+                      </a>
+                    )}
+                  </>
+                )}
+              </Media>
+
+              {this.state.activeSubNav === 'BenefitsSubNav' ? (
+                <div className="main-subnav menu-subnav">
+                  <div className="wrapper base-12-grid py-3 md:py-6">
+                    <section className="main-subnav__links-benefits menu-subnav__links menu-subnav__section">
+                      <h1>Benefits</h1>
+                      <ul>
+                        <li>
+                          <a
+                            href="/us/about/easy-scholarships"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_benefits_scholarships',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'benefits_scholarships',
+                              });
+                            }}
+                          >
+                            Scholarships
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/about/volunteer-hours"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name: 'clicked_subnav_link_benefits_volunteer',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'benefits_scholarships',
+                              });
+                            }}
+                          >
+                            Volunteer Credits
+                          </a>
+                        </li>
+                      </ul>
+                    </section>
+
+                    <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
+                      <SiteNavigationFeature
+                        imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/5atz8qkRKqMd6RnNbu8TyS/e2856278db6218801d07ecc6326b3b81/strenth_though_service_header_photo_Artboard_1_copy_5.png"
+                        imageAlt="Image with text in center that reads 'Strength Through Service' and is surround by illustration of hands with hearts in their palms, reaching towards the text"
+                        url="/us/about/benefits"
+                        title="Volunteer Credits"
+                        text="Earn a certificate verifying your volunteer hours"
+                        moreLinkText="Get Started"
+                        callback={() =>
+                          this.analyzeEvent({
+                            name:
+                              'clicked_subnav_link_feature_benefits_volunteer_hours',
+                            action: 'link_clicked',
+                            category: EVENT_CATEGORIES.navigation,
+                            label: 'feature_benefits_volunteer_hours',
+                          })
+                        }
+                      />
+                    </section>
+
+                    {this.state.isSubNavFixed ? (
+                      <CloseButton
+                        callback={() =>
+                          this.handleOnClickClose({
+                            name: 'clicked_nav_button_close_subnav',
+                            action: 'button_clicked',
+                            category: EVENT_CATEGORIES.navigation,
+                            label: 'close_subnav',
+                          })
+                        }
+                        className="btn__close--subnav btn__close--main-subnav block"
+                        size="22px"
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              ) : null}
             </li>
 
             <li className="menu-nav__item">
