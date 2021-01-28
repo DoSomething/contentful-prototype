@@ -471,7 +471,6 @@ class SiteNavigation extends React.Component {
                         </li>
                       </ul>
                     </section>
-
                     <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
                       <SiteNavigationFeature
                         imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/k03WbCKtErFHbmk8gkcdR/17ea0ce8bf7bc82aa0a50ded42b4d369/racial_justice_and_the_election.jpg?fit=fill&h=500&w=1100"
