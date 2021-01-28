@@ -534,6 +534,10 @@ class SiteNavigation extends React.Component {
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'benefits',
+                            context: {
+                              ...this.getContextData(),
+                              ...this.trackingData,
+                            },
                           })
                         }
                       >
@@ -550,6 +554,10 @@ class SiteNavigation extends React.Component {
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'benefits_scholarships',
+                            context: {
+                              ...this.getContextData(),
+                              ...this.trackingData,
+                            },
                           })
                         }
                       >
@@ -577,6 +585,10 @@ class SiteNavigation extends React.Component {
                                 action: 'link_clicked',
                                 category: EVENT_CATEGORIES.navigation,
                                 label: 'benefits_scholarships',
+                                context: {
+                                  ...this.getContextData(),
+                                  ...this.trackingData,
+                                },
                               });
                             }}
                           >
@@ -592,6 +604,10 @@ class SiteNavigation extends React.Component {
                                 action: 'link_clicked',
                                 category: EVENT_CATEGORIES.navigation,
                                 label: 'benefits_scholarships',
+                                context: {
+                                  ...this.getContextData(),
+                                  ...this.trackingData,
+                                },
                               });
                             }}
                           >
@@ -616,6 +632,10 @@ class SiteNavigation extends React.Component {
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'feature_benefits_volunteer_hours',
+                            context: {
+                              ...this.getContextData(),
+                              ...this.trackingData,
+                            },
                           })
                         }
                       />
