@@ -109,7 +109,7 @@ describe('Site Wide Banner', () => {
     cy.findByTestId('sitewide-banner-button').should(
       'have.attr',
       'href',
-      '/us/campaigns/go-there-greener',
+      '/us/about/volunteer-hours',
     );
   });
 });
