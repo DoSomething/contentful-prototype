@@ -51,7 +51,7 @@ const MultiLevelProgressBar = ({ children, levelLabels }) => {
           return (
             <div className="text-right">
               <span className="font-bold">{level.label}</span> <br />{' '}
-              {level.subLevel || null}
+              {level.subLabel || null}
             </div>
           );
         })}
