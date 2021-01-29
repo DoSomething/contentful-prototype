@@ -33,10 +33,6 @@ const MultiLevelProgressBar = ({ children, levelLabels }) => {
     border-radius: 50px;
   `;
 
-  // add a children prop and a levels props
-  // replace the multiple props with a levelLabels prop
-  // map through the levelLabels to display the labels
-  // display the child prop inside the first grid div
   return (
     <div>
       <div
