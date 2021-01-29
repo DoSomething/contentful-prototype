@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-const SingleLevel = ({ color, levelProgress }) => (
+export const SingleLevel = ({ color, levelProgress }) => (
   <div className="relative">
     <div
       className={`${color} h-full`}
@@ -27,71 +27,47 @@ SingleLevel.propTypes = {
   levelProgress: PropTypes.string.isRequired,
 };
 
-const MultiLevelProgressBar = ({
-  levelOneProgress,
-  levelOneLabel,
-  levelOneSubLabel,
-  levelTwoProgress,
-  levelTwoLabel,
-  levelTwoSubLabel,
-  levelThreeProgress,
-  levelThreeLabel,
-  levelThreeSubLabel,
-}) => {
+const MultiLevelProgressBar = ({ children, levelLabels }) => {
   const progressBarContainer = css`
     height: 12px;
     border-radius: 50px;
   `;
 
+  // add a children prop and a levels props
+  // replace the multiple props with a levelLabels prop
+  // map through the levelLabels to display the labels
+  // display the child prop inside the first grid div
   return (
     <div>
       <div
         className="grid grid-cols-3 bg-gray-300 pr-4 lg:pr-0 mb-3 w-full"
         css={progressBarContainer}
       >
-        <SingleLevel levelProgress={levelOneProgress} color="bg-teal-500" />
-
-        <SingleLevel levelProgress={levelTwoProgress} color="bg-purple-400" />
-
-        <SingleLevel levelProgress={levelThreeProgress} color="bg-yellow-400" />
+        {children}
       </div>
 
       <div className="grid grid-cols-3 pr-4 lg:pr-0 mb-10 w-full">
-        <div className="text-right">
-          <span className="font-bold">{levelOneLabel}</span> <br />{' '}
-          {levelOneSubLabel}
-        </div>
-
-        <div className="text-right">
-          <span className="font-bold">{levelTwoLabel}</span> <br />{' '}
-          {levelTwoSubLabel}
-        </div>
-
-        <div className="text-right">
-          <span className="font-bold">{levelThreeLabel}</span> <br />{' '}
-          {levelThreeSubLabel}
-        </div>
+        {levelLabels.map(level => {
+          return (
+            <div className="text-right">
+              <span className="font-bold">{level.label}</span> <br />{' '}
+              {level.subLevel || null}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 };
 
 MultiLevelProgressBar.propTypes = {
-  levelOneProgress: PropTypes.string.isRequired,
-  levelOneLabel: PropTypes.string.isRequired,
-  levelOneSubLabel: PropTypes.string,
-  levelTwoProgress: PropTypes.string.isRequired,
-  levelTwoLabel: PropTypes.string.isRequired,
-  levelTwoSubLabel: PropTypes.string,
-  levelThreeProgress: PropTypes.string.isRequired,
-  levelThreeLabel: PropTypes.string.isRequired,
-  levelThreeSubLabel: PropTypes.string,
-};
-
-MultiLevelProgressBar.defaultProps = {
-  levelOneSubLabel: null,
-  levelTwoSubLabel: null,
-  levelThreeSubLabel: null,
+  children: PropTypes.object.isRequired,
+  levelLabels: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      subLabel: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 export default MultiLevelProgressBar;
