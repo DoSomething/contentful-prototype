@@ -133,15 +133,15 @@ const PopoverDispatcher = () => {
     <DismissableElement
       name="sitewide_banner"
       context={{
-        contextSource: 'go_greener_campaign',
+        contextSource: 'volunteer_hours',
       }}
       daysToReRender={7}
       render={(handleClose, handleComplete) => (
         <SitewideBanner
-          contextSource="go_greener_campaign"
+          contextSource="volunteer_hours"
           cta="Get Started"
-          link="/us/campaigns/go-there-greener"
-          description="Travel more sustainably for a day. You’ll earn a chance to win a $1,500 scholarship"
+          link="/us/about/volunteer-hours"
+          description="Earn verified volunteer hours and the chance to win a $1,000 scholarship!"
           handleClose={handleClose}
           handleComplete={handleComplete}
         />
