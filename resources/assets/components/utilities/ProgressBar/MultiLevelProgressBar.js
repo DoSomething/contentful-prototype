@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-const SingleLevel = ({ levelProgress, color }) => (
+export const SingleLevel = ({ color, levelProgress }) => (
   <div className="relative">
     <div
       className={`${color} h-full`}
@@ -15,7 +15,7 @@ const SingleLevel = ({ levelProgress, color }) => (
     <div
       className={`${color} h-8 w-8 absolute border border-solid border-white rounded-full z-10`}
       css={css`
-        top: -8px;
+        top: -10px;
         right: -16px;
       `}
     />
@@ -27,34 +27,43 @@ SingleLevel.propTypes = {
   levelProgress: PropTypes.string.isRequired,
 };
 
-const MultiLevelProgressBar = ({
-  levelOneProgress,
-  levelTwoProgress,
-  levelThreeProgress,
-}) => {
+const MultiLevelProgressBar = ({ children, levelLabels }) => {
   const progressBarContainer = css`
-    height: 15px;
+    height: 12px;
     border-radius: 50px;
   `;
 
   return (
-    <div
-      className="grid grid-cols-3 bg-gray-300 pr-4 lg:pr-0 mb-10 w-full"
-      css={progressBarContainer}
-    >
-      <SingleLevel levelProgress={levelOneProgress} color="bg-teal-500" />
+    <div>
+      <div
+        className="grid grid-cols-3 bg-gray-300 pr-4 lg:pr-0 mb-3 w-full"
+        css={progressBarContainer}
+      >
+        {children}
+      </div>
 
-      <SingleLevel levelProgress={levelTwoProgress} color="bg-purple-400" />
-
-      <SingleLevel levelProgress={levelThreeProgress} color="bg-yellow-400" />
+      <div className="grid grid-cols-3 pr-4 lg:pr-0 mb-10 w-full">
+        {levelLabels.map(level => {
+          return (
+            <div className="text-right">
+              <span className="font-bold">{level.label}</span> <br />{' '}
+              {level.subLabel || null}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
 MultiLevelProgressBar.propTypes = {
-  levelOneProgress: PropTypes.string.isRequired,
-  levelTwoProgress: PropTypes.string.isRequired,
-  levelThreeProgress: PropTypes.string.isRequired,
+  children: PropTypes.object.isRequired,
+  levelLabels: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      subLabel: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 export default MultiLevelProgressBar;

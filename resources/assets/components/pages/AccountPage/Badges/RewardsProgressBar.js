@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import { userLevelLabel } from './RewardLevelsTable';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
-import MultiLevelProgressBar from '../../../utilities/ProgressBar/MultiLevelProgressBar';
+import MultiLevelProgressBar, {
+  SingleLevel,
+} from '../../../utilities/ProgressBar/MultiLevelProgressBar';
 
 const RewardsProgressBar = ({ totalBadges }) => {
   const doerProgress = badges => {
@@ -50,10 +52,34 @@ const RewardsProgressBar = ({ totalBadges }) => {
       </p>
 
       <MultiLevelProgressBar
-        levelOneProgress={doerProgress(totalBadges)}
-        levelTwoProgress={superDoerProgress(totalBadges)}
-        levelThreeProgress={legendProgress(totalBadges)}
-      />
+        levelLabels={[
+          {
+            label: 'Doer',
+            subLabel: '2 Badges',
+          },
+          {
+            label: 'SuperDoer',
+            subLabel: '4 Badges',
+          },
+          {
+            label: 'Legend',
+            subLabel: '6 Badges',
+          },
+        ]}
+      >
+        <SingleLevel
+          levelProgress={doerProgress(totalBadges)}
+          color="bg-teal-500"
+        />
+        <SingleLevel
+          levelProgress={superDoerProgress(totalBadges)}
+          color="bg-purple-400"
+        />
+        <SingleLevel
+          levelProgress={legendProgress(totalBadges)}
+          color="bg-yellow-400"
+        />
+      </MultiLevelProgressBar>
     </div>
   );
 };
