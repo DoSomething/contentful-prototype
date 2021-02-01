@@ -13,7 +13,6 @@ const REFERRAL_PAGE_CAMPAIGN = gql`
   query ReferralPageCampaignQuery($campaignId: String!, $preview: Boolean!) {
     campaignWebsiteByCampaignId(campaignId: $campaignId, preview: $preview) {
       id
-
       ...CampaignCard
     }
   }
