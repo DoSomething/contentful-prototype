@@ -20,10 +20,10 @@ import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
+import GalleryBlockHeader from '../../utilities/SectionHeader/GalleryBlockHeader';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
-import { centerHorizontalRule } from '../../utilities/SectionHeader/GalleryBlockHeader';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
 
@@ -246,19 +246,11 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               `}
               data-test="campaigns-section"
             >
+              <AnalyticsWaypoint name="campaign_section_top" />
+
+              <GalleryBlockHeader title="Take Action!" bgColor="bg-white" />
+
               <div className="grid-wide text-center">
-                <AnalyticsWaypoint name="campaign_section_top" />
-
-                <h2 className="mb-6 relative">
-                  <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
-                    Take Action!
-                  </span>
-                  <span
-                    className="absolute bg-purple-500 block h-1 w-full z-0"
-                    css={centerHorizontalRule}
-                  />
-                </h2>
-
                 <p className="mb-3 text-lg">
                   Choose a campaign below to make an impact,{' '}
                   <a
@@ -394,19 +386,11 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               className="base-12-grid bg-gray-100 py-8"
               data-test="articles-section"
             >
+              <AnalyticsWaypoint name="article_section_top" />
+
+              <GalleryBlockHeader title="Read About It" />
+
               <div className="grid-wide text-center">
-                <AnalyticsWaypoint name="article_section_top" />
-
-                <h2 className="mb-6 relative">
-                  <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
-                    Read About It
-                  </span>
-                  <span
-                    className="absolute bg-purple-500 block h-1 w-full z-0"
-                    css={centerHorizontalRule}
-                  />
-                </h2>
-
                 <HomePageArticleGallery articles={articles} />
 
                 <PrimaryButton
