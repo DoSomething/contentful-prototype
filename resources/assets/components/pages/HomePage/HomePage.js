@@ -255,7 +255,7 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   Choose a campaign below to make an impact,{' '}
                   <a
                     href="/us/about/easy-scholarships"
-                    className="font-normal text-blurple-500 underline text-teal-500 hover:text-blurple-400"
+                    className="font-normal underline text-teal-500 hover:text-blurple-400"
                     data-label="campaign_section_earn_scholarships"
                   >
                     win scholarships
@@ -263,7 +263,7 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   , and{' '}
                   <a
                     href="/us/about/volunteer-hours"
-                    className="font-normal text-blurple-500 underline text-teal-500 hover:text-blurple-400"
+                    className="font-normal underline text-teal-500 hover:text-blurple-400"
                     data-label="campaign_section_earn_volunteer_credits"
                   >
                     earn volunteer credits
