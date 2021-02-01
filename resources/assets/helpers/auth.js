@@ -1,8 +1,10 @@
 /* global window */
 
-import { get, isEmpty } from 'lodash';
+import { get } from 'lodash';
 import queryString from 'query-string';
 
+import { getUtms, query } from './url';
+import { getCampaign } from './campaign';
 import { withoutValueless } from './data';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
@@ -53,6 +55,29 @@ export function bindTokenRefreshEvent() {
 }
 
 /**
+ * Get context data for auth redirect URL.
+ *
+ * @return {Object}
+ */
+export function getDataForAuthRedirect() {
+  const campaign = getCampaign() || {};
+  const page = get(window.STATE, 'page', {});
+
+  const storyPageTitle =
+    get(page, 'type') !== 'storyPage' && get(page, 'fields.title');
+
+  return withoutValueless({
+    // Used as 'destination' parameter for customized destination title on Northstar login page.
+    title: get(campaign, 'title') || storyPageTitle,
+    // For 'source_details':
+    contentful_id: campaign.id || page.id,
+    mode: query('mode') || null,
+    referrer_user_id: query('referrer_user_id'),
+    ...getUtms(),
+  });
+}
+
+/**
  * Build authentication redirect URL with optional context data.
  *
  * @param  {Null|Object} options
@@ -63,7 +88,7 @@ export function buildAuthRedirectUrl(options = null, actionId = null) {
   const params = queryString.stringify(
     withoutValueless({
       actionId,
-      options: !isEmpty(options) ? JSON.stringify(options) : null,
+      options: JSON.stringify({ ...getDataForAuthRedirect(), ...options }),
     }),
   );
 
