@@ -382,7 +382,7 @@ class PhotoSubmissionAction extends PostForm {
               >
                 <div className="wrapper">
                   <div className="form-section md:pr-3">
-                    <div className="wrapper pb-3">
+                    <div className="wrapper pb-3s">
                       <MediaUploader
                         label="Add your photo here"
                         media={this.state.mediaValue}
