@@ -44,7 +44,7 @@ const ReferralPageCampaignLink = ({ campaignId, userId }) => (
         <CampaignCard
           campaign={{
             ...data,
-            path: `${data.url}?referrer_user_id=${userId}`,
+            path: `${data.path}?referrer_user_id=${userId}`,
             // Suppress the 'featured' badge.
             staffPick: undefined,
           }}
