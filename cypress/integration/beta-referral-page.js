@@ -18,6 +18,7 @@ describe('Beta Referral Page', () => {
         path,
       },
     });
+
     cy.visit(`/us/join?user_id=${userId}&campaign_id=${campaignId}`);
 
     cy.contains('Your friend');
