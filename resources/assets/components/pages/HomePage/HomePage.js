@@ -23,6 +23,7 @@ import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard'
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
+import { centerHorizontalRule } from '../../utilities/SectionHeader/GalleryBlockHeader';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
 
@@ -129,13 +130,6 @@ NewsletterItem.propTypes = {
 const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
-
-  const centerHorizontalRule = css`
-    @media (min-width: ${tailwindScreens.md}) {
-      margin-top: -2px;
-      top: 50%;
-    }
-  `;
 
   const headerBackgroundStyles = coverImage
     ? css`
