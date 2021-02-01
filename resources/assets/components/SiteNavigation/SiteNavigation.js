@@ -605,7 +605,7 @@ class SiteNavigation extends React.Component {
                       <SiteNavigationFeature
                         imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/5atz8qkRKqMd6RnNbu8TyS/e2856278db6218801d07ecc6326b3b81/strenth_though_service_header_photo_Artboard_1_copy_5.png"
                         imageAlt="Image with text in center that reads 'Strength Through Service' and is surround by illustration of hands with hearts in their palms, reaching towards the text"
-                        url="/us/about/benefits"
+                        url="/us/about/volunteer-hours"
                         title="Volunteer Credits"
                         text="Earn a certificate verifying your volunteer hours"
                         moreLinkText="Get Started"
