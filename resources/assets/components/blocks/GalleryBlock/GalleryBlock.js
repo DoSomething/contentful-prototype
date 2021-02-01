@@ -3,20 +3,20 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Person from '../../utilities/Person/Person';
-import { withoutNulls } from '../../../helpers/data';
-import Gallery from '../../utilities/Gallery/Gallery';
-import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import CampaignCard, {
   campaignCardFragment,
 } from '../../utilities/CampaignCard/CampaignCard';
+import { withoutNulls } from '../../../helpers/data';
+import Gallery from '../../utilities/Gallery/Gallery';
 import ScholarshipCard, {
   scholarshipCardFragment,
 } from '../../utilities/ScholarshipCard/ScholarshipCard';
-import PageCard, { pageCardFragment } from '../../utilities/PageCard/PageCard';
-import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 import ExternalLinkCard, {
   ExternalLinkBlockFragment,
 } from '../../utilities/ExternalLinkCard/ExternalLinkCard';
+import PageCard, { pageCardFragment } from '../../utilities/PageCard/PageCard';
+import GalleryBlockHeader from '../../utilities/SectionHeader/GalleryBlockHeader';
+import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 
 export const GalleryBlockFragment = gql`
   fragment GalleryBlockFragment on GalleryBlock {
@@ -120,7 +120,7 @@ const GalleryBlock = props => {
 
   return (
     <div className="gallery-block" data-testid="gallery-block">
-      {title ? <SectionHeader underlined title={title} /> : null}
+      {title ? <GalleryBlockHeader title={title} /> : null}
 
       <Gallery type={galleryLayout} className="-mx-3 mt-3">
         {blocks.map(block =>
