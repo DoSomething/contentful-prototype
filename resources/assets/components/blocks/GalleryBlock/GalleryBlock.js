@@ -120,7 +120,16 @@ const GalleryBlock = props => {
 
   return (
     <div className="gallery-block" data-testid="gallery-block">
-      {title ? <GalleryBlockHeader title={title} /> : null}
+      {title ? (
+        <GalleryBlockHeader
+          title={title}
+          bgColor={
+            window.location.pathname.includes('/about/')
+              ? 'bg-white'
+              : undefined
+          }
+        />
+      ) : null}
 
       <Gallery type={galleryLayout} className="-mx-3 mt-3">
         {blocks.map(block =>
