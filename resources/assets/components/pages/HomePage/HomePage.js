@@ -20,7 +20,7 @@ import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
-import GalleryBlockHeader from '../../utilities/SectionHeader/GalleryBlockHeader';
+import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
@@ -248,7 +248,7 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             >
               <AnalyticsWaypoint name="campaign_section_top" />
 
-              <GalleryBlockHeader title="Take Action!" bgColor="bg-white" />
+              <StrikeThroughHeader title="Take Action!" />
 
               <div className="grid-wide text-center">
                 <p className="mb-3 text-lg">
@@ -388,7 +388,7 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             >
               <AnalyticsWaypoint name="article_section_top" />
 
-              <GalleryBlockHeader title="Read About It" />
+              <StrikeThroughHeader title="Read About It" />
 
               <div className="grid-wide text-center">
                 <HomePageArticleGallery articles={articles} />

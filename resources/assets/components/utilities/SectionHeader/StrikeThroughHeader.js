@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const GalleryBlockHeader = ({ title }) => (
+const StrikeThroughHeader = ({ title }) => (
   <div className="grid-wide flex flex-wrap md:flex-no-wrap text-center w-full mb-6 justify-center">
     <div className="w-0 md:w-full md:flex-shrink my-auto">
       <div className=" bg-purple-500 h-1 w-full z-0" />
@@ -15,8 +15,8 @@ const GalleryBlockHeader = ({ title }) => (
   </div>
 );
 
-GalleryBlockHeader.propTypes = {
+StrikeThroughHeader.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default GalleryBlockHeader;
+export default StrikeThroughHeader;

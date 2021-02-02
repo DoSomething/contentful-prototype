@@ -15,7 +15,7 @@ import ExternalLinkCard, {
   ExternalLinkBlockFragment,
 } from '../../utilities/ExternalLinkCard/ExternalLinkCard';
 import PageCard, { pageCardFragment } from '../../utilities/PageCard/PageCard';
-import GalleryBlockHeader from '../../utilities/SectionHeader/GalleryBlockHeader';
+import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 
 export const GalleryBlockFragment = gql`
@@ -120,16 +120,7 @@ const GalleryBlock = props => {
 
   return (
     <div className="gallery-block" data-testid="gallery-block">
-      {title ? (
-        <GalleryBlockHeader
-          title={title}
-          bgColor={
-            window.location.pathname.includes('/about/')
-              ? 'bg-white'
-              : undefined
-          }
-        />
-      ) : null}
+      {title ? <StrikeThroughHeader title={title} /> : null}
 
       <Gallery type={galleryLayout} className="-mx-3 mt-3">
         {blocks.map(block =>
