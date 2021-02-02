@@ -12,6 +12,13 @@ describe('Beta Referral Page', () => {
 
   /** @test */
   it('Visit beta referral page, with valid user and campaign ID set', () => {
+    const path = '/us/campaigns/greens-for-jeans';
+    cy.mockGraphqlOp('ReferralPageCampaignQuery', {
+      campaignWebsiteByCampaignId: {
+        path,
+      },
+    });
+
     cy.visit(`/us/join?user_id=${userId}&campaign_id=${campaignId}`);
 
     cy.contains('Your friend');
@@ -22,7 +29,7 @@ describe('Beta Referral Page', () => {
     cy.findAllByTestId('campaign-card').within(campaignCard => {
       cy.get('a')
         .should('have.attr', 'href')
-        .and('include', `referrer_user_id=${userId}`);
+        .and('include', `${path}?referrer_user_id=${userId}`);
     });
 
     cy.findByTestId('secondary-campaign-referral-link').should(
