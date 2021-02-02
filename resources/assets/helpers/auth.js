@@ -71,6 +71,7 @@ export function getDataForAuthRedirect() {
     title: get(campaign, 'title') || storyPageTitle,
     // For 'source_details':
     contentful_id: campaign.id || page.id,
+    // Used to trigger a specific authentication flow (e.g. 'login').
     mode: query('mode') || null,
     referrer_user_id: query('referrer_user_id'),
     ...getUtms(),
