@@ -10,7 +10,9 @@ exports[`MediaUploader snapshot test 1`] = `
     <div
       className="media-uploader__content media-uploader--action"
     >
-      <span>
+      <span
+        className="underline"
+      >
         Upload Media
       </span>
     </div>

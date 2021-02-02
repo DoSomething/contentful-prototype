@@ -56,7 +56,7 @@ class MediaUploader extends React.Component {
     } else {
       content = (
         <div className="media-uploader__content media-uploader--action">
-          <span>{this.props.label}</span>
+          <span className="underline">{this.props.label}</span>
         </div>
       );
     }
