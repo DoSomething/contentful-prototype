@@ -35,6 +35,8 @@
     <div id="fb-root"></div>
     <div id="popover-portal" class="top-0 left-0 w-full block z-1000" role="presentation"></div>
     <div id="chrome" class="chrome min-h-screen w-full">
+        <h1 id="cypress-test-debug"/>
+
         @yield('content')
     </div>
 
