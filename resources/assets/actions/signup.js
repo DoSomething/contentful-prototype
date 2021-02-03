@@ -50,7 +50,7 @@ export function clickedRemoveSignUp(campaignId) {
 }
 
 // Action: a new signup was created for a campaign.
-export function signupCreated(campaignId, shouldShowAffirmation = true) {
+export function signupCreated(campaignId) {
   return (dispatch, getState) => {
     const { user } = getState();
 
@@ -58,7 +58,6 @@ export function signupCreated(campaignId, shouldShowAffirmation = true) {
       type: SIGNUP_CREATED,
       campaignId,
       userId: user.id,
-      shouldShowAffirmation,
     });
   };
 }
@@ -102,7 +101,6 @@ export function getCampaignSignups(id = null, query = {}) {
 export function storeCampaignSignup(campaignId, data = {}) {
   const path = join('api/v2/campaigns', campaignId, 'signups');
   const type = 'signup';
-  const shouldShowAffirmation = get(data, 'shouldShowAffirmation', true);
 
   return dispatch => {
     dispatch(
@@ -118,7 +116,6 @@ export function storeCampaignSignup(campaignId, data = {}) {
             success: 'Thanks for signing up!',
             failure: 'Whoops! Something went wrong!',
           },
-          shouldShowAffirmation,
         },
         pending: STORE_CAMPAIGN_SIGNUPS_PENDING,
         requiresAuthentication: true,
