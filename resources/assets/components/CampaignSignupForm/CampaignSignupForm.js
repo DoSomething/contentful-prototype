@@ -1,14 +1,47 @@
+import { get } from 'lodash';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import Card from '../utilities/Card/Card';
-import { siteConfig } from '../../helpers/env';
 import { withoutNulls } from '../../helpers/data';
 import { getUtms, query } from '../../helpers/url';
+import Spinner from '../artifacts/Spinner/Spinner';
 import GroupFinder from './GroupFinder/GroupFinder';
-import { isCampaignClosed } from '../../helpers/campaign';
+import { siteConfig, featureFlag } from '../../helpers/env';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
+import { getUserId, isAuthenticated, useGate } from '../../helpers/auth';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
+import {
+  isCampaignClosed,
+  SEARCH_USER_CAMPAIGN_QUERY,
+} from '../../helpers/campaign';
+
+export const CAMPAIGN_SIGNUP_MUTATION = gql`
+  mutation CampaignSignupFormMutation(
+    $campaignId: Int!
+    $groupId: Int
+    $referrerUserId: String
+    $sourceDetails: JSON
+    $details: JSON
+  ) {
+    createSignup(
+      campaignId: $campaignId
+      groupId: $groupId
+      referrerUserId: $referrerUserId
+      sourceDetails: $sourceDetails
+      details: $details
+    ) {
+      id
+      campaignId
+      groupId
+      referrerUserId
+      sourceDetails
+      details
+    }
+  }
+`;
 
 const CampaignSignupForm = props => {
   const {
@@ -21,21 +54,101 @@ const CampaignSignupForm = props => {
     endDate,
     groupType,
     pageId,
+    signupCreated,
     storeCampaignSignup,
     text,
   } = props;
+  const userId = getUserId();
 
+  // First, we'll want to check if the (authenticated) user is already signed up for this campaign:
+  // (If so, we don't want to display this signup form, and will skip any post-auth signup mutations).
+  const { data: campaignSignupData, loading } = useQuery(
+    SEARCH_USER_CAMPAIGN_QUERY,
+    {
+      variables: {
+        userId,
+        campaignId,
+      },
+      skip: !isAuthenticated(),
+    },
+  );
+
+  // We'll set up some state to store the selected Group ID if applicable on this form.
   const [groupId, setGroupId] = useState(null);
 
-  // Decorate click handler for A/B tests & analytics.
-  const handleSignup = () => {
-    const details = {};
+  // We'll want to redirect anonymous users to the auth flow, while stashing their selected data to session storage.
+  const [flash, authenticate] = useGate(
+    // Only pull the stashed data once we're done loading the users signups so that
+    // we don't overwrite it when the component refreshes!
+    loading ? '' : `CampaignSignupForm:${campaignId}`,
+  );
 
-    // Set affiliate opt in field if user has opted in.
-    if (affiliateMessagingOptIn) {
-      details.affiliateOptIn = true;
+  // Set up a GraphQL mutation to handle signing up the user once they submit the form.
+  const [
+    handleSignupMutation,
+    { loading: mutationLoading, data: mutationData },
+  ] = useMutation(CAMPAIGN_SIGNUP_MUTATION, {
+    variables: {
+      campaignId: Number(campaignId),
+      referrerUserId: query('referrer_user_id'),
+      sourceDetails: JSON.stringify(
+        withoutNulls({
+          contentful_id: pageId,
+          ...getUtms(),
+        }),
+      ),
+    },
+    onCompleted: mutationDataResponse => {
+      trackAnalyticsEvent('completed_signup', {
+        action: 'signup_completed',
+        category: EVENT_CATEGORIES.campaignAction,
+        label: campaignTitle,
+        context: {
+          activityId: mutationDataResponse.createSignup.id,
+          contextSource,
+          campaignId,
+          pageId,
+          groupId,
+        },
+      });
+
+      // Trigger the Redux action to kick off the signup affirmation modal.
+      // @TODO: Handle this internally without Redux.
+      signupCreated(campaignId);
+    },
+    onError: mutationError => {
+      trackAnalyticsEvent('failed_signup', {
+        action: 'signup_failed',
+        category: EVENT_CATEGORIES.campaignAction,
+        label: campaignTitle,
+        context: {
+          contextSource,
+          campaignId,
+          error: mutationError,
+          pageId,
+          groupId,
+        },
+      });
+    },
+  });
+
+  useEffect(() => {
+    // If we're returning from the authentication flow with "flashed" data
+    // (and the user isn't already signed up for this campaign!), complete the signup:
+    if (
+      !loading &&
+      flash.signupData &&
+      !get(campaignSignupData, 'signups', []).length
+    ) {
+      handleSignupMutation({ variables: flash });
     }
+  }, [flash]);
 
+  if (loading) {
+    return <Spinner className="flex justify-center p-3 pb-8" />;
+  }
+
+  const handleSignup = () => {
     // Track signup button click event before we store the signup.
     trackAnalyticsEvent('clicked_signup', {
       action: 'button_clicked',
@@ -49,9 +162,23 @@ const CampaignSignupForm = props => {
       },
     });
 
-    storeCampaignSignup(campaignId, {
+    const details = JSON.stringify(
+      withoutNulls({
+        affiliateOptIn: affiliateMessagingOptIn,
+      }),
+    );
+
+    if (featureFlag('graphql_campaign_signup')) {
+      const signupData = { groupId, details };
+
+      return isAuthenticated()
+        ? handleSignupMutation({ variables: signupData })
+        : authenticate({ signupData });
+    }
+
+    return storeCampaignSignup(campaignId, {
       body: {
-        details: JSON.stringify(details),
+        details,
         group_id: groupId,
         referrer_user_id: query('referrer_user_id'),
         source_details: JSON.stringify(
@@ -80,9 +207,17 @@ const CampaignSignupForm = props => {
     });
   };
 
-  // In descending priority: button-specific text prop,
-  // campaign action text override, or standard "Take Action" copy.
+  // Don't display the form to signed up users.
+  if (
+    get(campaignSignupData, 'signups', []).length ||
+    get(mutationData, 'createSignup')
+  ) {
+    return null;
+  }
+
+  // Button-specific text prop or campaign action text override. (Defaults to "Take Action").
   const buttonCopy = text || campaignActionText;
+
   const closedCampaign = isCampaignClosed(endDate);
 
   if (!groupType || closedCampaign) {
@@ -91,6 +226,7 @@ const CampaignSignupForm = props => {
         className={className}
         onClick={handleSignup}
         text={closedCampaign ? 'Notify Me' : buttonCopy}
+        isLoading={loading || mutationLoading}
       />
     );
   }
@@ -120,6 +256,7 @@ const CampaignSignupForm = props => {
             attributes={{ 'data-testid': 'join-group-signup-button' }}
             className={`${className} py-2 md:py-3`}
             isDisabled={!groupId}
+            isLoading={loading || mutationLoading}
             onClick={handleSignup}
             text="Join Group"
           />
@@ -144,12 +281,13 @@ CampaignSignupForm.propTypes = {
   endDate: PropTypes.string,
   groupType: PropTypes.object,
   pageId: PropTypes.string.isRequired,
+  signupCreated: PropTypes.func.isRequired,
   storeCampaignSignup: PropTypes.func.isRequired,
   text: PropTypes.string,
 };
 
 CampaignSignupForm.defaultProps = {
-  affiliateMessagingOptIn: false,
+  affiliateMessagingOptIn: null,
   campaignActionText: 'Take Action',
   campaignTitle: null,
   className: null,

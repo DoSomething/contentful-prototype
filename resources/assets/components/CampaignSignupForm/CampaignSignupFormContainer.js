@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import CampaignSignupForm from './CampaignSignupForm';
-import { storeCampaignSignup } from '../../actions/signup';
+import { storeCampaignSignup, signupCreated } from '../../actions/signup';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -21,6 +21,7 @@ const mapStateToProps = state => ({
  */
 const actionCreators = {
   storeCampaignSignup,
+  signupCreated,
 };
 
 // Export the container component.
