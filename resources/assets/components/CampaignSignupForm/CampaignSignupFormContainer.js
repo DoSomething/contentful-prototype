@@ -13,4 +13,7 @@ const actionCreators = {
 };
 
 // Export the container component.
-export default connect(actionCreators)(CampaignSignupForm);
+export default connect(
+  null,
+  actionCreators,
+)(CampaignSignupForm);
