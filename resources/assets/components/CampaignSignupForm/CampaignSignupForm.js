@@ -17,6 +17,7 @@ import TextContent from '../utilities/TextContent/TextContent';
 import { getUserId, isAuthenticated, useGate } from '../../helpers/auth';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
 import {
+  getCampaign,
   isCampaignClosed,
   SEARCH_USER_CAMPAIGN_QUERY,
 } from '../../helpers/campaign';
@@ -49,20 +50,26 @@ export const CAMPAIGN_SIGNUP_MUTATION = gql`
 const CampaignSignupForm = props => {
   const {
     displayAffiliateOptIn,
-    affiliateOptInContent,
-    campaignActionText,
-    campaignId,
-    campaignTitle,
     className,
     contextSource,
-    endDate,
     groupType,
-    pageId,
     signupCreated,
     storeCampaignSignup,
     text,
   } = props;
   const userId = getUserId();
+
+  const {
+    affiliateOptInContent,
+    actionText,
+    campaignId,
+    title: campaignTitle,
+    endDate,
+  } = getCampaign();
+
+  const { pageId } = getCampaign() || get(window.STATE, 'page', {});
+
+  const campaignActionText = actionText || 'Take Action';
 
   // First, we'll want to check if the (authenticated) user is already signed up for this campaign:
   // (If so, we don't want to display this signup form, and will skip any post-auth signup mutations).
@@ -313,15 +320,9 @@ const CampaignSignupForm = props => {
 
 CampaignSignupForm.propTypes = {
   displayAffiliateOptIn: PropTypes.bool,
-  affiliateOptInContent: PropTypes.object,
-  campaignActionText: PropTypes.string,
-  campaignId: PropTypes.string.isRequired,
-  campaignTitle: PropTypes.string,
   className: PropTypes.string,
   contextSource: PropTypes.string,
-  endDate: PropTypes.string,
   groupType: PropTypes.object,
-  pageId: PropTypes.string.isRequired,
   signupCreated: PropTypes.func.isRequired,
   storeCampaignSignup: PropTypes.func.isRequired,
   text: PropTypes.string,
@@ -329,12 +330,8 @@ CampaignSignupForm.propTypes = {
 
 CampaignSignupForm.defaultProps = {
   displayAffiliateOptIn: false,
-  affiliateOptInContent: null,
-  campaignActionText: 'Take Action',
-  campaignTitle: null,
   className: null,
   contextSource: null,
-  endDate: null,
   groupType: null,
   text: null,
 };
