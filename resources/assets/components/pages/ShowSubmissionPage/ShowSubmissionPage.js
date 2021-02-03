@@ -56,7 +56,7 @@ const ShowSubmissionPage = ({ match }) => {
     if (window.Cypress) {
       const h1 = document.createElement('h1');
 
-      h1.innerHTML = `AUTH ID: ${getUserId()}. Post ID: ${userId}`;
+      h1.innerText = `AUTH ID: ${getUserId()}. Post ID: ${userId}`;
 
       document.querySelector('#chrome').prepend(h1);
     }
