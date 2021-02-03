@@ -7,7 +7,7 @@ import { storeCampaignSignup, signupCreated } from '../../actions/signup';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  affiliateMessagingOptIn: state.signups.affiliateMessagingOptIn,
+  affiliateOptInContent: state.campaign.affiliateOptInContent,
   campaignActionText: state.campaign.actionText,
   campaignId: state.campaign.campaignId,
   campaignTitle: state.campaign.title,

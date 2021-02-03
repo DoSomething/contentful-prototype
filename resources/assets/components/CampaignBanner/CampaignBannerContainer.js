@@ -23,7 +23,6 @@ const mapStateToProps = (state, props) => ({
     'campaign.additionalContent.numberOfScholarships',
     undefined,
   ),
-  affiliateOptInContent: state.campaign.affiliateOptInContent,
   affiliateSponsors: state.campaign.affiliateSponsors,
   campaignId: state.campaign.campaignId,
   coverImage: get(props, 'coverImage', state.campaign.coverImage),

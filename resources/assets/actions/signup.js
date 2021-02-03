@@ -15,7 +15,6 @@ import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
   GET_CAMPAIGN_SIGNUPS_PENDING,
   GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-  SIGNUP_CLICKED_OPT_IN,
   STORE_CAMPAIGN_SIGNUPS_FAILED,
   STORE_CAMPAIGN_SIGNUPS_PENDING,
   STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
@@ -35,11 +34,6 @@ export function clickedHideAffirmation() {
 // This is for admin usage.
 export function clickedShowAffirmation() {
   return { type: OPENED_POST_SIGNUP_MODAL };
-}
-
-// Action: toggles the user's opt in status for receiving affiliate messaging.
-export function clickedOptIn() {
-  return { type: SIGNUP_CLICKED_OPT_IN };
 }
 
 // Action: removes the current signup from campaign

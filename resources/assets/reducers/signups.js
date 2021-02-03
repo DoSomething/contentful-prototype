@@ -11,7 +11,6 @@ import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
   GET_CAMPAIGN_SIGNUPS_PENDING,
   GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-  SIGNUP_CLICKED_OPT_IN,
   STORE_CAMPAIGN_SIGNUPS_FAILED,
   STORE_CAMPAIGN_SIGNUPS_PENDING,
   STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
@@ -93,12 +92,6 @@ const signupReducer = (state = {}, action) => {
       return {
         ...state,
         shouldShowAffirmation: false,
-      };
-
-    case SIGNUP_CLICKED_OPT_IN:
-      return {
-        ...state,
-        affiliateMessagingOptIn: !state.affiliateMessagingOptIn,
       };
 
     case CLICKED_REMOVE_SIGN_UP:

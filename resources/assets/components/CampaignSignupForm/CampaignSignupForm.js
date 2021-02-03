@@ -1,6 +1,7 @@
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
@@ -9,8 +10,10 @@ import { withoutNulls } from '../../helpers/data';
 import { getUtms, query } from '../../helpers/url';
 import Spinner from '../artifacts/Spinner/Spinner';
 import GroupFinder from './GroupFinder/GroupFinder';
+import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import { siteConfig, featureFlag } from '../../helpers/env';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
+import TextContent from '../utilities/TextContent/TextContent';
 import { getUserId, isAuthenticated, useGate } from '../../helpers/auth';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
 import {
@@ -45,7 +48,8 @@ export const CAMPAIGN_SIGNUP_MUTATION = gql`
 
 const CampaignSignupForm = props => {
   const {
-    affiliateMessagingOptIn,
+    displayAffiliateOptIn,
+    affiliateOptInContent,
     campaignActionText,
     campaignId,
     campaignTitle,
@@ -73,6 +77,8 @@ const CampaignSignupForm = props => {
     },
   );
 
+  const [affiliateMessagingOptIn, setAffiliateMessagingOptIn] = useState(false);
+
   // We'll set up some state to store the selected Group ID if applicable on this form.
   const [groupId, setGroupId] = useState(null);
 
@@ -86,7 +92,7 @@ const CampaignSignupForm = props => {
   // Set up a GraphQL mutation to handle signing up the user once they submit the form.
   const [
     handleSignupMutation,
-    { loading: mutationLoading, data: mutationData },
+    { loading: mutationLoading, error: mutationError, data: mutationData },
   ] = useMutation(CAMPAIGN_SIGNUP_MUTATION, {
     variables: {
       campaignId: Number(campaignId),
@@ -116,7 +122,7 @@ const CampaignSignupForm = props => {
       // @TODO: Handle this internally without Redux.
       signupCreated(campaignId);
     },
-    onError: mutationError => {
+    onError: error => {
       trackAnalyticsEvent('failed_signup', {
         action: 'signup_failed',
         category: EVENT_CATEGORIES.campaignAction,
@@ -124,7 +130,7 @@ const CampaignSignupForm = props => {
         context: {
           contextSource,
           campaignId,
-          error: mutationError,
+          error,
           pageId,
           groupId,
         },
@@ -140,7 +146,7 @@ const CampaignSignupForm = props => {
       flash.signupData &&
       !get(campaignSignupData, 'signups', []).length
     ) {
-      handleSignupMutation({ variables: flash });
+      handleSignupMutation({ variables: flash.signupData });
     }
   }, [flash]);
 
@@ -224,14 +230,40 @@ const CampaignSignupForm = props => {
 
   const closedCampaign = isCampaignClosed(endDate);
 
+  const AffiliateMessagingOptIn = () =>
+    displayAffiliateOptIn && affiliateOptInContent ? (
+      <div className="form-wrapper affiliate-opt-in">
+        <label className="option -checkbox" htmlFor="opt_in">
+          <input
+            css={css`
+              top: 4px !important;
+            `}
+            type="checkbox"
+            id="opt_in"
+            name="affiliate_opt_in"
+            value={affiliateMessagingOptIn}
+            defaultChecked={affiliateMessagingOptIn}
+            className="form-checkbox opt_in_checkbox"
+            onClick={() => setAffiliateMessagingOptIn(!affiliateMessagingOptIn)}
+          />
+
+          <TextContent>{affiliateOptInContent}</TextContent>
+        </label>
+      </div>
+    ) : null;
+
   if (!groupType || closedCampaign) {
     return (
-      <PrimaryButton
-        className={className}
-        onClick={handleSignup}
-        text={closedCampaign ? 'Notify Me' : buttonCopy}
-        isLoading={loading || mutationLoading}
-      />
+      <>
+        <PrimaryButton
+          className={className}
+          onClick={handleSignup}
+          text={closedCampaign ? 'Notify Me' : buttonCopy}
+          isLoading={loading || mutationLoading}
+        />
+
+        <AffiliateMessagingOptIn />
+      </>
     );
   }
 
@@ -246,37 +278,42 @@ const CampaignSignupForm = props => {
     : 'school';
 
   return (
-    <div className="my-3" data-testid="join-group-signup-form">
-      <Card title="Join a group" className="rounded bordered">
-        <div className="p-3">
-          <GroupFinder
-            context={{ campaignId, pageId }}
-            groupLabel={groupLabel}
-            groupType={groupType}
-            onChange={handleGroupFinderChange}
-          />
+    <>
+      <div className="my-3" data-testid="join-group-signup-form">
+        <Card title="Join a group" className="rounded bordered">
+          <div className="p-3">
+            <GroupFinder
+              context={{ campaignId, pageId }}
+              groupLabel={groupLabel}
+              groupType={groupType}
+              onChange={handleGroupFinderChange}
+            />
 
-          <PrimaryButton
-            attributes={{ 'data-testid': 'join-group-signup-button' }}
-            className={`${className} py-2 md:py-3`}
-            isDisabled={!groupId}
-            isLoading={loading || mutationLoading}
-            onClick={handleSignup}
-            text="Join Group"
-          />
+            <PrimaryButton
+              attributes={{ 'data-testid': 'join-group-signup-button' }}
+              className={`${className} py-2 md:py-3`}
+              isDisabled={!groupId}
+              isLoading={loading || mutationLoading}
+              onClick={handleSignup}
+              text="Join Group"
+            />
 
-          <p className="text-sm text-gray-500 pt-3 md:pt-0">
-            Can&apos;t find your {groupLabel}? Email alisha@dosomething.org for
-            help.
-          </p>
-        </div>
-      </Card>
-    </div>
+            <p className="text-sm text-gray-500 pt-3 md:pt-0">
+              Can&apos;t find your {groupLabel}? Email alisha@dosomething.org
+              for help.
+            </p>
+          </div>
+        </Card>
+      </div>
+
+      <AffiliateMessagingOptIn />
+    </>
   );
 };
 
 CampaignSignupForm.propTypes = {
-  affiliateMessagingOptIn: PropTypes.bool,
+  displayAffiliateOptIn: PropTypes.bool,
+  affiliateOptInContent: PropTypes.object,
   campaignActionText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
@@ -291,7 +328,8 @@ CampaignSignupForm.propTypes = {
 };
 
 CampaignSignupForm.defaultProps = {
-  affiliateMessagingOptIn: null,
+  displayAffiliateOptIn: false,
+  affiliateOptInContent: null,
   campaignActionText: 'Take Action',
   campaignTitle: null,
   className: null,
