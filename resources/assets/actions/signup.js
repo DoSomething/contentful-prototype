@@ -1,7 +1,6 @@
 /* global */
 
 import { join } from 'path';
-import { get } from 'lodash';
 
 import apiRequest from './api';
 import { PHOENIX_URL } from '../constants';
