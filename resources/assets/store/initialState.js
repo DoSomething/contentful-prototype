@@ -21,7 +21,6 @@ const initialState = {
     data: [],
     shouldShowAffirmation: false,
     isPending: false,
-    affiliateMessagingOptIn: false,
   },
   slideshow: {},
   user: {
