@@ -27,7 +27,7 @@ const signupReducer = (state = {}, action) => {
 
   switch (action.type) {
     case GET_CAMPAIGN_SIGNUPS_FAILED:
-      return { ...state, isPending: false, thisCampaign: false };
+      return { ...state, isPending: false };
 
     case GET_CAMPAIGN_SIGNUPS_PENDING:
       return { ...state, isPending: true };
@@ -45,7 +45,6 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
-        thisCampaign: Boolean(data.length),
       };
 
     case STORE_CAMPAIGN_SIGNUPS_FAILED:
@@ -70,7 +69,6 @@ const signupReducer = (state = {}, action) => {
         data: signups,
         isPending: false,
         shouldShowAffirmation: get(status, 'success.code') === 201,
-        thisCampaign: true, // @TODO: remove from state; use a selector instead
       };
 
     case SIGNUP_CREATED:
@@ -82,9 +80,7 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
-        thisCampaign: true,
         shouldShowAffirmation: true,
-        total: state.total + 1,
       };
 
     case OPENED_POST_SIGNUP_MODAL:

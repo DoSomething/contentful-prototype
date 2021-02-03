@@ -14,20 +14,16 @@ const initialState = {
   },
   // standalone (campaign independent) pages
   page: {},
-  posts: {},
   postSubmissions: {
     items: {},
   },
   signups: {
     data: [],
-    thisCampaign: false,
     shouldShowAffirmation: false,
     isPending: false,
-    total: 0,
     affiliateMessagingOptIn: false,
   },
   slideshow: {},
-  uploads: {},
   user: {
     id: null,
     isAuthenticated: false,
