@@ -81,7 +81,7 @@ const CampaignSignupForm = props => {
         userId,
         campaignId,
       },
-      skip: !isAuthenticated(),
+      skip: !isAuthenticated() || !featureFlag('graphql_campaign_signup'),
     },
   );
 
