@@ -148,6 +148,10 @@ const CampaignSignupForm = props => {
     return <Spinner className="flex justify-center p-3 pb-8" />;
   }
 
+  if (mutationError) {
+    return <ErrorBlock error={mutationError} />;
+  }
+
   const handleSignup = () => {
     // Track signup button click event before we store the signup.
     trackAnalyticsEvent('clicked_signup', {
