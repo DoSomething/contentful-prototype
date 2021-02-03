@@ -58,6 +58,7 @@ const CampaignSignupForm = props => {
     text,
   } = props;
   const userId = getUserId();
+  const campaign = getCampaign();
 
   const {
     affiliateOptInContent,
@@ -65,9 +66,9 @@ const CampaignSignupForm = props => {
     campaignId,
     title: campaignTitle,
     endDate,
-  } = getCampaign();
+  } = campaign;
 
-  const { pageId } = getCampaign() || get(window.STATE, 'page', {});
+  const { pageId } = campaign || get(window.STATE, 'page', {});
 
   const campaignActionText = actionText || 'Take Action';
 
