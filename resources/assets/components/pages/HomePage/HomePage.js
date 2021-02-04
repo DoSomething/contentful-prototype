@@ -131,6 +131,10 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
 
+  const anchorTagStyles = css`
+    text-decoration-color: text-teal-500;
+  `;
+
   const headerBackgroundStyles = coverImage
     ? css`
         background-image: url(${contentfulImageUrl(
@@ -257,14 +261,24 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                     href="/us/about/easy-scholarships"
                     className="font-normal underline text-blurple-500 hover:text-blurple-400"
                     data-label="campaign_section_earn_scholarships"
+                    css={css`
+                      a:hover {
+                        border-bottom: #30e3da 1px solid;
+                      }
+                    `}
                   >
                     win scholarships
                   </a>
                   , and{' '}
                   <a
                     href="/us/about/volunteer-hours"
-                    className="font-normal underline text-blurple-500 hover:text-blurple-400"
+                    className="font-normal underline text-blurple-500 hover:text-blurple-400 text-decoration-color:text-teal-500"
                     data-label="campaign_section_earn_volunteer_credits"
+                    css={css`
+                      a:hover {
+                        border-bottom: #30e3da 1px solid;
+                      }
+                    `}
                   >
                     earn volunteer credits
                   </a>
