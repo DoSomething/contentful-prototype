@@ -129,6 +129,8 @@ NewsletterItem.propTypes = {
  */
 const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
   const tailwindGray = tailwind('colors.gray');
+  const tailwindTeal = tailwind('colors.teal');
+
   const tailwindScreens = tailwind('screens');
 
   const headerBackgroundStyles = coverImage
@@ -259,7 +261,8 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                     data-label="campaign_section_earn_scholarships"
                     css={css`
                       a:hover {
-                        border-bottom: #30e3da 1px solid;
+                        text-decoration: underline;
+                        color: ${tailwindTeal['500']};
                       }
                     `}
                   >
@@ -272,7 +275,8 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                     data-label="campaign_section_earn_volunteer_credits"
                     css={css`
                       a:hover {
-                        border-bottom: #30e3da 1px solid;
+                        text-decoration: underline;
+                        color: ${tailwindTeal['500']};
                       }
                     `}
                   >
