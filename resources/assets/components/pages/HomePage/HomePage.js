@@ -131,10 +131,6 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
 
-  const anchorTagStyles = css`
-    text-decoration-color: text-teal-500;
-  `;
-
   const headerBackgroundStyles = coverImage
     ? css`
         background-image: url(${contentfulImageUrl(
