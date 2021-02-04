@@ -129,6 +129,13 @@ NewsletterItem.propTypes = {
  */
 const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
   const tailwindGray = tailwind('colors.gray');
+  const tailwindTeal = tailwind('colors.teal');
+  const homePageAnchorTag = css`
+    &:hover {
+      text-decoration-color: ${tailwindTeal['500']};
+    }
+  `;
+
   const tailwindScreens = tailwind('screens');
 
   const headerBackgroundStyles = coverImage
@@ -255,16 +262,18 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   Choose a campaign below to make an impact,{' '}
                   <a
                     href="/us/about/easy-scholarships"
-                    className="font-normal underline text-teal-500 hover:text-blurple-400"
+                    className="font-normal underline text-blurple-500 hover:text-blurple-400"
                     data-label="campaign_section_earn_scholarships"
+                    css={homePageAnchorTag}
                   >
                     win scholarships
                   </a>
                   , and{' '}
                   <a
                     href="/us/about/volunteer-hours"
-                    className="font-normal underline text-teal-500 hover:text-blurple-400"
+                    className="font-normal underline text-blurple-500 hover:text-blurple-400"
                     data-label="campaign_section_earn_volunteer_credits"
+                    css={homePageAnchorTag}
                   >
                     earn volunteer credits
                   </a>
