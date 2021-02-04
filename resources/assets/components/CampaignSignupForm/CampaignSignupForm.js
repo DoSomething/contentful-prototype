@@ -152,7 +152,8 @@ const CampaignSignupForm = props => {
     if (
       !loading &&
       flash.signupData &&
-      !get(campaignSignupData, 'signups', []).length
+      !get(campaignSignupData, 'signups', []).length &&
+      featureFlag('graphql_campaign_signup')
     ) {
       handleSignupMutation({ variables: flash.signupData });
     }
