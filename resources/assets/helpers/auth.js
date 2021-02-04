@@ -153,7 +153,20 @@ export const useGate = identifier => {
 
   const authenticate = newState => {
     window.sessionStorage.setItem(identifier, JSON.stringify(newState));
-    window.location = buildAuthRedirectUrl();
+
+    const redirect = buildAuthRedirectUrl();
+
+    // If we're running our test suite, don't automatically initiate
+    // the login redirect flow & leave something to assert on.
+    if (window.Cypress) {
+      document.body.innerHTML = `<div data-test="redirect" data-url="${redirect}" data-flash-identifier="${identifier}" />`;
+      // In order to properly store the JSON Stringified newState, we need to manually assign it as an attribute.
+      document
+        .querySelector('[data-test="redirect"]')
+        .setAttribute('data-flash-state', JSON.stringify(newState));
+    } else {
+      window.location = redirect;
+    }
   };
 
   return [state, authenticate];

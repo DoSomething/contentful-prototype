@@ -87,12 +87,24 @@ Cypress.Commands.add('handleLogin', user => {
   Cypress.log({ name: 'Gate', message: 'Capturing login redirect...' });
 
   cy.get('[data-test="redirect"]', { log: false })
-    .then(el => el.data('url'))
-    .then(redirectUrl => {
+    .then(el => ({
+      redirectUrl: el.data('url'),
+      flashIdentifier: el.data('flash-identifier'),
+      flashState: el.data('flash-state'),
+    }))
+    .then(({ redirectUrl, flashIdentifier, flashState }) => {
       const { search } = url.parse(redirectUrl);
       const { actionId } = qs.parse(search);
 
       cy.login(user);
+
+      // Restore any flashed pre-authentication state.
+      cy.on('window:before:load', window => {
+        window.sessionStorage.setItem(
+          flashIdentifier,
+          JSON.stringify(flashState),
+        );
+      });
 
       // Trigger any queued Redux actions:
       cy.location({ log: false }).then(location => {
