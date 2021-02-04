@@ -132,7 +132,6 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
   const tailwindTeal = tailwind('colors.teal');
   const homePageAnchorTag = css`
     &:hover {
-      text-decoration: underline;
       text-decoration-color: ${tailwindTeal['500']};
     }
   `;
