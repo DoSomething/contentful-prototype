@@ -9,7 +9,10 @@ import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/P
 import './campaigns-page.scss';
 
 const CampaignsIndexPage = () => {
-  const [filters, setFilters] = useState({ causes: [], actionTypes: [] });
+  const [filters, setFilters] = useState({
+    causes: [],
+    actions: { actionTypes: [], actionLocation: null },
+  });
 
   return (
     <>
@@ -33,7 +36,7 @@ const CampaignsIndexPage = () => {
               // @TODO depending on future implementation of filters in rogue,
               // potentially concatenate all filters to single array 🤔
               causes: get(filters, 'causes', []),
-              actionTypes: get(filters, 'actionTypes', []),
+              actionTypes: get(filters, 'actions.actionTypes', []),
             }}
           />
         </div>

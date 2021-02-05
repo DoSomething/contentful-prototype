@@ -13,7 +13,7 @@ const renderedFilterMenu = props => {
       return (
         <CauseFilter filters={fields.filters} setFilters={fields.setFilters} />
       );
-    case 'actionType':
+    case 'action':
       return (
         <ActionFilter filters={fields.filters} setFilters={fields.setFilters} />
       );

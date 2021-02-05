@@ -15,25 +15,36 @@ import ElementButton from '../../../../utilities/Button/ElementButton';
  */
 const ActionFilter = ({ filters, setFilters }) => {
   //   const actionLocation = get(filters, 'actionLocation', false);
-  const actionTypes = get(filters, 'actionTypes', []);
+  const actionTypes = get(filters, 'actions.actionTypes', []);
 
   const handleActionTypeSelect = event => {
     if (actionTypes.includes(event.target.value)) {
       const newActionTypes = actionTypes.filter(actionType => {
         return actionType !== event.target.value;
       });
-      setFilters({ actionTypes: [...newActionTypes] });
+      setFilters({
+        ...filters,
+        actions: { ...filters.actions, actionTypes: [...newActionTypes] },
+      });
     } else {
-      setFilters({ actionTypes: [...actionTypes, event.target.value] });
+      setFilters({
+        ...filters,
+        actions: {
+          ...filters.actions,
+          actionTypes: [...actionTypes, event.target.value],
+        },
+      });
     }
   };
 
   const clearAllSelected = () => {
     if (actionTypes) {
-      setFilters({ actionTypes: [] });
+      setFilters({
+        ...filters,
+        actions: { ...filters.actions, actionTypes: [] },
+      });
     }
   };
-  console.log('hello?');
   return (
     <form>
       <div className="cause-filter w-full p-4 flex flex-col flex-wrap">
