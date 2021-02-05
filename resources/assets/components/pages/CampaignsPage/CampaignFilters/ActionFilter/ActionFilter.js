@@ -78,6 +78,7 @@ const ActionFilter = ({ filters, setFilters }) => {
     }
     setActionLocation('');
   };
+
   return (
     <form>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full p-4">
@@ -114,6 +115,19 @@ const ActionFilter = ({ filters, setFilters }) => {
             })}
           </div>
         </div>
+      </div>
+      <div className="cause-filter w-full p-4 flex flex-col flex-wrap">
+        {Object.keys(actionLocationLabels).map(actionLocationLabel => {
+          return (
+            <ActionLocationInput
+              key={actionLocationLabel}
+              handleSelect={handleActionLocationSelect}
+              actionLocationName={actionLocationLabels[actionLocationLabel]}
+              actionLocationValue={actionLocationLabel}
+              isChecked={actionLocationLabel === actionLocation}
+            />
+          );
+        })}
       </div>
 
       <div className="w-full flex justify-start py-2">
