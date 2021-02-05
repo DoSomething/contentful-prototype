@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-// import ActionLocationInput, {
-//   actionLocationLabels,
-// } from './ActionLocationInput';
+import ActionLocationInput, {
+  actionLocationLabels,
+} from './ActionLocationInput';
 import ActionTypeInput, { actionTypeLabels } from './ActionTypeInput';
 import ElementButton from '../../../../utilities/Button/ElementButton';
 
@@ -14,8 +14,12 @@ import ElementButton from '../../../../utilities/Button/ElementButton';
  * @param {Object}
  */
 const ActionFilter = ({ filters, setFilters }) => {
-  //   const actionLocation = get(filters, 'actionLocation', false);
   const actionTypes = get(filters, 'actions.actionTypes', []);
+  const actionIsOnline = get(filters, 'actions.isOnline', null);
+
+  const [actionLocation, setActionLocation] = useState('');
+  console.log('is online', actionIsOnline);
+  console.log('location', actionLocation);
 
   const handleActionTypeSelect = event => {
     if (actionTypes.includes(event.target.value)) {
@@ -37,14 +41,42 @@ const ActionFilter = ({ filters, setFilters }) => {
     }
   };
 
+  const handleActionLocationSelect = event => {
+    if (event.target.value === 'online' && actionLocation !== 'online') {
+      setFilters({
+        ...filters,
+        actions: {
+          ...filters.actions,
+          isOnline: true,
+        },
+      });
+      setActionLocation(event.target.value);
+    } else if (
+      event.target.value === 'in-person' &&
+      actionLocation !== 'in-person'
+    ) {
+      setFilters({
+        ...filters,
+        actions: {
+          ...filters.actions,
+          isOnline: false,
+        },
+      });
+      setActionLocation(event.target.value);
+    }
+    setActionLocation('');
+  };
+
   const clearAllSelected = () => {
     if (actionTypes) {
       setFilters({
         ...filters,
-        actions: { ...filters.actions, actionTypes: [] },
+        actions: { actionTypes: [], isOnline: null },
       });
     }
+    setActionLocation('');
   };
+
   return (
     <form>
       <div className="cause-filter w-full p-4 flex flex-col flex-wrap">
@@ -56,6 +88,19 @@ const ActionFilter = ({ filters, setFilters }) => {
               actionTypeName={actionTypeLabels[actionType]}
               actionTypeValue={actionType}
               isChecked={actionTypes.includes(actionType)}
+            />
+          );
+        })}
+      </div>
+      <div className="cause-filter w-full p-4 flex flex-col flex-wrap">
+        {Object.keys(actionLocationLabels).map(actionLocationLabel => {
+          return (
+            <ActionLocationInput
+              key={actionLocationLabel}
+              handleSelect={handleActionLocationSelect}
+              actionLocationName={actionLocationLabels[actionLocationLabel]}
+              actionLocationValue={actionLocationLabel}
+              isChecked={actionLocationLabel === actionLocation}
             />
           );
         })}

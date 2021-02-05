@@ -11,7 +11,7 @@ import './campaigns-page.scss';
 const CampaignsIndexPage = () => {
   const [filters, setFilters] = useState({
     causes: [],
-    actions: { actionTypes: [], actionLocation: null },
+    actions: { actionTypes: [], isOnline: null },
   });
 
   return (
@@ -30,6 +30,7 @@ const CampaignsIndexPage = () => {
             className="grid-full px-6 md:px-0"
             itemsPerRow={4}
             variables={{
+              isOnline: get(filters, 'actions.isOnline', null),
               isOpen: true,
               first: 36,
               orderBy: 'start_date,desc',

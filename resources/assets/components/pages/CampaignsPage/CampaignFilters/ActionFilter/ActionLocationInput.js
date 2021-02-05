@@ -2,18 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const actionLocationLabels = {
-  'animal-welfare': 'Animal Welfare',
-  bullying: 'Bullying',
-  education: 'Education',
-  environment: 'Environment',
-  'gender-rights': 'Gender Rights & Equality',
-  'homelessness-and-poverty': 'Homelessness & Poverty',
-  immigration: 'Immigration & Refugees',
-  'lgbtq-rights': 'LGBTQ+ Rights & Equality',
-  'mental-health': 'Mental Health',
-  'physical-health': 'Physical Health',
-  'racial-justice': 'Racial Justice & Equity',
-  'sexual-harassment': 'Sexual Harassment & Assault',
+  'in-person': 'In Person',
+  online: 'Online',
 };
 
 /**
@@ -22,29 +12,32 @@ export const actionLocationLabels = {
  * @param {Object}
  */
 const ActionLocationInput = ({
-  causeName,
-  causeValue,
+  actionLocationName,
+  actionLocationValue,
   handleSelect,
   isChecked,
 }) => (
-  <label className="flex items-start justify-start pb-2" htmlFor={causeValue}>
+  <label
+    className="flex items-start justify-start pb-2"
+    htmlFor={actionLocationValue}
+  >
     <input
-      id={causeValue}
+      id={actionLocationValue}
       checked={isChecked}
       className="mt-1"
-      name={causeValue}
+      name={actionLocationValue}
       onChange={handleSelect}
       type="checkbox"
-      value={causeValue}
+      value={actionLocationValue}
     />
-    <span className="pl-4">{causeName}</span>
+    <span className="pl-4">{actionLocationName}</span>
   </label>
 );
 
 ActionLocationInput.propTypes = {
   isChecked: PropTypes.bool,
-  causeName: PropTypes.string.isRequired,
-  causeValue: PropTypes.string.isRequired,
+  actionLocationName: PropTypes.string.isRequired,
+  actionLocationValue: PropTypes.string.isRequired,
   handleSelect: PropTypes.func.isRequired,
 };
 
