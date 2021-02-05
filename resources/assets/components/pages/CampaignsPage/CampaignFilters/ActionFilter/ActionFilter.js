@@ -19,8 +19,8 @@ const ActionFilter = ({ filters, setFilters }) => {
 
   const handleActionTypeSelect = event => {
     if (actionTypes.includes(event.target.value)) {
-      const newActionTypes = actionTypes.filter(cause => {
-        return cause !== event.target.value;
+      const newActionTypes = actionTypes.filter(actionType => {
+        return actionType !== event.target.value;
       });
       setFilters({ actionTypes: [...newActionTypes] });
     } else {
@@ -33,7 +33,7 @@ const ActionFilter = ({ filters, setFilters }) => {
       setFilters({ actionTypes: [] });
     }
   };
-
+  console.log('hello?');
   return (
     <form>
       <div className="cause-filter w-full p-4 flex flex-col flex-wrap">

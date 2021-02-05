@@ -33,6 +33,7 @@ const CampaignsIndexPage = () => {
               // @TODO depending on future implementation of filters in rogue,
               // potentially concatenate all filters to single array 🤔
               causes: get(filters, 'causes', []),
+              actionTypes: get(filters, 'actionTypes', []),
             }}
           />
         </div>
