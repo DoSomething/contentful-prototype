@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const actionTypeLabels = {
+<<<<<<< HEAD
   'attend-event': 'Attend an Event',
   'collect-something': 'Collect Something',
   'contact-decisionmaker': 'Contact a Decision-Maker',
@@ -12,6 +13,20 @@ export const actionTypeLabels = {
   'make-something': 'Make Something',
   'share-something': 'Share Something',
   'sign-petition': 'Sign A Petition',
+=======
+  'animal-welfare': 'Animal Welfare',
+  bullying: 'Bullying',
+  education: 'Education',
+  environment: 'Environment',
+  'gender-rights': 'Gender Rights & Equality',
+  'homelessness-and-poverty': 'Homelessness & Poverty',
+  immigration: 'Immigration & Refugees',
+  'lgbtq-rights': 'LGBTQ+ Rights & Equality',
+  'mental-health': 'Mental Health',
+  'physical-health': 'Physical Health',
+  'racial-justice': 'Racial Justice & Equity',
+  'sexual-harassment': 'Sexual Harassment & Assault',
+>>>>>>> updates type and location files
 };
 
 /**

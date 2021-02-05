@@ -10,6 +10,7 @@ import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/P
 import './campaigns-page.scss';
 
 const CampaignsIndexPage = () => {
+<<<<<<< HEAD
   const [filters, setFilters] = useState(
     featureFlag('algolia_campaigns_search')
       ? {
@@ -20,6 +21,9 @@ const CampaignsIndexPage = () => {
           causes: [],
         },
   );
+=======
+  const [filters, setFilters] = useState({ causes: [], actionTypes: [] });
+>>>>>>> updates type and location files
 
   return (
     <>
