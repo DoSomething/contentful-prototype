@@ -43,7 +43,7 @@ const ElementButton = ({
 ElementButton.propTypes = {
   attributes: PropTypes.object,
   caratColor: PropTypes.string,
-  caratToggle: PropTypes.string,
+  caratToggle: PropTypes.object,
   className: PropTypes.string,
   decoration: PropTypes.object,
   isDisabled: PropTypes.bool,

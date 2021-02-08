@@ -46,7 +46,7 @@ const FilterNavigation = ({ filters, setFilters }) => {
         {filterCategoryNames.map(name => (
           <SecondaryButton
             attributes={{ 'data-filter': name }}
-            caratColor="#322baa"
+            caratColor={activeFilter === name ? '#322baa' : null}
             caratToggle={activeFilter === name ? caratToggle : null}
             className="mr-8"
             decoration={
