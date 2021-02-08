@@ -104,7 +104,7 @@ const ActionFilter = ({ filters, setFilters }) => {
         </div>
         <div className="col-span-2">
           <h2 className="font-bold text-base pb-3">Type</h2>
-          <div className="lg:grid lg:grid-cols-2 flex flex-col flex-wrap w-full">
+          <div className="lg:grid lg:grid-cols-2">
             {Object.keys(actionTypeLabels).map(actionType => {
               return (
                 <ActionTypeInput
