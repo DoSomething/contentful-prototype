@@ -87,34 +87,40 @@ const ActionFilter = ({ filters, setFilters }) => {
 
   return (
     <form>
-      <div className="cause-filter w-full p-4 flex flex-col flex-wrap">
-        {Object.keys(actionTypeLabels).map(actionType => {
-          return (
-            <ActionTypeInput
-              key={actionType}
-              handleSelect={handleActionTypeSelect}
-              actionTypeName={actionTypeLabels[actionType]}
-              actionTypeValue={actionType}
-              isChecked={actionTypes.includes(actionType)}
-            />
-          );
-        })}
-      </div>
-      <div className="cause-filter w-full p-4 flex flex-col flex-wrap">
-        {Object.keys(actionLocationLabels).map(actionLocationLabel => {
-          return (
-            <ActionLocationInput
-              key={actionLocationLabel}
-              handleSelect={handleActionLocationSelect}
-              actionLocationName={actionLocationLabels[actionLocationLabel]}
-              actionLocationValue={actionLocationLabel}
-              isChecked={actionLocationLabel === actionLocation}
-            />
-          );
-        })}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full p-4">
+        <div className="mb-6 lg:mb-0">
+          <h2 className="font-bold text-base pb-3">Location</h2>
+          {Object.keys(actionLocationLabels).map(actionLocationLabel => {
+            return (
+              <ActionLocationInput
+                key={actionLocationLabel}
+                handleSelect={handleActionLocationSelect}
+                actionLocationName={actionLocationLabels[actionLocationLabel]}
+                actionLocationValue={actionLocationLabel}
+                isChecked={actionLocationLabel === actionLocation}
+              />
+            );
+          })}
+        </div>
+        <div className="col-span-2">
+          <h2 className="font-bold text-base pb-3">Type</h2>
+          <div className="lg:grid lg:grid-cols-2 flex flex-col flex-wrap w-full">
+            {Object.keys(actionTypeLabels).map(actionType => {
+              return (
+                <ActionTypeInput
+                  key={actionType}
+                  handleSelect={handleActionTypeSelect}
+                  actionTypeName={actionTypeLabels[actionType]}
+                  actionTypeValue={actionType}
+                  isChecked={actionTypes.includes(actionType)}
+                />
+              );
+            })}
+          </div>
+        </div>
       </div>
 
-      <div className="w-full flex justify-start py-2 px-4">
+      <div className="w-full flex justify-start py-2">
         <ElementButton
           className="font-bold p-2 text-blue-500 hover:text-blue-300"
           text="clear"
