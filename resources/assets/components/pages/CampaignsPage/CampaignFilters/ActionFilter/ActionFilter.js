@@ -15,11 +15,8 @@ import ElementButton from '../../../../utilities/Button/ElementButton';
  */
 const ActionFilter = ({ filters, setFilters }) => {
   const actionTypes = get(filters, 'actions.actionTypes', []);
-  const actionIsOnline = get(filters, 'actions.isOnline', null);
 
   const [actionLocation, setActionLocation] = useState('');
-  console.log('is online', actionIsOnline);
-  console.log('location', actionLocation);
 
   const handleActionTypeSelect = event => {
     if (actionTypes.includes(event.target.value)) {
@@ -63,8 +60,19 @@ const ActionFilter = ({ filters, setFilters }) => {
         },
       });
       setActionLocation(event.target.value);
+    } else if (
+      (event.target.value === 'in-person' && actionLocation === 'in-person') ||
+      (event.target.value === 'online' && actionLocation === 'online')
+    ) {
+      setFilters({
+        ...filters,
+        actions: {
+          ...filters.actions,
+          isOnline: null,
+        },
+      });
+      setActionLocation('');
     }
-    setActionLocation('');
   };
 
   const clearAllSelected = () => {
