@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 const MenuCarat = ({ color, cssStyles, height, width }) => (
-  <div className="menu-carat">
+  <div className="menu-carat pl-2 my-auto">
     <svg
       css={css`
         pointerevents: 'none';

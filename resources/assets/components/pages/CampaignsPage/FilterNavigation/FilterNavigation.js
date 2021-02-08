@@ -37,7 +37,6 @@ const FilterNavigation = ({ filters, setFilters }) => {
 
     return setActiveFilter(selectedFilter);
   };
-
   return (
     <div className="md:w-full bg-white">
       <div className="flex items-center md:w-3/4 mx-auto pt-2 pb-6 pl-6 md:pl-0">
@@ -46,7 +45,7 @@ const FilterNavigation = ({ filters, setFilters }) => {
         {filterCategoryNames.map(name => (
           <SecondaryButton
             attributes={{ 'data-filter': name }}
-            caratColor="#322baa"
+            caratColor={activeFilter === name ? '#322baa' : null}
             caratToggle={activeFilter === name ? caratToggle : null}
             className="mr-8"
             displayCaratToggle

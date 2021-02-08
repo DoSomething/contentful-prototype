@@ -26,7 +26,9 @@ const ElementButton = ({
 }) => {
   return (
     <button
-      className={classnames('btn', className, { 'is-loading': isLoading })}
+      className={classnames('btn flex', className, {
+        'is-loading': isLoading,
+      })}
       disabled={isDisabled || isLoading}
       onClick={onClick}
       type={type}
@@ -43,7 +45,7 @@ const ElementButton = ({
 ElementButton.propTypes = {
   attributes: PropTypes.object,
   caratColor: PropTypes.string,
-  caratToggle: PropTypes.string,
+  caratToggle: PropTypes.object,
   className: PropTypes.string,
   displayCaratToggle: PropTypes.bool,
   isDisabled: PropTypes.bool,
