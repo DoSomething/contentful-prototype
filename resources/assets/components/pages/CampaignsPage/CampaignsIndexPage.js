@@ -1,6 +1,7 @@
 import { get } from 'lodash';
 import React, { useState } from 'react';
 
+import { featureFlag } from '../../../helpers/env';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import FilterNavigation from './FilterNavigation/FilterNavigation';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -9,10 +10,16 @@ import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/P
 import './campaigns-page.scss';
 
 const CampaignsIndexPage = () => {
-  const [filters, setFilters] = useState({
-    causes: [],
-    actions: { actionTypes: [], isOnline: null },
-  });
+  const [filters, setFilters] = useState(
+    featureFlag('algolia_campaigns_search')
+      ? {
+          causes: [],
+          actions: { actionTypes: [], isOnline: null },
+        }
+      : {
+          causes: [],
+        },
+  );
 
   return (
     <>
