@@ -16,7 +16,10 @@ import ElementButton from './ElementButton';
 const SecondaryButton = props => {
   const {
     attributes,
+    caratColor,
+    caratToggle,
     className,
+    displayCaratToggle,
     href,
     isActive,
     isDisabled,
@@ -53,7 +56,10 @@ const SecondaryButton = props => {
   return (
     <ElementButton
       attributes={attributes}
+      caratColor={caratColor}
+      caratToggle={caratToggle}
       className={classes}
+      displayCaratToggle={displayCaratToggle}
       isDisabled={isDisabled}
       onClick={onClick}
       text={text}
@@ -64,7 +70,10 @@ const SecondaryButton = props => {
 
 SecondaryButton.propTypes = {
   attributes: PropTypes.object,
+  caratColor: PropTypes.string,
+  caratToggle: PropTypes.object,
   className: PropTypes.string,
+  displayCaratToggle: PropTypes.bool,
   href: PropTypes.string,
   isActive: PropTypes.bool,
   isDisabled: PropTypes.bool,
@@ -75,7 +84,10 @@ SecondaryButton.propTypes = {
 
 SecondaryButton.defaultProps = {
   attributes: {},
+  caratColor: null,
+  caratToggle: null,
   className: null,
+  displayCaratToggle: false,
   href: null,
   isActive: false,
   isDisabled: false,

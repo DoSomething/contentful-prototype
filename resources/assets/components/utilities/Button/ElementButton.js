@@ -4,6 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
+
 /**
  * Basic button element (<button>) with minimal styles.
  * Pass classes to style pseudo states like :hover, :focus and :active, etc.
@@ -12,7 +14,10 @@ import classnames from 'classnames';
  */
 const ElementButton = ({
   attributes,
+  caratColor,
+  caratToggle,
   className,
+  displayCaratToggle,
   isDisabled,
   isLoading,
   onClick,
@@ -28,13 +33,19 @@ const ElementButton = ({
       {...attributes}
     >
       {text}
+      {displayCaratToggle ? (
+        <MenuCarat color={caratColor} cssStyles={caratToggle} />
+      ) : null}
     </button>
   );
 };
 
 ElementButton.propTypes = {
   attributes: PropTypes.object,
+  caratColor: PropTypes.string,
+  caratToggle: PropTypes.string,
   className: PropTypes.string,
+  displayCaratToggle: PropTypes.bool,
   isDisabled: PropTypes.bool,
   isLoading: PropTypes.bool,
   onClick: PropTypes.func,
@@ -44,7 +55,10 @@ ElementButton.propTypes = {
 
 ElementButton.defaultProps = {
   attributes: {},
+  caratColor: '#202020',
+  caratToggle: null,
   className: null,
+  displayCaratToggle: false,
   isDisabled: false,
   isLoading: false,
   onClick: null,
