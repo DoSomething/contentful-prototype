@@ -58,32 +58,21 @@ TimeInput.defaultProps = {
  */
 const TimeFilter = ({ filters, setFilters }) => {
   const timeCommitments = get(filters, 'time', []);
-
+  console.log(timeCommitments);
   const handleTimeCommitmentSelect = event => {
     if (timeCommitments.includes(event.target.value)) {
       const newtimeCommitments = timeCommitments.filter(timeCommitment => {
         return timeCommitment !== event.target.value;
       });
-      const timeCommitmentsRemoved = {
-        ...filters.actions,
-        time: [...newtimeCommitments],
-      };
 
       setFilters({
         ...filters,
-        time: { ...timeCommitmentsRemoved },
+        time: [...newtimeCommitments],
       });
     } else {
-      const timeCommitmentsAdded = {
-        ...filters.actions,
-        time: [...timeCommitments, event.target.value],
-      };
-
       setFilters({
         ...filters,
-        actions: {
-          ...timeCommitmentsAdded,
-        },
+        time: [...timeCommitments, event.target.value],
       });
     }
   };
