@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import ElementButton from '../../../../utilities/Button/ElementButton';
 
 const timeCommitmentLabels = {
-  '<0.083': '< 5 minutes',
-  '<0.5': '< 30 minutes',
+  "'<0.083'": '< 5 minutes',
+  "'<0.5'": '< 30 minutes',
   '0.5-1.0': '30 minutes - 1 hour',
   '1.0-3.0': '1 - 3 hours',
   '3.0+': '3+ hours',
@@ -58,7 +58,7 @@ TimeInput.defaultProps = {
  */
 const TimeFilter = ({ filters, setFilters }) => {
   const timeCommitments = get(filters, 'time', []);
-  console.log(timeCommitments);
+
   const handleTimeCommitmentSelect = event => {
     if (timeCommitments.includes(event.target.value)) {
       const newtimeCommitments = timeCommitments.filter(timeCommitment => {

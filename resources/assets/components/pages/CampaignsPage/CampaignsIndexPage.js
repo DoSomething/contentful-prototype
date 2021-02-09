@@ -46,6 +46,7 @@ const CampaignsIndexPage = () => {
               // potentially concatenate all filters to single array 🤔
               causes: get(filters, 'causes', []),
               actionTypes: get(filters, 'actions.actionTypes', []),
+              timeCommitments: get(filters, 'time', []),
             }}
           />
         </div>
