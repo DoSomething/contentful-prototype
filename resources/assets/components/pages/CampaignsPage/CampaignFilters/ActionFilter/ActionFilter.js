@@ -27,6 +27,7 @@ const ActionFilter = ({ filters, setFilters }) => {
         ...filters.actions,
         actionTypes: [...newActionTypes],
       };
+
       setFilters({
         ...filters,
         actions: { ...actionsRemoved },
@@ -36,6 +37,7 @@ const ActionFilter = ({ filters, setFilters }) => {
         ...filters.actions,
         actionTypes: [...actionTypes, event.target.value],
       };
+
       setFilters({
         ...filters,
         actions: {
