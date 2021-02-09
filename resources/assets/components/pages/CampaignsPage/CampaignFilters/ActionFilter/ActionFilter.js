@@ -15,6 +15,7 @@ import ElementButton from '../../../../utilities/Button/ElementButton';
  */
 const ActionFilter = ({ filters, setFilters }) => {
   const actionTypes = get(filters, 'actions.actionTypes', []);
+  console.log('actions added', actionTypes);
 
   const [actionLocation, setActionLocation] = useState('');
 
