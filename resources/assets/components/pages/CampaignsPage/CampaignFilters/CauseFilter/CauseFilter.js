@@ -74,9 +74,9 @@ const CauseFilter = ({ filters, setFilters }) => {
       const newCauses = causes.filter(cause => {
         return cause !== event.target.value;
       });
-      setFilters({ causes: [...newCauses] });
+      setFilters({ ...filters, causes: [...newCauses] });
     } else {
-      setFilters({ causes: [...causes, event.target.value] });
+      setFilters({ ...filters, causes: [...causes, event.target.value] });
     }
   };
 
@@ -88,7 +88,7 @@ const CauseFilter = ({ filters, setFilters }) => {
     });
 
     if (causes) {
-      setFilters({ causes: [] });
+      setFilters({ ...filters, causes: [] });
     }
   };
 

@@ -54,20 +54,24 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
 
 const SEARCH_CAMPAIGNS_QUERY = gql`
   query SearchCampaignQuery(
+    $actionTypes: [String]
     $causes: [String]
     $cursor: String
     $excludeIds: [Int]
     $first: Int
+    $isOnline: Boolean
     $isOpen: Boolean
     $orderBy: String
   ) {
     campaigns: searchCampaigns(
+      actionTypes: $actionTypes
       cursor: $cursor
       causes: $causes
       excludeIds: $excludeIds
       perPage: $first
       hasWebsite: true
       isGroupCampaign: false
+      isOnline: $isOnline
       isOpen: $isOpen
       orderBy: $orderBy
     ) {

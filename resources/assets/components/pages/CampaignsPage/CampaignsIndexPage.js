@@ -1,6 +1,7 @@
 import { get } from 'lodash';
 import React, { useState } from 'react';
 
+import { featureFlag } from '../../../helpers/env';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import FilterNavigation from './FilterNavigation/FilterNavigation';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -9,7 +10,16 @@ import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/P
 import './campaigns-page.scss';
 
 const CampaignsIndexPage = () => {
-  const [filters, setFilters] = useState({ causes: [] });
+  const [filters, setFilters] = useState(
+    featureFlag('algolia_campaigns_search')
+      ? {
+          causes: [],
+          actions: { actionTypes: [], isOnline: null },
+        }
+      : {
+          causes: [],
+        },
+  );
 
   return (
     <>
@@ -27,12 +37,14 @@ const CampaignsIndexPage = () => {
             className="grid-full px-6 md:px-0"
             itemsPerRow={4}
             variables={{
+              isOnline: get(filters, 'actions.isOnline', null),
               isOpen: true,
               first: 36,
               orderBy: 'start_date,desc',
               // @TODO depending on future implementation of filters in rogue,
               // potentially concatenate all filters to single array 🤔
               causes: get(filters, 'causes', []),
+              actionTypes: get(filters, 'actions.actionTypes', []),
             }}
           />
         </div>
