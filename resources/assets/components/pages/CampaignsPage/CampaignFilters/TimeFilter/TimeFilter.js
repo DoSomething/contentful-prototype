@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 
 import ElementButton from '../../../../utilities/Button/ElementButton';
 
+// for 02.11.2021
+// double check the double quotes are pulling campaigns correctly
+// should they be added in the setFilters func vs setting them below
+
 const timeCommitmentLabels = {
   "'<0.083'": '< 5 minutes',
   "'<0.5'": '< 30 minutes',
