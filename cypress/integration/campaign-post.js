@@ -333,14 +333,14 @@ describe('Campaign Post', () => {
       const response = newTextPost(campaignId, user, text);
       cy.route('POST', POSTS_API, response).as('submitPost');
 
-      cy.get('.petition-submission-action textarea').type(text);
-      cy.get('.petition-submission-action button[type="submit"]').click();
-
       cy.mockGraphqlOp('PostQuery', {
         post: {
           userId: user.id,
         },
       });
+
+      cy.get('.petition-submission-action textarea').type(text);
+      cy.get('.petition-submission-action button[type="submit"]').click();
 
       cy.wait('@submitPost');
 
