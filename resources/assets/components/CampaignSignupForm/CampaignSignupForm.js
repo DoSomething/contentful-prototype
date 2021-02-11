@@ -268,7 +268,7 @@ const CampaignSignupForm = props => {
           className={className}
           onClick={handleSignup}
           text={closedCampaign ? 'Notify Me' : buttonCopy}
-          isLoading={loading || mutationLoading}
+          isLoading={mutationLoading}
         />
 
         <AffiliateMessagingOptIn />
@@ -302,7 +302,7 @@ const CampaignSignupForm = props => {
               attributes={{ 'data-testid': 'join-group-signup-button' }}
               className={`${className} py-2 md:py-3`}
               isDisabled={!groupId}
-              isLoading={loading || mutationLoading}
+              isLoading={mutationLoading}
               onClick={handleSignup}
               text="Join Group"
             />
