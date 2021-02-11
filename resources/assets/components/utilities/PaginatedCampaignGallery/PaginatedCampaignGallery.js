@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { updateQuery } from '../../../helpers';
 import ElementButton from '../Button/ElementButton';
+import { withoutNulls } from '../../../helpers/data';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import { featureFlag, siteConfig } from '../../../helpers/env';
@@ -107,7 +108,7 @@ const PaginatedCampaignGallery = ({
       ? SEARCH_CAMPAIGNS_QUERY
       : PAGINATED_CAMPAIGNS_QUERY,
     {
-      variables: { ...variables, excludeIds },
+      variables: withoutNulls({ ...variables, excludeIds }),
       notifyOnNetworkStatusChange: true,
     },
   );
