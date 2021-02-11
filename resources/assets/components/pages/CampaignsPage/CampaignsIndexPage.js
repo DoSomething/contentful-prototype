@@ -2,6 +2,7 @@ import { get } from 'lodash';
 import React, { useState } from 'react';
 
 import { featureFlag } from '../../../helpers/env';
+import { withoutNulls } from '../../../helpers/data';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import FilterNavigation from './FilterNavigation/FilterNavigation';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -36,7 +37,7 @@ const CampaignsIndexPage = () => {
           <PaginatedCampaignGallery
             className="grid-full px-6 md:px-0"
             itemsPerRow={4}
-            variables={{
+            variables={withoutNulls({
               isOnline: get(filters, 'actions.isOnline', null),
               isOpen: true,
               first: 36,
@@ -45,7 +46,7 @@ const CampaignsIndexPage = () => {
               // potentially concatenate all filters to single array 🤔
               causes: get(filters, 'causes', []),
               actionTypes: get(filters, 'actions.actionTypes', []),
-            }}
+            })}
           />
         </div>
       </main>
