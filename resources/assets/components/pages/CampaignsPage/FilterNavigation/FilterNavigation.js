@@ -9,6 +9,7 @@ import {
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
 import FilterSubNav from './FilterSubNav';
+import MenuCarat from '../../../artifacts/MenuCarat/MenuCarat';
 import SecondaryButton from '../../../utilities/Button/SecondaryButton';
 
 const FilterNavigation = ({ filters, setFilters }) => {
@@ -45,10 +46,13 @@ const FilterNavigation = ({ filters, setFilters }) => {
         {filterCategoryNames.map(name => (
           <SecondaryButton
             attributes={{ 'data-filter': name }}
-            caratColor="#322baa"
-            caratToggle={activeFilter === name ? caratToggle : null}
             className="mr-8"
-            displayCaratToggle
+            decoration={
+              <MenuCarat
+                color="#322baa"
+                cssStyles={activeFilter === name ? caratToggle : null}
+              />
+            }
             isActive={activeFilter === name}
             key={`${name}_button`}
             onClick={handleMenuToggle}
