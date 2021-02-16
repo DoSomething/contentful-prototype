@@ -32,6 +32,7 @@ import PopoverDispatcher from './utilities/PopoverDispatcher/PopoverDispatcher';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
 import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/VoterRegistrationDrivePage';
+import VoterRegistrationMarketingPage from './pages/VoterRegistrationMarketingPage/VoterRegistrationMarketingPage';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -136,6 +137,11 @@ const App = ({ store, history }) => {
               <Route
                 path="/us/my-voter-registration-drive"
                 component={VoterRegistrationDrivePage}
+              />
+
+              <Route
+                path="/us/vote/:slug"
+                component={VoterRegistrationMarketingPage}
               />
 
               <Route path="/us/refer-friends" component={AlphaReferralPage} />
