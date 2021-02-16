@@ -31,7 +31,7 @@ const ElementButton = ({
       {...attributes}
     >
       {text}
-      {decoration || null}
+      {decoration}
     </button>
   );
 };
