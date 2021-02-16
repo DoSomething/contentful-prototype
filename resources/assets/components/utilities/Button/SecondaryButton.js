@@ -17,6 +17,7 @@ const SecondaryButton = props => {
   const {
     attributes,
     className,
+    decoration,
     href,
     isActive,
     isDisabled,
@@ -54,6 +55,7 @@ const SecondaryButton = props => {
     <ElementButton
       attributes={attributes}
       className={classes}
+      decoration={decoration}
       isDisabled={isDisabled}
       onClick={onClick}
       text={text}
@@ -65,6 +67,7 @@ const SecondaryButton = props => {
 SecondaryButton.propTypes = {
   attributes: PropTypes.object,
   className: PropTypes.string,
+  decoration: PropTypes.object,
   href: PropTypes.string,
   isActive: PropTypes.bool,
   isDisabled: PropTypes.bool,
@@ -76,6 +79,7 @@ SecondaryButton.propTypes = {
 SecondaryButton.defaultProps = {
   attributes: {},
   className: null,
+  decoration: null,
   href: null,
   isActive: false,
   isDisabled: false,
