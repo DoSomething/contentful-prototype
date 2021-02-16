@@ -48,7 +48,7 @@ const FilterNavigation = ({ filters, setFilters }) => {
         {filterCategoryNames.map(name => (
           <SecondaryButton
             attributes={{ 'data-filter': name }}
-            className="mr-8"
+            className="mr-4 lg:mr-8"
             decoration={
               <MenuCarat
                 color="#322baa"
