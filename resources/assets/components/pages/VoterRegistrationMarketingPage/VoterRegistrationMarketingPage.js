@@ -27,18 +27,33 @@ const VoterRegistrationMarketingPage = () => (
     <main>
       <article>
         <img
+          data-testid="vr-marketing-page-banner-image"
           srcSet={srcset}
           src={contentfulImageUrl(coverImage, '1400', '450', 'fill')}
         />
 
-        <div style={{ backgroundColor: '#309450' }} className="p-4">
-          <img className="m-auto" src={contentfulImageUrl(logo, '250', '60')} />
+        <div
+          data-testid="vr-marketing-page-banner-main"
+          style={{ backgroundColor: '#309450' }}
+          className="p-4"
+        >
+          <img
+            data-testid="vr-marketing-page-banner-logo"
+            className="m-auto"
+            src={contentfulImageUrl(logo, '250', '60')}
+          />
 
-          <h1 className="md:leading-none text-white text-center uppercase font-league-gothic font-normal text-5xl md:text-6xl">
+          <h1
+            data-testid="vr-marketing-page-banner-title"
+            className="md:leading-none text-white text-center uppercase font-league-gothic font-normal text-5xl md:text-6xl"
+          >
             Niche wants you to vote
           </h1>
 
-          <h2 className="text-white text-center text-lg">
+          <h2
+            data-testid="vr-marketing-page-banner-subtitle"
+            className="text-white text-center text-lg"
+          >
             Take 2 minutes to register to vote at your current address.
           </h2>
         </div>
