@@ -63,7 +63,7 @@ const VoterRegistrationMarketingPage = () => (
         <SocialShareTray
           className="text-center"
           // Pass through the current URL without the query parameters.
-          shareLink={window.location.href.split('?')[0]}
+          shareLink={`${window.location.origin}${window.location.pathname}`}
           platforms={['facebook', 'twitter']}
         />
       </article>
