@@ -22,6 +22,13 @@ const TimeFilter = ({ filters, setFilters }) => {
   const timeCommitments = get(filters, 'time', []);
 
   const handleTimeCommitmentSelect = event => {
+    trackAnalyticsEvent('clicked_filter_options_time', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.filter,
+      label: event.target.value,
+      context: { value: event.target.value },
+    });
+
     if (timeCommitments.includes(event.target.value)) {
       const newtimeCommitments = timeCommitments.filter(timeCommitment => {
         return timeCommitment !== event.target.value;
@@ -40,6 +47,12 @@ const TimeFilter = ({ filters, setFilters }) => {
   };
 
   const clearAllSelected = () => {
+    trackAnalyticsEvent('clicked_filter_clear_options_time', {
+      action: 'link_clicked',
+      category: EVENT_CATEGORIES.filter,
+      label: 'time',
+    });
+
     if (timeCommitments) {
       setFilters({
         ...filters,
