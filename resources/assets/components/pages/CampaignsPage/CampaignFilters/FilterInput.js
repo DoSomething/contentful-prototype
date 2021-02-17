@@ -17,6 +17,7 @@ const FilterInput = ({ filterName, filterValue, handleSelect, isChecked }) => (
       type="checkbox"
       value={filterValue}
     />
+
     <span className="pl-4">{filterName}</span>
   </label>
 );
