@@ -2,11 +2,26 @@ import React, { useState } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import ActionLocationInput, {
-  actionLocationLabels,
-} from './ActionLocationInput';
-import ActionTypeInput, { actionTypeLabels } from './ActionTypeInput';
+import FilterInput from '../FilterInput';
 import ElementButton from '../../../../utilities/Button/ElementButton';
+
+const actionLocationLabels = {
+  'in-person': 'In Person',
+  online: 'Online',
+};
+
+const actionTypeLabels = {
+  'attend-event': 'Attend an Event',
+  'collect-something': 'Collect Something',
+  'contact-decisionmaker': 'Contact a Decision-Maker',
+  'donate-something': 'Donate Something',
+  'flag-content': 'Flag Content',
+  'have-a-conversation': 'Have A Conversation',
+  'host-event': 'Host An Event',
+  'make-something': 'Make Something',
+  'share-something': 'Share Something',
+  'sign-petition': 'Sign A Petition',
+};
 
 /**
  * Filter menu form with series of checkbox inputs.
@@ -87,11 +102,11 @@ const ActionFilter = ({ filters, setFilters }) => {
 
           {Object.keys(actionLocationLabels).map(actionLocationLabel => {
             return (
-              <ActionLocationInput
+              <FilterInput
                 key={actionLocationLabel}
                 handleSelect={handleActionLocationSelect}
-                actionLocationName={actionLocationLabels[actionLocationLabel]}
-                actionLocationValue={actionLocationLabel}
+                filterName={actionLocationLabels[actionLocationLabel]}
+                filterValue={actionLocationLabel}
                 isChecked={actionLocationLabel === actionLocation}
               />
             );
@@ -104,11 +119,11 @@ const ActionFilter = ({ filters, setFilters }) => {
           <div className="lg:grid lg:grid-cols-2">
             {Object.keys(actionTypeLabels).map(actionType => {
               return (
-                <ActionTypeInput
+                <FilterInput
                   key={actionType}
                   handleSelect={handleActionTypeSelect}
-                  actionTypeName={actionTypeLabels[actionType]}
-                  actionTypeValue={actionType}
+                  filterName={actionTypeLabels[actionType]}
+                  filterValue={actionType}
                   isChecked={actionTypes.includes(actionType)}
                 />
               );

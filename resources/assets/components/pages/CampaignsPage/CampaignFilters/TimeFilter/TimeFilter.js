@@ -2,6 +2,7 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
+import FilterInput from '../FilterInput';
 import ElementButton from '../../../../utilities/Button/ElementButton';
 
 const timeCommitmentLabels = {
@@ -10,45 +11,6 @@ const timeCommitmentLabels = {
   '0.5-1.0': '30 minutes - 1 hour',
   '1.0-3.0': '1 - 3 hours',
   '3.0+': '3+ hours',
-};
-
-/**
- * Checkbox input component.
- *
- * @param {Object}
- */
-const TimeInput = ({
-  timeCommitmentName,
-  timeCommitmentValue,
-  handleSelect,
-  isChecked,
-}) => (
-  <label
-    className="flex items-start justify-start pb-2"
-    htmlFor={timeCommitmentValue}
-  >
-    <input
-      id={timeCommitmentValue}
-      checked={isChecked}
-      className="mt-1"
-      name={timeCommitmentValue}
-      onChange={handleSelect}
-      type="checkbox"
-      value={timeCommitmentValue}
-    />
-    <span className="pl-4">{timeCommitmentName}</span>
-  </label>
-);
-
-TimeInput.propTypes = {
-  isChecked: PropTypes.bool,
-  handleSelect: PropTypes.func.isRequired,
-  timeCommitmentName: PropTypes.string.isRequired,
-  timeCommitmentValue: PropTypes.string.isRequired,
-};
-
-TimeInput.defaultProps = {
-  isChecked: false,
 };
 
 /**
@@ -92,11 +54,11 @@ const TimeFilter = ({ filters, setFilters }) => {
         <div className="mb-6 lg:mb-0 lg:grid lg:grid-cols-2 lg:col-span-2">
           {Object.keys(timeCommitmentLabels).map(timeCommitmentLabel => {
             return (
-              <TimeInput
+              <FilterInput
                 key={timeCommitmentLabel}
                 handleSelect={handleTimeCommitmentSelect}
-                timeCommitmentName={timeCommitmentLabels[timeCommitmentLabel]}
-                timeCommitmentValue={timeCommitmentLabel}
+                filterName={timeCommitmentLabels[timeCommitmentLabel]}
+                filterValue={timeCommitmentLabel}
                 isChecked={timeCommitments.includes(timeCommitmentLabel)}
               />
             );
