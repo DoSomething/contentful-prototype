@@ -3,6 +3,10 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import FilterInput from '../FilterInput';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../../../helpers/analytics';
 import ElementButton from '../../../../utilities/Button/ElementButton';
 
 const timeCommitmentLabels = {
