@@ -30,6 +30,7 @@ const VoterRegistrationMarketingPage = () => (
           data-testid="vr-marketing-page-banner-image"
           srcSet={srcset}
           src={contentfulImageUrl(coverImage, '1400', '450', 'fill')}
+          alt="Decorative banner"
         />
 
         <div
@@ -41,6 +42,7 @@ const VoterRegistrationMarketingPage = () => (
             data-testid="vr-marketing-page-banner-logo"
             className="m-auto"
             src={contentfulImageUrl(logo, '250', '60')}
+            alt="Logo"
           />
 
           <h1
