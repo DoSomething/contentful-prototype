@@ -134,6 +134,7 @@ StartVoterRegistrationForm.defaultProps = {
   groupId: null,
   referrerUserId: null,
   source: 'web',
+  source: null,
 };
 
 export default StartVoterRegistrationForm;
