@@ -2,11 +2,10 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import FilterInput from '../FilterInput';
-import {
-  EVENT_CATEGORIES,
-  trackAnalyticsEvent,
-} from '../../../../../helpers/analytics';
+import FilterInput, {
+  trackClickedFilterOptionsAnalyticsEvent,
+  trackClickedFilterClearOptionsAnalyticsEvent,
+} from '../FilterInput';
 import ElementButton from '../../../../utilities/Button/ElementButton';
 
 const timeCommitmentLabels = {
@@ -26,12 +25,7 @@ const TimeFilter = ({ filters, setFilters }) => {
   const timeCommitments = get(filters, 'time', []);
 
   const handleTimeCommitmentSelect = event => {
-    trackAnalyticsEvent('clicked_filter_options_time', {
-      action: 'button_clicked',
-      category: EVENT_CATEGORIES.filter,
-      label: event.target.value,
-      context: { value: event.target.value },
-    });
+    trackClickedFilterOptionsAnalyticsEvent('time', event.target.value);
 
     if (timeCommitments.includes(event.target.value)) {
       const newtimeCommitments = timeCommitments.filter(timeCommitment => {
@@ -51,11 +45,7 @@ const TimeFilter = ({ filters, setFilters }) => {
   };
 
   const clearAllSelected = () => {
-    trackAnalyticsEvent('clicked_filter_clear_options_time', {
-      action: 'link_clicked',
-      category: EVENT_CATEGORIES.filter,
-      label: 'time',
-    });
+    trackClickedFilterClearOptionsAnalyticsEvent('time');
 
     if (timeCommitments) {
       setFilters({

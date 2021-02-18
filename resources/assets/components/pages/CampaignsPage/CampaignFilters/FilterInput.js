@@ -1,6 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../../helpers/analytics';
+
+/**
+ * Checkbox input component.
+ *
+ * @param  {String} name
+ * @param  {String} inputValue
+ */
+export const trackClickedFilterOptionsAnalyticsEvent = (name, inputValue) => {
+  trackAnalyticsEvent(`clicked_filter_options_${name}`, {
+    action: 'button_clicked',
+    category: EVENT_CATEGORIES.filter,
+    label: inputValue,
+    context: { value: inputValue },
+  });
+};
+
+/**
+ * Checkbox input component.
+ *
+ * @param  {String} name
+ */
+export const trackClickedFilterClearOptionsAnalyticsEvent = name => {
+  trackAnalyticsEvent(`clicked_filter_clear_options_${name}`, {
+    action: 'link_clicked',
+    category: EVENT_CATEGORIES.filter,
+    label: `${name}`,
+  });
+};
+
 /**
  * Checkbox input component.
  *

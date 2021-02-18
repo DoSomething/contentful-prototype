@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import FilterInput from '../FilterInput';
-import {
-  EVENT_CATEGORIES,
-  trackAnalyticsEvent,
-} from '../../../../../helpers/analytics';
+import FilterInput, {
+  trackClickedFilterOptionsAnalyticsEvent,
+  trackClickedFilterClearOptionsAnalyticsEvent,
+} from '../FilterInput';
 import ElementButton from '../../../../utilities/Button/ElementButton';
 
 const actionLocationLabels = {
@@ -38,12 +37,7 @@ const ActionFilter = ({ filters, setFilters }) => {
   const [actionLocation, setActionLocation] = useState('');
 
   const handleActionTypeSelect = event => {
-    trackAnalyticsEvent('clicked_filter_options_action_type', {
-      action: 'button_clicked',
-      category: EVENT_CATEGORIES.filter,
-      label: event.target.value,
-      context: { value: event.target.value },
-    });
+    trackClickedFilterOptionsAnalyticsEvent('action_type', event.target.value);
 
     if (actionTypes.includes(event.target.value)) {
       const newActionTypes = actionTypes.filter(actionType => {
@@ -74,12 +68,10 @@ const ActionFilter = ({ filters, setFilters }) => {
   };
 
   const handleActionLocationSelect = event => {
-    trackAnalyticsEvent('clicked_filter_options_action_location', {
-      action: 'button_clicked',
-      category: EVENT_CATEGORIES.filter,
-      label: event.target.value,
-      context: { value: event.target.value },
-    });
+    trackClickedFilterOptionsAnalyticsEvent(
+      'action_location',
+      event.target.value,
+    );
 
     const selection = event.target.value;
 
@@ -103,11 +95,7 @@ const ActionFilter = ({ filters, setFilters }) => {
   };
 
   const clearAllSelected = () => {
-    trackAnalyticsEvent('clicked_filter_clear_options_action', {
-      action: 'link_clicked',
-      category: EVENT_CATEGORIES.filter,
-      label: 'action',
-    });
+    trackClickedFilterClearOptionsAnalyticsEvent('action');
 
     if (actionTypes) {
       setFilters({
