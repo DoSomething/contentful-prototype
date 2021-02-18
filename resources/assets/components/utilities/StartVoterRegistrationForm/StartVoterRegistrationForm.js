@@ -13,6 +13,7 @@ import { getTrackingSource } from '../../../helpers/voter-registration';
 
 const StartVoterRegistrationForm = ({
   betaPage,
+  buttonText,
   campaignId,
   className,
   contextSource,
@@ -105,16 +106,16 @@ const StartVoterRegistrationForm = ({
 
           <PrimaryButton
             attributes={{ 'data-testid': 'voter-registration-submit-button' }}
-            className="w-full"
+            className="w-full flex justify-center"
             isDisabled={isDisabled}
             text={
               submitted ? (
-                <div className="flex justify-center">
+                <>
                   <Spinner />
                   <span className="pl-1 pt-1">Processing...</span>
-                </div>
+                </>
               ) : (
-                'Start Registration'
+                buttonText
               )
             }
             type="submit"
@@ -127,6 +128,7 @@ const StartVoterRegistrationForm = ({
 
 StartVoterRegistrationForm.propTypes = {
   betaPage: PropTypes.bool,
+  buttonText: PropTypes.string,
   campaignId: PropTypes.number,
   className: PropTypes.string,
   contextSource: PropTypes.string.isRequired,
@@ -138,6 +140,7 @@ StartVoterRegistrationForm.propTypes = {
 
 StartVoterRegistrationForm.defaultProps = {
   betaPage: false,
+  buttonText: 'Start Registration',
   campaignId: null,
   className: null,
   groupId: null,
