@@ -2,7 +2,10 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import FilterInput from '../FilterInput';
+import FilterInput, {
+  trackClickedFilterOptionsAnalyticsEvent,
+  trackClickedFilterClearOptionsAnalyticsEvent,
+} from '../FilterInput';
 import ElementButton from '../../../../utilities/Button/ElementButton';
 
 const timeCommitmentLabels = {
@@ -22,6 +25,8 @@ const TimeFilter = ({ filters, setFilters }) => {
   const timeCommitments = get(filters, 'time', []);
 
   const handleTimeCommitmentSelect = event => {
+    trackClickedFilterOptionsAnalyticsEvent('time', event.target.value);
+
     if (timeCommitments.includes(event.target.value)) {
       const newtimeCommitments = timeCommitments.filter(timeCommitment => {
         return timeCommitment !== event.target.value;
@@ -40,6 +45,8 @@ const TimeFilter = ({ filters, setFilters }) => {
   };
 
   const clearAllSelected = () => {
+    trackClickedFilterClearOptionsAnalyticsEvent('time');
+
     if (timeCommitments) {
       setFilters({
         ...filters,

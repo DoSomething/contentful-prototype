@@ -2,11 +2,10 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import FilterInput from '../FilterInput';
-import {
-  EVENT_CATEGORIES,
-  trackAnalyticsEvent,
-} from '../../../../../helpers/analytics';
+import FilterInput, {
+  trackClickedFilterOptionsAnalyticsEvent,
+  trackClickedFilterClearOptionsAnalyticsEvent,
+} from '../FilterInput';
 import ElementButton from '../../../../utilities/Button/ElementButton';
 
 const causeLabels = {
@@ -33,12 +32,7 @@ const CauseFilter = ({ filters, setFilters }) => {
   const causes = get(filters, 'causes', []);
 
   const handleCauseSelect = event => {
-    trackAnalyticsEvent('clicked_filter_options_cause', {
-      action: 'button_clicked',
-      category: EVENT_CATEGORIES.filter,
-      label: event.target.value,
-      context: { value: event.target.value },
-    });
+    trackClickedFilterOptionsAnalyticsEvent('cause', event.target.value);
 
     if (causes.includes(event.target.value)) {
       const newCauses = causes.filter(cause => {
@@ -51,11 +45,7 @@ const CauseFilter = ({ filters, setFilters }) => {
   };
 
   const clearAllSelected = () => {
-    trackAnalyticsEvent('clicked_filter_clear_options_cause', {
-      action: 'link_clicked',
-      category: EVENT_CATEGORIES.filter,
-      label: 'cause',
-    });
+    trackClickedFilterClearOptionsAnalyticsEvent('cause');
 
     if (causes) {
       setFilters({ ...filters, causes: [] });

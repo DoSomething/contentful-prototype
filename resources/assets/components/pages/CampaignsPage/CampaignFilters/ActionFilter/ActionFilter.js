@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import FilterInput from '../FilterInput';
+import FilterInput, {
+  trackClickedFilterOptionsAnalyticsEvent,
+  trackClickedFilterClearOptionsAnalyticsEvent,
+} from '../FilterInput';
 import ElementButton from '../../../../utilities/Button/ElementButton';
 
 const actionLocationLabels = {
@@ -34,6 +37,8 @@ const ActionFilter = ({ filters, setFilters }) => {
   const [actionLocation, setActionLocation] = useState('');
 
   const handleActionTypeSelect = event => {
+    trackClickedFilterOptionsAnalyticsEvent('action_type', event.target.value);
+
     if (actionTypes.includes(event.target.value)) {
       const newActionTypes = actionTypes.filter(actionType => {
         return actionType !== event.target.value;
@@ -63,6 +68,11 @@ const ActionFilter = ({ filters, setFilters }) => {
   };
 
   const handleActionLocationSelect = event => {
+    trackClickedFilterOptionsAnalyticsEvent(
+      'action_location',
+      event.target.value,
+    );
+
     const selection = event.target.value;
 
     if (actionLocation === selection) {
@@ -85,6 +95,8 @@ const ActionFilter = ({ filters, setFilters }) => {
   };
 
   const clearAllSelected = () => {
+    trackClickedFilterClearOptionsAnalyticsEvent('action');
+
     if (actionTypes) {
       setFilters({
         ...filters,
