@@ -97,6 +97,27 @@ module.exports = function(migration) {
     });
 
   homePage
+    .createField('sponsors')
+    .name('Sponsors')
+    .type('Array')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false)
+    .items({
+      type: 'Link',
+
+      validations: [
+        {
+          linkContentType: ['affiliates'],
+        },
+      ],
+
+      linkType: 'Entry',
+    });
+
+  homePage
     .createField('additionalContent')
     .name('Additional Content')
     .type('Object')
@@ -130,6 +151,7 @@ module.exports = function(migration) {
     showCreateEntityAction: true,
   });
 
+  homePage.changeFieldControl('sponsors', 'builtin', 'entryLinksEditor', {});
   homePage.changeFieldControl(
     'additionalContent',
     'builtin',
