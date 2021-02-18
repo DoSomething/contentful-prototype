@@ -40,13 +40,15 @@ const FilterNavigation = ({ filters, setFilters }) => {
   };
   return (
     <div className="md:w-full bg-white">
-      <div className="flex items-center md:w-3/4 mx-auto pt-2 pb-6 pl-6 md:pl-0">
-        <h2 className="mb-0 pr-4 text-gray-600 text-base uppercase">Filters</h2>
+      <div className="flex items-center md:w-3/4 mx-auto pt-2 pb-6 pl-3 md:pl-0">
+        <h2 className="mb-0 pr-4 text-gray-600 text-base uppercase hidden lg:inline">
+          Filters
+        </h2>
 
         {filterCategoryNames.map(name => (
           <SecondaryButton
             attributes={{ 'data-filter': name }}
-            className="mr-8"
+            className="mr-4 lg:mr-8"
             decoration={
               <MenuCarat
                 color="#322baa"
