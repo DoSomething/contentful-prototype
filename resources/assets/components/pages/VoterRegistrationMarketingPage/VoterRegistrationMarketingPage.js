@@ -3,6 +3,7 @@ import React from 'react';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
 import {
   contentfulImageUrl,
   contentfulImageSrcset,
@@ -19,6 +20,9 @@ const srcset = contentfulImageSrcset(coverImage, [
 
 const logo =
   'https://images.ctfassets.net/81iqaqpfd8fy/SeD5JGpeLfF9BDoDPwwEu/1969bd8c18a1dc67720d9e10e3d4640b/Niche-logo---Horizontal-white.png';
+
+const source = 'marketing-partner';
+const sourceDetails = 'niche';
 
 const VoterRegistrationMarketingPage = () => (
   <>
@@ -58,6 +62,14 @@ const VoterRegistrationMarketingPage = () => (
           >
             Take 2 minutes to register to vote at your current address.
           </h2>
+
+          <StartVoterRegistrationForm
+            className="max-w-lg m-auto"
+            contextSource="voter-registration-marketing-page"
+            buttonText="Get Started"
+            source={source}
+            sourceDetails={sourceDetails}
+          />
         </div>
 
         <SocialShareTray
