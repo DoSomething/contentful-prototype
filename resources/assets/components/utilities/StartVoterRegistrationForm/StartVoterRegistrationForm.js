@@ -18,6 +18,7 @@ const StartVoterRegistrationForm = ({
   contextSource,
   groupId,
   referrerUserId,
+  source,
   sourceDetails,
 }) => {
   const [email, setEmail] = useState('');
@@ -64,7 +65,12 @@ const StartVoterRegistrationForm = ({
           <input
             type="hidden"
             name="source"
-            value={getTrackingSource(sourceDetails, referrerUserId, groupId)}
+            value={getTrackingSource(
+              source,
+              sourceDetails,
+              referrerUserId,
+              groupId,
+            )}
             data-testid="voter-registration-tracking-source"
           />
 
@@ -126,6 +132,7 @@ StartVoterRegistrationForm.propTypes = {
   contextSource: PropTypes.string.isRequired,
   groupId: PropTypes.number,
   referrerUserId: PropTypes.string,
+  source: PropTypes.string,
   sourceDetails: PropTypes.string.isRequired,
 };
 
@@ -135,6 +142,7 @@ StartVoterRegistrationForm.defaultProps = {
   className: null,
   groupId: null,
   referrerUserId: null,
+  source: null,
 };
 
 export default StartVoterRegistrationForm;
