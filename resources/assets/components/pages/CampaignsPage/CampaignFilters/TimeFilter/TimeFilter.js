@@ -10,10 +10,10 @@ import ElementButton from '../../../../utilities/Button/ElementButton';
 
 const timeCommitmentLabels = {
   "'<0.083'": '< 5 minutes',
-  "'<0.5'": '< 30 minutes',
-  '0.5-1.0': '30 minutes - 1 hour',
   '1.0-3.0': '1 - 3 hours',
+  "'<0.5'": '< 30 minutes',
   '3.0+': '3+ hours',
+  '0.5-1.0': '30 minutes - 1 hour',
 };
 
 /**
