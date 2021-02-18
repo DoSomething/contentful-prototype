@@ -7,6 +7,7 @@ import ErrorPage from '../ErrorPage';
 import triangle from './triangle.svg';
 import gqlVariables from './config';
 import NotFoundPage from '../NotFoundPage';
+import Card from '../../utilities/Card/Card';
 import Placeholder from '../../utilities/Placeholder';
 import { isDevEnvironment } from '../../../helpers/env';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
@@ -104,11 +105,16 @@ const QuizResultPage = ({ id }) => {
                 <p className="mb-6 text-lg text-center">
                   Take 2 minutes and register online now with your state.
                 </p>
-                <StartVoterRegistrationForm
-                  contextSource="voter-registration-quiz-results-page"
-                  className="md:mx-auto xl:w-4/5 pb-3"
-                  sourceDetails={additionalContent.sourceDetails}
-                />
+                <Card
+                  title="Register to Vote"
+                  className="pb-3 md:mx-auto xl:w-4/5 bg-gray-100 border-none rounded"
+                >
+                  <StartVoterRegistrationForm
+                    className="mx-auto xl:w-4/5"
+                    contextSource="voter-registration-quiz-results-page"
+                    sourceDetails={additionalContent.sourceDetails}
+                  />
+                </Card>
               </div>
             ) : null}
 
