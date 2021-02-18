@@ -35,7 +35,6 @@ module.exports = function(migration) {
       },
       {
         assetFileSize: {
-          min: null,
           max: 20971520,
         },
       },
@@ -50,7 +49,16 @@ module.exports = function(migration) {
     .type('Array')
     .localized(false)
     .required(false)
-    .validations([])
+    .validations([
+      {
+        size: {
+          min: 7,
+          max: 7,
+        },
+
+        message: 'Please add exactly seven campaigns',
+      },
+    ])
     .disabled(false)
     .omitted(false)
     .items({
@@ -99,7 +107,13 @@ module.exports = function(migration) {
     .omitted(false);
   homePage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {});
   homePage.changeFieldControl('title', 'builtin', 'singleLine', {});
-  homePage.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {});
+
+  homePage.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
+    helpText:
+      'Cover image to display as background for the top banner on the home page.',
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
+  });
 
   homePage.changeFieldControl('campaigns', 'builtin', 'entryLinksEditor', {
     helpText:
@@ -112,6 +126,8 @@ module.exports = function(migration) {
   homePage.changeFieldControl('articles', 'builtin', 'entryLinksEditor', {
     helpText: 'Add articles (Page entries) to showcase on the home page.',
     bulkEditing: false,
+    showLinkEntityAction: true,
+    showCreateEntityAction: true,
   });
 
   homePage.changeFieldControl(
