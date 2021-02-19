@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { css } from '@emotion/core';
 import React, { useState } from 'react';
 
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
-import PrimaryButton from '../Button/PrimaryButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
+import { tailwind, colorLuminance } from '../../../helpers/display';
 import { getTrackingSource } from '../../../helpers/voter-registration';
 
 const StartVoterRegistrationForm = ({
+  buttonColor,
   buttonText,
   campaignId,
   className,
@@ -96,27 +98,34 @@ const StartVoterRegistrationForm = ({
         />
       </div>
 
-      <PrimaryButton
-        attributes={{ 'data-testid': 'voter-registration-submit-button' }}
-        className="w-full flex justify-center"
-        isDisabled={isDisabled}
-        text={
-          submitted ? (
-            <>
-              <Spinner />
-              <span className="pl-1 pt-1">Processing...</span>
-            </>
-          ) : (
-            buttonText
-          )
-        }
+      <button
+        data-testid="voter-registration-submit-button"
+        className="btn w-full flex justify-center"
+        css={css`
+          background-color: ${buttonColor};
+
+          :hover {
+            background-color: ${colorLuminance(buttonColor, '0.1')};
+          }
+        `}
+        disabled={isDisabled || submitted}
         type="submit"
-      />
+      >
+        {submitted ? (
+          <>
+            <Spinner />
+            <span className="pl-1 pt-1">Processing...</span>
+          </>
+        ) : (
+          buttonText
+        )}
+      </button>
     </form>
   );
 };
 
 StartVoterRegistrationForm.propTypes = {
+  buttonColor: PropTypes.string,
   buttonText: PropTypes.string,
   campaignId: PropTypes.number,
   className: PropTypes.string,
@@ -128,6 +137,7 @@ StartVoterRegistrationForm.propTypes = {
 };
 
 StartVoterRegistrationForm.defaultProps = {
+  buttonColor: tailwind('colors.blurple')['500'],
   buttonText: 'Start Registration',
   campaignId: null,
   className: null,
