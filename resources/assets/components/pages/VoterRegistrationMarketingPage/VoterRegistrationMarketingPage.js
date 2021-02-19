@@ -24,6 +24,8 @@ const logo =
 const source = 'marketing-partner';
 const sourceDetails = 'niche';
 
+const buttonColor = '#f2714c';
+
 const VoterRegistrationMarketingPage = () => (
   <>
     <SiteNavigationContainer />
@@ -67,6 +69,7 @@ const VoterRegistrationMarketingPage = () => (
             className="max-w-lg m-auto"
             contextSource="voter-registration-marketing-page"
             buttonText="Get Started"
+            buttonColor={buttonColor}
             source={source}
             sourceDetails={sourceDetails}
           />
