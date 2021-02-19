@@ -22,7 +22,7 @@ const ElementButton = ({
 }) => {
   return (
     <button
-      className={classnames('btn flex', className, {
+      className={classnames('btn flex justify-center', className, {
         'is-loading': isLoading,
       })}
       disabled={isDisabled || isLoading}
