@@ -1,8 +1,8 @@
-# Badges
+# Rewards
 
 ## Overview
 
-Badges are awarded to users based on actions they have taken.
+Our rewards page lets users know how many badges they've earned, and what level they have reached based on those badges! Badges are awarded to users based on actions they have taken.
 
 ## Current Badges
 
@@ -21,7 +21,7 @@ Unless specified, badges will only show up in the Badges tab of the user profile
 
 ### Profile
 
-Users will have a "Badges" tab in their profile. Clicking on a badge pulls up a modal which gives more information on how a badge was earned or how to earn it.
+Users will have a "Rewards" tab in their profile. Clicking on a badge pulls up a modal which gives more information on how a badge was earned or how to earn it.
 
 ![Badges Tab In Profile Example](../../.gitbook/assets/badges-tab.png)
 
@@ -64,9 +64,15 @@ There is currently no easy way for an admin to see which badges a user has, thou
 
 In this version all users are able to see badges within their profile, but the other aspects of version 1 remain in tact (calculating on the fly, etc).
 
-### Badges Version 2
+### Badges Version 2 aka Levels
 
-Coming soon!
+In the next iteration of badges, we are also rolling out different levels of membership that users can reach! Because of this, we're considering the "badges" tab the "rewards" tab. Users can now use the badges they accumulate to get special rewards to use on our site. In this first iteration of "rewards," users will gain additional scholarship entries on campaigns they participate in that have a scholarhsip attached.
+
+### Current Levels
+
+-   **Doer** - Achieved after receiving 2 badges.
+-   **SuperDoer** - Achieved after receiving 4 badges.
+-   **Legend** - Achieved after receiving 6 or more badges.
 
 ### Retired Badges (badges in a past life)
 

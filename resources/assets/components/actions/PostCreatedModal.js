@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Query from '../Query';
 import Card from '../utilities/Card/Card';
 import Modal from '../utilities/Modal/Modal';
-import Badge from '../pages/AccountPage/Badges/Badge';
+import Badge from '../pages/AccountPage/Rewards/Badge';
 import TextContent from '../utilities/TextContent/TextContent';
 
 const POST_COUNT_BADGE = gql`

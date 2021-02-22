@@ -32,7 +32,11 @@ const AccountNavigation = () => (
         Campaigns
       </NavigationLink>
       <NavigationLink
-        to="/us/account/badges"
+        to={
+          featureFlag('rewards_levels')
+            ? '/us/account/rewards'
+            : '/us/account/badges'
+        }
         onClick={() =>
           handleAccountNavTabClick(
             featureFlag('rewards_levels') ? 'rewards' : 'badges',
