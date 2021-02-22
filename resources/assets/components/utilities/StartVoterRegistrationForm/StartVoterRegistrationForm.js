@@ -101,7 +101,6 @@ const StartVoterRegistrationForm = ({
 
       <ElementButton
         className="w-full"
-        data-testid="voter-registration-submit-button"
         attributes={{
           css: css`
             background-color: ${buttonColor};
@@ -110,8 +109,9 @@ const StartVoterRegistrationForm = ({
               background-color: ${colorLuminance(buttonColor, 10)};
             }
           `,
+          'data-testid': 'voter-registration-submit-button',
         }}
-        disabled={isDisabled || submitted}
+        isDisabled={isDisabled || submitted}
         type="submit"
         text={
           submitted ? (
