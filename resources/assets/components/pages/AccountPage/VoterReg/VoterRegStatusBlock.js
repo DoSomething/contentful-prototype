@@ -93,6 +93,7 @@ const VoterRegStatusBlock = ({ userId }) => {
         <p>We don&#39;t have your voter registration.</p>
         <a
           href={`https://vote.dosomething.org/?r=${getTrackingSource(
+            'web',
             'profile',
           )}`}
           target="_blank"

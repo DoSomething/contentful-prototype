@@ -127,7 +127,6 @@ const VoterRegistrationDrivePage = () => {
             customProps={{ ContentBlock: { fullWidth: true } }}
           />
           <StartVoterRegistrationForm
-            betaPage
             className="grid-wide-3/10"
             campaignId={campaignId}
             contextSource="beta-voter-registration-drive-page"
