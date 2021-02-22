@@ -76,4 +76,13 @@ describe('User Account Rewards Tab', () => {
     cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/rewards`);
     cy.findByTestId('rewards-tab-faq').should('have.length', 1);
   });
+
+  /** @test */
+  it('Hits the correct URL with feature flag set to false', () => {
+    const user = userFactory();
+
+    cy.login(user);
+    cy.withFeatureFlags({ rewards_levels: false }).visit(`/us/account/badges`);
+    cy.findByTestId('rewards-tab-faq').should('have.length', 0);
+  });
 });
