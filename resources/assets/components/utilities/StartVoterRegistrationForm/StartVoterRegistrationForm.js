@@ -105,7 +105,7 @@ const StartVoterRegistrationForm = ({
           background-color: ${buttonColor};
 
           :hover {
-            background-color: ${colorLuminance(buttonColor, '0.1')};
+            background-color: ${colorLuminance(buttonColor, 10)};
           }
         `}
         disabled={isDisabled || submitted}
