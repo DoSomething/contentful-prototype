@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Credits from '../Credits/Credits';
 import Profile from '../Profile/Profile';
-import BadgesTab from '../Badges/BadgesTab';
+import RewardsTab from '../Rewards/RewardsTab';
 import Interests from '../Interests/Interests';
 import UserPostsQuery from '../Campaigns/UserPostsQuery';
 import DeleteAccountTab from '../Profile/DeleteAccountTab';
@@ -18,7 +18,7 @@ const AccountRoute = props => (
       render={() => <UserPostsQuery userId={props.userId} />}
     />
 
-    <Route path="/us/account/badges" render={() => <BadgesTab {...props} />} />
+    <Route path="/us/account/badges" render={() => <RewardsTab {...props} />} />
 
     <Route path="/us/account/credits" component={Credits} />
 
