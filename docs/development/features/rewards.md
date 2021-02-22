@@ -2,7 +2,7 @@
 
 ## Overview
 
-Our rewards page let's users know how many badges they've earned, and what level they have reached based on those badges! Badges are awarded to users based on actions they have taken.
+Our rewards page lets users know how many badges they've earned, and what level they have reached based on those badges! Badges are awarded to users based on actions they have taken.
 
 ## Current Badges
 
