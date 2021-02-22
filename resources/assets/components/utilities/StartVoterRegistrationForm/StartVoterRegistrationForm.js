@@ -7,6 +7,7 @@ import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
+import ElementButton from '../Button/ElementButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import { tailwind, colorLuminance } from '../../../helpers/display';
 import { getTrackingSource } from '../../../helpers/voter-registration';
@@ -98,28 +99,31 @@ const StartVoterRegistrationForm = ({
         />
       </div>
 
-      <button
+      <ElementButton
+        className="w-full"
         data-testid="voter-registration-submit-button"
-        className="btn w-full flex justify-center"
-        css={css`
-          background-color: ${buttonColor};
+        attributes={{
+          css: css`
+            background-color: ${buttonColor};
 
-          :hover {
-            background-color: ${colorLuminance(buttonColor, 10)};
-          }
-        `}
+            :hover {
+              background-color: ${colorLuminance(buttonColor, 10)};
+            }
+          `,
+        }}
         disabled={isDisabled || submitted}
         type="submit"
-      >
-        {submitted ? (
-          <>
-            <Spinner />
-            <span className="pl-1 pt-1">Processing...</span>
-          </>
-        ) : (
-          buttonText
-        )}
-      </button>
+        text={
+          submitted ? (
+            <>
+              <Spinner />
+              <span className="pl-1 pt-1">Processing...</span>
+            </>
+          ) : (
+            buttonText
+          )
+        }
+      />
     </form>
   );
 };
