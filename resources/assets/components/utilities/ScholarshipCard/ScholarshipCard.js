@@ -1,5 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import { propType } from 'graphql-anywhere';
 
 import GalleryBlockSignup from './GalleryBlockSignup';
@@ -122,6 +123,11 @@ const ScholarshipCard = ({ campaign, sixpackConvertOnClick }) => {
 
 ScholarshipCard.propTypes = {
   campaign: propType(scholarshipCardFragment).isRequired,
+  sixpackConvertOnClick: PropTypes.bool,
+};
+
+ScholarshipCard.defaultProps = {
+  sixpackConvertOnClick: false,
 };
 
 export default ScholarshipCard;

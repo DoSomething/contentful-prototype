@@ -31,12 +31,7 @@ export const SEARCH_USER_CAMPAIGN_QUERY = gql`
   }
 `;
 
-const GalleryBlockSignup = ({
-  path,
-  campaignId,
-  campaignTitle,
-  sixpackConvertOnClick,
-}) => {
+const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
   const {
     data: campaignData,
     loading: loadingCampaign,
@@ -94,13 +89,6 @@ const GalleryBlockSignup = ({
         });
   };
 
-  const handleClick = () => {
-    sixpack().convertOnAction('galleryBlockClick');
-    campaignData && campaignData.signups.length
-      ? handleViewApplicationButtonClick
-      : handleScholarshipCardShareClick;
-  };
-
   const handleViewApplicationButtonClick = () => {
     trackAnalyticsEvent('clicked_scholarship_gallery_block_view_application', {
       action: 'button_clicked',
@@ -111,6 +99,13 @@ const GalleryBlockSignup = ({
         ...getPageContext(),
       },
     });
+  };
+
+  const handleClick = () => {
+    sixpack().convertOnAction('galleryBlockClick');
+    return campaignData && campaignData.signups.length
+      ? handleViewApplicationButtonClick
+      : handleScholarshipCardShareClick;
   };
 
   useEffect(() => {
@@ -149,13 +144,11 @@ const GalleryBlockSignup = ({
 };
 
 GalleryBlockSignup.propTypes = {
-  sixpackConvertOnClick: PropTypes.bool,
   campaignId: PropTypes.number,
   campaignTitle: PropTypes.string,
   path: PropTypes.string,
 };
 GalleryBlockSignup.defaultProps = {
-  sixpackConvertOnClick: false,
   campaignId: null,
   campaignTitle: null,
   path: null,
