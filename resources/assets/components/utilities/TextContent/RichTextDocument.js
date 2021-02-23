@@ -22,13 +22,13 @@ const RichTextDocument = ({
   styles,
 }) => (
   <div className={classnames('richtext', className)}>
-    {parseRichTextDocument(
-      children,
+    {parseRichTextDocument({
+      document: children,
       classNameByEntry,
       classNameByEntryDefault,
       styles,
       customProps,
-    )}
+    })}
   </div>
 );
 
