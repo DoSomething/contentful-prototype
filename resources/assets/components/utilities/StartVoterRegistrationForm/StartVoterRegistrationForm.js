@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { css } from '@emotion/core';
 import React, { useState } from 'react';
 
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
-import PrimaryButton from '../Button/PrimaryButton';
+import ElementButton from '../Button/ElementButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
+import { tailwind, colorLuminance } from '../../../helpers/display';
 import { getTrackingSource } from '../../../helpers/voter-registration';
 
 const StartVoterRegistrationForm = ({
+  buttonColor,
   buttonText,
   campaignId,
   className,
@@ -96,10 +99,20 @@ const StartVoterRegistrationForm = ({
         />
       </div>
 
-      <PrimaryButton
-        attributes={{ 'data-testid': 'voter-registration-submit-button' }}
-        className="w-full flex justify-center"
-        isDisabled={isDisabled}
+      <ElementButton
+        className="w-full"
+        attributes={{
+          css: css`
+            background-color: ${buttonColor};
+
+            :hover {
+              background-color: ${colorLuminance(buttonColor, 10)};
+            }
+          `,
+          'data-testid': 'voter-registration-submit-button',
+        }}
+        isDisabled={isDisabled || submitted}
+        type="submit"
         text={
           submitted ? (
             <>
@@ -110,13 +123,13 @@ const StartVoterRegistrationForm = ({
             buttonText
           )
         }
-        type="submit"
       />
     </form>
   );
 };
 
 StartVoterRegistrationForm.propTypes = {
+  buttonColor: PropTypes.string,
   buttonText: PropTypes.string,
   campaignId: PropTypes.number,
   className: PropTypes.string,
@@ -128,6 +141,7 @@ StartVoterRegistrationForm.propTypes = {
 };
 
 StartVoterRegistrationForm.defaultProps = {
+  buttonColor: tailwind('colors.blurple')['500'],
   buttonText: 'Start Registration',
   campaignId: null,
   className: null,
