@@ -127,6 +127,7 @@ const VoterRegistrationMarketingPageTemplate = ({
           <SectionBlock
             {...content}
             classNameByEntryDefault="grid-narrow"
+            customProps={{ ContentBlock: { fullWidth: true } }}
           />
         </article>
       </main>

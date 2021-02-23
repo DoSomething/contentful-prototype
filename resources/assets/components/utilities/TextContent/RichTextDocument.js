@@ -18,6 +18,7 @@ const RichTextDocument = ({
   className = null,
   classNameByEntry,
   classNameByEntryDefault,
+  customProps,
   styles,
 }) => (
   <div className={classnames('richtext', className)}>
@@ -26,6 +27,7 @@ const RichTextDocument = ({
       classNameByEntry,
       classNameByEntryDefault,
       styles,
+      customProps,
     )}
   </div>
 );
@@ -35,6 +37,7 @@ RichTextDocument.propTypes = {
   className: PropTypes.string,
   classNameByEntry: PropTypes.object,
   classNameByEntryDefault: PropTypes.string,
+  customProps: PropTypes.object,
   styles: PropTypes.shape({
     textColor: PropTypes.string,
     hyperlinkColor: PropTypes.string,
@@ -46,6 +49,7 @@ RichTextDocument.defaultProps = {
   className: null,
   classNameByEntry: {},
   classNameByEntryDefault: null,
+  customProps: {},
   styles: {},
 };
 

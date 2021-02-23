@@ -110,6 +110,7 @@ export function parseRichTextDocument(
   classNameByEntry,
   classNameByEntryDefault,
   styles,
+  customProps,
 ) {
   const hyperlinkColor = get(styles, 'hyperlinkColor', null);
   const textColor = get(styles, 'textColor', null);
@@ -209,6 +210,7 @@ export function parseRichTextDocument(
           className={classnames('component-entry', 'mb-6')}
           classNameByEntry={classNameByEntry}
           classNameByEntryDefault={classNameByEntryDefault}
+          customProps={customProps}
           id={node.data.target.sys.id}
         />
       ),
