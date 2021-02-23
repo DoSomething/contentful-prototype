@@ -27,6 +27,7 @@ exports[`ContentBlock component does not include SectionHeader when there's no t
         className={null}
         classNameByEntry={Object {}}
         classNameByEntryDefault={null}
+        customProps={Object {}}
         styles={Object {}}
       >
         Test Content
@@ -68,6 +69,7 @@ exports[`ContentBlock component renders proper child components when image is se
         className={null}
         classNameByEntry={Object {}}
         classNameByEntryDefault={null}
+        customProps={Object {}}
         styles={Object {}}
       >
         Test Content
@@ -92,6 +94,7 @@ exports[`ContentBlock component works beautifully with content and an empty imag
         className={null}
         classNameByEntry={Object {}}
         classNameByEntryDefault={null}
+        customProps={Object {}}
         styles={Object {}}
       >
         hi there
