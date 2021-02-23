@@ -50,17 +50,17 @@ export const VOTER_REGISTRATION_MARKETING_PAGE_QUERY = gql`
 
 const VoterRegistrationMarketingPageTemplate = ({
   bannerBackgroundColor,
-  title,
-  titleColor,
-  subTitle,
-  subTitleColor,
+  content,
   coverImage,
-  voterRegistrationFormButtonText,
-  voterRegistrationFormButtonColor,
   logo,
   source,
   sourceDetails,
-  content,
+  subTitle,
+  subTitleColor,
+  title,
+  titleColor,
+  voterRegistrationFormButtonText,
+  voterRegistrationFormButtonColor,
 }) => {
   const srcset = contentfulImageSrcset(coverImage.url, [
     { height: 250, width: 250 },
@@ -140,35 +140,35 @@ const VoterRegistrationMarketingPageTemplate = ({
 };
 
 VoterRegistrationMarketingPageTemplate.propTypes = {
-  title: PropTypes.string.isRequired,
-  titleColor: PropTypes.string,
-  subTitle: PropTypes.string.isRequired,
-  subTitleColor: PropTypes.string,
+  bannerBackgroundColor: PropTypes.string,
+  content: PropTypes.object.isRequired,
   coverImage: PropTypes.shape({
     url: PropTypes.string.isRequired,
     description: PropTypes.string,
   }).isRequired,
-  bannerBackgroundColor: PropTypes.string,
-  content: PropTypes.object.isRequired,
-  voterRegistrationFormButtonText: PropTypes.string,
-  voterRegistrationFormButtonColor: PropTypes.string,
   logo: PropTypes.shape({
     url: PropTypes.string.isRequired,
     description: PropTypes.string,
   }),
   source: PropTypes.string,
   sourceDetails: PropTypes.string,
+  subTitle: PropTypes.string.isRequired,
+  subTitleColor: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  titleColor: PropTypes.string,
+  voterRegistrationFormButtonText: PropTypes.string,
+  voterRegistrationFormButtonColor: PropTypes.string,
 };
 
 VoterRegistrationMarketingPageTemplate.defaultProps = {
   bannerBackgroundColor: null,
-  titleColor: null,
-  subTitleColor: null,
-  voterRegistrationFormButtonText: null,
-  voterRegistrationFormButtonColor: null,
   logo: {},
   source: 'web',
   sourceDetails: 'voter_registration_marketing_page',
+  subTitleColor: null,
+  titleColor: null,
+  voterRegistrationFormButtonText: null,
+  voterRegistrationFormButtonColor: null,
 };
 
 const VoterRegistrationMarketingPage = ({ slug }) => (
