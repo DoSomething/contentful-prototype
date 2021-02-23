@@ -1,5 +1,8 @@
 import React from 'react';
+import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
+import PageQuery from '../PageQuery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -9,83 +12,156 @@ import {
   contentfulImageSrcset,
 } from '../../../helpers/contentful';
 
-const coverImage =
-  'https://images.ctfassets.net/81iqaqpfd8fy/2bdz45WOkQRw0X0bzS6DJ6/0d3af059a19eec329c34aa2935866810/general-scholarship-1910px.png';
+export const VOTER_REGISTRATION_MARKETING_PAGE_QUERY = gql`
+  query VoterRegistrationMarketingPageQuery(
+    $slug: String!
+    $preview: Boolean!
+  ) {
+    page: voterRegistrationMarketingPageBySlug(slug: $slug, preview: $preview) {
+      slug
+      coverImage {
+        url
+        description
+      }
+      logo {
+        url
+        description
+      }
+      title
+      titleColor
+      subTitle
+      subTitleColor
+      voterRegistrationFormButtonText
+      voterRegistrationFormButtonColor
+      source
+      sourceDetails
+    }
+  }
+`;
 
-const srcset = contentfulImageSrcset(coverImage, [
-  { height: 250, width: 250 },
-  { height: 250, width: 800 },
-  { height: 450, width: 1400 },
-]);
+const VoterRegistrationMarketingPageTemplate = ({
+  title,
+  titleColor,
+  subTitle,
+  subTitleColor,
+  coverImage,
+  voterRegistrationFormButtonText,
+  voterRegistrationFormButtonColor,
+  logo,
+  source,
+  sourceDetails,
+}) => {
+  const srcset = contentfulImageSrcset(coverImage.url, [
+    { height: 250, width: 250 },
+    { height: 250, width: 800 },
+    { height: 450, width: 1400 },
+  ]);
 
-const logo =
-  'https://images.ctfassets.net/81iqaqpfd8fy/SeD5JGpeLfF9BDoDPwwEu/1969bd8c18a1dc67720d9e10e3d4640b/Niche-logo---Horizontal-white.png';
+  return (
+    <>
+      <SiteNavigationContainer />
 
-const source = 'marketing-partner';
-const sourceDetails = 'niche';
-
-const buttonColor = '#f2714c';
-
-const VoterRegistrationMarketingPage = () => (
-  <>
-    <SiteNavigationContainer />
-
-    <main>
-      <article>
-        <img
-          data-testid="vr-marketing-page-banner-image"
-          srcSet={srcset}
-          src={contentfulImageUrl(coverImage, '1400', '450', 'fill')}
-          alt=""
-        />
-
-        <div
-          data-testid="vr-marketing-page-banner-main"
-          style={{ backgroundColor: '#309450' }}
-          className="p-4"
-        >
+      <main>
+        <article>
           <img
-            data-testid="vr-marketing-page-banner-logo"
-            className="m-auto"
-            src={contentfulImageUrl(logo, '250', '60')}
-            alt="Niche Logo"
+            data-testid="vr-marketing-page-banner-image"
+            srcSet={srcset}
+            src={contentfulImageUrl(coverImage.url, '1400', '450', 'fill')}
+            alt={coverImage.description || ''}
           />
 
-          <h1
-            data-testid="vr-marketing-page-banner-title"
-            className="md:leading-none text-white text-center uppercase font-league-gothic font-normal text-5xl md:text-6xl"
+          <div
+            data-testid="vr-marketing-page-banner-main"
+            style={{ backgroundColor: '#309450' }}
+            className="p-4"
           >
-            Niche wants you to vote
-          </h1>
+            <img
+              data-testid="vr-marketing-page-banner-logo"
+              className="m-auto"
+              src={contentfulImageUrl(logo.url, '250', '60')}
+              alt={logo.description || ''}
+            />
 
-          <h2
-            data-testid="vr-marketing-page-banner-subtitle"
-            className="text-white text-center text-lg"
-          >
-            Take 2 minutes to register to vote at your current address.
-          </h2>
+            <h1
+              data-testid="vr-marketing-page-banner-title"
+              className="md:leading-none text-white text-center uppercase font-league-gothic font-normal text-5xl md:text-6xl"
+              style={{ color: titleColor }}
+            >
+              {title}
+            </h1>
 
-          <StartVoterRegistrationForm
-            className="max-w-lg m-auto"
-            contextSource="voter-registration-marketing-page"
-            buttonText="Get Started"
-            buttonColor={buttonColor}
-            source={source}
-            sourceDetails={sourceDetails}
+            <h2
+              data-testid="vr-marketing-page-banner-subtitle"
+              className="text-white text-center text-lg"
+              style={{ color: subTitleColor }}
+            >
+              {subTitle}
+            </h2>
+
+            <StartVoterRegistrationForm
+              className="max-w-lg m-auto"
+              contextSource="voter-registration-marketing-page"
+              buttonText={voterRegistrationFormButtonText}
+              buttonColor={voterRegistrationFormButtonColor}
+              source={source}
+              sourceDetails={sourceDetails}
+            />
+          </div>
+
+          <SocialShareTray
+            className="text-center"
+            // Pass through the current URL without the query parameters.
+            shareLink={`${window.location.origin}${window.location.pathname}`}
+            platforms={['facebook', 'twitter']}
           />
-        </div>
+        </article>
+      </main>
 
-        <SocialShareTray
-          className="text-center"
-          // Pass through the current URL without the query parameters.
-          shareLink={`${window.location.origin}${window.location.pathname}`}
-          platforms={['facebook', 'twitter']}
-        />
-      </article>
-    </main>
+      <SiteFooter />
+    </>
+  );
+};
 
-    <SiteFooter />
-  </>
+VoterRegistrationMarketingPageTemplate.propTypes = {
+  title: PropTypes.string.isRequired,
+  titleColor: PropTypes.string,
+  subTitle: PropTypes.string.isRequired,
+  subTitleColor: PropTypes.string,
+  coverImage: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    description: PropTypes.string,
+  }).isRequired,
+  voterRegistrationFormButtonText: PropTypes.string,
+  voterRegistrationFormButtonColor: PropTypes.string,
+  logo: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    description: PropTypes.string,
+  }),
+  source: PropTypes.string,
+  sourceDetails: PropTypes.string,
+};
+
+VoterRegistrationMarketingPageTemplate.defaultProps = {
+  titleColor: null,
+  subTitleColor: null,
+  voterRegistrationFormButtonText: null,
+  voterRegistrationFormButtonColor: null,
+  logo: {},
+  source: 'web',
+  sourceDetails: 'voter_registration_marketing_page',
+};
+
+const VoterRegistrationMarketingPage = ({ slug }) => (
+  <PageQuery
+    query={VOTER_REGISTRATION_MARKETING_PAGE_QUERY}
+    variables={{ slug }}
+  >
+    {page => <VoterRegistrationMarketingPageTemplate {...page} />}
+  </PageQuery>
 );
+
+VoterRegistrationMarketingPage.propTypes = {
+  slug: PropTypes.string.isRequired,
+};
 
 export default VoterRegistrationMarketingPage;
