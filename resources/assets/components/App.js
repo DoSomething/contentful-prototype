@@ -16,6 +16,7 @@ import HomePage from './pages/HomePage/HomePage';
 import { env, featureFlag } from '../helpers/env';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
+import JoinUsPage from './pages/JoinUsPage/JoinUsPage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
@@ -124,6 +125,8 @@ const App = ({ store, history }) => {
                   <CompanyPage slug={routeProps.match.params.slug} />
                 )}
               />
+
+              <Route path="/us/join-us" component={JoinUsPage} />
 
               <Route path="/us/join" component={BetaReferralPage} />
 

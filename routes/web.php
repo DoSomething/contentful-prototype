@@ -68,6 +68,9 @@ Route::get('{category}/{slug}', function ($category, $slug) {
     return redirect('us/'.$category.'/'.$slug);
 })->where('category', $categories);
 
+// Join Us
+Route::view('us/join-us', 'app');
+
 // Referral Pages
 Route::get('us/join', 'ReferralPageController@show');
 Route::view('us/refer-friends', 'app')
