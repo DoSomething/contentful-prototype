@@ -438,13 +438,13 @@ const HomePageTemplate = ({
                 Sponsors
               </h2>
               <ul>
-                {sponsors.map(affiliate => (
-                  <li key={affiliate.title} className="inline-block mx-6 my-3">
+                {sponsors.map(sponsor => (
+                  <li key={sponsor.title} className="inline-block mx-6 my-3">
                     <img
                       className="opacity-25"
-                      src={contentfulImageUrl(affiliate.logo.url, '125', '40')}
-                      title={affiliate.title}
-                      alt={affiliate.title}
+                      src={contentfulImageUrl(sponsor.logo.url, '125', '40')}
+                      title={sponsor.title}
+                      alt={sponsor.title}
                     />
                   </li>
                 ))}
