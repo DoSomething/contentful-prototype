@@ -95,6 +95,26 @@ module.exports = function(migration) {
     .linkType('Asset');
 
   voterRegistrationMarketingPage
+    .createField('bannerBackgroundColor')
+    .name('Banner Background Color')
+    .type('Symbol')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        regexp: {
+          pattern: '^#[0-9a-f]{6}$',
+          flags: 'i',
+        },
+
+        message:
+          'Hexadecimal value, must start with a "#" and follow it with 6 characters.',
+      },
+    ])
+    .disabled(false)
+    .omitted(false);
+
+  voterRegistrationMarketingPage
     .createField('logo')
     .name('Logo')
     .type('Link')
@@ -285,6 +305,15 @@ module.exports = function(migration) {
       helpText: 'Featured image atop the banner of the page.',
       showLinkEntityAction: true,
       showCreateEntityAction: true,
+    },
+  );
+
+  voterRegistrationMarketingPage.changeFieldControl(
+    'bannerBackgroundColor',
+    'builtin',
+    'singleLine',
+    {
+      helpText: 'The background color for the banner.',
     },
   );
 

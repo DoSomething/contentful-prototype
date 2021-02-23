@@ -26,6 +26,7 @@ export const VOTER_REGISTRATION_MARKETING_PAGE_QUERY = gql`
         url
         description
       }
+      bannerBackgroundColor
       logo {
         url
         description
@@ -48,6 +49,7 @@ export const VOTER_REGISTRATION_MARKETING_PAGE_QUERY = gql`
 `;
 
 const VoterRegistrationMarketingPageTemplate = ({
+  bannerBackgroundColor,
   title,
   titleColor,
   subTitle,
@@ -81,7 +83,7 @@ const VoterRegistrationMarketingPageTemplate = ({
 
           <div
             data-testid="vr-marketing-page-banner-main"
-            style={{ backgroundColor: '#309450' }}
+            style={{ backgroundColor: bannerBackgroundColor }}
             className="p-4"
           >
             <img
@@ -146,6 +148,7 @@ VoterRegistrationMarketingPageTemplate.propTypes = {
     url: PropTypes.string.isRequired,
     description: PropTypes.string,
   }).isRequired,
+  bannerBackgroundColor: PropTypes.string,
   content: PropTypes.object.isRequired,
   voterRegistrationFormButtonText: PropTypes.string,
   voterRegistrationFormButtonColor: PropTypes.string,
@@ -158,6 +161,7 @@ VoterRegistrationMarketingPageTemplate.propTypes = {
 };
 
 VoterRegistrationMarketingPageTemplate.defaultProps = {
+  bannerBackgroundColor: null,
   titleColor: null,
   subTitleColor: null,
   voterRegistrationFormButtonText: null,
