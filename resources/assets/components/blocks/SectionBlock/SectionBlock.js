@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -6,6 +7,15 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 
 import './section-block.scss';
+
+export const SectionBlockFragment = gql`
+  fragment SectionBlockFragment on SectionBlock {
+    id
+    backgroundColor
+    textColor
+    content
+  }
+`;
 
 const SectionBlock = props => {
   const {

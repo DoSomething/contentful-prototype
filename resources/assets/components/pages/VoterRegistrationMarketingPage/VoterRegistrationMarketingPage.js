@@ -11,6 +11,9 @@ import {
   contentfulImageUrl,
   contentfulImageSrcset,
 } from '../../../helpers/contentful';
+import SectionBlock, {
+  SectionBlockFragment,
+} from '../../blocks/SectionBlock/SectionBlock';
 
 export const VOTER_REGISTRATION_MARKETING_PAGE_QUERY = gql`
   query VoterRegistrationMarketingPageQuery(
@@ -33,10 +36,15 @@ export const VOTER_REGISTRATION_MARKETING_PAGE_QUERY = gql`
       subTitleColor
       voterRegistrationFormButtonText
       voterRegistrationFormButtonColor
+      content {
+        ...SectionBlockFragment
+      }
       source
       sourceDetails
     }
   }
+
+  ${SectionBlockFragment}
 `;
 
 const VoterRegistrationMarketingPageTemplate = ({
@@ -50,6 +58,7 @@ const VoterRegistrationMarketingPageTemplate = ({
   logo,
   source,
   sourceDetails,
+  content,
 }) => {
   const srcset = contentfulImageSrcset(coverImage.url, [
     { height: 250, width: 250 },
@@ -114,6 +123,11 @@ const VoterRegistrationMarketingPageTemplate = ({
             shareLink={`${window.location.origin}${window.location.pathname}`}
             platforms={['facebook', 'twitter']}
           />
+
+          <SectionBlock
+            {...content}
+            classNameByEntryDefault="grid-narrow"
+          />
         </article>
       </main>
 
@@ -131,6 +145,7 @@ VoterRegistrationMarketingPageTemplate.propTypes = {
     url: PropTypes.string.isRequired,
     description: PropTypes.string,
   }).isRequired,
+  content: PropTypes.object.isRequired,
   voterRegistrationFormButtonText: PropTypes.string,
   voterRegistrationFormButtonColor: PropTypes.string,
   logo: PropTypes.shape({
