@@ -105,10 +105,10 @@ const ShowSubmissionPage = ({ match }) => {
                 We Got Your Submission
               </h1>
 
-              {campaignId === 9108 || campaignId === 9001 ? (
+              {
                 <SixpackExperiment
                   internalTitle="thank you page engagement"
-                  convertableActions={['reportbackPost']}
+                  convertableActions={['galleryBlockClick']}
                   control={
                     <ShortLinkShareContainer
                       testName="with social share container"
@@ -119,7 +119,7 @@ const ShowSubmissionPage = ({ match }) => {
                     <span testName="without social share container" />,
                   ]}
                 />
-              ) : null}
+              }
 
               {id ? (
                 <Query
@@ -150,6 +150,7 @@ const ShowSubmissionPage = ({ match }) => {
 
             <RecommendedCampaignsGallery
               excludeCampaignIds={campaignId ? [Number(campaignId)] : []}
+              sixpackConvertOnClick
             />
           </div>
         </div>
