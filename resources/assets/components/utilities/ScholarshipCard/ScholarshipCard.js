@@ -33,7 +33,7 @@ export const scholarshipCardFragment = gql`
   }
 `;
 
-const ScholarshipCard = ({ campaign }) => {
+const ScholarshipCard = ({ campaign, sixpackConvertOnClick }) => {
   // Destructure all the pieces out of the campaign
   const {
     showcaseTitle,
@@ -110,9 +110,10 @@ const ScholarshipCard = ({ campaign }) => {
           </div>{' '}
         </div>
         <GalleryBlockSignup
+          path={path}
           campaignId={campaignId}
           campaignTitle={showcaseTitle}
-          path={path}
+          sixpackConvertOnClick={sixpackConvertOnClick}
         />{' '}
       </div>{' '}
     </article>

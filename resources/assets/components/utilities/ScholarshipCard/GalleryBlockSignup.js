@@ -11,6 +11,7 @@ import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
   getPageContext,
+  sixpack,
 } from '../../../helpers/analytics';
 
 export const CREATE_SIGNUP_MUTATION = gql`
@@ -30,7 +31,12 @@ export const SEARCH_USER_CAMPAIGN_QUERY = gql`
   }
 `;
 
-const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
+const GalleryBlockSignup = ({
+  path,
+  campaignId,
+  campaignTitle,
+  sixpackConvertOnClick,
+}) => {
   const {
     data: campaignData,
     loading: loadingCampaign,
@@ -88,6 +94,13 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
         });
   };
 
+  const handleClick = () => {
+    sixpack().convertOnAction('galleryBlockClick');
+    campaignData && campaignData.signups.length
+      ? handleViewApplicationButtonClick
+      : handleScholarshipCardShareClick;
+  };
+
   const handleViewApplicationButtonClick = () => {
     trackAnalyticsEvent('clicked_scholarship_gallery_block_view_application', {
       action: 'button_clicked',
@@ -130,21 +143,19 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
           : 'Apply Now'
       }
       href={path}
-      onClick={
-        campaignData && campaignData.signups.length
-          ? handleViewApplicationButtonClick
-          : handleScholarshipCardShareClick
-      }
+      onClick={handleClick}
     />
   );
 };
 
 GalleryBlockSignup.propTypes = {
+  sixpackConvertOnClick: PropTypes.bool,
   campaignId: PropTypes.number,
   campaignTitle: PropTypes.string,
   path: PropTypes.string,
 };
 GalleryBlockSignup.defaultProps = {
+  sixpackConvertOnClick: false,
   campaignId: null,
   campaignTitle: null,
   path: null,
