@@ -3,7 +3,6 @@
 namespace App\Entities;
 
 use JsonSerializable;
-use Illuminate\Support\Str;
 
 class VoterRegistrationMarketingPage extends Entity implements JsonSerializable
 {
