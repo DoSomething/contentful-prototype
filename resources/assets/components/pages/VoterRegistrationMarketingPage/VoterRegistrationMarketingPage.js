@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
+import { withoutNulls } from '../../../helpers/data';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -178,7 +179,7 @@ const VoterRegistrationMarketingPage = ({ slug }) => (
     query={VOTER_REGISTRATION_MARKETING_PAGE_QUERY}
     variables={{ slug }}
   >
-    {page => <VoterRegistrationMarketingPageTemplate {...page} />}
+    {page => <VoterRegistrationMarketingPageTemplate {...withoutNulls(page)} />}
   </PageQuery>
 );
 
