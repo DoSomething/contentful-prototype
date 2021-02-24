@@ -86,12 +86,14 @@ const VoterRegistrationMarketingPageTemplate = ({
             style={{ backgroundColor: bannerBackgroundColor }}
             className="p-4"
           >
-            <img
-              data-testid="vr-marketing-page-banner-logo"
-              className="m-auto"
-              src={contentfulImageUrl(logo.url, '250', '60')}
-              alt={logo.description || ''}
-            />
+            {logo.url ? (
+              <img
+                data-testid="vr-marketing-page-banner-logo"
+                className="m-auto"
+                src={contentfulImageUrl(logo.url, '250', '60')}
+                alt={logo.description || ''}
+              />
+            ) : null}
 
             <h1
               data-testid="vr-marketing-page-banner-title"
