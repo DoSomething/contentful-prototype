@@ -102,15 +102,19 @@ function getMarkdownItInstance() {
  * Parse RichText Document to React components.
  *
  * @param  {Object} document
+ * @param  {Object} classNameByEntry
+ * @param  {String} classNameByEntryDefault
  * @param  {Object} styles
+ * @param  {Object} customProps
  * @return {String}
  */
-export function parseRichTextDocument(
+export function parseRichTextDocument({
   document,
   classNameByEntry,
   classNameByEntryDefault,
   styles,
-) {
+  customProps,
+}) {
   const hyperlinkColor = get(styles, 'hyperlinkColor', null);
   const textColor = get(styles, 'textColor', null);
   const fontSize = get(styles, 'fontSize', null);
@@ -209,6 +213,7 @@ export function parseRichTextDocument(
           className={classnames('component-entry', 'mb-6')}
           classNameByEntry={classNameByEntry}
           classNameByEntryDefault={classNameByEntryDefault}
+          customProps={customProps}
           id={node.data.target.sys.id}
         />
       ),

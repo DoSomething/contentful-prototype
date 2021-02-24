@@ -141,7 +141,11 @@ const App = ({ store, history }) => {
 
               <Route
                 path="/us/vote/:slug"
-                component={VoterRegistrationMarketingPage}
+                render={routeProps => (
+                  <VoterRegistrationMarketingPage
+                    slug={routeProps.match.params.slug}
+                  />
+                )}
               />
 
               <Route path="/us/refer-friends" component={AlphaReferralPage} />
