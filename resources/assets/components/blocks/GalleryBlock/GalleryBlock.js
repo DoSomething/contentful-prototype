@@ -52,13 +52,7 @@ export const GalleryBlockFragment = gql`
   ${ExternalLinkBlockFragment}
 `;
 
-const renderBlock = (
-  blockType,
-  block,
-  imageAlignment,
-  imageFit,
-  sixpackConvertOnClick,
-) => {
+const renderBlock = (blockType, block, imageAlignment, imageFit) => {
   const fields = withoutNulls(block);
 
   switch (blockType) {
@@ -71,13 +65,7 @@ const renderBlock = (
       return <CampaignCard key={block.id} campaign={fields} />;
 
     case 'SCHOLARSHIP':
-      return (
-        <ScholarshipCard
-          key={block.id}
-          campaign={fields}
-          sixpackConvertOnClick={sixpackConvertOnClick}
-        />
-      );
+      return <ScholarshipCard key={block.id} campaign={fields} />;
 
     case 'PAGE':
     case 'Page':
@@ -126,7 +114,6 @@ const GalleryBlock = props => {
     itemsPerRow,
     imageAlignment,
     imageFit,
-    sixpackConvertOnClick,
   } = props;
 
   const galleryLayout = galleryLayouts[itemsPerRow];
@@ -144,7 +131,6 @@ const GalleryBlock = props => {
             block,
             imageAlignment.toLowerCase(),
             imageFit.toLowerCase(),
-            sixpackConvertOnClick,
           ),
         )}
       </Gallery>
@@ -166,14 +152,12 @@ GalleryBlock.propTypes = {
   itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
   imageAlignment: PropTypes.oneOf(['TOP', 'LEFT']).isRequired,
   imageFit: PropTypes.oneOf(['FILL', 'PAD']),
-  sixpackConvertOnClick: PropTypes.bool,
 };
 
 GalleryBlock.defaultProps = {
   title: null,
   imageFit: 'FILL',
   galleryType: null,
-  sixpackConvertOnClick: false,
 };
 
 export default GalleryBlock;

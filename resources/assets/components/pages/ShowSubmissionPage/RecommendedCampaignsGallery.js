@@ -33,10 +33,7 @@ const SCHOLARSHIP_CAMPAIGNS_QUERY = gql`
   ${scholarshipCardFragment}
 `;
 
-const RecommendedCampaignsGallery = ({
-  excludeCampaignIds,
-  sixpackConvertOnClick,
-}) => (
+const RecommendedCampaignsGallery = ({ excludeCampaignIds }) => (
   <Query
     query={SCHOLARSHIP_CAMPAIGNS_QUERY}
     variables={{
@@ -54,7 +51,6 @@ const RecommendedCampaignsGallery = ({
         galleryType="SCHOLARSHIP"
         itemsPerRow={3}
         imageAlignment="LEFT"
-        sixpackConvertOnClick={sixpackConvertOnClick}
       />
     )}
   </Query>
@@ -62,12 +58,10 @@ const RecommendedCampaignsGallery = ({
 
 RecommendedCampaignsGallery.propTypes = {
   excludeCampaignIds: PropTypes.arrayOf(PropTypes.number),
-  sixpackConvertOnClick: PropTypes.bool,
 };
 
 RecommendedCampaignsGallery.defaultProps = {
   excludeCampaignIds: [],
-  sixpackConvertOnClick: false,
 };
 
 export default RecommendedCampaignsGallery;

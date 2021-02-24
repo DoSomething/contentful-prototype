@@ -10,6 +10,7 @@ import Query from '../../Query';
 import { env } from '../../../helpers/env';
 import { query } from '../../../helpers/url';
 import { getUserId } from '../../../helpers/auth';
+import { sixpack } from '../../../helpers/analytics';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
@@ -150,7 +151,7 @@ const ShowSubmissionPage = ({ match }) => {
 
             <RecommendedCampaignsGallery
               excludeCampaignIds={campaignId ? [Number(campaignId)] : []}
-              sixpackConvertOnClick
+              onClick={() => sixpack().convertOnAction('galleryBlockClick')}
             />
           </div>
         </div>
