@@ -100,12 +100,6 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
     });
   };
 
-  const handleClick = () => {
-    return campaignData && campaignData.signups.length
-      ? handleViewApplicationButtonClick
-      : handleScholarshipCardShareClick;
-  };
-
   useEffect(() => {
     // If we're returning from the authentication flow with a "flashed" campaign ID, complete the signup:
     if (isAuthenticated() && flash.campaignId === campaignId) {
@@ -136,7 +130,11 @@ const GalleryBlockSignup = ({ path, campaignId, campaignTitle }) => {
           : 'Apply Now'
       }
       href={path}
-      onClick={handleClick}
+      onClick={
+        campaignData && campaignData.signups.length
+          ? handleViewApplicationButtonClick
+          : handleScholarshipCardShareClick
+      }
     />
   );
 };
