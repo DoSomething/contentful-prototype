@@ -39,6 +39,7 @@ const SectionBlock = props => {
     <section
       id={id}
       className={classnames('section-block', className)}
+      data-testid="section-block"
       style={{ backgroundColor }}
     >
       <AnalyticsWaypoint name="section_block-top" context={{ blockId: id }} />
