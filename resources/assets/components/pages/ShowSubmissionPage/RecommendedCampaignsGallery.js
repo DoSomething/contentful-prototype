@@ -44,7 +44,7 @@ const RecommendedCampaignsGallery = ({ excludeCampaignIds, onClick }) => (
     }}
   >
     {result => (
-      <div onClick={onClick}>
+      <div role="button" tabIndex={result} onClick={onClick}>
         <GalleryBlock
           blocks={(get(result, 'campaigns.edges') || []).map(
             edge => edge.node.campaignWebsite,
