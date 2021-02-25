@@ -61,12 +61,12 @@ const StartVoterRegistrationForm = ({
       <input
         type="hidden"
         name="source"
-        value={getTrackingSource(
+        value={getTrackingSource({
           source,
           sourceDetails,
           referrerUserId,
           groupId,
-        )}
+        })}
         data-testid="voter-registration-tracking-source"
       />
 
