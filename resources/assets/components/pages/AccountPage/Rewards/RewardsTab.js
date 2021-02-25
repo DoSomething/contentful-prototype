@@ -129,7 +129,7 @@ const badgeModalContent = {
   },
 };
 
-class BadgesTab extends React.Component {
+class RewardsTab extends React.Component {
   constructor(props) {
     super(props);
 
@@ -196,7 +196,10 @@ class BadgesTab extends React.Component {
         <p className="text-gray-600">
           Earn badges and rewards for making a difference.
         </p>
-        <ul data-testid="badges-list" className="gallery-grid-sextet -mx-3">
+        <ul
+          data-testid="badges-list"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 -mx-3 px-2"
+        >
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
             {data => (
               <li>
@@ -414,8 +417,8 @@ class BadgesTab extends React.Component {
   }
 }
 
-BadgesTab.propTypes = {
+RewardsTab.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-export default BadgesTab;
+export default RewardsTab;

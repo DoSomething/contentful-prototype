@@ -18,7 +18,7 @@ const linkBlock = (sourceDetails, hasAsset = true) => {
     title: faker.company.bsBuzz(),
     content: faker.lorem.sentence(),
     additionalContent: sourceDetails ? { sourceDetails } : null,
-    affilliateLogo: hasAsset ? { id: '2KfkCOTi7u4CqAyyCuGyci' } : null,
+    affiliateLogo: hasAsset ? { id: '2KfkCOTi7u4CqAyyCuGyci' } : null,
   };
 };
 
@@ -39,7 +39,7 @@ describe('Quiz Result Page', () => {
 
   /** @test */
   it('Renders GraphQL title, header asset, content', () => {
-    const block = linkBlock(null);
+    const block = linkBlock('sourceDetails');
     const imageUrl = faker.image.imageUrl();
 
     cy.mockGraphqlOp('QuizResultPageQuery', {
@@ -62,7 +62,7 @@ describe('Quiz Result Page', () => {
 
   it('Does not display header image if asset is null', () => {
     cy.mockGraphqlOp('QuizResultPageQuery', {
-      block: linkBlock(null, false),
+      block: linkBlock('sourceDetails', false),
     });
 
     cy.visit(quizResultPath);

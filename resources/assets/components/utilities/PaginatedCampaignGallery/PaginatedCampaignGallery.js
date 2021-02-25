@@ -62,6 +62,7 @@ const SEARCH_CAMPAIGNS_QUERY = gql`
     $isOnline: Boolean
     $isOpen: Boolean
     $orderBy: String
+    $timeCommitments: [String]
   ) {
     campaigns: searchCampaigns(
       actionTypes: $actionTypes
@@ -74,6 +75,7 @@ const SEARCH_CAMPAIGNS_QUERY = gql`
       isOnline: $isOnline
       isOpen: $isOpen
       orderBy: $orderBy
+      timeCommitments: $timeCommitments
     ) {
       edges {
         cursor

@@ -255,7 +255,7 @@ const CertificateTemplate = ({ certificatePost }) => {
               <View style={{ width: '50%' }}>
                 <Image
                   src={signature}
-                  style={{ width: 60, marginVertical: -12, marginLeft: -3 }}
+                  style={{ width: 100, marginVertical: -12 }}
                 />
               </View>
 
@@ -274,17 +274,15 @@ const CertificateTemplate = ({ certificatePost }) => {
             <View style={[styles.flex, { lineHeight: 1.1 }]}>
               <View style={{ width: '50%' }}>
                 <Text style={{ marginTop: 10, fontWeight: 'bold' }}>
-                  Sahara Lake
+                  Alisha Mikluch
                 </Text>
-                <Text style={{ fontStyle: 'italic' }}>
-                  Senior Manager, Community Impact
-                </Text>
+                <Text style={{ fontStyle: 'italic' }}>Campaign Lead</Text>
               </View>
 
               <View style={{ width: '50%' }}>
                 <Text style={{ marginTop: 10, textAlign: 'right' }}>
                   For questions and verification issues, please reach out to
-                  Sahara at {'\n'}
+                  Alisha at {'\n'}
                   <Text style={{ fontWeight: 'bold' }}>
                     volunteer@dosomething.org
                   </Text>{' '}

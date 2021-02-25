@@ -13,6 +13,7 @@ import classnames from 'classnames';
 const ElementButton = ({
   attributes,
   className,
+  decoration,
   isDisabled,
   isLoading,
   onClick,
@@ -21,13 +22,16 @@ const ElementButton = ({
 }) => {
   return (
     <button
-      className={classnames('btn', className, { 'is-loading': isLoading })}
+      className={classnames('btn flex justify-center', className, {
+        'is-loading': isLoading,
+      })}
       disabled={isDisabled || isLoading}
       onClick={onClick}
       type={type}
       {...attributes}
     >
       {text}
+      {decoration}
     </button>
   );
 };
@@ -35,6 +39,7 @@ const ElementButton = ({
 ElementButton.propTypes = {
   attributes: PropTypes.object,
   className: PropTypes.string,
+  decoration: PropTypes.object,
   isDisabled: PropTypes.bool,
   isLoading: PropTypes.bool,
   onClick: PropTypes.func,
@@ -45,6 +50,7 @@ ElementButton.propTypes = {
 ElementButton.defaultProps = {
   attributes: {},
   className: null,
+  decoration: null,
   isDisabled: false,
   isLoading: false,
   onClick: null,

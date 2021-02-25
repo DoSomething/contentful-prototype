@@ -15,6 +15,7 @@ const CampaignsIndexPage = () => {
       ? {
           causes: [],
           actions: { actionTypes: [], isOnline: null },
+          time: [],
         }
       : {
           causes: [],
@@ -27,7 +28,7 @@ const CampaignsIndexPage = () => {
 
       <main>
         <div className="bg-white border-b border-gray-300 border-solid mb-6 pt-6 md:pt-10">
-          <h1 className="md:w-3/4 mx-auto mt-6 md:mb-2 text-xl pl-6 md:pl-0">
+          <h1 className="md:w-3/4 mx-auto mt-6 md:mb-2 text-xl pl-3 md:pl-0">
             Explore Campaigns
           </h1>
           <FilterNavigation filters={filters} setFilters={setFilters} />
@@ -45,6 +46,7 @@ const CampaignsIndexPage = () => {
               // potentially concatenate all filters to single array 🤔
               causes: get(filters, 'causes', []),
               actionTypes: get(filters, 'actions.actionTypes', []),
+              timeCommitments: get(filters, 'time', []),
             }}
           />
         </div>

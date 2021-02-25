@@ -5,7 +5,6 @@ import { css } from '@emotion/core';
 import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
-import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
 import { featureFlag } from '../../../helpers/env';
 import { tailwind } from '../../../helpers/display';
@@ -41,6 +40,12 @@ const HOME_PAGE_QUERY = gql`
       }
       articles {
         ...PageCard
+      }
+      sponsors {
+        title
+        logo {
+          url
+        }
       }
       additionalContent
     }
@@ -127,7 +132,13 @@ NewsletterItem.propTypes = {
  *
  * @param {Object}
  */
-const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
+const HomePageTemplate = ({
+  articles,
+  campaigns,
+  coverImage,
+  title,
+  sponsors,
+}) => {
   const tailwindGray = tailwind('colors.gray');
   const tailwindTeal = tailwind('colors.teal');
   const homePageAnchorTag = css`
@@ -427,13 +438,13 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 Sponsors
               </h2>
               <ul>
-                {sponsorList.map(sponsor => (
-                  <li key={sponsor.name} className="inline-block mx-6 my-3">
+                {sponsors.map(sponsor => (
+                  <li key={sponsor.title} className="inline-block mx-6 my-3">
                     <img
                       className="opacity-25"
-                      src={contentfulImageUrl(sponsor.image, '125', '40')}
-                      title={sponsor.name}
-                      alt={sponsor.name}
+                      src={contentfulImageUrl(sponsor.logo.url, '125', '40')}
+                      title={sponsor.title}
+                      alt={sponsor.title}
                     />
                   </li>
                 ))}
@@ -507,6 +518,7 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 HomePageTemplate.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.object),
   campaigns: PropTypes.arrayOf(PropTypes.object),
+  sponsors: PropTypes.arrayOf(PropTypes.object),
   coverImage: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }),
@@ -514,6 +526,7 @@ HomePageTemplate.propTypes = {
 };
 
 HomePageTemplate.defaultProps = {
+  sponsors: null,
   articles: null,
   campaigns: null,
   coverImage: null,

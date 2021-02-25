@@ -240,7 +240,7 @@ const ScholarshipInfoBlock = ({
               className="flex items-center focus:outline-none"
               onClick={toggleHiddenInfo}
             >
-              <p className="text-sm font-bold pr-2">{`${detailsLabel} Details`}</p>
+              <p className="text-sm font-bold">{`${detailsLabel} Details`}</p>
               <MenuCarat
                 cssStyles={
                   drawerOpen
