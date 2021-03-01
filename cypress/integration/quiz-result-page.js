@@ -23,7 +23,13 @@ const linkBlock = (sourceDetails, hasAsset = true) => {
 };
 
 describe('Quiz Result Page', () => {
-  beforeEach(() => cy.configureMocks());
+  beforeEach(() => {
+    cy.configureMocks();
+
+    cy.mockGraphqlOp('ContentfulBlockQuery', {
+      block: null,
+    });
+  });
 
   /** @test */
   it('Renders NotFound if GraphQL query does not return a block', () => {
