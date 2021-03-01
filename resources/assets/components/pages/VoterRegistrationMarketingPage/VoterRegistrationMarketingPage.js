@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
+import { withoutNulls } from '../../../helpers/data';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -86,12 +87,14 @@ const VoterRegistrationMarketingPageTemplate = ({
             style={{ backgroundColor: bannerBackgroundColor }}
             className="p-4"
           >
-            <img
-              data-testid="vr-marketing-page-banner-logo"
-              className="m-auto"
-              src={contentfulImageUrl(logo.url, '250', '60')}
-              alt={logo.description || ''}
-            />
+            {logo.url ? (
+              <img
+                data-testid="vr-marketing-page-banner-logo"
+                className="m-auto"
+                src={contentfulImageUrl(logo.url, '250', '60')}
+                alt={logo.description || ''}
+              />
+            ) : null}
 
             <h1
               data-testid="vr-marketing-page-banner-title"
@@ -176,7 +179,7 @@ const VoterRegistrationMarketingPage = ({ slug }) => (
     query={VOTER_REGISTRATION_MARKETING_PAGE_QUERY}
     variables={{ slug }}
   >
-    {page => <VoterRegistrationMarketingPageTemplate {...page} />}
+    {page => <VoterRegistrationMarketingPageTemplate {...withoutNulls(page)} />}
   </PageQuery>
 );
 

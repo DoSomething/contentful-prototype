@@ -54,11 +54,15 @@ Example:
 
 > vote.dosomething.org/covid19?r=campaignID:8017,campaignRunID:8022,source:web,source_details:VoterRegQuiz_completed_notsure
 
-### Influencers
+### Influencers / Marketing Partners
 
 We host customized voter registration drives for influencers on our Instapage, by creating pages like https://vote.dosomething.org/NoorAldayeh on Instapage and passing a relevant tracking source when redirecting to the RTV registration site:
 
 > source:influencer,source_details:noor_aldayeh
+
+We've started porting over our influencer & marketing-pertner Instapages over to our own website.
+
+The pages are powered by the Voter Registration Marketing Page Contentful content-type.
 
 ## Content types
 
@@ -82,7 +86,7 @@ The Voter Widget is hosted on BallotReady - for 2020 we subscribed to maintain o
 
 ### Start Voter Registration Form
 
-The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the [Voter Registration Drive Page](#voter-registration-drive-page) and the [Quiz Result Page](#quiz-result-page) components.
+The `StartVoterRegistrationForm` component displays form fields for email and zip, and redirects a user directly to the RTV registration site upon submitting. It's currently hardcoded on the [Voter Registration Drive Page](#voter-registration-drive-page) and the [Quiz Result Page](#quiz-result-page) components, and displayed on [Voter Registration Marketing Pages](development/content-types/voter-registration-marketing-page.md).
 
 A `clicked_voter_registration_action` analytics event is fired when the user submits the form to continue their voter registration on the RTV registration site.
 

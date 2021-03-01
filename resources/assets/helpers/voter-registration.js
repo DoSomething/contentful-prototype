@@ -46,12 +46,12 @@ export function getGoalInfo(goalAmount, completedAmount) {
  * @param {Number} groupId
  * @return {String}
  */
-export function getTrackingSource(
+export function getTrackingSource({
   source,
   sourceDetails,
   referrerUserId,
   groupId,
-) {
+}) {
   const utms = getUtms();
 
   // Append UTMs to source_details value if they exist.
