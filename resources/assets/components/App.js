@@ -140,7 +140,11 @@ const App = ({ store, history }) => {
                 component={VoterRegistrationDrivePage}
               />
 
-              <Route path="/us/vote" component={VoterRegistrationLandingPage} />
+              <Route
+                exact
+                path="/us/vote"
+                component={VoterRegistrationLandingPage}
+              />
 
               <Route
                 path="/us/vote/:slug"
