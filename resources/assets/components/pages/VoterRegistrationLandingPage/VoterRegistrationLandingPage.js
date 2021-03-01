@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import voteBoxImage from './vote-box.png';
+import { query } from '../../../helpers/url';
 import voteStickerImage from './vote-sticker.png';
 import registerToVoteImage from './register-to-vote.png';
 import Details from '../../utilities/FaqElements/Details';
@@ -56,6 +57,7 @@ const VoterRegistrationLandingPage = () => (
             contextSource="voter-registration-marketing-page"
             buttonColor="#322ba9"
             buttonText="Get Started"
+            rQueryParam={query('r')}
           />
 
           <img
@@ -130,9 +132,10 @@ const VoterRegistrationLandingPage = () => (
 
             <DetailsParagraph>
               It depends on your state. In most states, YES. In all but a few
-              states, you can register to vote if you're younger than 18, as
-              long as you’ll be 18 by Election Day. In others, you may need to
-              be a certain age to register even if you'll be 18 by Election Day.
+              states, you can register to vote if you&apos;re younger than 18,
+              as long as you’ll be 18 by Election Day. In others, you may need
+              to be a certain age to register even if you&apos;ll be 18 by
+              Election Day.
             </DetailsParagraph>
 
             <DetailsParagraph className="mt-0">
@@ -161,7 +164,7 @@ const VoterRegistrationLandingPage = () => (
 
             <DetailsParagraph className="mt-0">
               Some states even let 17-year-olds vote in primary elections if
-              they'll be 18 by the general election --{' '}
+              they&apos;ll be 18 by the general election --{' '}
               <MarkdownLink
                 href="https://www.fairvote.org/facts_17_year_old_primary_voting"
                 text="see if you qualify here."
