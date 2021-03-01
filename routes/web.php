@@ -77,6 +77,7 @@ Route::view('us/refer-friends', 'app')
 Route::view('us/blocks/{id}', 'app');
 
 // Voter Registration Pages
+Route::get('us/vote', 'VoterRegistrationLandingPageController@show');
 Route::get('us/vote/{slug}', 'VoterRegistrationMarketingPageController@show');
 
 // Voter Registration Drives
