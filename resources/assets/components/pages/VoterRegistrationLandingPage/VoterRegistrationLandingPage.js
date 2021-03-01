@@ -32,7 +32,7 @@ const VoterRegistrationLandingPage = () => (
     <SiteNavigationContainer />
 
     <main className="bg-white">
-      <article>
+      <article data-testid="vr-landing-page">
         <img
           className="m-auto mt-5 max-w-full md:max-w-lg"
           src={registerToVoteImage}
