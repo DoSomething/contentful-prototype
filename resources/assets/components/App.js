@@ -32,6 +32,7 @@ import PopoverDispatcher from './utilities/PopoverDispatcher/PopoverDispatcher';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
 import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/VoterRegistrationDrivePage';
+import VoterRegistrationLandingPage from './pages/VoterRegistrationLandingPage/VoterRegistrationLandingPage';
 import VoterRegistrationMarketingPage from './pages/VoterRegistrationMarketingPage/VoterRegistrationMarketingPage';
 
 const App = ({ store, history }) => {
@@ -137,6 +138,12 @@ const App = ({ store, history }) => {
               <Route
                 path="/us/my-voter-registration-drive"
                 component={VoterRegistrationDrivePage}
+              />
+
+              <Route
+                exact
+                path="/us/vote"
+                component={VoterRegistrationLandingPage}
               />
 
               <Route

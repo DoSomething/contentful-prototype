@@ -20,6 +20,7 @@ const StartVoterRegistrationForm = ({
   contextSource,
   groupId,
   referrerUserId,
+  rQueryParam,
   source,
   sourceDetails,
 }) => {
@@ -61,12 +62,16 @@ const StartVoterRegistrationForm = ({
       <input
         type="hidden"
         name="source"
-        value={getTrackingSource({
-          source,
-          sourceDetails,
-          referrerUserId,
-          groupId,
-        })}
+        value={
+          // Allow historic ?r= query parameters to be tracked via source. Defaults to formalized source parsing.
+          rQueryParam ||
+          getTrackingSource({
+            source,
+            sourceDetails,
+            referrerUserId,
+            groupId,
+          })
+        }
         data-testid="voter-registration-tracking-source"
       />
 
@@ -136,6 +141,7 @@ StartVoterRegistrationForm.propTypes = {
   contextSource: PropTypes.string.isRequired,
   groupId: PropTypes.number,
   referrerUserId: PropTypes.string,
+  rQueryParam: PropTypes.string,
   source: PropTypes.string,
   sourceDetails: PropTypes.string.isRequired,
 };
@@ -147,6 +153,7 @@ StartVoterRegistrationForm.defaultProps = {
   className: null,
   groupId: null,
   referrerUserId: null,
+  rQueryParam: null,
   source: 'web',
 };
 

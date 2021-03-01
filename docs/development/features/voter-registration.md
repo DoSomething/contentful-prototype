@@ -54,6 +54,8 @@ Example:
 
 > vote.dosomething.org/covid19?r=campaignID:8017,campaignRunID:8022,source:web,source_details:VoterRegQuiz_completed_notsure
 
+We've started the process of transitioning to a new voting portal hosted directly on our site at `/us/vote`. The Tracking Source used for the voter registration form on this page functions as described above in [Tracking Source]('#tracking-source'). In the event that an `r` query parameter is present in the URL we'll include that value as the tracking source instead.
+
 ### Influencers / Marketing Partners
 
 We host customized voter registration drives for influencers on our Instapage, by creating pages like https://vote.dosomething.org/NoorAldayeh on Instapage and passing a relevant tracking source when redirecting to the RTV registration site:
