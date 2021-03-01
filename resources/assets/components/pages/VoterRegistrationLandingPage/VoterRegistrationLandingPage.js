@@ -37,7 +37,7 @@ const VoterRegistrationLandingPage = () => (
         <img
           className="m-auto mt-5 max-w-full md:max-w-lg"
           src={registerToVoteImage}
-          alt="Colorful banner that says 'Register to vote'"
+          alt=""
         />
 
         <h1 className="mt-3 text-center text-lg" style={{ color: '#2f3db1' }}>
@@ -64,7 +64,7 @@ const VoterRegistrationLandingPage = () => (
             src={voteStickerImage}
             className="absolute hidden lg:block w-40 top-0"
             style={{ right: '7%' }}
-            alt="Decorative speech bubble that reads: 'vote'"
+            alt=""
           />
         </div>
 
@@ -292,7 +292,7 @@ const VoterRegistrationLandingPage = () => (
         <img
           src={weAreTheVotersImage}
           className="w-2/3 md:w-1/3 lg:w-2/12 m-auto"
-          alt="Group of stickers reading 'We Are the Voters' and '#2020 vision'"
+          alt=""
         />
       </article>
     </main>
