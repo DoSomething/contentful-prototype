@@ -7,6 +7,8 @@ import {
 } from '../../../helpers/analytics';
 import { query } from '../../../helpers/url';
 
+import './site-footer.scss';
+
 const SiteFooter = () => {
   // Hide footer if we're in "chromeless" mode, e.g. for an embed:
   if (query('chromeless')) {
