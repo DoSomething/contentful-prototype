@@ -1,5 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import { propType } from 'graphql-anywhere';
 
 import SecondaryButton from '../Button/SecondaryButton';
@@ -31,7 +32,7 @@ export const campaignCardFragment = gql`
   }
 `;
 
-const CampaignCard = ({ campaign }) => {
+const CampaignCard = ({ campaign, hasButton }) => {
   const {
     showcaseDescription,
     showcaseImage,
@@ -74,11 +75,13 @@ const CampaignCard = ({ campaign }) => {
 
         <p className="flex-grow">{showcaseDescription}</p>
 
-        <SecondaryButton
-          className="mt-4 w-full"
-          href={path}
-          text="Get Started"
-        />
+        {hasButton ? (
+          <SecondaryButton
+            className="mt-4 w-full"
+            href={path}
+            text="Get Started"
+          />
+        ) : null}
       </div>
     </article>
   );
@@ -86,6 +89,11 @@ const CampaignCard = ({ campaign }) => {
 
 CampaignCard.propTypes = {
   campaign: propType(campaignCardFragment).isRequired,
+  hasButton: PropTypes.bool,
+};
+
+CampaignCard.defaultProps = {
+  hasButton: false,
 };
 
 export default CampaignCard;
