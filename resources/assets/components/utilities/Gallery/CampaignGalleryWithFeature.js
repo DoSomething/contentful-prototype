@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import { tailwind } from '../../../helpers/display';
-import CampaignCard from '../../utilities/CampaignCard/CampaignCard';
-import CampaignCardFeatured from '../../utilities/CampaignCard/CampaignCardFeatured';
+import CampaignCard from '../CampaignCard/CampaignCard';
+import CampaignCardFeatured from '../CampaignCard/CampaignCardFeatured';
 
-const HomePageCampaignGallery = ({ campaigns }) => {
+const CampaignGalleryWithFeature = ({ campaigns, hasButton }) => {
   const tailwindSpacing = tailwind('spacing');
   const tailwindScreens = tailwind('screens');
 
@@ -44,9 +44,9 @@ const HomePageCampaignGallery = ({ campaigns }) => {
             `}
           >
             {firstItem ? (
-              <CampaignCardFeatured campaign={campaign} />
+              <CampaignCardFeatured campaign={campaign} hasButton={hasButton} />
             ) : (
-              <CampaignCard campaign={campaign} />
+              <CampaignCard campaign={campaign} hasButton={hasButton} />
             )}
           </li>
         );
@@ -55,8 +55,13 @@ const HomePageCampaignGallery = ({ campaigns }) => {
   );
 };
 
-HomePageCampaignGallery.propTypes = {
+CampaignGalleryWithFeature.propTypes = {
   campaigns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  hasButton: PropTypes.bool,
 };
 
-export default HomePageCampaignGallery;
+CampaignGalleryWithFeature.defaultProps = {
+  hasButton: false,
+};
+
+export default CampaignGalleryWithFeature;

@@ -12,10 +12,10 @@ import * as NewsletterImages from './NewsletterImages';
 import { isAuthenticated } from '../../../helpers/auth';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import HomePageCampaignGallery from './HomePageCampaignGallery';
 import { contentfulImageUrl } from '../../../helpers/contentful';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { pageCardFragment } from '../../utilities/PageCard/PageCard';
+import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
@@ -314,7 +314,7 @@ const HomePageTemplate = ({
                 </p>
                 */}
 
-                <HomePageCampaignGallery campaigns={campaigns} />
+                <CampaignGallery campaigns={campaigns} hasButton hasFeatured />
 
                 <PrimaryButton
                   attributes={{ 'data-label': 'campaign_section_show_more' }}

@@ -16,6 +16,7 @@ import HomePage from './pages/HomePage/HomePage';
 import { env, featureFlag } from '../helpers/env';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
+import AboutPage from './pages/AboutPage/AboutPage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
@@ -118,6 +119,8 @@ const App = ({ store, history }) => {
                   <CollectionPage slug={routeProps.match.params.slug} />
                 )}
               />
+
+              <Route exact path="/us/about" component={AboutPage} />
 
               <Route
                 path="/us/about/:slug"

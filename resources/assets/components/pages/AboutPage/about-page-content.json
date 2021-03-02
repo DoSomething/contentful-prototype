@@ -1,0 +1,61 @@
+{
+  "campaigns": [
+    {
+      "id": 1,
+      "showcaseDescription": "Donated over 1 million pairs of jeans in a single year, enough to clothe half of all US youth in homeless shelters.",
+      "showcaseImage": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+      },
+      "showcaseTitle": "Teens for Jeans",
+      "path": "/"
+    },
+    {
+      "id": 2,
+      "showcaseDescription": "Powered historic youth turnout by registering 118,706 new voters in 2018 alone.",
+      "showcaseImage": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+      },
+      "showcaseTitle": "Voter Registration",
+      "path": "/"
+    },
+    {
+      "id": 3,
+      "showcaseDescription": "Cleaned up 3.7 million cigarette butts to protect the planet.",
+      "showcaseImage": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+      },
+      "showcaseTitle": "Get the Filter Out (GTFO)",
+      "path": "/"
+    },
+    {
+      "id": 4,
+      "showcaseDescription": "Made and mailed 41,287 Happy Ramadan cards, which were distributed to every mosque in the US.",
+      "showcaseImage": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+      },
+      "showcaseTitle": "Sincerely, Us",
+      "path": "/"
+    },
+    {
+      "id": 5,
+      "showcaseDescription": "Donated 585,965 perido products to shelters in the first-ever national period product drive.",
+      "showcaseImage": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+      },
+      "showcaseTitle": "Power to the Period",
+      "path": "/"
+    },
+    {
+      "id": 6,
+      "showcaseDescription": "Created the largest crowdsourced LGBTQ+ ally guide.",
+      "showcaseImage": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+      },
+      "showcaseTitle": "Celebrate Pride!",
+      "path": "/"
+    }
+  ],
+  "coverImage": {
+    "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+  }
+}
