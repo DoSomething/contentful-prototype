@@ -1,15 +1,15 @@
 import { Fragment, React } from 'react';
 
+import content from './about-page-content.json';
 import { isAuthenticated } from '../../../helpers/auth';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
-import content from './about-page-content.json';
+import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 
 const AboutPageTemplate = () => {
-  console.log(content);
-
   return (
     <Fragment>
       <SiteNavigationContainer />
@@ -19,10 +19,32 @@ const AboutPageTemplate = () => {
           <header role="banner" className="bg-white">
             <AnalyticsWaypoint name="RENAME_section_top" />
 
-            <div>Jello!</div>
+            <div>Hello!</div>
 
             <AnalyticsWaypoint name="RENAME_section_bottom" />
           </header>
+
+          <section
+            className="base-12-grid bg-gray-100 py-8"
+            data-test="campaigns-section"
+          >
+            <AnalyticsWaypoint name="campaign_section_top" />
+
+            <StrikeThroughHeader title="Some Of Our Greatest Campaigns" />
+
+            <div className="grid-wide text-center">
+              <CampaignGallery campaigns={content.campaigns} />
+
+              <PrimaryButton
+                attributes={{ 'data-label': 'campaign_section_show_more' }}
+                className="mt-8 py-4 px-8 text-lg"
+                href="/us/campaigns"
+                text="See More Campaigns"
+              />
+            </div>
+
+            <AnalyticsWaypoint name="campaign_section_bottom" />
+          </section>
 
           {isAuthenticated() ? null : (
             <article
