@@ -98,7 +98,15 @@ const NewsletterItem = ({ content, image, link, title }) => (
     </a>
 
     <h3 className="mb-2">
-      <a className="text-white hover:text-yellow-300" href={link.url}>
+      <a
+        className="text-white font-bold no-underline hover:text-yellow-300"
+        href={link.url}
+        css={css`
+          &:hover {
+            text-decoration-color: ${tailwind('colors.yellow.300')};
+          }
+        `}
+      >
         {title}
       </a>
     </h3>
