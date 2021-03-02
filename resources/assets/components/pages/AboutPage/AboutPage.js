@@ -5,8 +5,11 @@ import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
+import content from './about-page-content.json';
 
-const JoinUsPageTemplate = () => {
+const AboutPageTemplate = () => {
+  console.log(content);
+
   return (
     <Fragment>
       <SiteNavigationContainer />
@@ -60,10 +63,10 @@ const JoinUsPageTemplate = () => {
   );
 };
 
-JoinUsPageTemplate.propTypes = {};
+AboutPageTemplate.propTypes = {};
 
-JoinUsPageTemplate.defaultProps = {};
+AboutPageTemplate.defaultProps = {};
 
-const JoinUsPage = () => <JoinUsPageTemplate />;
+const AboutPage = () => <AboutPageTemplate />;
 
-export default JoinUsPage;
+export default AboutPage;

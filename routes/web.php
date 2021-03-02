@@ -58,6 +58,8 @@ Route::get('search', function () {
 });
 
 // About pages
+
+Route::view('us/about', 'app');
 Route::view('us/about/{slug}', 'app');
 
 // Categorized Pages (articles, facts)
@@ -67,9 +69,6 @@ Route::get('us/{category}/{slug}', 'CategorizedPageController@show')->where('cat
 Route::get('{category}/{slug}', function ($category, $slug) {
     return redirect('us/'.$category.'/'.$slug);
 })->where('category', $categories);
-
-// Join Us
-Route::view('us/join-us', 'app');
 
 // Referral Pages
 Route::get('us/join', 'ReferralPageController@show');
