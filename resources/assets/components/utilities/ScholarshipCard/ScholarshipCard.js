@@ -80,9 +80,9 @@ const ScholarshipCard = ({ campaign }) => {
             Featured{' '}
           </div>
         ) : null}
-        <h1 className="font-bold mb-2 text-base">
+        <h1 className="mb-2 text-base">
           <a
-            className="text-blurple-500 hover:text-blurple-300 cursor-pointer"
+            className="font-bold no-underline hover:no-underline cursor-pointer"
             href={path}
           >
             {showcaseTitle}{' '}

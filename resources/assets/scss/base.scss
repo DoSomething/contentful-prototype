@@ -64,11 +64,11 @@ a > * {
 }
 
 // Updated baseline styling for links
-p > a {
+a {
     @apply font-normal underline text-blurple-500;
 
     &:hover {
-        @apply text-blurple-400;
+        color: theme('colors.blurple.300');
         text-decoration-color: theme('colors.teal.500');
     }
 }

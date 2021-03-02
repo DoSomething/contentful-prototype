@@ -103,6 +103,11 @@ $extraSmall: '(min-width: 360px)';
         display: block;
         font-weight: $weight-normal;
         padding: 8px 0;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
 
         @include media($large) {
             padding: 6px 0;
