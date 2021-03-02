@@ -246,6 +246,7 @@ $extraSmall: '(min-width: 360px)';
 .main-subnav__feature {
     display: block;
     font-weight: $weight-normal;
+    text-decoration: none;
 
     &:active,
     &:hover {
