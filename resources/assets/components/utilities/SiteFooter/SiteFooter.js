@@ -7,8 +7,6 @@ import {
 } from '../../../helpers/analytics';
 import { query } from '../../../helpers/url';
 
-import './site-footer.scss';
-
 const SiteFooter = () => {
   // Hide footer if we're in "chromeless" mode, e.g. for an embed:
   if (query('chromeless')) {
@@ -111,6 +109,7 @@ const SiteFooter = () => {
           <ul>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="https://join.dosomething.org/"
                 onClick={event =>
                   handleFooterTracking('who_we_are', event.target.href)
@@ -121,6 +120,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="/us/about/our-people"
                 onClick={event =>
                   handleFooterTracking('our_team', event.target.href)
@@ -131,6 +131,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="/us/about/our-financials"
                 onClick={event =>
                   handleFooterTracking('our_financials', event.target.href)
@@ -141,6 +142,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="/us/about/our-press"
                 onClick={event =>
                   handleFooterTracking('our_press', event.target.href)
@@ -151,6 +153,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="https://lets.dosomething.org/"
                 onClick={event =>
                   handleFooterTracking('articles', event.target.href)
@@ -161,6 +164,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="/us/about/contact-us"
                 onClick={event =>
                   handleFooterTracking('contact_us', event.target.href)
@@ -176,6 +180,7 @@ const SiteFooter = () => {
           <ul>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="http://dosomethingstrategic.org/"
                 onClick={event =>
                   handleFooterTracking('our_friends', event.target.href)
@@ -186,6 +191,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="/us/about/our-partners"
                 onClick={event =>
                   handleFooterTracking('our_partners', event.target.href)
@@ -196,6 +202,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="/us/about/hotline-list"
                 onClick={event =>
                   handleFooterTracking('crisis_hotlines', event.target.href)
@@ -211,6 +218,7 @@ const SiteFooter = () => {
           <ul>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="/us/about/volunteer-hours"
                 onClick={event =>
                   handleFooterTracking('volunteer_hours', event.target.href)
@@ -221,6 +229,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="/us/about/join-our-team"
                 onClick={event =>
                   handleFooterTracking('jobs', event.target.href)
@@ -231,6 +240,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="/us/about/internships"
                 onClick={event =>
                   handleFooterTracking('internships', event.target.href)
@@ -241,6 +251,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="/us/about/donate"
                 onClick={event =>
                   handleFooterTracking('donate', event.target.href)
@@ -251,6 +262,7 @@ const SiteFooter = () => {
             </li>
             <li>
               <a
+                className="font-bold no-underline hover:underline"
                 href="https://help.dosomething.org/hc/en-us"
                 onClick={event =>
                   handleFooterTracking('help_center', event.target.href)
@@ -266,6 +278,7 @@ const SiteFooter = () => {
         <ul>
           <li>
             <a
+              className="font-bold no-underline hover:underline"
               href="/us/about/terms-service"
               onClick={event =>
                 handleFooterTracking('terms_of_service', event.target.href)
@@ -276,6 +289,7 @@ const SiteFooter = () => {
           </li>
           <li>
             <a
+              className="font-bold no-underline hover:underline"
               href="/us/about/privacy-policy"
               onClick={event =>
                 handleFooterTracking('privacy_policy', event.target.href)

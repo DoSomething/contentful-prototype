@@ -15,6 +15,16 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 | everything together. We're getting there!
 */
 
+// Updated baseline styling for links
+a {
+    @apply font-normal underline text-blurple-500;
+
+    &:hover {
+        color: theme('colors.blurple.300');
+        text-decoration-color: theme('colors.teal.500');
+    }
+}
+
 // Ensures that pointer events on elements inside of links do not trigger
 // click events, only the surrounding <a> link triggers a click event.
 // @see https://css-tricks.com/slightly-careful-sub-elements-clickable-things/
@@ -63,15 +73,6 @@ a > * {
     background: theme('colors.blurple.400');
 }
 
-// Updated baseline styling for links
-a {
-    @apply font-normal underline text-blurple-500;
-
-    &:hover {
-        color: theme('colors.blurple.300');
-        text-decoration-color: theme('colors.teal.500');
-    }
-}
 // @TODO:forge-removal Rename this class to "text-field".
 .text-input {
     @apply bg-white p-3 border border-gray-200 border-solid font-source-sans rounded;
