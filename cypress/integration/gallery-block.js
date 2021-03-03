@@ -16,6 +16,25 @@ describe('Gallery Block', () => {
 
     cy.visit('us/blocks/abcdefghi123456789');
 
-    cy.findByTestId('content-block-gallery-item');
+    cy.findByTestId('gallery-block').within(() => {
+      cy.findByTestId('content-block-gallery-item');
+    });
+  });
+
+  /** @test */
+  it('renders a ExternalLinkCard component for "EXTERNAL_LINK" blocks', () => {
+    cy.mockGraphqlOp('ContentfulBlockQuery', {
+      block: {
+        __typename: 'GalleryBlock',
+        galleryType: 'EXTERNAL_LINK',
+        blocks: [{ __typename: 'ExternalLinkBlock' }],
+      },
+    });
+
+    cy.visit('us/blocks/abcdefghi123456789');
+
+    cy.findByTestId('gallery-block').within(() => {
+      cy.findByTestId('external-link-card');
+    });
   });
 });

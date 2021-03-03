@@ -67,7 +67,10 @@ const ExternalLinkCard = ({ url, title, description, image }) => {
     : null;
 
   return (
-    <article className="flex flex-col h-full text-left max-w-lg">
+    <article
+      data-testid="external-link-card"
+      className="flex flex-col h-full text-left max-w-lg"
+    >
       <a href={url} className="block">
         {imageUrl ? (
           <img
@@ -82,18 +85,23 @@ const ExternalLinkCard = ({ url, title, description, image }) => {
                 ? contentfulImageUrl(imageUrl, '365', '205', 'fill')
                 : thumbnailUrl
             }
+            data-testid="external-link-custom-image"
           />
         ) : (
           <LazyImage
             className="bg-gray-200 bg-cover bg-center"
             src={thumbnailUrl}
             alt={`Cover photo for ${title || providerTitle}`}
+            attributes={{ 'data-testid': 'external-link-provider-image' }}
           />
         )}
       </a>
 
       <div className="bg-white border-b-2 border-l-2 border-r-2 border-gray-300 border-solid flex-grow p-4 rounded-b">
-        <p className="text-gray-700 text-sm font-bold uppercase">
+        <p
+          className="text-gray-700 text-sm font-bold uppercase"
+          data-testid="external-link-provider-name"
+        >
           {truncate(providerName || 'External Link', {
             length: 60,
           })}
@@ -101,14 +109,16 @@ const ExternalLinkCard = ({ url, title, description, image }) => {
 
         <h1 className="font-bold mt-1 text-base">
           <a className="text-blurple-500 hover:text-blurple-300" href={url}>
-            <span>
+            <span data-testid="external-link-title">
               {title || providerTitle}&nbsp;&nbsp;
               <ExternalLinkIcon className="inline-block mb-1" />
             </span>
           </a>
         </h1>
 
-        <p className="font-normal mt-2">{description || providerDescription}</p>
+        <p className="font-normal mt-2" data-testid="external-link-description">
+          {description || providerDescription}
+        </p>
       </div>
     </article>
   );

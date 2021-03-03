@@ -10,12 +10,15 @@ import Query from '../../Query';
 import { env } from '../../../helpers/env';
 import { query } from '../../../helpers/url';
 import { getUserId } from '../../../helpers/auth';
+import { sixpack } from '../../../helpers/analytics';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import RecommendedCampaignsGallery from './RecommendedCampaignsGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
+import ShortLinkShareContainer from '../../utilities/ShortLinkShare/ShortLinkShareContainer';
 import { CONTENTFUL_BLOCK_QUERY } from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const POST_QUERY = gql`
@@ -43,6 +46,13 @@ const ShowSubmissionPage = ({ match }) => {
 
   const { url: postImageUrl, campaignId, userId } = get(postData, 'post') || {};
 
+  const getSixPackReferFriendsLink = (usersId, referralCampaignId) => {
+    if (!usersId || !referralCampaignId) {
+      return undefined;
+    }
+    return `${window.location.origin}/us/join?user_id=${usersId}&campaign_id=${referralCampaignId}`;
+  };
+
   if (loading) {
     return <Placeholder />;
   }
@@ -53,6 +63,14 @@ const ShowSubmissionPage = ({ match }) => {
 
   // This page is gated to the post's author.
   if (getUserId() !== userId) {
+    if (window.Cypress) {
+      const h1 = document.createElement('h1');
+
+      h1.innerText = `AUTH ID: ${getUserId()}. Post ID: ${userId}`;
+
+      document.querySelector('#chrome').prepend(h1);
+    }
+
     return <Redirect to="/us/account/campaigns" />;
   }
 
@@ -88,6 +106,22 @@ const ShowSubmissionPage = ({ match }) => {
                 We Got Your Submission
               </h1>
 
+              {
+                <SixpackExperiment
+                  internalTitle="thank you page engagement"
+                  convertableActions={['galleryBlockClick']}
+                  control={
+                    <ShortLinkShareContainer
+                      testName="with social share container"
+                      link={getSixPackReferFriendsLink(userId, campaignId)}
+                    />
+                  }
+                  alternatives={[
+                    <span testName="without social share container" />,
+                  ]}
+                />
+              }
+
               {id ? (
                 <Query
                   query={CONTENTFUL_BLOCK_QUERY}
@@ -117,6 +151,7 @@ const ShowSubmissionPage = ({ match }) => {
 
             <RecommendedCampaignsGallery
               excludeCampaignIds={campaignId ? [Number(campaignId)] : []}
+              onClick={() => sixpack().convertOnAction('galleryBlockClick')}
             />
           </div>
         </div>

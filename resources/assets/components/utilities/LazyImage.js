@@ -64,6 +64,7 @@ class LazyImage extends React.Component {
             backgroundImage: `url(${imageUrl})`,
             transition: 'background 0.5s',
           }}
+          {...this.props.attributes}
         />
       );
     }
@@ -78,12 +79,14 @@ class LazyImage extends React.Component {
           transition: 'opacity 0.5s',
           opacity: this.state.loaded ? 1 : 0,
         }}
+        {...this.props.attributes}
       />
     );
   }
 }
 
 LazyImage.propTypes = {
+  attributes: PropTypes.object,
   alt: requiredIf(PropTypes.string, props => !props.asBackground),
   css: PropTypes.any, // eslint-disable-line
   className: PropTypes.string,
@@ -92,6 +95,7 @@ LazyImage.propTypes = {
 };
 
 LazyImage.defaultProps = {
+  attributes: null,
   alt: null,
   css: null,
   className: null,

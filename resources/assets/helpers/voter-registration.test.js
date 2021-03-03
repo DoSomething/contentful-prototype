@@ -31,37 +31,44 @@ describe('getGoalInfo', () => {
 
 describe('getTrackingSource', () => {
   /** @test */
-  it('Returns source,source_details if only sourceDetails provided and AUTH is empty', () => {
+  it('Returns source,source_details if only source & sourceDetails provided and AUTH is empty', () => {
     global.AUTH = {};
 
-    expect(getTrackingSource('abc', null, null)).toEqual(
+    expect(getTrackingSource({ source: 'web', sourceDetails: 'abc' })).toEqual(
       'source:web,source_details:abc',
     );
   });
 
   /** @test */
-  it('Returns user,source,source_details if only sourceDetails provided and AUTH id set', () => {
+  it('Returns user,source,source_details if only source & sourceDetails provided and AUTH id set', () => {
     global.AUTH = { id: '5f11b692b5892469df438d64' };
 
-    expect(getTrackingSource('abc', null, null)).toEqual(
+    expect(getTrackingSource({ source: 'web', sourceDetails: 'abc' })).toEqual(
       'user:5f11b692b5892469df438d64,source:web,source_details:abc',
     );
   });
 
   /** @test */
-  it('Returns source,source_details,group_id if sourceDetails,groupId provided and AUTH is empty', () => {
+  it('Returns source,source_details,group_id if source, sourceDetails, groupId provided and AUTH is empty', () => {
     global.AUTH = {};
 
-    expect(getTrackingSource('abc', null, 81)).toEqual(
-      'source:web,source_details:abc,group_id=81',
-    );
+    expect(
+      getTrackingSource({ source: 'web', sourceDetails: 'abc', groupId: 81 }),
+    ).toEqual('source:web,source_details:abc,group_id=81');
   });
 
   /** @test */
-  it('Returns user,source,source_details,group_id,referral if sourceDetails,referrerUserId,groupId provided', () => {
+  it('Returns user,source,source_details,group_id,referral if source, sourceDetails, referrerUserId, groupId provided', () => {
     global.AUTH = { id: '5f11b692b5892469df438d64' };
 
-    expect(getTrackingSource('abc', '5edfc80ecb4dbf2020580a76', 81)).toEqual(
+    expect(
+      getTrackingSource({
+        source: 'web',
+        sourceDetails: 'abc',
+        referrerUserId: '5edfc80ecb4dbf2020580a76',
+        groupId: 81,
+      }),
+    ).toEqual(
       'user:5edfc80ecb4dbf2020580a76,source:web,source_details:abc,group_id=81,referral=true',
     );
   });
@@ -75,7 +82,9 @@ describe('getTrackingSource', () => {
         'https://dev.dosomething.org/us/?utm_source=scholarship_listing&utm_campaign=fastweb_2020',
     });
 
-    expect(getTrackingSource('hellobar')).toEqual(
+    expect(
+      getTrackingSource({ source: 'web', sourceDetails: 'hellobar' }),
+    ).toEqual(
       'source:web,source_details:hellobar_scholarship_listing_fastweb_2020',
     );
   });

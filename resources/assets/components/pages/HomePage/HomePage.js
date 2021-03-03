@@ -5,7 +5,6 @@ import { css } from '@emotion/core';
 import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
-import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
 import { featureFlag } from '../../../helpers/env';
 import { tailwind } from '../../../helpers/display';
@@ -13,13 +12,14 @@ import * as NewsletterImages from './NewsletterImages';
 import { isAuthenticated } from '../../../helpers/auth';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import HomePageCampaignGallery from './HomePageCampaignGallery';
 import { contentfulImageUrl } from '../../../helpers/contentful';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { pageCardFragment } from '../../utilities/PageCard/PageCard';
+import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
+import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
@@ -40,6 +40,12 @@ const HOME_PAGE_QUERY = gql`
       }
       articles {
         ...PageCard
+      }
+      sponsors {
+        title
+        logo {
+          url
+        }
       }
       additionalContent
     }
@@ -126,16 +132,22 @@ NewsletterItem.propTypes = {
  *
  * @param {Object}
  */
-const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
+const HomePageTemplate = ({
+  articles,
+  campaigns,
+  coverImage,
+  title,
+  sponsors,
+}) => {
   const tailwindGray = tailwind('colors.gray');
-  const tailwindScreens = tailwind('screens');
-
-  const centerHorizontalRule = css`
-    @media (min-width: ${tailwindScreens.md}) {
-      margin-top: -2px;
-      top: 50%;
+  const tailwindTeal = tailwind('colors.teal');
+  const homePageAnchorTag = css`
+    &:hover {
+      text-decoration-color: ${tailwindTeal['500']};
     }
   `;
+
+  const tailwindScreens = tailwind('screens');
 
   const headerBackgroundStyles = coverImage
     ? css`
@@ -252,33 +264,27 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               `}
               data-test="campaigns-section"
             >
+              <AnalyticsWaypoint name="campaign_section_top" />
+
+              <StrikeThroughHeader title="Take Action!" />
+
               <div className="grid-wide text-center">
-                <AnalyticsWaypoint name="campaign_section_top" />
-
-                <h2 className="mb-6 relative">
-                  <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
-                    Take Action!
-                  </span>
-                  <span
-                    className="absolute bg-purple-500 block h-1 w-full z-0"
-                    css={centerHorizontalRule}
-                  />
-                </h2>
-
                 <p className="mb-3 text-lg">
                   Choose a campaign below to make an impact,{' '}
                   <a
                     href="/us/about/easy-scholarships"
-                    className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:text-teal-500"
+                    className="font-normal underline text-blurple-500 hover:text-blurple-400"
                     data-label="campaign_section_earn_scholarships"
+                    css={homePageAnchorTag}
                   >
                     win scholarships
                   </a>
                   , and{' '}
                   <a
                     href="/us/about/volunteer-hours"
-                    className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:text-teal-500"
+                    className="font-normal underline text-blurple-500 hover:text-blurple-400"
                     data-label="campaign_section_earn_volunteer_credits"
+                    css={homePageAnchorTag}
                   >
                     earn volunteer credits
                   </a>
@@ -308,7 +314,7 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 </p>
                 */}
 
-                <HomePageCampaignGallery campaigns={campaigns} />
+                <CampaignGallery campaigns={campaigns} hasButton hasFeatured />
 
                 <PrimaryButton
                   attributes={{ 'data-label': 'campaign_section_show_more' }}
@@ -400,19 +406,11 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               className="base-12-grid bg-gray-100 py-8"
               data-test="articles-section"
             >
+              <AnalyticsWaypoint name="article_section_top" />
+
+              <StrikeThroughHeader title="Read About It" />
+
               <div className="grid-wide text-center">
-                <AnalyticsWaypoint name="article_section_top" />
-
-                <h2 className="mb-6 relative">
-                  <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
-                    Read About It
-                  </span>
-                  <span
-                    className="absolute bg-purple-500 block h-1 w-full z-0"
-                    css={centerHorizontalRule}
-                  />
-                </h2>
-
                 <HomePageArticleGallery articles={articles} />
 
                 <PrimaryButton
@@ -440,13 +438,13 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 Sponsors
               </h2>
               <ul>
-                {sponsorList.map(sponsor => (
-                  <li key={sponsor.name} className="inline-block mx-6 my-3">
+                {sponsors.map(sponsor => (
+                  <li key={sponsor.title} className="inline-block mx-6 my-3">
                     <img
                       className="opacity-25"
-                      src={contentfulImageUrl(sponsor.image, '125', '40')}
-                      title={sponsor.name}
-                      alt={sponsor.name}
+                      src={contentfulImageUrl(sponsor.logo.url, '125', '40')}
+                      title={sponsor.title}
+                      alt={sponsor.title}
                     />
                   </li>
                 ))}
@@ -520,6 +518,7 @@ const HomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 HomePageTemplate.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.object),
   campaigns: PropTypes.arrayOf(PropTypes.object),
+  sponsors: PropTypes.arrayOf(PropTypes.object),
   coverImage: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }),
@@ -527,6 +526,7 @@ HomePageTemplate.propTypes = {
 };
 
 HomePageTemplate.defaultProps = {
+  sponsors: null,
   articles: null,
   campaigns: null,
   coverImage: null,

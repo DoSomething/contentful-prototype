@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -7,6 +8,15 @@ import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoi
 
 import './section-block.scss';
 
+export const SectionBlockFragment = gql`
+  fragment SectionBlockFragment on SectionBlock {
+    id
+    backgroundColor
+    textColor
+    content
+  }
+`;
+
 const SectionBlock = props => {
   const {
     backgroundColor,
@@ -14,6 +24,7 @@ const SectionBlock = props => {
     classNameByEntry,
     classNameByEntryDefault,
     content,
+    customProps,
     hyperlinkColor,
     id,
     textColor,
@@ -28,6 +39,7 @@ const SectionBlock = props => {
     <section
       id={id}
       className={classnames('section-block', className)}
+      data-testid="section-block"
       style={{ backgroundColor }}
     >
       <AnalyticsWaypoint name="section_block-top" context={{ blockId: id }} />
@@ -36,6 +48,7 @@ const SectionBlock = props => {
         className="section-block__content base-12-grid py-3 md:py-6"
         classNameByEntry={classNameByEntry}
         classNameByEntryDefault={classNameByEntryDefault}
+        customProps={customProps}
         styles={styles}
       >
         {content}
@@ -54,6 +67,7 @@ SectionBlock.propTypes = {
   className: PropTypes.string,
   classNameByEntry: PropTypes.object,
   classNameByEntryDefault: PropTypes.string,
+  customProps: PropTypes.object,
   content: PropTypes.object.isRequired,
   hyperlinkColor: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -65,6 +79,7 @@ SectionBlock.defaultProps = {
   className: null,
   classNameByEntry: {},
   classNameByEntryDefault: null,
+  customProps: {},
   hyperlinkColor: null,
   textColor: null,
 };

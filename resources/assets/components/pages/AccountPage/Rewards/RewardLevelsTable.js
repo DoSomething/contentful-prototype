@@ -1,8 +1,8 @@
 import React from 'react';
 import tw from 'twin.macro';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-import { query } from '../../../../helpers/url';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const Table = tw.table`my-6 w-full lg:w-3/4`;
@@ -13,23 +13,19 @@ const TableCellCenter = tw.td`p-2 text-sm text-center md:text-base border-solid 
 const TableCellCenterBottom = tw.td`p-2 text-sm text-center md:text-base border-solid border-l border-gray-400 align-middle`;
 const TableMarker = tw.div`bg-black rounded-full h-3 w-3 flex mx-auto`;
 
-const RewardLevelsTable = () => {
-  // @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
-  const badges = query('badges') || 4;
+export const userLevelLabel = badgeNumber => {
+  let userLevel = 'Member';
+  if (badgeNumber >= 6) {
+    userLevel = 'Legend';
+  } else if (badgeNumber >= 4) {
+    userLevel = 'SuperDoer';
+  } else if (badgeNumber >= 2) {
+    userLevel = 'Doer';
+  }
 
-  const userLevelLabel = badgeNumber => {
-    let userLevel;
-    if (badgeNumber >= 6) {
-      userLevel = 'Legend';
-    } else if (badgeNumber > 3) {
-      userLevel = 'SuperDoer';
-    } else if (badgeNumber >= 2) {
-      userLevel = 'Doer';
-    }
-
-    return userLevel;
-  };
-
+  return userLevel;
+};
+const RewardLevelsTable = ({ totalBadges }) => {
   const doerHighlight = css`
     background-color: rgba(47, 227, 218, 0.15);
   `;
@@ -70,23 +66,29 @@ const RewardLevelsTable = () => {
       <SectionHeader title="my rewards" />
 
       <p className="text-gray-600">
-        You currently enjoy all the perks of a {userLevelLabel(badges)}!
+        You currently enjoy all the perks of a {userLevelLabel(totalBadges)}!
       </p>
 
       <Table>
         <colgroup>
           <col />
 
-          <col css={userLevelLabel(badges) === 'Doer' ? doerHighlight : null} />
+          <col
+            css={userLevelLabel(totalBadges) === 'Doer' ? doerHighlight : null}
+          />
 
           <col
             css={
-              userLevelLabel(badges) === 'SuperDoer' ? superDoerHighlight : null
+              userLevelLabel(totalBadges) === 'SuperDoer'
+                ? superDoerHighlight
+                : null
             }
           />
 
           <col
-            css={userLevelLabel(badges) === 'Legend' ? legendHighlight : null}
+            css={
+              userLevelLabel(totalBadges) === 'Legend' ? legendHighlight : null
+            }
           />
         </colgroup>
 
@@ -132,6 +134,10 @@ const RewardLevelsTable = () => {
       </Table>
     </div>
   );
+};
+
+RewardLevelsTable.propTypes = {
+  totalBadges: PropTypes.number.isRequired,
 };
 
 export default RewardLevelsTable;

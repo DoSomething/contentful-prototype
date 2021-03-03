@@ -16,6 +16,7 @@ import HomePage from './pages/HomePage/HomePage';
 import { env, featureFlag } from '../helpers/env';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
+import AboutPage from './pages/AboutPage/AboutPage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
@@ -32,6 +33,8 @@ import PopoverDispatcher from './utilities/PopoverDispatcher/PopoverDispatcher';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
 import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/VoterRegistrationDrivePage';
+import VoterRegistrationLandingPage from './pages/VoterRegistrationLandingPage/VoterRegistrationLandingPage';
+import VoterRegistrationMarketingPage from './pages/VoterRegistrationMarketingPage/VoterRegistrationMarketingPage';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -117,6 +120,8 @@ const App = ({ store, history }) => {
                 )}
               />
 
+              <Route exact path="/us/about" component={AboutPage} />
+
               <Route
                 path="/us/about/:slug"
                 render={routeProps => (
@@ -136,6 +141,21 @@ const App = ({ store, history }) => {
               <Route
                 path="/us/my-voter-registration-drive"
                 component={VoterRegistrationDrivePage}
+              />
+
+              <Route
+                exact
+                path="/us/vote"
+                component={VoterRegistrationLandingPage}
+              />
+
+              <Route
+                path="/us/vote/:slug"
+                render={routeProps => (
+                  <VoterRegistrationMarketingPage
+                    slug={routeProps.match.params.slug}
+                  />
+                )}
               />
 
               <Route path="/us/refer-friends" component={AlphaReferralPage} />

@@ -58,6 +58,8 @@ Route::get('search', function () {
 });
 
 // About pages
+
+Route::view('us/about', 'app');
 Route::view('us/about/{slug}', 'app');
 
 // Categorized Pages (articles, facts)
@@ -75,6 +77,10 @@ Route::view('us/refer-friends', 'app')
 
 // Blocks
 Route::view('us/blocks/{id}', 'app');
+
+// Voter Registration Pages
+Route::get('us/vote', 'VoterRegistrationLandingPageController@show');
+Route::get('us/vote/{slug}', 'VoterRegistrationMarketingPageController@show');
 
 // Voter Registration Drives
 Route::get('us/my-voter-registration-drive', 'VoterRegistrationDrivePageController@show');

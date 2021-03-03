@@ -55,12 +55,16 @@ const ScholarshipReferralVoterRegistrationBlock = ({
         </div>
       </div>
       <div className="md:w-1/2 p-6 md:py-6 md:px-16 text-base scholarship-info-block">
-        <StartVoterRegistrationForm
-          campaignId={campaignId}
-          className="my-6"
-          contextSource="voter-registration-quiz-ungated-signup-modal"
-          sourceDetails="VoterRegQuiz_ScholarshipReferral"
-        />
+        <Card
+          title="Register to Vote"
+          className="my-6 bg-gray-100 border-none rounded"
+        >
+          <StartVoterRegistrationForm
+            campaignId={campaignId}
+            contextSource="voter-registration-quiz-ungated-signup-modal"
+            sourceDetails="VoterRegQuiz_ScholarshipReferral"
+          />
+        </Card>
       </div>
     </Card>
   );

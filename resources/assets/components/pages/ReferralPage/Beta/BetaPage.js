@@ -5,7 +5,6 @@ import Query from '../../../Query';
 import ErrorPage from '../../ErrorPage';
 import { query } from '../../../../helpers/url';
 import CampaignLink from './BetaPageCampaignLink';
-import GiftCardHandImage from './gift-card-hand.svg';
 import ArticleHeader from '../../../utilities/ArticleHeader';
 import { siteConfig, featureFlag } from '../../../../helpers/env';
 import { getReferralCampaignId } from '../../../../helpers/refer-friends';
@@ -50,10 +49,6 @@ const BetaPage = () => {
                 <ArticleHeader title={`${firstName} invited you!`} />
 
                 <div className="my-6">
-                  <img src={GiftCardHandImage} alt="Hand with money envelope" />
-                </div>
-
-                <div className="my-6">
                   <p>
                     {referralIncentive
                       ? `${firstName} invited you to join this campaign (and enter for a chance to win a $10 gift card) through DoSomething! Once you sign up for the campaign below, you and ${firstName} will both have a chance at the gift card! We’ll select 50 winners every month.`
@@ -61,7 +56,10 @@ const BetaPage = () => {
                   </p>
                 </div>
 
-                <div className="my-6">
+                <div
+                  className="my-6"
+                  data-testid="primary-campaign-referral-link"
+                >
                   <CampaignLink campaignId={campaignId} userId={userId} />
                 </div>
 

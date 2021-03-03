@@ -6,7 +6,9 @@ import Badge from './Badge';
 import Query from '../../../Query';
 import BadgeModal from './BadgeModal';
 import RewardsFaq from './RewardsFaq';
+import { query } from '../../../../helpers/url';
 import RewardLevelsTable from './RewardLevelsTable';
+import RewardsProgressBar from './RewardsProgressBar';
 import { featureFlag } from '../../../../helpers/env';
 import {
   EVENT_CATEGORIES,
@@ -44,6 +46,9 @@ const NEWSLETTER_BADGE = gql`
 const exploreCampaignsLink = text => {
   return <a href="/us/campaigns">{text}</a>;
 };
+
+// @TODO: when we are ready to bring in real data from users earned badges, we will replace this variable
+const badges = Number(query('badges')) || 0;
 
 const badgeModalContent = {
   signupBadge: {
@@ -124,7 +129,7 @@ const badgeModalContent = {
   },
 };
 
-class BadgesTab extends React.Component {
+class RewardsTab extends React.Component {
   constructor(props) {
     super(props);
 
@@ -183,11 +188,18 @@ class BadgesTab extends React.Component {
 
     return (
       <div className="grid-wide bg-gray pb-6 wrapper">
+        {featureFlag('rewards_levels') ? (
+          <RewardsProgressBar totalBadges={badges} />
+        ) : null}
+
         <h1 className="text-xl">Badges</h1>
         <p className="text-gray-600">
           Earn badges and rewards for making a difference.
         </p>
-        <ul data-testid="badges-list" className="gallery-grid-sextet -mx-3">
+        <ul
+          data-testid="badges-list"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 -mx-3 px-2"
+        >
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
             {data => (
               <li>
@@ -395,7 +407,9 @@ class BadgesTab extends React.Component {
           </BadgeModal>
         ) : null}
 
-        {featureFlag('rewards_levels') ? <RewardLevelsTable /> : null}
+        {featureFlag('rewards_levels') ? (
+          <RewardLevelsTable totalBadges={badges} />
+        ) : null}
 
         {featureFlag('rewards_levels') ? <RewardsFaq /> : null}
       </div>
@@ -403,8 +417,8 @@ class BadgesTab extends React.Component {
   }
 }
 
-BadgesTab.propTypes = {
+RewardsTab.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-export default BadgesTab;
+export default RewardsTab;

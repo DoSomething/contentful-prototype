@@ -4,16 +4,20 @@ import gql from 'graphql-tag';
 
 import Query from '../../../Query';
 import { env } from '../../../../helpers/env';
-import Embed from '../../../utilities/Embed/Embed';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
+import CampaignCard, {
+  campaignCardFragment,
+} from '../../../utilities/CampaignCard/CampaignCard';
 
 const REFERRAL_PAGE_CAMPAIGN = gql`
   query ReferralPageCampaignQuery($campaignId: String!, $preview: Boolean!) {
     campaignWebsiteByCampaignId(campaignId: $campaignId, preview: $preview) {
       id
-      url
+      ...CampaignCard
     }
   }
+
+  ${campaignCardFragment}
 `;
 
 const ReferralPageCampaignLink = ({ campaignId, userId }) => (
@@ -36,10 +40,14 @@ const ReferralPageCampaignLink = ({ campaignId, userId }) => (
       }
 
       return (
-        <Embed
-          className="referral-page-campaign"
-          url={`${data.url}?referrer_user_id=${userId}`}
-          badged
+        <CampaignCard
+          campaign={{
+            ...data,
+            path: `${data.path}?referrer_user_id=${userId}`,
+            // Suppress the 'featured' badge.
+            staffPick: undefined,
+          }}
+          hasButton
         />
       );
     }}

@@ -33,7 +33,7 @@ const SCHOLARSHIP_CAMPAIGNS_QUERY = gql`
   ${scholarshipCardFragment}
 `;
 
-const RecommendedCampaignsGallery = ({ excludeCampaignIds }) => (
+const RecommendedCampaignsGallery = ({ excludeCampaignIds, onClick }) => (
   <Query
     query={SCHOLARSHIP_CAMPAIGNS_QUERY}
     variables={{
@@ -44,24 +44,28 @@ const RecommendedCampaignsGallery = ({ excludeCampaignIds }) => (
     }}
   >
     {result => (
-      <GalleryBlock
-        blocks={(get(result, 'campaigns.edges') || []).map(
-          edge => edge.node.campaignWebsite,
-        )}
-        galleryType="SCHOLARSHIP"
-        itemsPerRow={3}
-        imageAlignment="LEFT"
-      />
+      <div role="button" tabIndex={result} onClick={onClick}>
+        <GalleryBlock
+          blocks={(get(result, 'campaigns.edges') || []).map(
+            edge => edge.node.campaignWebsite,
+          )}
+          galleryType="SCHOLARSHIP"
+          itemsPerRow={3}
+          imageAlignment="LEFT"
+        />
+      </div>
     )}
   </Query>
 );
 
 RecommendedCampaignsGallery.propTypes = {
   excludeCampaignIds: PropTypes.arrayOf(PropTypes.number),
+  onClick: PropTypes.func,
 };
 
 RecommendedCampaignsGallery.defaultProps = {
   excludeCampaignIds: [],
+  onClick: null,
 };
 
 export default RecommendedCampaignsGallery;

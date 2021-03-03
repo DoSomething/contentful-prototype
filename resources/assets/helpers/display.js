@@ -145,4 +145,30 @@ export function toggleClassHandler(button, target, toggleClass) {
   button.addEventListener('mousedown', clickHandler, false);
 }
 
+/**
+ * Alters luminosity for provided hex color by specified percentage.
+ * https://www.sitepoint.com/javascript-generate-lighter-darker-color/
+ *
+ * @param   {String} hex — a valid six character hex color value such as “#FF00FF".
+ * @param   {String} luminosity — the luminosity factor (from -100 to 100), i.e. -10 is 10% darker, 20 is 20% lighter, etc.
+ * @return  {String}
+ */
+export function colorLuminance(hex, luminosity = 0) {
+  const hashlessHex = hex.replace('#', '');
+
+  let luminatedValue = '#';
+
+  for (let i = 0; i < 3; i += 1) {
+    const colorAsInt = parseInt(hashlessHex.substr(i * 2, 2), 16);
+
+    const colorLuminated = Math.round(
+      Math.min(Math.max(0, colorAsInt + colorAsInt * (luminosity * 0.01)), 255),
+    ).toString(16);
+
+    luminatedValue += `00${colorLuminated}`.substr(colorLuminated.length);
+  }
+
+  return luminatedValue;
+}
+
 export default null;

@@ -22,6 +22,7 @@ const TextContent = ({
   className = null,
   classNameByEntry,
   classNameByEntryDefault,
+  customProps,
   styles,
 }) => {
   if (has(children, 'nodeType')) {
@@ -30,6 +31,7 @@ const TextContent = ({
         className={classnames('text-content', className)}
         classNameByEntry={classNameByEntry}
         classNameByEntryDefault={classNameByEntryDefault}
+        customProps={customProps}
         styles={styles}
       >
         {children}
@@ -57,6 +59,7 @@ TextContent.propTypes = {
   className: PropTypes.string,
   classNameByEntry: PropTypes.object,
   classNameByEntryDefault: PropTypes.string,
+  customProps: PropTypes.object,
   styles: PropTypes.shape({
     textColor: PropTypes.string,
     hyperlinkColor: PropTypes.string,
@@ -68,6 +71,7 @@ TextContent.defaultProps = {
   className: null,
   classNameByEntry: {},
   classNameByEntryDefault: null,
+  customProps: {},
   styles: {},
 };
 

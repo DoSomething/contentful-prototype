@@ -40,16 +40,22 @@ export function getGoalInfo(goalAmount, completedAmount) {
  * Returns tracking source query value to send for Voter Registration URLs.
  * @see /docs/development/features/voter-registration#tracking-source
  *
+ * @param {String} source
  * @param {String} sourceDetails
  * @param {String} referrerUserId
  * @param {Number} groupId
  * @return {String}
  */
-export function getTrackingSource(sourceDetails, referrerUserId, groupId) {
+export function getTrackingSource({
+  source,
+  sourceDetails,
+  referrerUserId,
+  groupId,
+}) {
   const utms = getUtms();
 
   // Append UTMs to source_details value if they exist.
-  const result = `source:web,source_details:${sourceDetails}${
+  const result = `source:${source},source_details:${sourceDetails}${
     utms.utm_source ? `_${utms.utm_source}` : ''
   }${utms.utm_campaign ? `_${utms.utm_campaign}` : ''}${
     groupId ? `,group_id=${groupId}` : ''

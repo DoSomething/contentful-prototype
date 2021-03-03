@@ -1,5 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { propType } from 'graphql-anywhere';
 
@@ -29,7 +30,7 @@ export const campaignCardFeaturedFragment = gql`
   }
 `;
 
-const CampaignCardFeatured = ({ campaign }) => {
+const CampaignCardFeatured = ({ campaign, hasButton }) => {
   const { showcaseDescription, showcaseImage, showcaseTitle, path } = campaign;
 
   const tailwindGray = tailwind('colors.gray');
@@ -88,11 +89,13 @@ const CampaignCardFeatured = ({ campaign }) => {
 
         <p className="flex-grow xxl:text-lg">{showcaseDescription}</p>
 
-        <PrimaryButton
-          className="mt-4 xxl:mt-8 p-4 xxl:px-8 text-lg w-full xxl:w-auto"
-          href={path}
-          text="Get Started"
-        />
+        {hasButton ? (
+          <PrimaryButton
+            className="mt-4 xxl:mt-8 p-4 xxl:px-8 text-lg w-full xxl:w-auto"
+            href={path}
+            text="Get Started"
+          />
+        ) : null}
       </div>
     </article>
   );
@@ -100,6 +103,11 @@ const CampaignCardFeatured = ({ campaign }) => {
 
 CampaignCardFeatured.propTypes = {
   campaign: propType(campaignCardFeaturedFragment).isRequired,
+  hasButton: PropTypes.bool,
+};
+
+CampaignCardFeatured.defaultProps = {
+  hasButton: false,
 };
 
 export default CampaignCardFeatured;

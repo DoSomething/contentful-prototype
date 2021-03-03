@@ -110,9 +110,9 @@ const ScholarshipCard = ({ campaign }) => {
           </div>{' '}
         </div>
         <GalleryBlockSignup
+          path={path}
           campaignId={campaignId}
           campaignTitle={showcaseTitle}
-          path={path}
         />{' '}
       </div>{' '}
     </article>

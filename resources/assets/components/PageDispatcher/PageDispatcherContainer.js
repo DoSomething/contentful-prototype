@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import PageDispatcher from './PageDispatcher';
-import { getDataForNorthstar } from '../../selectors';
 import { buildAuthRedirectUrl, isAuthenticated } from '../../helpers/auth';
 
 /**
@@ -10,7 +9,7 @@ import { buildAuthRedirectUrl, isAuthenticated } from '../../helpers/auth';
 const mapStateToProps = state => ({
   ...state.page,
   isAuthenticated: isAuthenticated(),
-  authUrl: buildAuthRedirectUrl(getDataForNorthstar(state)),
+  authUrl: buildAuthRedirectUrl(),
 });
 
 // Export the container component.

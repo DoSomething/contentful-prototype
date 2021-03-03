@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { withoutNulls } from '../../../../helpers/data';
+import TimeFilter from '../CampaignFilters/TimeFilter/TimeFilter';
 import CauseFilter from '../CampaignFilters/CauseFilter/CauseFilter';
+import ActionFilter from '../CampaignFilters/ActionFilter/ActionFilter';
 
 const renderedFilterMenu = props => {
   const fields = withoutNulls(props);
@@ -11,6 +13,14 @@ const renderedFilterMenu = props => {
     case 'cause':
       return (
         <CauseFilter filters={fields.filters} setFilters={fields.setFilters} />
+      );
+    case 'action':
+      return (
+        <ActionFilter filters={fields.filters} setFilters={fields.setFilters} />
+      );
+    case 'time':
+      return (
+        <TimeFilter filters={fields.filters} setFilters={fields.setFilters} />
       );
 
     default:

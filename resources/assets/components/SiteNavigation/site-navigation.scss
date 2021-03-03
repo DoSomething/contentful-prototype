@@ -7,437 +7,445 @@ $spacing_3x: 48px;
 $extraSmall: '(min-width: 360px)';
 
 .site-navigation {
-  background-color: theme('colors.white');
-  border-bottom: 1px solid theme('colors.gray.300');
-  position: relative;
-  z-index: $site-navigation-zindex;
+    background-color: theme('colors.white');
+    border-bottom: 1px solid theme('colors.gray.300');
+    position: relative;
+    z-index: $site-navigation-zindex;
 
-  > .wrapper {
-    padding: $spacing_1x 0 0;
+    > .wrapper {
+        padding: $spacing_1x 0 0;
 
-    @include media($medium) {
-      padding: $spacing_1_5x $spacing_3x 0;
+        @include media($medium) {
+            padding: $spacing_1_5x $spacing_3x 0;
+        }
     }
-  }
 }
 
 .menu-nav__item {
-  > a {
-    color: theme('colors.gray.900');
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.2;
-    text-decoration: none;
+    > a {
+        color: theme('colors.gray.900');
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-decoration: none;
 
-    @include media($extraSmall) {
-      font-size: 14px;
-    }
+        @include media($extraSmall) {
+            font-size: 14px;
+        }
 
-    @include media($large) {
-      font-size: 18px;
+        @include media($large) {
+            font-size: 18px;
+        }
     }
-  }
 }
 
 .menu-subnav {
-  background-color: white;
-  border-top: 1px solid theme('colors.gray.300');
-  box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
-  left: 0;
-  min-height: 50vh;
-  position: absolute;
-  top: 100%;
-  width: 100%;
-
-  @include media($large) {
+    background-color: white;
+    border-top: 1px solid theme('colors.gray.300');
+    box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
+    left: 0;
     min-height: 50vh;
-  }
+    position: absolute;
+    top: 100%;
+    width: 100%;
 
-  .wrapper {
-    position: relative;
-  }
+    @include media($large) {
+        min-height: 50vh;
+    }
+
+    .wrapper {
+        position: relative;
+    }
 }
 
 .menu-subnav__section {
-  padding: $spacing_1_5x 0;
-  position: relative;
+    padding: $spacing_1_5x 0;
+    position: relative;
 
-  &:first-of-type {
-    padding-top: 12px;
+    &:first-of-type {
+        padding-top: 12px;
+
+        @include media($large) {
+            padding-top: 0;
+        }
+    }
 
     @include media($large) {
-      padding-top: 0;
+        padding-top: 0;
     }
-  }
-
-  @include media($large) {
-    padding-top: 0;
-  }
 }
 
 .menu-subnav__section + .menu-subnav__section {
-  &::before {
-    background-color: theme('colors.gray.200');
-    content: '';
-    display: block;
-    height: 1px;
-    left: -12px;
-    position: absolute;
-    top: 0;
-    width: 100vw;
+    &::before {
+        background-color: theme('colors.gray.200');
+        content: '';
+        display: block;
+        height: 1px;
+        left: -12px;
+        position: absolute;
+        top: 0;
+        width: 100vw;
 
-    @include media($medium) {
-      left: -48px;
-    }
+        @include media($medium) {
+            left: -48px;
+        }
 
-    @include media($large) {
-      display: none;
+        @include media($large) {
+            display: none;
+        }
     }
-  }
 }
 
 .menu-subnav__links {
-  a {
-    color: black;
-    display: block;
-    font-weight: $weight-normal;
-    padding: 8px 0;
+    a {
+        color: black;
+        display: block;
+        font-weight: $weight-normal;
+        padding: 8px 0;
 
-    @include media($large) {
-      padding: 6px 0;
-    }
-  }
-
-  > h1 {
-    margin-bottom: 0;
-    color: black;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 0 0 12px;
-
-    @include media($large) {
-      font-size: 18px;
+        @include media($large) {
+            padding: 6px 0;
+        }
     }
 
-    @include media($larger) {
-      font-size: 22px;
+    > h1 {
+        margin-bottom: 0;
+        color: black;
+        font-size: 22px;
+        font-weight: bold;
+        padding: 0 0 12px;
+
+        @include media($large) {
+            font-size: 18px;
+        }
+
+        @include media($larger) {
+            font-size: 22px;
+        }
     }
-  }
 }
 
 .underlay {
-  background-color: rgba(255, 255, 255, 0.5);
-  content: '';
-  display: block;
-  height: 100%;
-  max-width: 1440px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: -1;
+    background-color: rgba(255, 255, 255, 0.5);
+    content: '';
+    display: block;
+    height: 100%;
+    max-width: 1440px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
 }
 
 // Logo Nav
 .logo-nav {
-  grid-column: full-start / span 1;
-  padding: 0 0 0 $spacing_1x;
+    grid-column: full-start / span 1;
+    padding: 0 0 0 $spacing_1x;
 
-  > a {
-    display: inline-block;
-  }
+    > a {
+        display: inline-block;
+    }
 
-  @include media($medium) {
-    padding: 0;
-  }
+    @include media($medium) {
+        padding: 0;
+    }
 }
 
 // Main Nav
 .main-nav {
-  align-items: center;
-  border-top: 1px solid theme('colors.gray.300');
-  display: flex;
-  grid-column: full-start / full-end;
-  grid-row: 2 / 3;
+    align-items: center;
+    border-top: 1px solid theme('colors.gray.300');
+    display: flex;
+    grid-column: full-start / full-end;
+    grid-row: 2 / 3;
 
-  @include media($medium) {
-    align-items: flex-start;
-    border-top: 0;
-    grid-column: 2 / span 4;
-    grid-row: auto;
-  }
-
-  @include media($large) {
-    grid-column: 2 / span 7;
-  }
-
-  .menu-nav__item {
-    &:hover,
-    &:active,
-    &.is-active {
-      box-shadow: inset 0 -4px 0 0 theme('colors.yellow.500');
+    @include media($medium) {
+        align-items: flex-start;
+        border-top: 0;
+        grid-column: 2 / span 4;
+        grid-row: auto;
     }
 
-    > a {
-      padding: $spacing_1x;
-      white-space: nowrap;
-
-      @include media($medium) {
-        padding: $spacing_1x 10px 40px;
-      }
-
-      @include media($large) {
-        padding-left: $spacing_1x;
-        padding-right: $spacing_1x;
-      }
+    @include media($large) {
+        grid-column: 2 / span 7;
     }
-  }
+
+    .menu-nav__item {
+        &:hover,
+        &:active,
+        &.is-active {
+            box-shadow: inset 0 -4px 0 0 theme('colors.yellow.500');
+        }
+
+        > a {
+            padding: $spacing_1x;
+            white-space: nowrap;
+
+            @include media($medium) {
+                padding: $spacing_1x 10px 40px;
+            }
+
+            @include media($large) {
+                padding-left: $spacing_1x;
+                padding-right: $spacing_1x;
+            }
+        }
+    }
 }
 
 .main-nav__arrow {
-  bottom: 1px;
-  display: inline-block;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid theme('colors.gray.500');
-  height: 0;
-  margin-left: 5px;
-  position: relative;
-  width: 0;
+    bottom: 1px;
+    display: inline-block;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid theme('colors.gray.500');
+    height: 0;
+    margin-left: 5px;
+    position: relative;
+    width: 0;
 }
 
 .main-subnav__links-causes {
-  grid-column: full-start / full-end;
+    grid-column: full-start / full-end;
 
-  @include media($large) {
-    grid-column: wide-start / span 2;
-  }
+    @include media($large) {
+        grid-column: wide-start / span 2;
+    }
+}
+
+.main-subnav__links-benefits {
+    grid-column: full-start / full-end;
+
+    @include media($large) {
+        grid-column: wide-start / span 2;
+    }
 }
 
 .main-subnav__links-campaigns {
-  grid-column: full-start / full-end;
+    grid-column: full-start / full-end;
 
-  @include media($large) {
-    grid-column: narrow-start / span 2;
-  }
+    @include media($large) {
+        grid-column: narrow-start / span 2;
+    }
 }
 
 .main-subnav__featured {
-  grid-column: full-start / full-end;
+    grid-column: full-start / full-end;
 
-  @include media($large) {
-    grid-column: 7 / wide-end;
-  }
+    @include media($large) {
+        grid-column: 7 / wide-end;
+    }
 }
 
 .main-subnav__feature {
-  display: block;
-  font-weight: $weight-normal;
+    display: block;
+    font-weight: $weight-normal;
 
-  &:active,
-  &:hover {
-    text-decoration: none;
+    &:active,
+    &:hover {
+        text-decoration: none;
 
-    .main-subnav__feature-link {
-      text-decoration: underline;
+        .main-subnav__feature-link {
+            text-decoration: underline;
+        }
     }
-  }
 }
 
 .main-subnav__feature-title {
-  font-size: 22px;
+    font-size: 22px;
 }
 
 .main-subnav__feature-content {
 }
 
 .main-subnav__feature-link {
-  color: $blue;
-  font-weight: $weight-bold;
-  margin-top: 0;
+    color: $blue;
+    font-weight: $weight-bold;
+    margin-top: 0;
 
-  &:active,
-  &:hover {
-    text-decoration: underline;
-  }
+    &:active,
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 // Utility Nav
 .utility-nav {
-  align-items: flex-start;
-  display: flex;
-  grid-column: 2 / span full-end;
-  justify-content: flex-end;
-  margin: 0;
-  padding: 0 $spacing_1x $spacing_1x 0;
+    align-items: flex-start;
+    display: flex;
+    grid-column: 2 / span full-end;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0 $spacing_1x $spacing_1x 0;
 
-  @include media($medium) {
-    grid-column: 6 / full-end;
-    padding: 0;
-  }
+    @include media($medium) {
+        grid-column: 6 / full-end;
+        padding: 0;
+    }
 
-  @include media($large) {
-    grid-column: 9 / full-end;
-  }
+    @include media($large) {
+        grid-column: 9 / full-end;
+    }
 }
 
 .utility-nav__search-icon {
-  padding: 6px 10px;
-
-  @include media($large) {
-    padding-bottom: 8px;
-    padding-top: 6px;
-  }
-
-  .wrapper {
-    background-color: transparent;
-    border-radius: 100px;
-    padding: 6px;
-    pointer-events: none;
-  }
-
-  img {
-    height: 25px;
-    width: 25px;
+    padding: 6px 10px;
 
     @include media($large) {
-      height: 28px;
-      width: 28px;
+        padding-bottom: 8px;
+        padding-top: 6px;
     }
-  }
 
-  &.is-active {
     .wrapper {
-      background-color: theme('colors.gray.300');
+        background-color: transparent;
+        border-radius: 100px;
+        padding: 6px;
+        pointer-events: none;
     }
-  }
+
+    img {
+        height: 25px;
+        width: 25px;
+
+        @include media($large) {
+            height: 28px;
+            width: 28px;
+        }
+    }
+
+    &.is-active {
+        .wrapper {
+            background-color: theme('colors.gray.300');
+        }
+    }
 }
 
 .utility-nav__auth {
-  border-left: 1px solid theme('colors.gray.300');
+    border-left: 1px solid theme('colors.gray.300');
 
-  > a {
-    padding: $spacing_1x;
-  }
+    > a {
+        padding: $spacing_1x;
+    }
 }
 
 .utility-nav__join {
-  position: relative;
-  top: -1px;
+    position: relative;
+    top: -1px;
 
-  > a {
-    border: 1px solid black;
-    border-radius: 4px;
-    padding: $spacing_1x;
-  }
+    > a {
+        border: 1px solid black;
+        border-radius: 4px;
+        padding: $spacing_1x;
+    }
 }
 
 .utility-nav__account-profile {
-  border-left: 1px solid theme('colors.gray.300');
+    border-left: 1px solid theme('colors.gray.300');
 }
 
 .utility-nav__account-profile-icon {
-  padding: 12px $spacing_1x 12px;
-
-  @include media($large) {
-    padding: 12px $spacing_1x 14px;
-  }
-
-  > img {
-    height: 25px;
-    width: 25px;
+    padding: 12px $spacing_1x 12px;
 
     @include media($large) {
-      height: 28px;
-      width: 28px;
+        padding: 12px $spacing_1x 14px;
     }
-  }
+
+    > img {
+        height: 25px;
+        width: 25px;
+
+        @include media($large) {
+            height: 28px;
+            width: 28px;
+        }
+    }
 }
 
 .utility-subnav .search {
-  align-items: center;
-  background-color: theme('colors.gray.300');
-  border-radius: $lg-border-radius;
-  display: flex;
-  grid-column: full-start / full-end;
-  margin: 0 50px $spacing_2x 0;
-  padding: 5px 5px 5px 10px;
+    align-items: center;
+    background-color: theme('colors.gray.300');
+    border-radius: $lg-border-radius;
+    display: flex;
+    grid-column: full-start / full-end;
+    margin: 0 50px $spacing_2x 0;
+    padding: 5px 5px 5px 10px;
 
-  @include media($large) {
-    grid-column: full-start / span 6;
-    margin: 0 0 $spacing_2x;
-  }
-
-  > img {
-    // Move to props on component
-    height: 20px;
-    width: 20px;
-  }
-
-  > input[type='search'] {
-    background-color: transparent;
-    border: 0 none;
-    font-size: 18px;
-    line-height: 1;
-    margin-left: 3px;
-    padding: 5px;
-    width: 100%;
-    -webkit-appearance: none;
-
-    &:focus {
-      outline: none;
+    @include media($large) {
+        grid-column: full-start / span 6;
+        margin: 0 0 $spacing_2x;
     }
 
-    &:focus::placeholder {
-      color: theme('colors.gray.400');
+    > img {
+        // Move to props on component
+        height: 20px;
+        width: 20px;
     }
 
-    &::placeholder {
-      color: theme('colors.gray.500');
+    > input[type='search'] {
+        background-color: transparent;
+        border: 0 none;
+        font-size: 18px;
+        line-height: 1;
+        margin-left: 3px;
+        padding: 5px;
+        width: 100%;
+        -webkit-appearance: none;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:focus::placeholder {
+            color: theme('colors.gray.400');
+        }
+
+        &::placeholder {
+            color: theme('colors.gray.500');
+        }
     }
-  }
 }
 
 .utility-subnav {
-  .top-searches {
-    grid-column: full-start / full-end;
+    .top-searches {
+        grid-column: full-start / full-end;
 
-    > h1 {
-      color: theme('colors.gray.500');
-      font-size: 18px;
-      font-weight: $weight-normal;
-      margin-bottom: $spacing_1x;
-      text-transform: uppercase;
-    }
-  }
-
-  .top-searches__link-list {
-    padding-bottom: $spacing_1x;
-
-    > li + li {
-      margin-top: $spacing_1x;
+        > h1 {
+            color: theme('colors.gray.500');
+            font-size: 18px;
+            font-weight: $weight-normal;
+            margin-bottom: $spacing_1x;
+            text-transform: uppercase;
+        }
     }
 
-    a {
-      color: theme('colors.gray.900');
-      font-weight: $weight-normal;
-      text-decoration: underline;
+    .top-searches__link-list {
+        padding-bottom: $spacing_1x;
+
+        > li + li {
+            margin-top: $spacing_1x;
+        }
+
+        a {
+            color: theme('colors.gray.900');
+            font-weight: $weight-normal;
+            text-decoration: underline;
+        }
     }
-  }
 }
 
 .btn__close--subnav {
-  padding: $spacing_1x;
-  position: absolute;
-  right: 6px;
-  top: 6px;
+    padding: $spacing_1x;
+    position: absolute;
+    right: 6px;
+    top: 6px;
 
-  @include media($medium) {
-    right: 20px;
-    top: 20px;
-  }
+    @include media($medium) {
+        right: 20px;
+        top: 20px;
+    }
 
-  @include media($large) {
-    right: 44px;
-  }
+    @include media($large) {
+        right: 44px;
+    }
 }
