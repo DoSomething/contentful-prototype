@@ -103,6 +103,11 @@ $extraSmall: '(min-width: 360px)';
         display: block;
         font-weight: $weight-normal;
         padding: 8px 0;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
 
         @include media($large) {
             padding: 6px 0;
@@ -241,6 +246,7 @@ $extraSmall: '(min-width: 360px)';
 .main-subnav__feature {
     display: block;
     font-weight: $weight-normal;
+    text-decoration: none;
 
     &:active,
     &:hover {

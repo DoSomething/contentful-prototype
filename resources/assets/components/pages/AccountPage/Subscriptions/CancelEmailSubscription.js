@@ -70,7 +70,7 @@ const CancelEmailSubscription = props => {
         <p>
           Need a break?
           <button
-            className="px-1 text-blue-500 pb-4"
+            className="px-1 text-blue-500 hover:text-blue-300 pb-4"
             type="button"
             onClick={handleGlobalUnsubscribeClick}
           >

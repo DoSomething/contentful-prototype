@@ -67,8 +67,8 @@ const CampaignCard = ({ campaign, hasButton }) => {
           </div>
         ) : null}
 
-        <h1 className="font-bold mb-2 text-base">
-          <a className="text-blurple-500 hover:text-blurple-300" href={path}>
+        <h1 className="mb-2 text-base">
+          <a className="font-bold no-underline hover:no-underline" href={path}>
             {showcaseTitle}
           </a>
         </h1>
