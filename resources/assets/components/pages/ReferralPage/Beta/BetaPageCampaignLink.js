@@ -47,6 +47,7 @@ const ReferralPageCampaignLink = ({ campaignId, userId }) => (
             // Suppress the 'featured' badge.
             staffPick: undefined,
           }}
+          hasButton
         />
       );
     }}
