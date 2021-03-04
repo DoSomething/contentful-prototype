@@ -2,23 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Placeholder from './Placeholder';
-import { buildAuthRedirectUrl, isAuthenticated } from '../../helpers/auth';
+import {
+  buildAuthRedirectUrl,
+  isAuthenticated,
+  redirect,
+} from '../../helpers/auth';
 
 const AuthGate = ({ children }) => {
   if (isAuthenticated()) {
     return children;
   }
 
-  const redirect = buildAuthRedirectUrl();
+  const redirectUrl = buildAuthRedirectUrl();
+  redirect(redirectUrl);
 
-  // If we're running our test suite, don't automatically initiate
-  // the login redirect flow & leave something to assert on.
-  if (window.Cypress) {
-    document.body.innerHTML = `<div data-test="redirect" data-url="${redirect}" />`;
-    return null;
-  }
-
-  window.location.href = redirect;
   return <Placeholder />;
 };
 

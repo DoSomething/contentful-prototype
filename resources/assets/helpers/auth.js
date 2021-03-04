@@ -137,6 +137,21 @@ export function isStaff() {
 }
 
 /**
+ * Redirect the user to a URL for authentication.
+ *
+ * @param {String} url
+ */
+export const redirect = url => {
+  // If we're running our test suite, don't automatically initiate
+  // the login redirect flow & leave something to assert on.
+  if (window.Cypress) {
+    document.body.innerHTML = `<div data-test="redirect" data-url="${url}" />`;
+  } else {
+    window.location = url;
+  }
+};
+
+/**
  * This hook allows a component to trigger an authentication gate, and
  * optionally "flash" data to the session for when they return.
  *
@@ -161,15 +176,8 @@ export const useGate = (identifier, options = {}) => {
   const authenticate = newState => {
     window.sessionStorage.setItem(identifier, JSON.stringify(newState));
 
-    const redirect = buildAuthRedirectUrl();
-
-    // If we're running our test suite, don't automatically initiate
-    // the login redirect flow & leave something to assert on.
-    if (window.Cypress) {
-      document.body.innerHTML = `<div data-test="redirect" data-url="${redirect}" />`;
-    } else {
-      window.location = redirect;
-    }
+    const redirectUrl = buildAuthRedirectUrl();
+    redirect(redirectUrl);
   };
 
   return [state, authenticate];
