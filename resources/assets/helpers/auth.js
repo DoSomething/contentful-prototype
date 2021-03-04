@@ -162,7 +162,7 @@ export const redirect = url => {
  */
 export const useGate = (identifier, options = {}) => {
   if (options.skip) {
-    return [];
+    return [{}, () => {}];
   }
 
   const item = window.sessionStorage.getItem(identifier);
