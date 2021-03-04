@@ -8,6 +8,7 @@ import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
+import NewsletterSubscriptionGallery from '../../utilities/Gallery/NewsletterSubscriptionGallery';
 
 const AboutPageTemplate = () => {
   return (
@@ -24,6 +25,7 @@ const AboutPageTemplate = () => {
             <AnalyticsWaypoint name="RENAME_section_bottom" />
           </header>
 
+          {/* Campaign Gallery Section */}
           <section
             className="base-12-grid bg-gray-100 py-8"
             data-test="campaigns-section"
@@ -46,6 +48,19 @@ const AboutPageTemplate = () => {
             <AnalyticsWaypoint name="campaign_section_bottom" />
           </section>
 
+          {/* Newsletter Signup Section */}
+          <section
+            className="base-12-grid bg-gray-100 py-8"
+            data-test="newsletter-section"
+          >
+            <StrikeThroughHeader title="Get Inspired. Get Entertained. Get Active." />
+
+            <div className="grid-wide text-center">
+              <NewsletterSubscriptionGallery />
+            </div>
+          </section>
+
+          {/* Join Us Call To Action Banner */}
           {isAuthenticated() ? null : (
             <article
               className="base-12-grid bg-yellow-500 py-16"
