@@ -313,7 +313,8 @@ module.exports = function(migration) {
     'builtin',
     'singleLine',
     {
-      helpText: 'The background color for the banner.',
+      helpText:
+        'Select a 6-digit HEX color value (eg. #f4e17b). Find list of color options here : http://bit.ly/2MITjEW ',
     },
   );
 
@@ -342,7 +343,8 @@ module.exports = function(migration) {
     'builtin',
     'singleLine',
     {
-      helpText: 'Customize the color of the Title.',
+      helpText:
+        'Select a 6-digit HEX color value (eg. #f4e17b). Find list of color options here : http://bit.ly/2MITjEW ',
     },
   );
 
@@ -361,7 +363,8 @@ module.exports = function(migration) {
     'builtin',
     'singleLine',
     {
-      helpText: 'Customize the subtitle color.',
+      helpText:
+        'Select a 6-digit HEX color value (eg. #f4e17b). Find list of color options here : http://bit.ly/2MITjEW ',
     },
   );
 
@@ -381,7 +384,7 @@ module.exports = function(migration) {
     'singleLine',
     {
       helpText:
-        'Customize the Voter Registration form submission button background color. ',
+        'Select a 6-digit HEX color value (eg. #f4e17b). Find list of color options here : http://bit.ly/2MITjEW ',
     },
   );
 
