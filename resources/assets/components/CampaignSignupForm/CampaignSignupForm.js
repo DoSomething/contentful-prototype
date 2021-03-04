@@ -91,11 +91,9 @@ const CampaignSignupForm = props => {
   const [groupId, setGroupId] = useState(null);
 
   // We'll want to redirect anonymous users to the auth flow, while stashing their selected data to session storage.
-  const [flash, authenticate] = useGate(
-    // Only pull the stashed data once we're done loading the users signups so that
-    // we don't overwrite it when the component refreshes!
-    loading ? '' : `CampaignSignupForm:${campaignId}`,
-  );
+  const [flash, authenticate] = useGate(`CampaignSignupForm:${campaignId}`, {
+    skip: loading,
+  });
 
   // Set up a GraphQL mutation to handle signing up the user once they submit the form.
   const [

@@ -141,8 +141,15 @@ export function isStaff() {
  * optionally "flash" data to the session for when they return.
  *
  * @param {String} identifier
+ * @param {Object} options
+ * @param {Boolean} options.skip
+ * @return {Array}
  */
-export const useGate = identifier => {
+export const useGate = (identifier, options = {}) => {
+  if (options.skip) {
+    return [];
+  }
+
   const item = window.sessionStorage.getItem(identifier);
 
   if (item) {
