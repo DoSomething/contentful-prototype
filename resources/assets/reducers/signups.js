@@ -11,7 +11,6 @@ import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
   GET_CAMPAIGN_SIGNUPS_PENDING,
   GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-  SIGNUP_CLICKED_OPT_IN,
   STORE_CAMPAIGN_SIGNUPS_FAILED,
   STORE_CAMPAIGN_SIGNUPS_PENDING,
   STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
@@ -27,7 +26,7 @@ const signupReducer = (state = {}, action) => {
 
   switch (action.type) {
     case GET_CAMPAIGN_SIGNUPS_FAILED:
-      return { ...state, isPending: false, thisCampaign: false };
+      return { ...state, isPending: false };
 
     case GET_CAMPAIGN_SIGNUPS_PENDING:
       return { ...state, isPending: true };
@@ -45,7 +44,6 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
-        thisCampaign: Boolean(data.length),
       };
 
     case STORE_CAMPAIGN_SIGNUPS_FAILED:
@@ -69,10 +67,7 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
-        shouldShowAffirmation:
-          get(action, 'meta.shouldShowAffirmation', true) &&
-          get(status, 'success.code') === 201,
-        thisCampaign: true, // @TODO: remove from state; use a selector instead
+        shouldShowAffirmation: get(status, 'success.code') === 201,
       };
 
     case SIGNUP_CREATED:
@@ -84,9 +79,7 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
-        thisCampaign: true,
-        shouldShowAffirmation: action.shouldShowAffirmation,
-        total: state.total + 1,
+        shouldShowAffirmation: true,
       };
 
     case OPENED_POST_SIGNUP_MODAL:
@@ -99,12 +92,6 @@ const signupReducer = (state = {}, action) => {
       return {
         ...state,
         shouldShowAffirmation: false,
-      };
-
-    case SIGNUP_CLICKED_OPT_IN:
-      return {
-        ...state,
-        affiliateMessagingOptIn: !state.affiliateMessagingOptIn,
       };
 
     case CLICKED_REMOVE_SIGN_UP:

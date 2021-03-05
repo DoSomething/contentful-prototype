@@ -24,6 +24,15 @@ export const CAMPAIGN_SIGNUP_QUERY = gql`
   }
 `;
 
+export const SEARCH_USER_CAMPAIGN_QUERY = gql`
+  query SearchUserCampaignQuery($userId: String!, $campaignId: String!) {
+    signups(userId: $userId, campaignId: $campaignId) {
+      id
+      campaignId
+    }
+  }
+`;
+
 /**
  * Find an entry from within the campaign by given ID or Slug param.
  * (Returns false if not found).

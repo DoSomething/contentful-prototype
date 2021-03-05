@@ -1,7 +1,6 @@
 /* global */
 
 import { join } from 'path';
-import { get } from 'lodash';
 
 import apiRequest from './api';
 import { PHOENIX_URL } from '../constants';
@@ -16,7 +15,6 @@ import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
   GET_CAMPAIGN_SIGNUPS_PENDING,
   GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-  SIGNUP_CLICKED_OPT_IN,
   STORE_CAMPAIGN_SIGNUPS_FAILED,
   STORE_CAMPAIGN_SIGNUPS_PENDING,
   STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
@@ -38,11 +36,6 @@ export function clickedShowAffirmation() {
   return { type: OPENED_POST_SIGNUP_MODAL };
 }
 
-// Action: toggles the user's opt in status for receiving affiliate messaging.
-export function clickedOptIn() {
-  return { type: SIGNUP_CLICKED_OPT_IN };
-}
-
 // Action: removes the current signup from campaign
 // for admin to preview content
 export function clickedRemoveSignUp(campaignId) {
@@ -50,7 +43,7 @@ export function clickedRemoveSignUp(campaignId) {
 }
 
 // Action: a new signup was created for a campaign.
-export function signupCreated(campaignId, shouldShowAffirmation = true) {
+export function signupCreated(campaignId) {
   return (dispatch, getState) => {
     const { user } = getState();
 
@@ -58,7 +51,6 @@ export function signupCreated(campaignId, shouldShowAffirmation = true) {
       type: SIGNUP_CREATED,
       campaignId,
       userId: user.id,
-      shouldShowAffirmation,
     });
   };
 }
@@ -102,7 +94,6 @@ export function getCampaignSignups(id = null, query = {}) {
 export function storeCampaignSignup(campaignId, data = {}) {
   const path = join('api/v2/campaigns', campaignId, 'signups');
   const type = 'signup';
-  const shouldShowAffirmation = get(data, 'shouldShowAffirmation', true);
 
   return dispatch => {
     dispatch(
@@ -118,7 +109,6 @@ export function storeCampaignSignup(campaignId, data = {}) {
             success: 'Thanks for signing up!',
             failure: 'Whoops! Something went wrong!',
           },
-          shouldShowAffirmation,
         },
         pending: STORE_CAMPAIGN_SIGNUPS_PENDING,
         requiresAuthentication: true,

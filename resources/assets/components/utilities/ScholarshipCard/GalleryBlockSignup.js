@@ -6,6 +6,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import SecondaryButton from '../Button/SecondaryButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
+import { SEARCH_USER_CAMPAIGN_QUERY } from '../../../helpers/campaign';
 import { getUserId, isAuthenticated, useGate } from '../../../helpers/auth';
 import {
   EVENT_CATEGORIES,
@@ -17,15 +18,6 @@ export const CREATE_SIGNUP_MUTATION = gql`
   mutation CampaignSignupMutation($campaignId: Int!) {
     createSignup(campaignId: $campaignId) {
       id
-    }
-  }
-`;
-
-export const SEARCH_USER_CAMPAIGN_QUERY = gql`
-  query SearchUserCampaignQuery($userId: String!, $campaignId: String!) {
-    signups(userId: $userId, campaignId: $campaignId) {
-      id
-      campaignId
     }
   }
 `;

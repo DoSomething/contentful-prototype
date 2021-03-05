@@ -9,11 +9,13 @@
 import './commands';
 import { defaultReferralCampaignId } from '../fixtures/constants';
 
-Cypress.on('window:before:load', window => {
-  const document = window.document;
-
+beforeEach(() => {
   // Clear session storage between tests:
   window.sessionStorage.clear();
+});
+
+Cypress.on('window:before:load', window => {
+  const document = window.document;
 
   // Custom ENV variables for the testing environment.
   window.ENV = {

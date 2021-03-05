@@ -27,7 +27,6 @@ import {
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
 } from '../../helpers';
-import AffiliateOptInToggleContainer from '../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import ScholarshipReferralVoterRegistrationBlock from '../blocks/ScholarshipReferralVoterRegistrationBlock/ScholarshipReferralVoterRegistrationBlock';
 
 const CAMPAIGN_BANNER_QUERY = gql`
@@ -47,7 +46,6 @@ const CampaignBanner = ({
   actionIdToDisplay,
   affiliateCreditText,
   affiliateSponsors,
-  affiliateOptInContent,
   campaignId,
   content,
   coverImage,
@@ -162,17 +160,11 @@ const CampaignBanner = ({
                         : undefined
                     }
                     contextSource="campaign_landing_page"
+                    displayAffiliateOptIn
                   />
                 ) : (
                   <Spinner className="flex justify-center p-6 mb-3" />
                 )}
-
-                {/* TODO: Move this into the CampaignSignupForm */}
-                {affiliateOptInContent ? (
-                  <AffiliateOptInToggleContainer
-                    affiliateOptInContent={affiliateOptInContent}
-                  />
-                ) : null}
               </div>
             ) : null}
 
@@ -265,7 +257,6 @@ CampaignBanner.propTypes = {
   actionIdToDisplay: PropTypes.number,
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
-  affiliateOptInContent: PropTypes.object,
   numberOfScholarships: PropTypes.number,
   campaignId: PropTypes.string,
   content: PropTypes.string.isRequired,
@@ -288,7 +279,6 @@ CampaignBanner.defaultProps = {
   actionIdToDisplay: null,
   affiliateCreditText: undefined,
   affiliateSponsors: [],
-  affiliateOptInContent: null,
   numberOfScholarships: 1,
   campaignId: null,
   dashboard: null,
