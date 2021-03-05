@@ -85,7 +85,7 @@ const CampaignSignupForm = props => {
     },
   );
 
-  const [affiliateMessagingOptIn, setAffiliateMessagingOptIn] = useState(false);
+  const [affiliateMessagingOptIn, setAffiliateMessagingOptIn] = useState(null);
 
   // We'll set up some state to store the selected Group ID if applicable on this form.
   const [groupId, setGroupId] = useState(null);
