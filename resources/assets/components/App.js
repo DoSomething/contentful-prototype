@@ -31,6 +31,7 @@ import ShowSubmissionPage from './pages/ShowSubmissionPage/ShowSubmissionPage';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import PopoverDispatcher from './utilities/PopoverDispatcher/PopoverDispatcher';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
+import QuestionnaireAction from './actions/QuestionnaireAction/QuestionnaireAction';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
 import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/VoterRegistrationDrivePage';
 import VoterRegistrationLandingPage from './pages/VoterRegistrationLandingPage/VoterRegistrationLandingPage';
@@ -159,6 +160,17 @@ const App = ({ store, history }) => {
               />
 
               <Route path="/us/refer-friends" component={AlphaReferralPage} />
+
+              <Route
+                path="/us/questionnaire"
+                render={() => (
+                  <main className="clearfix">
+                    <div className="md:w-3/4 mx-auto my-16 px-3">
+                      <QuestionnaireAction />
+                    </div>
+                  </main>
+                )}
+              />
 
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
