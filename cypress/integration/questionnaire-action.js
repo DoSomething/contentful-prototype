@@ -5,7 +5,8 @@ import faker from 'faker';
 describe('Questionnaire Action', () => {
   beforeEach(() => cy.configureMocks());
 
-  it('Submission is disabled until all questions are answered with valid character count', () => {
+  /** @test */
+  it('does not enable submission until all questions are answered with valid character count', () => {
     cy.visit('/us/questionnaire');
 
     cy.findByTestId('questionnaire-action').within(() => {
