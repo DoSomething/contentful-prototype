@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
+import { env } from '../../../helpers/env';
 import { NEWSLETTER_TOPICS } from './config';
 import PrimaryButton from '../Button/PrimaryButton';
 import { isAuthenticated } from '../../../helpers/auth';
@@ -43,20 +44,16 @@ const NewsletterSubscriptionForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    console.log(subscriptions);
-    console.log(emailValue);
-
-    fetch('https://httpbin.org/post', { method: 'POST', body: 'a=1' })
+    // @TODO: temporary request to test confirmation message.
+    fetch(`${env('NORTHSTAR_URL')}/status`, { method: 'GET' })
       .then(response => response.json())
       .then(data => {
         console.log(data);
+
+        setShowConfirmation(true);
       })
       .catch();
   };
-
-  useEffect(() => {
-    console.log(subscriptions);
-  });
 
   return showConfirmation ? (
     <div>
