@@ -120,7 +120,7 @@ QuestionnaireAction.propTypes = {
 };
 
 QuestionnaireAction.defaultProps = {
-  title: null,
+  title: 'Questionnaire',
   buttonText: 'Submit Answers',
   informationTitle: 'More Info',
   informationContent: null,
