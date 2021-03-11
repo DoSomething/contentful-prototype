@@ -27,6 +27,7 @@ import { ActionStatsBlockFragment } from '../../blocks/ActionStatsBlock/ActionSt
 import { SocialDriveBlockFragment } from '../../actions/SocialDriveAction/SocialDriveAction';
 import { PostGalleryBlockFragment } from '../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import { CurrentSchoolBlockFragment } from '../../blocks/CurrentSchoolBlock/CurrentSchoolBlock';
+import { QuestionnaireBlockFragment } from '../../actions/QuestionnaireAction/QuestionnaireAction';
 import { SignupReferralsBlockFragment } from '../../blocks/SignupReferralsBlock/SignupReferralsBlock';
 import { TextSubmissionBlockFragment } from '../../actions/TextSubmissionAction/TextSubmissionAction';
 import { PhotoSubmissionBlockFragment } from '../../actions/PhotoSubmissionAction/PhotoSubmissionAction';
@@ -91,6 +92,9 @@ export const CONTENTFUL_BLOCK_QUERY = gql`
       ... on TextSubmissionBlock {
         ...TextSubmissionBlockFragment
       }
+      ... on QuestionnaireBlock {
+        ...QuestionnaireBlockFragment
+      }
       ... on PhotoSubmissionBlock {
         ...PhotoSubmissionBlockFragment
       }
@@ -133,6 +137,7 @@ export const CONTENTFUL_BLOCK_QUERY = gql`
   ${CampaignDashboardFragment}
   ${ExternalLinkBlockFragment}
   ${CurrentSchoolBlockFragment}
+  ${QuestionnaireBlockFragment}
   ${CampaignUpdateBlockFragment}
   ${TextSubmissionBlockFragment}
   ${PhotoSubmissionBlockFragment}

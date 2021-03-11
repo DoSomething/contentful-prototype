@@ -1,3 +1,4 @@
+import gql from 'graphql-tag';
 import { every } from 'lodash';
 import React, { useState } from 'react';
 
@@ -6,6 +7,16 @@ import ActionInformation from '../ActionInformation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
+
+export const QuestionnaireBlockFragment = gql`
+  fragment QuestionnaireBlockFragment on QuestionnaireBlock {
+    title
+    questions
+    buttonText
+    informationTitle
+    informationContent
+  }
+`;
 
 const CHARACTER_LIMIT = 500;
 
