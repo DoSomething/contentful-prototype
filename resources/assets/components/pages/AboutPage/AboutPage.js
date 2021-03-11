@@ -8,7 +8,7 @@ import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
-import NewsletterSubscriptionGallery from '../../utilities/Gallery/NewsletterSubscriptionGallery';
+import NewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/NewsletterSubscriptionForm';
 
 const AboutPageTemplate = () => {
   return (
@@ -56,7 +56,7 @@ const AboutPageTemplate = () => {
             <StrikeThroughHeader title="Get Inspired. Get Entertained. Get Active." />
 
             <div className="grid-wide text-center">
-              <NewsletterSubscriptionGallery />
+              <NewsletterSubscriptionForm />
             </div>
           </section>
 
