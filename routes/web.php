@@ -88,10 +88,6 @@ Route::get('us/my-voter-registration-drive', 'VoterRegistrationDrivePageControll
 // Quiz Results
 Route::view('us/quiz-results/{id}', 'app');
 
-// Stubbed Questionnaire Action route for testing.
-// @TODO: Remove this when we formalize this feature.
-Route::view('us/questionnaire', 'app');
-
 // Pages
 Route::get('us/{slug}', 'PageController@show');
 Route::get('{slug}', function ($slug) {
