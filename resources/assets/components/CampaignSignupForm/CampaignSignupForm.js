@@ -148,6 +148,7 @@ const CampaignSignupForm = props => {
     // If we're returning from the authentication flow with "flashed" data
     // (and the user isn't already signed up for this campaign!), complete the signup:
     if (
+      isAuthenticated() &&
       !loading &&
       flash.signupData &&
       !get(campaignSignupData, 'signups', []).length &&
