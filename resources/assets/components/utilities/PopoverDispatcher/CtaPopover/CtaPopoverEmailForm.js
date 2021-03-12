@@ -79,7 +79,11 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
   };
 
   return !showAffirmation ? (
-    <div className="pt-4" data-test="cta-popover-email-form">
+    <div
+      className="pt-4"
+      data-test="cta-popover-email-form"
+      data-testid="cta-popover-email-form"
+    >
       {errorResponse ? (
         <div className="text-red-500">{errorResponse}</div>
       ) : null}
@@ -115,7 +119,10 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       </p>
     </div>
   ) : (
-    <div className="text-white mt-3 italic">
+    <div
+      className="text-white mt-3 italic"
+      data-testid="cta-popover-email-form-affirmation"
+    >
       Thank You For Submitting Your Email
     </div>
   );
