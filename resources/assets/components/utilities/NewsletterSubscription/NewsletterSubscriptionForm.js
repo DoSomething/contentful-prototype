@@ -9,7 +9,7 @@ import NewsletterSubscriptionCard from './NewsletterSubscriptionCard';
 import NewsLetterSubscriptionFormInput from './NewsletterSubscriptionFormInput';
 
 const NewsletterSubscriptionForm = () => {
-  const [subscriptions, setSubscription] = useState([]);
+  const [subscriptions, setSubscriptions] = useState([]);
 
   const [emailValue, setEmailValue] = useState('');
 
@@ -23,9 +23,9 @@ const NewsletterSubscriptionForm = () => {
         },
       );
 
-      setSubscription(updatedSubscriptionTopics);
+      setSubscriptions(updatedSubscriptionTopics);
     } else {
-      setSubscription([...subscriptions, topic]);
+      setSubscriptions([...subscriptions, topic]);
     }
   };
 
@@ -38,6 +38,7 @@ const NewsletterSubscriptionForm = () => {
   const handleOnFocus = event => {
     event.preventDefault();
 
+    // @TODO: add analytics tracking
     console.log('handling input focus...');
   };
 
