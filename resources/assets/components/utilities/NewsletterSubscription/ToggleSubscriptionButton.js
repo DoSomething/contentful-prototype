@@ -67,7 +67,6 @@ const ToggleSubscriptionButton = ({ topic }) => {
 
         updateSubscription({
           variables: {
-            userId: getUserId(),
             topic: selectedTopic,
             subscribed: !topics.includes(selectedTopic),
           },

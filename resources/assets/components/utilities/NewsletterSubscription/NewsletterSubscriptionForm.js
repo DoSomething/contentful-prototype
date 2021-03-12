@@ -97,7 +97,7 @@ const NewsletterSubscriptionForm = () => {
       </div>
 
       {isAuthenticated() ? null : (
-        <div className="xl:flex mt-8 xl:max-w-xl mx-auto">
+        <div className="md:flex md:max-w-xl mt-8 mx-auto">
           <input
             className="block border-2 border-gray-300 border-solid leading-none px-4 py-3 placeholder-gray-400 rounded text-base w-full"
             onChange={handleOnChange}
