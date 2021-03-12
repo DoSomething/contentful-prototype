@@ -44,11 +44,14 @@ describe('Company Page', () => {
 
     cy.visit(`/us/about/easy-scholarships`);
 
-    cy.route({
-      method: 'POST',
-      url: 'https://identity-dev.dosomething.org/v2/subscriptions',
-      status: 200,
-    });
+    cy.intercept(
+      'POST',
+      'https://identity-dev.dosomething.org/v2/subscriptions',
+      {
+        statusCode: 200,
+        body: { id: '123' },
+      },
+    );
 
     cy.get('[data-test="cta-popover-email-form"] input[type="text"]').type(
       'vmack@dosomething.org',
@@ -68,11 +71,14 @@ describe('Company Page', () => {
 
     cy.visit(`/us/about/easy-scholarships`);
 
-    cy.route({
-      method: 'POST',
-      url: 'https://identity-dev.dosomething.org/v2/subscriptions',
-      status: 422,
-    });
+    cy.intercept(
+      'POST',
+      'https://identity-dev.dosomething.org/v2/subscriptions',
+      {
+        statusCode: 422,
+        body: {},
+      },
+    );
 
     cy.get('[data-test="cta-popover-email-form"] input[type="text"]').type(
       'hsjadcusdcg',
