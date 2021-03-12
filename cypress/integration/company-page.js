@@ -76,7 +76,14 @@ describe('Company Page', () => {
       'https://identity-dev.dosomething.org/v2/subscriptions',
       {
         statusCode: 422,
-        body: {},
+        body: {
+          error: {
+            message: 'Failed validation.',
+            fields: {
+              email: ['The email must be a valid email address.'],
+            },
+          },
+        },
       },
     );
 
