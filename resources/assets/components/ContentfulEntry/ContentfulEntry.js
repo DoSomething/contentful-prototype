@@ -26,6 +26,7 @@ import CampaignDashboard from '../utilities/CampaignDashboard/CampaignDashboard'
 import CurrentSchoolBlock from '../blocks/CurrentSchoolBlock/CurrentSchoolBlock';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
+import QuestionnaireAction from '../actions/QuestionnaireAction/QuestionnaireAction';
 import SignupReferralsBlock from '../blocks/SignupReferralsBlock/SignupReferralsBlock';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
@@ -181,6 +182,10 @@ class ContentfulEntry extends React.Component {
             />
           </React.Fragment>
         );
+
+      case 'QuestionnaireBlock': {
+        return <QuestionnaireAction {...withoutNulls(json)} />;
+      }
 
       case 'QuizBlock': {
         const QuizBlock = Loader(import('../Quiz/QuizBlock'));

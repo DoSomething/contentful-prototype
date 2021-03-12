@@ -5,7 +5,7 @@ import Card from '../utilities/Card/Card';
 import TextContent from '../utilities/TextContent/TextContent';
 
 const ActionInformation = ({ className, content, title }) => (
-  <div className={className}>
+  <div data-testid="action-information" className={className}>
     <Card title={title} className="bordered rounded">
       <TextContent className="p-3">{content}</TextContent>
     </Card>
