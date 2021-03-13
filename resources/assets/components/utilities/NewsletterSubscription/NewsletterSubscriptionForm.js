@@ -4,7 +4,9 @@ import React, { useState } from 'react';
 import { env } from '../../../helpers/env';
 import { NEWSLETTER_TOPICS } from './config';
 import PrimaryButton from '../Button/PrimaryButton';
+import { tailwind } from '../../../helpers/display';
 import { isAuthenticated } from '../../../helpers/auth';
+import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
 import NewsletterSubscriptionCard from './NewsletterSubscriptionCard';
 import NewsLetterSubscriptionFormInput from './NewsletterSubscriptionFormInput';
 
@@ -58,7 +60,14 @@ const NewsletterSubscriptionForm = () => {
 
   return showConfirmation ? (
     <div>
-      <p>Thanks for signing up!</p>
+      <p>
+        <CheckIcon
+          className="align-baseline inline-block"
+          color={tailwind('colors.green.500')}
+          height="18px"
+        />{' '}
+        Thanks for signing up!
+      </p>
       <p>
         Want even more? Activate your account! We&apos;ve sent you an email
         where you can set your password, valid for 72 hours.
@@ -99,7 +108,7 @@ const NewsletterSubscriptionForm = () => {
       {isAuthenticated() ? null : (
         <div className="md:flex md:max-w-xl mt-8 mx-auto">
           <input
-            className="block border-2 border-gray-300 border-solid leading-none px-4 py-3 placeholder-gray-400 rounded text-base w-full"
+            className="block border-2 border-gray-300 border-solid leading-none outline-none focus:outline-2 focus:outline-blurple-100 focus:outline-solid px-4 py-3 placeholder-gray-400 rounded text-base w-full"
             onChange={handleOnChange}
             onFocus={handleOnFocus}
             placeholder="Enter your email address"
