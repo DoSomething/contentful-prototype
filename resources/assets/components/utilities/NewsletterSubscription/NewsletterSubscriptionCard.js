@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ToggleButton from '../Button/ToggleButton';
-import { isAuthenticated } from '../../../helpers/auth';
 import {
   NEWSLETTER_BANNERS,
   NEWSLETTER_TEXT,
@@ -10,13 +8,14 @@ import {
 } from './config';
 
 const NewsletterSubscriptionCard = ({
+  children,
   description,
   subtitle,
   title,
   topic,
 }) => {
-  const text = NEWSLETTER_TEXT[topic];
   const banner = NEWSLETTER_BANNERS[topic];
+  const text = NEWSLETTER_TEXT[topic];
 
   return (
     <article className="flex flex-col h-full text-left">
@@ -34,17 +33,16 @@ const NewsletterSubscriptionCard = ({
 
         <h2 className="italic mb-6 text-base">{subtitle || text.subtitle}</h2>
 
-        <p>{description || text.description}</p>
+        <p className="flex-grow">{description || text.description}</p>
 
-        {isAuthenticated() ? (
-          <ToggleButton activateText="Subscribe" deactivateText="Unsubscribe" />
-        ) : null}
+        {children}
       </div>
     </article>
   );
 };
 
 NewsletterSubscriptionCard.propTypes = {
+  children: PropTypes.element,
   description: PropTypes.string,
   subtitle: PropTypes.string,
   topic: PropTypes.oneOf(Object.keys(NEWSLETTER_TOPICS)).isRequired,
@@ -52,6 +50,7 @@ NewsletterSubscriptionCard.propTypes = {
 };
 
 NewsletterSubscriptionCard.defaultProps = {
+  children: null,
   description: null,
   subtitle: null,
   title: null,
