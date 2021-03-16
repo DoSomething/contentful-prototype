@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import { NEWSLETTER_TOPICS } from './config';
+import { tailwind } from '../../../helpers/display';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
 
 const ToggleSubscriptionCheckbox = ({ topic, updateSubscriptions }) => {
@@ -22,14 +23,18 @@ const ToggleSubscriptionCheckbox = ({ topic, updateSubscriptions }) => {
       `}
     >
       <input
-        className="w-0 opacity-0 h-0"
+        className="absolute appearance-none focus:outline-2 focus:outline-blurple-100 focus:outline-solid h-8 w-8"
+        css={css`
+          left: -2px;
+          top: -2px;
+        `}
         id={`${topic}-subscription`}
         name={`${topic}-subscription`}
         type="checkbox"
         onClick={() => updateSubscriptions(topic)}
       />
       <span className="check-input absolute items-center flex inset-0 justify-center pointer-events-none w-full">
-        <CheckIcon className="h-4" />
+        <CheckIcon color={tailwind('colors.blurple.500')} height="18px" />
       </span>
     </label>
   );
