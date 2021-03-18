@@ -60,14 +60,10 @@ const NewsletterSubscriptionForm = () => {
         source: 'phoenix-next',
         source_detail: 'newsletter_subscriptions-about-page',
       })
-      .then(response => {
+      .then(() => {
         setShowConfirmation(true);
-
-        console.log(response);
       })
       .catch(error => {
-        console.log(error.response);
-
         setErrors(error.response.error);
       });
   };
