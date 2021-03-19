@@ -46,7 +46,7 @@ export const NEWSLETTER_TEXT = {
       'Don’t just read the news…*change* the news. Our current events newsletter has headlines, along with immediate ways to impact them.',
   },
   [NEWSLETTER_TOPICS.scholarships]: {
-    subtitle: 'Sent monthly every first Friday', // @TODO: maybe reword for better fit? "Sent first Friday of month"
+    subtitle: 'Sent monthly every 1st Friday',
     title: 'Pays to Do Good',
     description:
       'Alerts on new ways to earn scholarships by doing social good, plus announcements of scholarship winners.',
