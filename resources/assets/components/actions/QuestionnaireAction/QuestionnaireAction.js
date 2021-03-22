@@ -74,6 +74,7 @@ const QuestionnaireAction = ({
     event.preventDefault();
 
     setLoading(true);
+    setErrors(null);
 
     trackAnalyticsEvent('submitted_questionnaire_action', {
       action: 'form_submitted',
