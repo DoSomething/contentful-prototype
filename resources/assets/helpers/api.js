@@ -41,7 +41,7 @@ export function tabularLog(data) {
   // Console log response Data for debugging.
   if (window.ENV.APP_ENV !== 'production') {
     console.groupCollapsed(
-      '%c API Middleware Response: ',
+      '%c API Response: ',
       'background-color: rgba(137,161,188,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
     );
     console.table(data);
