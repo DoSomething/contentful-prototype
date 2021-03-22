@@ -136,7 +136,9 @@ const QuestionnaireAction = ({
         setLoading(false);
 
         setErrors({
-          errorMessage: get(error, 'response.error.message'),
+          errorMessage:
+            get(error, 'response.error.message') ||
+            get(error, 'response.message'),
           fieldErrors: get(error, 'response.errors'),
         });
       });
@@ -157,8 +159,9 @@ const QuestionnaireAction = ({
       <Card className="bordered rounded col-span-8" title={title}>
         {errors ? (
           <p className="p-3 text-red-500 font-bold">
-            {errors.errorMessage ||
-              'Hmm, there were some issues with your submission.'}
+            {errors.fieldErrors
+              ? 'Hmm, there were some issues with your submission.'
+              : errors.errorMessage}
           </p>
         ) : null}
 
