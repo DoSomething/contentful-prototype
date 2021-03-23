@@ -5,10 +5,12 @@ import { isAuthenticated } from '../../../helpers/auth';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
+import SpotlightGallery from '../../utilities/Gallery/SpotlightGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import NewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/NewsletterSubscriptionForm';
+import { tailwind } from '../../../helpers/display';
 
 const AboutPageTemplate = () => {
   return (
@@ -27,7 +29,7 @@ const AboutPageTemplate = () => {
 
           {/* Campaign Gallery Section */}
           <section
-            className="base-12-grid bg-gray-100 py-8"
+            className="base-12-grid bg-gray-100 py-12"
             data-test="campaigns-section"
           >
             <AnalyticsWaypoint name="campaign_section_top" />
@@ -50,13 +52,58 @@ const AboutPageTemplate = () => {
 
           {/* Newsletter Signup Section */}
           <section
-            className="base-12-grid bg-gray-100 py-8"
+            className="base-12-grid bg-gray-100 py-12"
             data-test="newsletter-section"
           >
             <StrikeThroughHeader title="Get Inspired. Get Entertained. Get Active." />
 
             <div className="grid-wide text-center">
               <NewsletterSubscriptionForm />
+            </div>
+          </section>
+
+          {/* Member Highlight Section */}
+          <section
+            className="base-12-grid bg-white py-12"
+            data-test="member-highlight-section"
+          >
+            <StrikeThroughHeader title="Meet Our Members" />
+
+            <div className="grid-main">
+              <p className="text-lg">
+                A DoSomething member is any young person who signs up for one of
+                our volunteer, social change, or civic action campaigns. We've
+                got *millions* of members making change in every US area code
+                and 131 countries. Get to know some of them!
+              </p>
+            </div>
+
+            <div className="grid-wide">
+              <SpotlightGallery
+                type="memberSpotlight"
+                className="mt-8 text-center"
+                colors={{ background: tailwind('colors.purple.700') }}
+                items={content.memberHighlights}
+              />
+            </div>
+          </section>
+
+          {/* Scholarship Winners Section */}
+          <section
+            className="base-12-grid bg-white py-12"
+            data-test="scholarship-winners-section"
+          >
+            <StrikeThroughHeader title="Scholarship Winners" />
+
+            <div className="grid-wide text-center">
+              <SpotlightGallery
+                type="memberSpotlight"
+                colors={{
+                  background: tailwind('colors.blurple.500'),
+                  title: tailwind('colors.teal.500'),
+                }}
+                items={content.scholarshipWinners}
+              />
             </div>
           </section>
 
