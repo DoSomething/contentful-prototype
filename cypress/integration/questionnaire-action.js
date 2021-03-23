@@ -225,7 +225,7 @@ describe('Questionnaire Action', () => {
     cy.findByTestId('questionnaire-field-errors').should('have.length', 0);
   });
 
-  it.only('Redirects to the show submission page after a successful questionnaire submission', () => {
+  it('Redirects to the show submission page after a successful questionnaire submission', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('ContentfulBlockQuery', {
