@@ -158,7 +158,10 @@ const QuestionnaireAction = ({
     >
       <Card className="bordered rounded col-span-8" title={title}>
         {errors ? (
-          <p className="p-3 text-red-500 font-bold">
+          <p
+            className="p-3 text-red-500 font-bold"
+            data-testid="questionnaire-error-message"
+          >
             {errors.fieldErrors
               ? 'Hmm, there were some issues with your submission.'
               : errors.errorMessage}
@@ -166,7 +169,7 @@ const QuestionnaireAction = ({
         ) : null}
 
         {get(errors, 'fieldErrors') ? (
-          <ul className="p-3 mt-0">
+          <ul className="p-3 mt-0" data-testid="questionnaire-field-errors">
             {Object.keys(errors.fieldErrors).map(errorField => (
               <li key={errorField} className="text-red-500">
                 {errors.fieldErrors[errorField].map(errorMessage =>
