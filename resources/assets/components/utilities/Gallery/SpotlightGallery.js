@@ -50,11 +50,13 @@ SpotlightGallery.propTypes = {
     title: PropTypes.string,
   }),
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  type: PropTypes.string,
 };
 
 SpotlightGallery.defaultProps = {
   className: null,
   colors: {},
+  type: null,
 };
 
 export default SpotlightGallery;

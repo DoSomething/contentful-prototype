@@ -72,9 +72,9 @@ const AboutPageTemplate = () => {
             <div className="grid-main">
               <p className="text-lg">
                 A DoSomething member is any young person who signs up for one of
-                our volunteer, social change, or civic action campaigns. We've
-                got *millions* of members making change in every US area code
-                and 131 countries. Get to know some of them!
+                our volunteer, social change, or civic action campaigns.
+                We&apos;ve got *millions* of members making change in every US
+                area code and 131 countries. Get to know some of them!
               </p>
             </div>
 
