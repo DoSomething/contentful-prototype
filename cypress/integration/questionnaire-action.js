@@ -278,7 +278,9 @@ describe('Questionnaire Action', () => {
       },
     });
 
-    cy.visit('/us/blocks/123');
+    cy.withFeatureFlags({
+      post_confirmation_page: true,
+    }).visit('/us/blocks/123');
 
     cy.findByTestId('question-1-input').type(faker.lorem.words());
     cy.findByTestId('question-2-input').type(faker.lorem.words());
