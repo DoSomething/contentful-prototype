@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { every, get } from 'lodash';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RestApiClient } from '@dosomething/gateway';
 
 import { env } from '../../../helpers/env';
@@ -11,6 +11,7 @@ import { tabularLog } from '../../../helpers/api';
 import ActionInformation from '../ActionInformation';
 import { report } from '../../../helpers/monitoring';
 import { formatPostPayload } from '../../../helpers/forms';
+import { isAuthenticated, useGate } from '../../../helpers/auth';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
@@ -62,44 +63,21 @@ const QuestionnaireAction = ({
   informationTitle,
   informationContent,
 }) => {
-  const [answers, updateAnswers] = useState({});
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(null);
 
-  const onChange = (questionId, updatedAnswer) => {
-    updateAnswers({ ...answers, [questionId]: updatedAnswer });
-  };
+  const [flash, authenticate] = useGate(`QuestionnaireAction:${id}`, {
+    skip: loading,
+  });
 
-  const onSubmit = event => {
-    event.preventDefault();
+  const [answers, updateAnswers] = useState(flash.answers || {});
 
-    setLoading(true);
-    setErrors(null);
-
-    trackAnalyticsEvent('submitted_questionnaire_action', {
-      action: 'form_submitted',
-      category: EVENT_CATEGORIES.campaignAction,
-      label: 'questionnaire',
-      context: {
-        blockId: id,
-        ...getPageContext(),
-      },
-    });
-
+  const submitQuestionnaire = data => {
     const client = new RestApiClient(`${env('NORTHSTAR_URL')}`, {
       headers: {
         Authorization: `Bearer ${window.AUTH.token}`,
         'Content-Type': 'application/json',
       },
-    });
-
-    const data = formatPostPayload({
-      questions: questions.map(question => ({
-        title: question.title,
-        answer: answers[question.actionId],
-        action_id: question.actionId,
-      })),
-      contentful_id: id,
     });
 
     client
@@ -142,6 +120,48 @@ const QuestionnaireAction = ({
           fieldErrors: get(error, 'response.errors'),
         });
       });
+  };
+
+  useEffect(() => {
+    // If we're returning from the authentication flow with "flashed" data, submit the questionnaire.
+    if (isAuthenticated() && flash.questionnaireData) {
+      setLoading(true);
+      submitQuestionnaire(flash.questionnaireData);
+    }
+  }, [flash]);
+
+  const onChange = (questionId, updatedAnswer) => {
+    updateAnswers({ ...answers, [questionId]: updatedAnswer });
+  };
+
+  const onSubmit = event => {
+    event.preventDefault();
+
+    setLoading(true);
+    setErrors(null);
+
+    trackAnalyticsEvent('submitted_questionnaire_action', {
+      action: 'form_submitted',
+      category: EVENT_CATEGORIES.campaignAction,
+      label: 'questionnaire',
+      context: {
+        blockId: id,
+        ...getPageContext(),
+      },
+    });
+
+    const data = formatPostPayload({
+      questions: questions.map(question => ({
+        title: question.title,
+        answer: answers[question.actionId],
+        action_id: question.actionId,
+      })),
+      contentful_id: id,
+    });
+
+    return isAuthenticated()
+      ? submitQuestionnaire(data)
+      : authenticate({ questionnaireData: data, answers });
   };
 
   const finishedQuestionnaire = every(
