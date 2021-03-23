@@ -1,6 +1,7 @@
 import { Fragment, React } from 'react';
 
 import content from './about-page-content.json';
+import { tailwind } from '../../../helpers/display';
 import { isAuthenticated } from '../../../helpers/auth';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
@@ -10,7 +11,6 @@ import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContaine
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import NewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/NewsletterSubscriptionForm';
-import { tailwind } from '../../../helpers/display';
 
 const AboutPageTemplate = () => {
   return (
