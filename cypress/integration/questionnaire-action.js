@@ -265,4 +265,46 @@ describe('Questionnaire Action', () => {
 
     cy.contains('We Got Your Submission');
   });
+
+  /** @test */
+  it('Create Questionnaire, as an anonymous user', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('ContentfulBlockQuery', {
+      block: {
+        id: '123',
+        __typename: 'QuestionnaireBlock',
+        questions,
+      },
+    });
+
+    cy.visit('/us/blocks/123');
+
+    cy.findByTestId('question-1-input').type(faker.lorem.words());
+    cy.findByTestId('question-2-input').type(faker.lorem.words());
+
+    cy.findByTestId('questionnaire-submit-button')
+      .click()
+      .handleLogin(user);
+
+    cy.intercept('POST', QUESTIONNAIRES_API, {
+      statusCode: 200,
+      body: { data: [{ id: 1 }] },
+    }).as('submitQuestionnaire');
+
+    cy.mockGraphqlOp('PostQuery', {
+      post: {
+        userId: user.id,
+      },
+    });
+
+    cy.wait('@submitQuestionnaire');
+
+    // We should be redirected to the show submission page after submitting a questionnaire.
+    cy.location('pathname').should('eq', '/us/posts/1');
+    // We should have appended the Questionnaire Action ID as a query parameter.
+    cy.location('search').should('eq', '?submissionActionId=123');
+
+    cy.contains('We Got Your Submission');
+  });
 });
