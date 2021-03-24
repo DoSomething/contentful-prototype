@@ -57,5 +57,75 @@
   ],
   "coverImage": {
     "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
-  }
+  },
+  "memberHighlights": [
+    {
+      "age": 20,
+      "campaignTitle": "Grandparents Gone Wired",
+      "content": "Caesar helped his grandma stay connected by teaching her emojis!",
+      "firstName": "Caesar",
+      "id": 1,
+      "image": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/2zlEXv3peyZ1igkFLSuj1X/cad0cb1a0d78ab133ba06b4477e7a4e7/Caesar.png"
+      },
+      "memberQuote": "Knowledge is power."
+    },
+    {
+      "age": 16,
+      "campaignTitle": "Teens for Jeans",
+      "content": "Jordyn and her friends donated 500 pairs of jeans to benefit a local homeless shelter.",
+      "firstName": "Jordyn",
+      "id": 2,
+      "image": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/3G4nVbFnrjvYGG3kOo80wg/09acaee58919ebcd74b347ddec3cfa98/Jordyn.png"
+      },
+      "memberQuote": "We love giving back to the community! It is a great way to contribute to an important cause."
+    },
+    {
+      "age": 21,
+      "campaignTitle": "Give a Spit About Cancer",
+      "content": "Zachary swabbed his cheek to join the national bone marrow registry.",
+      "firstName": "Zachary",
+      "id": 3,
+      "image": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/5gQ8bCGb2G68qgeHRKj1Sf/5f9b3b4f5bd0850227c47ea471671544/Zachary.png"
+      },
+      "memberQuote": "I ran a give a spit drive on my campus. This campaign is LITERALLY saving lives!!!"
+    }
+  ],
+  "scholarshipWinners": [
+    {
+      "campaignTitle": "Not-So-Secret Admirer",
+      "content": "Keyla shared a V-Day card with her s/o to give them the confidence to pursue their dreams.",
+      "firstName": "Keyla",
+      "id": 1,
+      "image": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/1w35vrIZx2UaPQLvxnBXbF/81f3a9e5080cd61944c097633976d555/Keyla.png"
+      },
+      "memberQuote": "This campaign allowed me to understand how important it is to show the person I am with how much I’m appreciative of them.",
+      "scholarshipAmount": 5000
+    },
+    {
+      "campaignTitle": "Let’s Stress Less",
+      "content": "Darren scored a scholarship for adding tips to our crowdsourced stress-busting guide.",
+      "firstName": "Darren",
+      "id": 2,
+      "image": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/5d6eAjeMqBAG9EtYuxj5d9/8a40997503fb7fe03393f6d65c4e2356/Darren.png"
+      },
+      "memberQuote": "I want to rest my head on my pillow at night knowing that I did the best I could to follow my calling of helping people.",
+      "scholarshipAmount": 2000
+    },
+    {
+      "campaignTitle": "Take Back the Prom: Outfit Donations",
+      "content": "Ricardo donated prom formal wear to make sure everyone could look and feel good at prom.",
+      "firstName": "Ricardo",
+      "id": 3,
+      "image": {
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/1NXYHdwA74ztZCYZxxI1yQ/39cdc1acbe6a13c240619fd303d1b870/Ricardo.png"
+      },
+      "memberQuote": "This campaign is important to me because I believe that everyone should be able to have an amazing prom filled with great memories.",
+      "scholarshipAmount": 2000
+    }
+  ]
 }
