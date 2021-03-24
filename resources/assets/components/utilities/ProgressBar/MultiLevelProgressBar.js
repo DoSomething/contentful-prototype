@@ -45,7 +45,7 @@ const MultiLevelProgressBar = ({ children, levelLabels }) => {
       <div className="grid grid-cols-3 pr-4 lg:pr-0 mb-10 w-full">
         {levelLabels.map(level => {
           return (
-            <div className="text-right">
+            <div className="text-right" key={level.label}>
               <span className="font-bold">{level.label}</span> <br />{' '}
               {level.subLabel || null}
             </div>
