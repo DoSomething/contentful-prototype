@@ -1,6 +1,7 @@
 import { Fragment, React } from 'react';
 
-import content from './about-page-content.json';
+import data from './about-page-content.json';
+import Embed from '../../utilities/Embed/Embed';
 import { tailwind } from '../../../helpers/display';
 import { isAuthenticated } from '../../../helpers/auth';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
@@ -27,6 +28,26 @@ const AboutPageTemplate = () => {
             <AnalyticsWaypoint name="RENAME_section_bottom" />
           </header>
 
+          {/* Main Content Section */}
+          <section className="base-12-grid bg-white py-12">
+            <Embed
+              className="col-span-4 md:col-span-8 lg:col-span-10 xl:col-span-4 lg:col-start-2 xl:col-start-8 xl:mt-12 xl:row-start-1 self-start"
+              url={data.content.media.url}
+            />
+
+            <div className="col-span-4 md:col-span-8 lg:col-span-10 xl:col-span-6 lg:col-start-2 xl:col-start-2 xl:row-start-1 mt-4 xl:mt-0">
+              <h2 className="mb-0 text-lg text-purple-400 uppercase">
+                About Us
+              </h2>
+
+              <h3 className="font-league-gothic font-normal mb-0 md:text-4xl mt-4 text-3xl uppercase">
+                {data.content.title}
+              </h3>
+
+              <p className="mt-8 text-lg">{data.content.copy}</p>
+            </div>
+          </section>
+
           {/* Campaign Gallery Section */}
           <section
             className="base-12-grid bg-gray-100 py-12"
@@ -37,7 +58,7 @@ const AboutPageTemplate = () => {
             <StrikeThroughHeader title="Some Of Our Greatest Campaigns" />
 
             <div className="grid-wide text-center">
-              <CampaignGallery campaigns={content.campaigns} />
+              <CampaignGallery campaigns={data.campaigns} />
 
               <PrimaryButton
                 attributes={{ 'data-label': 'campaign_section_show_more' }}
@@ -83,7 +104,7 @@ const AboutPageTemplate = () => {
                 type="memberSpotlight"
                 className="mt-8 text-center"
                 colors={{ background: tailwind('colors.purple.700') }}
-                items={content.memberHighlights}
+                items={data.memberHighlights}
               />
             </div>
           </section>
@@ -102,7 +123,7 @@ const AboutPageTemplate = () => {
                   background: tailwind('colors.blurple.500'),
                   title: tailwind('colors.teal.500'),
                 }}
-                items={content.scholarshipWinners}
+                items={data.scholarshipWinners}
               />
             </div>
           </section>
