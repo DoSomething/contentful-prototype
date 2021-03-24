@@ -1,9 +1,11 @@
+import { css } from '@emotion/core';
 import { Fragment, React } from 'react';
 
 import content from './about-page-content.json';
 import { tailwind } from '../../../helpers/display';
 import { isAuthenticated } from '../../../helpers/auth';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import { contentfulImageUrl } from '../../../helpers/contentful';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import SpotlightGallery from '../../utilities/Gallery/SpotlightGallery';
@@ -11,8 +13,40 @@ import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContaine
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import NewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/NewsletterSubscriptionForm';
+import LinkButton from '../../utilities/Button/LinkButton';
 
 const AboutPageTemplate = () => {
+  const tailwindScreens = tailwind('screens');
+
+  const headerBackgroundStyles = content.coverImage
+    ? css`
+        background-image: url(${contentfulImageUrl(
+          content.coverImage.url,
+          '400',
+          '775',
+          'fill',
+        )});
+
+        @media (min-width: ${tailwindScreens.md}) {
+          background-image: url(${contentfulImageUrl(
+            content.coverImage.url,
+            '700',
+            '700',
+            'fill',
+          )});
+        }
+
+        @media (min-width: ${tailwindScreens.lg}) {
+          background-image: url(${contentfulImageUrl(
+            content.coverImage.url,
+            '1440',
+            '539',
+            'fill',
+          )});
+        }
+      `
+    : null;
+
   return (
     <Fragment>
       <SiteNavigationContainer />
@@ -22,7 +56,46 @@ const AboutPageTemplate = () => {
           <header role="banner" className="bg-white">
             <AnalyticsWaypoint name="RENAME_section_top" />
 
-            <div>Hello!</div>
+            <div
+              className="bg-gray-400"
+              css={css`
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 540px;
+
+                ${headerBackgroundStyles}
+              `}
+            />
+
+            <div
+              className="base-12-grid"
+              css={css`
+                margin-top: -125px;
+              `}
+            >
+              <div
+                className="bg-blurple-500 grid-wide p-8 text-center"
+                css={css`
+                  min-height: 200px;
+                `}
+              >
+                <h1 className="font-league-gothic font-normal mb-0 text-5xl text-teal-500 uppercase">
+                  Join Our Youth-Led Movement For Good
+                </h1>
+
+                <p className="font-bold text-lg text-white">
+                  Make an impact with millions of young people, and earn easy
+                  scholarships for volunteering.
+                </p>
+
+                <LinkButton
+                  className="bg-yellow-400 hover:bg-yellow-100 mt-2 px-6 py-4 text-gray-900 hover:text-gray-900 text-lg"
+                  href="/authorize"
+                  text="Join Now"
+                />
+              </div>
+            </div>
 
             <AnalyticsWaypoint name="RENAME_section_bottom" />
           </header>
