@@ -173,6 +173,7 @@ module.exports = function(migration) {
             'petitionSubmissionAction',
             'photoSubmissionAction',
             'postGallery',
+            'questionnaireAction',
             'quiz',
             'selectionSubmissionAction',
             'shareAction',
