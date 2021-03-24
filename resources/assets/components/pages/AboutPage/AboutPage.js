@@ -4,6 +4,7 @@ import { Fragment, React } from 'react';
 import content from './about-page-content.json';
 import { tailwind } from '../../../helpers/display';
 import { isAuthenticated } from '../../../helpers/auth';
+import LinkButton from '../../utilities/Button/LinkButton';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl } from '../../../helpers/contentful';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
@@ -13,7 +14,6 @@ import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContaine
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import NewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/NewsletterSubscriptionForm';
-import LinkButton from '../../utilities/Button/LinkButton';
 
 const AboutPageTemplate = () => {
   const tailwindScreens = tailwind('screens');
