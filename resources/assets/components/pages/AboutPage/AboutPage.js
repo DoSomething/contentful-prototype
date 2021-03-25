@@ -19,10 +19,10 @@ import NewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/N
 const AboutPageTemplate = () => {
   const tailwindScreens = tailwind('screens');
 
-  const headerBackgroundStyles = content.coverImage
+  const headerBackgroundStyles = data.coverImage
     ? css`
         background-image: url(${contentfulImageUrl(
-          content.coverImage.url,
+          data.coverImage.url,
           '400',
           '775',
           'fill',
@@ -30,7 +30,7 @@ const AboutPageTemplate = () => {
 
         @media (min-width: ${tailwindScreens.md}) {
           background-image: url(${contentfulImageUrl(
-            content.coverImage.url,
+            data.coverImage.url,
             '700',
             '700',
             'fill',
@@ -39,7 +39,7 @@ const AboutPageTemplate = () => {
 
         @media (min-width: ${tailwindScreens.lg}) {
           background-image: url(${contentfulImageUrl(
-            content.coverImage.url,
+            data.coverImage.url,
             '1440',
             '539',
             'fill',
