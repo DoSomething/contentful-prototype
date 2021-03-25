@@ -80,6 +80,18 @@ const badgeModalContent = {
       </span>
     ),
   },
+  fourPostsBadge: {
+    title: '4 ACTIONS',
+    earnedText:
+      'OH YEAH! You rocked another campaign and earned your *fourth* Action badge.',
+    unearnedText: (
+      <span>
+        Holder Test for a fourth action!{' '}
+        {exploreCampaignsLink('Complete another campaign')} to unlock this
+        exclusive badge.
+      </span>
+    ),
+  },
   oneStaffFaveBadge: {
     title: '1 STAFF FAVE',
     earnedText:
@@ -250,6 +262,25 @@ const RewardsTab = ({ userId }) => {
               text="3 Actions"
             >
               <p>3 Actions</p>
+            </Badge>
+          </div>
+        </li>
+
+        <li>
+          <div
+            onClick={() =>
+              showModal('fourPostsBadge', badges.includes('FOUR_POSTS'))
+            }
+            role="button"
+            tabIndex={0}
+            className="clickable-badge"
+          >
+            <Badge
+              earned={badges.includes('FOUR_POSTS')}
+              name="fourPostsBadge"
+              text="4 Actions"
+            >
+              <p>4 Actions</p>
             </Badge>
           </div>
         </li>

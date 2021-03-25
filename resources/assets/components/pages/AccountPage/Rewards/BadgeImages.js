@@ -6,6 +6,8 @@ import twoPostsBadge from './BadgesImages/Posts2.svg';
 import twoPostsBadgeLocked from './BadgesImages/Posts2Locked.svg';
 import threePostsBadge from './BadgesImages/Posts3.svg';
 import threePostsBadgeLocked from './BadgesImages/Posts3Locked.svg';
+import fourPostsBadge from './BadgesImages/Posts4.svg';
+import fourPostsBadgeLocked from './BadgesImages/Posts4Locked.svg';
 import breakdownBadge from './BadgesImages/BreakdownBadge.svg';
 import breakdownBadgeLocked from './BadgesImages/BreakdownBadgeLocked.svg';
 import oneStaffFaveBadge from './BadgesImages/StaffFave1.svg';
@@ -27,6 +29,8 @@ const BadgeImages = {
   twoPostsBadgeLocked,
   threePostsBadge,
   threePostsBadgeLocked,
+  fourPostsBadge,
+  fourPostsBadgeLocked,
   oneStaffFaveBadge,
   oneStaffFaveBadgeLocked,
   twoStaffFavesBadge,
