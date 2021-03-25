@@ -26,6 +26,7 @@ export const QuestionnaireBlockFragment = gql`
     title
     questions
     buttonText
+    affirmationContent
     informationTitle
     informationContent
   }
