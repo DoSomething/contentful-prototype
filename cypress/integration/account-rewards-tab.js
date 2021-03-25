@@ -31,7 +31,7 @@ describe('User Account Rewards Tab', () => {
   it('Displays the correct text for an unearned badge', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('UserBadgeQuery', {
+    cy.mockGraphqlOp('UserBadgeCountQuery', {
       user: {
         badges: [],
       },
@@ -49,8 +49,9 @@ describe('User Account Rewards Tab', () => {
   it('Displays the correct text for an earned badge', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('UserBadgeQuery', {
+    cy.mockGraphqlOp('UserBadgeCountQuery', {
       user: {
+        id: user.id,
         badges: ['SIGNUP'],
       },
     });
@@ -76,7 +77,7 @@ describe('User Account Rewards Tab', () => {
   it('Displays the rewards progress bar with the right label in the description', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('UserBadgeQuery', {
+    cy.mockGraphqlOp('UserBadgeCountQuery', {
       user: {
         badges: ['SIGNUP', 'ONE_POST'],
       },
@@ -94,7 +95,7 @@ describe('User Account Rewards Tab', () => {
   it('Displays the rewards progress bar with the right label in the description for users inbetween levels', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('UserBadgeQuery', {
+    cy.mockGraphqlOp('UserBadgeCountQuery', {
       user: {
         badges: ['SIGNUP', 'ONE_POST', 'ONE_STAFF_FAVE'],
       },
@@ -104,7 +105,7 @@ describe('User Account Rewards Tab', () => {
     cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/rewards`);
     cy.findByTestId('rewards-progress-bar-description').should(
       'contain',
-      "You earned 2 out of 6 badges, which makes you a Doer. You're almost there!",
+      "You earned 3 out of 6 badges, which makes you a Doer. You're almost there!",
     );
   });
 
