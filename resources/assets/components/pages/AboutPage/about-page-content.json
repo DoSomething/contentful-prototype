@@ -4,7 +4,7 @@
       "id": 1,
       "showcaseDescription": "Donated over 1 million pairs of jeans in a single year, enough to clothe half of all US youth in homeless shelters.",
       "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/2A24T4FZms2q1QnLraXsPr/d1549f2d3e1975f47d64d3940039a1bd/Aero_TFJ_Header_Updated2.png"
       },
       "showcaseTitle": "Teens for Jeans",
       "path": "/"
@@ -13,7 +13,7 @@
       "id": 2,
       "showcaseDescription": "Powered historic youth turnout by registering 118,706 new voters in 2018 alone.",
       "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/4C6g2AjsYToIJgb9TKc2FT/df0a983b1eca3f49ff83fc20273b98c5/2020-canvasser.png"
       },
       "showcaseTitle": "Voter Registration",
       "path": "/"
@@ -22,7 +22,7 @@
       "id": 3,
       "showcaseDescription": "Cleaned up 3.7 million cigarette butts to protect the planet.",
       "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/3BxXVcDZkut2umelSp1HaX/19e075f13d98415f04fe105c2057abae/GFTO_Collage_2.jpg"
       },
       "showcaseTitle": "Get the Filter Out (GTFO)",
       "path": "/"
@@ -31,7 +31,7 @@
       "id": 4,
       "showcaseDescription": "Made and mailed 41,287 Happy Ramadan cards, which were distributed to every mosque in the US.",
       "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/4GaswXDpQXfrterjEglmKA/bd2850d542e69f8f2f5add375a117139/4V4A8555.jpg"
       },
       "showcaseTitle": "Sincerely, Us",
       "path": "/"
@@ -40,7 +40,7 @@
       "id": 5,
       "showcaseDescription": "Donated 585,965 perido products to shelters in the first-ever national period product drive.",
       "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/01xPaPOjeqB9YR7CtAYjN6/1774ccd34df1283a33161274486861db/Power_to_the_Period_header-01.png"
       },
       "showcaseTitle": "Power to the Period",
       "path": "/"
@@ -49,12 +49,19 @@
       "id": 6,
       "showcaseDescription": "Created the largest crowdsourced LGBTQ+ ally guide.",
       "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
+        "url": "https://images.ctfassets.net/81iqaqpfd8fy/1QBd7PZCXYc1fBXfxu5lQx/1263ce58d02e66411ee2b7da9a60a1cc/celebrate-pride-header.png"
       },
       "showcaseTitle": "Celebrate Pride!",
       "path": "/"
     }
   ],
+  "content": {
+    "title": "A digital platform powering real-world impact.",
+    "copy": "As the largest not-for-profit exclusively for young people and social change, DoSomething’s millions of members represent every US area code and 131 countries. Using our digital platform, DoSomething members join our volunteer, social change, and civic action campaigns to make real-world impact on causes they care about. Sorry in advance for the #humblebrag, but here are just a few of our greatest campaigns.",
+    "media": {
+      "url": "https://www.youtube.com/embed/Ph1Rb1I5tmg?controls=0"
+    }
+  },
   "coverImage": {
     "url": "https://images.ctfassets.net/81iqaqpfd8fy/HAghDe3KYoaSmgYEyoiYg/6cd32485fed6b640aa8b14441bdd33b2/Homepage_header_40.jpg"
   },
