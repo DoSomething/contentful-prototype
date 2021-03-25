@@ -51,7 +51,6 @@ describe('User Account Rewards Tab', () => {
 
     cy.mockGraphqlOp('UserBadgeCountQuery', {
       user: {
-        id: user.id,
         badges: ['SIGNUP'],
       },
     });
