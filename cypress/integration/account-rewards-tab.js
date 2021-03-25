@@ -64,6 +64,51 @@ describe('User Account Rewards Tab', () => {
   });
 
   /** @test */
+  it('Displays the rewards progress bar', () => {
+    const user = userFactory();
+
+    cy.login(user);
+    cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/rewards`);
+    cy.findByTestId('rewards-progress-bar').should('have.length', 1);
+  });
+
+  /** @test */
+  it('Displays the rewards progress bar with the right label in the description', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('UserBadgeQuery', {
+      user: {
+        badges: ['SIGNUP', 'ONE_POST'],
+      },
+    });
+
+    cy.login(user);
+    cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/rewards`);
+    cy.findByTestId('rewards-progress-bar-description').should(
+      'contain',
+      "You earned 2 out of 6 badges, which makes you a Doer. You're almost there!",
+    );
+  });
+
+  /** @test */
+  it('Displays the rewards progress bar with the right label in the description for users inbetween levels', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('UserBadgeQuery', {
+      user: {
+        badges: ['SIGNUP', 'ONE_POST', 'ONE_STAFF_FAVE'],
+      },
+    });
+
+    cy.login(user);
+    cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/rewards`);
+    cy.findByTestId('rewards-progress-bar-description').should(
+      'contain',
+      "You earned 2 out of 6 badges, which makes you a Doer. You're almost there!",
+    );
+  });
+
+  /** @test */
   it('Displays the rewards details table', () => {
     const user = userFactory();
 
