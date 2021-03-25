@@ -31,8 +31,10 @@ describe('User Account Rewards Tab', () => {
   it('Displays the correct text for an unearned badge', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('SignupsCountQuery', {
-      signupsCount: 0,
+    cy.mockGraphqlOp('UserBadgeQuery', {
+      user: {
+        badges: [],
+      },
     });
 
     cy.login(user);
@@ -47,8 +49,10 @@ describe('User Account Rewards Tab', () => {
   it('Displays the correct text for an earned badge', () => {
     const user = userFactory();
 
-    cy.mockGraphqlOp('SignupsCountQuery', {
-      signupsCount: 1,
+    cy.mockGraphqlOp('UserBadgeQuery', {
+      user: {
+        badges: ['SIGNUP'],
+      },
     });
 
     cy.login(user);
