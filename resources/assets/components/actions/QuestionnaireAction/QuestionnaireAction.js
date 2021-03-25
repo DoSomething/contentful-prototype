@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { every, get } from 'lodash';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RestApiClient } from '@dosomething/gateway';
 
 import { env } from '../../../helpers/env';
@@ -11,6 +11,7 @@ import { tabularLog } from '../../../helpers/api';
 import ActionInformation from '../ActionInformation';
 import { report } from '../../../helpers/monitoring';
 import { formatPostPayload } from '../../../helpers/forms';
+import { isAuthenticated, useGate } from '../../../helpers/auth';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
@@ -62,43 +63,21 @@ const QuestionnaireAction = ({
   informationTitle,
   informationContent,
 }) => {
-  const [answers, updateAnswers] = useState({});
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(null);
 
-  const onChange = (questionId, updatedAnswer) => {
-    updateAnswers({ ...answers, [questionId]: updatedAnswer });
-  };
+  const [flash, authenticate] = useGate(`QuestionnaireAction:${id}`, {
+    skip: loading,
+  });
 
-  const onSubmit = event => {
-    event.preventDefault();
+  const [answers, updateAnswers] = useState(flash.answers || {});
 
-    setLoading(true);
-
-    trackAnalyticsEvent('submitted_questionnaire_action', {
-      action: 'form_submitted',
-      category: EVENT_CATEGORIES.campaignAction,
-      label: 'questionnaire',
-      context: {
-        blockId: id,
-        ...getPageContext(),
-      },
-    });
-
+  const submitQuestionnaire = data => {
     const client = new RestApiClient(`${env('NORTHSTAR_URL')}`, {
       headers: {
         Authorization: `Bearer ${window.AUTH.token}`,
         'Content-Type': 'application/json',
       },
-    });
-
-    const data = formatPostPayload({
-      questions: questions.map(question => ({
-        title: question.title,
-        answer: answers[question.actionId],
-        action_id: question.actionId,
-      })),
-      contentful_id: id,
     });
 
     client
@@ -135,10 +114,54 @@ const QuestionnaireAction = ({
         setLoading(false);
 
         setErrors({
-          errorMessage: get(error, 'response.error.message'),
+          errorMessage:
+            get(error, 'response.error.message') ||
+            get(error, 'response.message'),
           fieldErrors: get(error, 'response.errors'),
         });
       });
+  };
+
+  useEffect(() => {
+    // If we're returning from the authentication flow with "flashed" data, submit the questionnaire.
+    if (isAuthenticated() && flash.questionnaireData) {
+      setLoading(true);
+      submitQuestionnaire(flash.questionnaireData);
+    }
+  }, [flash]);
+
+  const onChange = (questionId, updatedAnswer) => {
+    updateAnswers({ ...answers, [questionId]: updatedAnswer });
+  };
+
+  const onSubmit = event => {
+    event.preventDefault();
+
+    setLoading(true);
+    setErrors(null);
+
+    trackAnalyticsEvent('submitted_questionnaire_action', {
+      action: 'form_submitted',
+      category: EVENT_CATEGORIES.campaignAction,
+      label: 'questionnaire',
+      context: {
+        blockId: id,
+        ...getPageContext(),
+      },
+    });
+
+    const data = formatPostPayload({
+      questions: questions.map(question => ({
+        title: question.title,
+        answer: answers[question.actionId],
+        action_id: question.actionId,
+      })),
+      contentful_id: id,
+    });
+
+    return isAuthenticated()
+      ? submitQuestionnaire(data)
+      : authenticate({ questionnaireData: data, answers });
   };
 
   const finishedQuestionnaire = every(
@@ -155,14 +178,18 @@ const QuestionnaireAction = ({
     >
       <Card className="bordered rounded col-span-8" title={title}>
         {errors ? (
-          <p className="p-3 text-red-500 font-bold">
-            {errors.errorMessage ||
-              'Hmm, there were some issues with your submission.'}
+          <p
+            className="p-3 text-red-500 font-bold"
+            data-testid="questionnaire-error-message"
+          >
+            {errors.fieldErrors
+              ? 'Hmm, there were some issues with your submission.'
+              : errors.errorMessage}
           </p>
         ) : null}
 
         {get(errors, 'fieldErrors') ? (
-          <ul className="p-3 mt-0">
+          <ul className="p-3 mt-0" data-testid="questionnaire-field-errors">
             {Object.keys(errors.fieldErrors).map(errorField => (
               <li key={errorField} className="text-red-500">
                 {errors.fieldErrors[errorField].map(errorMessage =>
