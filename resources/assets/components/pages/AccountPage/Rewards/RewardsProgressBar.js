@@ -39,10 +39,13 @@ const RewardsProgressBar = ({ totalBadges }) => {
   };
 
   return (
-    <div>
+    <div data-testid="rewards-progress-bar">
       <SectionHeader title={`You're a ${userLevelLabel(totalBadges)}`} />
 
-      <p className="pt-6 pb-3 text-lg">
+      <p
+        data-testid="rewards-progress-bar-description"
+        className="pt-6 pb-3 text-lg"
+      >
         You earned <b>{totalBadges} out of 6 badges</b>, which makes you a{' '}
         {userLevelLabel(totalBadges)}.{' '}
         {userLevelLabel(totalBadges) === 'Legend'
