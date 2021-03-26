@@ -7,11 +7,11 @@ import { useQuery } from '@apollo/react-hooks';
 import Badge from './Badge';
 import BadgeModal from './BadgeModal';
 import RewardsFaq from './RewardsFaq';
-import ErrorPage from '../../ErrorPage';
 import RewardLevelsTable from './RewardLevelsTable';
 import RewardsProgressBar from './RewardsProgressBar';
 import { featureFlag } from '../../../../helpers/env';
 import Placeholder from '../../../utilities/Placeholder';
+import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 import {
   EVENT_CATEGORIES,
   getPageContext,
@@ -171,7 +171,7 @@ const RewardsTab = ({ userId }) => {
   }
 
   if (error) {
-    return <ErrorPage error={error} />;
+    return <ErrorBlock error={error} />;
   }
 
   const badges = get(data, 'user.badges', []);
