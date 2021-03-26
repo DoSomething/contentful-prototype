@@ -146,17 +146,13 @@ const AboutPageTemplate = () => {
           </section>
 
           <BannerCallToAction
-            colorClasses={{
-              background: 'bg-purple-500',
-              text: 'text-teal-500',
-            }}
             message="Earn scholarships through community service"
             title="Easy Scholarships"
             stacked
           >
             <PrimaryButton
               attributes={{ 'data-label': 'scholarships_cta_authorize' }}
-              className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
+              className="mt-4 md:mt-8 py-4 px-16 text-lg"
               href="/authorize"
               text="See Scholarship Campaigns"
             />

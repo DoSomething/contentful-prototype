@@ -35,7 +35,10 @@ const BannerCallToAction = ({
         <div className={classnames({ 'text-left xl:w-8/12': !stacked })}>
           <h1
             className={classnames(
-              'font-bold text-2xl',
+              'tracking-wide',
+              stacked
+                ? 'font-league-gothic font-normal text-4xl uppercase'
+                : 'text-2xl',
               colorClasses.text || 'text-gray-900',
             )}
           >
@@ -45,6 +48,7 @@ const BannerCallToAction = ({
           <p
             className={classnames(
               'text-lg',
+              { 'mt-4': stacked },
               colorClasses.text || 'text-gray-900',
             )}
           >
