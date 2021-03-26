@@ -18,6 +18,7 @@ import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import { coverImageMediaQueryStyles, tailwind } from '../../../helpers/display';
+import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -25,7 +26,6 @@ import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoi
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
-import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 
 const HOME_PAGE_QUERY = gql`
   query HomePageQuery($preview: Boolean!) {
