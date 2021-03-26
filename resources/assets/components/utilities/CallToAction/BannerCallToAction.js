@@ -9,8 +9,8 @@ const BannerCallToAction = ({
   attributes,
   children,
   colorClasses,
-  message,
   stacked,
+  text,
   title,
   waypointName,
 }) => {
@@ -52,7 +52,7 @@ const BannerCallToAction = ({
               colorClasses.text || 'text-gray-900',
             )}
           >
-            {message}
+            {text}
           </p>
         </div>
 
@@ -74,8 +74,8 @@ BannerCallToAction.propTypes = {
     background: PropTypes.string,
     text: PropTypes.string,
   }),
-  message: PropTypes.string.isRequired,
   stacked: PropTypes.bool,
+  text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   waypointName: PropTypes.string,
 };
