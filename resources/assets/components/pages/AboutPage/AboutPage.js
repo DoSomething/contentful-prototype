@@ -21,7 +21,7 @@ const AboutPageTemplate = () => (
     <SiteNavigationContainer />
 
     <main>
-      <article data-test="join-us-page">
+      <article data-test="about-page">
         {/* Page Header */}
         <header role="banner" className="bg-white">
           <AnalyticsWaypoint name="RENAME_section_top" />
