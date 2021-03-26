@@ -7,7 +7,7 @@ import {
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 
-const AnalyticsWaypoint = ({ name, context }) => {
+const AnalyticsWaypoint = ({ className, context, name }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
   });
@@ -26,15 +26,24 @@ const AnalyticsWaypoint = ({ name, context }) => {
     }
   }, [inView]);
 
-  return <div ref={ref} data-test="waypoint" data-testid="waypoint" />;
+  return (
+    <div
+      className={className}
+      ref={ref}
+      data-test="waypoint"
+      data-testid="waypoint"
+    />
+  );
 };
 
 AnalyticsWaypoint.propTypes = {
-  name: PropTypes.string.isRequired,
+  className: PropTypes.string,
   context: PropTypes.object,
+  name: PropTypes.string.isRequired,
 };
 
 AnalyticsWaypoint.defaultProps = {
+  className: null,
   context: {},
 };
 

@@ -11,6 +11,7 @@ import { contentfulImageUrl } from '../../../helpers/contentful';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import SpotlightGallery from '../../utilities/Gallery/SpotlightGallery';
+import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
@@ -144,6 +145,19 @@ const AboutPageTemplate = () => {
             <AnalyticsWaypoint name="campaign_section_bottom" />
           </section>
 
+          <BannerCallToAction
+            message="Earn scholarships through community service"
+            title="Easy Scholarships"
+            stacked
+          >
+            <PrimaryButton
+              attributes={{ 'data-label': 'scholarships_cta_authorize' }}
+              className="mt-4 md:mt-8 py-4 px-16 text-lg"
+              href="/authorize"
+              text="See Scholarship Campaigns"
+            />
+          </BannerCallToAction>
+
           {/* Newsletter Signup Section */}
           <section
             className="base-12-grid bg-gray-100 py-12"
@@ -203,35 +217,18 @@ const AboutPageTemplate = () => {
 
           {/* Join Us Call To Action Banner */}
           {isAuthenticated() ? null : (
-            <article
-              className="base-12-grid bg-yellow-500 py-16"
-              data-test="signup-cta"
+            <BannerCallToAction
+              title="Join our youth-led movement for good"
+              message="Make an impact with millions of young people, and earn a chance to
+              win scholarships."
             >
-              <div className="xl:flex grid-wide xl:items-center text-center">
-                <AnalyticsWaypoint name="join_cta_top" />
-
-                <div className="text-left xl:w-8/12">
-                  <h1 className="font-bold text-2xl">
-                    Join our youth-led movement for good
-                  </h1>
-                  <p className="text-lg">
-                    Make an impact with millions of young people, and earn a
-                    chance to win scholarships.
-                  </p>
-                </div>
-
-                <div className="flex-grow">
-                  <PrimaryButton
-                    attributes={{ 'data-label': 'signup_cta_authorize' }}
-                    className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
-                    href="/authorize"
-                    text="Join Now"
-                  />
-                </div>
-
-                <AnalyticsWaypoint name="join_cta_bottom" />
-              </div>
-            </article>
+              <PrimaryButton
+                attributes={{ 'data-label': 'signup_cta_authorize' }}
+                className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
+                href="/authorize"
+                text="Join Now"
+              />
+            </BannerCallToAction>
           )}
         </article>
       </main>
