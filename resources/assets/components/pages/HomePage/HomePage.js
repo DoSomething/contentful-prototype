@@ -7,7 +7,6 @@ import { React, Fragment } from 'react';
 import PageQuery from '../PageQuery';
 import Modal from '../../utilities/Modal/Modal';
 import { featureFlag } from '../../../helpers/env';
-import { tailwind } from '../../../helpers/display';
 import * as NewsletterImages from './NewsletterImages';
 import { isAuthenticated } from '../../../helpers/auth';
 import HomePageArticleGallery from './HomePageArticleGallery';
@@ -18,6 +17,8 @@ import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
+import { coverImageMediaQueryStyles, tailwind } from '../../../helpers/display';
+import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -151,35 +152,6 @@ const HomePageTemplate = ({
 
   const tailwindScreens = tailwind('screens');
 
-  const headerBackgroundStyles = coverImage
-    ? css`
-        background-image: url(${contentfulImageUrl(
-          coverImage.url,
-          '400',
-          '775',
-          'fill',
-        )});
-
-        @media (min-width: ${tailwindScreens.md}) {
-          background-image: url(${contentfulImageUrl(
-            coverImage.url,
-            '700',
-            '700',
-            'fill',
-          )});
-        }
-
-        @media (min-width: ${tailwindScreens.lg}) {
-          background-image: url(${contentfulImageUrl(
-            coverImage.url,
-            '1440',
-            '539',
-            'fill',
-          )});
-        }
-      `
-    : null;
-
   return (
     <Fragment>
       {/* @TODO: Once EmotionJS supports shorthand syntax for React.Fragment, switch <Fragment> out for <> syntax! */}
@@ -202,7 +174,7 @@ const HomePageTemplate = ({
                   padding-bottom: 100px;
                 }
 
-                ${headerBackgroundStyles}
+                ${coverImageMediaQueryStyles(coverImage.url)}
               `}
             >
               <h1
@@ -453,35 +425,18 @@ const HomePageTemplate = ({
           </section>
 
           {isAuthenticated() ? null : (
-            <article
-              className="base-12-grid bg-yellow-500 py-16"
-              data-test="signup-cta"
+            <BannerCallToAction
+              text="Make an impact with millions of young people, and earn a chance to win scholarships."
+              title="Join our youth-led movement for good"
+              waypointName="join cta"
             >
-              <div className="xl:flex grid-wide xl:items-center text-center">
-                <AnalyticsWaypoint name="join_cta_top" />
-
-                <div className="text-left xl:w-8/12">
-                  <h1 className="font-bold text-2xl">
-                    Join our youth-led movement for good
-                  </h1>
-                  <p className="text-lg">
-                    Make an impact with millions of young people, and earn a
-                    chance to win scholarships.
-                  </p>
-                </div>
-
-                <div className="flex-grow">
-                  <PrimaryButton
-                    attributes={{ 'data-label': 'signup_cta_authorize' }}
-                    className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
-                    href="/authorize"
-                    text="Join Now"
-                  />
-                </div>
-
-                <AnalyticsWaypoint name="join_cta_bottom" />
-              </div>
-            </article>
+              <PrimaryButton
+                attributes={{ 'data-label': 'signup_cta_authorize' }}
+                className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
+                href="/authorize"
+                text="Join Now"
+              />
+            </BannerCallToAction>
           )}
         </article>
 

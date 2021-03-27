@@ -1,138 +1,152 @@
 {
-  "campaigns": [
-    {
-      "id": 1,
-      "showcaseDescription": "Donated over 1 million pairs of jeans in a single year, enough to clothe half of all US youth in homeless shelters.",
-      "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/2A24T4FZms2q1QnLraXsPr/d1549f2d3e1975f47d64d3940039a1bd/Aero_TFJ_Header_Updated2.png"
+  "campaignGallery": {
+    "campaigns": [
+      {
+        "id": 1,
+        "showcaseDescription": "Donated over 1 million pairs of jeans in a single year, enough to clothe half of all US youth in homeless shelters.",
+        "showcaseImage": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/2A24T4FZms2q1QnLraXsPr/d1549f2d3e1975f47d64d3940039a1bd/Aero_TFJ_Header_Updated2.png"
+        },
+        "showcaseTitle": "Teens for Jeans",
+        "path": "/"
       },
-      "showcaseTitle": "Teens for Jeans",
-      "path": "/"
+      {
+        "id": 2,
+        "showcaseDescription": "Powered historic youth turnout by registering 118,706 new voters in 2018 alone.",
+        "showcaseImage": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/4C6g2AjsYToIJgb9TKc2FT/df0a983b1eca3f49ff83fc20273b98c5/2020-canvasser.png"
+        },
+        "showcaseTitle": "Voter Registration",
+        "path": "/"
+      },
+      {
+        "id": 3,
+        "showcaseDescription": "Cleaned up 3.7 million cigarette butts to protect the planet.",
+        "showcaseImage": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/3BxXVcDZkut2umelSp1HaX/19e075f13d98415f04fe105c2057abae/GFTO_Collage_2.jpg"
+        },
+        "showcaseTitle": "Get the Filter Out (GTFO)",
+        "path": "/"
+      },
+      {
+        "id": 4,
+        "showcaseDescription": "Made and mailed 41,287 Happy Ramadan cards, which were distributed to every mosque in the US.",
+        "showcaseImage": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/4GaswXDpQXfrterjEglmKA/bd2850d542e69f8f2f5add375a117139/4V4A8555.jpg"
+        },
+        "showcaseTitle": "Sincerely, Us",
+        "path": "/"
+      },
+      {
+        "id": 5,
+        "showcaseDescription": "Donated 585,965 perido products to shelters in the first-ever national period product drive.",
+        "showcaseImage": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/01xPaPOjeqB9YR7CtAYjN6/1774ccd34df1283a33161274486861db/Power_to_the_Period_header-01.png"
+        },
+        "showcaseTitle": "Power to the Period",
+        "path": "/"
+      },
+      {
+        "id": 6,
+        "showcaseDescription": "Created the largest crowdsourced LGBTQ+ ally guide.",
+        "showcaseImage": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/1QBd7PZCXYc1fBXfxu5lQx/1263ce58d02e66411ee2b7da9a60a1cc/celebrate-pride-header.png"
+        },
+        "showcaseTitle": "Celebrate Pride!",
+        "path": "/"
+      }
+    ],
+    "title": "Some Of Our Greatest Campaigns"
+  },
+  "header": {
+    "coverImage": {
+      "url": "https://images.ctfassets.net/81iqaqpfd8fy/OWhB5AP5YOEq1m7GTqSAn/2a12bfd0bf5bcbf0b9c15635b09a24fe/GettyImages-973270810.jpg"
     },
-    {
-      "id": 2,
-      "showcaseDescription": "Powered historic youth turnout by registering 118,706 new voters in 2018 alone.",
-      "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/4C6g2AjsYToIJgb9TKc2FT/df0a983b1eca3f49ff83fc20273b98c5/2020-canvasser.png"
-      },
-      "showcaseTitle": "Voter Registration",
-      "path": "/"
-    },
-    {
-      "id": 3,
-      "showcaseDescription": "Cleaned up 3.7 million cigarette butts to protect the planet.",
-      "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/3BxXVcDZkut2umelSp1HaX/19e075f13d98415f04fe105c2057abae/GFTO_Collage_2.jpg"
-      },
-      "showcaseTitle": "Get the Filter Out (GTFO)",
-      "path": "/"
-    },
-    {
-      "id": 4,
-      "showcaseDescription": "Made and mailed 41,287 Happy Ramadan cards, which were distributed to every mosque in the US.",
-      "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/4GaswXDpQXfrterjEglmKA/bd2850d542e69f8f2f5add375a117139/4V4A8555.jpg"
-      },
-      "showcaseTitle": "Sincerely, Us",
-      "path": "/"
-    },
-    {
-      "id": 5,
-      "showcaseDescription": "Donated 585,965 perido products to shelters in the first-ever national period product drive.",
-      "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/01xPaPOjeqB9YR7CtAYjN6/1774ccd34df1283a33161274486861db/Power_to_the_Period_header-01.png"
-      },
-      "showcaseTitle": "Power to the Period",
-      "path": "/"
-    },
-    {
-      "id": 6,
-      "showcaseDescription": "Created the largest crowdsourced LGBTQ+ ally guide.",
-      "showcaseImage": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/1QBd7PZCXYc1fBXfxu5lQx/1263ce58d02e66411ee2b7da9a60a1cc/celebrate-pride-header.png"
-      },
-      "showcaseTitle": "Celebrate Pride!",
-      "path": "/"
-    }
-  ],
-  "content": {
+    "text": "Make an impact with millions of young people, and earn easy scholarships for volunteering.",
+    "title": "Join Our Youth-Led Movement For Good"
+  },
+  "introduction": {
     "title": "A digital platform powering real-world impact.",
     "copy": "As the largest not-for-profit exclusively for young people and social change, DoSomething’s millions of members represent every US area code and 131 countries. Using our digital platform, DoSomething members join our volunteer, social change, and civic action campaigns to make real-world impact on causes they care about. Sorry in advance for the #humblebrag, but here are just a few of our greatest campaigns.",
     "media": {
       "url": "https://www.youtube.com/embed/Ph1Rb1I5tmg?controls=0"
     }
   },
-  "coverImage": {
-    "url": "https://images.ctfassets.net/81iqaqpfd8fy/OWhB5AP5YOEq1m7GTqSAn/2a12bfd0bf5bcbf0b9c15635b09a24fe/GettyImages-973270810.jpg"
+  "memberHighlights": {
+    "members": [
+      {
+        "age": 20,
+        "campaignTitle": "Grandparents Gone Wired",
+        "content": "Caesar helped his grandma stay connected by teaching her emojis!",
+        "firstName": "Caesar",
+        "id": 1,
+        "image": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/2zlEXv3peyZ1igkFLSuj1X/cad0cb1a0d78ab133ba06b4477e7a4e7/Caesar.png"
+        },
+        "memberQuote": "Knowledge is power."
+      },
+      {
+        "age": 16,
+        "campaignTitle": "Teens for Jeans",
+        "content": "Jordyn and her friends donated 500 pairs of jeans to benefit a local homeless shelter.",
+        "firstName": "Jordyn",
+        "id": 2,
+        "image": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/3G4nVbFnrjvYGG3kOo80wg/09acaee58919ebcd74b347ddec3cfa98/Jordyn.png"
+        },
+        "memberQuote": "We love giving back to the community! It is a great way to contribute to an important cause."
+      },
+      {
+        "age": 21,
+        "campaignTitle": "Give a Spit About Cancer",
+        "content": "Zachary swabbed his cheek to join the national bone marrow registry.",
+        "firstName": "Zachary",
+        "id": 3,
+        "image": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/5gQ8bCGb2G68qgeHRKj1Sf/5f9b3b4f5bd0850227c47ea471671544/Zachary.png"
+        },
+        "memberQuote": "I ran a give a spit drive on my campus. This campaign is LITERALLY saving lives!!!"
+      }
+    ],
+    "text": "A DoSomething member is any young person who signs up for one of our volunteer, social change, or civic action campaigns. We&apos;ve got *millions* of members making change in every US area code and 131 countries. Get to know some of them!",
+    "title": "Meet Our Members"
   },
-  "memberHighlights": [
-    {
-      "age": 20,
-      "campaignTitle": "Grandparents Gone Wired",
-      "content": "Caesar helped his grandma stay connected by teaching her emojis!",
-      "firstName": "Caesar",
-      "id": 1,
-      "image": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/2zlEXv3peyZ1igkFLSuj1X/cad0cb1a0d78ab133ba06b4477e7a4e7/Caesar.png"
+  "scholarshipWinners": {
+    "members": [
+      {
+        "campaignTitle": "Not-So-Secret Admirer",
+        "content": "Keyla shared a V-Day card with her s/o to give them the confidence to pursue their dreams.",
+        "firstName": "Keyla",
+        "id": 1,
+        "image": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/1w35vrIZx2UaPQLvxnBXbF/81f3a9e5080cd61944c097633976d555/Keyla.png"
+        },
+        "memberQuote": "This campaign allowed me to understand how important it is to show the person I am with how much I’m appreciative of them.",
+        "scholarshipAmount": 5000
       },
-      "memberQuote": "Knowledge is power."
-    },
-    {
-      "age": 16,
-      "campaignTitle": "Teens for Jeans",
-      "content": "Jordyn and her friends donated 500 pairs of jeans to benefit a local homeless shelter.",
-      "firstName": "Jordyn",
-      "id": 2,
-      "image": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/3G4nVbFnrjvYGG3kOo80wg/09acaee58919ebcd74b347ddec3cfa98/Jordyn.png"
+      {
+        "campaignTitle": "Let’s Stress Less",
+        "content": "Darren scored a scholarship for adding tips to our crowdsourced stress-busting guide.",
+        "firstName": "Darren",
+        "id": 2,
+        "image": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/5d6eAjeMqBAG9EtYuxj5d9/8a40997503fb7fe03393f6d65c4e2356/Darren.png"
+        },
+        "memberQuote": "I want to rest my head on my pillow at night knowing that I did the best I could to follow my calling of helping people.",
+        "scholarshipAmount": 2000
       },
-      "memberQuote": "We love giving back to the community! It is a great way to contribute to an important cause."
-    },
-    {
-      "age": 21,
-      "campaignTitle": "Give a Spit About Cancer",
-      "content": "Zachary swabbed his cheek to join the national bone marrow registry.",
-      "firstName": "Zachary",
-      "id": 3,
-      "image": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/5gQ8bCGb2G68qgeHRKj1Sf/5f9b3b4f5bd0850227c47ea471671544/Zachary.png"
-      },
-      "memberQuote": "I ran a give a spit drive on my campus. This campaign is LITERALLY saving lives!!!"
-    }
-  ],
-  "scholarshipWinners": [
-    {
-      "campaignTitle": "Not-So-Secret Admirer",
-      "content": "Keyla shared a V-Day card with her s/o to give them the confidence to pursue their dreams.",
-      "firstName": "Keyla",
-      "id": 1,
-      "image": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/1w35vrIZx2UaPQLvxnBXbF/81f3a9e5080cd61944c097633976d555/Keyla.png"
-      },
-      "memberQuote": "This campaign allowed me to understand how important it is to show the person I am with how much I’m appreciative of them.",
-      "scholarshipAmount": 5000
-    },
-    {
-      "campaignTitle": "Let’s Stress Less",
-      "content": "Darren scored a scholarship for adding tips to our crowdsourced stress-busting guide.",
-      "firstName": "Darren",
-      "id": 2,
-      "image": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/5d6eAjeMqBAG9EtYuxj5d9/8a40997503fb7fe03393f6d65c4e2356/Darren.png"
-      },
-      "memberQuote": "I want to rest my head on my pillow at night knowing that I did the best I could to follow my calling of helping people.",
-      "scholarshipAmount": 2000
-    },
-    {
-      "campaignTitle": "Take Back the Prom: Outfit Donations",
-      "content": "Ricardo donated prom formal wear to make sure everyone could look and feel good at prom.",
-      "firstName": "Ricardo",
-      "id": 3,
-      "image": {
-        "url": "https://images.ctfassets.net/81iqaqpfd8fy/1NXYHdwA74ztZCYZxxI1yQ/39cdc1acbe6a13c240619fd303d1b870/Ricardo.png"
-      },
-      "memberQuote": "This campaign is important to me because I believe that everyone should be able to have an amazing prom filled with great memories.",
-      "scholarshipAmount": 2000
-    }
-  ]
+      {
+        "campaignTitle": "Take Back the Prom: Outfit Donations",
+        "content": "Ricardo donated prom formal wear to make sure everyone could look and feel good at prom.",
+        "firstName": "Ricardo",
+        "id": 3,
+        "image": {
+          "url": "https://images.ctfassets.net/81iqaqpfd8fy/1NXYHdwA74ztZCYZxxI1yQ/39cdc1acbe6a13c240619fd303d1b870/Ricardo.png"
+        },
+        "memberQuote": "This campaign is important to me because I believe that everyone should be able to have an amazing prom filled with great memories.",
+        "scholarshipAmount": 2000
+      }
+    ],
+    "title": "Scholarship Winners"
+  }
 }

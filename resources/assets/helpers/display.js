@@ -2,11 +2,87 @@
 
 import { get, isString } from 'lodash';
 
+import { contentfulImageUrl } from './contentful';
 import tailwindVariables from '../../../tailwind.variables';
 
 // Helper Constants
 export const EMPTY_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+/**
+ * Get specified theme setting from the resolved Tailwind configuration object.
+ *
+ * @param {String} themeSetting
+ */
+export function tailwind(themeSetting) {
+  if (!isString(themeSetting)) {
+    throw new Error(
+      'Please specify a theme setting as a string to retrieve from Tailwind.',
+    );
+  }
+
+  const setting = get(tailwindVariables, themeSetting, null);
+
+  if (!setting) {
+    console.error(
+      `The ${themeSetting} setting specified was not found in the Tailwind theme configuration.`,
+    );
+  }
+
+  return setting;
+}
+
+/**
+ * Alters luminosity for provided hex color by specified percentage.
+ * https://www.sitepoint.com/javascript-generate-lighter-darker-color/
+ *
+ * @param   {String} hex — a valid six character hex color value such as “#FF00FF".
+ * @param   {String} luminosity — the luminosity factor (from -100 to 100), i.e. -10 is 10% darker, 20 is 20% lighter, etc.
+ * @return  {String}
+ */
+export function colorLuminance(hex, luminosity = 0) {
+  const hashlessHex = hex.replace('#', '');
+
+  let luminatedValue = '#';
+
+  for (let i = 0; i < 3; i += 1) {
+    const colorAsInt = parseInt(hashlessHex.substr(i * 2, 2), 16);
+
+    const colorLuminated = Math.round(
+      Math.min(Math.max(0, colorAsInt + colorAsInt * (luminosity * 0.01)), 255),
+    ).toString(16);
+
+    luminatedValue += `00${colorLuminated}`.substr(colorLuminated.length);
+  }
+
+  return luminatedValue;
+}
+
+/**
+ * Generate media query styles for a page cover image.
+ *
+ * @param  {String} url
+ * @return {String}
+ */
+export function coverImageMediaQueryStyles(url) {
+  if (!isString(url)) {
+    return '';
+  }
+
+  const tailwindScreens = tailwind('screens');
+
+  return `
+    background-image: url(${contentfulImageUrl(url, '400', '775', 'fill')});
+
+    @media (min-width: ${tailwindScreens.md}) {
+      background-image: url(${contentfulImageUrl(url, '700', '700', 'fill')});
+    }
+
+    @media (min-width: ${tailwindScreens.lg}) {
+      background-image: url(${contentfulImageUrl(url, '1440', '539', 'fill')});
+    }
+  `;
+}
 
 /**
  * Get a formatted name (small, medium, large)
@@ -103,29 +179,6 @@ export function ready(fn) {
 }
 
 /**
- * Get specified theme setting from the resolved Tailwind configuration object.
- *
- * @param {String} themeSetting
- */
-export function tailwind(themeSetting) {
-  if (!isString(themeSetting)) {
-    throw new Error(
-      'Please specify a theme setting as a string to retrieve from Tailwind.',
-    );
-  }
-
-  const setting = get(tailwindVariables, themeSetting, null);
-
-  if (!setting) {
-    console.error(
-      `The ${themeSetting} setting specified was not found in the Tailwind theme configuration.`,
-    );
-  }
-
-  return setting;
-}
-
-/**
  * Toggle the specified class on the given target element
  * when the button element is clicked or touched.
  *
@@ -143,32 +196,6 @@ export function toggleClassHandler(button, target, toggleClass) {
   }
 
   button.addEventListener('mousedown', clickHandler, false);
-}
-
-/**
- * Alters luminosity for provided hex color by specified percentage.
- * https://www.sitepoint.com/javascript-generate-lighter-darker-color/
- *
- * @param   {String} hex — a valid six character hex color value such as “#FF00FF".
- * @param   {String} luminosity — the luminosity factor (from -100 to 100), i.e. -10 is 10% darker, 20 is 20% lighter, etc.
- * @return  {String}
- */
-export function colorLuminance(hex, luminosity = 0) {
-  const hashlessHex = hex.replace('#', '');
-
-  let luminatedValue = '#';
-
-  for (let i = 0; i < 3; i += 1) {
-    const colorAsInt = parseInt(hashlessHex.substr(i * 2, 2), 16);
-
-    const colorLuminated = Math.round(
-      Math.min(Math.max(0, colorAsInt + colorAsInt * (luminosity * 0.01)), 255),
-    ).toString(16);
-
-    luminatedValue += `00${colorLuminated}`.substr(colorLuminated.length);
-  }
-
-  return luminatedValue;
 }
 
 export default null;
