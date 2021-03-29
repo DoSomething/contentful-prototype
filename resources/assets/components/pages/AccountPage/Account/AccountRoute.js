@@ -6,6 +6,7 @@ import Credits from '../Credits/Credits';
 import Profile from '../Profile/Profile';
 import RewardsTab from '../Rewards/RewardsTab';
 import Interests from '../Interests/Interests';
+import { featureFlag } from '../../../../helpers/env';
 import UserPostsQuery from '../Campaigns/UserPostsQuery';
 import DeleteAccountTab from '../Profile/DeleteAccountTab';
 import Subscriptions from '../Subscriptions/Subscriptions';
@@ -17,9 +18,16 @@ const AccountRoute = props => (
       path="/us/account/campaigns"
       render={() => <UserPostsQuery userId={props.userId} />}
     />
-    <Redirect from="/us/account/badges" to="/us/account/rewards" />
+    {featureFlag('rewards_levels') ? (
+      <Redirect from="/us/account/badges" to="/us/account/rewards" />
+    ) : null}
+
     <Route
-      path="/us/account/rewards"
+      path={
+        featureFlag('rewards_levels')
+          ? '/us/account/rewards'
+          : '/us/account/badges'
+      }
       render={() => <RewardsTab {...props} />}
     />
 
