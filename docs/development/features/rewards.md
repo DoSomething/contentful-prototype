@@ -12,6 +12,7 @@ Unless specified, badges will only show up in the Badges tab of the user profile
 -   **1 Action** - Awarded after the user's first post is submitted. This will also show up in the reportback affirmation modal.
 -   **2 Actions** - Awarded after the user's second post is submitted. This will also show up in the reportback affirmation modal.
 -   **3 Actions** - Awarded after the user's third post is submitted. This will also show up in the reportback affirmation modal.
+-   **4 Actions** - Awarded after the user's fourth post is submitted. This will also show up in the reportback affirmation modal.
 -   **1 Staff Fave** - This badge remains hidden until earned. Awarded when a post gets tagged with `good-submission`.
 -   **2 Staff Faves** - This badge remains hidden until earned. Awarded when a second post gets tagged with `good-submission`.
 -   **3 Staff Faves** - This badge remains hidden until earned. Awarded when a third post gets tagged with `good-submission`.
@@ -23,7 +24,7 @@ Unless specified, badges will only show up in the Badges tab of the user profile
 
 Users will have a "Rewards" tab in their profile. Clicking on a badge pulls up a modal which gives more information on how a badge was earned or how to earn it.
 
-![Badges Tab In Profile Example](../../.gitbook/assets/badges-tab.png)
+![Badges Tab In Profile Example](../../.gitbook/assets/rewards-tab-example.png)
 
 ### Signup Affirmation Modal
 

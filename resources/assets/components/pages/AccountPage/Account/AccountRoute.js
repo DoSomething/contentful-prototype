@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Credits from '../Credits/Credits';
 import Profile from '../Profile/Profile';
@@ -18,6 +18,9 @@ const AccountRoute = props => (
       path="/us/account/campaigns"
       render={() => <UserPostsQuery userId={props.userId} />}
     />
+    {featureFlag('rewards_levels') ? (
+      <Redirect from="/us/account/badges" to="/us/account/rewards" />
+    ) : null}
 
     <Route
       path={
