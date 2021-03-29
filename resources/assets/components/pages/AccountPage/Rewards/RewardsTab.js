@@ -83,12 +83,12 @@ const badgeModalContent = {
   fourPostsBadge: {
     title: '4 ACTIONS',
     earnedText:
-      'OH YEAH! You rocked another campaign and earned your *fourth* Action badge.',
+      'Four: SCORE! You’ve officially unlocked the exclusive 4 Actions Badge. Congratulations! You’re truly one of the best of the best.',
     unearnedText: (
       <span>
-        Holder Test for a fourth action!{' '}
-        {exploreCampaignsLink('Complete another campaign')} to unlock this
-        exclusive badge.
+        Want one more? Go for four!{' '}
+        {exploreCampaignsLink('Complete another DoSomething campaign')} and
+        unlock a badge to the four timers club.
       </span>
     ),
   },
