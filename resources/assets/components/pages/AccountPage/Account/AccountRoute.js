@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Credits from '../Credits/Credits';
 import Profile from '../Profile/Profile';
 import RewardsTab from '../Rewards/RewardsTab';
 import Interests from '../Interests/Interests';
-import { featureFlag } from '../../../../helpers/env';
 import UserPostsQuery from '../Campaigns/UserPostsQuery';
 import DeleteAccountTab from '../Profile/DeleteAccountTab';
 import Subscriptions from '../Subscriptions/Subscriptions';
@@ -18,13 +17,9 @@ const AccountRoute = props => (
       path="/us/account/campaigns"
       render={() => <UserPostsQuery userId={props.userId} />}
     />
-
+    <Redirect from="/us/account/badges" to="/us/account/rewards" />
     <Route
-      path={
-        featureFlag('rewards_levels')
-          ? '/us/account/rewards'
-          : '/us/account/badges'
-      }
+      path="/us/account/rewards"
       render={() => <RewardsTab {...props} />}
     />
 
