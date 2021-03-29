@@ -23,7 +23,11 @@ const AccountRoute = props => (
     ) : null}
 
     <Route
-      path="/us/account/rewards"
+      path={
+        featureFlag('rewards_levels')
+          ? '/us/account/rewards'
+          : '/us/account/badges'
+      }
       render={() => <RewardsTab {...props} />}
     />
 
