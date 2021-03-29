@@ -39,6 +39,10 @@ const PostCreatedModal = ({ affirmationContent, onClose, title, userId }) => (
                 className: 'threePostsBadge',
                 descriptor: 'third',
               },
+              4: {
+                className: 'fourPostsBadge',
+                descriptor: 'fourth',
+              },
             };
 
             return (
