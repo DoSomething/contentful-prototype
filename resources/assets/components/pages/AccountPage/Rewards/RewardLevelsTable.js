@@ -25,6 +25,28 @@ export const userLevelLabel = badgeNumber => {
 
   return userLevel;
 };
+
+const tableSubTitleCopy = badgeCount => {
+  let subTitleCopy =
+    'After you earn your first 2 badges, you’ll start earning rewards!';
+
+  if (userLevelLabel(badgeCount) === 'Legend') {
+    subTitleCopy = `You currently enjoy all the perks of a ${userLevelLabel(
+      badgeCount,
+    )} (you’ll earn 4 chances to win a campaign’s scholarship instead of 1)!`;
+  }
+  if (userLevelLabel(badgeCount) === 'SuperDoer') {
+    subTitleCopy = `You currently enjoy all the perks of a ${userLevelLabel(
+      badgeCount,
+    )} (you’ll earn 3 chances to win a campaign’s scholarship instead of 1)!`;
+  }
+  if (userLevelLabel(badgeCount) === 'Doer') {
+    subTitleCopy = `You currently enjoy all the perks of a ${userLevelLabel(
+      badgeCount,
+    )} (you’ll earn 2 chances to win a campaign’s scholarship instead of 1)!`;
+  }
+  return subTitleCopy;
+};
 const RewardLevelsTable = ({ totalBadges }) => {
   const doerHighlight = css`
     background-color: rgba(47, 227, 218, 0.15);
@@ -65,9 +87,7 @@ const RewardLevelsTable = ({ totalBadges }) => {
     <div data-testid="rewards-info-table" className="pt-10">
       <SectionHeader title="my rewards" />
 
-      <p className="text-gray-600">
-        You currently enjoy all the perks of a {userLevelLabel(totalBadges)}!
-      </p>
+      <p className="text-gray-600">{tableSubTitleCopy(totalBadges)}</p>
 
       <Table>
         <colgroup>
