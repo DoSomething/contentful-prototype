@@ -30,7 +30,11 @@ const USER_BADGE_QUERY = gql`
 `;
 
 const exploreCampaignsLink = text => {
-  return <a href="/us/campaigns">{text}</a>;
+  return (
+    <a className="text-white hover:text-white" href="/us/campaigns">
+      {text}
+    </a>
+  );
 };
 
 const badgeModalContent = {
