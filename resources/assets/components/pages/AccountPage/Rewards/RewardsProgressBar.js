@@ -79,10 +79,8 @@ const RewardsProgressBar = ({ totalBadges }) => {
         className="pt-6 pb-3 text-lg"
       >
         You earned <b>{totalBadges} out of 6 badges</b>
-        {totalBadges !== 0
-          ? `, which makes you a 
-        ${userLevelLabel(totalBadges)}`
-          : null}
+        {`, which makes you a 
+        ${userLevelLabel(totalBadges)}`}
         . {progressSubtitleCopy(totalBadges)}
       </p>
 
