@@ -40,7 +40,13 @@ const RewardsProgressBar = ({ totalBadges }) => {
 
   return (
     <div data-testid="rewards-progress-bar">
-      <SectionHeader title={`You're a ${userLevelLabel(totalBadges)}`} />
+      <SectionHeader
+        title={
+          totalBadges <= 1
+            ? 'Earn Rewards'
+            : `You're a ${userLevelLabel(totalBadges)}`
+        }
+      />
 
       <p
         data-testid="rewards-progress-bar-description"
