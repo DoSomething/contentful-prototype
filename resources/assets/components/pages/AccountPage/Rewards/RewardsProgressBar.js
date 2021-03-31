@@ -9,29 +9,25 @@ import MultiLevelProgressBar, {
 
 const RewardsProgressBar = ({ totalBadges }) => {
   const progressSubtitleCopy = badgeCount => {
-    let subTitleCopy = 'Just 2 more badges to become a Doer!';
-
     if (badgeCount >= 8) {
-      subTitleCopy =
-        '(You have bonus badges for earning the super-secret Staff Fave badge!).';
+      return '(You have bonus badges for earning the super-secret Staff Fave badge!).';
     }
     if (badgeCount === 7) {
-      subTitleCopy =
-        '(You have a bonus badge for earning the super-secret Staff Pick badge!).';
+      return '(You have a bonus badge for earning the super-secret Staff Pick badge!).';
     }
     if (badgeCount === 6) {
-      subTitleCopy = '';
+      return '';
     }
     if (badgeCount >= 4 && badgeCount <= 5) {
-      subTitleCopy = "You're almost to Legend status!";
+      return "You're almost to Legend status!";
     }
     if (badgeCount >= 2 && badgeCount <= 3) {
-      subTitleCopy = 'Keep up the good work!';
+      return 'Keep up the good work!';
     }
     if (badgeCount === 1) {
-      subTitleCopy = 'Just 1 more badge to become a Doer!';
+      return 'Just 1 more badge to become a Doer!';
     }
-    return subTitleCopy;
+    return 'Just 2 more badges to become a Doer!';
   };
 
   const doerProgress = badges => {
