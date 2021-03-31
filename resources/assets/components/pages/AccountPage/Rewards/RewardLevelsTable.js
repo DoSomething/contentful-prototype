@@ -25,6 +25,7 @@ export const userLevelLabel = badgeNumber => {
 
   return userLevel;
 };
+
 const RewardLevelsTable = ({ totalBadges }) => {
   const doerHighlight = css`
     background-color: rgba(47, 227, 218, 0.15);
@@ -37,6 +38,20 @@ const RewardLevelsTable = ({ totalBadges }) => {
   const legendHighlight = css`
     background-color: rgba(251, 209, 51, 0.15);
   `;
+
+  const tableSubTitleCopy = {
+    default:
+      'After you earn your first 2 badges, you’ll start earning rewards!',
+    Legend: `You currently enjoy all the perks of a ${userLevelLabel(
+      totalBadges,
+    )} (you’ll earn 4 chances to win a campaign’s scholarship instead of 1)!`,
+    SuperDoer: `You currently enjoy all the perks of a ${userLevelLabel(
+      totalBadges,
+    )} (you’ll earn 3 chances to win a campaign’s scholarship instead of 1)!`,
+    Doer: `You currently enjoy all the perks of a ${userLevelLabel(
+      totalBadges,
+    )} (you’ll earn 2 chances to win a campaign’s scholarship instead of 1)!`,
+  };
 
   const header = (
     <TableHeader>
@@ -66,7 +81,8 @@ const RewardLevelsTable = ({ totalBadges }) => {
       <SectionHeader title="my rewards" />
 
       <p className="text-gray-600">
-        You currently enjoy all the perks of a {userLevelLabel(totalBadges)}!
+        {tableSubTitleCopy[userLevelLabel(totalBadges)] ||
+          tableSubTitleCopy.default}
       </p>
 
       <Table>

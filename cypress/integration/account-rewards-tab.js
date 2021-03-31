@@ -86,7 +86,7 @@ describe('User Account Rewards Tab', () => {
     cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/rewards`);
     cy.findByTestId('rewards-progress-bar-description').should(
       'contain',
-      "You earned 2 out of 6 badges, which makes you a Doer. You're almost there!",
+      'Keep up the good work!',
     );
   });
 
@@ -96,7 +96,13 @@ describe('User Account Rewards Tab', () => {
 
     cy.mockGraphqlOp('UserBadgeCountQuery', {
       user: {
-        badges: ['SIGNUP', 'ONE_POST', 'ONE_STAFF_FAVE'],
+        badges: [
+          'SIGNUP',
+          'ONE_POST',
+          'TWO_POSTS',
+          'THREE_POSTS',
+          'ONE_STAFF_FAVE',
+        ],
       },
     });
 
@@ -104,7 +110,7 @@ describe('User Account Rewards Tab', () => {
     cy.withFeatureFlags({ rewards_levels: true }).visit(`/us/account/rewards`);
     cy.findByTestId('rewards-progress-bar-description').should(
       'contain',
-      "You earned 3 out of 6 badges, which makes you a Doer. You're almost there!",
+      "You're almost to Legend status!",
     );
   });
 

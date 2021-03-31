@@ -181,6 +181,24 @@ const RewardsTab = ({ userId }) => {
   const badges = get(data, 'user.badges', []);
   const badgeCount = badges.length;
 
+  const badgesSubtitleCopy = count => {
+    let subTitleCopy =
+      'Level up by earning 2 more badges. (Select each badge to learn how to earn it!)';
+    if (count >= 7) {
+      subTitleCopy =
+        'Amazing! You have earned all 6 badges, plus gained access to the super-secret Staff Fave badge.';
+    }
+    if (count === 6) {
+      subTitleCopy = 'Amazing! You have earned all 6 badges.';
+    }
+    if (count % 2 === 1) {
+      subTitleCopy =
+        'Level up by earning 1 more badge. (Select your unearned badge to learn how to earn it!)';
+    }
+
+    return subTitleCopy;
+  };
+
   return (
     <div className="grid-wide bg-gray pb-6 wrapper">
       {featureFlag('rewards_levels') ? (
@@ -188,9 +206,7 @@ const RewardsTab = ({ userId }) => {
       ) : null}
 
       <h1 className="text-xl">Badges</h1>
-      <p className="text-gray-600">
-        Earn badges and rewards for making a difference.
-      </p>
+      <p className="text-gray-600">{badgesSubtitleCopy(badgeCount)}</p>
       <ul
         data-testid="badges-list"
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 -mx-3 px-2"
