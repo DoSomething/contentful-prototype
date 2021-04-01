@@ -61,12 +61,14 @@ const RewardsFaq = () => (
         <Summary text="What are the terms and conditions?" />
 
         <DetailsParagraph>
+          You can find the{' '}
           <a
             href="/us/about/terms-and-conditions-scholarship-entries"
             target="_blank"
           >
-            See DoSomething Rewards terms and conditions.
+            DoSomething Rewards Terms and Conditions here
           </a>
+          .
         </DetailsParagraph>
       </Details>
     </div>
