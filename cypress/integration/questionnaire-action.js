@@ -285,14 +285,14 @@ describe('Questionnaire Action', () => {
     cy.findByTestId('question-1-input').type(faker.lorem.words());
     cy.findByTestId('question-2-input').type(faker.lorem.words());
 
-    cy.findByTestId('questionnaire-submit-button')
-      .click()
-      .handleLogin(user);
-
     cy.intercept('POST', QUESTIONNAIRES_API, {
       statusCode: 200,
       body: { data: [{ id: 1 }] },
     }).as('submitQuestionnaire');
+
+    cy.findByTestId('questionnaire-submit-button')
+      .click()
+      .handleLogin(user);
 
     cy.mockGraphqlOp('PostQuery', {
       post: {
