@@ -8,24 +8,34 @@ This content type is an in-house replacement for the page we formerly housed on 
 
 -   **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc. (does _not_ display to the user on the company page).
 
--   **Title**:
-
 -   **Cover Image**: Displays at the top of the page and links to a featured Article.
 
--   **Title**: The title of the page.
+-   **Latest Articles Gallery Title**: The title above the first gallery of articles.
 
--   **Subtitle**: The subtitle of the page
+-   **Latest Articles Gallery**: Collection of 7 articles, the first will be the featured article displayed at the top of the page, and the other six in a gallery below.
 
--   **Content**: The Rich Text content of the page. This can be content in markdown format, embedded Assets, or valid embedded entry blocks.
+-   **Topic Articles Gallery One Title**: The title above the first gallery of articles on a specific topic.
+
+-   **Topic Articles Gallery One**: Collection of 3 or 6 articles all on a related topic.
+
+-   **Topic Articles Gallery Two Title**: The title above the second gallery of articles on a specific topic.
+
+-   **Topic Articles Gallery Two**: Collection of 3 or 6 articles all on a related topic.
+
+-   **Eleven Facts Gallery Title**: The title above the gallery showcasing all 11 Facts Articles.
+
+-   **Eleven Facts Gallery**: Collection of 3 or 6 11 Facts articles.
+
+-   **CTA Title**: Main CTA text for CTA banner at the bottom of the page.
+
+-   **CTA Text**: Sub CTA text for CTA banner at the bottom of the page.
+
+-   **CTA Button Text**: Custom text for the CTA button.
 
 ## Technical Notes
 
-<!-- Important information regarding how this content type behaves on the platform and code flow. -->
+Page entries are the currently the only type of entry we are validating for in the galleries since this is an articles specific page.
 
 ## Additional Information
 
-<!-- Extra information that could be helpful. -->
-
-## Resources
-
-<!-- Links or information on additional resources that could be useful. -->
+We chose to define each block of articles explicitly vs a rich text content field because of clarity for editors and being able to work in a stand alone component on the page itself.
