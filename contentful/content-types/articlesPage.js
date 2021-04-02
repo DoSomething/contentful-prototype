@@ -13,15 +13,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  articlesPage
-    .createField('title')
-    .name('Title')
-    .type('Symbol')
-    .localized(true)
-    .required(true)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
 
   articlesPage
     .createField('coverImage')
@@ -234,7 +225,6 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
   articlesPage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {});
-  articlesPage.changeFieldControl('title', 'builtin', 'singleLine', {});
 
   articlesPage.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
     helpText:
