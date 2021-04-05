@@ -141,6 +141,64 @@ describe('Campaign Post', () => {
     cy.contains('We got your photo!');
   });
 
+  it('displays custom validation error for photo dimension errors', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('ActionAndUserByIdQuery', {
+      action: {
+        collectSchoolId: false,
+      },
+      user: {
+        schoolId: null,
+      },
+    });
+
+    cy.mockGraphqlOp('ActionQuery', {
+      action: {
+        volunteerCredit: false,
+      },
+    });
+
+    // Log in & visit the campaign action page:
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
+
+    cy.get('.photo-submission-action').within(() => {
+      // Choose an image to upload as a photo post:
+      cy.get('input[type="file"]').attachFile('upload.jpg');
+
+      // Fill out other fields:
+      cy.get('[name="caption"]').type("Let's do this!");
+      cy.get('[name="quantity"]').type('1');
+      cy.get('[name="whyParticipated"]').type('Testing');
+
+      // Mock the backend response:
+      cy.intercept('POST', POSTS_API, {
+        statusCode: 422,
+        body: {
+          error: {
+            message: 'Hmm, there were some issues with your submission.',
+            fields: {
+              file: ['The file has invalid image dimensions.'],
+            },
+          },
+        },
+      }).as('submitPost');
+
+      cy.contains('Submit a new photo').click();
+
+      cy.wait('@submitPost');
+
+      cy.contains(
+        'Photos must be no larger than 10MB, at least 50 x 50, and no larger than 5000 x 4000. Try cropping your photo.',
+      );
+
+      cy.findByTestId('photo-dimensions-help-center-link').should(
+        'have.length',
+        1,
+      );
+    });
+  });
+
   context('For a volunteer credit action', () => {
     const user = userFactory();
 
