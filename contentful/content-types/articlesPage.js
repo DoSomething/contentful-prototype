@@ -47,7 +47,7 @@ module.exports = function(migration) {
 
   articlesPage
     .createField('headerArticle')
-    .name('HeaderArticle')
+    .name('Header Article')
     .type('Link')
     .localized(false)
     .required(true)
