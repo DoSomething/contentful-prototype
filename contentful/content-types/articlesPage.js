@@ -36,8 +36,8 @@ module.exports = function(migration) {
     .linkType('Asset');
 
   articlesPage
-    .createField('latestArticlesGalleryTitle')
-    .name('Latest Articles Gallery Title')
+    .createField('featuredArticlesGalleryTopTitle')
+    .name('Featured Articles Gallery Top Title')
     .type('Symbol')
     .localized(false)
     .required(true)
@@ -46,16 +46,16 @@ module.exports = function(migration) {
     .omitted(false);
 
   articlesPage
-    .createField('latestArticlesGallery')
-    .name('Latest Articles Gallery')
+    .createField('featuredArticlesGalleryTop')
+    .name('Featured Articles Gallery Top')
     .type('Array')
     .localized(false)
     .required(true)
     .validations([
       {
         size: {
-          min: 7,
-          max: 7,
+          min: 6,
+          max: 6,
         },
       },
     ])
@@ -67,7 +67,7 @@ module.exports = function(migration) {
       validations: [
         {
           linkContentType: ['page'],
-          message: 'Only Page entries are valid.',
+          message: 'Only Page entries are valid in this gallery.',
         },
       ],
 
@@ -157,8 +157,8 @@ module.exports = function(migration) {
     });
 
   articlesPage
-    .createField('elevenFactsGalleryTitle')
-    .name('Eleven Facts Gallery Title')
+    .createField('featuredArticlesGalleryBottomTitle')
+    .name('Featured Articles Gallery Bottom Title')
     .type('Symbol')
     .localized(false)
     .required(false)
@@ -167,8 +167,8 @@ module.exports = function(migration) {
     .omitted(false);
 
   articlesPage
-    .createField('elevenFactsGallery')
-    .name('Eleven Facts Gallery')
+    .createField('featuredArticlesGalleryBottom')
+    .name('Featured Articles Gallery Bottom')
     .type('Array')
     .localized(false)
     .required(false)
@@ -178,8 +178,6 @@ module.exports = function(migration) {
           min: 3,
           max: 6,
         },
-
-        message: 'Please add 3 or 6 articles to this gallery.',
       },
     ])
     .disabled(false)
@@ -190,7 +188,7 @@ module.exports = function(migration) {
       validations: [
         {
           linkContentType: ['page'],
-          message: 'Only Page entries are valid.',
+          message: 'Only Page entries are valid in this gallery.',
         },
       ],
 
@@ -234,20 +232,19 @@ module.exports = function(migration) {
   });
 
   articlesPage.changeFieldControl(
-    'latestArticlesGalleryTitle',
+    'featuredArticlesGalleryTopTitle',
     'builtin',
     'singleLine',
-    {
-      helpText: 'Add the title for our latest articles gallery',
-    },
+    {},
   );
 
   articlesPage.changeFieldControl(
-    'latestArticlesGallery',
+    'featuredArticlesGalleryTop',
     'builtin',
     'entryLinksEditor',
     {
-      helpText: 'Add articles (Page entries) to showcase on the articles page.',
+      helpText:
+        "Add stories you'd like to feature (latest articles, etc) here.",
       bulkEditing: false,
       showLinkEntityAction: true,
       showCreateEntityAction: true,
@@ -301,18 +298,19 @@ module.exports = function(migration) {
   );
 
   articlesPage.changeFieldControl(
-    'elevenFactsGalleryTitle',
+    'featuredArticlesGalleryBottomTitle',
     'builtin',
     'singleLine',
     {},
   );
 
   articlesPage.changeFieldControl(
-    'elevenFactsGallery',
+    'featuredArticlesGalleryBottom',
     'builtin',
     'entryLinksEditor',
     {
-      helpText: 'Add 11 facts articles to feature on the articles page.',
+      helpText:
+        'Use this gallery to feature 11 facts articles on the articles page.',
       bulkEditing: false,
       showLinkEntityAction: true,
       showCreateEntityAction: true,
