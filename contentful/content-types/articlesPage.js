@@ -36,6 +36,32 @@ module.exports = function(migration) {
     .linkType('Asset');
 
   articlesPage
+    .createField('headerTitle')
+    .name('Header Title')
+    .type('Symbol')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+
+  articlesPage
+    .createField('headerArticle')
+    .name('HeaderArticle')
+    .type('Link')
+    .localized(false)
+    .required(true)
+    .validations([
+      {
+        linkContentType: ['page'],
+        message: 'Only Page entries (articles) are valid for this field.',
+      },
+    ])
+    .disabled(false)
+    .omitted(false)
+    .linkType('Entry');
+
+  articlesPage
     .createField('featuredArticlesGalleryTopTitle')
     .name('Featured Articles Gallery Top Title')
     .type('Symbol')
@@ -231,6 +257,16 @@ module.exports = function(migration) {
     showCreateEntityAction: true,
   });
 
+  articlesPage.changeFieldControl('headerTitle', 'builtin', 'singleLine', {
+    helpText: 'Add a Title here to showcase the header article content.',
+  });
+
+  articlesPage.changeFieldControl(
+    'headerArticle',
+    'builtin',
+    'entryLinkEditor',
+    {},
+  );
   articlesPage.changeFieldControl(
     'featuredArticlesGalleryTopTitle',
     'builtin',
