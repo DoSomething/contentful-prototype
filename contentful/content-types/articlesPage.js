@@ -62,6 +62,15 @@ module.exports = function(migration) {
     .linkType('Entry');
 
   articlesPage
+    .createField('headerLinkText')
+    .name('Header Link Text')
+    .type('Symbol')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  articlesPage
     .createField('featuredArticlesGalleryTopTitle')
     .name('Featured Articles Gallery Top Title')
     .type('Symbol')
@@ -267,6 +276,11 @@ module.exports = function(migration) {
     'entryLinkEditor',
     {},
   );
+
+  articlesPage.changeFieldControl('headerLinkText', 'builtin', 'singleLine', {
+    helpText: 'Add custom text for the article link ie. "Read More" etc.',
+  });
+
   articlesPage.changeFieldControl(
     'featuredArticlesGalleryTopTitle',
     'builtin',
