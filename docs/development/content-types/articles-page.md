@@ -10,9 +10,15 @@ This content type is an in-house replacement for the page we formerly housed on 
 
 -   **Cover Image**: Displays at the top of the page and links to a featured Article.
 
--   **Latest Articles Gallery Title**: The title above the first gallery of articles.
+-   **Header Title**: Custom Title for the featured header article (alternative to headline in article page itself).
 
--   **Latest Articles Gallery**: Collection of 7 articles, the first will be the featured article displayed at the top of the page, and the other six in a gallery below.
+-   **Header Article**: Article that should be displayed and linked to at the top of the Articles page.
+
+-   **Header Link Text**: Optional custom text for the link out to the header article.
+
+-   **Featured Articles Gallery Top Title**: The title above the first gallery of articles.
+
+-   **Featured Articles Gallery Top**: Collection of 6 articles, for launch these will be the latest articles published on the site.
 
 -   **Topic Articles Gallery One Title**: The title above the first gallery of articles on a specific topic.
 
@@ -22,9 +28,9 @@ This content type is an in-house replacement for the page we formerly housed on 
 
 -   **Topic Articles Gallery Two**: Collection of 3 or 6 articles all on a related topic.
 
--   **Eleven Facts Gallery Title**: The title above the gallery showcasing all 11 Facts Articles.
+-   **Featured Articles Gallery Bottom Title**: The title above the gallery showcasing all 11 Facts Articles.
 
--   **Eleven Facts Gallery**: Collection of 3 or 6 11 Facts articles.
+-   **Featured Articles Gallery Bottom**: Collection of 3 or 6 11 Facts articles.
 
 -   **CTA Title**: Main CTA text for CTA banner at the bottom of the page.
 
