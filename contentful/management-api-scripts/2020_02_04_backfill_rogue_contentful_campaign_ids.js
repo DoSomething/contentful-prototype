@@ -11,14 +11,13 @@ const {
 
 let NORTHSTAR_BEARER_TOKEN;
 const {
-  ROGUE_URL,
   NORTHSTAR_URL,
   NORTHSTAR_AUTHORIZATION_ID,
   NORTHSTAR_AUTHORIZATION_SECRET,
 } = process.env;
 
 const NORTHSTAR_TOKEN_ENDPOINT = `${NORTHSTAR_URL}/v2/auth/token`;
-const ROGUE_CAMPAIGNS_ENDPOINT = `${ROGUE_URL}/api/v3/campaigns`;
+const ROGUE_CAMPAIGNS_ENDPOINT = `${NORTHSTAR_URL}/api/v3/campaigns`;
 
 const logger = createLogger('backfill_rogue_contentful_campaign_ids');
 
@@ -84,7 +83,7 @@ const backfillRogueContentfulCampaignIds = async (
 
 contentManagementClient.init(async (environment, args) => {
   logger.info(
-    `Running 'backfill_rogue_contentful_campaign_ids', using Contentful's '${environment.sys.id}' environment & '${ROGUE_URL}'.`,
+    `Running 'backfill_rogue_contentful_campaign_ids', using Contentful's '${environment.sys.id}' environment & '${NORTHSTAR_URL}'.`,
   );
   logger.info('Kicking things off in 5 seconds...');
 

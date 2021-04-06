@@ -15,12 +15,12 @@ const {
 
 const { LOCALE } = constants;
 
-const { ROGUE_URL } = process.env;
+const { NORTHSTAR_URL } = process.env;
 const logger = createLogger('create_post_galleries');
 
 contentManagementClient.init(async environment => {
   logger.info(
-    `Running 'create_post_galleries', using Contentful's '${environment.sys.id}' environment & '${ROGUE_URL}'.`,
+    `Running 'create_post_galleries', using Contentful's '${environment.sys.id}' environment & '${NORTHSTAR_URL}'.`,
   );
   logger.info('Kicking things off in 5 seconds...');
 
@@ -71,7 +71,7 @@ contentManagementClient.init(async environment => {
 
       // Get the action ID from the first `photo` action for this campaign.
       const response = await fetch(
-        `${ROGUE_URL}/api/v3/actions?filter[campaign_id]=${campaignId}`,
+        `${NORTHSTAR_URL}/api/v3/actions?filter[campaign_id]=${campaignId}`,
       );
 
       const { data } = await response.json();

@@ -4,25 +4,25 @@ namespace App\Services;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
-use App\Repositories\RogueCampaignRepository;
+use App\Repositories\NorthstarCampaignRepository;
 use Huddle\Zendesk\Facades\Zendesk as ZendeskClient;
 
 class Zendesk
 {
     /**
-     * Rogue Campaign repository instance.
-     * @var RogueCampaignRepository
+     * Northstar Campaign repository instance.
+     * @var NorthstarCampaignRepository
      */
-    private $rogueCampaignRepository;
+    private $NorthstarCampaignRepository;
 
     /**
      * Zendesk constructor.
      *
-     * @param RogueCampaignRepository $rogueCampaignRepository
+     * @param NorthstarCampaignRepository $NorthstarCampaignRepository
      */
-    public function __construct(RogueCampaignRepository $rogueCampaignRepository)
+    public function __construct(NorthstarCampaignRepository $NorthstarCampaignRepository)
     {
-        $this->rogueCampaignRepository = $rogueCampaignRepository;
+        $this->NorthstarCampaignRepository = $NorthstarCampaignRepository;
     }
 
     /**
@@ -103,28 +103,28 @@ class Zendesk
             // Custom user attributes:
             'user_fields' => [
                 'profile_uid' => $northstarId,
-                // User's Rogue profile URL:
-                'profile_url' => config('services.rogue.url').'/users/'.$northstarId,
+                // User's Northstar profile URL:
+                'profile_url' => config('services.northstar.url').'/users/'.$northstarId,
             ],
         ]);
     }
 
     /**
-     * Fetch Campaign from Rogue and parse out its first cause name.
+     * Fetch Campaign from Northstar and parse out its first cause name.
      *
      * @param string  $campaignId
      * @return string
      */
     protected function getFirstCampaignCauseName($campaignId)
     {
-        $rogueCampaign = $this->rogueCampaignRepository->getCampaign($campaignId);
-        $campaignCauses = data_get($rogueCampaign, 'data.cause_names', []);
+        $northstarCampaign = $this->NorthstarCampaignRepository->getCampaign($campaignId);
+        $campaignCauses = data_get($northstarCampaign, 'data.cause_names', []);
 
         return array_shift($campaignCauses);
     }
 
     /**
-     * Fetch Rogue Campaign's first cause name and use it to filter out
+     * Fetch Northstar Campaign's first cause name and use it to filter out
      * the corresponding Zendesk group ID.
      *
      * @param string  $campaignId
