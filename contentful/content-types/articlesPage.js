@@ -46,20 +46,22 @@ module.exports = function(migration) {
     .omitted(false);
 
   articlesPage
-    .createField('headerArticle')
-    .name('Header Article')
-    .type('Link')
+    .createField('headerLinkUrl')
+    .name('Header Link URL')
+    .type('Symbol')
     .localized(false)
     .required(true)
     .validations([
       {
-        linkContentType: ['page'],
-        message: 'Only Page entries (articles) are valid for this field.',
+        regexp: {
+          pattern:
+            '^(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-/]))?$',
+          flags: null,
+        },
       },
     ])
     .disabled(false)
-    .omitted(false)
-    .linkType('Entry');
+    .omitted(false);
 
   articlesPage
     .createField('headerLinkText')
@@ -270,12 +272,10 @@ module.exports = function(migration) {
     helpText: 'Add a Title here to showcase the header article content.',
   });
 
-  articlesPage.changeFieldControl(
-    'headerArticle',
-    'builtin',
-    'entryLinkEditor',
-    {},
-  );
+  articlesPage.changeFieldControl('headerLinkUrl', 'builtin', 'singleLine', {
+    helpText:
+      'A valid URL e.g. https://dosomething.org, or a link to a valid US email e.g. http://email.dosomething.org/deliveries/dgPY8QPY8QMDAAF4ifqeOl6Y5gBsgx5ogGE=',
+  });
 
   articlesPage.changeFieldControl('headerLinkText', 'builtin', 'singleLine', {
     helpText: 'Add custom text for the article link ie. "Read More" etc.',
