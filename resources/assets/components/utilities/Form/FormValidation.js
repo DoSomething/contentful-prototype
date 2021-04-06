@@ -7,6 +7,7 @@ import {
   getFieldErrorMessages,
   getStatusMessage,
 } from '../../../helpers/forms';
+import { HELP_LINK } from '../../../constants';
 
 import './form-validation.scss';
 
@@ -14,6 +15,29 @@ const FormValidation = ({ response }) => {
   const hasErrors = has(response.status, 'error');
   const statusMessage = getStatusMessage(response);
   const errorMessages = getFieldErrorMessages(response);
+
+  const renderErrorMessage = errorMessage => {
+    // @HACK: We render a link to the Help Center along with file dimension validation errors.
+    // Can we somehow formalize this better?
+    if (errorMessage.includes('Photos must be no larger than')) {
+      return (
+        <>
+          {errorMessage}{' '}
+          <a
+            data-testid="photo-dimensions-help-center-link"
+            className="text-red-500 hover:text-red-300 hover:underline"
+            href={`${HELP_LINK}/articles/360063589773`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            View image resizing guide
+          </a>
+        </>
+      );
+    }
+
+    return errorMessage;
+  };
 
   return (
     <section
@@ -29,7 +53,7 @@ const FormValidation = ({ response }) => {
       {errorMessages ? (
         <ul className="list -compacted mt-2">
           {errorMessages.map((error, index) => (
-            <li key={`error-message-${index}`}>{error}</li> // eslint-disable-line react/no-array-index-key
+            <li key={`error-message-${index}`}>{renderErrorMessage(error)}</li> // eslint-disable-line react/no-array-index-key
           ))}
         </ul>
       ) : null}
