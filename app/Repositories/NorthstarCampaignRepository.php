@@ -4,20 +4,20 @@ namespace App\Repositories;
 
 use DoSomething\Gateway\Common\RestApiClient;
 
-class RogueCampaignRepository extends RestApiClient
+class NorthstarCampaignRepository extends RestApiClient
 {
     /**
-     * Create a new RogueCampaignRepository instance.
+     * Create a new NorthstarCampaignRepository instance.
      */
     public function __construct()
     {
-        $base_url = config('services.rogue.url').'/api/';
+        $base_url = config('services.northstar.url').'/api/';
 
         parent::__construct($base_url);
     }
 
     /**
-     * Fetch campaign from Rogue by Campaign ID.
+     * Fetch campaign from Northstar by Campaign ID.
      *
      * @param string $campaignId
      * @return array - JSON response

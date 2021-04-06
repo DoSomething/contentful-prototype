@@ -3,38 +3,38 @@
 namespace App\Repositories;
 
 use Illuminate\Support\Arr;
-use App\Services\RogueClient;
+use App\Services\NorthstarClient;
 
 class PostRepository
 {
     /**
-     * Rogue client instance.
+     * Northstar client instance.
      */
-    private $rogue;
+    private $northstar;
 
     /**
      * Create a new PostRepository instance.
      *
-     * @param RogueClient $client
+     * @param NorthstarClient $client
      */
-    public function __construct(RogueClient $client)
+    public function __construct(NorthstarClient $client)
     {
-        $this->rogue = $client;
+        $this->northstar = $client;
     }
 
     /**
-     * Get posts from Rogue.
+     * Get posts from Northstar.
      *
      * @param  array $query
      * @return array - JSON response
      */
     public function getPosts($query = [])
     {
-        return $this->rogue->get('v3/posts', $query);
+        return $this->northstar->get('v3/posts', $query);
     }
 
     /**
-     * Store post in Rogue.
+     * Store post in Northstar.
      *
      * @param  array  $payload
      * @return array - JSON response
@@ -49,7 +49,7 @@ class PostRepository
             $payload['file'] = fopen($payload['file']->getPathname(), 'r');
         }
 
-        // We assign certain "informal" Rogue Post values to the details field.
+        // We assign certain "informal" Northstar Post values to the details field.
         $details = array_filter([
             'number_of_participants' => collect($payload)->pull('number_of_participants'),
         ]);
@@ -63,7 +63,7 @@ class PostRepository
             $multipartData->push(['name' => 'details', 'contents' => json_encode($details)]);
         }
 
-        return $this->rogue->withToken(token())->send('POST', 'v3/posts', [
+        return $this->northstar->withToken(token())->send('POST', 'v3/posts', [
             'multipart' => $multipartData->values()->toArray(),
         ]);
     }

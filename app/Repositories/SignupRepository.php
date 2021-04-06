@@ -2,44 +2,44 @@
 
 namespace App\Repositories;
 
-use App\Services\RogueClient;
+use App\Services\NorthstarClient;
 
 class SignupRepository
 {
     /**
-     * Rogue client instance.
+     * Northstar client instance.
      */
-    private $rogue;
+    private $northstar;
 
     /**
      * Create a new PostRepository instance.
      *
-     * @param RogueClient $client
+     * @param NorthstarClient $client
      */
-    public function __construct(RogueClient $client)
+    public function __construct(NorthstarClient $client)
     {
-        $this->rogue = $client;
+        $this->northstar = $client;
     }
 
     /**
-     * Get signups from Rogue.
+     * Get signups from Northstar.
      *
      * @param  array  $query
      * @return array - JSON response
      */
     public function getSignups($query = [])
     {
-        return $this->rogue->get('v3/signups', $query);
+        return $this->northstar->get('v3/signups', $query);
     }
 
     /**
-     * Store signup in Rogue.
+     * Store signup in Northstar.
      *
      * @param  array  $payload
      * @return array - JSON response
      */
     public function storeSignup($payload = [])
     {
-        return $this->rogue->withToken(token())->post('v3/signups', $payload);
+        return $this->northstar->withToken(token())->post('v3/signups', $payload);
     }
 }

@@ -7,12 +7,12 @@ use DoSomething\Gateway\Common\RestApiClient;
 use DoSomething\Gateway\ForwardsTransactionIds;
 use DoSomething\Gateway\Exceptions\ValidationException;
 
-class RogueClient extends RestApiClient
+class NorthstarClient extends RestApiClient
 {
     use AuthorizesWithOAuth2, ForwardsTransactionIds;
 
     /**
-     * Create a new RogueClient instance.
+     * Create a new NorthstarClient instance.
      */
     public function __construct()
     {
@@ -21,7 +21,7 @@ class RogueClient extends RestApiClient
         $this->grant = config('services.northstar.grant');
         $this->config = config('services.northstar');
 
-        $base_url = config('services.rogue.url').'/api/';
+        $base_url = config('services.northstar.url').'/api/';
 
         parent::__construct($base_url);
     }

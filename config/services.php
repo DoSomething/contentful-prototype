@@ -25,10 +25,6 @@ return [
         'url' => env('GRAPHQL_URL', 'https://graphql-qa.dosomething.org/graphql'),
     ],
 
-    'rogue' => [
-        'url' => env('ROGUE_URL', 'https://rogue-qa.dosomething.org'),
-    ],
-
     'northstar' => [
         'grant' => 'authorization_code', // Default OAuth grant to use: either 'authorization_code' or 'client_credentials'
         'url' => env('NORTHSTAR_URL'),

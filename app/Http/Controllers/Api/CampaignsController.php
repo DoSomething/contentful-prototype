@@ -54,7 +54,7 @@ class CampaignsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string $id - Rogue ID
+     * @param  string $id - Northstar campaign ID
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
