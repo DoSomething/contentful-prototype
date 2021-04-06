@@ -141,7 +141,7 @@ describe('Campaign Post', () => {
     cy.contains('We got your photo!');
   });
 
-  it('displays custom validation error for photo dimension errors', () => {
+  it('displays link to help center along with photo dimension errors', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('ActionAndUserByIdQuery', {
@@ -171,6 +171,9 @@ describe('Campaign Post', () => {
       cy.get('[name="quantity"]').type('1');
       cy.get('[name="whyParticipated"]').type('Testing');
 
+      const photoDimensionValidationError =
+        'Photos must be no larger than 10MB, at least 50 x 50, and no larger than 5000 x 4000. Try cropping your photo.';
+
       // Mock the backend response:
       cy.intercept('POST', POSTS_API, {
         statusCode: 422,
@@ -178,7 +181,7 @@ describe('Campaign Post', () => {
           error: {
             message: 'Hmm, there were some issues with your submission.',
             fields: {
-              file: ['The file has invalid image dimensions.'],
+              file: [photoDimensionValidationError],
             },
           },
         },
@@ -188,9 +191,7 @@ describe('Campaign Post', () => {
 
       cy.wait('@submitPost');
 
-      cy.contains(
-        'Photos must be no larger than 10MB, at least 50 x 50, and no larger than 5000 x 4000. Try cropping your photo.',
-      );
+      cy.contains(photoDimensionValidationError);
 
       cy.findByTestId('photo-dimensions-help-center-link').should(
         'have.length',

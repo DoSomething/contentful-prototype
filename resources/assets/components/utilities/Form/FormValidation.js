@@ -17,13 +17,12 @@ const FormValidation = ({ response }) => {
   const errorMessages = getFieldErrorMessages(response);
 
   const renderErrorMessage = errorMessage => {
-    // @HACK: We render a link to the Help Center along with a customized validation message
-    // for file dimension errors. Can we somehow formalize this?
-    if (errorMessage === 'The file has invalid image dimensions.') {
+    // @HACK: We render a link to the Help Center along with file dimension validation errors.
+    // Can we somehow formalize this better?
+    if (errorMessage.includes('Photos must be no larger than')) {
       return (
         <>
-          Photos must be no larger than 10MB, at least 50 x 50, and no larger
-          than 5000 x 4000. Try cropping your photo.{' '}
+          {errorMessage}{' '}
           <a
             data-testid="photo-dimensions-help-center-link"
             className="text-red-500 hover:text-red-300 hover:underline"
