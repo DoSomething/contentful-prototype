@@ -104,7 +104,7 @@ class Zendesk
             'user_fields' => [
                 'profile_uid' => $northstarId,
                 // User's Northstar profile URL:
-                'profile_url' => config('services.northstar.url').'/users/'.$northstarId,
+                'profile_url' => config('services.northstar.url').'/admin/users/'.$northstarId,
             ],
         ]);
     }
