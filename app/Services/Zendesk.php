@@ -11,18 +11,18 @@ class Zendesk
 {
     /**
      * Northstar Campaign repository instance.
-     * @var NorthstarCampaignRepository
+     * @var northstarCampaignRepository
      */
-    private $NorthstarCampaignRepository;
+    private $northstarCampaignRepository;
 
     /**
      * Zendesk constructor.
      *
-     * @param NorthstarCampaignRepository $NorthstarCampaignRepository
+     * @param northstarCampaignRepository $NorthstarCampaignRepository
      */
-    public function __construct(NorthstarCampaignRepository $NorthstarCampaignRepository)
+    public function __construct(NorthstarCampaignRepository $northstarCampaignRepository)
     {
-        $this->NorthstarCampaignRepository = $NorthstarCampaignRepository;
+        $this->northstarCampaignRepository = $northstarCampaignRepository;
     }
 
     /**
@@ -117,7 +117,7 @@ class Zendesk
      */
     protected function getFirstCampaignCauseName($campaignId)
     {
-        $northstarCampaign = $this->NorthstarCampaignRepository->getCampaign($campaignId);
+        $northstarCampaign = $this->northstarCampaignRepository->getCampaign($campaignId);
         $campaignCauses = data_get($northstarCampaign, 'data.cause_names', []);
 
         return array_shift($campaignCauses);
