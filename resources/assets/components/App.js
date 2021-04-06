@@ -22,6 +22,7 @@ import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
+import ArticlesLandingPage from './pages/ArticlesPage/ArticlesPage';
 import AccountQuery from './pages/AccountPage/Account/AccountQuery';
 import TypeFormEmbed from './utilities/TypeFormEmbed/TypeFormEmbed';
 import AlphaReferralPage from './pages/ReferralPage/Alpha/AlphaPage';
@@ -84,6 +85,10 @@ const App = ({ store, history }) => {
                   </AuthGate>
                 )}
               />
+
+              {featureFlag('new_articles_page') ? (
+                <Route path="/us/articles" component={ArticlesLandingPage} />
+              ) : null}
 
               <Route path="/us/blocks/:id" component={BlockPage} />
 
