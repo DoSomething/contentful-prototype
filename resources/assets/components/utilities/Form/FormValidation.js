@@ -7,6 +7,7 @@ import {
   getFieldErrorMessages,
   getStatusMessage,
 } from '../../../helpers/forms';
+import { HELP_LINK } from '../../../constants';
 
 import './form-validation.scss';
 
@@ -26,7 +27,7 @@ const FormValidation = ({ response }) => {
           <a
             data-testid="photo-dimensions-help-center-link"
             className="text-red-500 hover:text-red-300 hover:underline"
-            href="https://help.dosomething.org/hc/en-us/articles/360063589773"
+            href={`${HELP_LINK}/articles/360063589773`}
             target="_blank"
             rel="noreferrer"
           >
