@@ -22,6 +22,6 @@ If the associated Northstar Action for this Photo Submission Action (queried usi
 
 ## Custom File Dimension Validation
 
-The `file` field (which we use to POST the uploaded photo to our Activity API) has strict dimension validations. To ensure clarity for our users, we display a customized validation message for this specific field containing a link to our Help Center:
+The `file` field (which we use to POST the uploaded photo to our Activity API) has strict dimension validations. To ensure clarity for our users, we display a link to our Help Center alongside the validation error message:
 
 ![Example Photo Submission Action Dimension Errors](../../.gitbook/assets/photo-submission-action-dimension-errors.png)
