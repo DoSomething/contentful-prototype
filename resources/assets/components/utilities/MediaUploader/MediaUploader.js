@@ -43,7 +43,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
   if (filePreviewUrl) {
     content = (
       <div className="media-uploader__content media-uploader--file">
-        <img src={filePreviewUrl} alt="uploaded file" />
+        <img src={filePreviewUrl} alt="uploaded file" className="max-h-full" />
       </div>
     );
   } else {
@@ -71,7 +71,13 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
         }
       `}
     >
-      <label htmlFor="media-uploader">
+      <label
+        htmlFor="media-uploader"
+        className="cursor-pointer block h-0 overflow-hidden relative w-full"
+        css={css`
+          padding-bottom: 100%;
+        `}
+      >
         {content}
         <input
           type="file"

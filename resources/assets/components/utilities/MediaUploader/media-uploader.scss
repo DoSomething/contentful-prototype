@@ -1,20 +1,6 @@
 @import '../../../scss/next-toolbox.scss';
 
 .media-uploader {
-    label {
-        cursor: pointer;
-        display: block;
-        height: 0;
-        overflow: hidden;
-        position: relative;
-        padding-bottom: 100%;
-        width: 100%;
-
-        img {
-            max-height: 100%;
-        }
-    }
-
     .media-uploader__content {
         align-items: center;
         display: flex;
