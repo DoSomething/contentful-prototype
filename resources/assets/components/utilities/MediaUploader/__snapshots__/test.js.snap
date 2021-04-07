@@ -8,13 +8,18 @@ exports[`MediaUploader snapshot test 1`] = `
     htmlFor="media-uploader"
   >
     <div
-      className="media-uploader__content media-uploader--action"
+      className="media-uploader__content media-uploader--action flex-col"
     >
       <span
         className="underline"
       >
         Upload Media
       </span>
+      <p
+        className="text-gray-600 pt-2 italic"
+      >
+        must be &lt;10MB
+      </p>
     </div>
     <input
       id="media-uploader"
