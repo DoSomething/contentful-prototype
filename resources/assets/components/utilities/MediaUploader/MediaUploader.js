@@ -8,8 +8,6 @@ import { css } from '@emotion/core';
 import { processFile } from '../../../helpers/file';
 import plusSign from '../../../images/plus_sign.svg';
 
-import './media-uploader.scss';
-
 const MediaUploader = ({ label, onChange, hasError, media }) => {
   const readFile = file => {
     const fileReader = new FileReader();
@@ -87,6 +85,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
       </div>
 
       <input
+        className="w-0"
         type="file"
         id="media-uploader"
         name="media-uploader"
