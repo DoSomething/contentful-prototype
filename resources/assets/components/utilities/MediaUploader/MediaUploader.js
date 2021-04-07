@@ -44,7 +44,6 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
       className={classnames(
         'cursor-pointer block h-0 overflow-hidden relative bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300 focus:bg-gray-300',
         {
-          'has-image': filePreviewUrl,
           'border border-solid border-red-500 shake': hasError,
         },
       )}
@@ -54,9 +53,9 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
     >
       <div
         className={classnames(
-          'media-uploader__content items-center flex h-full justify-center left-0 absolute top-0 w-full',
+          'items-center flex h-full justify-center left-0 absolute top-0 w-full',
           {
-            'media-uploader--file bg-gray-100': filePreviewUrl,
+            'bg-gray-100': filePreviewUrl,
             'flex-col': !filePreviewUrl,
           },
         )}
