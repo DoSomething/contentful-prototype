@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { css } from '@emotion/core';
 
 import { processFile } from '../../../helpers/file';
 
@@ -56,10 +57,19 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
 
   return (
     <div
-      className={classnames('media-uploader', {
-        'has-image': filePreviewUrl,
-        'has-error shake': hasError,
-      })}
+      className={classnames(
+        'media-uploader bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300',
+        {
+          'has-image': filePreviewUrl,
+          'has-error shake': hasError,
+        },
+      )}
+      css={css`
+        &:hover,
+        &:focus {
+          background-color: darken(#eee, 5%);
+        }
+      `}
     >
       <label htmlFor="media-uploader">
         {content}
