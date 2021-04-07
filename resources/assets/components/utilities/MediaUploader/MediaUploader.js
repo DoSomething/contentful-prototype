@@ -1,11 +1,13 @@
 /* global FileReader, URL, Blob */
 
 import React from 'react';
+import tw from 'twin.macro';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { css } from '@emotion/core';
 
 import { processFile } from '../../../helpers/file';
+import plusSign from '../../../images/plus_sign.svg';
 
 import './media-uploader.scss';
 
@@ -63,10 +65,13 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
         `}
       >
         <div
-          className={classnames('media-uploader__content', {
-            'media-uploader--file': filePreviewUrl,
-            'media-uploader--action flex-col': !filePreviewUrl,
-          })}
+          className={classnames(
+            'media-uploader__content items-center flex h-full justify-center left-0 absolute top-0 w-full',
+            {
+              'media-uploader--file': filePreviewUrl,
+              'flex-col': !filePreviewUrl,
+            },
+          )}
         >
           {filePreviewUrl ? (
             <img
@@ -76,7 +81,23 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
             />
           ) : (
             <>
-              <span className="underline">{label}</span>
+              <span
+                className="underline font-semibold leading-normal text-center"
+                css={css`
+                  max-width: 170px;
+
+                  ::before {
+                    background: transparent url(${plusSign});
+                    ${tw`bg-cover block mt-0 mx-auto mb-2`}
+                    content: '';
+                    fill: theme('colors.gray.500');
+                    height: 50px;
+                    width: 50px;
+                  }
+                `}
+              >
+                {label}
+              </span>
               <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
             </>
           )}
