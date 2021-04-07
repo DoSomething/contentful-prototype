@@ -46,7 +46,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
         'media-uploader bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300',
         {
           'has-image': filePreviewUrl,
-          'has-error shake': hasError,
+          'border border-solid border-red-500 shake': hasError,
         },
       )}
       css={css`

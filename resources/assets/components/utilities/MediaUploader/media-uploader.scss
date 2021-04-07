@@ -1,10 +1,6 @@
 @import '../../../scss/next-toolbox.scss';
 
 .media-uploader {
-    &.has-error {
-        border: 1px solid $error-color;
-    }
-
     input {
         @include visually-hidden();
     }
