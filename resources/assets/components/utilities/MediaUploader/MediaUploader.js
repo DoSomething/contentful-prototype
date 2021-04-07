@@ -41,63 +41,59 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
   const { filePreviewUrl } = media;
 
   return (
-    <div
+    <label
+      htmlFor="media-uploader"
       className={classnames(
-        'media-uploader bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300 focus:bg-gray-300',
+        'cursor-pointer block h-0 overflow-hidden relative bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300 focus:bg-gray-300',
         {
           'has-image': filePreviewUrl,
           'border border-solid border-red-500 shake': hasError,
         },
       )}
+      css={css`
+        padding-bottom: 100%;
+      `}
     >
-      <label
-        htmlFor="media-uploader"
-        className="cursor-pointer block h-0 overflow-hidden relative w-full"
-        css={css`
-          padding-bottom: 100%;
-        `}
+      <div
+        className={classnames(
+          'media-uploader__content items-center flex h-full justify-center left-0 absolute top-0 w-full',
+          {
+            'media-uploader--file bg-gray-100': filePreviewUrl,
+            'flex-col': !filePreviewUrl,
+          },
+        )}
       >
-        <div
-          className={classnames(
-            'media-uploader__content items-center flex h-full justify-center left-0 absolute top-0 w-full',
-            {
-              'media-uploader--file bg-gray-100': filePreviewUrl,
-              'flex-col': !filePreviewUrl,
-            },
-          )}
-        >
-          {filePreviewUrl ? (
-            <img
-              src={filePreviewUrl}
-              alt="uploaded file"
-              className="max-h-full"
-            />
-          ) : (
-            <>
-              <img src={plusSign} alt="plus symbol" className="mb-2" />
+        {filePreviewUrl ? (
+          <img
+            src={filePreviewUrl}
+            alt="uploaded file"
+            className="max-h-full"
+          />
+        ) : (
+          <>
+            <img src={plusSign} alt="plus symbol" className="mb-2" />
 
-              <span
-                className="underline font-semibold leading-normal text-center"
-                css={css`
-                  max-width: 170px;
-                `}
-              >
-                {label}
-              </span>
-              <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
-            </>
-          )}
-        </div>
+            <span
+              className="underline font-semibold leading-normal text-center"
+              css={css`
+                max-width: 170px;
+              `}
+            >
+              {label}
+            </span>
+            <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
+          </>
+        )}
+      </div>
 
-        <input
-          type="file"
-          id="media-uploader"
-          name="media-uploader"
-          onChange={handleChange}
-          required
-        />
-      </label>
-    </div>
+      <input
+        type="file"
+        id="media-uploader"
+        name="media-uploader"
+        onChange={handleChange}
+        required
+      />
+    </label>
   );
 };
 
