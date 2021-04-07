@@ -8,20 +8,8 @@ import { processFile } from '../../../helpers/file';
 
 import './media-uploader.scss';
 
-class MediaUploader extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    event.preventDefault();
-
-    this.readFile(event.target.files[0]);
-  }
-
-  readFile(file) {
+const MediaUploader = ({ label, onChange, hasError, media }) => {
+  const readFile = file => {
     const fileReader = new FileReader();
     let blob;
 
@@ -31,7 +19,7 @@ class MediaUploader extends React.Component {
       try {
         blob = processFile(fileReader.result);
 
-        this.props.onChange({
+        onChange({
           file: blob,
           filePreviewUrl: URL.createObjectURL(blob),
         });
@@ -40,49 +28,52 @@ class MediaUploader extends React.Component {
         console.log(error);
       }
     };
-  }
+  };
 
-  render() {
-    const { hasError } = this.props;
-    const { filePreviewUrl } = this.props.media;
-    let content = null;
+  const handleChange = event => {
+    event.preventDefault();
 
-    if (filePreviewUrl) {
-      content = (
-        <div className="media-uploader__content media-uploader--file">
-          <img src={filePreviewUrl} alt="uploaded file" />
-        </div>
-      );
-    } else {
-      content = (
-        <div className="media-uploader__content media-uploader--action flex-col">
-          <span className="underline">{this.props.label}</span>
-          <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
-        </div>
-      );
-    }
+    readFile(event.target.files[0]);
+  };
 
-    return (
-      <div
-        className={classnames('media-uploader', {
-          'has-image': filePreviewUrl,
-          'has-error shake': hasError,
-        })}
-      >
-        <label htmlFor="media-uploader">
-          {content}
-          <input
-            type="file"
-            id="media-uploader"
-            name="media-uploader"
-            onChange={this.handleChange}
-            required
-          />
-        </label>
+  const { filePreviewUrl } = media;
+  let content = null;
+
+  if (filePreviewUrl) {
+    content = (
+      <div className="media-uploader__content media-uploader--file">
+        <img src={filePreviewUrl} alt="uploaded file" />
+      </div>
+    );
+  } else {
+    content = (
+      <div className="media-uploader__content media-uploader--action flex-col">
+        <span className="underline">{label}</span>
+        <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
       </div>
     );
   }
-}
+
+  return (
+    <div
+      className={classnames('media-uploader', {
+        'has-image': filePreviewUrl,
+        'has-error shake': hasError,
+      })}
+    >
+      <label htmlFor="media-uploader">
+        {content}
+        <input
+          type="file"
+          id="media-uploader"
+          name="media-uploader"
+          onChange={handleChange}
+          required
+        />
+      </label>
+    </div>
+  );
+};
 
 MediaUploader.propTypes = {
   hasError: PropTypes.bool,
