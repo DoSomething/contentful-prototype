@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 
-import MediaUploader from './index';
+import MediaUploader from './MediaUploader';
 
 test('MediaUploader snapshot test', () => {
   const component = shallow(<MediaUploader onChange={() => {}} />);
