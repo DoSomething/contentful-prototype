@@ -43,27 +43,18 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
   return (
     <div
       className={classnames(
-        'media-uploader bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300',
+        'media-uploader bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300 focus:bg-gray-300',
         {
           'has-image': filePreviewUrl,
           'border border-solid border-red-500 shake': hasError,
         },
       )}
-      css={css`
-        &:hover,
-        &:focus {
-          background-color: darken(#eee, 5%);
-        }
-      `}
     >
       <label
         htmlFor="media-uploader"
         className="cursor-pointer block h-0 overflow-hidden relative w-full"
         css={css`
           padding-bottom: 100%;
-          &::before {
-            ${filePreviewUrl ? 'display: none;' : ''}
-          }
         `}
       >
         <div
