@@ -12,9 +12,9 @@ This content type is an in-house replacement for the page we formerly housed on 
 
 -   **Header Title**: Custom Title for the featured header article (alternative to headline in article page itself).
 
--   **Header Article**: Article that should be displayed and linked to at the top of the Articles page.
+-   **Header Link URL**: A link to the article that should be displayed and linked to at the top of the Articles page.
 
--   **Header Link Text**: Optional custom text for the link out to the header article.
+-   **Header Button Text**: Optional custom text for the link out to the header article.
 
 -   **Featured Articles Gallery Top Title**: The title above the first gallery of articles.
 
