@@ -77,6 +77,10 @@ const App = ({ store, history }) => {
             <Switch>
               <Route exact path="/us" component={HomePage} />
 
+              {featureFlag('new_articles_page') ? (
+                <Route path="/us/articles" component={ArticlesLandingPage} />
+              ) : null}
+
               <Route
                 path="/us/account"
                 render={() => (
@@ -160,10 +164,6 @@ const App = ({ store, history }) => {
               />
 
               <Route path="/us/refer-friends" component={AlphaReferralPage} />
-
-              {featureFlag('new_articles_page') ? (
-                <Route path="/us/articles" component={ArticlesLandingPage} />
-              ) : null}
 
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
