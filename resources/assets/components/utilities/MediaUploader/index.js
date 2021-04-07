@@ -55,8 +55,9 @@ class MediaUploader extends React.Component {
       );
     } else {
       content = (
-        <div className="media-uploader__content media-uploader--action">
+        <div className="media-uploader__content media-uploader--action flex-col">
           <span className="underline">{this.props.label}</span>
+          <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
         </div>
       );
     }
