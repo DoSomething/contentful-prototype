@@ -38,22 +38,6 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
   };
 
   const { filePreviewUrl } = media;
-  let content = null;
-
-  if (filePreviewUrl) {
-    content = (
-      <div className="media-uploader__content media-uploader--file">
-        <img src={filePreviewUrl} alt="uploaded file" className="max-h-full" />
-      </div>
-    );
-  } else {
-    content = (
-      <div className="media-uploader__content media-uploader--action flex-col">
-        <span className="underline">{label}</span>
-        <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
-      </div>
-    );
-  }
 
   return (
     <div
@@ -78,7 +62,26 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
           padding-bottom: 100%;
         `}
       >
-        {content}
+        <div
+          className={classnames('media-uploader__content', {
+            'media-uploader--file': filePreviewUrl,
+            'media-uploader--action flex-col': !filePreviewUrl,
+          })}
+        >
+          {filePreviewUrl ? (
+            <img
+              src={filePreviewUrl}
+              alt="uploaded file"
+              className="max-h-full"
+            />
+          ) : (
+            <>
+              <span className="underline">{label}</span>
+              <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
+            </>
+          )}
+        </div>
+
         <input
           type="file"
           id="media-uploader"
