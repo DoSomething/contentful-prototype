@@ -1,7 +1,6 @@
 /* global FileReader, URL, Blob */
 
 import React from 'react';
-import tw from 'twin.macro';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { css } from '@emotion/core';
@@ -81,19 +80,12 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
             />
           ) : (
             <>
+              <img src={plusSign} alt="plus symbol" className="mb-2" />
+
               <span
                 className="underline font-semibold leading-normal text-center"
                 css={css`
                   max-width: 170px;
-
-                  ::before {
-                    background: transparent url(${plusSign});
-                    ${tw`bg-cover block mt-0 mx-auto mb-2`}
-                    content: '';
-                    fill: theme('colors.gray.500');
-                    height: 50px;
-                    width: 50px;
-                  }
                 `}
               >
                 {label}
