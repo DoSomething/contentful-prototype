@@ -111,15 +111,14 @@ describe('Campaign Post', () => {
     // Log in & visit the campaign action page:
     cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
-    cy.get('.photo-submission-action .card').should('have.length', 1);
-    cy.get('.photo-submission-form').should('have.length', 1);
-    cy.get('.photo-submission-form .media-uploader').should('have.length', 1);
-    cy.get('.photo-submission-form button[type="submit"]').should(
-      'have.length',
-      1,
-    );
-
     cy.get('.photo-submission-action').within(() => {
+      cy.get('.card').should('have.length', 1);
+
+      cy.get('.photo-submission-form').within(() => {
+        cy.findByTestId('media-uploader').should('have.length', 1);
+        cy.get('button[type="submit"]').should('have.length', 1);
+      });
+
       // Choose an image to upload as a photo post:
       cy.get('input[type="file"]').attachFile('upload.jpg');
 

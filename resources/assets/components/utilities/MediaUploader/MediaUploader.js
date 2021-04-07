@@ -40,6 +40,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
 
   return (
     <label
+      data-testid="media-uploader"
       htmlFor="media-uploader"
       className={classnames(
         'cursor-pointer block h-0 overflow-hidden relative bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300 focus:bg-gray-300',
