@@ -64,8 +64,8 @@ module.exports = function(migration) {
     .omitted(false);
 
   articlesPage
-    .createField('headerLinkText')
-    .name('Header Link Text')
+    .createField('headerButtonText')
+    .name('Header Button Text')
     .type('Symbol')
     .localized(false)
     .required(false)
@@ -277,7 +277,7 @@ module.exports = function(migration) {
       'A valid URL e.g. https://dosomething.org, or a link to a valid US email e.g. http://email.dosomething.org/deliveries/dgPY8QPY8QMDAAF4ifqeOl6Y5gBsgx5ogGE=',
   });
 
-  articlesPage.changeFieldControl('headerLinkText', 'builtin', 'singleLine', {
+  articlesPage.changeFieldControl('headerButtonText', 'builtin', 'singleLine', {
     helpText: 'Add custom text for the article link ie. "Read More" etc.',
   });
 
