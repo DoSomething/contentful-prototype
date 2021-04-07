@@ -86,10 +86,6 @@ const App = ({ store, history }) => {
                 )}
               />
 
-              {featureFlag('new_articles_page') ? (
-                <Route path="/us/articles" component={ArticlesLandingPage} />
-              ) : null}
-
               <Route path="/us/blocks/:id" component={BlockPage} />
 
               {featureFlag('post_confirmation_page') ? (
@@ -164,6 +160,10 @@ const App = ({ store, history }) => {
               />
 
               <Route path="/us/refer-friends" component={AlphaReferralPage} />
+
+              {featureFlag('new_articles_page') ? (
+                <Route path="/us/articles" component={ArticlesLandingPage} />
+              ) : null}
 
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
