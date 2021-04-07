@@ -1,18 +1,6 @@
 @import '../../../scss/next-toolbox.scss';
 
 .media-uploader {
-    &.has-image {
-        label {
-            &::before {
-                display: none;
-            }
-        }
-
-        .media-uploader__content {
-            background-color: $off-white;
-        }
-    }
-
     &.has-error {
         border: 1px solid $error-color;
     }

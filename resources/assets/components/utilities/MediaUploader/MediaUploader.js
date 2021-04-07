@@ -61,13 +61,16 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
         className="cursor-pointer block h-0 overflow-hidden relative w-full"
         css={css`
           padding-bottom: 100%;
+          &::before {
+            ${filePreviewUrl ? 'display: none;' : ''}
+          }
         `}
       >
         <div
           className={classnames(
             'media-uploader__content items-center flex h-full justify-center left-0 absolute top-0 w-full',
             {
-              'media-uploader--file': filePreviewUrl,
+              'media-uploader--file bg-gray-100': filePreviewUrl,
               'flex-col': !filePreviewUrl,
             },
           )}
