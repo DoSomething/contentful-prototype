@@ -112,6 +112,11 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
         onChange={handleChange}
         required
         accept="image/png, image/jpeg"
+        onInvalid={event => {
+          if (!event.target.value) {
+            setInternalError('Please add a photo.');
+          }
+        }}
       />
     </label>
   );
