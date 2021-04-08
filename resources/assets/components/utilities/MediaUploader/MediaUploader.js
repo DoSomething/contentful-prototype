@@ -1,14 +1,17 @@
 /* global FileReader, URL, Blob */
 
-import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { css } from '@emotion/core';
+import React, { useState } from 'react';
 
 import { processFile } from '../../../helpers/file';
+import { report } from '../../../helpers/monitoring';
 import plusSign from '../../../images/plus_sign.svg';
 
 const MediaUploader = ({ label, onChange, hasError, media }) => {
+  const [internalError, setInternalError] = useState(null);
+
   const readFile = file => {
     const fileReader = new FileReader();
     let blob;
@@ -24,14 +27,22 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
           filePreviewUrl: URL.createObjectURL(blob),
         });
       } catch (error) {
-        // @todo: need a nice way to handle this, display message?
-        console.log(error);
+        report(error);
+
+        setInternalError(error.message);
+
+        onChange({
+          file: null,
+          filePreviewUrl: null,
+        });
       }
     };
   };
 
   const handleChange = event => {
     event.preventDefault();
+
+    setInternalError(null);
 
     readFile(event.target.files[0]);
   };
@@ -45,7 +56,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
       className={classnames(
         'cursor-pointer block h-0 overflow-hidden relative bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300 focus:bg-gray-300',
         {
-          'border border-solid border-red-500 shake': hasError,
+          'border border-solid border-red-500 shake': hasError || internalError,
         },
       )}
       css={css`
@@ -80,6 +91,10 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
               {label}
             </span>
             <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
+
+            {internalError ? (
+              <p className="text-red-300 p-3 mt-0">{internalError}</p>
+            ) : null}
           </>
         )}
       </div>
@@ -91,6 +106,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
         name="media-uploader"
         onChange={handleChange}
         required
+        accept="image/png, image/jpeg"
       />
     </label>
   );
