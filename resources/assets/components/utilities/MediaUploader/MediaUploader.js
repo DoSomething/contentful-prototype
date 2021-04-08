@@ -22,6 +22,11 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
       try {
         blob = processFile(fileReader.result);
 
+        // We support a maximum of 10MB files.
+        if (blob.size > 10000000) {
+          throw new Error('File must be no larger than 10MB.');
+        }
+
         onChange({
           file: blob,
           filePreviewUrl: URL.createObjectURL(blob),
