@@ -78,6 +78,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
       >
         {filePreviewUrl ? (
           <img
+            data-testid="media-uploader-file-preview"
             src={filePreviewUrl}
             alt="uploaded file"
             className="max-h-full"
@@ -97,7 +98,12 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
             <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
 
             {internalError ? (
-              <p className="text-red-300 p-3 mt-0">{internalError}</p>
+              <p
+                data-testid="media-uploader-error"
+                className="text-red-300 p-3 mt-0"
+              >
+                {internalError}
+              </p>
             ) : null}
           </>
         )}
