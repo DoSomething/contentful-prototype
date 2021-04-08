@@ -1,11 +1,10 @@
-/* global FileReader, URL, Blob */
+/* global URL, Blob */
 
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { css } from '@emotion/core';
 import React, { useState } from 'react';
 
-import { processFile } from '../../../helpers/file';
 import { report } from '../../../helpers/monitoring';
 import plusSign from '../../../images/plus_sign.svg';
 
@@ -13,35 +12,33 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
   const [internalError, setInternalError] = useState(null);
 
   const readFile = file => {
-    const fileReader = new FileReader();
-    let blob;
+    try {
+      const supportedFileTypes = ['image/png', 'image/jpeg'];
 
-    fileReader.readAsArrayBuffer(file);
-
-    fileReader.onloadend = () => {
-      try {
-        blob = processFile(fileReader.result);
-
-        // We support a maximum of 10MB files.
-        if (blob.size > 10000000) {
-          throw new Error('File must be no larger than 10MB.');
-        }
-
-        onChange({
-          file: blob,
-          filePreviewUrl: URL.createObjectURL(blob),
-        });
-      } catch (error) {
-        report(error);
-
-        setInternalError(error.message);
-
-        onChange({
-          file: null,
-          filePreviewUrl: null,
-        });
+      if (!supportedFileTypes.includes(file.type)) {
+        throw new Error('Unsupported file type.');
       }
-    };
+
+      // We support a maximum of 10MB files.
+      // (10 * 1000 bytes * 1000 kilobytes).
+      if (file.size > 10 * 1000 * 1000) {
+        throw new Error('File must be no larger than 10MB.');
+      }
+
+      onChange({
+        file,
+        filePreviewUrl: URL.createObjectURL(file),
+      });
+    } catch (error) {
+      report(error);
+
+      setInternalError(error.message);
+
+      onChange({
+        file: null,
+        filePreviewUrl: null,
+      });
+    }
   };
 
   const handleChange = event => {
@@ -49,7 +46,9 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
 
     setInternalError(null);
 
-    readFile(event.target.files[0]);
+    const file = event.target.files[0];
+
+    return file ? readFile(file) : null;
   };
 
   const { filePreviewUrl } = media;
@@ -105,6 +104,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
       </div>
 
       <input
+        data-testid="media-uploader-input"
         className="w-0"
         type="file"
         id="media-uploader"
