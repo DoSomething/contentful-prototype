@@ -1,5 +1,4 @@
 import React from 'react';
-import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 
@@ -59,10 +58,7 @@ describe('The MediaUploader', () => {
 
   it('Displays the file preview when media is provided', () => {
     render(
-      <MediaUploader
-        onChange={onChange => {}}
-        media={{ filePreviewUrl: 'File!' }}
-      />,
+      <MediaUploader onChange={() => {}} media={{ filePreviewUrl: 'File!' }} />,
     );
 
     screen.getByTestId('media-uploader-file-preview');
