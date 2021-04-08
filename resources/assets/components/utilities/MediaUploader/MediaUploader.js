@@ -11,10 +11,10 @@ import plusSign from '../../../images/plus_sign.svg';
 const MediaUploader = ({ label, onChange, hasError, media }) => {
   const [internalError, setInternalError] = useState(null);
 
+  const supportedFileTypes = ['image/png', 'image/jpeg'];
+
   const readFile = file => {
     try {
-      const supportedFileTypes = ['image/png', 'image/jpeg'];
-
       if (!supportedFileTypes.includes(file.type)) {
         throw new Error('Unsupported file type.');
       }
@@ -111,7 +111,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
         name="media-uploader"
         onChange={handleChange}
         required
-        accept="image/png, image/jpeg"
+        accept={supportedFileTypes.join(', ')}
         onInvalid={event => {
           if (!event.target.value) {
             setInternalError('Please add a photo.');
