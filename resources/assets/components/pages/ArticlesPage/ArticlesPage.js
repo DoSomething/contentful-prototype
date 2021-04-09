@@ -192,7 +192,7 @@ const ArticlesLandingPage = ({
           </section>
 
           {/* Article Archive Call To Action Banner */}
-          <BannerCallToAction text={ctaText} title={ctaTitle}>
+          <BannerCallToAction text={ctaText} title={ctaTitle} stacked>
             <PrimaryButton
               attributes={{ 'data-label': 'signup_cta_authorize' }}
               className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
