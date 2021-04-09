@@ -14,6 +14,7 @@ import Modal from './utilities/Modal/Modal';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import { env, featureFlag } from '../helpers/env';
+import { isAuthenticated } from '../helpers/auth';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
 import AboutPage from './pages/AboutPage/AboutPage';
@@ -50,7 +51,7 @@ const App = ({ store, history }) => {
 
           <PopoverDispatcher />
 
-          {featureFlag('sitewide_nps_survey') ? (
+          {featureFlag('sitewide_nps_survey') && isAuthenticated() ? (
             <TrafficDistribution percentage={5} feature="nps_survey">
               <DismissableElement
                 name="nps_survey"
