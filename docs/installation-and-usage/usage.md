@@ -73,3 +73,9 @@ Once a _Pull Request_ is merged, a deploy to our _Development_ and _QA (staging)
 The Development environment can be accessed at [https://dev.dosomething.org](https://dev.dosomething.org).
 
 The QA environment can be accessed at [https://qa.dosomething.org](https://qa.dosomething.org).
+
+### Ghost Inspector
+
+We run automated tests against our website using [Ghost Inspector](https://app.ghostinspector.com/folders/5c4763450bb17c1d6e1f5e9d).
+
+Once a deploy is executed on our _QA (staging)_ and _Production_ environments, the respective QA or Production test suite is triggered to run via a [Heroku Deploy Hook integration](https://ghostinspector.com/docs/integration/heroku/).
