@@ -7,6 +7,7 @@ import PageQuery from '../PageQuery';
 import LinkButton from '../../utilities/Button/LinkButton';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
 import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import { coverImageMediaQueryStyles } from '../../../helpers/display';
 import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
@@ -118,7 +119,12 @@ const ArticlesLandingPage = ({
             <StrikeThroughHeader title={featuredArticlesGalleryTopTitle} />
 
             <div className="grid-wide text-center">
-              <CampaignGallery campaigns={data.campaignGallery.campaigns} />
+              <GalleryBlock
+                blocks={featuredArticlesGalleryTop || []}
+                galleryType="PAGE"
+                itemsPerRow={3}
+                imageAlignment="LEFT"
+              />
             </div>
           </section>
 
@@ -142,13 +148,11 @@ const ArticlesLandingPage = ({
             <StrikeThroughHeader title={topicArticlesGalleryOneTitle} />
 
             <div className="grid-wide text-center">
-              <CampaignGallery campaigns={data.campaignGallery.campaigns} />
-
-              <PrimaryButton
-                attributes={{ 'data-label': 'campaign_section_show_more' }}
-                className="mt-8 py-4 px-8 text-lg"
-                href="/us/campaigns"
-                text="See More Campaigns"
+              <GalleryBlock
+                blocks={topicArticlesGalleryOne || []}
+                galleryType="PAGE"
+                itemsPerRow={3}
+                imageAlignment="LEFT"
               />
             </div>
           </section>
@@ -161,13 +165,11 @@ const ArticlesLandingPage = ({
             <StrikeThroughHeader title={topicArticlesGalleryTwoTitle} />
 
             <div className="grid-wide text-center">
-              <CampaignGallery campaigns={data.campaignGallery.campaigns} />
-
-              <PrimaryButton
-                attributes={{ 'data-label': 'campaign_section_show_more' }}
-                className="mt-8 py-4 px-8 text-lg"
-                href="/us/campaigns"
-                text="See More Campaigns"
+              <GalleryBlock
+                blocks={topicArticlesGalleryTwo || []}
+                galleryType="PAGE"
+                itemsPerRow={3}
+                imageAlignment="LEFT"
               />
             </div>
           </section>
@@ -180,13 +182,11 @@ const ArticlesLandingPage = ({
             <StrikeThroughHeader title={featuredArticlesGalleryBottomTitle} />
 
             <div className="grid-wide text-center">
-              <CampaignGallery campaigns={data.campaignGallery.campaigns} />
-
-              <PrimaryButton
-                attributes={{ 'data-label': 'campaign_section_show_more' }}
-                className="mt-8 py-4 px-8 text-lg"
-                href="/us/campaigns"
-                text="See More Campaigns"
+              <GalleryBlock
+                blocks={featuredArticlesGalleryBottom || []}
+                galleryType="PAGE"
+                itemsPerRow={3}
+                imageAlignment="LEFT"
               />
             </div>
           </section>
@@ -214,9 +214,17 @@ ArticlesLandingPage.propTypes = {
   ctaButtonText: PropTypes.string,
   ctaText: PropTypes.string,
   ctaTitle: PropTypes.string,
+  featuredArticlesGalleryTopTitle: PropTypes.string.isRequired,
+  featuredArticlesGalleryTop: PropTypes.arrayOf(PropTypes.object).isRequired,
+  featuredArticlesGalleryBottomTitle: PropTypes.string,
+  featuredArticlesGalleryBottom: PropTypes.arrayOf(PropTypes.object),
   headerTitle: PropTypes.string,
   headerLinkUrl: PropTypes.string.isRequired,
   headerButtonText: PropTypes.string,
+  topicArticlesGalleryOneTitle: PropTypes.string,
+  topicArticlesGalleryOne: PropTypes.arrayOf(PropTypes.object),
+  topicArticlesGalleryTwoTitle: PropTypes.string,
+  topicArticlesGalleryTwo: PropTypes.arrayOf(PropTypes.object),
 };
 
 ArticlesLandingPage.defaultProps = {
@@ -224,8 +232,14 @@ ArticlesLandingPage.defaultProps = {
   ctaButtonText: 'View More Stories',
   ctaText: 'An index of all articles and videos by DoSomething.org',
   ctaTitle: 'Article Archive',
+  featuredArticlesGalleryBottomTitle: null,
+  featuredArticlesGalleryBottom: null,
   headerTitle: null,
   headerButtonText: 'Read More',
+  topicArticlesGalleryOne: null,
+  topicArticlesGalleryOneTitle: null,
+  topicArticlesGalleryTwo: null,
+  topicArticlesGalleryTwoTitle: null,
 };
 
 const ArticlesPage = () => (
