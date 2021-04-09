@@ -19,9 +19,8 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
         throw new Error('Unsupported file type.');
       }
 
-      // We support a maximum of 10MB files.
-      // (10 * 1000 bytes * 1000 kilobytes).
-      if (file.size > 10 * 1000 * 1000) {
+      const MEGABYTE_IN_BYTES = 1000000;
+      if (file.size > 10 * MEGABYTE_IN_BYTES) {
         throw new Error('File must be no larger than 10MB.');
       }
 
