@@ -58,9 +58,11 @@ Route::get('search', function () {
 });
 
 // About pages
-
 Route::view('us/about', 'app');
 Route::view('us/about/{slug}', 'app');
+
+// Articles pages
+Route::view('us/articles', 'app');
 
 // Categorized Pages (articles, facts)
 $categories = 'articles|facts|stories';

@@ -22,6 +22,7 @@ import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
+import ArticlesPage from './pages/ArticlesPage/ArticlesPage';
 import AccountQuery from './pages/AccountPage/Account/AccountQuery';
 import TypeFormEmbed from './utilities/TypeFormEmbed/TypeFormEmbed';
 import AlphaReferralPage from './pages/ReferralPage/Alpha/AlphaPage';
@@ -75,6 +76,10 @@ const App = ({ store, history }) => {
           <Router history={history}>
             <Switch>
               <Route exact path="/us" component={HomePage} />
+
+              {featureFlag('new_articles_page') ? (
+                <Route path="/us/articles" component={ArticlesPage} />
+              ) : null}
 
               <Route
                 path="/us/account"
