@@ -1,5 +1,4 @@
 import React from 'react';
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import ErrorBoundary from 'react-error-boundary';
 import { ApolloProvider } from '@apollo/react-common';
