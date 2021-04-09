@@ -44,10 +44,10 @@ We use [Prettier](https://prettier.io/) to format our code & [ESLint](http://esl
 
 They run in the following scenarios:
 
-- When using the `npm start` command, your files will be "watched" for changes, and when a change is detected, the JS code will be linted and only compiled if it passes.
-- Code will be automatically formatted when committing changes. You can also install an [editor plugin](https://prettier.io/docs/en/editors.html) to reformat code as you write it, or manually format the project with `npm run format`.
-- You can manually lint code by running `npm run lint -s`. The `-s` option lets you suppress the verbose NPM warnings that follows when there are linting errors.
-- Code linting also runs via [Wercker](http://www.wercker.com/), our continuous integration service, when a new pull request is made for the repository.
+-   When using the `npm start` command, your files will be "watched" for changes, and when a change is detected, the JS code will be linted and only compiled if it passes.
+-   Code will be automatically formatted when committing changes. You can also install an [editor plugin](https://prettier.io/docs/en/editors.html) to reformat code as you write it, or manually format the project with `npm run format`.
+-   You can manually lint code by running `npm run lint -s`. The `-s` option lets you suppress the verbose NPM warnings that follows when there are linting errors.
+-   Code linting also runs via [Wercker](http://www.wercker.com/), our continuous integration service, when a new pull request is made for the repository.
 
 We use [StyleCI](https://styleci.io/repos/75642790) service to lint our PHP code when a new pull request is made for the respository.
 
@@ -59,8 +59,8 @@ We use [StyleCI](https://styleci.io/repos/75642790) service to lint our PHP code
 
 There are a couple of other third-party services that you will want access to for development:
 
-- The [Dosomething Team](https://dashboard.heroku.com/teams/dosomething/overview) on [Heroku](https://www.heroku.com/) to access the Phoenix Pipeline, which includes Review Apps, Dev, QA and Production Phoenix deployments.
-- The [Dosomething Organization](https://app.wercker.com/dosomething) on [Wercker](https://app.wercker.com) to access and re-trigger auto builds for _pull requests_ in the Phoenix repository.
+-   The [Dosomething Team](https://dashboard.heroku.com/teams/dosomething/overview) on [Heroku](https://www.heroku.com/) to access the Phoenix Pipeline, which includes Review Apps, Dev, QA and Production Phoenix deployments.
+-   The [Dosomething Organization](https://app.wercker.com/dosomething) on [Wercker](https://app.wercker.com) to access and re-trigger auto builds for _pull requests_ in the Phoenix repository.
 
 ### Review Apps
 
