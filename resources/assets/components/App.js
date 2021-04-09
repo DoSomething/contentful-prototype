@@ -55,7 +55,7 @@ const App = ({ store, history }) => {
               <DismissableElement
                 name="nps_survey"
                 render={(handleClose, handleComplete) => (
-                  <DelayedElement delay={30}>
+                  <DelayedElement delay={60}>
                     <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
                       <TypeFormEmbed
                         displayType="modal"
