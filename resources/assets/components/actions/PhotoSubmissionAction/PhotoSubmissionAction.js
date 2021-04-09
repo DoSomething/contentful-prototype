@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
 
-import Query from '../../Query';
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
+import HoursSpentField from './HoursSpentField';
 import { getUserId } from '../../../helpers/auth';
 import { featureFlag } from '../../../helpers/env';
 import PostCreatedModal from '../PostCreatedModal';
@@ -50,15 +50,6 @@ export const PhotoSubmissionBlockFragment = gql`
     informationTitle
     informationContent
     affirmationContent
-  }
-`;
-
-const ACTION_QUERY = gql`
-  query ActionQuery($actionId: Int!) {
-    action(id: $actionId) {
-      id
-      volunteerCredit
-    }
   }
 `;
 
@@ -476,46 +467,12 @@ class PhotoSubmissionAction extends PostForm {
                         </div>
                       ) : null}
                       {this.props.actionId ? (
-                        <Query
-                          query={ACTION_QUERY}
-                          variables={{ actionId: this.props.actionId }}
-                          hideSpinner
-                        >
-                          {response =>
-                            get(response, 'action.volunteerCredit') ? (
-                              <div
-                                className="form-item"
-                                data-testid="hours_spent"
-                              >
-                                <label
-                                  className={classnames('field-label', {
-                                    'has-error': has(errors, 'hoursSpent'),
-                                  })}
-                                  htmlFor="hoursSpent"
-                                >
-                                  How many hours did this action take?
-                                  <input
-                                    className={classnames('text-field', {
-                                      'has-error shake': has(
-                                        errors,
-                                        'hoursSpent',
-                                      ),
-                                    })}
-                                    type="number"
-                                    step="0.01"
-                                    id="hoursSpent"
-                                    name="hoursSpent"
-                                    placeholder={`Use numbers (e.g. "1.5" or "3")`}
-                                    value={this.state.hoursSpentValue}
-                                    onChange={this.handleChange}
-                                    required
-                                    min={0.1}
-                                  />
-                                </label>
-                              </div>
-                            ) : null
-                          }
-                        </Query>
+                        <HoursSpentField
+                          actionId={this.props.actionId}
+                          value={this.state.hoursSpentValue}
+                          onChange={this.handleChange}
+                          hasError={has(errors, 'hoursSpent')}
+                        />
                       ) : null}
 
                       {this.props.numberOfParticipantsFieldLabel ? (
