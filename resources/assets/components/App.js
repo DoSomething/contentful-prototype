@@ -14,11 +14,11 @@ import Modal from './utilities/Modal/Modal';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import { env, featureFlag } from '../helpers/env';
-import { isAuthenticated } from '../helpers/auth';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
+import { isAuthenticated, getUserId } from '../helpers/auth';
 import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
@@ -62,7 +62,7 @@ const App = ({ store, history }) => {
                         displayType="modal"
                         typeformUrl="https://dosomething.typeform.com/to/Phi9pA"
                         queryParameters={{
-                          northstar_id: get(window.AUTH, 'id', null),
+                          northstar_id: getUserId(),
                           url: window.location.pathname,
                         }}
                         onSubmit={handleComplete}
