@@ -172,7 +172,7 @@ const CampaignRoute = props => {
 };
 
 CampaignRoute.propTypes = {
-  affirmation: PropTypes.object.isRequired,
+  affirmation: PropTypes.object,
   clickedHideAffirmation: PropTypes.func.isRequired,
   endDate: PropTypes.string,
   hasCommunityPage: PropTypes.bool.isRequired,
@@ -190,6 +190,7 @@ UngatedCampaignRedirect.propTypes = {
 };
 
 CampaignRoute.defaultProps = {
+  affirmation: null,
   endDate: null,
   landingPage: {},
   campaignId: null,

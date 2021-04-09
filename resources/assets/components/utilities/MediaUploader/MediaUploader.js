@@ -1,39 +1,53 @@
-/* global FileReader, URL, Blob */
+/* global URL, Blob */
 
-import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { css } from '@emotion/core';
+import React, { useState } from 'react';
 
-import { processFile } from '../../../helpers/file';
+import { report } from '../../../helpers/monitoring';
 import plusSign from '../../../images/plus_sign.svg';
 
 const MediaUploader = ({ label, onChange, hasError, media }) => {
+  const [internalError, setInternalError] = useState(null);
+
+  const supportedFileTypes = ['image/png', 'image/jpeg'];
+
   const readFile = file => {
-    const fileReader = new FileReader();
-    let blob;
-
-    fileReader.readAsArrayBuffer(file);
-
-    fileReader.onloadend = () => {
-      try {
-        blob = processFile(fileReader.result);
-
-        onChange({
-          file: blob,
-          filePreviewUrl: URL.createObjectURL(blob),
-        });
-      } catch (error) {
-        // @todo: need a nice way to handle this, display message?
-        console.log(error);
+    try {
+      if (!supportedFileTypes.includes(file.type)) {
+        throw new Error('Unsupported file type.');
       }
-    };
+
+      const MEGABYTE_IN_BYTES = 1000000;
+      if (file.size > 10 * MEGABYTE_IN_BYTES) {
+        throw new Error('File must be no larger than 10MB.');
+      }
+
+      onChange({
+        file,
+        filePreviewUrl: URL.createObjectURL(file),
+      });
+    } catch (error) {
+      report(error);
+
+      setInternalError(error.message);
+
+      onChange({
+        file: null,
+        filePreviewUrl: null,
+      });
+    }
   };
 
   const handleChange = event => {
     event.preventDefault();
 
-    readFile(event.target.files[0]);
+    setInternalError(null);
+
+    const file = event.target.files[0];
+
+    return file ? readFile(file) : null;
   };
 
   const { filePreviewUrl } = media;
@@ -45,7 +59,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
       className={classnames(
         'cursor-pointer block h-0 overflow-hidden relative bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300 focus:bg-gray-300',
         {
-          'border border-solid border-red-500 shake': hasError,
+          'border border-solid border-red-500 shake': hasError || internalError,
         },
       )}
       css={css`
@@ -63,6 +77,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
       >
         {filePreviewUrl ? (
           <img
+            data-testid="media-uploader-file-preview"
             src={filePreviewUrl}
             alt="uploaded file"
             className="max-h-full"
@@ -80,17 +95,33 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
               {label}
             </span>
             <p className="text-gray-600 pt-2 italic">{'must be <10MB'}</p>
+
+            {internalError ? (
+              <p
+                data-testid="media-uploader-error"
+                className="text-red-300 p-3 mt-0"
+              >
+                {internalError}
+              </p>
+            ) : null}
           </>
         )}
       </div>
 
       <input
+        data-testid="media-uploader-input"
         className="w-0"
         type="file"
         id="media-uploader"
         name="media-uploader"
         onChange={handleChange}
         required
+        accept={supportedFileTypes.join(', ')}
+        onInvalid={event => {
+          if (!event.target.value) {
+            setInternalError('Please add a photo.');
+          }
+        }}
       />
     </label>
   );
