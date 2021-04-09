@@ -48,8 +48,7 @@ const App = ({ store, history }) => {
             <base target="_blank" />
           ) : null}
           <PopoverDispatcher />
-          {featureFlag('sitewide_nps_survey') &&
-          window.location.pathname !== '/us' ? (
+          {featureFlag('sitewide_nps_survey') ? (
             <TrafficDistribution percentage={5} feature="nps_survey">
               <DismissableElement
                 name="nps_survey"
