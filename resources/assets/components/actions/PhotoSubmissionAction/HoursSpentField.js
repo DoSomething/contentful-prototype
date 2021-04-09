@@ -16,7 +16,7 @@ const ACTION_QUERY = gql`
 `;
 
 const HoursSpentField = ({ actionId, onChange, hasError, value }) => (
-  <Query query={ACTION_QUERY} variables={{ actionId }} hideSpinner>
+  <Query query={ACTION_QUERY} variables={{ actionId }}>
     {response =>
       get(response, 'action.volunteerCredit') ? (
         <div className="form-item" data-testid="hours_spent">
