@@ -38,7 +38,7 @@ const NewsletterSubscriptionFormArticlesPage = () => {
         email: emailValue,
         email_subscription_topic: 'lifestyle',
         source: 'phoenix-next',
-        source_detail: 'lifestylve_newsletter_subscriptions-articles-page',
+        source_detail: 'lifestyle_newsletter_subscriptions-articles-page',
       })
       .then(() => {
         setShowConfirmation(true);
