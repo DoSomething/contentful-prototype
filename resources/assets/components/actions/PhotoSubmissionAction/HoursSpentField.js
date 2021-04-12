@@ -15,34 +15,60 @@ const ACTION_QUERY = gql`
   }
 `;
 
-const HoursSpentField = ({ actionId, onChange, hasError, value }) => (
+const HoursSpentField = ({ actionId, hasError }) => (
   <Query query={ACTION_QUERY} variables={{ actionId }}>
     {response =>
       get(response, 'action.volunteerCredit') ? (
-        <div className="form-item" data-testid="hours_spent">
-          <label
-            className={classnames('field-label', {
-              'has-error': hasError,
-            })}
-            htmlFor="hoursSpent"
-          >
-            How many hours did this action take?
-            <input
-              className={classnames('text-field', {
-                'has-error shake': hasError,
+        <fieldset className="form-item" data-testid="hours_spent">
+          <legend className="field-label">
+            How long did this action take?
+          </legend>
+
+          <div className="flex">
+            <label
+              className={classnames('flex flex-wrap mr-4', {
+                'has-error': hasError,
               })}
-              type="number"
-              step="0.01"
-              id="hoursSpent"
-              name="hoursSpent"
-              placeholder={`Use numbers (e.g. "1.5" or "3")`}
-              value={value}
-              onChange={onChange}
-              required
-              min={0.1}
-            />
-          </label>
-        </div>
+              htmlFor="hoursSpentHours"
+            >
+              <input
+                className={classnames('text-field w-16 mr-2', {
+                  'has-error shake': hasError,
+                })}
+                type="number"
+                id="hoursSpentHours"
+                name="hoursSpentHours"
+                placeholder={0}
+                required
+                min={0}
+              />
+
+              <span className="self-center font-normal">hours</span>
+            </label>
+
+            <label
+              className={classnames('flex flex-wrap', {
+                'has-error': hasError,
+              })}
+              htmlFor="hoursSpentMinutes"
+            >
+              <input
+                className={classnames('text-field w-16 mr-2', {
+                  'has-error shake': hasError,
+                })}
+                type="number"
+                id="hoursSpentMinutes"
+                name="hoursSpentMinutes"
+                placeholder={0}
+                required
+                min={0}
+                max={59}
+              />
+
+              <span className="self-center font-normal">minutes</span>
+            </label>
+          </div>
+        </fieldset>
       ) : null
     }
   </Query>
@@ -50,14 +76,11 @@ const HoursSpentField = ({ actionId, onChange, hasError, value }) => (
 
 HoursSpentField.propTypes = {
   actionId: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
   hasError: PropTypes.bool,
-  value: PropTypes.string,
 };
 
 HoursSpentField.defaultProps = {
   hasError: false,
-  value: '',
 };
 
 export default HoursSpentField;

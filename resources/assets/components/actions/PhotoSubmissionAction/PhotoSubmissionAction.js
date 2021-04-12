@@ -469,8 +469,6 @@ class PhotoSubmissionAction extends PostForm {
                       {this.props.actionId ? (
                         <HoursSpentField
                           actionId={this.props.actionId}
-                          value={this.state.hoursSpentValue}
-                          onChange={this.handleChange}
                           hasError={has(errors, 'hoursSpent')}
                         />
                       ) : null}
