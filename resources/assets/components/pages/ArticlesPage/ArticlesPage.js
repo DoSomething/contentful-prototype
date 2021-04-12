@@ -128,10 +128,10 @@ const ArticlesLandingPage = ({
             </div>
           </section>
 
-          {/* Newsletter Signup Section */}
+          {/* Lifestyle Newsletter Signup Section */}
           <section
             className="base-12-grid bg-gray-100 py-12"
-            data-test="newsletter-section"
+            data-test="newsletter-section-articles-page"
           >
             <StrikeThroughHeader title="Get Inspired. Get Entertained. Get Active." />
 
