@@ -130,7 +130,7 @@ const ArticlesLandingPage = ({
 
           {/* Lifestyle Newsletter Signup Section */}
           <section
-            className="base-12-grid bg-purple-500 py-12"
+            className="base-12-grid bg-purple-700 py-12"
             data-test="newsletter-section-articles-page"
           >
             <div className="grid-wide flex flex-wrap md:flex-no-wrap text-center w-full mb-6 justify-center">
