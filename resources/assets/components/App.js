@@ -1,5 +1,4 @@
 import React from 'react';
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import ErrorBoundary from 'react-error-boundary';
 import { ApolloProvider } from '@apollo/react-common';
@@ -18,6 +17,7 @@ import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
+import { isAuthenticated, getUserId } from '../helpers/auth';
 import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
@@ -48,20 +48,21 @@ const App = ({ store, history }) => {
             /* If we're in "chromeless" mode, open all links in new windows: */
             <base target="_blank" />
           ) : null}
+
           <PopoverDispatcher />
-          {featureFlag('sitewide_nps_survey') &&
-          window.location.pathname !== '/us' ? (
+
+          {featureFlag('sitewide_nps_survey') && isAuthenticated() ? (
             <TrafficDistribution percentage={5} feature="nps_survey">
               <DismissableElement
                 name="nps_survey"
                 render={(handleClose, handleComplete) => (
-                  <DelayedElement delay={30}>
+                  <DelayedElement delay={60}>
                     <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
                       <TypeFormEmbed
                         displayType="modal"
                         typeformUrl="https://dosomething.typeform.com/to/Phi9pA"
                         queryParameters={{
-                          northstar_id: get(window.AUTH, 'id', null),
+                          northstar_id: getUserId(),
                           url: window.location.pathname,
                         }}
                         onSubmit={handleComplete}
