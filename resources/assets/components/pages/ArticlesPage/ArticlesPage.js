@@ -13,7 +13,7 @@ import { coverImageMediaQueryStyles } from '../../../helpers/display';
 import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
-import NewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/NewsletterSubscriptionForm';
+import NewsletterSubscriptionFormArticlesPage from '../../utilities/NewsletterSubscription/NewsletterSubscriptionFormArticlesPage';
 
 const ARTICLES_PAGE_QUERY = gql`
   query ArticlesPageQuery($preview: Boolean) {
@@ -130,13 +130,21 @@ const ArticlesLandingPage = ({
 
           {/* Lifestyle Newsletter Signup Section */}
           <section
-            className="base-12-grid bg-gray-100 py-12"
+            className="base-12-grid bg-purple-500 py-12"
             data-test="newsletter-section-articles-page"
           >
-            <StrikeThroughHeader title="Get Inspired. Get Entertained. Get Active." />
+            <div className="grid-wide flex flex-wrap md:flex-no-wrap text-center w-full mb-6 justify-center">
+              <h2 className="font-league-gothic font-normal leading-tight px-6 text-3xl md:text-4xl uppercase z-10 text-white">
+                Want Inspiration & Education Straight to your inbox?
+              </h2>
+            </div>
 
             <div className="grid-wide text-center">
-              <NewsletterSubscriptionForm />
+              <p className="text-white">
+                Sign up for weekly emails of news, videos, how-tos, advice, and
+                ways to transform your community.
+              </p>
+              <NewsletterSubscriptionFormArticlesPage />
             </div>
           </section>
 
