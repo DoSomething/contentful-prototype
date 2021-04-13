@@ -49,3 +49,4 @@ class CampaignSignupsController extends Controller
 
         return $data;
     }
+}
