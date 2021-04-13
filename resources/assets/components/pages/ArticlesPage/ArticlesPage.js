@@ -67,6 +67,7 @@ const ArticlesLandingPage = ({
   ctaText,
   ctaButtonText,
 }) => {
+  console.log(headerButtonText);
   return (
     <Fragment>
       <SiteNavigationContainer />
@@ -105,7 +106,7 @@ const ArticlesLandingPage = ({
                 <LinkButton
                   className="bg-yellow-400 hover:bg-yellow-100 mt-2 px-6 py-4 text-gray-900 hover:text-gray-900 text-lg"
                   href={headerLinkUrl}
-                  text={headerButtonText}
+                  text={headerButtonText || 'Read More'}
                 />
               </div>
             </div>
@@ -134,7 +135,7 @@ const ArticlesLandingPage = ({
             data-test="newsletter-section-articles-page"
           >
             <div className="grid-wide flex flex-wrap md:flex-no-wrap text-center w-full mb-6 justify-center">
-              <h2 className="font-league-gothic font-normal leading-tight px-6 text-3xl md:text-4xl uppercase z-10 text-white">
+              <h2 className="font-league-gothic font-normal leading-tight px-6 text-3xl md:text-4xl uppercase text-white">
                 Want Inspiration & Education Straight to your inbox?
               </h2>
             </div>
@@ -243,7 +244,7 @@ ArticlesLandingPage.defaultProps = {
   featuredArticlesGalleryBottomTitle: null,
   featuredArticlesGalleryBottom: null,
   headerTitle: null,
-  headerButtonText: 'Read More',
+  headerButtonText: null,
   topicArticlesGalleryOne: null,
   topicArticlesGalleryOneTitle: null,
   topicArticlesGalleryTwo: null,
