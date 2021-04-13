@@ -1,24 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 
 import Tooltip from './Tooltip';
 import TooltipQuestionMarkImage from './TooltipQuestionMark.svg';
 
-const CampaignInfoBlockTooltip = ({ tooltipContent }) => (
+const TooltipQuestionMark = ({ tooltipContent }) => (
   <Tooltip tooltipContent={tooltipContent}>
-    <div
-      className="pl-1"
-      css={css`
-        width: 20px;
-      `}
-    >
-      <img alt="Question mark" src={TooltipQuestionMark} />
-    </div>
+    <img
+      alt="Question mark"
+      src={TooltipQuestionMarkImage}
+      className="w-5 ml-1 -mb-1"
+    />
   </Tooltip>
 );
 
-CampaignInfoBlockTooltip.propTypes = {
+TooltipQuestionMark.propTypes = {
   tooltipContent: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
     .isRequired,
 };

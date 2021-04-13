@@ -126,17 +126,15 @@ const CampaignInfoBlock = ({
                 <>
                   <dt>Time</dt>
                   <dd data-testid="time-commitment-value">
-                    <div className="flex">
-                      {actionItem.timeCommitmentLabel}
+                    {actionItem.timeCommitmentLabel}
 
-                      <TooltipQuestionMark
-                        tooltipContent={`This is the estimated time it takes to complete this action${
-                          actionItem.volunteerCredit
-                            ? '. For volunteer credit certificates, the time you enter will show up on your certificate'
-                            : ''
-                        }.`}
-                      />
-                    </div>
+                    <TooltipQuestionMark
+                      tooltipContent={`This is the estimated time it takes to complete this action${
+                        actionItem.volunteerCredit
+                          ? '. For volunteer credit certificates, the time you enter will show up on your certificate'
+                          : ''
+                      }.`}
+                    />
                   </dd>
                 </>
               ) : null}
@@ -152,40 +150,32 @@ const CampaignInfoBlock = ({
                     Volunteer Credit
                   </dt>
                   <dd data-testid="volunteer-credit-value">
-                    <div className="flex">
-                      {actionItem.volunteerCredit ? 'Yes' : 'No'}
+                    {actionItem.volunteerCredit ? 'Yes' : 'No'}
 
-                      <TooltipQuestionMark
-                        tooltipContent={
-                          actionItem.volunteerCredit ? (
-                            <>
-                              When you complete this campaign you&apos;ll be
-                              able to download a certificate verifying your
-                              participation.{' '}
-                              <a
-                                href="/us/about/volunteer-hours"
-                                target="_blank"
-                              >
-                                Learn more
-                              </a>
-                              .
-                            </>
-                          ) : (
-                            <>
-                              This campaign is not eligible for a certificate of
-                              proof for volunteer hours.{' '}
-                              <a
-                                href="/us/about/volunteer-hours"
-                                target="_blank"
-                              >
-                                We have plenty of campaigns that are
-                              </a>
-                              !!
-                            </>
-                          )
-                        }
-                      />
-                    </div>
+                    <TooltipQuestionMark
+                      tooltipContent={
+                        actionItem.volunteerCredit ? (
+                          <>
+                            When you complete this campaign you&apos;ll be able
+                            to download a certificate verifying your
+                            participation.{' '}
+                            <a href="/us/about/volunteer-hours" target="_blank">
+                              Learn more
+                            </a>
+                            .
+                          </>
+                        ) : (
+                          <>
+                            This campaign is not eligible for a certificate of
+                            proof for volunteer hours.{' '}
+                            <a href="/us/about/volunteer-hours" target="_blank">
+                              We have plenty of campaigns that are
+                            </a>
+                            !!
+                          </>
+                        )
+                      }
+                    />
                   </dd>
                 </>
               ) : null}
