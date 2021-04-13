@@ -13,7 +13,7 @@ import { coverImageMediaQueryStyles } from '../../../helpers/display';
 import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
-import NewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/NewsletterSubscriptionForm';
+import NewsletterSubscriptionFormArticlesPage from '../../utilities/NewsletterSubscription/NewsletterSubscriptionFormArticlesPage';
 
 const ARTICLES_PAGE_QUERY = gql`
   query ArticlesPageQuery($preview: Boolean) {
@@ -67,6 +67,7 @@ const ArticlesLandingPage = ({
   ctaText,
   ctaButtonText,
 }) => {
+  console.log(headerButtonText);
   return (
     <Fragment>
       <SiteNavigationContainer />
@@ -105,7 +106,7 @@ const ArticlesLandingPage = ({
                 <LinkButton
                   className="bg-yellow-400 hover:bg-yellow-100 mt-2 px-6 py-4 text-gray-900 hover:text-gray-900 text-lg"
                   href={headerLinkUrl}
-                  text={headerButtonText}
+                  text={headerButtonText || 'Read More'}
                 />
               </div>
             </div>
@@ -128,15 +129,23 @@ const ArticlesLandingPage = ({
             </div>
           </section>
 
-          {/* Newsletter Signup Section */}
+          {/* Lifestyle Newsletter Signup Section */}
           <section
-            className="base-12-grid bg-gray-100 py-12"
-            data-test="newsletter-section"
+            className="base-12-grid bg-purple-700 py-12"
+            data-test="newsletter-section-articles-page"
           >
-            <StrikeThroughHeader title="Get Inspired. Get Entertained. Get Active." />
+            <div className="grid-wide flex flex-wrap md:flex-no-wrap text-center w-full mb-6 justify-center">
+              <h2 className="font-league-gothic font-normal leading-tight px-6 text-3xl md:text-4xl uppercase text-white">
+                Want Inspiration & Education Straight to your inbox?
+              </h2>
+            </div>
 
             <div className="grid-wide text-center">
-              <NewsletterSubscriptionForm />
+              <p className="text-white">
+                Sign up for weekly emails of news, videos, how-tos, advice, and
+                ways to transform your community.
+              </p>
+              <NewsletterSubscriptionFormArticlesPage />
             </div>
           </section>
 
@@ -235,7 +244,7 @@ ArticlesLandingPage.defaultProps = {
   featuredArticlesGalleryBottomTitle: null,
   featuredArticlesGalleryBottom: null,
   headerTitle: null,
-  headerButtonText: 'Read More',
+  headerButtonText: null,
   topicArticlesGalleryOne: null,
   topicArticlesGalleryOneTitle: null,
   topicArticlesGalleryTwo: null,
