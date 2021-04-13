@@ -31,15 +31,4 @@ class SignupRepository
     {
         return $this->northstar->get('v3/signups', $query);
     }
-
-    /**
-     * Store signup in Northstar.
-     *
-     * @param  array  $payload
-     * @return array - JSON response
-     */
-    public function storeSignup($payload = [])
-    {
-        return $this->northstar->withToken(token())->post('v3/signups', $payload);
-    }
 }
