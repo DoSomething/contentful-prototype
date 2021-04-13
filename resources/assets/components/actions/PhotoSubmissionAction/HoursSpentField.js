@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import React, { useState, useEffect } from 'react';
 
 import Query from '../../Query';
+import TooltipQuestionMark from '../../utilities/Tooltip/TooltipQuestionMark';
 
 const ACTION_QUERY = gql`
   query ActionQuery($actionId: Int!) {
@@ -34,6 +35,7 @@ const HoursSpentField = ({ actionId, hasError, onChange }) => {
               })}
             >
               How long did this action take?
+              <TooltipQuestionMark tooltipContent="The number of hours you report should reflect the time it took you to complete this action. Please ensure that the number of hours you are reporting is accurate or your post will be rejected." />
             </legend>
 
             <div className="flex">
