@@ -6,12 +6,12 @@ import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import Card from '../utilities/Card/Card';
+import { siteConfig } from '../../helpers/env';
 import { withoutNulls } from '../../helpers/data';
 import { getUtms, query } from '../../helpers/url';
 import Spinner from '../artifacts/Spinner/Spinner';
 import GroupFinder from './GroupFinder/GroupFinder';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
-import { siteConfig, featureFlag } from '../../helpers/env';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
 import TextContent from '../utilities/TextContent/TextContent';
 import { getUserId, isAuthenticated, useGate } from '../../helpers/auth';
@@ -54,7 +54,6 @@ const CampaignSignupForm = props => {
     contextSource,
     groupType,
     signupCreated,
-    storeCampaignSignup,
     text,
   } = props;
   const userId = getUserId();
@@ -81,7 +80,7 @@ const CampaignSignupForm = props => {
         userId,
         campaignId,
       },
-      skip: !isAuthenticated() || !featureFlag('graphql_campaign_signup'),
+      skip: !isAuthenticated(),
     },
   );
 
@@ -151,8 +150,7 @@ const CampaignSignupForm = props => {
       isAuthenticated() &&
       !loading &&
       flash.signupData &&
-      !get(campaignSignupData, 'signups', []).length &&
-      featureFlag('graphql_campaign_signup')
+      !get(campaignSignupData, 'signups', []).length
     ) {
       handleSignupMutation({ variables: flash.signupData });
     }
@@ -186,27 +184,11 @@ const CampaignSignupForm = props => {
       }),
     );
 
-    if (featureFlag('graphql_campaign_signup')) {
-      const signupData = { groupId, details };
+    const signupData = { groupId, details };
 
-      return isAuthenticated()
-        ? handleSignupMutation({ variables: signupData })
-        : authenticate({ signupData });
-    }
-
-    return storeCampaignSignup(campaignId, {
-      body: {
-        details,
-        group_id: groupId,
-        referrer_user_id: query('referrer_user_id'),
-        source_details: JSON.stringify(
-          withoutNulls({
-            contentful_id: pageId,
-            ...getUtms(),
-          }),
-        ),
-      },
-    });
+    return isAuthenticated()
+      ? handleSignupMutation({ variables: signupData })
+      : authenticate({ signupData });
   };
 
   const handleGroupFinderChange = selected => {
@@ -325,7 +307,6 @@ CampaignSignupForm.propTypes = {
   contextSource: PropTypes.string,
   groupType: PropTypes.object,
   signupCreated: PropTypes.func.isRequired,
-  storeCampaignSignup: PropTypes.func.isRequired,
   text: PropTypes.string,
 };
 
