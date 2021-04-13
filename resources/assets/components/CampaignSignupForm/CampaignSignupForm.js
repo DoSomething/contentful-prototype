@@ -15,7 +15,11 @@ import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import PrimaryButton from '../utilities/Button/PrimaryButton';
 import TextContent from '../utilities/TextContent/TextContent';
 import { getUserId, isAuthenticated, useGate } from '../../helpers/auth';
-import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+  sixpack,
+} from '../../helpers/analytics';
 import {
   getCampaign,
   isCampaignClosed,
@@ -177,6 +181,8 @@ const CampaignSignupForm = props => {
         pageId,
       },
     });
+
+    sixpack().convertOnAction('signup');
 
     const details = JSON.stringify(
       withoutNulls({
