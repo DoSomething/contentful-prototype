@@ -85,11 +85,7 @@ const postRequest = (payload, dispatch, getState) => {
     .then(response => {
       tabularLog(get(response, 'data', null));
 
-      // @TODO: Not ideal. We would prefer to know the status code from response to know
-      // if data was created or not, but Gateway doesn't currently pass this to us. So for
-      // now we're resolving to check against the data's created_at value to decide time elapsed.
-      const dataCreatedAt = get(response, 'data.created_at', null);
-      const statusCode = isWithinMinutes(dataCreatedAt, 2) ? 201 : 200;
+      const statusCode = 201;
 
       response.status = {
         success: {
@@ -98,8 +94,7 @@ const postRequest = (payload, dispatch, getState) => {
         },
       };
 
-      const verb =
-        statusCode === 200 && postType === 'signup' ? 'found' : 'completed';
+      const verb = 'completed';
 
       trackAnalyticsEvent(`${verb}_${formatEventNoun(postType)}`, {
         action: `${postType}_${verb}`,
