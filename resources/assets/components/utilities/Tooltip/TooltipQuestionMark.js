@@ -9,7 +9,7 @@ const TooltipQuestionMark = ({ tooltipContent }) => (
     <img
       alt="Question mark"
       src={TooltipQuestionMarkImage}
-      className="w-5 ml-1 -mb-1"
+      className="w-5 ml-1 -mb-1 relative"
     />
   </Tooltip>
 );
