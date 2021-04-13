@@ -230,16 +230,22 @@ describe('Campaign Post', () => {
         // Fill out other fields:
         cy.get('[name="caption"]').type("Let's do this!");
         cy.get('[name="quantity"]').type('1');
-        cy.get('[name="hoursSpent"]').type('1.5');
+        cy.get('[name="hours"]').type('1');
+        cy.get('[name="minutes"]').type('30');
         cy.get('[name="whyParticipated"]').type('Testing');
 
         // Mock the backend response:
         const response = newPhotoPost(campaignId, user);
         cy.route('POST', POSTS_API, response).as('submitPost');
 
-        // Submit the form, and assert we made the API request:
+        // Submit the form, and assert we made the API request
+        // with the correct calculated hours_spent value:
         cy.contains('Submit a new photo').click();
-        cy.wait('@submitPost');
+        cy.wait('@submitPost')
+          .then(post => {
+            return post.request.body.get('hours_spent');
+          })
+          .should('equal', '1.5');
       });
 
       // We should see the affirmation modal after submitting a post:
