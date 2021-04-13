@@ -1,13 +1,11 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
-import Tooltip from '../../utilities/Tooltip/Tooltip';
-import TooltipQuestionMark from './TooltipQuestionMark.svg';
 import { getHumanFriendlyDate } from '../../../helpers/datetime';
+import TooltipQuestionMark from '../../utilities/Tooltip/TooltipQuestionMark';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -35,24 +33,6 @@ const CAMPAIGN_INFO_QUERY = gql`
     }
   }
 `;
-
-const CampaignInfoBlockTooltip = ({ tooltipContent }) => (
-  <Tooltip tooltipContent={tooltipContent}>
-    <div
-      className="pl-1"
-      css={css`
-        width: 20px;
-      `}
-    >
-      <img alt="Question mark" src={TooltipQuestionMark} />
-    </div>
-  </Tooltip>
-);
-
-CampaignInfoBlockTooltip.propTypes = {
-  tooltipContent: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-    .isRequired,
-};
 
 const CampaignInfoBlock = ({
   campaignId,
@@ -149,7 +129,7 @@ const CampaignInfoBlock = ({
                     <div className="flex">
                       {actionItem.timeCommitmentLabel}
 
-                      <CampaignInfoBlockTooltip
+                      <TooltipQuestionMark
                         tooltipContent={`This is the estimated time it takes to complete this action${
                           actionItem.volunteerCredit
                             ? '. For volunteer credit certificates, the time you enter will show up on your certificate'
@@ -175,7 +155,7 @@ const CampaignInfoBlock = ({
                     <div className="flex">
                       {actionItem.volunteerCredit ? 'Yes' : 'No'}
 
-                      <CampaignInfoBlockTooltip
+                      <TooltipQuestionMark
                         tooltipContent={
                           actionItem.volunteerCredit ? (
                             <>
