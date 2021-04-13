@@ -3,8 +3,7 @@
 import { cloneDeep } from 'lodash';
 import { userFactory } from '../fixtures/user';
 import { campaignId } from '../fixtures/constants';
-import { emptyResponse, newSignup } from '../fixtures/signups';
-import { campaignPath, CAMPAIGN_API } from '../fixtures/constants';
+import { campaignPath } from '../fixtures/constants';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 // Text included in the campaign blurb.
@@ -54,6 +53,9 @@ describe('Campaign Signup', () => {
 
     cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
+    cy.mockGraphqlOp('SearchUserCampaignQuery', {
+      signups: [],
+    });
     // Visit the campaign landing page:
     cy.anonVisitCampaign(exampleCampaign);
 
@@ -62,13 +64,6 @@ describe('Campaign Signup', () => {
     cy.contains(exampleBlurb);
     cy.findByTestId('campaign-info-block-container').should('have.length', 1);
     cy.findByTestId('landing-page-content').should('have.length', 1);
-
-    // Mock the responses we'll be expecting once we hit "Join Now":
-    cy.route(
-      `${CAMPAIGN_API}/signups?filter[northstar_id]=${user.id}`,
-      emptyResponse,
-    );
-    cy.route('POST', `${CAMPAIGN_API}/signups`, newSignup(campaignId, user));
 
     // We should see the affirmation modal after clicking signup button:
     cy.contains('button', 'Join Us')
@@ -86,6 +81,9 @@ describe('Campaign Signup', () => {
 
     cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
+    cy.mockGraphqlOp('SearchUserCampaignQuery', {
+      signups: [],
+    });
     // Log in & visit the campaign landing page:
     cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
@@ -95,9 +93,6 @@ describe('Campaign Signup', () => {
     cy.findByTestId('campaign-info-block-container').should('have.length', 1);
     cy.findByTestId('landing-page-content').should('have.length', 1);
     cy.findByTestId('join-group-signup-form').should('not.exist');
-
-    // Mock the response we'll be expecting once we hit "Join Now":
-    cy.route('POST', `${CAMPAIGN_API}/signups`, newSignup(campaignId, user));
 
     // Click "Join Now" & should get the affirmation modal:
     cy.contains('button', 'Join Us').click();
@@ -113,30 +108,22 @@ describe('Campaign Signup', () => {
 
       cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
+      cy.mockGraphqlOp('SearchUserCampaignQuery', {
+        signups: [],
+      });
+
       // Visit the campaign landing page:
       cy.withState(exampleCampaign).visit(
         `${campaignPath}${exampleCampaign.campaign.slug}?referrer_user_id=123`,
       );
-
-      // Mock the responses we'll be expecting once we hit the signup button:
-      cy.route(
-        `${CAMPAIGN_API}/signups?filter[northstar_id]=${user.id}`,
-        emptyResponse,
-      );
-      cy.route(
-        'POST',
-        `${CAMPAIGN_API}/signups`,
-        newSignup(campaignId, user),
-      ).as('signupRequest');
 
       cy.contains('button', 'Join Us')
         .click()
         .handleLogin(user);
 
       // The outgoing signup request should include the referrer_user_id.
-      cy.wait('@signupRequest')
-        .its('request.body.referrer_user_id')
-        .should('equal', '123');
+      // ...
+      // @TODO: Add helper to generate signup mutation variables and test this there.
     });
   });
 
@@ -152,6 +139,10 @@ describe('Campaign Signup', () => {
             mockCampaignBannerQueryResult(),
           );
 
+          cy.mockGraphqlOp('SearchUserCampaignQuery', {
+            signups: [],
+          });
+
           // Visit the campaign landing page as an authenticated user with a referrer_user_id query param:
           cy.login(user)
             .withFeatureFlags({
@@ -161,13 +152,6 @@ describe('Campaign Signup', () => {
             .visit(
               `${campaignPath}${exampleCampaign.campaign.slug}?referrer_user_id=${user.id}`,
             );
-
-          // Mock the response we'll be expecting once we hit the signup button:
-          cy.route(
-            'POST',
-            `${CAMPAIGN_API}/signups`,
-            newSignup(campaignId, user),
-          ).as('signupRequest');
 
           cy.mockGraphqlOp('ReferralUserQuery', {
             user: {
@@ -192,17 +176,14 @@ describe('Campaign Signup', () => {
             mockCampaignBannerQueryResult(),
           );
 
+          cy.mockGraphqlOp('SearchUserCampaignQuery', {
+            signups: [],
+          });
+
           // Log in & visit the campaign pitch page:
           cy.withFeatureFlags({
             refer_friends_incentive: true,
           }).authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
-
-          // Mock the response we'll be expecting once we hit "Join Now":
-          cy.route(
-            'POST',
-            `${CAMPAIGN_API}/signups`,
-            newSignup(campaignId, user),
-          );
 
           // Click "Join Now" & should get the affirmation modal:
           cy.contains('button', 'Join Us').click();
@@ -222,15 +203,12 @@ describe('Campaign Signup', () => {
             mockCampaignBannerQueryResult(),
           );
 
+          cy.mockGraphqlOp('SearchUserCampaignQuery', {
+            signups: [],
+          });
+
           // Log in & visit the campaign pitch page:
           cy.authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
-
-          // Mock the response we'll be expecting once we hit "Join Now":
-          cy.route(
-            'POST',
-            `${CAMPAIGN_API}/signups`,
-            newSignup(campaignId, user),
-          );
 
           // Click "Join Now" & should get the affirmation modal:
           cy.contains('button', 'Join Us').click();
@@ -249,11 +227,12 @@ describe('Campaign Signup', () => {
 
       cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
+      cy.mockGraphqlOp('SearchUserCampaignQuery', {
+        signups: [],
+      });
+
       // Log in & visit the campaign pitch page:
       cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
-
-      // Mock the response we'll be expecting once we hit "Join Now":
-      cy.route('POST', `${CAMPAIGN_API}/signups`, newSignup(campaignId, user));
 
       // Click "Join Now" & should get the affirmation modal:
       cy.contains('button', 'Join Us').click();
@@ -266,6 +245,10 @@ describe('Campaign Signup', () => {
   /** @test */
   it('Visit with existing signup, as an authenticated user', () => {
     const user = userFactory();
+
+    cy.mockGraphqlOp('SearchUserCampaignQuery', {
+      signups: [{ id: 1 }],
+    });
 
     // Log in & visit the campaign landing page:
     cy.authVisitCampaignWithSignup(user, exampleCampaign);
@@ -286,6 +269,10 @@ describe('Campaign Signup', () => {
   it('Visits a campaign page from scholarship partner, as an unauthenticated user', () => {
     cy.mockGraphqlOp('CampaignBannerQuery', mockCampaignBannerQueryResult());
 
+    cy.mockGraphqlOp('SearchUserCampaignQuery', {
+      signups: [],
+    });
+
     // Visit the campaign pitch page
     cy.withState(exampleCampaign).visit(
       '/us/campaigns/test-example-campaign?utm_campaign=fastweb&utm_source=scholarship',
@@ -301,6 +288,10 @@ describe('Campaign Signup', () => {
   /** @test */
   it('Visits a campaign page from a scholarship partner, as an authenticated user', () => {
     const user = userFactory();
+
+    cy.mockGraphqlOp('SearchUserCampaignQuery', {
+      signups: [{ id: 1 }],
+    });
 
     //Log in and visit the campaign pitch page
     cy.login(user)
@@ -333,6 +324,10 @@ describe('Campaign Signup', () => {
           mockCampaignBannerQueryResult(1, false),
         );
 
+        cy.mockGraphqlOp('SearchUserCampaignQuery', {
+          signups: [],
+        });
+
         cy.anonVisitCampaign(exampleCampaign);
 
         cy.findByTestId('join-group-signup-form').should('have.length', 1);
@@ -347,25 +342,13 @@ describe('Campaign Signup', () => {
         cy.get('#react-select-select-group--option-0').click();
         cy.findByTestId('join-group-signup-button').should('be.enabled');
 
-        // Mock the responses we'll be expecting once we hit the signup button:
-        cy.route(
-          `${CAMPAIGN_API}/signups?filter[northstar_id]=${user.id}`,
-          emptyResponse,
-        );
-        cy.route(
-          'POST',
-          `${CAMPAIGN_API}/signups`,
-          newSignup(campaignId, user),
-        ).as('signupRequest');
-
         cy.contains('button', 'Join Group')
           .click()
           .handleLogin(user);
 
         // The outgoing signup request should include the selected group_id.
-        cy.wait('@signupRequest')
-          .its('request.body.group_id')
-          .should('equal', 1);
+        // ...
+        // @TODO: Add helper to generate signup mutation variables and test this there.
       });
     });
 
@@ -379,6 +362,9 @@ describe('Campaign Signup', () => {
           'CampaignBannerQuery',
           mockCampaignBannerQueryResult(1),
         );
+        cy.mockGraphqlOp('SearchUserCampaignQuery', {
+          signups: [],
+        });
 
         cy.anonVisitCampaign(exampleCampaign);
 
@@ -403,25 +389,13 @@ describe('Campaign Signup', () => {
         cy.get('#react-select-select-group--option-0').click({ force: true });
         cy.findByTestId('join-group-signup-button').should('be.enabled');
 
-        // Mock the responses we'll be expecting once we hit the signup button:
-        cy.route(
-          `${CAMPAIGN_API}/signups?filter[northstar_id]=${user.id}`,
-          emptyResponse,
-        );
-        cy.route(
-          'POST',
-          `${CAMPAIGN_API}/signups`,
-          newSignup(campaignId, user),
-        ).as('signupRequest');
-
         cy.contains('button', 'Join Group')
           .click()
           .handleLogin(user);
 
         // The outgoing signup request should include the selected group_id.
-        cy.wait('@signupRequest')
-          .its('request.body.group_id')
-          .should('equal', 1);
+        // ...
+        // @TODO: Add helper to generate signup mutation variables and test this there.
       });
     });
 
@@ -432,6 +406,10 @@ describe('Campaign Signup', () => {
           'CampaignBannerQuery',
           mockCampaignBannerQueryResult(1, false),
         );
+
+        cy.mockGraphqlOp('SearchUserCampaignQuery', {
+          signups: [],
+        });
 
         cy.anonVisitCampaign(exampleCampaign);
 
@@ -445,6 +423,10 @@ describe('Campaign Signup', () => {
           'CampaignBannerQuery',
           mockCampaignBannerQueryResult(20, false),
         );
+
+        cy.mockGraphqlOp('SearchUserCampaignQuery', {
+          signups: [],
+        });
 
         cy.withSiteConfig({
           chapter_group_type_ids: '20,22',

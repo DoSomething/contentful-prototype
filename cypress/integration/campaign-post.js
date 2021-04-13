@@ -2,7 +2,6 @@
 
 import { MockList } from 'graphql-tools';
 import { userFactory } from '../fixtures/user';
-import { existingSignup } from '../fixtures/signups';
 import { campaignId, POSTS_API } from '../fixtures/constants';
 import { newTextPost, newPhotoPost } from '../fixtures/posts';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
