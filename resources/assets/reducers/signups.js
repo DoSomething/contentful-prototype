@@ -11,9 +11,6 @@ import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
   GET_CAMPAIGN_SIGNUPS_PENDING,
   GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-  STORE_CAMPAIGN_SIGNUPS_FAILED,
-  STORE_CAMPAIGN_SIGNUPS_PENDING,
-  STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
 } from '../constants/action-types';
 
 /**
@@ -44,30 +41,6 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
-      };
-
-    case STORE_CAMPAIGN_SIGNUPS_FAILED:
-      return {
-        ...state,
-        isPending: false,
-      };
-
-    case STORE_CAMPAIGN_SIGNUPS_PENDING:
-      return {
-        ...state,
-        isPending: true,
-      };
-
-    case STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL:
-      if (data) {
-        signups = [...state.data, data.campaign_id];
-      }
-
-      return {
-        ...state,
-        data: signups,
-        isPending: false,
-        shouldShowAffirmation: get(status, 'success.code') === 201,
       };
 
     case SIGNUP_CREATED:
