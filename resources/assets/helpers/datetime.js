@@ -1,6 +1,6 @@
 /* global Date, Math */
 
-import { format, getTime, isWithinInterval } from 'date-fns';
+import { format } from 'date-fns';
 
 /**
  * Get the days between two Date objects
@@ -46,24 +46,6 @@ export function getMillisecondsFromDays(days) {
  */
 export function isTimestampValid(timestamp, maxTime) {
   return timestamp + maxTime > Date.now();
-}
-
-/**
- * Check if specified date occurred within the last specified minutes.
- *
- * @param  {Date|String|Number}  date
- * @param  {Number}  minutes
- * @return {Boolean}
- */
-export function isWithinMinutes(date, minutes = 2) {
-  if (!date) {
-    return false;
-  }
-
-  return isWithinInterval(getTime(date), {
-    start: Date.now() - minutes * 60 * 1000,
-    end: Date.now(),
-  });
 }
 
 export default null;

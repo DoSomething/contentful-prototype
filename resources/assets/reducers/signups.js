@@ -18,7 +18,6 @@ import {
  */
 const signupReducer = (state = {}, action) => {
   const data = get(action, 'response.data');
-  const status = get(action, 'response.status');
   let signups = [];
 
   switch (action.type) {
