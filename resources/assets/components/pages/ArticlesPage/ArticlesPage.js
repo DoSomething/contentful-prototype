@@ -67,7 +67,6 @@ const ArticlesLandingPage = ({
   ctaText,
   ctaButtonText,
 }) => {
-  console.log(headerButtonText);
   return (
     <Fragment>
       <SiteNavigationContainer />
@@ -115,7 +114,7 @@ const ArticlesLandingPage = ({
           {/* Featured Gallery Section Top */}
           <section
             className="base-12-grid bg-gray-100 py-12"
-            data-test="campaigns-section"
+            data-test="featured-articles-section-top"
           >
             <StrikeThroughHeader title={featuredArticlesGalleryTopTitle} />
 
@@ -152,7 +151,7 @@ const ArticlesLandingPage = ({
           {/* Topic Gallery Section One */}
           <section
             className="base-12-grid bg-gray-100 py-12"
-            data-test="campaigns-section"
+            data-test="topic-one-articles-section"
           >
             <StrikeThroughHeader title={topicArticlesGalleryOneTitle} />
 
@@ -169,7 +168,7 @@ const ArticlesLandingPage = ({
           {/* Topic Gallery Section Two */}
           <section
             className="base-12-grid bg-gray-100 py-12"
-            data-test="campaigns-section"
+            data-test="topic-two-articles-section"
           >
             <StrikeThroughHeader title={topicArticlesGalleryTwoTitle} />
 
@@ -186,7 +185,7 @@ const ArticlesLandingPage = ({
           {/* Featured Gallery Section Bottom */}
           <section
             className="base-12-grid bg-gray-100 py-12"
-            data-test="campaigns-section"
+            data-test="featured-articles-section-bottom"
           >
             <StrikeThroughHeader title={featuredArticlesGalleryBottomTitle} />
 
@@ -201,12 +200,19 @@ const ArticlesLandingPage = ({
           </section>
 
           {/* Article Archive Call To Action Banner */}
-          <BannerCallToAction text={ctaText} title={ctaTitle} stacked>
+          <BannerCallToAction
+            text={
+              ctaText ||
+              'An index of all articles and videos by DoSomething.org'
+            }
+            title={ctaTitle || 'Article Archive'}
+            stacked
+          >
             <PrimaryButton
               attributes={{ 'data-label': 'signup_cta_authorize' }}
               className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
               href="/us"
-              text={ctaButtonText}
+              text={ctaButtonText || 'View More Stories'}
             />
           </BannerCallToAction>
         </article>
@@ -238,9 +244,9 @@ ArticlesLandingPage.propTypes = {
 
 ArticlesLandingPage.defaultProps = {
   coverImage: null,
-  ctaButtonText: 'View More Stories',
-  ctaText: 'An index of all articles and videos by DoSomething.org',
-  ctaTitle: 'Article Archive',
+  ctaButtonText: null,
+  ctaText: null,
+  ctaTitle: null,
   featuredArticlesGalleryBottomTitle: null,
   featuredArticlesGalleryBottom: null,
   headerTitle: null,

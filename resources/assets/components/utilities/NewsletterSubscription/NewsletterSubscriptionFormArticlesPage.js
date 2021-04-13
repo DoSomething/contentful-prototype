@@ -74,6 +74,7 @@ const NewsletterSubscriptionFormArticlesPage = () => {
                 'border-red-500': get(errors, 'fields.email', null),
               },
             )}
+            data-test="articles-page-email-input"
             onChange={handleOnChange}
             onFocus={handleOnFocus}
             placeholder="Enter your email address"
@@ -88,6 +89,9 @@ const NewsletterSubscriptionFormArticlesPage = () => {
         </div>
 
         <PrimaryButton
+          attributes={{
+            'data-testid': 'articles-page-newsletter-signup-button',
+          }}
           className="mt-4 md:mt-0 md:ml-2 md:w-48 text-lg w-full"
           text="Sign Up"
           type="submit"
