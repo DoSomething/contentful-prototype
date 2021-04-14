@@ -9,7 +9,7 @@ import { getUserId } from '../../../helpers/auth';
 import ToggleButton from '../Button/ToggleButton';
 
 const EMAIL_SUBSCRIPTION_QUERY = gql`
-  query EmailSubscriptionsQuery($userId: String!) {
+  query ToggleSubscriptionsButtonQuery($userId: String!) {
     user(id: $userId) {
       id
       emailSubscriptionTopics
@@ -18,7 +18,7 @@ const EMAIL_SUBSCRIPTION_QUERY = gql`
 `;
 
 const EMAIL_SUBSCRIPTION_MUTATION = gql`
-  mutation EmailSubscriptionTopic(
+  mutation EmailSubscriptionTopics(
     $userId: String!
     $topic: EmailSubscriptionTopic!
     $subscribed: Boolean!
