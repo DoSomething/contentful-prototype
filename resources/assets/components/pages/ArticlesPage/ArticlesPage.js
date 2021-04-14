@@ -13,7 +13,7 @@ import { coverImageMediaQueryStyles } from '../../../helpers/display';
 import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
-import NewsletterSubscriptionFormArticlesPage from '../../utilities/NewsletterSubscription/NewsletterSubscriptionFormArticlesPage';
+import SingleNewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/SingleNewsletterSubscriptionForm';
 
 const ARTICLES_PAGE_QUERY = gql`
   query ArticlesPageQuery($preview: Boolean) {
@@ -144,7 +144,7 @@ const ArticlesLandingPage = ({
                 Sign up for weekly emails of news, videos, how-tos, advice, and
                 ways to transform your community.
               </p>
-              <NewsletterSubscriptionFormArticlesPage />
+              <SingleNewsletterSubscriptionForm />
             </div>
           </section>
 

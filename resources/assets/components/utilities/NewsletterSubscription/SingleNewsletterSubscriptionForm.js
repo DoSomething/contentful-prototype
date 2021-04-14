@@ -8,7 +8,7 @@ import PrimaryButton from '../Button/PrimaryButton';
 import { tailwind } from '../../../helpers/display';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
 
-const NewsletterSubscriptionFormArticlesPage = () => {
+const SingleNewsletterSubscriptionForm = () => {
   const [emailValue, setEmailValue] = useState('');
 
   const [errors, setErrors] = useState(null);
@@ -101,4 +101,4 @@ const NewsletterSubscriptionFormArticlesPage = () => {
   );
 };
 
-export default NewsletterSubscriptionFormArticlesPage;
+export default SingleNewsletterSubscriptionForm;
