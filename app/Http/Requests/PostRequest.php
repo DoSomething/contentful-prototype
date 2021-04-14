@@ -65,7 +65,7 @@ class PostRequest extends FormRequest
                     'text' => 'required|min:4|max:60',
                     'why_participated' => 'required',
                     'number_of_participants' => 'integer|nullable',
-                    'hours_spent' => 'numeric|nullable|min:0.1|max:999999.99',
+                    'hours_spent' => 'numeric|nullable|min:0.01|max:999999.99',
                 ];
 
             case 'text':
