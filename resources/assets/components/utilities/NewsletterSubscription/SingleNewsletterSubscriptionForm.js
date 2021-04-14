@@ -9,7 +9,7 @@ import PrimaryButton from '../Button/PrimaryButton';
 import { tailwind } from '../../../helpers/display';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
 
-const SingleNewsletterSubscriptionForm = emailSubscriptionTopic => {
+const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
   const [emailValue, setEmailValue] = useState('');
 
   const [errors, setErrors] = useState(null);
