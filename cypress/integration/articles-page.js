@@ -44,16 +44,19 @@ describe('Articles Page', () => {
           error: {
             message: 'Failed validation.',
             fields: {
-              email: ['The email must be a valid email address.'],
+              email: ['Yikes! Our servers are on their lunch break.'],
             },
           },
         },
       },
     );
 
-    cy.findByTestId('articles-page-email-input').type('dskafjhdakj');
+    cy.findByTestId('articles-page-email-input').type('test@example.com');
     cy.findByTestId('articles-page-newsletter-signup-button').click();
 
-    cy.should('not.contain', 'Thanks for signing up!');
+    cy.findByTestId('newsletter-section-articles-page').should(
+      'contain',
+      'Yikes! Our servers are on their lunch break.',
+    );
   });
 });
