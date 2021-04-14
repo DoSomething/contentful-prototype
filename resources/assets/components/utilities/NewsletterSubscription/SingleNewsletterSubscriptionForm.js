@@ -1,12 +1,13 @@
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import React, { useState } from 'react';
+import { get, isString, first } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
 import { env } from '../../../helpers/env';
 import PrimaryButton from '../Button/PrimaryButton';
 import { tailwind } from '../../../helpers/display';
+import { report } from '../../../helpers/monitoring';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
 
 const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
@@ -45,7 +46,16 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
         setShowConfirmation(true);
       })
       .catch(error => {
-        setErrors(error.response.error);
+        report(error);
+        const errorMessage = isString(error.response)
+          ? error.response
+          : first(get(error, 'response.error.fields.email')) ||
+            'Something went wrong...';
+        setErrors(errorMessage);
+
+        if (window.ENV.APP_ENV !== 'production') {
+          console.log('🚫 failed response? caught the error!', error);
+        }
       });
   };
 
@@ -82,9 +92,9 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
             type="email"
             value={emailValue}
           />
-          {get(errors, 'fields.email', null) ? (
+          {errors ? (
             <p className="md:absolute text-left text-red-500 px-4 py-2">
-              {get(errors, 'fields.email', null)}
+              {errors}
             </p>
           ) : null}
         </div>
