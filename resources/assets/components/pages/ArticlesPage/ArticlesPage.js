@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import React, { Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
+import { withoutNulls } from '../../../helpers/data';
 import LinkButton from '../../utilities/Button/LinkButton';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
@@ -105,7 +106,7 @@ const ArticlesLandingPage = ({
                 <LinkButton
                   className="bg-yellow-400 hover:bg-yellow-100 mt-2 px-6 py-4 text-gray-900 hover:text-gray-900 text-lg"
                   href={headerLinkUrl}
-                  text={headerButtonText || 'Read More'}
+                  text={headerButtonText}
                 />
               </div>
             </div>
@@ -149,70 +150,70 @@ const ArticlesLandingPage = ({
           </section>
 
           {/* Topic Gallery Section One */}
-          <section
-            className="base-12-grid bg-gray-100 py-12"
-            data-testid="topic-one-articles-section"
-          >
-            <StrikeThroughHeader title={topicArticlesGalleryOneTitle} />
+          {topicArticlesGalleryOneTitle && topicArticlesGalleryOne ? (
+            <section
+              className="base-12-grid bg-gray-100 py-12"
+              data-testid="topic-one-articles-section"
+            >
+              <StrikeThroughHeader title={topicArticlesGalleryOneTitle} />
 
-            <div className="grid-wide text-center">
-              <GalleryBlock
-                blocks={topicArticlesGalleryOne || []}
-                galleryType="PAGE"
-                itemsPerRow={3}
-                imageAlignment="LEFT"
-              />
-            </div>
-          </section>
+              <div className="grid-wide text-center">
+                <GalleryBlock
+                  blocks={topicArticlesGalleryOne}
+                  galleryType="PAGE"
+                  itemsPerRow={3}
+                  imageAlignment="LEFT"
+                />
+              </div>
+            </section>
+          ) : null}
 
           {/* Topic Gallery Section Two */}
-          <section
-            className="base-12-grid bg-gray-100 py-12"
-            data-testid="topic-two-articles-section"
-          >
-            <StrikeThroughHeader title={topicArticlesGalleryTwoTitle} />
+          {topicArticlesGalleryTwoTitle && topicArticlesGalleryTwo ? (
+            <section
+              className="base-12-grid bg-gray-100 py-12"
+              data-testid="topic-two-articles-section"
+            >
+              <StrikeThroughHeader title={topicArticlesGalleryTwoTitle} />
 
-            <div className="grid-wide text-center">
-              <GalleryBlock
-                blocks={topicArticlesGalleryTwo || []}
-                galleryType="PAGE"
-                itemsPerRow={3}
-                imageAlignment="LEFT"
-              />
-            </div>
-          </section>
+              <div className="grid-wide text-center">
+                <GalleryBlock
+                  blocks={topicArticlesGalleryTwo}
+                  galleryType="PAGE"
+                  itemsPerRow={3}
+                  imageAlignment="LEFT"
+                />
+              </div>
+            </section>
+          ) : null}
 
           {/* Featured Gallery Section Bottom */}
-          <section
-            className="base-12-grid bg-gray-100 py-12"
-            data-testid="featured-articles-section-bottom"
-          >
-            <StrikeThroughHeader title={featuredArticlesGalleryBottomTitle} />
+          {featuredArticlesGalleryBottomTitle &&
+          featuredArticlesGalleryBottom ? (
+            <section
+              className="base-12-grid bg-gray-100 py-12"
+              data-testid="featured-articles-section-bottom"
+            >
+              <StrikeThroughHeader title={featuredArticlesGalleryBottomTitle} />
 
-            <div className="grid-wide text-center">
-              <GalleryBlock
-                blocks={featuredArticlesGalleryBottom || []}
-                galleryType="PAGE"
-                itemsPerRow={3}
-                imageAlignment="LEFT"
-              />
-            </div>
-          </section>
+              <div className="grid-wide text-center">
+                <GalleryBlock
+                  blocks={featuredArticlesGalleryBottom}
+                  galleryType="PAGE"
+                  itemsPerRow={3}
+                  imageAlignment="LEFT"
+                />
+              </div>
+            </section>
+          ) : null}
 
           {/* Article Archive Call To Action Banner */}
-          <BannerCallToAction
-            text={
-              ctaText ||
-              'An index of all articles and videos by DoSomething.org'
-            }
-            title={ctaTitle || 'Article Archive'}
-            stacked
-          >
+          <BannerCallToAction text={ctaText} title={ctaTitle} stacked>
             <PrimaryButton
               attributes={{ 'data-label': 'signup_cta_authorize' }}
               className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
               href="/us"
-              text={ctaButtonText || 'View More Stories'}
+              text={ctaButtonText}
             />
           </BannerCallToAction>
         </article>
@@ -233,7 +234,7 @@ ArticlesLandingPage.propTypes = {
   featuredArticlesGalleryTop: PropTypes.arrayOf(PropTypes.object).isRequired,
   featuredArticlesGalleryBottomTitle: PropTypes.string,
   featuredArticlesGalleryBottom: PropTypes.arrayOf(PropTypes.object),
-  headerTitle: PropTypes.string,
+  headerTitle: PropTypes.string.isRequired,
   headerLinkUrl: PropTypes.string.isRequired,
   headerButtonText: PropTypes.string,
   topicArticlesGalleryOneTitle: PropTypes.string,
@@ -244,22 +245,21 @@ ArticlesLandingPage.propTypes = {
 
 ArticlesLandingPage.defaultProps = {
   coverImage: null,
-  ctaButtonText: null,
-  ctaText: null,
-  ctaTitle: null,
+  ctaButtonText: 'View More Stories',
+  ctaText: 'An index of all articles and videos by DoSomething.org',
+  ctaTitle: 'Article Archive',
   featuredArticlesGalleryBottomTitle: null,
-  featuredArticlesGalleryBottom: null,
-  headerTitle: null,
-  headerButtonText: null,
-  topicArticlesGalleryOne: null,
+  featuredArticlesGalleryBottom: [],
+  headerButtonText: 'Read More',
+  topicArticlesGalleryOne: [],
   topicArticlesGalleryOneTitle: null,
-  topicArticlesGalleryTwo: null,
+  topicArticlesGalleryTwo: [],
   topicArticlesGalleryTwoTitle: null,
 };
 
 const ArticlesPage = () => (
   <PageQuery query={ARTICLES_PAGE_QUERY}>
-    {page => <ArticlesLandingPage {...page} />}
+    {page => <ArticlesLandingPage {...withoutNulls(page)} />}
   </PageQuery>
 );
 
