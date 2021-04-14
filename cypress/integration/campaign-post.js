@@ -133,7 +133,11 @@ describe('Campaign Post', () => {
 
       // Submit the form, and assert we made the API request:
       cy.contains('Submit a new photo').click();
-      cy.wait('@submitPost');
+      cy.wait('@submitPost')
+        .then(post => {
+          return post.request.body.get('hours_spent');
+        })
+        .should('equal', '');
     });
 
     // We should see the affirmation modal after submitting a post:
@@ -275,7 +279,31 @@ describe('Campaign Post', () => {
       // Log in & visit the campaign action page:
       cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
-      cy.findByTestId('hours_spent').should('have.length', 0);
+      cy.get('.photo-submission-action').within(() => {
+        cy.findByTestId('hours_spent').should('have.length', 0);
+
+        // Choose an image to upload as a photo post:
+        cy.get('input[type="file"]').attachFile('upload.jpg');
+
+        // Fill out other fields:
+        cy.get('[name="caption"]').type("Let's do this!");
+        cy.get('[name="quantity"]').type('1');
+        cy.get('[name="whyParticipated"]').type('Testing');
+
+        // Mock the backend response:
+        const response = newPhotoPost(campaignId, user);
+        cy.route('POST', POSTS_API, response).as('submitPost');
+
+        // Submit the form, and assert we made the API request:
+        cy.contains('Submit a new photo').click();
+
+        cy.wait('@submitPost')
+          // Assert that the post does not contain an 'hours_spent' value:
+          .then(post => {
+            return post.request.body.get('hours_spent');
+          })
+          .should('equal', '');
+      });
     });
   });
 
