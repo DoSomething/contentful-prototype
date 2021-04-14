@@ -16,7 +16,7 @@ export const EMAIL_SUBSCRIPTION_QUERY = gql`
 `;
 
 export const EMAIL_SUBSCRIPTION_MUTATION = gql`
-  mutation(
+  mutation EmailSubscriptionTopic(
     $userId: String!
     $topic: EmailSubscriptionTopic!
     $subscribed: Boolean!
