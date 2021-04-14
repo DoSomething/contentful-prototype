@@ -48,7 +48,7 @@ const BannerCallToAction = ({
           <p
             className={classnames(
               'text-lg',
-              { 'mt-4': stacked },
+              { 'm-4': stacked },
               colorClasses.text || 'text-gray-900',
             )}
           >
