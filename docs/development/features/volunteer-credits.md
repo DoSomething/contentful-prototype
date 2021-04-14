@@ -53,7 +53,7 @@ We calculate and parse the data for the VC table by grabbing all (100 is the tec
 -   Action details & campaign meta data from the earliest post
 -   Pending status based on if any of the posts have an 'accepted' `status` or not
 -   Impact label (tallying `quantity` from all accepted posts)
--   Hours Spent label (tallying `hours_spent` from all accepted posts)
+-   Hours Spent label (tallying `hours_spent` from all accepted posts). We round up the seconds to the nearest minute, so 19.8 becomes 20. (https://bit.ly/3dirqOp).
 -   RB photo from the earliest 'accepted' post
 
 ## PDF Generation

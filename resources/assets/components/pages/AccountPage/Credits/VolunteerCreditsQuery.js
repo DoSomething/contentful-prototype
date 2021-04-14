@@ -127,7 +127,9 @@ const VolunteerCreditsQuery = () => {
         hoursSpent && featureFlag('hours_spent_in_vc_certificates')
           ? prettyMilliseconds(
               // Multiply by minutes * seconds * milliseconds:
-              hoursSpent * 60 * 60 * 1000,
+              // We round up the minutes to account for missing decimal points.
+              // (So 0.33 -> 20 minutes instead of an awkward 19.8).
+              Math.ceil(hoursSpent * 60) * 60 * 1000,
               { verbose: true },
             )
           : null;
