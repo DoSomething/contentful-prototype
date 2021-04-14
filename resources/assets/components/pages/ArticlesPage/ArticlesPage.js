@@ -145,7 +145,7 @@ const ArticlesLandingPage = ({
                 Sign up for weekly emails of news, videos, how-tos, advice, and
                 ways to transform your community.
               </p>
-              <SingleNewsletterSubscriptionForm />
+              <SingleNewsletterSubscriptionForm emailSubscriptionTopic="lifestyle" />
             </div>
           </section>
 

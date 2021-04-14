@@ -1,4 +1,5 @@
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import React, { useState } from 'react';
 import { RestApiClient } from '@dosomething/gateway';
@@ -8,7 +9,7 @@ import PrimaryButton from '../Button/PrimaryButton';
 import { tailwind } from '../../../helpers/display';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
 
-const SingleNewsletterSubscriptionForm = () => {
+const SingleNewsletterSubscriptionForm = emailSubscriptionTopic => {
   const [emailValue, setEmailValue] = useState('');
 
   const [errors, setErrors] = useState(null);
@@ -36,7 +37,7 @@ const SingleNewsletterSubscriptionForm = () => {
     client
       .post('/v2/subscriptions', {
         email: emailValue,
-        email_subscription_topic: 'lifestyle',
+        email_subscription_topic: emailSubscriptionTopic,
         source: 'phoenix-next',
         source_detail: 'lifestyle_newsletter_subscriptions-articles-page',
       })
@@ -99,6 +100,10 @@ const SingleNewsletterSubscriptionForm = () => {
       </div>
     </form>
   );
+};
+
+SingleNewsletterSubscriptionForm.propTypes = {
+  emailSubscriptionTopic: PropTypes.string.isRequired,
 };
 
 export default SingleNewsletterSubscriptionForm;
