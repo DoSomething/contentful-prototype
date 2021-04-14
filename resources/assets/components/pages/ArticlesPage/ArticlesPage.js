@@ -71,7 +71,7 @@ const ArticlesLandingPage = ({
     <Fragment>
       <SiteNavigationContainer />
       <main>
-        <article data-test="articles-page">
+        <article data-testid="articles-page">
           {/* Page Header */}
           <header role="banner" className="bg-white">
             <div
@@ -114,7 +114,7 @@ const ArticlesLandingPage = ({
           {/* Featured Gallery Section Top */}
           <section
             className="base-12-grid bg-gray-100 py-12"
-            data-test="featured-articles-section-top"
+            data-testid="featured-articles-section-top"
           >
             <StrikeThroughHeader title={featuredArticlesGalleryTopTitle} />
 
@@ -131,7 +131,7 @@ const ArticlesLandingPage = ({
           {/* Lifestyle Newsletter Signup Section */}
           <section
             className="base-12-grid bg-purple-700 py-12"
-            data-test="newsletter-section-articles-page"
+            data-testid="newsletter-section-articles-page"
           >
             <div className="grid-wide flex flex-wrap md:flex-no-wrap text-center w-full mb-6 justify-center">
               <h2 className="font-league-gothic font-normal leading-tight px-6 text-3xl md:text-4xl uppercase text-white">
@@ -151,7 +151,7 @@ const ArticlesLandingPage = ({
           {/* Topic Gallery Section One */}
           <section
             className="base-12-grid bg-gray-100 py-12"
-            data-test="topic-one-articles-section"
+            data-testid="topic-one-articles-section"
           >
             <StrikeThroughHeader title={topicArticlesGalleryOneTitle} />
 
@@ -168,7 +168,7 @@ const ArticlesLandingPage = ({
           {/* Topic Gallery Section Two */}
           <section
             className="base-12-grid bg-gray-100 py-12"
-            data-test="topic-two-articles-section"
+            data-testid="topic-two-articles-section"
           >
             <StrikeThroughHeader title={topicArticlesGalleryTwoTitle} />
 
@@ -185,7 +185,7 @@ const ArticlesLandingPage = ({
           {/* Featured Gallery Section Bottom */}
           <section
             className="base-12-grid bg-gray-100 py-12"
-            data-test="featured-articles-section-bottom"
+            data-testid="featured-articles-section-bottom"
           >
             <StrikeThroughHeader title={featuredArticlesGalleryBottomTitle} />
 

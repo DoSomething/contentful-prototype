@@ -74,7 +74,7 @@ const NewsletterSubscriptionFormArticlesPage = () => {
                 'border-red-500': get(errors, 'fields.email', null),
               },
             )}
-            data-test="articles-page-email-input"
+            data-testid="articles-page-email-input"
             onChange={handleOnChange}
             onFocus={handleOnFocus}
             placeholder="Enter your email address"

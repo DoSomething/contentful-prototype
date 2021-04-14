@@ -1,23 +1,10 @@
 /// <reference types="Cypress" />
 
-import faker from 'faker';
-
 describe('Articles Page', () => {
   beforeEach(() => cy.configureMocks());
 
   /** @test */
   it('Displays the newsletter signup section', () => {
-    cy.mockGraphqlOp('ArticlesPageQuery', {
-      page: {
-        coverImage: {
-          url: faker.image.imageUrl(),
-        },
-        internalTitle: 'testing title',
-        headerTitle: 'Testing',
-        headerLinkUrl: 'https://dosomething.org',
-      },
-    });
-
     cy.withFeatureFlags({ new_articles_page: true }).visit(`/us/articles`);
     cy.findByTestId('newsletter-section-articles-page').should(
       'have.length',
