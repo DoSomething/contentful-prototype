@@ -6,7 +6,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import Spinner from '../../../artifacts/Spinner/Spinner';
 import ToggleButton from '../../../utilities/Button/ToggleButton';
 
-const EMAIL_SUBSCRIPTION_QUERY = gql`
+export const EMAIL_SUBSCRIPTION_QUERY = gql`
   query EmailSubscriptionsQuery($userId: String!) {
     user(id: $userId) {
       id
@@ -15,8 +15,8 @@ const EMAIL_SUBSCRIPTION_QUERY = gql`
   }
 `;
 
-const EMAIL_SUBSCRIPTION_MUTATION = gql`
-  mutation EmailSubscriptionTopic(
+export const EMAIL_SUBSCRIPTION_MUTATION = gql`
+  mutation(
     $userId: String!
     $topic: EmailSubscriptionTopic!
     $subscribed: Boolean!

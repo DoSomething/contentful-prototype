@@ -1,39 +1,15 @@
 import React from 'react';
-import { get, upperCase } from 'lodash';
-import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { get, upperCase } from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import { NEWSLETTER_TOPICS } from './config';
 import { getUserId } from '../../../helpers/auth';
 import ToggleButton from '../Button/ToggleButton';
-
-const EMAIL_SUBSCRIPTION_QUERY = gql`
-  query ToggleSubscriptionsButtonQuery($userId: String!) {
-    user(id: $userId) {
-      id
-      emailSubscriptionTopics
-    }
-  }
-`;
-
-const EMAIL_SUBSCRIPTION_MUTATION = gql`
-  mutation EmailSubscriptionTopics(
-    $userId: String!
-    $topic: EmailSubscriptionTopic!
-    $subscribed: Boolean!
-  ) {
-    updateEmailSubscriptionTopic(
-      id: $userId
-      topic: $topic
-      subscribed: $subscribed
-    ) {
-      id
-      emailSubscriptionTopics
-      emailSubscriptionStatus
-    }
-  }
-`;
+import {
+  EMAIL_SUBSCRIPTION_QUERY,
+  EMAIL_SUBSCRIPTION_MUTATION,
+} from '../../pages/AccountPage/Subscriptions/EmailSubscriptionItem';
 
 const ToggleSubscriptionButton = ({ topic }) => {
   const selectedTopic = upperCase(topic);
