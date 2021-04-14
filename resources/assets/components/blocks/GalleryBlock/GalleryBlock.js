@@ -57,22 +57,18 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
 
   switch (blockType) {
     case 'PERSON':
-    case 'PersonBlock':
       return <Person key={block.id} {...fields} />;
 
     case 'CAMPAIGN':
-    case 'CampaignWebsite':
       return <CampaignCard key={block.id} campaign={fields} hasButton />;
 
     case 'SCHOLARSHIP':
       return <ScholarshipCard key={block.id} campaign={fields} />;
 
     case 'PAGE':
-    case 'Page':
       return <PageCard key={block.id} page={fields} />;
 
     case 'CONTENT_BLOCK':
-    case 'ContentBlock':
       return (
         <ContentBlockGalleryItem
           key={block.id}
@@ -125,9 +121,7 @@ const GalleryBlock = props => {
       <Gallery type={galleryLayout} className="-mx-3 mt-3">
         {blocks.map(block =>
           renderBlock(
-            // @TODO: Remove the block.__typename hack after we are able to
-            // properly source blockType from the entry
-            galleryType || block.__typename,
+            galleryType,
             block,
             imageAlignment.toLowerCase(),
             imageFit.toLowerCase(),
@@ -147,7 +141,7 @@ GalleryBlock.propTypes = {
     'PAGE',
     'CONTENT_BLOCK',
     'EXTERNAL_LINK',
-  ]),
+  ]).isRequired,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
   imageAlignment: PropTypes.oneOf(['TOP', 'LEFT']).isRequired,
@@ -157,7 +151,6 @@ GalleryBlock.propTypes = {
 GalleryBlock.defaultProps = {
   title: null,
   imageFit: 'FILL',
-  galleryType: null,
 };
 
 export default GalleryBlock;

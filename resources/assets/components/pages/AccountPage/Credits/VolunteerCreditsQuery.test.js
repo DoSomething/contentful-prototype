@@ -21,8 +21,6 @@ const MOCK_USER_ID = '123';
 // Mock the user ID we fetch from the window.
 global.AUTH = { id: MOCK_USER_ID };
 
-global.ENV = { FEATURE_FLAGS: { hours_spent_in_vc_certificates: true } };
-
 // Mock the GraphQL query and response.
 const mocks = [
   {
