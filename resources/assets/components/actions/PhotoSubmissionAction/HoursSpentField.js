@@ -21,6 +21,10 @@ const HoursSpentField = ({ actionId, hasError, onChange }) => {
   const [minutes, setMinutes] = useState('');
 
   useEffect(() => {
+    if (!hours && !minutes) {
+      return;
+    }
+
     onChange((Number(hours) * 60 + Number(minutes)) / 60);
   }, [hours, minutes]);
 
