@@ -33,7 +33,6 @@ Route::group(['prefix' => 'v2'], function () {
 
     // Campaign Signups
     Route::get('/campaigns/{id}/signups', 'Api\CampaignSignupsController@index');
-    Route::post('/campaigns/{id}/signups', 'Api\CampaignSignupsController@store');
 
     // Posts
     Route::get('/posts', 'Api\PostsController@index');

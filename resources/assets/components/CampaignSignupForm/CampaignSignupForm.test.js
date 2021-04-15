@@ -7,7 +7,6 @@ import { SEARCH_USER_CAMPAIGN_QUERY } from '../../helpers/campaign';
 
 jest.mock('../../helpers/analytics');
 
-const storeCampaignSignup = jest.fn();
 const signupCreated = jest.fn();
 
 window.STATE = { campaign: { id: '123' } };
@@ -15,7 +14,6 @@ window.STATE = { campaign: { id: '123' } };
 const props = {
   campaignId: '123',
   pageId: '456',
-  storeCampaignSignup,
   signupCreated,
 };
 
@@ -46,12 +44,6 @@ describe('The CampaignSignupForm component', () => {
 
   it('displays a Button', () => {
     expect(wrapper.find('PrimaryButton')).toHaveLength(1);
-  });
-
-  it('invokes the storeCampaignSignup function when the button is clicked', () => {
-    wrapper.find('PrimaryButton').simulate('click');
-
-    expect(storeCampaignSignup).toHaveBeenCalled();
   });
 
   describe('The signup button text', () => {

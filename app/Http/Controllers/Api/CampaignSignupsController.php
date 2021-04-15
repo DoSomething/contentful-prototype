@@ -49,29 +49,4 @@ class CampaignSignupsController extends Controller
 
         return $data;
     }
-
-    /**
-     * Store a newly created resource.
-     *
-     * @param  string  $id
-     * @param  Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store($id, Request $request)
-    {
-        $request->merge(['campaign_id' => $id]);
-
-        $request->validate([
-            'campaign_id' => 'required',
-            'details' => 'string',
-        ]);
-
-        Log::debug('[Phoenix] CampaignSignupsController@store request data:', $request->all());
-
-        $data = $this->signupRepository->storeSignup($request->all());
-
-        Log::debug('[Phoenix] CampaignSignupsController@store response data:', $data);
-
-        return $data;
-    }
 }

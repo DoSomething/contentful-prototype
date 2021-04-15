@@ -15,9 +15,6 @@ import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
   GET_CAMPAIGN_SIGNUPS_PENDING,
   GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-  STORE_CAMPAIGN_SIGNUPS_FAILED,
-  STORE_CAMPAIGN_SIGNUPS_PENDING,
-  STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
 } from '../constants/action-types';
 
 /**
@@ -78,41 +75,6 @@ export function getCampaignSignups(id = null, query = {}) {
         pending: GET_CAMPAIGN_SIGNUPS_PENDING,
         query,
         success: GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-        url: `${PHOENIX_URL}/${path}`,
-      }),
-    );
-  };
-}
-
-/**
- * Dispatch action to store signup for a campaign.
- *
- * @param  {String} campaignId
- * @param  {Object} data
- * @return {Function}
- */
-export function storeCampaignSignup(campaignId, data = {}) {
-  const path = join('api/v2/campaigns', campaignId, 'signups');
-  const type = 'signup';
-
-  return dispatch => {
-    dispatch(
-      apiRequest('POST', {
-        body: data.body,
-        failure: STORE_CAMPAIGN_SIGNUPS_FAILED,
-        meta: {
-          campaignId,
-          id: campaignId, // @TODO: update to be campaignContentfulId
-          sixpackExperiments: { conversion: type },
-          type,
-          messaging: {
-            success: 'Thanks for signing up!',
-            failure: 'Whoops! Something went wrong!',
-          },
-        },
-        pending: STORE_CAMPAIGN_SIGNUPS_PENDING,
-        requiresAuthentication: true,
-        success: STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
         url: `${PHOENIX_URL}/${path}`,
       }),
     );
