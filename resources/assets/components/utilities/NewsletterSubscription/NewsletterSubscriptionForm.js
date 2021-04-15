@@ -1,3 +1,5 @@
+/* window */
+
 import { get } from 'lodash';
 import classnames from 'classnames';
 import React, { useState } from 'react';
@@ -11,6 +13,10 @@ import { isAuthenticated } from '../../../helpers/auth';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
 import NewsletterSubscriptionCard from './NewsletterSubscriptionCard';
 import NewsLetterSubscriptionFormInput from './NewsletterSubscriptionFormInput';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 const NewsletterSubscriptionForm = () => {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -22,6 +28,16 @@ const NewsletterSubscriptionForm = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const updateSubscriptions = topic => {
+    trackAnalyticsEvent('clicked_option_newsletter', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.siteAction,
+      label: topic,
+      context: {
+        value: topic,
+        url: window.location.href,
+      },
+    });
+
     if (subscriptions.includes(topic)) {
       const updatedSubscriptionTopics = subscriptions.filter(
         subscriptionTopic => {
@@ -44,12 +60,25 @@ const NewsletterSubscriptionForm = () => {
   const handleOnFocus = event => {
     event.preventDefault();
 
-    // @TODO: add analytics tracking
-    console.log('handling input focus...');
+    trackAnalyticsEvent('focused_newsletter_signup_email', {
+      action: 'field_focused',
+      category: EVENT_CATEGORIES.siteAction,
+      label: 'newsletter',
+      context: { contextSource: 'newsletter_subscription_signup' },
+    });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    trackAnalyticsEvent('clicked_signup_newsletter', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.signup,
+      label: 'newsletter',
+      context: {
+        url: window.location.href,
+      },
+    });
 
     const client = new RestApiClient(`${env('NORTHSTAR_URL')}`);
 

@@ -30,8 +30,8 @@ const ToggleSubscriptionCheckbox = ({ topic, updateSubscriptions }) => {
         `}
         id={`${topic}-subscription`}
         name={`${topic}-subscription`}
-        type="checkbox"
         onClick={() => updateSubscriptions(topic)}
+        type="checkbox"
       />
       <span className="check-input absolute items-center flex inset-0 justify-center pointer-events-none w-full">
         <CheckIcon color={tailwind('colors.blurple.500')} height="18px" />

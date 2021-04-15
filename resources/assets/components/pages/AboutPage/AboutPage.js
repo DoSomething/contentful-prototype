@@ -140,7 +140,7 @@ const AboutPageTemplate = () => (
           <PrimaryButton
             attributes={{ 'data-label': 'scholarships_cta_authorize' }}
             className="mt-4 md:mt-8 py-4 px-16 text-lg"
-            href="/authorize"
+            href="/us/about/easy-scholarships"
             text="See Scholarship Campaigns"
           />
         </BannerCallToAction>
