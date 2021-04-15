@@ -1,37 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import Spinner from '../../../artifacts/Spinner/Spinner';
 import ToggleButton from '../../../utilities/Button/ToggleButton';
+import {
+  EMAIL_SUBSCRIPTION_QUERY,
+  EMAIL_SUBSCRIPTION_MUTATION,
+} from '../../../utilities/NewsletterSubscription/ToggleSubscriptionButton';
 
-const EMAIL_SUBSCRIPTION_QUERY = gql`
-  query EmailSubscriptionsQuery($userId: String!) {
-    user(id: $userId) {
-      id
-      emailSubscriptionTopics
-    }
-  }
-`;
-
-const EMAIL_SUBSCRIPTION_MUTATION = gql`
-  mutation EmailSubscriptionTopic(
-    $userId: String!
-    $topic: EmailSubscriptionTopic!
-    $subscribed: Boolean!
-  ) {
-    updateEmailSubscriptionTopic(
-      id: $userId
-      topic: $topic
-      subscribed: $subscribed
-    ) {
-      id
-      emailSubscriptionTopics
-      emailSubscriptionStatus
-    }
-  }
-`;
 const EmailSubscriptionItem = ({
   attributes,
   topic,

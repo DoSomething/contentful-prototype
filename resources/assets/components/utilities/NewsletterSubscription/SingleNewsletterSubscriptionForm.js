@@ -1,14 +1,16 @@
-import { get } from 'lodash';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import React, { useState } from 'react';
+import { get, isString, first } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
 import { env } from '../../../helpers/env';
 import PrimaryButton from '../Button/PrimaryButton';
 import { tailwind } from '../../../helpers/display';
+import { report } from '../../../helpers/monitoring';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
 
-const NewsletterSubscriptionFormArticlesPage = () => {
+const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
   const [emailValue, setEmailValue] = useState('');
 
   const [errors, setErrors] = useState(null);
@@ -36,7 +38,7 @@ const NewsletterSubscriptionFormArticlesPage = () => {
     client
       .post('/v2/subscriptions', {
         email: emailValue,
-        email_subscription_topic: 'lifestyle',
+        email_subscription_topic: emailSubscriptionTopic,
         source: 'phoenix-next',
         source_detail: 'lifestyle_newsletter_subscriptions-articles-page',
       })
@@ -44,7 +46,16 @@ const NewsletterSubscriptionFormArticlesPage = () => {
         setShowConfirmation(true);
       })
       .catch(error => {
-        setErrors(error.response.error);
+        report(error);
+        const errorMessage = isString(error.response)
+          ? error.response
+          : first(get(error, 'response.error.fields.email')) ||
+            'Something went wrong...';
+        setErrors(errorMessage);
+
+        if (window.ENV.APP_ENV !== 'production') {
+          console.log('🚫 failed response? caught the error!', error);
+        }
       });
   };
 
@@ -74,20 +85,24 @@ const NewsletterSubscriptionFormArticlesPage = () => {
                 'border-red-500': get(errors, 'fields.email', null),
               },
             )}
+            data-testid="articles-page-email-input"
             onChange={handleOnChange}
             onFocus={handleOnFocus}
             placeholder="Enter your email address"
             type="email"
             value={emailValue}
           />
-          {get(errors, 'fields.email', null) ? (
+          {errors ? (
             <p className="md:absolute text-left text-red-500 px-4 py-2">
-              {get(errors, 'fields.email', null)}
+              {errors}
             </p>
           ) : null}
         </div>
 
         <PrimaryButton
+          attributes={{
+            'data-testid': 'articles-page-newsletter-signup-button',
+          }}
           className="mt-4 md:mt-0 md:ml-2 md:w-48 text-lg w-full"
           text="Sign Up"
           type="submit"
@@ -97,4 +112,8 @@ const NewsletterSubscriptionFormArticlesPage = () => {
   );
 };
 
-export default NewsletterSubscriptionFormArticlesPage;
+SingleNewsletterSubscriptionForm.propTypes = {
+  emailSubscriptionTopic: PropTypes.string.isRequired,
+};
+
+export default SingleNewsletterSubscriptionForm;

@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import React, { Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
+import { withoutNulls } from '../../../helpers/data';
 import LinkButton from '../../utilities/Button/LinkButton';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
@@ -13,7 +14,7 @@ import { coverImageMediaQueryStyles } from '../../../helpers/display';
 import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
-import NewsletterSubscriptionFormArticlesPage from '../../utilities/NewsletterSubscription/NewsletterSubscriptionFormArticlesPage';
+import SingleNewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/SingleNewsletterSubscriptionForm';
 
 const ARTICLES_PAGE_QUERY = gql`
   query ArticlesPageQuery($preview: Boolean) {
@@ -67,12 +68,11 @@ const ArticlesLandingPage = ({
   ctaText,
   ctaButtonText,
 }) => {
-  console.log(headerButtonText);
   return (
     <Fragment>
       <SiteNavigationContainer />
       <main>
-        <article data-test="articles-page">
+        <article data-testid="articles-page">
           {/* Page Header */}
           <header role="banner" className="bg-white">
             <div
@@ -106,7 +106,7 @@ const ArticlesLandingPage = ({
                 <LinkButton
                   className="bg-yellow-400 hover:bg-yellow-100 mt-2 px-6 py-4 text-gray-900 hover:text-gray-900 text-lg"
                   href={headerLinkUrl}
-                  text={headerButtonText || 'Read More'}
+                  text={headerButtonText}
                 />
               </div>
             </div>
@@ -115,7 +115,7 @@ const ArticlesLandingPage = ({
           {/* Featured Gallery Section Top */}
           <section
             className="base-12-grid bg-gray-100 py-12"
-            data-test="campaigns-section"
+            data-testid="featured-articles-section-top"
           >
             <StrikeThroughHeader title={featuredArticlesGalleryTopTitle} />
 
@@ -132,7 +132,7 @@ const ArticlesLandingPage = ({
           {/* Lifestyle Newsletter Signup Section */}
           <section
             className="base-12-grid bg-purple-700 py-12"
-            data-test="newsletter-section-articles-page"
+            data-testid="newsletter-section-articles-page"
           >
             <div className="grid-wide flex flex-wrap md:flex-no-wrap text-center w-full mb-6 justify-center">
               <h2 className="font-league-gothic font-normal leading-tight px-6 text-3xl md:text-4xl uppercase text-white">
@@ -145,60 +145,67 @@ const ArticlesLandingPage = ({
                 Sign up for weekly emails of news, videos, how-tos, advice, and
                 ways to transform your community.
               </p>
-              <NewsletterSubscriptionFormArticlesPage />
+              <SingleNewsletterSubscriptionForm emailSubscriptionTopic="lifestyle" />
             </div>
           </section>
 
           {/* Topic Gallery Section One */}
-          <section
-            className="base-12-grid bg-gray-100 py-12"
-            data-test="campaigns-section"
-          >
-            <StrikeThroughHeader title={topicArticlesGalleryOneTitle} />
+          {topicArticlesGalleryOneTitle && topicArticlesGalleryOne ? (
+            <section
+              className="base-12-grid bg-gray-100 py-12"
+              data-testid="topic-one-articles-section"
+            >
+              <StrikeThroughHeader title={topicArticlesGalleryOneTitle} />
 
-            <div className="grid-wide text-center">
-              <GalleryBlock
-                blocks={topicArticlesGalleryOne || []}
-                galleryType="PAGE"
-                itemsPerRow={3}
-                imageAlignment="LEFT"
-              />
-            </div>
-          </section>
+              <div className="grid-wide text-center">
+                <GalleryBlock
+                  blocks={topicArticlesGalleryOne}
+                  galleryType="PAGE"
+                  itemsPerRow={3}
+                  imageAlignment="LEFT"
+                />
+              </div>
+            </section>
+          ) : null}
 
           {/* Topic Gallery Section Two */}
-          <section
-            className="base-12-grid bg-gray-100 py-12"
-            data-test="campaigns-section"
-          >
-            <StrikeThroughHeader title={topicArticlesGalleryTwoTitle} />
+          {topicArticlesGalleryTwoTitle && topicArticlesGalleryTwo ? (
+            <section
+              className="base-12-grid bg-gray-100 py-12"
+              data-testid="topic-two-articles-section"
+            >
+              <StrikeThroughHeader title={topicArticlesGalleryTwoTitle} />
 
-            <div className="grid-wide text-center">
-              <GalleryBlock
-                blocks={topicArticlesGalleryTwo || []}
-                galleryType="PAGE"
-                itemsPerRow={3}
-                imageAlignment="LEFT"
-              />
-            </div>
-          </section>
+              <div className="grid-wide text-center">
+                <GalleryBlock
+                  blocks={topicArticlesGalleryTwo}
+                  galleryType="PAGE"
+                  itemsPerRow={3}
+                  imageAlignment="LEFT"
+                />
+              </div>
+            </section>
+          ) : null}
 
           {/* Featured Gallery Section Bottom */}
-          <section
-            className="base-12-grid bg-gray-100 py-12"
-            data-test="campaigns-section"
-          >
-            <StrikeThroughHeader title={featuredArticlesGalleryBottomTitle} />
+          {featuredArticlesGalleryBottomTitle &&
+          featuredArticlesGalleryBottom ? (
+            <section
+              className="base-12-grid bg-gray-100 py-12"
+              data-testid="featured-articles-section-bottom"
+            >
+              <StrikeThroughHeader title={featuredArticlesGalleryBottomTitle} />
 
-            <div className="grid-wide text-center">
-              <GalleryBlock
-                blocks={featuredArticlesGalleryBottom || []}
-                galleryType="PAGE"
-                itemsPerRow={3}
-                imageAlignment="LEFT"
-              />
-            </div>
-          </section>
+              <div className="grid-wide text-center">
+                <GalleryBlock
+                  blocks={featuredArticlesGalleryBottom}
+                  galleryType="PAGE"
+                  itemsPerRow={3}
+                  imageAlignment="LEFT"
+                />
+              </div>
+            </section>
+          ) : null}
 
           {/* Article Archive Call To Action Banner */}
           <BannerCallToAction text={ctaText} title={ctaTitle} stacked>
@@ -227,7 +234,7 @@ ArticlesLandingPage.propTypes = {
   featuredArticlesGalleryTop: PropTypes.arrayOf(PropTypes.object).isRequired,
   featuredArticlesGalleryBottomTitle: PropTypes.string,
   featuredArticlesGalleryBottom: PropTypes.arrayOf(PropTypes.object),
-  headerTitle: PropTypes.string,
+  headerTitle: PropTypes.string.isRequired,
   headerLinkUrl: PropTypes.string.isRequired,
   headerButtonText: PropTypes.string,
   topicArticlesGalleryOneTitle: PropTypes.string,
@@ -242,18 +249,17 @@ ArticlesLandingPage.defaultProps = {
   ctaText: 'An index of all articles and videos by DoSomething.org',
   ctaTitle: 'Article Archive',
   featuredArticlesGalleryBottomTitle: null,
-  featuredArticlesGalleryBottom: null,
-  headerTitle: null,
-  headerButtonText: null,
-  topicArticlesGalleryOne: null,
+  featuredArticlesGalleryBottom: [],
+  headerButtonText: 'Read More',
+  topicArticlesGalleryOne: [],
   topicArticlesGalleryOneTitle: null,
-  topicArticlesGalleryTwo: null,
+  topicArticlesGalleryTwo: [],
   topicArticlesGalleryTwoTitle: null,
 };
 
 const ArticlesPage = () => (
   <PageQuery query={ARTICLES_PAGE_QUERY}>
-    {page => <ArticlesLandingPage {...page} />}
+    {page => <ArticlesLandingPage {...withoutNulls(page)} />}
   </PageQuery>
 );
 

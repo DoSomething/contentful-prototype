@@ -1,14 +1,14 @@
 import React from 'react';
-import { get, upperCase } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { get, upperCase } from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import { NEWSLETTER_TOPICS } from './config';
 import { getUserId } from '../../../helpers/auth';
 import ToggleButton from '../Button/ToggleButton';
 
-const EMAIL_SUBSCRIPTION_QUERY = gql`
+export const EMAIL_SUBSCRIPTION_QUERY = gql`
   query EmailSubscriptionsQuery($userId: String!) {
     user(id: $userId) {
       id
@@ -17,7 +17,7 @@ const EMAIL_SUBSCRIPTION_QUERY = gql`
   }
 `;
 
-const EMAIL_SUBSCRIPTION_MUTATION = gql`
+export const EMAIL_SUBSCRIPTION_MUTATION = gql`
   mutation EmailSubscriptionTopic(
     $userId: String!
     $topic: EmailSubscriptionTopic!
