@@ -1,3 +1,5 @@
+/* global window */
+
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -19,6 +21,7 @@ const AnalyticsWaypoint = ({ className, context, name }) => {
         category: EVENT_CATEGORIES.waypoint,
         label: name,
         context: {
+          url: window.location.href,
           ...context,
           name,
         },

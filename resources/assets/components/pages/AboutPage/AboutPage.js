@@ -23,8 +23,11 @@ const AboutPageTemplate = () => (
     <main>
       <article data-test="about-page">
         {/* Page Header */}
-        <header role="banner" className="bg-white">
-          <AnalyticsWaypoint name="RENAME_section_top" />
+        <header role="banner" className="bg-white relative">
+          <AnalyticsWaypoint
+            className="absolute top-0 w-full"
+            name="page_header_section_top"
+          />
 
           <div
             className="bg-gray-400"
@@ -56,19 +59,29 @@ const AboutPageTemplate = () => (
 
               <p className="font-bold text-lg text-white">{data.header.text}</p>
 
-              <LinkButton
-                className="bg-yellow-400 hover:bg-yellow-100 mt-2 px-6 py-4 text-gray-900 hover:text-gray-900 text-lg"
-                href="/authorize"
-                text="Join Now"
-              />
+              {isAuthenticated() ? null : (
+                <LinkButton
+                  className="bg-yellow-400 hover:bg-yellow-100 mt-2 px-6 py-4 text-gray-900 hover:text-gray-900 text-lg"
+                  href="/authorize"
+                  text="Join Now"
+                />
+              )}
             </div>
           </div>
 
-          <AnalyticsWaypoint name="RENAME_section_bottom" />
+          <AnalyticsWaypoint
+            className="absolute bottom-0 w-full"
+            name="page_header_section_bottom"
+          />
         </header>
 
         {/* Introduction Section */}
-        <section className="base-12-grid bg-white py-12">
+        <section className="base-12-grid bg-white py-12 relative">
+          <AnalyticsWaypoint
+            className="absolute top-0 w-full"
+            name="introduction_section_top"
+          />
+
           <Embed
             className="col-span-4 md:col-span-8 lg:col-span-10 xl:col-span-4 lg:col-start-2 xl:col-start-8 xl:mt-12 xl:row-start-1 self-start"
             url={data.introduction.media.url}
@@ -83,14 +96,22 @@ const AboutPageTemplate = () => (
 
             <p className="mt-8 text-lg">{data.introduction.copy}</p>
           </div>
+
+          <AnalyticsWaypoint
+            className="absolute bottom-0 w-full"
+            name="introduction_section_bottom"
+          />
         </section>
 
         {/* Campaign Gallery Section */}
         <section
-          className="base-12-grid bg-gray-100 py-12"
+          className="base-12-grid bg-gray-100 py-12 relative"
           data-test="campaigns-section"
         >
-          <AnalyticsWaypoint name="campaign_section_top" />
+          <AnalyticsWaypoint
+            className="absolute top-0 w-full"
+            name="campaign_gallery_section_top"
+          />
 
           <StrikeThroughHeader title={data.campaignGallery.title} />
 
@@ -105,7 +126,10 @@ const AboutPageTemplate = () => (
             />
           </div>
 
-          <AnalyticsWaypoint name="campaign_section_bottom" />
+          <AnalyticsWaypoint
+            className="absolute bottom-0 w-full"
+            name="campaign_gallery_section_bottom"
+          />
         </section>
 
         <BannerCallToAction
@@ -116,28 +140,43 @@ const AboutPageTemplate = () => (
           <PrimaryButton
             attributes={{ 'data-label': 'scholarships_cta_authorize' }}
             className="mt-4 md:mt-8 py-4 px-16 text-lg"
-            href="/authorize"
+            href="/us/about/easy-scholarships"
             text="See Scholarship Campaigns"
           />
         </BannerCallToAction>
 
         {/* Newsletter Signup Section */}
         <section
-          className="base-12-grid bg-gray-100 py-12"
+          className="base-12-grid bg-gray-100 py-12 relative"
           data-test="newsletter-section"
         >
+          <AnalyticsWaypoint
+            className="absolute top-0 w-full"
+            name="newsletter_signup_section_top"
+          />
+
           <StrikeThroughHeader title="Get Inspired. Get Entertained. Get Active." />
 
           <div className="grid-wide text-center">
             <NewsletterSubscriptionForm />
           </div>
+
+          <AnalyticsWaypoint
+            className="absolute bottom-0 w-full"
+            name="newsletter_signup_section_bottom"
+          />
         </section>
 
         {/* Member Highlight Section */}
         <section
-          className="base-12-grid bg-white py-12"
+          className="base-12-grid bg-white py-12 relative"
           data-test="member-highlight-section"
         >
+          <AnalyticsWaypoint
+            className="absolute top-0 w-full"
+            name="member_highlight_section_top"
+          />
+
           <StrikeThroughHeader title={data.memberHighlights.title} />
 
           <div className="grid-main">
@@ -152,13 +191,23 @@ const AboutPageTemplate = () => (
               items={data.memberHighlights.members}
             />
           </div>
+
+          <AnalyticsWaypoint
+            className="absolute bottom-0 w-full"
+            name="member_highlight_section_bottom"
+          />
         </section>
 
         {/* Scholarship Winners Section */}
         <section
-          className="base-12-grid bg-white py-12"
+          className="base-12-grid bg-white py-12 relative"
           data-test="scholarship-winners-section"
         >
+          <AnalyticsWaypoint
+            className="absolute top-0 w-full"
+            name="scholarship_winners_section_top"
+          />
+
           <StrikeThroughHeader title={data.scholarshipWinners.title} />
 
           <div className="grid-wide text-center">
@@ -171,6 +220,11 @@ const AboutPageTemplate = () => (
               items={data.scholarshipWinners.members}
             />
           </div>
+
+          <AnalyticsWaypoint
+            className="absolute bottom-0 w-full"
+            name="scholarship_winners_section_bottom"
+          />
         </section>
 
         {/* Join Us Call To Action Banner */}
