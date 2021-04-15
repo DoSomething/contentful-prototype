@@ -1,4 +1,4 @@
-/* window */
+/* global window */
 
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
