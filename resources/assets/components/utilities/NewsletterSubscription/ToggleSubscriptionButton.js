@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { get, upperCase } from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -6,10 +7,33 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { NEWSLETTER_TOPICS } from './config';
 import { getUserId } from '../../../helpers/auth';
 import ToggleButton from '../Button/ToggleButton';
-import {
-  EMAIL_SUBSCRIPTION_QUERY,
-  EMAIL_SUBSCRIPTION_MUTATION,
-} from '../../pages/AccountPage/Subscriptions/EmailSubscriptionItem';
+
+export const EMAIL_SUBSCRIPTION_QUERY = gql`
+  query EmailSubscriptionsQuery($userId: String!) {
+    user(id: $userId) {
+      id
+      emailSubscriptionTopics
+    }
+  }
+`;
+
+export const EMAIL_SUBSCRIPTION_MUTATION = gql`
+  mutation EmailSubscriptionTopic(
+    $userId: String!
+    $topic: EmailSubscriptionTopic!
+    $subscribed: Boolean!
+  ) {
+    updateEmailSubscriptionTopic(
+      id: $userId
+      topic: $topic
+      subscribed: $subscribed
+    ) {
+      id
+      emailSubscriptionTopics
+      emailSubscriptionStatus
+    }
+  }
+`;
 
 const ToggleSubscriptionButton = ({ topic }) => {
   const selectedTopic = upperCase(topic);
