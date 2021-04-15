@@ -1,4 +1,4 @@
-/* window */
+/* global window */
 
 import { get } from 'lodash';
 import classnames from 'classnames';
