@@ -9,6 +9,7 @@ jest.mock('../../../helpers/analytics');
 
 const waypointName = 'test_component-start';
 const blockId = '123';
+const url = window.location.href;
 
 const renderAnalyticsWaypoint = () =>
   render(<AnalyticsWaypoint name={waypointName} context={{ blockId }} />);
@@ -37,6 +38,7 @@ describe('The AnalyticsWaypoint component', () => {
         context: {
           name: waypointName,
           blockId,
+          url,
         },
       },
     ]);
