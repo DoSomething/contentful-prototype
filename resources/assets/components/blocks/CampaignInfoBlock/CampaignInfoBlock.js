@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
@@ -35,8 +35,6 @@ const CAMPAIGN_INFO_QUERY = gql`
     }
   }
 `;
-
-const tailwindTeal = tailwind('colors.teal.500');
 
 const CampaignInfoBlock = ({
   campaignId,
@@ -113,7 +111,9 @@ const CampaignInfoBlock = ({
                         css={css`
                           :hover {
                              {
-                              text-decoration-color: ${tailwindTeal};
+                              text-decoration-color: ${tailwind(
+                                'colors.teal.500',
+                              )};
                             }
                           }
                         `}
