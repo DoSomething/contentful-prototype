@@ -30,8 +30,12 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
   const handleOnFocus = event => {
     event.preventDefault();
 
-    // @TODO: add analytics tracking
-    console.log('handling input focus...');
+    trackAnalyticsEvent('focused_call_to_action_popover_email', {
+      action: 'field_focused',
+      category: EVENT_CATEGORIES.siteAction,
+      label: 'call_to_action_popover',
+      context: { contextSource: `newsletter_${emailSubscriptionTopic}` },
+    });
   };
 
   const handleSubmit = event => {
