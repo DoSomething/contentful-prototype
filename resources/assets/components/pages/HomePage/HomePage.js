@@ -4,9 +4,9 @@ import { css } from '@emotion/core';
 import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
-import * as NewsletterImages from './NewsletterImages';
 import { isAuthenticated } from '../../../helpers/auth';
 import HomePageArticleGallery from './HomePageArticleGallery';
+import * as MemberBenefitsImages from './MemberBenefitsImages';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl } from '../../../helpers/contentful';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
@@ -74,15 +74,15 @@ ImpactStatistic.propTypes = {
 };
 
 /**
- * Newsletter item for newsletter section.
+ * Benefit item for member benefits section.
  *
  * @param {Object}
  */
-const NewsletterItem = ({ content, image, link, title }) => (
+const BenefitItem = ({ content, image, link, title }) => (
   <div className="flex flex-col h-full">
     <a className="block mb-4 mx-auto no-underline" href={link.url}>
       <img
-        alt={`${title} newsletter badge`}
+        alt={`${title} member benefits badge`}
         css={css`
           height: 180px;
           width: 180px;
@@ -109,7 +109,7 @@ const NewsletterItem = ({ content, image, link, title }) => (
 
     <a
       className="font-normal text-white hover:text-yellow-300 underline hover:no-underline"
-      data-label={`newsletter_cta_${title.toLowerCase()}`}
+      data-label={`member_benefits_cta_${title.toLowerCase()}`}
       href={link.url}
       rel="noopener noreferrer"
       target="_blank"
@@ -119,7 +119,7 @@ const NewsletterItem = ({ content, image, link, title }) => (
   </div>
 );
 
-NewsletterItem.propTypes = {
+BenefitItem.propTypes = {
   content: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   link: PropTypes.shape({
@@ -152,8 +152,12 @@ const HomePageTemplate = ({
 
       <main>
         <article data-test="home-page">
-          <header role="banner" className="bg-white">
-            <AnalyticsWaypoint name="impact_section_top" />
+          {/* Page Header */}
+          <header role="banner" className="bg-white relative">
+            <AnalyticsWaypoint
+              className="absolute top-0 w-full"
+              name="impact_section_top"
+            />
 
             <div
               className="base-12-grid bg-gray-200 pt-3 md:pt-6"
@@ -216,12 +220,16 @@ const HomePageTemplate = ({
               </div>
             </div>
 
-            <AnalyticsWaypoint name="impact_section_bottom" />
+            <AnalyticsWaypoint
+              className="absolute bottom-0 w-full"
+              name="impact_section_bottom"
+            />
           </header>
 
+          {/* Campaign Gallery Section */}
           {campaigns ? (
             <section
-              className="base-12-grid bg-gray-100 py-8"
+              className="base-12-grid bg-gray-100 py-8 relative"
               css={css`
                 background: linear-gradient(
                   to bottom,
@@ -231,7 +239,10 @@ const HomePageTemplate = ({
               `}
               data-test="campaigns-section"
             >
-              <AnalyticsWaypoint name="campaign_section_top" />
+              <AnalyticsWaypoint
+                className="absolute top-0 w-full"
+                name="campaign_section_top"
+              />
 
               <StrikeThroughHeader title="Take Action!" />
 
@@ -285,85 +296,117 @@ const HomePageTemplate = ({
                   href="/us/campaigns"
                   text="See More Campaigns"
                 />
-
-                <AnalyticsWaypoint name="campaign_section_bottom" />
               </div>
+
+              <AnalyticsWaypoint
+                className="absolute bottom-0 w-full"
+                name="campaign_section_bottom"
+              />
             </section>
           ) : null}
 
-          <article
+          {/* Member Benefits Section */}
+          <section
             className="base-12-grid bg-purple-700 py-8 lg:py-12"
-            data-test="newsletters-cta"
+            data-test="member-benefits-cta"
           >
-            <div className="grid-wide text-center">
-              <AnalyticsWaypoint name="newsletter_cta_top" />
+            <AnalyticsWaypoint
+              className="absolute top-0 w-full"
+              name="member_benfits_top"
+            />
 
+            <div className="grid-wide text-center">
               <h2 className="font-league-gothic font-normal mb-4 tracking-wide text-4xl text-white uppercase">
-                Impact &amp; Inspiration For Your Inbox
+                DoSomething Member Benfits
               </h2>
 
               <p className="text-lg text-white">
-                Subscribe to a DoSomething newsletter.
+                Sign up for a{' '}
+                <a
+                  className="font-normal text-white hover:text-white underline"
+                  css={css`
+                    &:hover {
+                      text-decoration-color: ${tailwind('colors.teal.500')};
+                    }
+                  `}
+                  href="/us/campaigns"
+                >
+                  campaign
+                </a>{' '}
+                or{' '}
+                <a
+                  className="font-normal text-white hover:text-white underline"
+                  css={css`
+                    &:hover {
+                      text-decoration-color: ${tailwind('colors.teal.500')};
+                    }
+                  `}
+                  href="/authorize"
+                >
+                  create an account
+                </a>{' '}
+                to officially join our community and gain access to these
+                benefits.
               </p>
 
               <ul className="md:col-gap-8 lg:col-gap-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-8 row-gap-8">
                 <li className="text-white">
-                  <NewsletterItem
-                    content="How DoSomething members are changing the world, and how you can too."
-                    title="Community"
-                    image={NewsletterImages.Community}
+                  <BenefitItem
+                    content="Make a difference alongside members in every US area code and 131 countries."
+                    title="Community Impact"
+                    image={MemberBenefitsImages.Community}
                     link={{
-                      copy: 'Join Us',
-                      url:
-                        'https://join.dosomething.org/#page-block-71pdxfteosc',
+                      copy: 'About Our Impact',
+                      url: '/us/about',
                     }}
                   />
                 </li>
 
                 <li className="text-white">
-                  <NewsletterItem
-                    content="Earn the chance to win scholarships for volunteering. No essay or GPA required...ever."
+                  <BenefitItem
+                    content="Earn the chance to win scholarships for volunteering. No essay or GPA required. Ever."
                     title="Scholarships"
-                    image={NewsletterImages.Scholarships}
+                    image={MemberBenefitsImages.Scholarships}
                     link={{
                       copy: 'Find Scholarships',
-                      url:
-                        'https://join.dosomething.org/#page-block-sy2dstz4b6',
+                      url: '/us/about/easy-scholarships',
                     }}
                   />
                 </li>
 
                 <li className="text-white">
-                  <NewsletterItem
-                    content="Read the headlines. Change the headlines."
-                    title="News"
-                    image={NewsletterImages.News}
+                  <BenefitItem
+                    content="Earn verified volunteer hours by completing DoSomething campaigns."
+                    title="Volunteer Credits"
+                    image={MemberBenefitsImages.VolunteerCredits}
                     link={{
-                      copy: 'Get News',
-                      url:
-                        'https://join.dosomething.org/#page-block-ay8syiyhro5',
+                      copy: 'About Volunteer Credits',
+                      url: '/us/about/volunteer-hours',
                     }}
                   />
                 </li>
 
                 <li className="text-white">
-                  <NewsletterItem
-                    content="Boost your mood. Boost your knowledge. Boost yourself into action!"
-                    title="Lifestyle"
-                    image={NewsletterImages.Lifestyle}
+                  <BenefitItem
+                    content="Find news, inspiring stories, and how-to guides for impacting your community."
+                    title="Content"
+                    image={MemberBenefitsImages.Content}
                     link={{
-                      copy: 'Get Inspired',
-                      url:
-                        'https://join.dosomething.org/#page-block-85qyo7ii8fh',
+                      copy: 'Read More',
+                      url: 'https://join.dosomething.org',
                     }}
                   />
                 </li>
               </ul>
-
-              <AnalyticsWaypoint name="newsletter_cta_bottom" />
             </div>
-          </article>
 
+            <AnalyticsWaypoint
+              className="absolute bottom-0 w-full"
+              name="member_benfits_bottom"
+            />
+          </section>
+
+          {/* Article Gallery Section */}
           {articles ? (
             <section
               className="base-12-grid bg-gray-100 py-8"
