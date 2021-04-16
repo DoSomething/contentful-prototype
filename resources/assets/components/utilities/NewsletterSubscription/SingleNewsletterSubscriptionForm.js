@@ -33,10 +33,10 @@ const SingleNewsletterSubscriptionForm = ({
   const handleOnFocus = event => {
     event.preventDefault();
 
-    trackAnalyticsEvent('focused_call_to_action_popover_email', {
+    trackAnalyticsEvent('focused_signup_newsletter', {
       action: 'field_focused',
       category: EVENT_CATEGORIES.siteAction,
-      label: 'call_to_action_popover',
+      label: 'signup_newsletter',
       context: { contextSource: `newsletter_${emailSubscriptionTopic}` },
     });
   };
@@ -65,10 +65,10 @@ const SingleNewsletterSubscriptionForm = ({
       .then(() => {
         setShowConfirmation(true);
 
-        trackAnalyticsEvent('submitted_call_to_action_popover', {
+        trackAnalyticsEvent('submitted_signup_newsletter', {
           action: 'form_submitted',
           category: EVENT_CATEGORIES.siteAction,
-          label: 'call_to_action_popover',
+          label: 'signup_newsletter',
           context: { contextSource: `newsletter_${emailSubscriptionTopic}` },
         });
       })
@@ -84,10 +84,10 @@ const SingleNewsletterSubscriptionForm = ({
           console.log('🚫 failed response? caught the error!', error);
         }
 
-        trackAnalyticsEvent('failed_call_to_action_popover', {
+        trackAnalyticsEvent('failed_signup_newsletter', {
           action: 'form_failed',
           category: EVENT_CATEGORIES.siteAction,
-          label: 'call_to_action_popover',
+          label: 'signup_newsletter',
           context: {
             contextSource: `newsletter_${emailSubscriptionTopic}`,
             error,
