@@ -49,7 +49,7 @@ const SingleNewsletterSubscriptionForm = ({
       category: EVENT_CATEGORIES.signup,
       label: 'newsletter',
       context: {
-        url: window.location.href,
+        contextSource: 'articles_page',
       },
     });
 
