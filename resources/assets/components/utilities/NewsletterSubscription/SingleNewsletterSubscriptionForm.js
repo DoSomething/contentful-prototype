@@ -14,7 +14,10 @@ import {
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 
-const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
+const SingleNewsletterSubscriptionForm = ({
+  emailSubscriptionTopic,
+  submissionSourceDetails,
+}) => {
   const [emailValue, setEmailValue] = useState('');
 
   const [errors, setErrors] = useState(null);
@@ -57,7 +60,7 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
         email: emailValue,
         email_subscription_topic: emailSubscriptionTopic,
         source: 'phoenix-next',
-        source_detail: 'lifestyle_newsletter-cta_articles_page',
+        source_detail: submissionSourceDetails,
       })
       .then(() => {
         setShowConfirmation(true);
@@ -149,6 +152,7 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
 
 SingleNewsletterSubscriptionForm.propTypes = {
   emailSubscriptionTopic: PropTypes.string.isRequired,
+  submissionSourceDetails: PropTypes.string.isRequired,
 };
 
 export default SingleNewsletterSubscriptionForm;
