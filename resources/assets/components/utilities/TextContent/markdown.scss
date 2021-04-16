@@ -1,159 +1,160 @@
 @import '../../../scss/next-toolbox.scss';
 
 .markdown {
-  p {
-    color: inherit;
-  }
+    p {
+        color: inherit;
+    }
 
-  // Overriding rules in Forge, we'll eventually address this better.
-  h1 + p,
-  h2 + p,
-  h3 + p,
-  h4 + p,
-  h5 + p,
-  h6 + p,
-  p + p,
-  p + ul,
-  p + ol,
-  ul + p,
-  ul + ul,
-  ul + ol,
-  ol + p,
-  ol + ol,
-  ol + ul {
-    margin-top: theme('spacing.3');
-  }
+    // Overriding rules in Forge, we'll eventually address this better.
+    h1 + p,
+    h2 + p,
+    h3 + p,
+    h4 + p,
+    h5 + p,
+    h6 + p,
+    p + p,
+    p + ul,
+    p + ol,
+    ul + p,
+    ul + ul,
+    ul + ol,
+    ol + p,
+    ol + ol,
+    ol + ul {
+        margin-top: theme('spacing.3');
+    }
 
-  &.is-success {
-    color: theme('colors.green.700');
-  }
+    &.is-success {
+        color: theme('colors.green.700');
+    }
 
-  // Code blocks can be used for pre-formatted text.
-  code {
-    font-family: $font-proxima-nova;
-    font-size: $font-regular;
-    display: block;
-  }
-
-  blockquote p {
-    font-size: $font-medium;
-  }
-
-  pre,
-  blockquote {
-    position: relative;
-    margin: theme('spacing.6') 0;
-
-    p,
-    ul,
+    // Code blocks can be used for pre-formatted text.
     code {
-      margin-left: theme('spacing.6');
+        font-family: $font-proxima-nova;
+        font-size: $font-regular;
+        display: block;
     }
 
-    &:before {
-      content: '';
-      height: 102%;
-      left: 0;
-      top: -1%;
-      width: 4px;
-      background: theme('colors.yellow.500');
-      position: absolute;
+    blockquote p {
+        font-size: $font-medium;
     }
-  }
 
-  strong {
-    font-weight: 700;
-  }
+    pre,
+    blockquote {
+        position: relative;
+        margin: theme('spacing.6') 0;
 
-  // Overrides Forge rule adding a bold weight to a tags.
-  a {
-    font-weight: $weight-normal;
-  }
+        p,
+        ul,
+        code {
+            margin-left: theme('spacing.6');
+        }
 
-  h1 {
-    font-family: theme('fontFamily.league-gothic');
-    font-size: 42px;
-    font-weight: $weight-normal;
-    text-transform: uppercase;
-    color: theme('colors.gray.900');
-  }
+        &:before {
+            content: '';
+            height: 102%;
+            left: 0;
+            top: -1%;
+            width: 4px;
+            background: theme('colors.yellow.500');
+            position: absolute;
+        }
+    }
 
-  h2,
-  h3,
-  h4 {
-    font-family: theme('fontFamily.source-sans');
-    font-weight: $weight-bold;
-    color: theme('colors.gray.900');
-  }
+    strong {
+        font-weight: 700;
+    }
 
-  h2 {
-    font-size: 42px;
-  }
+    // Makes sure links are bold or italic if the surrounding text is as well.
+    a {
+        font-weight: inherit;
+        font-style: inherit;
+    }
 
-  h3 {
-    font-size: 27px;
-  }
+    h1 {
+        font-family: theme('fontFamily.league-gothic');
+        font-size: 42px;
+        font-weight: $weight-normal;
+        text-transform: uppercase;
+        color: theme('colors.gray.900');
+    }
 
-  h4 {
-    font-size: 18px;
-  }
+    h2,
+    h3,
+    h4 {
+        font-family: theme('fontFamily.source-sans');
+        font-weight: $weight-bold;
+        color: theme('colors.gray.900');
+    }
 
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    background-color: theme('colors.white');
-    margin: 32px 0;
-    border: 1px solid theme('colors.gray.200');
-    max-width: 100%;
-    overflow: scroll;
-  }
+    h2 {
+        font-size: 42px;
+    }
 
-  th,
-  td {
-    padding: 16px;
-    padding-right: 32px;
-  }
+    h3 {
+        font-size: 27px;
+    }
 
-  th {
-    font-weight: 700;
-    text-align: left;
-    background-color: #332baa;
-    color: theme('colors.white');
-    border: none;
-  }
+    h4 {
+        font-size: 18px;
+    }
 
-  tbody tr:nth-child(even) {
-    background-color: #f4f9ff;
-  }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        background-color: theme('colors.white');
+        margin: 32px 0;
+        border: 1px solid theme('colors.gray.200');
+        max-width: 100%;
+        overflow: scroll;
+    }
 
-  hr {
-    background-color: $purple;
-    border: none;
-    height: 5px;
-    margin: 60px auto;
-    width: 33.333333333%;
-  }
+    th,
+    td {
+        padding: 16px;
+        padding-right: 32px;
+    }
 
-  details {
-    @apply pb-4;
-  }
+    th {
+        font-weight: 700;
+        text-align: left;
+        background-color: #332baa;
+        color: theme('colors.white');
+        border: none;
+    }
 
-  details > *:not(summary) {
-    @apply pt-2;
-  }
+    tbody tr:nth-child(even) {
+        background-color: #f4f9ff;
+    }
 
-  summary {
-    @apply font-bold;
-    @apply text-base;
-    cursor: pointer;
-  }
+    hr {
+        background-color: $purple;
+        border: none;
+        height: 5px;
+        margin: 60px auto;
+        width: 33.333333333%;
+    }
+
+    details {
+        @apply pb-4;
+    }
+
+    details > *:not(summary) {
+        @apply pt-2;
+    }
+
+    summary {
+        @apply font-bold;
+        @apply text-base;
+        cursor: pointer;
+    }
 }
 
 .footnotes {
-  .footnotes-list,
-  .footnote-item p {
-    font-size: $font-small;
-    color: theme('colors.gray.600');
-    overflow-wrap: break-word;
-  }
+    .footnotes-list,
+    .footnote-item p {
+        font-size: $font-small;
+        color: theme('colors.gray.600');
+        overflow-wrap: break-word;
+    }
 }
