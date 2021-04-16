@@ -11,12 +11,6 @@ const Tooltip = ({ children, tooltipContent }) => {
 
   const isSmallScreen = getFormattedScreenSize() === 'small';
 
-  const tooltipContentTextLinkStyles = css`
-    a {
-      color: white;
-    }
-  `;
-
   useEffect(() => {
     if (isSmallScreen) {
       const closeOnScroll = () => setIsOpen(false);
@@ -49,7 +43,11 @@ const Tooltip = ({ children, tooltipContent }) => {
             onMouseEnter={() => clearTimeout(closeTimeout)}
             onMouseLeave={() => setIsOpen(false)}
             className="bg-gray-700 text-white text-sm p-4 rounded-md max-w-sm"
-            css={tooltipContentTextLinkStyles}
+            css={css`
+              a {
+                color: white;
+              }
+            `}
           >
             {tooltipContent}
           </div>
