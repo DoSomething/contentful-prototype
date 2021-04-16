@@ -1,9 +1,11 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
+import { tailwind } from '../../../helpers/display';
 import { getHumanFriendlyDate } from '../../../helpers/datetime';
 import TooltipQuestionMark from '../../utilities/Tooltip/TooltipQuestionMark';
 import {
@@ -33,6 +35,8 @@ const CAMPAIGN_INFO_QUERY = gql`
     }
   }
 `;
+
+const tailwindTeal = tailwind('colors.teal.500');
 
 const CampaignInfoBlock = ({
   campaignId,
@@ -104,8 +108,15 @@ const CampaignInfoBlock = ({
                     <div>
                       <button
                         data-testid="campaign-info-block-scholarship-details-link"
-                        className="text-blue-500 pb-4"
+                        className="font-normal underline text-blurple-500 hover:text-blurple-300 pb-4"
                         type="button"
+                        css={css`
+                          :hover {
+                             {
+                              text-decoration-color: ${tailwindTeal};
+                            }
+                          }
+                        `}
                         onClick={handleViewMoreLinkSelect}
                       >
                         View Scholarship Details
