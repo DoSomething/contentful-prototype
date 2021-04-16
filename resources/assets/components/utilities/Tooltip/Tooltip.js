@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import React, { useEffect, useState } from 'react';
 import { Popover, ArrowContainer } from 'react-tiny-popover';
 
@@ -9,6 +10,12 @@ const Tooltip = ({ children, tooltipContent }) => {
   const [closeTimeout, setCloseTimeout] = useState(null);
 
   const isSmallScreen = getFormattedScreenSize() === 'small';
+
+  const tooltipContentTextLinkStyles = css`
+    a {
+      color: white;
+    }
+  `;
 
   useEffect(() => {
     if (isSmallScreen) {
@@ -42,6 +49,7 @@ const Tooltip = ({ children, tooltipContent }) => {
             onMouseEnter={() => clearTimeout(closeTimeout)}
             onMouseLeave={() => setIsOpen(false)}
             className="bg-gray-700 text-white text-sm p-4 rounded-md max-w-sm"
+            css={tooltipContentTextLinkStyles}
           >
             {tooltipContent}
           </div>
