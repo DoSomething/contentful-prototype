@@ -9,6 +9,10 @@ import PrimaryButton from '../Button/PrimaryButton';
 import { tailwind } from '../../../helpers/display';
 import { report } from '../../../helpers/monitoring';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
   const [emailValue, setEmailValue] = useState('');
@@ -33,6 +37,15 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
+    trackAnalyticsEvent('clicked_signup_newsletter', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.signup,
+      label: 'newsletter',
+      context: {
+        url: window.location.href,
+      },
+    });
+
     const client = new RestApiClient(`${env('NORTHSTAR_URL')}`);
 
     client
@@ -40,10 +53,17 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
         email: emailValue,
         email_subscription_topic: emailSubscriptionTopic,
         source: 'phoenix-next',
-        source_detail: 'lifestyle_newsletter_subscriptions-articles-page',
+        source_detail: 'lifestyle_newsletter-cta_articles_page',
       })
       .then(() => {
         setShowConfirmation(true);
+
+        trackAnalyticsEvent('submitted_call_to_action_popover', {
+          action: 'form_submitted',
+          category: EVENT_CATEGORIES.siteAction,
+          label: 'call_to_action_popover',
+          context: { contextSource: `newsletter_${emailSubscriptionTopic}` },
+        });
       })
       .catch(error => {
         report(error);
@@ -56,6 +76,17 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
         if (window.ENV.APP_ENV !== 'production') {
           console.log('🚫 failed response? caught the error!', error);
         }
+
+        trackAnalyticsEvent('failed_call_to_action_popover', {
+          action: 'form_failed',
+          category: EVENT_CATEGORIES.siteAction,
+          label: 'call_to_action_popover',
+          context: {
+            contextSource: `newsletter_${emailSubscriptionTopic}`,
+            error,
+            errorMessage,
+          },
+        });
       });
   };
 
