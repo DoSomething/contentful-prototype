@@ -323,14 +323,24 @@ const HomePageTemplate = ({
               <p className="text-lg text-white">
                 Sign up for a{' '}
                 <a
-                  className="font-normal text-white hover:text-yellow-300 underline hover:no-underline"
+                  className="font-normal text-white hover:text-white underline"
+                  css={css`
+                    &:hover {
+                      text-decoration-color: ${tailwind('colors.teal.500')};
+                    }
+                  `}
                   href="/us/campaigns"
                 >
                   campaign
                 </a>{' '}
                 or{' '}
                 <a
-                  className="font-normal text-white hover:text-yellow-300 underline hover:no-underline"
+                  className="font-normal text-white hover:text-white underline"
+                  css={css`
+                    &:hover {
+                      text-decoration-color: ${tailwind('colors.teal.500')};
+                    }
+                  `}
                   href="/authorize"
                 >
                   create an account
