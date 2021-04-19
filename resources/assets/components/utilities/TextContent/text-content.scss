@@ -1,90 +1,90 @@
 @import '../../../scss/next-toolbox.scss';
 
 .text-content {
-  strong,
-  b {
-    font-weight: 700;
-  }
-
-  em,
-  i {
-    font-style: italic;
-  }
-
-  > h1 + p,
-  > h2 + p,
-  > h3 + p,
-  > h4 + p,
-  > h5 + p,
-  > h6 + p,
-  > p + p,
-  > p + ul,
-  > p + ol,
-  > ul + p,
-  > ul + ul,
-  > ul + ol,
-  > ol + p,
-  > ol + ol,
-  > ol + ul {
-    margin-top: theme('spacing.3');
-  }
-
-  > p + .component-entry {
-    margin-top: theme('spacing.6');
-  }
-
-  > h1 {
-    color: theme('colors.gray.900');
-    font-family: theme('fontFamily.league-gothic');
-    font-size: 42px;
-    font-weight: $weight-normal;
-    line-height: 1.4;
-    text-transform: uppercase;
-  }
-
-  > h2,
-  > h3,
-  > h4 {
-    color: theme('colors.gray.900');
-    font-family: theme('fontFamily.source-sans');
-    font-weight: $weight-bold;
-  }
-
-  > h2 {
-    font-size: $font-larger;
-  }
-
-  > h3 {
-    font-size: $font-large;
-  }
-
-  > h4 {
-    font-size: 18px;
-  }
-
-  > ul,
-  > ol {
-    text-align: left;
-  }
-
-  > blockquote {
-    position: relative;
-    text-align: left;
-    margin: theme('spacing.6') 0;
-
-    &:before {
-      content: '';
-      height: 102%;
-      left: 0;
-      top: -1%;
-      width: 4px;
-      background: theme('colors.yellow.500');
-      position: absolute;
+    strong,
+    b {
+        font-weight: 700;
     }
 
-    p {
-      font-size: $font-medium;
-      margin-left: theme('spacing.6');
+    em,
+    i {
+        font-style: italic;
     }
-  }
+
+    > h1 + p,
+    > h2 + p,
+    > h3 + p,
+    > h4 + p,
+    > h5 + p,
+    > h6 + p,
+    > p + p,
+    > p + ul,
+    > p + ol,
+    > ul + p,
+    > ul + ul,
+    > ul + ol,
+    > ol + p,
+    > ol + ol,
+    > ol + ul {
+        margin-top: theme('spacing.3');
+    }
+
+    > p + .component-entry {
+        margin-top: theme('spacing.6');
+    }
+
+    > h1 {
+        color: theme('colors.gray.900');
+        font-family: theme('fontFamily.league-gothic');
+        font-size: 42px;
+        font-weight: $weight-normal;
+        line-height: 1.4;
+        text-transform: uppercase;
+    }
+
+    > h2,
+    > h3,
+    > h4 {
+        color: theme('colors.gray.900');
+        font-family: theme('fontFamily.source-sans');
+        font-weight: $weight-bold;
+    }
+
+    > h2 {
+        font-size: $font-larger;
+    }
+
+    > h3 {
+        font-size: $font-large;
+    }
+
+    > h4 {
+        font-size: 18px;
+    }
+
+    > ul,
+    > ol {
+        text-align: left;
+    }
+
+    > blockquote {
+        position: relative;
+        text-align: left;
+        margin: theme('spacing.6') 0;
+
+        &:before {
+            content: '';
+            height: 102%;
+            left: 0;
+            top: -1%;
+            width: 4px;
+            background: theme('colors.teal.500');
+            position: absolute;
+        }
+
+        p {
+            font-size: $font-medium;
+            margin-left: theme('spacing.6');
+        }
+    }
 }
