@@ -14,9 +14,10 @@
     "fideloper/proxy": "^4.0",
     "huddledigital/zendesk-laravel": "^3.2",
     "laravel/framework": "^6.0",
+    "lcobucci/jwt": "~3.3.3",
+    "phpseclib/phpseclib": "^2.0.31",
     "predis/predis": "^1.1",
-    "seatgeek/sixpack-php": "^2.1",
-    "lcobucci/jwt": "~3.3.3"
+    "seatgeek/sixpack-php": "^2.1"
   },
   "require-dev": {
     "facade/ignition": "^1.4",
