@@ -2,11 +2,13 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 
 import Query from '../Query';
 import Card from '../utilities/Card/Card';
 import { getUserId } from '../../helpers/auth';
 import Byline from '../utilities/Byline/Byline';
+import { tailwind } from '../../helpers/display';
 import Badge from '../pages/AccountPage/Rewards/Badge';
 import { contentfulImageUrl } from '../../helpers/contentful';
 import TextContent from '../utilities/TextContent/TextContent';
@@ -99,7 +101,14 @@ const Affirmation = ({
             <div className="p-3">
               <button
                 type="button"
-                className="close-button font-bold text-base"
+                css={css`
+                  :hover {
+                     {
+                      text-decoration-color: ${tailwind('colors.teal.500')};
+                    }
+                  }
+                `}
+                className="font-normal underline text-blurple-500 hover:text-blurple-300 pb-4"
                 onClick={onClose}
               >
                 Continue to Campaign
