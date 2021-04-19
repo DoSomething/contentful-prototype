@@ -44,7 +44,7 @@ const VoterRegistrationReferralsBlock = ({ title }) => (
               </div>
             ) : null}
 
-            {title ? <SectionHeader underlined title={title} /> : null}
+            {title ? <SectionHeader title={title} /> : null}
 
             <div className="md:w-2/3">
               <IndividualReferrals />

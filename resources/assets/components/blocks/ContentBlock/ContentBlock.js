@@ -45,9 +45,7 @@ const ContentBlock = ({
 
   return (
     <div className={classnames(className, 'pb-6')}>
-      {title ? (
-        <SectionHeader underlined superTitle={superTitle} title={title} />
-      ) : null}
+      {title ? <SectionHeader superTitle={superTitle} title={title} /> : null}
 
       <div className="md:grid grid-flow-row-dense grid-cols-3 gap-4">
         {image.url ? (

@@ -9,7 +9,7 @@ const Credits = () => {
   return (
     <>
       <div className="grid-wide-2/3">
-        <SectionHeader underlined title="Volunteer Credits" />
+        <SectionHeader title="Volunteer Credits" />
         <p>
           Earn volunteer credits through volunteering. Your certificates will
           appear here within 14 days of you completing a campaign, after our
