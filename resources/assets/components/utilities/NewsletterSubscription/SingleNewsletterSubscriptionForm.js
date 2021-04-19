@@ -99,7 +99,7 @@ const SingleNewsletterSubscriptionForm = ({
 
   return showConfirmation ? (
     <div className="mb-10 mt-8">
-      <p>
+      <p className="text-white">
         <CheckIcon
           className="align-baseline inline-block"
           color={tailwind('colors.green.500')}
