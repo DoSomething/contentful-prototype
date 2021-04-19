@@ -47,7 +47,7 @@ const SingleNewsletterSubscriptionForm = ({
     trackAnalyticsEvent('clicked_signup_newsletter', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.signup,
-      label: 'newsletter',
+      label: 'signup_newsletter',
       context: {
         contextSource: 'articles_page',
       },
