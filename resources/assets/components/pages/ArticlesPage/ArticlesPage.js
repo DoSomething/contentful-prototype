@@ -215,7 +215,7 @@ const ArticlesLandingPage = ({
             <PrimaryButton
               attributes={{ 'data-label': 'signup_cta_authorize' }}
               className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
-              href="/us"
+              href="/us/about/articles"
               text={ctaButtonText}
             />
           </BannerCallToAction>

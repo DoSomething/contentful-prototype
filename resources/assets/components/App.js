@@ -79,7 +79,7 @@ const App = ({ store, history }) => {
               <Route exact path="/us" component={HomePage} />
 
               {featureFlag('new_articles_page') ? (
-                <Route path="/us/articles" component={ArticlesPage} />
+                <Route exact path="/us/articles" component={ArticlesPage} />
               ) : null}
 
               <Route
