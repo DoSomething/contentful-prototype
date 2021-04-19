@@ -145,7 +145,10 @@ const ArticlesLandingPage = ({
                 Sign up for weekly emails of news, videos, how-tos, advice, and
                 ways to transform your community.
               </p>
-              <SingleNewsletterSubscriptionForm emailSubscriptionTopic="lifestyle" />
+              <SingleNewsletterSubscriptionForm
+                emailSubscriptionTopic="lifestyle"
+                submissionSourceDetails="lifestyle_newsletter-cta_articles_page"
+              />
             </div>
           </section>
 

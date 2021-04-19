@@ -9,8 +9,15 @@ import PrimaryButton from '../Button/PrimaryButton';
 import { tailwind } from '../../../helpers/display';
 import { report } from '../../../helpers/monitoring';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
-const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
+const SingleNewsletterSubscriptionForm = ({
+  emailSubscriptionTopic,
+  submissionSourceDetails,
+}) => {
   const [emailValue, setEmailValue] = useState('');
 
   const [errors, setErrors] = useState(null);
@@ -26,12 +33,25 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
   const handleOnFocus = event => {
     event.preventDefault();
 
-    // @TODO: add analytics tracking
-    console.log('handling input focus...');
+    trackAnalyticsEvent('focused_signup_newsletter', {
+      action: 'field_focused',
+      category: EVENT_CATEGORIES.siteAction,
+      label: 'signup_newsletter',
+      context: { contextSource: `newsletter_${emailSubscriptionTopic}` },
+    });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    trackAnalyticsEvent('clicked_signup_newsletter', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.signup,
+      label: 'signup_newsletter',
+      context: {
+        contextSource: 'articles_page',
+      },
+    });
 
     const client = new RestApiClient(`${env('NORTHSTAR_URL')}`);
 
@@ -40,10 +60,17 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
         email: emailValue,
         email_subscription_topic: emailSubscriptionTopic,
         source: 'phoenix-next',
-        source_detail: 'lifestyle_newsletter_subscriptions-articles-page',
+        source_detail: submissionSourceDetails,
       })
       .then(() => {
         setShowConfirmation(true);
+
+        trackAnalyticsEvent('submitted_signup_newsletter', {
+          action: 'form_submitted',
+          category: EVENT_CATEGORIES.siteAction,
+          label: 'signup_newsletter',
+          context: { contextSource: `newsletter_${emailSubscriptionTopic}` },
+        });
       })
       .catch(error => {
         report(error);
@@ -56,6 +83,17 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
         if (window.ENV.APP_ENV !== 'production') {
           console.log('🚫 failed response? caught the error!', error);
         }
+
+        trackAnalyticsEvent('failed_signup_newsletter', {
+          action: 'form_failed',
+          category: EVENT_CATEGORIES.siteAction,
+          label: 'signup_newsletter',
+          context: {
+            contextSource: `newsletter_${emailSubscriptionTopic}`,
+            error,
+            errorMessage,
+          },
+        });
       });
   };
 
@@ -114,6 +152,7 @@ const SingleNewsletterSubscriptionForm = ({ emailSubscriptionTopic }) => {
 
 SingleNewsletterSubscriptionForm.propTypes = {
   emailSubscriptionTopic: PropTypes.string.isRequired,
+  submissionSourceDetails: PropTypes.string.isRequired,
 };
 
 export default SingleNewsletterSubscriptionForm;
