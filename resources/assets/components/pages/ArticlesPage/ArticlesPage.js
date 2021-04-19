@@ -74,7 +74,7 @@ const ArticlesLandingPage = ({
       <main>
         <article data-testid="articles-page">
           {/* Page Header */}
-          <header role="banner" className="bg-white">
+          <header role="banner" className="bg-gray-100">
             <div
               className="bg-gray-400"
               css={css`
