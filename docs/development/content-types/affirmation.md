@@ -1,4 +1,4 @@
-# Affirmation (Post/Signup Conifmration)
+# Affirmation (Post/Signup Confirmation)
 
 ## Overview
 
