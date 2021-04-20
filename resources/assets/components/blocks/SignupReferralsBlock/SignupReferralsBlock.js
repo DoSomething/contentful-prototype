@@ -31,7 +31,7 @@ export const SIGNUP_REFERRALS_QUERY = gql`
 
 const SignupReferralsBlock = ({ title }) => (
   <>
-    <SectionHeader underlined title={title} />
+    <SectionHeader title={title} />
 
     <Query
       query={SIGNUP_REFERRALS_QUERY}

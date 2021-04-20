@@ -26,7 +26,6 @@ const ReferFriendsTab = () => {
     <>
       <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6">
         <SectionHeader
-          underlined
           title={
             referralIncentive
               ? 'Enter to win a $10 gift card'
@@ -51,7 +50,7 @@ const ReferFriendsTab = () => {
       </div>
 
       <div className="col-span-4 md:col-span-8 lg:col-start-2 lg:col-span-7 xxl:col-start-2 xxl:col-span-6 pt-10">
-        <SectionHeader underlined title="faq" />
+        <SectionHeader title="faq" />
 
         {referralIncentive ? (
           <Details
