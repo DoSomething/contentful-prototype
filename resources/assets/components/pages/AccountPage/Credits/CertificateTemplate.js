@@ -274,15 +274,15 @@ const CertificateTemplate = ({ certificatePost }) => {
             <View style={[styles.flex, { lineHeight: 1.1 }]}>
               <View style={{ width: '50%' }}>
                 <Text style={{ marginTop: 10, fontWeight: 'bold' }}>
-                  Alisha Mikluch
+                  Ben Kassoy
                 </Text>
-                <Text style={{ fontStyle: 'italic' }}>Campaign Lead</Text>
+                <Text style={{ fontStyle: 'italic' }}>Editor-in-chief</Text>
               </View>
 
               <View style={{ width: '50%' }}>
                 <Text style={{ marginTop: 10, textAlign: 'right' }}>
-                  For questions and verification issues, please reach out to
-                  Alisha at {'\n'}
+                  For questions and verification issues, please reach out to Ben
+                  at {'\n'}
                   <Text style={{ fontWeight: 'bold' }}>
                     volunteer@dosomething.org
                   </Text>{' '}
