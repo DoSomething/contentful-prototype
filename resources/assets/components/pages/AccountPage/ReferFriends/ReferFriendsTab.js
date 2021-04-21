@@ -12,7 +12,7 @@ import SignupReferralsBlock from '../../../blocks/SignupReferralsBlock/SignupRef
 
 const ReferFriendsTab = () => {
   const referralIncentive = featureFlag('refer_friends_incentive');
-  const referFriendsLink = getReferFriendsLink();
+  const referFriendsLink = getReferFriendsLink('member_profile');
 
   if (!referFriendsLink) {
     return (

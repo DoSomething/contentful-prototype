@@ -17,13 +17,10 @@ export function getReferralCampaignId() {
  *
  * @return {String|Undefined}
  */
-export function getReferFriendsLink() {
-  const pathname = window.location.pathname;
+export function getReferFriendsLink(utmCampaign) {
   const userId = getUserId();
   const referralCampaignId = getReferralCampaignId();
-  const utmCampaignValue = pathname.includes('/account')
-    ? 'member_profile'
-    : referralCampaignId;
+  const utmCampaignValue = utmCampaign || referralCampaignId;
 
   if (!userId || !referralCampaignId) {
     return undefined;
