@@ -51,4 +51,11 @@ describe('getReferFriendsLink', () => {
 
     expect(getReferFriendsLink()).toEqual(undefined);
   });
+
+  /** @test */
+  it('returns referral link when a custom utm_campaign is provided', () => {
+    expect(getReferFriendsLink('custom-campaign')).toEqual(
+      `${referralUrl}&campaign_id=${referralCampaignId}&utm_campaign=custom-campaign&utm_medium=referral&utm_source=ds-refer-friends`,
+    );
+  });
 });
