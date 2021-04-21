@@ -1,18 +1,12 @@
 @import '../../scss/next-toolbox.scss';
 
 .affirmation {
-  .markdown {
-    color: theme('colors.gray.900');
-  }
-
-  .affirmation__cta {
-    h3 {
-      font-weight: 800;
+    .markdown {
+        color: theme('colors.gray.900');
     }
-  }
 
-  .close-button {
-    color: $blue;
-    cursor: pointer;
-  }
+    .close-button {
+        color: $blue;
+        cursor: pointer;
+    }
 }

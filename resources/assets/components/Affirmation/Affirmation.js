@@ -21,8 +21,6 @@ export const AffirmationBlockFragment = gql`
     id
     header
     quote
-    callToActionHeader
-    callToActionDescription
     author {
       name
       jobTitle
@@ -46,14 +44,7 @@ const USER_QUERY = gql`
 // We seem to have removed the content "photo" from being used in the actual output.
 // Also it would be nice to be able to default to the Campaign Lead attached to the
 // campaign if no author is provided!
-const Affirmation = ({
-  author,
-  callToActionDescription,
-  callToActionHeader,
-  header,
-  onClose,
-  quote,
-}) => (
+const Affirmation = ({ author, header, onClose, quote }) => (
   <Card className="affirmation rounded" title={header}>
     {quote ? <TextContent className="pt-3 px-3">{quote}</TextContent> : null}
 
@@ -76,11 +67,6 @@ const Affirmation = ({
                 </p>
               </Badge>
             ) : null}
-
-            <div className="affirmation__cta p-3">
-              <h3>{callToActionHeader}</h3>
-              <p>{callToActionDescription}</p>
-            </div>
 
             {author ? (
               <Byline
@@ -123,8 +109,6 @@ const Affirmation = ({
 
 Affirmation.propTypes = {
   author: PropTypes.object,
-  callToActionDescription: PropTypes.string,
-  callToActionHeader: PropTypes.string,
   header: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   quote: PropTypes.string,
@@ -132,11 +116,9 @@ Affirmation.propTypes = {
 
 Affirmation.defaultProps = {
   author: null,
-  callToActionDescription: "Let's Do This.",
   header: 'Thanks for joining us!',
   quote:
     "By joining this campaign, you've teamed up with millions of other members who are making an impact on the causes affecting your world. As a DoSomething.org member, you're part of something bigger. You're part of a global movement for good.",
-  callToActionHeader: "Woohoo! You're signed up.",
 };
 
 export default Affirmation;
