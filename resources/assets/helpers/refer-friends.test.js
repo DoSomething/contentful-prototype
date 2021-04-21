@@ -21,7 +21,7 @@ describe('getReferFriendsLink', () => {
   /** @test */
   it('returns referral link when user is authenticated & campaign ID query param is present', () => {
     expect(getReferFriendsLink()).toEqual(
-      `${referralUrl}&campaign_id=${referralCampaignId}`,
+      `${referralUrl}&campaign_id=${referralCampaignId}&utm_campaign=456&utm_medium=referral&utm_source=ds-refer-friends`,
     );
   });
 
@@ -34,7 +34,7 @@ describe('getReferFriendsLink', () => {
     };
 
     expect(getReferFriendsLink()).toEqual(
-      `${referralUrl}&campaign_id=${defaultReferralCampaignId}`,
+      `${referralUrl}&campaign_id=${defaultReferralCampaignId}&utm_campaign=789&utm_medium=referral&utm_source=ds-refer-friends`,
     );
   });
 
