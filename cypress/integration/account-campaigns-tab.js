@@ -63,23 +63,6 @@ describe('User Account Campaigns Tab', () => {
   });
 
   /** @test */
-  it('Displays the caption of a photo post under the photo', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('UserPostsQuery', {
-      postsByUserId: [
-        {
-          type: 'photo',
-        },
-      ],
-    });
-
-    cy.login(user);
-    cy.visit(`/us/account/campaigns`);
-    cy.findByTestId('photo-post-caption').should('have.length', 1);
-  });
-
-  /** @test */
   it('Displays the caption of a text post at the top of the Postcard', () => {
     const user = userFactory();
 
