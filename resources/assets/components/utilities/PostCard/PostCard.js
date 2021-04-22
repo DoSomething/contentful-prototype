@@ -36,7 +36,7 @@ export const postCardFragment = gql`
   }
 `;
 
-const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
+const PostCard = ({ post, hideQuantity, hideReactions }) => {
   const isAnonymous = post.actionDetails.anonymous;
 
   // If this post is for an anonymous action, label it with the state (if available).
@@ -114,12 +114,6 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
           {post.impact && !hideQuantity ? (
             <p className="mt-1 text-gray-600 text-sm">{post.impact}</p>
           ) : null}
-
-          {post.type !== 'text' && post.text && !hideCaption ? (
-            <p data-testid="photo-post-caption" className="text-gray-600 mt-3">
-              {post.text}
-            </p>
-          ) : null}
         </div>
       </div>
     </Card>
@@ -127,14 +121,12 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
 };
 
 PostCard.propTypes = {
-  hideCaption: PropTypes.bool,
   hideQuantity: PropTypes.bool,
   hideReactions: PropTypes.bool,
   post: propType(postCardFragment).isRequired,
 };
 
 PostCard.defaultProps = {
-  hideCaption: false,
   hideQuantity: false,
   hideReactions: false,
 };
