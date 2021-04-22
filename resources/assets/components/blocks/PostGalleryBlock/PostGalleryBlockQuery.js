@@ -167,7 +167,6 @@ class PostGalleryBlockQuery extends React.Component {
       campaignId,
       className,
       count,
-      hideCaption,
       hideQuantity,
       hideReactions,
       id,
@@ -210,7 +209,6 @@ class PostGalleryBlockQuery extends React.Component {
             <PostGallery
               id={id}
               className={classnames(className)}
-              hideCaption={hideCaption}
               hideQuantity={hideQuantity}
               hideReactions={hideReactions}
               itemsPerRow={itemsPerRow}
@@ -234,7 +232,6 @@ PostGalleryBlockQuery.propTypes = {
   className: PropTypes.string,
   count: PropTypes.number,
   filterType: PropTypes.string,
-  hideCaption: PropTypes.bool,
   hideQuantity: PropTypes.bool,
   hideReactions: PropTypes.bool,
   id: PropTypes.string,
@@ -250,7 +247,6 @@ PostGalleryBlockQuery.defaultProps = {
   className: null,
   count: 9,
   filterType: null,
-  hideCaption: false,
   hideQuantity: false,
   hideReactions: false,
   id: null,
