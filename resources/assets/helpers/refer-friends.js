@@ -17,13 +17,14 @@ export function getReferralCampaignId() {
  *
  * @return {String|Undefined}
  */
-export function getReferFriendsLink() {
+export function getReferFriendsLink(utmCampaign) {
   const userId = getUserId();
   const referralCampaignId = getReferralCampaignId();
+  const utmCampaignValue = utmCampaign || referralCampaignId;
 
   if (!userId || !referralCampaignId) {
     return undefined;
   }
 
-  return `${PHOENIX_URL}/us/join?user_id=${userId}&campaign_id=${referralCampaignId}`;
+  return `${PHOENIX_URL}/us/join?user_id=${userId}&campaign_id=${referralCampaignId}&utm_campaign=${utmCampaignValue}&utm_medium=referral&utm_source=ds-refer-friends`;
 }
