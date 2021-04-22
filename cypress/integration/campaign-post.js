@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 
-import { MockList } from 'graphql-tools';
 import { userFactory } from '../fixtures/user';
 import { campaignId, POSTS_API } from '../fixtures/constants';
 import { newTextPost, newPhotoPost } from '../fixtures/posts';
