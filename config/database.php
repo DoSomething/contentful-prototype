@@ -133,15 +133,21 @@ return [
 
     'redis' => [
 
-        'client' => env('REDIS_CLIENT', 'phpredis'),
+        'client' => 'phpredis',
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
             'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+
+            // We use Heroku Redis, which uses a self-signed certificate & thus cannot be verified
+            // by OpenSSL. Thus, we disable certificate validation per these instructions:
+            // <https://help.heroku.com/HC0F8CUS/redis-connection-issues>
+            'context' => [
+                'stream' => ['verify_peer' => false, 'verify_peer_name' => false],
+            ],
         ],
 
         'default' => [
-            'scheme' => env('REDIS_SCHEME', 'tls'),
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
@@ -150,7 +156,6 @@ return [
         ],
 
         'cache' => [
-            'scheme' => env('REDIS_SCHEME', 'tls'),
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
