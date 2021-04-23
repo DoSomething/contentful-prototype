@@ -22,7 +22,7 @@ const PostCreatedModal = ({ affirmationContent, onClose, title, userId }) => (
           {postData => {
             const count = postData.postsCount;
 
-            if (count > 3) {
+            if (!count || count > 3) {
               return null;
             }
 

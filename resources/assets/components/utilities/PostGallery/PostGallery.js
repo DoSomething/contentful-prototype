@@ -27,7 +27,6 @@ const PostGallery = props => {
   const {
     id,
     className,
-    hideCaption,
     hideQuantity,
     hideReactions,
     itemsPerRow,
@@ -58,7 +57,6 @@ const PostGallery = props => {
           <PostCard
             key={post.id}
             post={post}
-            hideCaption={hideCaption}
             hideQuantity={hideQuantity}
             hideReactions={hideReactions}
           />
@@ -91,7 +89,6 @@ const PostGallery = props => {
 
 PostGallery.propTypes = {
   className: PropTypes.string,
-  hideCaption: PropTypes.bool,
   hideQuantity: PropTypes.bool,
   hideReactions: PropTypes.bool,
   id: PropTypes.string,
@@ -106,7 +103,6 @@ PostGallery.propTypes = {
 
 PostGallery.defaultProps = {
   className: null,
-  hideCaption: false,
   hideQuantity: false,
   hideReactions: false,
   id: null,
