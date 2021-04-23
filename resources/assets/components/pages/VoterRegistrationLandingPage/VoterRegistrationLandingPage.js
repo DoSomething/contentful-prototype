@@ -81,115 +81,6 @@ const VoterRegistrationLandingPage = () => (
           </h2>
 
           <Details>
-            <Summary text="Is COVID-19 going to impact the election where I live?" />
-
-            <DetailsParagraph>
-              Because we don’t know how long the outbreak will affect us, it’s
-              safe to prepare for the possibility that your election will be
-              affected. Some states, such as Ohio have postponed their primary
-              elections. While others, such as Florida, chose to continue as
-              planned. Many polling places have changed due to safety concerns
-              and reduced staff and volunteers. As this situation is rapidly
-              evolving, some of these changes are occurring late in the game.{' '}
-              <MarkdownLink
-                href="https://www.vote.org/covid-19/"
-                text="Check on the status of your elections."
-              />
-            </DetailsParagraph>
-          </Details>
-
-          <Details>
-            <Summary text="How do I vote by mail?" />
-
-            <DetailsParagraph>
-              First step: make sure you’re registered to vote. Then, unless you
-              live in a state that automatically mails voters ballots, you must{' '}
-              <MarkdownLink
-                href="https://vote-absentee.com/?utm_source=DST"
-                text="fill out an absentee ballot application."
-              />{' '}
-              Once you receive your ballot in the mail, cast your vote by
-              mailing it back or, in some cases, dropping it off at a vote
-              center. Make sure to request and return your ballot before the
-              respective{' '}
-              <MarkdownLink
-                href="https://www.vote.org/absentee-ballot-deadlines/"
-                text="deadlines in your state."
-              />
-            </DetailsParagraph>
-
-            <DetailsParagraph className="mt-0">
-              Note: Due to COVID-19, many states have temporarily changed their
-              absentee ballot laws. In addition, USPS has delayed timelines for
-              mail, so make sure to request your absentee ballot at least two
-              weeks before the deadline and send in your ballot two weeks before
-              the election.
-            </DetailsParagraph>
-          </Details>
-
-          <Details>
-            <Summary text="I'm not 18, but I will be by Election Day (November 3, 2020). Can I still register to vote?" />
-
-            <DetailsParagraph>
-              It depends on your state. In most states, YES. In all but a few
-              states, you can register to vote if you&apos;re younger than 18,
-              as long as you’ll be 18 by Election Day. In others, you may need
-              to be a certain age to register even if you&apos;ll be 18 by
-              Election Day.
-            </DetailsParagraph>
-
-            <DetailsParagraph className="mt-0">
-              In the following states, you can register starting these many
-              days/months before your 18th birthday:
-            </DetailsParagraph>
-
-            <ul className="list-disc pl-8 mt-2">
-              <li>Alaska: 90 days</li>
-              <li>Georgia: 6 months</li>
-              <li>Iowa: 6 months</li>
-              <li>Missouri: 6 months</li>
-              <li>Texas: 2 months</li>
-            </ul>
-
-            <DetailsParagraph className="mt-0">
-              If you qualify under these rules, register now -- it just takes 2
-              minutes! If you’re not sure, you can{' '}
-              <MarkdownLink
-                href="https://www.usa.gov/voter-registration-age-requirements"
-                text="check your state’s rules."
-              />{' '}
-              And if you can’t vote this year, you can help your friends get
-              registered.
-            </DetailsParagraph>
-
-            <DetailsParagraph className="mt-0">
-              Some states even let 17-year-olds vote in primary elections if
-              they&apos;ll be 18 by the general election --{' '}
-              <MarkdownLink
-                href="https://www.fairvote.org/facts_17_year_old_primary_voting"
-                text="see if you qualify here."
-              />
-            </DetailsParagraph>
-          </Details>
-
-          <Details>
-            <Summary text="What is voter pre-registration?" />
-
-            <DetailsParagraph>
-              In{' '}
-              <MarkdownLink
-                href="https://www.usa.gov/voter-registration-age-requirements"
-                text="some states"
-              />
-              , you can pre-register to vote when you are 16 or 17. Then on your
-              18th birthday, your voter registration will be automatically
-              processed. This is a great way to ensure you don’t miss
-              registration deadlines, but be sure to update your
-              pre-registration if your address changes before you turn 18.
-            </DetailsParagraph>
-          </Details>
-
-          <Details>
             <Summary text="Does my vote actually matter?" />
 
             <DetailsParagraph>
@@ -205,20 +96,56 @@ const VoterRegistrationLandingPage = () => (
             </DetailsParagraph>
 
             <DetailsParagraph className="mt-0">
-              There will be close races all over the country, and at least 10
-              states have senate or gubernatorial (governor) elections{' '}
+              In the 2020 elections,{' '}
               <MarkdownLink
-                href="https://circle.tufts.edu/yesi2020"
-                text="“where
-              youth are poised to have a disproportionately high electoral
-              impact in 2020.”"
-              />
+                href="https://ballotpedia.org/United_States_Senate_election_in_Georgia,_2020_(Perdue_vs._Ossoff_runoff)"
+                text="Georgia Sen. Jon Ossoff"
+              />{' '}
+              won his race by a margin of victory of .83% -- and experts think
+              that{' '}
+              <MarkdownLink
+                href="https://circle.tufts.edu/latest-research/black-youth-play-major-role-democratic-victories-georgia-runoffs"
+                text="young voters (Black youth in particular) were instrumental to his win."
+              />{' '}
+              You can expect similarly close races all over the country in the
+              2022 elections.
             </DetailsParagraph>
 
             <DetailsParagraph className="mt-0">
               One vote matters. *Your* vote matters. And together, our votes
               have the collective power to decide the future of the country we
               want to see.
+            </DetailsParagraph>
+          </Details>
+
+          <Details>
+            <Summary text="How do I vote by mail?" />
+
+            <DetailsParagraph>
+              First step: make sure you’re registered to vote. Then, unless you
+              live in a state that automatically mails voters ballots, you must{' '}
+              <MarkdownLink
+                href="https://www.vote.org/absentee-ballot/"
+                text="fill out an absentee ballot application."
+              />{' '}
+              Once you receive your ballot in the mail, cast your vote by
+              mailing it back or, in some cases, dropping it off at a vote
+              center. Make sure to request and return your ballot before the
+              respective{' '}
+              <MarkdownLink
+                href="https://www.vote.org/absentee-ballot-deadlines/"
+                text="deadlines in your state."
+              />
+            </DetailsParagraph>
+
+            <DetailsParagraph className="mt-0">
+              Note: Due to COVID-19, many states temporarily changed their
+              absentee ballot laws in 2020, and they may revert to previous
+              guidelines in the 2022 elections.{' '}
+              <MarkdownLink
+                href="https://www.vote.org/absentee-voting-rules/"
+                text="Be sure to stay up to date with your state’s regulations."
+              />
             </DetailsParagraph>
           </Details>
 
@@ -253,6 +180,37 @@ const VoterRegistrationLandingPage = () => (
           </Details>
 
           <Details>
+            <Summary text="I'm not 18, but I will be by Election Day (November 8, 2022). Can I still register to vote?" />
+
+            <DetailsParagraph>
+              It depends on your state. In most states, YES. In all but a few
+              states, you can register to vote if you&apos;re younger than 18,
+              as long as you’ll be 18 by Election Day. In others, you may need
+              to be a certain age to register even if you&apos;ll be 18 by
+              Election Day.
+            </DetailsParagraph>
+
+            <DetailsParagraph className="mt-0">
+              <MarkdownLink
+                href="https://www.usa.gov/voter-registration-age-requirements"
+                text="Check your state’s age requirement rules"
+              />{' '}
+              to see if you qualify. If you do, register now -- it just takes 2
+              minutes! And if you can’t vote this year, you can help your
+              friends get registered.
+            </DetailsParagraph>
+
+            <DetailsParagraph className="mt-0">
+              Some states even let 17-year-olds vote in primary elections if
+              they&apos;ll be 18 by the general election --{' '}
+              <MarkdownLink
+                href="https://www.fairvote.org/facts_17_year_old_primary_voting"
+                text="see if you qualify here."
+              />
+            </DetailsParagraph>
+          </Details>
+
+          <Details>
             <Summary text="How do I vote if I’m at college in a different state?" />
 
             <DetailsParagraph>
@@ -275,6 +233,23 @@ const VoterRegistrationLandingPage = () => (
                 href="https://www.vote.org/absentee-voting-rules/"
                 text="Learn more about early and absentee voting here."
               />
+            </DetailsParagraph>
+          </Details>
+
+          <Details>
+            <Summary text="What is voter pre-registration?" />
+
+            <DetailsParagraph>
+              In{' '}
+              <MarkdownLink
+                href="https://www.usa.gov/voter-registration-age-requirements"
+                text="some states"
+              />
+              , you can pre-register to vote when you are 16 or 17. Then on your
+              18th birthday, your voter registration will be automatically
+              processed. This is a great way to ensure you don’t miss
+              registration deadlines, but be sure to update your
+              pre-registration if your address changes before you turn 18.
             </DetailsParagraph>
           </Details>
 
