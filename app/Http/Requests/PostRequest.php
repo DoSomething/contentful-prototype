@@ -30,9 +30,6 @@ class PostRequest extends FormRequest
                     'file.required' => 'An uploaded photo is required.',
                     'quantity.required_if' => 'The quantity field is required.',
                     'quantity.min' => $this->setMinQuantityMessage(),
-                    'text.max' => 'The caption field may not be greater than :max characters.',
-                    'text.min' => 'The caption field may not be less than :min characters.',
-                    'text.required' => 'The caption field for your photo is required.',
                     'number_of_participants.integer' => 'The number of participants must be a number.',
                     'hours_spent.numeric' => 'The hours must be a number',
                 ];
