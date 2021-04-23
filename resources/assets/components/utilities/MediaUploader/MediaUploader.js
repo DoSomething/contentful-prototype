@@ -57,7 +57,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
       data-testid="media-uploader"
       htmlFor="media-uploader"
       className={classnames(
-        'cursor-pointer block h-0 overflow-hidden relative bg-gray-200 text-gray-600 mb-3 w-full hover:bg-gray-300 focus:bg-gray-300',
+        'cursor-pointer block h-0 overflow-hidden relative bg-gray-200 text-gray-600 my-auto w-full hover:bg-gray-300 focus:bg-gray-300',
         {
           'border border-solid border-red-500 shake': hasError || internalError,
         },
@@ -68,7 +68,7 @@ const MediaUploader = ({ label, onChange, hasError, media }) => {
     >
       <div
         className={classnames(
-          'items-center flex h-full justify-center left-0 absolute top-0 w-full',
+          'items-center flex h-full justify-center left-0 absolute top-0 w-full align-middle',
           {
             'bg-gray-100': filePreviewUrl,
             'flex-col': !filePreviewUrl,

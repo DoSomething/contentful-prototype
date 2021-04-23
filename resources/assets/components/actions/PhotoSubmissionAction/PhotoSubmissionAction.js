@@ -18,7 +18,6 @@ import FormValidation from '../../utilities/Form/FormValidation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { withoutUndefined, withoutNulls } from '../../../helpers/data';
 import MediaUploader from '../../utilities/MediaUploader/MediaUploader';
-import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import {
@@ -38,8 +37,6 @@ export const PhotoSubmissionBlockFragment = gql`
   fragment PhotoSubmissionBlockFragment on PhotoSubmissionBlock {
     actionId
     title
-    captionFieldLabel
-    captionFieldPlaceholderMessage
     showQuantityField
     quantityFieldLabel
     quantityFieldPlaceholder
@@ -52,8 +49,6 @@ export const PhotoSubmissionBlockFragment = gql`
     affirmationContent
   }
 `;
-
-const CAPTION_CHARACTER_LIMIT = 60;
 
 class PhotoSubmissionAction extends PostForm {
   /**
@@ -102,7 +97,6 @@ class PhotoSubmissionAction extends PostForm {
     };
 
     this.state = {
-      captionValue: '',
       mediaValue: this.defaultMediaState,
       numberOfParticipantsValue: '',
       quantityValue: '',
@@ -154,7 +148,6 @@ class PhotoSubmissionAction extends PostForm {
   fields = () => {
     const items = {
       file: 'media',
-      text: 'caption',
       why_participated: 'whyParticipated',
       hours_spent: 'hoursSpent',
     };
@@ -286,7 +279,6 @@ class PhotoSubmissionAction extends PostForm {
     );
 
     this.setState({
-      captionValue: '',
       mediaValue: this.defaultMediaState,
       quantityValue: '',
       shouldResetForm: false,
@@ -373,44 +365,13 @@ class PhotoSubmissionAction extends PostForm {
               >
                 <div className="wrapper">
                   <div className="form-section md:pr-3">
-                    <div className="wrapper pb-3">
+                    <div className="wrapper">
                       <MediaUploader
                         label="Add your photo here"
                         media={this.state.mediaValue}
                         onChange={this.handleFileUpload}
                         hasError={has(errors, 'media')}
                       />
-
-                      <div className="form-item">
-                        <label
-                          className={classnames('field-label', {
-                            'has-error': has(errors, 'caption'),
-                          })}
-                          htmlFor="caption"
-                        >
-                          {this.props.captionFieldLabel}
-                        </label>
-
-                        <input
-                          className={classnames('text-field', {
-                            'has-error shake': has(errors, 'caption'),
-                          })}
-                          type="text"
-                          id="caption"
-                          name="caption"
-                          placeholder={this.props.captionFieldPlaceholder}
-                          value={this.state.captionValue}
-                          onChange={this.handleChange}
-                          required
-                          maxLength={CAPTION_CHARACTER_LIMIT}
-                        />
-
-                        <CharacterLimit
-                          className="pt-1"
-                          limit={CAPTION_CHARACTER_LIMIT}
-                          text={this.state.captionValue}
-                        />
-                      </div>
                     </div>
                   </div>
 
@@ -576,8 +537,6 @@ PhotoSubmissionAction.propTypes = {
   affirmationContent: PropTypes.string,
   buttonText: PropTypes.string,
   campaignId: PropTypes.string,
-  captionFieldLabel: PropTypes.string,
-  captionFieldPlaceholder: PropTypes.string,
   className: PropTypes.string,
   id: PropTypes.string.isRequired, // @TODO: rename property to blockId
   informationContent: PropTypes.string,
@@ -605,8 +564,6 @@ PhotoSubmissionAction.defaultProps = {
     "Thanks for joining the movement, and submitting your photo! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit a new photo',
   campaignId: null,
-  captionFieldLabel: 'Add a title to your photo.',
-  captionFieldPlaceholder: '60 characters or less',
   className: null,
   informationContent:
     'A DoSomething staffer will review and approve your photo.',

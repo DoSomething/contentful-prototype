@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 
-import { MockList } from 'graphql-tools';
 import { userFactory } from '../fixtures/user';
 import { campaignId, POSTS_API } from '../fixtures/constants';
 import { newTextPost, newPhotoPost } from '../fixtures/posts';
@@ -122,7 +121,6 @@ describe('Campaign Post', () => {
       cy.get('input[type="file"]').attachFile('upload.jpg');
 
       // Fill out other fields:
-      cy.get('[name="caption"]').type("Let's do this!");
       cy.get('[name="quantity"]').type('1');
       cy.get('[name="whyParticipated"]').type('Testing');
 
@@ -169,7 +167,6 @@ describe('Campaign Post', () => {
       cy.get('input[type="file"]').attachFile('upload.jpg');
 
       // Fill out other fields:
-      cy.get('[name="caption"]').type("Let's do this!");
       cy.get('[name="quantity"]').type('1');
       cy.get('[name="whyParticipated"]').type('Testing');
 
@@ -231,7 +228,6 @@ describe('Campaign Post', () => {
         cy.get('input[type="file"]').attachFile('upload.jpg');
 
         // Fill out other fields:
-        cy.get('[name="caption"]').type("Let's do this!");
         cy.get('[name="quantity"]').type('1');
         cy.get('[name="hours"]').type('1');
         cy.get('[name="minutes"]').type('30');
@@ -285,7 +281,6 @@ describe('Campaign Post', () => {
         cy.get('input[type="file"]').attachFile('upload.jpg');
 
         // Fill out other fields:
-        cy.get('[name="caption"]').type("Let's do this!");
         cy.get('[name="quantity"]').type('1');
         cy.get('[name="whyParticipated"]').type('Testing');
 
@@ -375,7 +370,6 @@ describe('Campaign Post', () => {
         cy.get('input[type="file"]').attachFile('upload.jpg');
 
         // Fill out other fields:
-        cy.get('[name="caption"]').type("Let's do this!");
         cy.get('[name="quantity"]').type('1');
         cy.get('[name="whyParticipated"]').type('Testing');
 
