@@ -27,47 +27,6 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function text_caption_is_required_to_submit_photo_post()
-    {
-        $this->storePhotoPost([
-            'type' => 'photo',
-            'quantity' => '30',
-            'file' => 'not-a-file-upload',
-            'why_participated' => 'Because testing is very important.',
-        ]);
-
-        $this->assertValidationError('text');
-    }
-
-    /** @test */
-    public function text_caption_must_be_4_characters_or_longer_to_submit_photo_post()
-    {
-        $this->storePhotoPost([
-            'type' => 'photo',
-            'text' => 'duh',
-            'quantity' => '30',
-            'file' => 'not-a-file-upload',
-            'why_participated' => 'Because testing is very important.',
-        ]);
-
-        $this->assertValidationError('text');
-    }
-
-    /** @test */
-    public function text_caption_must_be_60_characters_or_shorter_to_submit_photo_post()
-    {
-        $this->storePhotoPost([
-            'type' => 'photo',
-            'text' => 'This text caption is way longer than 60 characters and thus should fail!',
-            'quantity' => '30',
-            'file' => 'not-a-file-upload',
-            'why_participated' => 'Because testing is very important.',
-        ]);
-
-        $this->assertValidationError('text');
-    }
-
-    /** @test */
     public function quantity_is_required_if_field_is_displayed_to_submit_photo_post()
     {
         $this->storePhotoPost([
