@@ -4,6 +4,7 @@
   "require": {
     "php": "~7.4.0",
     "ext-newrelic": "*",
+    "ext-redis": "*",
     "barryvdh/laravel-debugbar": "^3.0",
     "contentful/contentful": "^6.0",
     "contentful/laravel": "^7.0",
