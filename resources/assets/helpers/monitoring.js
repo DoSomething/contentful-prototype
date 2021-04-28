@@ -11,7 +11,7 @@ import Debug from '../services/Debug';
  * @param {Object} customAttributes
  */
 export function report(error, customAttributes = null) {
-  let errorInstance;
+  let errorInstance = error;
 
   // Print to the console for devs:
   console.error(`[report] ${error}`);
