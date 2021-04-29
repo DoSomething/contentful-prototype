@@ -393,7 +393,7 @@ const HomePageTemplate = ({
                     image={MemberBenefitsImages.Content}
                     link={{
                       copy: 'Read More',
-                      url: 'https://join.dosomething.org',
+                      url: '/us/articles',
                     }}
                   />
                 </li>
