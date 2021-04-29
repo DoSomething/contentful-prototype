@@ -110,7 +110,7 @@ const SiteFooter = () => {
             <li>
               <a
                 className="font-bold no-underline hover:underline"
-                href="https://join.dosomething.org/"
+                href="/us/about"
                 onClick={event =>
                   handleFooterTracking('who_we_are', event.target.href)
                 }
@@ -154,7 +154,7 @@ const SiteFooter = () => {
             <li>
               <a
                 className="font-bold no-underline hover:underline"
-                href="https://lets.dosomething.org/"
+                href="/us/articles"
                 onClick={event =>
                   handleFooterTracking('articles', event.target.href)
                 }

@@ -642,7 +642,7 @@ class SiteNavigation extends React.Component {
 
             <li className="menu-nav__item">
               <a
-                href="https://lets.dosomething.org"
+                href="/us/articles"
                 onClick={() =>
                   this.handleOnClickLink({
                     name: 'clicked_nav_link_articles',
@@ -658,7 +658,7 @@ class SiteNavigation extends React.Component {
 
             <li className="menu-nav__item">
               <a
-                href="https://join.dosomething.org/"
+                href="/us/about"
                 onClick={() =>
                   this.handleOnClickLink({
                     name: 'clicked_nav_link_about',
