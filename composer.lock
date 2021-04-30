@@ -1685,16 +1685,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.1",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1"
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/35ea11d335fd638b5882ff1725228b3d35496ab1",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
                 "shasum": ""
             },
             "require": {
@@ -1754,9 +1754,9 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.1"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
-            "time": "2021-03-21T16:25:00+00:00"
+            "time": "2021-04-26T09:17:50+00:00"
         },
         {
             "name": "huddledigital/zendesk-laravel",
@@ -6110,16 +6110,16 @@
         },
         {
             "name": "zendesk/zendesk_api_client_php",
-            "version": "v2.2.10",
+            "version": "v2.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendesk/zendesk_api_client_php.git",
-                "reference": "13f0c1f299796cc271a2b84c7eda98b3ab0c97a9"
+                "reference": "b451b743d9d6d81a9abf7cb86e70ec9c5332123e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendesk/zendesk_api_client_php/zipball/13f0c1f299796cc271a2b84c7eda98b3ab0c97a9",
-                "reference": "13f0c1f299796cc271a2b84c7eda98b3ab0c97a9",
+                "url": "https://api.github.com/repos/zendesk/zendesk_api_client_php/zipball/b451b743d9d6d81a9abf7cb86e70ec9c5332123e",
+                "reference": "b451b743d9d6d81a9abf7cb86e70ec9c5332123e",
                 "shasum": ""
             },
             "require": {
@@ -6149,9 +6149,9 @@
             "homepage": "https://github.com/zendesk/zendesk_api_client_php",
             "support": {
                 "issues": "https://github.com/zendesk/zendesk_api_client_php/issues",
-                "source": "https://github.com/zendesk/zendesk_api_client_php/tree/v2.2.10"
+                "source": "https://github.com/zendesk/zendesk_api_client_php/tree/v2.2.11"
             },
-            "time": "2020-10-02T15:42:03+00:00"
+            "time": "2021-04-28T21:55:42+00:00"
         }
     ],
     "packages-dev": [
