@@ -92,7 +92,7 @@ const VoterRegStatusBlock = ({ userId }) => {
       <div className="m-3" data-testid="unregistered-status">
         <p>We don&#39;t have your voter registration.</p>
         <a
-          href={`https://vote.dosomething.org/?r=${getTrackingSource({
+          href={`/us/vote/?r=${getTrackingSource({
             source: 'web',
             sourceDetails: 'profile',
           })}`}
