@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-import Spinner from '../../../artifacts/Spinner/Spinner';
-import ToggleButton from '../../../utilities/Button/ToggleButton';
+import Spinner from '../../artifacts/Spinner/Spinner';
+import ToggleButton from '../Button/ToggleButton';
 import {
   EMAIL_SUBSCRIPTION_QUERY,
   EMAIL_SUBSCRIPTION_MUTATION,
-} from '../../../utilities/NewsletterSubscription/ToggleSubscriptionButton';
+} from '../NewsletterSubscription/ToggleSubscriptionButton';
 
-const EmailSubscriptionItem = ({
+const LegacyEmailSubscriptionItem = ({
   attributes,
   topic,
   name,
@@ -75,7 +75,7 @@ const EmailSubscriptionItem = ({
   );
 };
 
-EmailSubscriptionItem.propTypes = {
+LegacyEmailSubscriptionItem.propTypes = {
   attributes: PropTypes.object,
   topic: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -84,8 +84,8 @@ EmailSubscriptionItem.propTypes = {
   descriptionHeader: PropTypes.string.isRequired,
 };
 
-EmailSubscriptionItem.defaultProps = {
+LegacyEmailSubscriptionItem.defaultProps = {
   attributes: null,
 };
 
-export default EmailSubscriptionItem;
+export default LegacyEmailSubscriptionItem;
