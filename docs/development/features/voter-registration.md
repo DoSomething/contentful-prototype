@@ -46,15 +46,17 @@ This tracking source value is saved within the serialized `details` field of the
 
 ## Voting Portal
 
-We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It displays a form that prompts for email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
+We've transitioned to a new voting portal hosted directly on our site at `/us/vote`. The Tracking Source used for the voter registration form on this page functions as described above in [Tracking Source]('#tracking-source'). In the event that an `r` query parameter is present in the URL we'll include that value as the tracking source instead.
+
+## Legacy Voting Portal
+
+We previously hosted our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It displays a form that prompts for email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
 
 When constructing a URL for the voting portal, we include the tracking source via a `r` query parameter, which is then added as a `source` parameter when redirecting the user to the RTV registration site after they enter their email and zip (handled via JS on Instapage).
 
 Example:
 
 > vote.dosomething.org/covid19?r=campaignID:8017,campaignRunID:8022,source:web,source_details:VoterRegQuiz_completed_notsure
-
-We've started the process of transitioning to a new voting portal hosted directly on our site at `/us/vote`. The Tracking Source used for the voter registration form on this page functions as described above in [Tracking Source]('#tracking-source'). In the event that an `r` query parameter is present in the URL we'll include that value as the tracking source instead.
 
 ### Influencers / Marketing Partners
 
