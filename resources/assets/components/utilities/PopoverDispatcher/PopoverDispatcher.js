@@ -9,7 +9,11 @@ import { getUserId } from '../../../helpers/auth';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBanner from './SitewideBanner/SitewideBanner';
 import DelayedElement from '../DelayedElement/DelayedElement';
-import { isCurrentPathInPaths, query } from '../../../helpers/url';
+import {
+  isCurrentPathInPaths,
+  popoverSourceDetailPathCheck,
+  query,
+} from '../../../helpers/url';
 import CtaPopoverEmailForm from './CtaPopover/CtaPopoverEmailForm';
 import DismissableElement from '../DismissableElement/DismissableElement';
 import {
@@ -71,7 +75,7 @@ const PopoverDispatcher = () => {
               <CtaPopoverEmailForm
                 handleComplete={handleComplete}
                 emailSubscriptionTopic="lifestyle"
-                submissionSourceDetails="lifestyle_newsletter-cta_"
+                submissionSourceDetails={`lifestyle_newsletter-cta_${popoverSourceDetailPathCheck()}`}
               />
             </CtaPopover>
           </DelayedElement>
