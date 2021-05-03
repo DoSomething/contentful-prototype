@@ -12,7 +12,11 @@ import {
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
 
-const CtaPopoverEmailForm = ({ handleComplete }) => {
+const CtaPopoverEmailForm = ({
+  emailSubscriptionTopic,
+  handleComplete,
+  submissionSourceDetails,
+}) => {
   const [emailValue, setEmailValue] = useState('');
   const [errorResponse, setErrorResponse] = useState(null);
   const [showAffirmation, setShowAffirmation] = useState(false);
@@ -23,7 +27,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       action: 'field_focused',
       category: EVENT_CATEGORIES.siteAction,
       label: 'call_to_action_popover',
-      context: { contextSource: 'newsletter_scholarships' },
+      context: { contextSource: `newsletter_${emailSubscriptionTopic}` },
     });
   };
 
@@ -34,7 +38,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       action: 'form_submitted',
       category: EVENT_CATEGORIES.siteAction,
       label: 'call_to_action_popover',
-      context: { contextSource: 'newsletter_scholarships' },
+      context: { contextSource: `newsletter_${emailSubscriptionTopic}` },
     });
 
     const client = new RestApiClient(`${env('NORTHSTAR_URL')}`);
@@ -42,9 +46,9 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
     client
       .post('/v2/subscriptions', {
         email: emailValue,
-        email_subscription_topic: 'scholarships',
+        email_subscription_topic: emailSubscriptionTopic,
         source: 'phoenix-next',
-        source_detail: 'scholarship_newsletter-cta_scholarship-page',
+        source_detail: submissionSourceDetails,
       })
       .then(response => {
         setShowAffirmation(true);
@@ -129,7 +133,9 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
 };
 
 CtaPopoverEmailForm.propTypes = {
+  emailSubscriptionTopic: PropTypes.string.isRequired,
   handleComplete: PropTypes.func.isRequired,
+  submissionSourceDetails: PropTypes.string.isRequired,
 };
 
 export default CtaPopoverEmailForm;
