@@ -60,16 +60,19 @@ const PopoverDispatcher = () => {
     return createPortal(
       <DismissableElement
         name="cta_popover_scholarship_email"
-        context={{ contextSource: 'newsletter_scholarships' }}
+        context={{ contextSource: 'newsletter_lifestyle' }}
         render={(handleClose, handleComplete) => (
           <DelayedElement delay={3}>
             <CtaPopover
-              title="Pays To Do Good"
-              content="Want to earn easy scholarships for volunteering?
-              Subscribe to DoSomething's monthly scholarship email."
+              title="The Boost"
+              content="Sign up for our weekly newsletter of stories of incredible young people and actionable how-tos."
               handleClose={handleClose}
             >
-              <CtaPopoverEmailForm handleComplete={handleComplete} />
+              <CtaPopoverEmailForm
+                handleComplete={handleComplete}
+                emailSubscriptionTopic="lifestyle"
+                submissionSourceDetails="lifestyle_newsletter-cta_"
+              />
             </CtaPopover>
           </DelayedElement>
         )}
@@ -92,7 +95,11 @@ const PopoverDispatcher = () => {
             Subscribe to DoSomething's monthly scholarship email."
               handleClose={handleClose}
             >
-              <CtaPopoverEmailForm handleComplete={handleComplete} />
+              <CtaPopoverEmailForm
+                handleComplete={handleComplete}
+                emailSubscriptionTopic="scholarships"
+                submissionSourceDetails="scholarship_newsletter-cta_scholarship-page"
+              />
             </CtaPopover>
           </DelayedElement>
         )}

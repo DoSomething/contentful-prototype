@@ -74,7 +74,7 @@ const CtaPopoverEmailForm = ({
           category: EVENT_CATEGORIES.siteAction,
           label: 'call_to_action_popover',
           context: {
-            contextSource: 'newsletter_scholarships',
+            contextSource: `newsletter_${emailSubscriptionTopic}`,
             error,
             errorMessage,
           },
