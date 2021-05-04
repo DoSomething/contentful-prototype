@@ -133,7 +133,12 @@ const CtaPopoverEmailForm = ({
 };
 
 CtaPopoverEmailForm.propTypes = {
-  emailSubscriptionTopic: PropTypes.string.isRequired,
+  emailSubscriptionTopic: PropTypes.oneOf([
+    'lifestyle',
+    'scholarships',
+    'news',
+    'community',
+  ]).isRequired,
   handleComplete: PropTypes.func.isRequired,
   submissionSourceDetails: PropTypes.string.isRequired,
 };
