@@ -22,3 +22,8 @@ export const scholarshipsNewsletterPaths = [
   '/us/articles/how-to-apply-for-scholarships-like-a-pro',
   '/us/articles/scholarship-winners',
 ];
+
+/**
+ * Paths to check for when we want to display the boost newsletter popover
+ */
+export const lifestyleNewsletterPaths = ['/us/facts/*', '/us/articles/*'];

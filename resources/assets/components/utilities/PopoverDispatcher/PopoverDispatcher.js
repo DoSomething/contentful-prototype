@@ -9,10 +9,15 @@ import { getUserId } from '../../../helpers/auth';
 import { getCampaign } from '../../../helpers/campaign';
 import SitewideBanner from './SitewideBanner/SitewideBanner';
 import DelayedElement from '../DelayedElement/DelayedElement';
-import { isCurrentPathInPaths, query } from '../../../helpers/url';
+import {
+  isCurrentPathInPaths,
+  popoverSourceDetailPathCheck,
+  query,
+} from '../../../helpers/url';
 import CtaPopoverEmailForm from './CtaPopover/CtaPopoverEmailForm';
 import DismissableElement from '../DismissableElement/DismissableElement';
 import {
+  lifestyleNewsletterPaths,
   sitewideBannerExcludedPaths,
   scholarshipsNewsletterPaths,
 } from './config';
@@ -51,7 +56,36 @@ const PopoverDispatcher = () => {
   const target = usePortal('popover-portal');
   const hiddenAttributeDataTestId = 'sitewide-banner-hidden';
 
-  // Check if this path is to scholarships page or specified article pages to display the popover instead of site wide banner.
+  // Check if this path is to 11 facts page or article pages to display the lifestyle newsletter popover instead of site wide banner.
+  if (
+    isCurrentPathInPaths(lifestyleNewsletterPaths) &&
+    !isCurrentPathInPaths(scholarshipsNewsletterPaths)
+  ) {
+    return createPortal(
+      <DismissableElement
+        name="cta_popover_scholarship_email"
+        context={{ contextSource: 'newsletter_lifestyle' }}
+        render={(handleClose, handleComplete) => (
+          <DelayedElement delay={3}>
+            <CtaPopover
+              title="The Boost"
+              content="Sign up for our weekly newsletter of stories of incredible young people and actionable how-tos."
+              handleClose={handleClose}
+            >
+              <CtaPopoverEmailForm
+                handleComplete={handleComplete}
+                emailSubscriptionTopic="lifestyle"
+                submissionSourceDetails={`lifestyle_newsletter-cta_${popoverSourceDetailPathCheck()}`}
+              />
+            </CtaPopover>
+          </DelayedElement>
+        )}
+      />,
+      target,
+    );
+  }
+
+  // Check if this path is to scholarships page or specified article pages to display the scholarship newsletter popover instead of site wide banner.
   if (isCurrentPathInPaths(scholarshipsNewsletterPaths)) {
     return createPortal(
       <DismissableElement
@@ -65,7 +99,11 @@ const PopoverDispatcher = () => {
             Subscribe to DoSomething's monthly scholarship email."
               handleClose={handleClose}
             >
-              <CtaPopoverEmailForm handleComplete={handleComplete} />
+              <CtaPopoverEmailForm
+                handleComplete={handleComplete}
+                emailSubscriptionTopic="scholarships"
+                submissionSourceDetails="scholarship_newsletter-cta_scholarship-page"
+              />
             </CtaPopover>
           </DelayedElement>
         )}

@@ -54,6 +54,20 @@ export const isCurrentPathInPaths = paths => {
 };
 
 /**
+ * Checks if current path matches an item in given paths array.
+ *
+ * @return {String}
+ */
+export const popoverSourceDetailPathCheck = () => {
+  const pathname = window.location.pathname;
+
+  if (pathname.includes('/facts/')) {
+    return '11_facts';
+  }
+  return 'articles';
+};
+
+/**
  * Return a boolean indicating whether the provided URL is external to the site.
  *
  * @param  {String} url
