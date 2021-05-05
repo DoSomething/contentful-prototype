@@ -312,12 +312,12 @@ const HomePageTemplate = ({
           >
             <AnalyticsWaypoint
               className="absolute top-0 w-full"
-              name="member_benfits_top"
+              name="member_benefits_top"
             />
 
             <div className="grid-wide text-center">
               <h2 className="font-league-gothic font-normal mb-4 tracking-wide text-4xl text-white uppercase">
-                DoSomething Member Benfits
+                DoSomething Member Benefits
               </h2>
 
               <p className="text-lg text-white">
@@ -402,7 +402,7 @@ const HomePageTemplate = ({
 
             <AnalyticsWaypoint
               className="absolute bottom-0 w-full"
-              name="member_benfits_bottom"
+              name="member_benefits_bottom"
             />
           </section>
 
