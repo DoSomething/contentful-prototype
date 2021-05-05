@@ -107,7 +107,7 @@ describe('Site Navigation', () => {
   });
 
   smallAndMediumSizes.forEach(size => {
-    it(`Can interact with toggleable Causes main nav item on ${size.width}px by ${size.height}px viewport`, () => {
+    it(`Can interact with toggleable main nav items on ${size.width}px by ${size.height}px viewport`, () => {
       // Set the viewport:
       cy.viewport(size.width, size.height);
 
@@ -127,11 +127,29 @@ describe('Site Navigation', () => {
 
       // Assert the Causes subnav is not still rendered on page:
       cy.get('.main-subnav').should('not.exist');
+
+      // Find the Benefits main nav item and click on it:
+      cy.get('#main-nav__benefits').click();
+
+      // Assert the Benefits subnav is visible:
+      cy.get('.main-subnav')
+        .should('be.visible')
+        .within(() => {
+          cy.findByTestId('benefits-gallery').within(() => {
+            cy.findAllByTestId('benefits-card').should('have.length', 3);
+          });
+        });
+
+      // Close the Benefits subnav:
+      cy.get('.btn__close--main-subnav').click();
+
+      // Assert the Benefits subnav is not still rendered on page:
+      cy.get('.main-subnav').should('not.exist');
     });
   });
 
   largeSizes.forEach(size => {
-    it(`Can click Causes main nav item on ${size.width}px by ${size.height}px viewport`, () => {
+    it(`Can click main nav items on ${size.width}px by ${size.height}px viewport`, () => {
       // Set the viewport:
       cy.viewport(size.width, size.height);
 
@@ -149,6 +167,16 @@ describe('Site Navigation', () => {
       cy.get('#main-nav__causes')
         .should('have.attr', 'href')
         .and('include', '/campaigns');
+
+      // Mouseover the Benefits main nav item and assert the subnav is visible:
+      cy.get('#main-nav__benefits')
+        .trigger('mouseover')
+        .should('be.visible');
+
+      // Find the Causes main nav item and click on it:
+      cy.get('#main-nav__benefits')
+        .should('have.attr', 'href')
+        .and('include', '/us/about/benefits');
     });
   });
 });
