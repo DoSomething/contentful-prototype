@@ -1,0 +1,23 @@
+[
+  {
+    "showcaseTitle": "Scholarships",
+    "showcaseDescription": "Earn money for volunteering, no GPA or essay required...ever!",
+    "image": "scholarships",
+    "callToAction": "Find Scholarships",
+    "path": "/us/about/easy-scholarships"
+  },
+  {
+    "showcaseTitle": "Volunteer Credits",
+    "showcaseDescription": "Receive a certificate verifying your volunteer hours.",
+    "image": "volunteerHours",
+    "callToAction": "Learn About Volunteer Hours",
+    "path": "/us/about/volunteer-hours"
+  },
+  {
+    "showcaseTitle": "Rewards",
+    "showcaseDescription": "Earn volunteer badges, which unlock extra rewards and scholarships.",
+    "image": "rewards",
+    "callToAction": "Earn Rewards",
+    "path": "/us/about/rewards"
+  }
+]
