@@ -6,19 +6,19 @@ import React, { useState } from 'react';
 import { RestApiClient } from '@dosomething/gateway';
 
 import { env } from '../../../helpers/env';
-import { NEWSLETTER_TOPICS } from './config';
 import PrimaryButton from '../Button/PrimaryButton';
 import { tailwind } from '../../../helpers/display';
+import { EMAIL_SUBSCRIPTION_TOPICS } from './config';
 import { isAuthenticated } from '../../../helpers/auth';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
-import NewsletterSubscriptionCard from './NewsletterSubscriptionCard';
-import NewsLetterSubscriptionFormInput from './NewsletterSubscriptionFormInput';
+import EmailSubscriptionCard from './EmailSubscriptionCard';
+import EmailSubscriptionFormInput from './EmailSubscriptionFormInput';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 
-const NewsletterSubscriptionForm = () => {
+const EmailSubscriptionForm = () => {
   const [subscriptions, setSubscriptions] = useState([]);
 
   const [emailValue, setEmailValue] = useState('');
@@ -118,17 +118,17 @@ const NewsletterSubscriptionForm = () => {
   ) : (
     <form onSubmit={handleSubmit}>
       <div className="newsletter-gallery mt-0 gap-8 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-4">
-        {Object.keys(NEWSLETTER_TOPICS).map(key => {
+        {Object.keys(EMAIL_SUBSCRIPTION_TOPICS).map(key => {
           return (
-            <NewsletterSubscriptionCard
+            <EmailSubscriptionCard
               key={`newsletter-${key}`}
-              topic={NEWSLETTER_TOPICS[key]}
+              topic={EMAIL_SUBSCRIPTION_TOPICS[key]}
             >
-              <NewsLetterSubscriptionFormInput
-                topic={NEWSLETTER_TOPICS[key]}
+              <EmailSubscriptionFormInput
+                topic={EMAIL_SUBSCRIPTION_TOPICS[key]}
                 updateSubscriptions={updateSubscriptions}
               />
-            </NewsletterSubscriptionCard>
+            </EmailSubscriptionCard>
           );
         })}
       </div>
@@ -178,4 +178,4 @@ const NewsletterSubscriptionForm = () => {
   );
 };
 
-export default NewsletterSubscriptionForm;
+export default EmailSubscriptionForm;

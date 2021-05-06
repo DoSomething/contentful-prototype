@@ -7,7 +7,7 @@ import ToggleButton from '../Button/ToggleButton';
 import {
   EMAIL_SUBSCRIPTION_QUERY,
   EMAIL_SUBSCRIPTION_MUTATION,
-} from '../NewsletterSubscription/ToggleSubscriptionButton';
+} from './ToggleSubscriptionButton';
 
 const LegacyEmailSubscriptionItem = ({
   attributes,

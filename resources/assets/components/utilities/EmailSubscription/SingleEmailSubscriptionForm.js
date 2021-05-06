@@ -14,7 +14,7 @@ import {
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 
-const SingleNewsletterSubscriptionForm = ({
+const SingleEmailSubscriptionForm = ({
   emailSubscriptionTopic,
   submissionSourceDetails,
 }) => {
@@ -150,9 +150,9 @@ const SingleNewsletterSubscriptionForm = ({
   );
 };
 
-SingleNewsletterSubscriptionForm.propTypes = {
+SingleEmailSubscriptionForm.propTypes = {
   emailSubscriptionTopic: PropTypes.string.isRequired,
   submissionSourceDetails: PropTypes.string.isRequired,
 };
 
-export default SingleNewsletterSubscriptionForm;
+export default SingleEmailSubscriptionForm;

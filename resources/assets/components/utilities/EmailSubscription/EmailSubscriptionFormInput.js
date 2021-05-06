@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { NEWSLETTER_TOPICS } from './config';
+import { EMAIL_SUBSCRIPTION_TOPICS } from './config';
 import { isAuthenticated } from '../../../helpers/auth';
 import ToggleSubscriptionButton from './ToggleSubscriptionButton';
 import ToggleSubscriptionCheckbox from './ToggleSubscriptionCheckbox';
 
-const NewsLetterSubscriptionFormInput = ({ topic, updateSubscriptions }) =>
+const EmailSubscriptionFormInput = ({ topic, updateSubscriptions }) =>
   isAuthenticated() ? (
     <ToggleSubscriptionButton topic={topic} />
   ) : (
@@ -16,9 +16,9 @@ const NewsLetterSubscriptionFormInput = ({ topic, updateSubscriptions }) =>
     />
   );
 
-NewsLetterSubscriptionFormInput.propTypes = {
-  topic: PropTypes.oneOf(Object.keys(NEWSLETTER_TOPICS)).isRequired,
+EmailSubscriptionFormInput.propTypes = {
+  topic: PropTypes.oneOf(Object.keys(EMAIL_SUBSCRIPTION_TOPICS)).isRequired,
   updateSubscriptions: PropTypes.func.isRequired,
 };
 
-export default NewsLetterSubscriptionFormInput;
+export default EmailSubscriptionFormInput;
