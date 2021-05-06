@@ -3,29 +3,44 @@ import PropTypes from 'prop-types';
 
 import rewards from './rewards.svg';
 import scholarships from './scholarships.svg';
-import volunteerHours from './volunteer-hours.svg';
+import volunteer from './volunteer-hours.svg';
 import benefitsContent from './benefits-content.json';
+import {
+  trackAnalyticsEvent,
+  EVENT_CATEGORIES,
+  getPageContext,
+} from '../../../helpers/analytics';
 
 const images = {
   rewards,
   scholarships,
-  volunteerHours,
+  volunteer,
 };
 
 const BenefitCard = ({
   showcaseTitle,
   showcaseDescription,
   callToAction,
-  image,
+  category,
   path,
 }) => {
+  const handleClick = type =>
+    trackAnalyticsEvent(`clicked_subnav_link_benefits_${type}`, {
+      category: EVENT_CATEGORIES.navigation,
+      action: 'link_clicked',
+      label: `benefits_${type}`,
+      context: {
+        ...getPageContext(),
+      },
+    });
+
   return (
     <article
       className="flex flex-col h-full relative text-left"
       data-testid="benefits-card"
     >
-      <a href={path} className="block">
-        <img src={images[image]} alt="" />
+      <a href={path} className="block" onClick={() => handleClick(category)}>
+        <img src={images[category]} alt="" />
       </a>
 
       <div className="bg-white flex flex-col flex-grow">
@@ -33,7 +48,7 @@ const BenefitCard = ({
 
         <p className="flex-grow">{showcaseDescription}</p>
 
-        <a href={path} className="pt-2">
+        <a href={path} className="pt-2" onClick={() => handleClick(category)}>
           {callToAction}
         </a>
       </div>
@@ -44,7 +59,7 @@ BenefitCard.propTypes = {
   showcaseTitle: PropTypes.string.isRequired,
   showcaseDescription: PropTypes.string.isRequired,
   callToAction: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
 };
 
