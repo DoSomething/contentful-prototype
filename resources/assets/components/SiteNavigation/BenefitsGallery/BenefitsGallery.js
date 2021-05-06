@@ -3,47 +3,63 @@ import PropTypes from 'prop-types';
 
 import rewards from './rewards.svg';
 import scholarships from './scholarships.svg';
-import volunteerHours from './volunteer-hours.svg';
+import volunteer from './volunteer-hours.svg';
 import benefitsContent from './benefits-content.json';
+import {
+  trackAnalyticsEvent,
+  EVENT_CATEGORIES,
+  getPageContext,
+} from '../../../helpers/analytics';
 
 const images = {
   rewards,
   scholarships,
-  volunteerHours,
+  volunteer,
 };
 
 const BenefitCard = ({
   showcaseTitle,
   showcaseDescription,
   callToAction,
-  image,
+  category,
   path,
-}) => (
-  <article
-    className="flex flex-col h-full relative text-left"
-    data-testid="benefits-card"
-  >
-    <a href={path} className="block">
-      <img src={images[image]} alt="" />
-    </a>
+}) => {
+  const handleClick = type =>
+    trackAnalyticsEvent(`clicked_subnav_link_benefits_${type}`, {
+      category: EVENT_CATEGORIES.navigation,
+      action: 'link_clicked',
+      label: `benefits_${type}`,
+      context: {
+        ...getPageContext(),
+      },
+    });
 
-    <div className="bg-white flex flex-col flex-grow">
-      <h1 className="mb-2 text-base pt-3">{showcaseTitle}</h1>
-
-      <p className="flex-grow">{showcaseDescription}</p>
-
-      <a href={path} className="pt-2">
-        {callToAction}
+  return (
+    <article
+      className="flex flex-col h-full relative text-left"
+      data-testid="benefits-card"
+    >
+      <a href={path} className="block" onClick={() => handleClick(category)}>
+        <img src={images[category]} alt="" />
       </a>
-    </div>
-  </article>
-);
 
+      <div className="bg-white flex flex-col flex-grow">
+        <h1 className="mb-2 text-base pt-3">{showcaseTitle}</h1>
+
+        <p className="flex-grow">{showcaseDescription}</p>
+
+        <a href={path} className="pt-2" onClick={() => handleClick(category)}>
+          {callToAction}
+        </a>
+      </div>
+    </article>
+  );
+};
 BenefitCard.propTypes = {
   showcaseTitle: PropTypes.string.isRequired,
   showcaseDescription: PropTypes.string.isRequired,
   callToAction: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
 };
 
@@ -53,7 +69,7 @@ const BenefitsGallery = () => (
     data-testid="benefits-gallery"
   >
     {benefitsContent.map(benefit => (
-      <li>
+      <li key={benefit.category}>
         <BenefitCard {...benefit} />
       </li>
     ))}
