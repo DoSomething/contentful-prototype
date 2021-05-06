@@ -18,27 +18,28 @@ const BenefitCard = ({
   callToAction,
   image,
   path,
-}) => (
-  <article
-    className="flex flex-col h-full relative text-left"
-    data-testid="benefits-card"
-  >
-    <a href={path} className="block">
-      <img src={images[image]} alt="" />
-    </a>
-
-    <div className="bg-white flex flex-col flex-grow">
-      <h1 className="mb-2 text-base pt-3">{showcaseTitle}</h1>
-
-      <p className="flex-grow">{showcaseDescription}</p>
-
-      <a href={path} className="pt-2">
-        {callToAction}
+}) => {
+  return (
+    <article
+      className="flex flex-col h-full relative text-left"
+      data-testid="benefits-card"
+    >
+      <a href={path} className="block">
+        <img src={images[image]} alt="" />
       </a>
-    </div>
-  </article>
-);
 
+      <div className="bg-white flex flex-col flex-grow">
+        <h1 className="mb-2 text-base pt-3">{showcaseTitle}</h1>
+
+        <p className="flex-grow">{showcaseDescription}</p>
+
+        <a href={path} className="pt-2">
+          {callToAction}
+        </a>
+      </div>
+    </article>
+  );
+};
 BenefitCard.propTypes = {
   showcaseTitle: PropTypes.string.isRequired,
   showcaseDescription: PropTypes.string.isRequired,
