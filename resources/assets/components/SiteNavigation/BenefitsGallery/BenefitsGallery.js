@@ -69,7 +69,7 @@ const BenefitsGallery = () => (
     data-testid="benefits-gallery"
   >
     {benefitsContent.map(benefit => (
-      <li>
+      <li key={benefit.category}>
         <BenefitCard {...benefit} />
       </li>
     ))}
