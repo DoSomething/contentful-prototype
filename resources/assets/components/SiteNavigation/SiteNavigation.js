@@ -8,6 +8,7 @@ import classnames from 'classnames';
 
 import SearchBar from './SearchBar';
 import CauseList from './CauseList';
+import TopSearchesList from './TopSearchesList';
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
 import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
@@ -418,94 +419,9 @@ class SiteNavigation extends React.Component {
               {this.state.activeSubNav === 'SearchSubNav' ? (
                 <div className="utility-subnav menu-subnav" name="search">
                   <div className="wrapper base-12-grid py-3 md:py-6">
-
-                    <div className="top-searches">
-                      <h1>Top Searches</h1>
-                      <ul className="top-searches__link-list">
-                        <li>
-                          <a
-                            href="/us/about/easy-scholarships"
-                            onClick={() =>
-                              this.analyzeEvent({
-                                name:
-                                  'clicked_subnav_link_scholarships_top_search',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'scholarships_top_search',
-                              })
-                            }
-                          >
-                            scholarships
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            href="/us/search?query=bullying"
-                            onClick={() =>
-                              this.analyzeEvent({
-                                name: 'clicked_subnav_link_bullying_top_search',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'bullying_top_search',
-                              })
-                            }
-                          >
-                            bullying
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            href="/us/search?query=animals"
-                            onClick={() =>
-                              this.analyzeEvent({
-                                name: 'clicked_subnav_link_animals_top_search',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'animals_top_search',
-                              })
-                            }
-                          >
-                            animals
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            href="/us/collections/corona-virus-campaigns"
-                            onClick={() =>
-                              this.analyzeEvent({
-                                name: 'clicked_subnav_link_covid_top_search',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'covid_top_search',
-                              })
-                            }
-                          >
-                            covid
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            href="/us/articles/volunteer-opportunities-for-teens"
-                            onClick={() =>
-                              this.analyzeEvent({
-                                name:
-                                  'clicked_subnav_link_volunteering_top_search',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'volunteering_top_search',
-                              })
-                            }
-                          >
-                            volunteering
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
                     <SearchBar />
+
+                    <TopSearchesList />
 
                     <CloseButton
                       callback={() =>
