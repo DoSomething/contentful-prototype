@@ -6,6 +6,7 @@ import Media from 'react-media';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import SearchBar from './SearchBar';
 import CauseList from './CauseList';
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
 import SiteNavigationFeature from './SiteNavigationFeature';
@@ -28,7 +29,6 @@ class SiteNavigation extends React.Component {
     super(props);
 
     this.state = {
-      searchInput: '',
       activeSubNav: null,
       isSubNavFixed: false,
     };
@@ -88,18 +88,6 @@ class SiteNavigation extends React.Component {
 
     this.setState({
       activeSubNav: null,
-    });
-  };
-
-  /**
-   * Handle on change event on form inputs.
-   *
-   * @param  {Object} event
-   * @return {null}
-   */
-  handleOnChange = event => {
-    this.setState({
-      searchInput: event.target.value,
     });
   };
 
@@ -430,40 +418,6 @@ class SiteNavigation extends React.Component {
               {this.state.activeSubNav === 'SearchSubNav' ? (
                 <div className="utility-subnav menu-subnav" name="search">
                   <div className="wrapper base-12-grid py-3 md:py-6">
-                    <form
-                      className="search"
-                      id="utility-subnav__search"
-                      acceptCharset="UTF-8"
-                      action="/us/search"
-                      method="GET"
-                      onSubmit={() =>
-                        this.analyzeEvent({
-                          name: 'submitted_nav_form_search_subnav',
-                          action: 'form_submitted',
-                          category: EVENT_CATEGORIES.search,
-                          label: 'search_subnav',
-                          context: { searchQuery: this.state.searchInput },
-                        })
-                      }
-                    >
-                      <SearchIcon />
-                      <input
-                        type="search"
-                        placeholder="Search"
-                        name="query"
-                        autoFocus
-                        onChange={this.handleOnChange}
-                        onClick={() =>
-                          this.analyzeEvent({
-                            name: 'clicked_nav_form_search_subnav',
-                            action: 'form_clicked',
-                            category: EVENT_CATEGORIES.search,
-                            label: 'search_subnav',
-                          })
-                        }
-                        value={this.state.searchInput}
-                      />
-                    </form>
 
                     <div className="top-searches">
                       <h1>Top Searches</h1>
@@ -551,6 +505,7 @@ class SiteNavigation extends React.Component {
                         </li>
                       </ul>
                     </div>
+                    <SearchBar />
 
                     <CloseButton
                       callback={() =>
