@@ -199,41 +199,28 @@ class SiteNavigation extends React.Component {
                 }}
               >
                 {matches => (
-                  <>
-                    {matches.large ? (
-                      <a
-                        id="main-nav__causes"
-                        href="/campaigns"
-                        onClick={() =>
-                          this.handleOnClickLink({
+                  <a
+                    id="main-nav__causes"
+                    href={matches.large ? '/campaigns' : '/'}
+                    onClick={e =>
+                      matches.large
+                        ? this.handleOnClickLink({
                             name: 'clicked_nav_link_causes',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'causes',
                           })
-                        }
-                      >
-                        Causes
-                        <span className="main-nav__arrow" />
-                      </a>
-                    ) : (
-                      <a
-                        id="main-nav__causes"
-                        href="/"
-                        onClick={e =>
-                          this.handleOnClickToggle(e, 'CausesSubNav', {
+                        : this.handleOnClickToggle(e, 'CausesSubNav', {
                             name: 'clicked_nav_link_causes',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'causes',
                           })
-                        }
-                      >
-                        Causes
-                        <span className="main-nav__arrow" />
-                      </a>
-                    )}
-                  </>
+                    }
+                  >
+                    Causes
+                    <span className="main-nav__arrow" />
+                  </a>
                 )}
               </Media>
 
@@ -298,41 +285,28 @@ class SiteNavigation extends React.Component {
                 }}
               >
                 {matches => (
-                  <>
-                    {matches.large ? (
-                      <a
-                        id="main-nav__benefits"
-                        href="/us/about/benefits"
-                        onClick={() =>
-                          this.handleOnClickLink({
+                  <a
+                    id="main-nav__benefits"
+                    href={matches.large ? '/us/about/benefits' : '/'}
+                    onClick={e =>
+                      matches.large
+                        ? this.handleOnClickLink({
                             name: 'clicked_nav_link_benefits',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'benefits',
                           })
-                        }
-                      >
-                        Benefits
-                        <span className="main-nav__arrow" />
-                      </a>
-                    ) : (
-                      <a
-                        id="main-nav__benefits"
-                        href="/"
-                        onClick={e =>
-                          this.handleOnClickToggle(e, 'BenefitsSubNav', {
+                        : this.handleOnClickToggle(e, 'BenefitsSubNav', {
                             name: 'clicked_nav_link_benefits',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'benefits_scholarships',
                           })
-                        }
-                      >
-                        Benefits
-                        <span className="main-nav__arrow" />
-                      </a>
-                    )}
-                  </>
+                    }
+                  >
+                    Benefits
+                    <span className="main-nav__arrow" />
+                  </a>
                 )}
               </Media>
 
