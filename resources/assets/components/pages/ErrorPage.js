@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { report } from '../../helpers/monitoring';
 import ErrorDetails from '../utilities/ErrorDetails';
 import SiteFooter from '../utilities/SiteFooter/SiteFooter';
-import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
+import SiteNavigation from '../SiteNavigation/SiteNavigation';
 
 const ErrorPage = ({ error }) => {
   // Print error to console & report to New Relic:
@@ -12,7 +12,7 @@ const ErrorPage = ({ error }) => {
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main className="py-20">
         <article

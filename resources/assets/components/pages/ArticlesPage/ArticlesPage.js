@@ -8,11 +8,11 @@ import { withoutNulls } from '../../../helpers/data';
 import LinkButton from '../../utilities/Button/LinkButton';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
 import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import { coverImageMediaQueryStyles } from '../../../helpers/display';
 import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import SingleNewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/SingleNewsletterSubscriptionForm';
 
@@ -70,7 +70,8 @@ const ArticlesLandingPage = ({
 }) => {
   return (
     <Fragment>
-      <SiteNavigationContainer />
+      <SiteNavigation />
+
       <main>
         <article data-testid="articles-page">
           {/* Page Header */}

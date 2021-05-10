@@ -9,8 +9,8 @@ import { isAuthenticated } from '../../../helpers/auth';
 import PageInfoBar from '../../PageInfoBar/PageInfoBar';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl } from '../../../helpers/contentful';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 import './story-page.scss';
 
@@ -27,7 +27,7 @@ const StoryPage = props => {
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main>
         <article className="story-page">

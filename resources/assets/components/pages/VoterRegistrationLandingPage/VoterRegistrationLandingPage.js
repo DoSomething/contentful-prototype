@@ -10,9 +10,9 @@ import Summary from '../../utilities/FaqElements/Summary';
 import weAreTheVotersImage from './we-are-the-voters.png';
 import LinkButton from '../../utilities/Button/LinkButton';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import DetailsParagraph from '../../utilities/FaqElements/DetailsParagraph';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
 
 const MarkdownLink = ({ href, text }) => (
@@ -30,7 +30,7 @@ MarkdownLink.propTypes = {
 
 const VoterRegistrationLandingPage = () => (
   <>
-    <SiteNavigationContainer />
+    <SiteNavigation />
 
     <main className="bg-white">
       <article data-testid="vr-landing-page">

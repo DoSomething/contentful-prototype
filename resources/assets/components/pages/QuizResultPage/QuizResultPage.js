@@ -11,10 +11,10 @@ import Card from '../../utilities/Card/Card';
 import Placeholder from '../../utilities/Placeholder';
 import { isDevEnvironment } from '../../../helpers/env';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import ContentfulAsset from '../../utilities/ContentfulAsset/ContentfulAsset';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
 
@@ -61,7 +61,7 @@ const QuizResultPage = ({ id }) => {
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main>
         <article data-testid="quiz-result-page">

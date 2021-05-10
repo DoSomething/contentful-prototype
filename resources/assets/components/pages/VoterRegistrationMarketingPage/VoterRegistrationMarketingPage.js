@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import PageQuery from '../PageQuery';
 import { withoutNulls } from '../../../helpers/data';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
 import {
   contentfulImageUrl,
@@ -71,7 +71,7 @@ const VoterRegistrationMarketingPageTemplate = ({
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main>
         <article>

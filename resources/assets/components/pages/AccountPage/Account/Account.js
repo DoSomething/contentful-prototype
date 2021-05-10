@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import AccountRoute from './AccountRoute';
 import AccountNavigation from './AccountNavigation';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
-import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
+import SiteNavigation from '../../../SiteNavigation/SiteNavigation';
 
 const Account = props => (
   <>
-    <SiteNavigationContainer />
+    <SiteNavigation />
 
     <main>
       <article className="account-page">

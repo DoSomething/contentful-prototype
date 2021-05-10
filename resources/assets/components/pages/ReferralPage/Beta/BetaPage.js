@@ -33,7 +33,7 @@ const BetaPage = () => {
   }
 
   return (
-    // We *do not* render a SiteNavigationContainer here to avoid losing the referral metadata (see https://git.io/JeX2A).
+    // We *do not* render a SiteNavigation here to avoid losing the referral metadata (see https://git.io/JeX2A).
     <Query query={REFERRAL_USER_QUERY} variables={{ id: userId }}>
       {data => {
         if (!data.user) {
