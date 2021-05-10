@@ -7,18 +7,18 @@ import { isAuthenticated } from '../../../helpers/auth';
 import LinkButton from '../../utilities/Button/LinkButton';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import SpotlightGallery from '../../utilities/Gallery/SpotlightGallery';
 import { coverImageMediaQueryStyles, tailwind } from '../../../helpers/display';
 import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
 import NewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/NewsletterSubscriptionForm';
 
 const AboutPageTemplate = () => (
   <Fragment>
-    <SiteNavigationContainer />
+    <SiteNavigation />
 
     <main>
       <article data-test="about-page">

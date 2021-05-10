@@ -11,8 +11,8 @@ import Placeholder from '../../utilities/Placeholder';
 import { isDevEnvironment } from '../../../helpers/env';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import VoterRegistrationDrivePageBanner from './VoterRegistrationDrivePageBanner';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ScholarshipInfoBlock from '../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import StartVoterRegistrationForm from '../../utilities/StartVoterRegistrationForm/StartVoterRegistrationForm';
@@ -112,7 +112,8 @@ const VoterRegistrationDrivePage = () => {
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
+
       <main data-test="voter-registration-drive-page">
         <VoterRegistrationDrivePageBanner
           campaignInfo={data.campaignWebsite}

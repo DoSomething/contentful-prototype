@@ -10,13 +10,13 @@ import * as MemberBenefitsImages from './MemberBenefitsImages';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl } from '../../../helpers/contentful';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import CampaignGallery from '../../utilities/Gallery/CampaignGallery';
 import { coverImageMediaQueryStyles, tailwind } from '../../../helpers/display';
 import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
 
@@ -148,7 +148,7 @@ const HomePageTemplate = ({
   return (
     <Fragment>
       {/* @TODO: Once EmotionJS supports shorthand syntax for React.Fragment, switch <Fragment> out for <> syntax! */}
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main>
         <article data-test="home-page">

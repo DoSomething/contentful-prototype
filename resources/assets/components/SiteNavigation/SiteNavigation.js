@@ -3,16 +3,15 @@
 
 import React from 'react';
 import Media from 'react-media';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import SearchBar from './SearchBar';
 import CauseList from './CauseList';
 import TopSearchesList from './TopSearchesList';
+import SiteNavigationProfile from './SiteNavigationProfile';
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
 import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
-import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import BenefitsGallery from './BenefitsGallery/BenefitsGallery';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
 import { query } from '../../helpers/url';
@@ -414,63 +413,7 @@ class SiteNavigation extends React.Component {
               ) : null}
             </li>
 
-            {this.props.isAuthenticated ? (
-              <>
-                <li className="utility-nav__account-profile menu-nav__item">
-                  <a
-                    id="utility-nav__account-profile"
-                    href="/us/account"
-                    className="utility-nav__account-profile-icon"
-                    onClick={() =>
-                      this.analyzeEvent({
-                        name: 'clicked_nav_link_profile',
-                        action: 'link_clicked',
-                        category: EVENT_CATEGORIES.navigation,
-                        label: 'profile',
-                      })
-                    }
-                  >
-                    <ProfileIcon />
-                  </a>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="utility-nav__auth menu-nav__item">
-                  <a
-                    id="utility-nav__auth"
-                    href={this.props.authLoginUrl}
-                    onClick={() =>
-                      this.analyzeEvent({
-                        name: 'clicked_nav_link_log_in',
-                        action: 'link_clicked',
-                        category: EVENT_CATEGORIES.navigation,
-                        label: 'log_in',
-                      })
-                    }
-                  >
-                    Log In
-                  </a>
-                </li>
-
-                <li className="utility-nav__join menu-nav__item">
-                  <a
-                    id="utility-nav__join"
-                    href={this.props.authRegisterUrl}
-                    onClick={() =>
-                      this.analyzeEvent({
-                        name: 'clicked_nav_link_join_now',
-                        action: 'link_clicked',
-                        category: EVENT_CATEGORIES.navigation,
-                        label: 'join_now',
-                      })
-                    }
-                  >
-                    Join Now
-                  </a>
-                </li>
-              </>
-            )}
+            <SiteNavigationProfile />
           </ul>
         </div>
 
@@ -492,11 +435,5 @@ class SiteNavigation extends React.Component {
     );
   }
 }
-
-SiteNavigation.propTypes = {
-  authLoginUrl: PropTypes.string.isRequired,
-  authRegisterUrl: PropTypes.string.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-};
 
 export default SiteNavigation;

@@ -14,9 +14,9 @@ import { sixpack } from '../../../helpers/analytics';
 import Placeholder from '../../utilities/Placeholder';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import RecommendedCampaignsGallery from './RecommendedCampaignsGallery';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
 import ShortLinkShareContainer from '../../utilities/ShortLinkShare/ShortLinkShareContainer';
 import { CONTENTFUL_BLOCK_QUERY } from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
@@ -76,7 +76,7 @@ const ShowSubmissionPage = ({ match }) => {
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main>
         <div

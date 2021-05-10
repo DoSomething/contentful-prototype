@@ -13,9 +13,9 @@ import ArticleHeader from '../../utilities/ArticleHeader';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl } from '../../../helpers/contentful';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 /**
@@ -43,7 +43,7 @@ const GeneralPage = props => {
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main>
         <article className="general-page base-12-grid bg-white py-3 md:py-6">

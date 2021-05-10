@@ -5,8 +5,8 @@ import Card from '../../../utilities/Card/Card';
 import { featureFlag } from '../../../../helpers/env';
 import ArticleHeader from '../../../utilities/ArticleHeader';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
+import SiteNavigation from '../../../SiteNavigation/SiteNavigation';
 import { getReferFriendsLink } from '../../../../helpers/refer-friends';
-import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import ShortLinkShareContainer from '../../../utilities/ShortLinkShare/ShortLinkShareContainer';
 
 const AlphaPage = () => {
@@ -14,7 +14,7 @@ const AlphaPage = () => {
 
   return getReferFriendsLink() ? (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main className="general-page alpha-referral-page base-12-grid py-3 md:py-6 relative">
         <article className="grid-narrow">

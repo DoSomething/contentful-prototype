@@ -7,7 +7,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import { env } from '../helpers/env';
 import graphqlClient from '../graphql';
 import { initializeStore } from '../store/store';
-import SiteNavigationContainer from './SiteNavigation/SiteNavigationContainer';
+import SiteNavigation from './SiteNavigation/SiteNavigation';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -17,7 +17,7 @@ const App = ({ store, history }) => {
       <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
         <Router history={history}>
           <Switch>
-            <Route path="/" component={SiteNavigationContainer} />
+            <Route path="/" component={SiteNavigation} />
           </Switch>
         </Router>
       </ApolloProvider>
