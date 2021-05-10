@@ -7,10 +7,10 @@ import { featureFlag } from '../../helpers/env';
 import NotificationContainer from '../Notification';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import SiteFooter from '../utilities/SiteFooter/SiteFooter';
+import SiteNavigation from '../SiteNavigation/SiteNavigation';
 import TypeFormEmbed from '../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../utilities/DelayedElement/DelayedElement';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
-import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
 import LegacyAdminDashboardContainer from '../LegacyAdminDashboard/LegacyAdminDashboardContainer';
@@ -22,7 +22,7 @@ const Campaign = props => (
     location={props.location}
     match={props.match}
   >
-    <SiteNavigationContainer />
+    <SiteNavigation />
 
     <main>
       <LegacyAdminDashboardContainer>

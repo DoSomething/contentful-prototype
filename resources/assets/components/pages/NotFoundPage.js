@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import NotFound from '../NotFound';
 import SiteFooter from '../utilities/SiteFooter/SiteFooter';
-import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
+import SiteNavigation from '../SiteNavigation/SiteNavigation';
 
 const NotFoundPage = ({ id }) => (
   <>
-    <SiteNavigationContainer />
+    <SiteNavigation />
 
     <main className="px-3 py-20" data-testid="not-found-page">
       <NotFound id={id} className="max-w-xl mx-auto mb-8" />

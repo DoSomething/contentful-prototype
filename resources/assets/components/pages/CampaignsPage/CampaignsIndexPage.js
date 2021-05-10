@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 
 import { featureFlag } from '../../../helpers/env';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import FilterNavigation from './FilterNavigation/FilterNavigation';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/PaginatedCampaignGallery';
 
 import './campaigns-page.scss';
@@ -24,7 +24,7 @@ const CampaignsIndexPage = () => {
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main>
         <div className="bg-white border-b border-gray-300 border-solid mb-6 pt-6 md:pt-10">

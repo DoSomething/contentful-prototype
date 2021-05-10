@@ -7,8 +7,8 @@ import LazyImage from '../../utilities/LazyImage';
 import { withoutNulls } from '../../../helpers/data';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl } from '../../../helpers/contentful';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import TextContent from '../../utilities/TextContent/TextContent';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 export const COMPANY_PAGE_QUERY = gql`
   query CompanyPageQuery($slug: String!, $preview: Boolean!) {
@@ -30,7 +30,7 @@ const CompanyPageTemplate = props => {
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main className="wrapper base-12-grid company-page py-3 md:py-6">
         <article className="grid-wide bg-white rounded border border-solid border-gray-300 overflow-hidden">

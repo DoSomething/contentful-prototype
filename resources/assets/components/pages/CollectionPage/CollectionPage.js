@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import PageQuery from '../PageQuery';
 import { withoutNulls } from '../../../helpers/data';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import CuratedPageBanner from '../../utilities/CuratedPageBanner';
 import TextContent from '../../utilities/TextContent/TextContent';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 export const COLLECTION_PAGE_QUERY = gql`
   query CollectionPageQuery($slug: String!, $preview: Boolean!) {
@@ -47,7 +47,7 @@ const CollectionPageTemplate = ({
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main>
         <article className="collection-page">

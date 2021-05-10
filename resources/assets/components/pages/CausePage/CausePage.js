@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import CuratedPageBanner from '../../utilities/CuratedPageBanner';
 import TextContent from '../../utilities/TextContent/TextContent';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/PaginatedCampaignGallery';
 
 export const CAUSE_PAGE_QUERY = gql`
@@ -39,7 +39,7 @@ const CausePageTemplate = ({
 
   return (
     <>
-      <SiteNavigationContainer />
+      <SiteNavigation />
 
       <main>
         <article className="cause-page">

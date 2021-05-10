@@ -3,13 +3,15 @@
 
 import React from 'react';
 import Media from 'react-media';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import SearchBar from './SearchBar';
+import CauseList from './CauseList';
+import TopSearchesList from './TopSearchesList';
+import SiteNavigationProfile from './SiteNavigationProfile';
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
 import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
-import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import BenefitsGallery from './BenefitsGallery/BenefitsGallery';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
 import { query } from '../../helpers/url';
@@ -27,7 +29,6 @@ class SiteNavigation extends React.Component {
     super(props);
 
     this.state = {
-      searchInput: '',
       activeSubNav: null,
       isSubNavFixed: false,
     };
@@ -87,18 +88,6 @@ class SiteNavigation extends React.Component {
 
     this.setState({
       activeSubNav: null,
-    });
-  };
-
-  /**
-   * Handle on change event on form inputs.
-   *
-   * @param  {Object} event
-   * @return {null}
-   */
-  handleOnChange = event => {
-    this.setState({
-      searchInput: event.target.value,
     });
   };
 
@@ -209,41 +198,28 @@ class SiteNavigation extends React.Component {
                 }}
               >
                 {matches => (
-                  <>
-                    {matches.large ? (
-                      <a
-                        id="main-nav__causes"
-                        href="/campaigns"
-                        onClick={() =>
-                          this.handleOnClickLink({
+                  <a
+                    id="main-nav__causes"
+                    href={matches.large ? '/campaigns' : '/'}
+                    onClick={e =>
+                      matches.large
+                        ? this.handleOnClickLink({
                             name: 'clicked_nav_link_causes',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'causes',
                           })
-                        }
-                      >
-                        Causes
-                        <span className="main-nav__arrow" />
-                      </a>
-                    ) : (
-                      <a
-                        id="main-nav__causes"
-                        href="/"
-                        onClick={e =>
-                          this.handleOnClickToggle(e, 'CausesSubNav', {
+                        : this.handleOnClickToggle(e, 'CausesSubNav', {
                             name: 'clicked_nav_link_causes',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'causes',
                           })
-                        }
-                      >
-                        Causes
-                        <span className="main-nav__arrow" />
-                      </a>
-                    )}
-                  </>
+                    }
+                  >
+                    Causes
+                    <span className="main-nav__arrow" />
+                  </a>
                 )}
               </Media>
 
@@ -252,226 +228,10 @@ class SiteNavigation extends React.Component {
                   <div className="wrapper base-12-grid py-3 md:py-6">
                     <section className="main-subnav__links-causes menu-subnav__links menu-subnav__section">
                       <h1>Causes</h1>
-                      <ul>
-                        <li>
-                          <a
-                            href="/us/causes/education"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name: 'clicked_subnav_link_causes_education',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_education',
-                              });
-                            }}
-                          >
-                            Education
-                          </a>
-                          <a
-                            href="/us/causes/gun-violence"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name: 'clicked_subnav_link_causes_gun_violence',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_gun_violence',
-                              });
-                            }}
-                          >
-                            Gun Violence
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/mental-health"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name:
-                                  'clicked_subnav_link_causes_mental_health',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_mental_health',
-                              });
-                            }}
-                          >
-                            Mental Health
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/physical-health"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name:
-                                  'clicked_subnav_link_causes_physical_health',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_physical_health',
-                              });
-                            }}
-                          >
-                            Physical Health
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/homelessness-and-poverty"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name:
-                                  'clicked_subnav_link_causes_homelessness_and_poverty',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_homelessness_and_poverty',
-                              });
-                            }}
-                          >
-                            Homelessness & Poverty
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/environment"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name: 'clicked_subnav_link_causes_environment',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_environment',
-                              });
-                            }}
-                          >
-                            Environment
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/sexual-harassment"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name:
-                                  'clicked_subnav_link_causes_sexual_harassment',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_sexual_harassment',
-                              });
-                            }}
-                          >
-                            Sexual Harassment
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/bullying"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name: 'clicked_subnav_link_causes_bullying',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_bullying',
-                              });
-                            }}
-                          >
-                            Bullying
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/gender-rights"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name:
-                                  'clicked_subnav_link_causes_gender_rights',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_gender_rights',
-                              });
-                            }}
-                          >
-                            Gender Rights
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/racial-justice"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name:
-                                  'clicked_subnav_link_causes_racial_justice',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_racial_justice',
-                              });
-                            }}
-                          >
-                            Racial Justice
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/discrimination"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name:
-                                  'clicked_subnav_link_causes_discrimination',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_discrimination',
-                              });
-                            }}
-                          >
-                            Discrimination
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/lgbtq-rights"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name: 'clicked_subnav_link_causes_lgbtq_rights',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_lgbtq_rights',
-                              });
-                            }}
-                          >
-                            LGBTQ+ Rights
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/causes/voter-registration"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name:
-                                  'clicked_subnav_link_causes_voter_registration',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_voter_registration',
-                              });
-                            }}
-                          >
-                            Voter Registration
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/us/campaigns"
-                            onClick={() => {
-                              this.handleOnClickLink({
-                                name:
-                                  'clicked_subnav_link_causes_all_campaigns',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'causes_all_campaigns',
-                              });
-                            }}
-                          >
-                            All Campaigns
-                          </a>
-                        </li>
-                      </ul>
+
+                      <CauseList handleClick={this.handleOnClickLink} />
                     </section>
+
                     <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
                       <SiteNavigationFeature
                         imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/k03WbCKtErFHbmk8gkcdR/17ea0ce8bf7bc82aa0a50ded42b4d369/racial_justice_and_the_election.jpg?fit=fill&h=500&w=1100"
@@ -524,41 +284,28 @@ class SiteNavigation extends React.Component {
                 }}
               >
                 {matches => (
-                  <>
-                    {matches.large ? (
-                      <a
-                        id="main-nav__benefits"
-                        href="/us/about/benefits"
-                        onClick={() =>
-                          this.handleOnClickLink({
+                  <a
+                    id="main-nav__benefits"
+                    href={matches.large ? '/us/about/benefits' : '/'}
+                    onClick={e =>
+                      matches.large
+                        ? this.handleOnClickLink({
                             name: 'clicked_nav_link_benefits',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'benefits',
                           })
-                        }
-                      >
-                        Benefits
-                        <span className="main-nav__arrow" />
-                      </a>
-                    ) : (
-                      <a
-                        id="main-nav__benefits"
-                        href="/"
-                        onClick={e =>
-                          this.handleOnClickToggle(e, 'BenefitsSubNav', {
+                        : this.handleOnClickToggle(e, 'BenefitsSubNav', {
                             name: 'clicked_nav_link_benefits',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
                             label: 'benefits_scholarships',
                           })
-                        }
-                      >
-                        Benefits
-                        <span className="main-nav__arrow" />
-                      </a>
-                    )}
-                  </>
+                    }
+                  >
+                    Benefits
+                    <span className="main-nav__arrow" />
+                  </a>
                 )}
               </Media>
 
@@ -645,127 +392,9 @@ class SiteNavigation extends React.Component {
               {this.state.activeSubNav === 'SearchSubNav' ? (
                 <div className="utility-subnav menu-subnav" name="search">
                   <div className="wrapper base-12-grid py-3 md:py-6">
-                    <form
-                      className="search"
-                      id="utility-subnav__search"
-                      acceptCharset="UTF-8"
-                      action="/us/search"
-                      method="GET"
-                      onSubmit={() =>
-                        this.analyzeEvent({
-                          name: 'submitted_nav_form_search_subnav',
-                          action: 'form_submitted',
-                          category: EVENT_CATEGORIES.search,
-                          label: 'search_subnav',
-                          context: { searchQuery: this.state.searchInput },
-                        })
-                      }
-                    >
-                      <SearchIcon />
-                      <input
-                        type="search"
-                        placeholder="Search"
-                        name="query"
-                        autoFocus
-                        onChange={this.handleOnChange}
-                        onClick={() =>
-                          this.analyzeEvent({
-                            name: 'clicked_nav_form_search_subnav',
-                            action: 'form_clicked',
-                            category: EVENT_CATEGORIES.search,
-                            label: 'search_subnav',
-                          })
-                        }
-                        value={this.state.searchInput}
-                      />
-                    </form>
+                    <SearchBar />
 
-                    <div className="top-searches">
-                      <h1>Top Searches</h1>
-                      <ul className="top-searches__link-list">
-                        <li>
-                          <a
-                            href="/us/about/easy-scholarships"
-                            onClick={() =>
-                              this.analyzeEvent({
-                                name:
-                                  'clicked_subnav_link_scholarships_top_search',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'scholarships_top_search',
-                              })
-                            }
-                          >
-                            scholarships
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            href="/us/search?query=bullying"
-                            onClick={() =>
-                              this.analyzeEvent({
-                                name: 'clicked_subnav_link_bullying_top_search',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'bullying_top_search',
-                              })
-                            }
-                          >
-                            bullying
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            href="/us/search?query=animals"
-                            onClick={() =>
-                              this.analyzeEvent({
-                                name: 'clicked_subnav_link_animals_top_search',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'animals_top_search',
-                              })
-                            }
-                          >
-                            animals
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            href="/us/collections/corona-virus-campaigns"
-                            onClick={() =>
-                              this.analyzeEvent({
-                                name: 'clicked_subnav_link_covid_top_search',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'covid_top_search',
-                              })
-                            }
-                          >
-                            covid
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            href="/us/articles/volunteer-opportunities-for-teens"
-                            onClick={() =>
-                              this.analyzeEvent({
-                                name:
-                                  'clicked_subnav_link_volunteering_top_search',
-                                action: 'link_clicked',
-                                category: EVENT_CATEGORIES.navigation,
-                                label: 'volunteering_top_search',
-                              })
-                            }
-                          >
-                            volunteering
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+                    <TopSearchesList />
 
                     <CloseButton
                       callback={() =>
@@ -784,63 +413,7 @@ class SiteNavigation extends React.Component {
               ) : null}
             </li>
 
-            {this.props.isAuthenticated ? (
-              <>
-                <li className="utility-nav__account-profile menu-nav__item">
-                  <a
-                    id="utility-nav__account-profile"
-                    href="/us/account"
-                    className="utility-nav__account-profile-icon"
-                    onClick={() =>
-                      this.analyzeEvent({
-                        name: 'clicked_nav_link_profile',
-                        action: 'link_clicked',
-                        category: EVENT_CATEGORIES.navigation,
-                        label: 'profile',
-                      })
-                    }
-                  >
-                    <ProfileIcon />
-                  </a>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="utility-nav__auth menu-nav__item">
-                  <a
-                    id="utility-nav__auth"
-                    href={this.props.authLoginUrl}
-                    onClick={() =>
-                      this.analyzeEvent({
-                        name: 'clicked_nav_link_log_in',
-                        action: 'link_clicked',
-                        category: EVENT_CATEGORIES.navigation,
-                        label: 'log_in',
-                      })
-                    }
-                  >
-                    Log In
-                  </a>
-                </li>
-
-                <li className="utility-nav__join menu-nav__item">
-                  <a
-                    id="utility-nav__join"
-                    href={this.props.authRegisterUrl}
-                    onClick={() =>
-                      this.analyzeEvent({
-                        name: 'clicked_nav_link_join_now',
-                        action: 'link_clicked',
-                        category: EVENT_CATEGORIES.navigation,
-                        label: 'join_now',
-                      })
-                    }
-                  >
-                    Join Now
-                  </a>
-                </li>
-              </>
-            )}
+            <SiteNavigationProfile />
           </ul>
         </div>
 
@@ -862,11 +435,5 @@ class SiteNavigation extends React.Component {
     );
   }
 }
-
-SiteNavigation.propTypes = {
-  authLoginUrl: PropTypes.string.isRequired,
-  authRegisterUrl: PropTypes.string.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-};
 
 export default SiteNavigation;
