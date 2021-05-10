@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { get, upperCase } from 'lodash';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-import { NEWSLETTER_TOPICS } from './config';
 import { getUserId } from '../../../helpers/auth';
 import ToggleButton from '../Button/ToggleButton';
+import { EMAIL_SUBSCRIPTION_TOPICS } from './config';
 
 export const EMAIL_SUBSCRIPTION_QUERY = gql`
   query EmailSubscriptionsQuery($userId: String!) {
@@ -77,7 +77,7 @@ const ToggleSubscriptionButton = ({ topic }) => {
 };
 
 ToggleSubscriptionButton.propTypes = {
-  topic: PropTypes.oneOf(Object.keys(NEWSLETTER_TOPICS)).isRequired,
+  topic: PropTypes.oneOf(Object.keys(EMAIL_SUBSCRIPTION_TOPICS)).isRequired,
 };
 
 ToggleSubscriptionButton.defaultProps = {};

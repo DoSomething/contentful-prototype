@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-import { NEWSLETTER_TOPICS } from './config';
 import { tailwind } from '../../../helpers/display';
+import { EMAIL_SUBSCRIPTION_TOPICS } from './config';
 import CheckIcon from '../../artifacts/CheckIcon/CheckIcon';
 
 const ToggleSubscriptionCheckbox = ({ topic, updateSubscriptions }) => {
@@ -41,7 +41,7 @@ const ToggleSubscriptionCheckbox = ({ topic, updateSubscriptions }) => {
 };
 
 ToggleSubscriptionCheckbox.propTypes = {
-  topic: PropTypes.oneOf(Object.keys(NEWSLETTER_TOPICS)).isRequired,
+  topic: PropTypes.oneOf(Object.keys(EMAIL_SUBSCRIPTION_TOPICS)).isRequired,
   updateSubscriptions: PropTypes.func.isRequired,
 };
 

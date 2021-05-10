@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  NEWSLETTER_BANNERS,
-  NEWSLETTER_TEXT,
-  NEWSLETTER_TOPICS,
+  EMAIL_SUBSCRIPTION_BANNERS,
+  EMAIL_SUBSCRIPTION_TEXT,
+  EMAIL_SUBSCRIPTION_TOPICS,
 } from './config';
 
-const NewsletterSubscriptionCard = ({
+const EmailSubscriptionCard = ({
   children,
   description,
   subtitle,
   title,
   topic,
 }) => {
-  const banner = NEWSLETTER_BANNERS[topic];
-  const text = NEWSLETTER_TEXT[topic];
+  const banner = EMAIL_SUBSCRIPTION_BANNERS[topic];
+  const text = EMAIL_SUBSCRIPTION_TEXT[topic];
 
   return (
     <article className="flex flex-col h-full text-left">
@@ -41,19 +41,19 @@ const NewsletterSubscriptionCard = ({
   );
 };
 
-NewsletterSubscriptionCard.propTypes = {
+EmailSubscriptionCard.propTypes = {
   children: PropTypes.element,
   description: PropTypes.string,
   subtitle: PropTypes.string,
-  topic: PropTypes.oneOf(Object.keys(NEWSLETTER_TOPICS)).isRequired,
+  topic: PropTypes.oneOf(Object.keys(EMAIL_SUBSCRIPTION_TOPICS)).isRequired,
   title: PropTypes.string,
 };
 
-NewsletterSubscriptionCard.defaultProps = {
+EmailSubscriptionCard.defaultProps = {
   children: null,
   description: null,
   subtitle: null,
   title: null,
 };
 
-export default NewsletterSubscriptionCard;
+export default EmailSubscriptionCard;

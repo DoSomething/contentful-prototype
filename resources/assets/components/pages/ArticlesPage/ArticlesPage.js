@@ -14,7 +14,8 @@ import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import { coverImageMediaQueryStyles } from '../../../helpers/display';
 import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
-import SingleNewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/SingleNewsletterSubscriptionForm';
+import { EMAIL_SUBSCRIPTION_TOPICS } from '../../utilities/EmailSubscription/config';
+import SingleEmailSubscriptionForm from '../../utilities/EmailSubscription/SingleEmailSubscriptionForm';
 
 const ARTICLES_PAGE_QUERY = gql`
   query ArticlesPageQuery($preview: Boolean) {
@@ -130,7 +131,7 @@ const ArticlesLandingPage = ({
             </div>
           </section>
 
-          {/* Lifestyle Newsletter Signup Section */}
+          {/* Lifestyle Email Newsletter Signup Section */}
           <section
             className="base-12-grid bg-purple-700 py-12"
             data-testid="newsletter-section-articles-page"
@@ -146,8 +147,9 @@ const ArticlesLandingPage = ({
                 Sign up for weekly emails of news, videos, how-tos, advice, and
                 ways to transform your community.
               </p>
-              <SingleNewsletterSubscriptionForm
-                emailSubscriptionTopic="lifestyle"
+
+              <SingleEmailSubscriptionForm
+                emailSubscriptionTopic={EMAIL_SUBSCRIPTION_TOPICS.lifestyle}
                 submissionSourceDetails="lifestyle_newsletter-cta_articles_page"
               />
             </div>

@@ -14,7 +14,7 @@ import { coverImageMediaQueryStyles, tailwind } from '../../../helpers/display';
 import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import StrikeThroughHeader from '../../utilities/SectionHeader/StrikeThroughHeader';
-import NewsletterSubscriptionForm from '../../utilities/NewsletterSubscription/NewsletterSubscriptionForm';
+import EmailSubscriptionForm from '../../utilities/EmailSubscription/EmailSubscriptionForm';
 
 const AboutPageTemplate = () => (
   <Fragment>
@@ -145,7 +145,7 @@ const AboutPageTemplate = () => (
           />
         </BannerCallToAction>
 
-        {/* Newsletter Signup Section */}
+        {/* Email Newsletter Signup Section */}
         <section
           className="base-12-grid bg-gray-100 py-12 relative"
           data-test="newsletter-section"
@@ -158,7 +158,7 @@ const AboutPageTemplate = () => (
           <StrikeThroughHeader title="Get Inspired. Get Entertained. Get Active." />
 
           <div className="grid-wide text-center">
-            <NewsletterSubscriptionForm />
+            <EmailSubscriptionForm />
           </div>
 
           <AnalyticsWaypoint
