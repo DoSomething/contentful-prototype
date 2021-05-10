@@ -8,8 +8,8 @@ import {
   getPageContext,
 } from '../../helpers/analytics';
 
-const SiteNavigationProfile = () =>
-  isAuthenticated() ? (
+const SiteNavigationProfile = () => {
+  return isAuthenticated() ? (
     <>
       <li className="utility-nav__account-profile menu-nav__item flex">
         <a
@@ -66,5 +66,6 @@ const SiteNavigationProfile = () =>
       </li>
     </>
   );
+};
 
 export default SiteNavigationProfile;
