@@ -82,6 +82,11 @@ const SiteNavigationProfile = () => {
                       <a
                         className="text-black no-underline hover:text-black hover:underline"
                         href={`/us/account/${slug}`}
+                        css={css`
+                          :hover {
+                            text-decoration-color: ${tailwind('colors.black')};
+                          }
+                        `}
                       >
                         {copy}
                       </a>
