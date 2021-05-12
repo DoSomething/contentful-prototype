@@ -45,11 +45,6 @@ const SiteNavigationProfile = () => {
               context: getPageContext(),
             })
           }
-          css={css`
-            @media (min-width: ${tailwind('screens.lg')}) {
-              padding-right: 3px;
-            }
-          `}
         >
           <ProfileIcon />
         </a>
