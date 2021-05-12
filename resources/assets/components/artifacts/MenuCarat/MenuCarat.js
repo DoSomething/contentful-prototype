@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import classNames from 'classnames';
 
-const MenuCarat = ({ color, cssStyles, height, width }) => (
-  <div className="menu-carat pl-2 my-auto">
+const MenuCarat = ({ className, color, cssStyles, height, width }) => (
+  <div className={classNames('menu-carat pl-2 my-auto', className)}>
     <svg
       css={css`
         pointerevents: 'none';
@@ -26,6 +27,7 @@ const MenuCarat = ({ color, cssStyles, height, width }) => (
 );
 
 MenuCarat.propTypes = {
+  className: PropTypes.string,
   color: PropTypes.string,
   cssStyles: PropTypes.object,
   width: PropTypes.string,
@@ -33,6 +35,7 @@ MenuCarat.propTypes = {
 };
 
 MenuCarat.defaultProps = {
+  className: null,
   color: '#202020',
   cssStyles: null,
   width: '16px',
