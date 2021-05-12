@@ -1,5 +1,10 @@
-import React from 'react';
+import tw from 'twin.macro';
+import Media from 'react-media';
+import { css } from '@emotion/core';
+import React, { useState } from 'react';
 
+import { tailwind } from '../../helpers/display';
+import MenuCarat from '../artifacts/MenuCarat/MenuCarat';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import { isAuthenticated, buildAuthRedirectUrl } from '../../helpers/auth';
 import {
@@ -8,10 +13,26 @@ import {
   getPageContext,
 } from '../../helpers/analytics';
 
+const dropdownList = [
+  { copy: 'My Campaigns', slug: 'campaigns' },
+  { copy: 'My Rewards', slug: 'rewards' },
+  { copy: 'Volunteer Credits', slug: 'credits' },
+  { copy: 'Refer A Friend', slug: 'refer-friends' },
+  { copy: 'My Interests', slug: 'interests' },
+  { copy: 'My Subscriptions', slug: 'subscriptions' },
+  { copy: 'My Profile', slug: '' },
+];
+
 const SiteNavigationProfile = () => {
+  const [isDropdownActive, setIsDropdownActive] = useState(false);
+
   return isAuthenticated() ? (
     <>
-      <li className="utility-nav__account-profile menu-nav__item flex">
+      <li
+        className="utility-nav__account-profile menu-nav__item flex"
+        onMouseEnter={() => setIsDropdownActive(true)}
+        onMouseLeave={() => setIsDropdownActive(false)}
+      >
         <a
           id="utility-nav__account-profile"
           href="/us/account"
@@ -24,9 +45,53 @@ const SiteNavigationProfile = () => {
               context: getPageContext(),
             })
           }
+          css={css`
+            @media (min-width: ${tailwind('screens.lg')}) {
+              padding-right: 3px;
+            }
+          `}
         >
           <ProfileIcon />
         </a>
+
+        <Media query={{ minWidth: tailwind('screens.lg') }}>
+          <>
+            <MenuCarat
+              cssStyles={isDropdownActive ? tw`transform rotate-180` : null}
+              className="cursor-pointer"
+            />
+
+            {isDropdownActive ? (
+              <div
+                className="bg-white absolute p-6 border-l border-solid border-gray-300 w-48 right-0"
+                css={css`
+                  top: 75px;
+                `}
+              >
+                {/* Top partial-border for dropdown. */}
+                <span
+                  className="absolute top-0 left-0 border-t border-solid border-gray-300"
+                  css={css`
+                    width: 72px;
+                  `}
+                />
+
+                <ul>
+                  {dropdownList.map(({ copy, slug }) => (
+                    <li key={slug}>
+                      <a
+                        className="text-black no-underline hover:text-black hover:underline"
+                        href={`/us/account/${slug}`}
+                      >
+                        {copy}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </>
+        </Media>
       </li>
     </>
   ) : (
