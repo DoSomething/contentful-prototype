@@ -1,5 +1,6 @@
 import Media from 'react-media';
 import { css } from '@emotion/core';
+import classNames from 'classnames';
 import React, { useState } from 'react';
 
 import { tailwind } from '../../helpers/display';
@@ -70,8 +71,11 @@ const SiteNavigationProfile = () => {
                 />
 
                 <ul>
-                  {dropdownList.map(({ copy, slug }) => (
-                    <li key={slug}>
+                  {dropdownList.map(({ copy, slug }, index) => (
+                    <li
+                      key={slug}
+                      className={classNames({ 'pt-3': index !== 0 })}
+                    >
                       <a
                         data-testid="profile-dropdown-link"
                         className="text-black no-underline hover:text-black hover:underline"
