@@ -32,6 +32,7 @@ const SiteNavigationProfile = () => {
         className="utility-nav__account-profile menu-nav__item flex"
         onMouseEnter={() => setIsDropdownActive(true)}
         onMouseLeave={() => setIsDropdownActive(false)}
+        data-testid="account-profile-nav"
       >
         <a
           id="utility-nav__account-profile"
@@ -62,6 +63,7 @@ const SiteNavigationProfile = () => {
                 css={css`
                   top: 75px;
                 `}
+                data-testid="profile-dropdown"
               >
                 {/* Top partial-border for dropdown. */}
                 <span
@@ -75,6 +77,7 @@ const SiteNavigationProfile = () => {
                   {dropdownList.map(({ copy, slug }) => (
                     <li key={slug}>
                       <a
+                        data-testid="profile-dropdown-link"
                         className="text-black no-underline hover:text-black hover:underline"
                         href={`/us/account/${slug}`}
                         css={css`
