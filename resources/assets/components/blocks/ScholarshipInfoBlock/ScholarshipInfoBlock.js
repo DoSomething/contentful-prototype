@@ -241,15 +241,7 @@ const ScholarshipInfoBlock = ({
               onClick={toggleHiddenInfo}
             >
               <p className="text-sm font-bold">{`${detailsLabel} Details`}</p>
-              <MenuCarat
-                cssStyles={
-                  drawerOpen
-                    ? css`
-                        transform: rotate(180deg);
-                      `
-                    : null
-                }
-              />
+              <MenuCarat flipped={drawerOpen} />
             </button>
           </div>
         </div>

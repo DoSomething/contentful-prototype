@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import Media from 'react-media';
 import { css } from '@emotion/core';
 import React, { useState } from 'react';
@@ -52,10 +51,7 @@ const SiteNavigationProfile = () => {
 
         <Media query={{ minWidth: tailwind('screens.lg') }}>
           <>
-            <MenuCarat
-              cssStyles={isDropdownActive ? tw`transform rotate-180` : null}
-              className="cursor-pointer"
-            />
+            <MenuCarat flipped={isDropdownActive} className="cursor-pointer" />
 
             {isDropdownActive ? (
               <div
