@@ -71,10 +71,10 @@ const SiteNavigationProfile = () => {
 
                 <ul className="px-6 py-4">
                   {dropdownList.map(({ copy, slug }) => (
-                    <li key={slug} className="py-2">
+                    <li key={slug}>
                       <a
                         data-testid="profile-dropdown-link"
-                        className="text-black no-underline hover:text-black hover:underline"
+                        className="block py-2 text-black no-underline hover:text-black hover:underline"
                         href={`/us/account/${slug}`}
                         css={css`
                           :hover {
