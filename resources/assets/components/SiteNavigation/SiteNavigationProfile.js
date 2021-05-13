@@ -1,6 +1,5 @@
 import Media from 'react-media';
 import { css } from '@emotion/core';
-import classNames from 'classnames';
 import React, { useState } from 'react';
 
 import { tailwind } from '../../helpers/display';
@@ -56,7 +55,7 @@ const SiteNavigationProfile = () => {
 
             {isDropdownActive ? (
               <div
-                className="bg-white absolute p-6 border-l border-solid border-gray-300 w-48 right-0"
+                className="bg-white absolute border-l border-solid border-gray-300 w-48 right-0"
                 css={css`
                   top: 75px;
                 `}
@@ -70,12 +69,9 @@ const SiteNavigationProfile = () => {
                   `}
                 />
 
-                <ul>
-                  {dropdownList.map(({ copy, slug }, index) => (
-                    <li
-                      key={slug}
-                      className={classNames({ 'pt-3': index !== 0 })}
-                    >
+                <ul className="px-6 py-4">
+                  {dropdownList.map(({ copy, slug }) => (
+                    <li key={slug} className="py-2">
                       <a
                         data-testid="profile-dropdown-link"
                         className="text-black no-underline hover:text-black hover:underline"
