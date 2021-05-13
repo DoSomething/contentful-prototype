@@ -55,7 +55,7 @@ const SiteNavigationProfile = () => {
 
             {isDropdownActive ? (
               <div
-                className="bg-white absolute p-6 border-l border-solid border-gray-300 w-48 right-0"
+                className="bg-white absolute border-l border-solid border-gray-300 w-48 right-0"
                 css={css`
                   top: 75px;
                 `}
@@ -69,12 +69,12 @@ const SiteNavigationProfile = () => {
                   `}
                 />
 
-                <ul>
+                <ul className="px-6 py-4">
                   {dropdownList.map(({ copy, slug }) => (
                     <li key={slug}>
                       <a
                         data-testid="profile-dropdown-link"
-                        className="text-black no-underline hover:text-black hover:underline"
+                        className="block py-2 text-black no-underline hover:text-black hover:underline"
                         href={`/us/account/${slug}`}
                         css={css`
                           :hover {
