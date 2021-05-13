@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
 
+import { userFactory } from '../fixtures/user';
 import { tailwind } from '../../resources/assets/helpers/display';
 import exampleFactPage from '../fixtures/contentful/exampleFactPage';
 
@@ -146,6 +147,22 @@ describe('Site Navigation', () => {
       // Assert the Benefits subnav is not still rendered on page:
       cy.get('.main-subnav').should('not.exist');
     });
+
+    it('does not render the profile dropdown when hovering over the profile icon', () => {
+      const user = userFactory();
+
+      // Set the viewport:
+      cy.viewport(size.width, size.height);
+
+      // Log the user in.
+      cy.login(user)
+        .withState(exampleFactPage)
+        .visit('/us/facts/test-11-facts-about-testing');
+
+      cy.findByTestId('account-profile-nav').trigger('mouseover');
+
+      cy.findByTestId('profile-dropdown').should('have.length', 0);
+    });
   });
 
   largeSizes.forEach(size => {
@@ -177,6 +194,28 @@ describe('Site Navigation', () => {
       cy.get('#main-nav__benefits')
         .should('have.attr', 'href')
         .and('include', '/us/about/benefits');
+    });
+
+    it('toggles the profile dropdown when hovering over the profile icon', () => {
+      const user = userFactory();
+
+      // Set the viewport:
+      cy.viewport(size.width, size.height);
+
+      // Log the user in.
+      cy.login(user)
+        .withState(exampleFactPage)
+        .visit('/us/facts/test-11-facts-about-testing');
+
+      cy.findByTestId('account-profile-nav').trigger('mouseover');
+
+      cy.findByTestId('profile-dropdown').within(() => {
+        cy.findAllByTestId('profile-dropdown-link').should('have.length', 7);
+      });
+
+      cy.findByTestId('account-profile-nav').trigger('mouseout');
+
+      cy.findByTestId('profile-dropdown').should('have.length', 0);
     });
   });
 });

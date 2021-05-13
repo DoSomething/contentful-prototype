@@ -1,7 +1,6 @@
 import pluralize from 'pluralize';
 import PropTypes from 'prop-types';
 import { startCase } from 'lodash';
-import { css } from '@emotion/core';
 import React, { useState } from 'react';
 
 import {
@@ -18,10 +17,6 @@ const FilterNavigation = ({ filters, setFilters }) => {
   const filterCategoryNames = Object.keys(filters).map(filter =>
     pluralize.singular(filter),
   );
-
-  const caratToggle = css`
-    transform: rotate(180deg);
-  `;
 
   const handleMenuToggle = event => {
     const selectedFilter = event.target.dataset.filter;
@@ -50,10 +45,7 @@ const FilterNavigation = ({ filters, setFilters }) => {
             attributes={{ 'data-filter': name }}
             className="mr-4 lg:mr-8"
             decoration={
-              <MenuCarat
-                color="#322baa"
-                cssStyles={activeFilter === name ? caratToggle : null}
-              />
+              <MenuCarat color="#322baa" flipped={activeFilter === name} />
             }
             isActive={activeFilter === name}
             key={`${name}_button`}

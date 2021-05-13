@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import classNames from 'classnames';
 
-const MenuCarat = ({ color, cssStyles, height, width }) => (
-  <div className="menu-carat pl-2 my-auto">
+const MenuCarat = ({ className, color, height, flipped, width }) => (
+  <div className={classNames('menu-carat pl-2 my-auto', className)}>
     <svg
       css={css`
         pointerevents: 'none';
         height: ${height};
         width: ${width};
-        ${cssStyles};
+        ${flipped ? 'transform: rotate(180deg);' : ''}
       `}
       // adding the props here gives us the ability to pass another
       // css prop to the component if there are one off cases we need to define
@@ -26,15 +27,17 @@ const MenuCarat = ({ color, cssStyles, height, width }) => (
 );
 
 MenuCarat.propTypes = {
+  className: PropTypes.string,
   color: PropTypes.string,
-  cssStyles: PropTypes.object,
+  flipped: PropTypes.bool,
   width: PropTypes.string,
   height: PropTypes.string,
 };
 
 MenuCarat.defaultProps = {
+  className: null,
   color: '#202020',
-  cssStyles: null,
+  flipped: false,
   width: '16px',
   height: '9px',
 };
