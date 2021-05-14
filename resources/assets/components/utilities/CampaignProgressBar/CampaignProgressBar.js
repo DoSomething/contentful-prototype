@@ -37,6 +37,10 @@ const CampaignProgressBar = ({ actionId }) => {
   const currentImpactTotal = get(data, 'action.currentImpactQuantity', 0);
 
   const { goal, percentage } = getGoalInfo(impactGoal, currentImpactTotal);
+  // for monday: create helper to set the impact goal.
+  // if it's null, set it to the nearest 1,000
+  // if it's equal or above the current total, also so ^^
+  // otherwise set it to the total that's passed in
   return (
     <>
       {loading ? (
@@ -46,8 +50,7 @@ const CampaignProgressBar = ({ actionId }) => {
           <ProgressBar percentage={percentage} />
           <p className="text-lg">
             <span className="font-bold">
-              {`${currentImpactTotal.toLocaleString()}`} lbs of {noun} {verb} so
-              far.
+              {`${currentImpactTotal.toLocaleString()}`} {noun} {verb}.
             </span>
             {` `}Help us get to {`${goal.toLocaleString()}`}!
           </p>
