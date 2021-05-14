@@ -38,6 +38,16 @@ const CAMPAIGN_BANNER_QUERY = gql`
         id
         filterByLocation
       }
+      endDate
+      isOpen
+      actions {
+        id
+        actionLabel
+        timeCommitmentLabel
+        scholarshipEntry
+        reportback
+        volunteerCredit
+      }
     }
   }
 `;
@@ -84,6 +94,24 @@ const CampaignBanner = ({
   }
 
   const groupType = get(data, 'campaign.groupType', null);
+  const endDate = get(data, 'campaign.endDate', null);
+  const actions = get(data, 'campaign.actions', []);
+  const isOpen = get(data, 'campaign.isOpen', null);
+
+  // Decide which action to display
+  let actionItem;
+
+  if (actionIdToDisplay) {
+    actionItem = actions.find(action => action.id === actionIdToDisplay);
+  } else {
+    actionItem = actions.find(
+      action => action.reportback && action.scholarshipEntry,
+    );
+  }
+  if (!actionItem) {
+    actionItem = actions.find(action => action.reportback);
+  }
+
   const impactGoal = Number(siteConfig('go_greener_campaign_goal', null));
   const currentImpactTotal = Number(
     siteConfig('go_greener_campaign_quantity', 0),
@@ -169,11 +197,14 @@ const CampaignBanner = ({
             ) : null}
 
             <CampaignInfoBlock
+              actionItem={actionItem}
               campaignId={numCampaignId}
+              endDate={endDate}
+              isOpen={isOpen}
+              loading={loading}
               scholarshipAmount={scholarshipAmount}
               scholarshipDeadline={scholarshipDeadline}
               showModal={() => setShowScholarshipModal(true)}
-              actionIdToDisplay={actionIdToDisplay}
             />
           </div>
         </div>
