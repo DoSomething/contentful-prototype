@@ -39,7 +39,7 @@ const DropdownMenu = () => (
     <span
       className="absolute top-0 left-0 border-t border-solid border-gray-300"
       css={css`
-        width: ${isAuthenticated() ? '72' : '86'}px;
+        width: ${isAuthenticated() ? '72' : '87'}px;
       `}
     />
 
@@ -138,6 +138,10 @@ const SiteNavigationProfile = () => {
               context: getPageContext(),
             })
           }
+          // Prevent the log-in link from shifting when we activate the right hand border for the dropdown.
+          css={css`
+            ${isDropdownActive ? 'margin-right: -1px;' : ''}
+          `}
         >
           Log In
         </a>
