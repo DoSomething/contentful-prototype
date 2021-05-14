@@ -1,5 +1,6 @@
 import Media from 'react-media';
 import { css } from '@emotion/core';
+import classNames from 'classnames';
 import React, { useState } from 'react';
 
 import { tailwind } from '../../helpers/display';
@@ -95,7 +96,14 @@ const SiteNavigationProfile = () => {
     </>
   ) : (
     <>
-      <li className="utility-nav__auth menu-nav__item">
+      <li
+        className={classNames(
+          'utility-nav__auth menu-nav__item flex lg:pr-3 lg:mr-1 relative',
+          { 'border-r border-solid border-gray-300': isDropdownActive },
+        )}
+        onMouseEnter={() => setIsDropdownActive(true)}
+        onMouseLeave={() => setIsDropdownActive(false)}
+      >
         <a
           id="utility-nav__auth"
           href={buildAuthRedirectUrl({ mode: 'login' })}
@@ -110,6 +118,65 @@ const SiteNavigationProfile = () => {
         >
           Log In
         </a>
+
+        <Media query={{ minWidth: tailwind('screens.lg') }}>
+          <>
+            <MenuCarat flipped={isDropdownActive} className="cursor-pointer" />
+
+            {isDropdownActive ? (
+              <div
+                className="bg-white absolute border-l border-r border-solid border-gray-300 w-48"
+                css={css`
+                  top: 53px;
+                  right: -1px;
+                `}
+                data-testid="profile-dropdown"
+              >
+                {/* Top partial-border for dropdown. */}
+                <span
+                  className="absolute top-0 left-0 border-t border-solid border-gray-300"
+                  css={css`
+                    width: 86px;
+                  `}
+                />
+
+                <ul className="px-6 py-4">
+                  {dropdownList.map(({ copy, slug }) => (
+                    <li key={slug}>
+                      <a
+                        data-testid="profile-dropdown-link"
+                        className="block py-2 text-black no-underline hover:text-black hover:underline"
+                        href={`/us/account/${slug}`}
+                        css={css`
+                          :hover {
+                            text-decoration-color: ${tailwind('colors.black')};
+                          }
+                        `}
+                      >
+                        {copy}
+                      </a>
+                    </li>
+                  ))}
+
+                  <li>
+                    <a
+                      data-testid="profile-dropdown-link"
+                      className="block py-2 text-black no-underline hover:text-black hover:underline"
+                      href={buildAuthRedirectUrl({ mode: 'login' })}
+                      css={css`
+                        :hover {
+                          text-decoration-color: ${tailwind('colors.black')};
+                        }
+                      `}
+                    >
+                      Log In
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            ) : null}
+          </>
+        </Media>
       </li>
 
       <li className="utility-nav__join menu-nav__item">

@@ -332,6 +332,10 @@ $extraSmall: '(min-width: 360px)';
 
     > a {
         padding: $spacing_1x;
+
+        @include media($large) {
+            padding-right: 3px;
+        }
     }
 }
 
