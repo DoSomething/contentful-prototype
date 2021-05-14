@@ -167,7 +167,7 @@ CampaignInfoBlock.propTypes = {
     reportback: PropTypes.bool,
     volunteerCredit: PropTypes.bool.isRequired,
   }).isRequired,
-  endDate: PropTypes.number,
+  endDate: PropTypes.string,
   campaignId: PropTypes.number.isRequired,
   hideScholarshipDetails: PropTypes.bool,
   isOpen: PropTypes.bool.isRequired,

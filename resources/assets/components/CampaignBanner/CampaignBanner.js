@@ -43,6 +43,7 @@ const CAMPAIGN_BANNER_QUERY = gql`
       actions {
         id
         actionLabel
+        postType
         timeCommitmentLabel
         scholarshipEntry
         reportback
@@ -100,16 +101,18 @@ const CampaignBanner = ({
 
   // Decide which action to display
   let actionItem;
-
-  if (actionIdToDisplay) {
-    actionItem = actions.find(action => action.id === actionIdToDisplay);
-  } else {
-    actionItem = actions.find(
-      action => action.reportback && action.scholarshipEntry,
-    );
-  }
-  if (!actionItem) {
-    actionItem = actions.find(action => action.reportback);
+  if (actions.length) {
+    if (actionIdToDisplay) {
+      actionItem = actions.find(action => action.id === actionIdToDisplay);
+    } else {
+      actionItem = actions.find(
+        action => action.reportback && action.scholarshipEntry,
+      );
+    }
+    if (!actionItem) {
+      actionItem = actions.find(action => action.reportback);
+    }
+    console.log('we enter hereeeeeeeeeeeee', actionItem);
   }
 
   const impactGoal = Number(siteConfig('go_greener_campaign_goal', null));
@@ -140,7 +143,7 @@ const CampaignBanner = ({
             data-testid="campaign-banner-primary-content"
             className="grid-wide-7/10 mb-6"
           >
-            {numCampaignId === 9109 || numCampaignId === 9001 ? (
+            {!loading && actionItem.postType === 'photo' ? (
               <div className="mb-6">
                 <ProgressBar percentage={percentage} />
                 <p className="text-lg">
