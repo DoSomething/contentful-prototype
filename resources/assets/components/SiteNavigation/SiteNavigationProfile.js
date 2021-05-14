@@ -126,6 +126,7 @@ const SiteNavigationProfile = () => {
         )}
         onMouseEnter={() => setIsDropdownActive(true)}
         onMouseLeave={() => setIsDropdownActive(false)}
+        data-testid="login-nav"
       >
         <a
           id="utility-nav__auth"
