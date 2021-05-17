@@ -14,6 +14,17 @@ describe('Campaign Progress Bar', () => {
     currentImpactQuantity: 1200,
   };
 
+  const textPostTypeAction = {
+    actionLabel: 'Sign a Petition',
+    postType: 'text',
+    timeCommitmentLabel: '30 minutes - 1 hour',
+    noun: 'petitions',
+    verb: 'signed',
+    scholarshipEntry: true,
+    reportback: true,
+    currentImpactQuantity: 1200,
+  };
+
   beforeEach(() => cy.configureMocks());
 
   /** @test */
@@ -98,5 +109,26 @@ describe('Campaign Progress Bar', () => {
       );
       cy.contains(`Help us get to 2,000!`);
     });
+  });
+
+  /** @test */
+  it('Does not display the progress bar for a text action', () => {
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: (root, { campaignId }) => ({
+        id: campaignId,
+        actions: () => [textPostTypeAction],
+      }),
+    });
+    cy.mockGraphqlOp('CampaignProgressBarQuery', {
+      action: (root, { actionId }) => ({
+        ...textPostTypeAction,
+        id: actionId,
+        impactGoal: 3000,
+      }),
+    });
+
+    cy.anonVisitCampaign(exampleCampaign);
+
+    cy.findByTestId('campaign-progress-bar-container').should('have.length', 0);
   });
 });
