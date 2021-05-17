@@ -59,7 +59,7 @@ const CampaignProgressBar = ({ actionId }) => {
       {loading ? (
         <Spinner className="flex justify-center p-6" />
       ) : (
-        <div className="mb-6">
+        <div className="mb-6" data-testid="campaign-progress-bar-container">
           <ProgressBar percentage={percentage} />
           <p className="text-lg">
             <span className="font-bold">
