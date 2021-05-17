@@ -44,13 +44,13 @@ const CampaignProgressBar = ({ actionId }) => {
   const storedImpactGoal = get(data, 'action.impactGoal', null);
   const currentImpactTotal = get(data, 'action.currentImpactQuantity', 0);
 
-  const displayedImactGoal = progressGoalCalculator(
+  const displayedImpactGoal = progressGoalCalculator(
     currentImpactTotal,
     storedImpactGoal,
   );
 
   const { goal, percentage } = getGoalInfo(
-    displayedImactGoal,
+    displayedImpactGoal,
     currentImpactTotal,
   );
 
