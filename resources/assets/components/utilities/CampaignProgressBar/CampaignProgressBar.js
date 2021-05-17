@@ -26,6 +26,14 @@ const CampaignProgressBar = ({ actionId }) => {
     variables: { id: actionId },
   });
 
+  const progressGoalCalculator = (currentTotal, overallGoal = 0) => {
+    if (!overallGoal || currentTotal >= overallGoal) {
+      return Math.ceil(currentTotal / 1000) * 1000;
+    }
+
+    return overallGoal;
+  };
+
   if (error) {
     return <ErrorBlock error={error} />;
   }
@@ -33,14 +41,19 @@ const CampaignProgressBar = ({ actionId }) => {
   const noun = get(data, 'action.noun', null);
   const verb = get(data, 'action.verb', null);
 
-  const impactGoal = get(data, 'action.impactGoal', null);
+  const storedImpactGoal = get(data, 'action.impactGoal', null);
   const currentImpactTotal = get(data, 'action.currentImpactQuantity', 0);
 
-  const { goal, percentage } = getGoalInfo(impactGoal, currentImpactTotal);
-  // for monday: create helper to set the impact goal.
-  // if it's null, set it to the nearest 1,000
-  // if it's equal or above the current total, also so ^^
-  // otherwise set it to the total that's passed in
+  const displayedImactGoal = progressGoalCalculator(
+    currentImpactTotal,
+    storedImpactGoal,
+  );
+
+  const { goal, percentage } = getGoalInfo(
+    displayedImactGoal,
+    currentImpactTotal,
+  );
+
   return (
     <>
       {loading ? (
@@ -61,7 +74,7 @@ const CampaignProgressBar = ({ actionId }) => {
 };
 
 CampaignProgressBar.propTypes = {
-  actionId: PropTypes.string.isRequired,
+  actionId: PropTypes.number.isRequired,
 };
 
 export default CampaignProgressBar;
