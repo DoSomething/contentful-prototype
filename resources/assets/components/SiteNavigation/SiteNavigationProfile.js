@@ -43,12 +43,12 @@ const DropdownMenu = () => (
       `}
     />
 
-    <ul className="px-6 py-4">
+    <ul className="py-4">
       {dropdownList.map(({ copy, slug }) => (
         <li key={slug}>
           <a
             data-testid="profile-dropdown-link"
-            className="block py-2 text-black no-underline hover:text-black hover:underline"
+            className="block px-6 py-2 text-black no-underline hover:text-black hover:underline"
             href={`/us/account/${slug}`}
             css={css`
               :hover {
@@ -65,7 +65,7 @@ const DropdownMenu = () => (
         <li>
           <a
             data-testid="profile-dropdown-link"
-            className="block py-2 text-black no-underline hover:text-black hover:underline"
+            className="block px-6 py-2 text-black no-underline hover:text-black hover:underline"
             href={buildAuthRedirectUrl({ mode: 'login' })}
             css={css`
               :hover {
@@ -82,7 +82,7 @@ const DropdownMenu = () => (
 );
 
 const SiteNavigationProfile = () => {
-  const [isDropdownActive, setIsDropdownActive] = useState(false);
+  const [isDropdownActive, setIsDropdownActive] = useState(true);
 
   return isAuthenticated() ? (
     <>
@@ -125,7 +125,7 @@ const SiteNavigationProfile = () => {
           { 'border-gray-300': isDropdownActive },
         )}
         onMouseEnter={() => setIsDropdownActive(true)}
-        onMouseLeave={() => setIsDropdownActive(false)}
+        // onMouseLeave={() => setIsDropdownActive(false)}
         data-testid="login-nav"
       >
         <a
