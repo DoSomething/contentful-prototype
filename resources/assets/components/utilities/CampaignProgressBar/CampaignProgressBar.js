@@ -28,6 +28,9 @@ const CampaignProgressBar = ({ actionId }) => {
 
   const progressGoalCalculator = (currentTotal, overallGoal = 0) => {
     if (!overallGoal || currentTotal >= overallGoal) {
+      if (currentTotal < 1) {
+        return 1000;
+      }
       return Math.ceil(currentTotal / 1000) * 1000;
     }
 

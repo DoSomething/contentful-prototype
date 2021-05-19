@@ -13,6 +13,17 @@ describe('Campaign Progress Bar', () => {
     currentImpactQuantity: 1200,
   };
 
+  const noCurrentTotalImpactAction = {
+    actionLabel: 'Sign a Petition',
+    postType: 'photo',
+    timeCommitmentLabel: '30 minutes - 1 hour',
+    noun: 'petitions',
+    verb: 'signed',
+    scholarshipEntry: true,
+    reportback: true,
+    currentImpactQuantity: 0,
+  };
+
   const textPostTypeAction = {
     actionLabel: 'Sign a Petition',
     postType: 'text',
@@ -95,6 +106,29 @@ describe('Campaign Progress Bar', () => {
     cy.findByTestId('campaign-progress-bar-container').within(() => {
       cy.contains('1,200 petitions signed.');
       cy.contains(`Help us get to 2,000!`);
+    });
+  });
+
+  /** @test */
+  it('Displays default goal of 1000 with 0 current impact quantity', () => {
+    cy.mockGraphqlOp('CampaignBannerQuery', {
+      campaign: (root, { campaignId }) => ({
+        id: campaignId,
+        actions: () => [noCurrentTotalImpactAction],
+      }),
+    });
+    cy.mockGraphqlOp('CampaignProgressBarQuery', {
+      action: (root, { actionId }) => ({
+        ...noCurrentTotalImpactAction,
+        id: actionId,
+      }),
+    });
+
+    cy.anonVisitCampaign(exampleCampaign);
+
+    cy.findByTestId('campaign-progress-bar-container').within(() => {
+      cy.contains('0 petitions signed.');
+      cy.contains('Help us get to 1,000!');
     });
   });
 
