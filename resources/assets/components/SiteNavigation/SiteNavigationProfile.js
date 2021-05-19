@@ -1,5 +1,6 @@
 import Media from 'react-media';
 import { css } from '@emotion/core';
+import classNames from 'classnames';
 import React, { useState } from 'react';
 
 import { tailwind } from '../../helpers/display';
@@ -21,6 +22,64 @@ const dropdownList = [
   { copy: 'My Subscriptions', slug: 'subscriptions' },
   { copy: 'My Profile', slug: '' },
 ];
+
+const DropdownMenu = () => (
+  <div
+    className={classNames(
+      'bg-white absolute border-l border-solid border-gray-300 w-48 right-0',
+      { 'border-r': !isAuthenticated() },
+    )}
+    css={css`
+      top: ${isAuthenticated() ? '75' : '53'}px;
+      ${!isAuthenticated() ? 'right: -1px;' : ''}
+    `}
+    data-testid="profile-dropdown"
+  >
+    {/* Top partial-border for dropdown. */}
+    <span
+      className="absolute top-0 left-0 border-t border-solid border-gray-300"
+      css={css`
+        width: ${isAuthenticated() ? '72' : '87'}px;
+      `}
+    />
+
+    <ul className="py-4">
+      {dropdownList.map(({ copy, slug }) => (
+        <li key={slug}>
+          <a
+            data-testid="profile-dropdown-link"
+            className="block px-6 py-2 text-black no-underline hover:text-black hover:underline"
+            href={`/us/account/${slug}`}
+            css={css`
+              :hover {
+                text-decoration-color: ${tailwind('colors.black')};
+              }
+            `}
+          >
+            {copy}
+          </a>
+        </li>
+      ))}
+
+      {!isAuthenticated() ? (
+        <li>
+          <a
+            data-testid="profile-dropdown-link"
+            className="block px-6 py-2 text-black no-underline hover:text-black hover:underline"
+            href={buildAuthRedirectUrl({ mode: 'login' })}
+            css={css`
+              :hover {
+                text-decoration-color: ${tailwind('colors.black')};
+              }
+            `}
+          >
+            Log In
+          </a>
+        </li>
+      ) : null}
+    </ul>
+  </div>
+);
 
 const SiteNavigationProfile = () => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
@@ -53,50 +112,24 @@ const SiteNavigationProfile = () => {
           <>
             <MenuCarat flipped={isDropdownActive} className="cursor-pointer" />
 
-            {isDropdownActive ? (
-              <div
-                className="bg-white absolute border-l border-solid border-gray-300 w-48 right-0"
-                css={css`
-                  top: 75px;
-                `}
-                data-testid="profile-dropdown"
-              >
-                {/* Top partial-border for dropdown. */}
-                <span
-                  className="absolute top-0 left-0 border-t border-solid border-gray-300"
-                  css={css`
-                    width: 72px;
-                  `}
-                />
-
-                <ul className="px-6 py-4">
-                  {dropdownList.map(({ copy, slug }) => (
-                    <li key={slug}>
-                      <a
-                        data-testid="profile-dropdown-link"
-                        className="block py-2 text-black no-underline hover:text-black hover:underline"
-                        href={`/us/account/${slug}`}
-                        css={css`
-                          :hover {
-                            text-decoration-color: ${tailwind('colors.black')};
-                          }
-                        `}
-                      >
-                        {copy}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
+            {isDropdownActive ? <DropdownMenu /> : null}
           </>
         </Media>
       </li>
     </>
   ) : (
     <>
-      <li className="utility-nav__auth menu-nav__item">
+      <li
+        className={classNames(
+          'utility-nav__auth menu-nav__item flex lg:pr-3 lg:mr-1 relative border-r border-solid border-white',
+          { 'border-gray-300': isDropdownActive },
+        )}
+        onMouseEnter={() => setIsDropdownActive(true)}
+        onMouseLeave={() => setIsDropdownActive(false)}
+        data-testid="login-nav"
+      >
         <a
+          className="whitespace-no-wrap"
           id="utility-nav__auth"
           href={buildAuthRedirectUrl({ mode: 'login' })}
           onClick={() =>
@@ -110,10 +143,19 @@ const SiteNavigationProfile = () => {
         >
           Log In
         </a>
+
+        <Media query={{ minWidth: tailwind('screens.lg') }}>
+          <>
+            <MenuCarat flipped={isDropdownActive} className="cursor-pointer" />
+
+            {isDropdownActive ? <DropdownMenu /> : null}
+          </>
+        </Media>
       </li>
 
       <li className="utility-nav__join menu-nav__item">
         <a
+          className="whitespace-no-wrap"
           id="utility-nav__join"
           href={buildAuthRedirectUrl()}
           onClick={() =>

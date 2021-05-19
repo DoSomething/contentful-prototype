@@ -148,11 +148,17 @@ describe('Site Navigation', () => {
       cy.get('.main-subnav').should('not.exist');
     });
 
-    it('does not render the profile dropdown when hovering over the profile icon', () => {
+    it('does not render the profile dropdown when hovering over the profile icon or login link', () => {
       const user = userFactory();
 
       // Set the viewport:
       cy.viewport(size.width, size.height);
+
+      cy.visit('/us/facts/test-11-facts-about-testing');
+
+      cy.findByTestId('login-nav').trigger('mouseover');
+
+      cy.findByTestId('profile-dropdown').should('have.length', 0);
 
       // Log the user in.
       cy.login(user)
@@ -214,6 +220,25 @@ describe('Site Navigation', () => {
       });
 
       cy.findByTestId('account-profile-nav').trigger('mouseout');
+
+      cy.findByTestId('profile-dropdown').should('have.length', 0);
+    });
+
+    it.only('toggles the profile dropdown when hovering over the login link', () => {
+      const user = userFactory();
+
+      // Set the viewport:
+      cy.viewport(size.width, size.height);
+
+      cy.visit('/us/facts/test-11-facts-about-testing');
+
+      cy.findByTestId('login-nav').trigger('mouseover');
+
+      cy.findByTestId('profile-dropdown').within(() => {
+        cy.findAllByTestId('profile-dropdown-link').should('have.length', 8);
+      });
+
+      cy.findByTestId('login-nav').trigger('mouseout');
 
       cy.findByTestId('profile-dropdown').should('have.length', 0);
     });
