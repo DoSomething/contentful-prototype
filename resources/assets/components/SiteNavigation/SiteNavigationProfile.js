@@ -82,7 +82,7 @@ const DropdownMenu = () => (
 );
 
 const SiteNavigationProfile = () => {
-  const [isDropdownActive, setIsDropdownActive] = useState(true);
+  const [isDropdownActive, setIsDropdownActive] = useState(false);
 
   return isAuthenticated() ? (
     <>
@@ -125,7 +125,7 @@ const SiteNavigationProfile = () => {
           { 'border-gray-300': isDropdownActive },
         )}
         onMouseEnter={() => setIsDropdownActive(true)}
-        // onMouseLeave={() => setIsDropdownActive(false)}
+        onMouseLeave={() => setIsDropdownActive(false)}
         data-testid="login-nav"
       >
         <a
