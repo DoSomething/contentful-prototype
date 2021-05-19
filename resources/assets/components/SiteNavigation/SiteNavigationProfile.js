@@ -129,6 +129,7 @@ const SiteNavigationProfile = () => {
         data-testid="login-nav"
       >
         <a
+          className="whitespace-no-wrap"
           id="utility-nav__auth"
           href={buildAuthRedirectUrl({ mode: 'login' })}
           onClick={() =>
@@ -154,6 +155,7 @@ const SiteNavigationProfile = () => {
 
       <li className="utility-nav__join menu-nav__item">
         <a
+          className="whitespace-no-wrap"
           id="utility-nav__join"
           href={buildAuthRedirectUrl()}
           onClick={() =>
