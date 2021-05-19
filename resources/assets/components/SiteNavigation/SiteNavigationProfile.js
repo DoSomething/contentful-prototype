@@ -121,8 +121,8 @@ const SiteNavigationProfile = () => {
     <>
       <li
         className={classNames(
-          'utility-nav__auth menu-nav__item flex lg:pr-3 lg:mr-1 relative',
-          { 'border-r border-solid border-gray-300': isDropdownActive },
+          'utility-nav__auth menu-nav__item flex lg:pr-3 lg:mr-1 relative border-r border-solid border-white',
+          { 'border-gray-300': isDropdownActive },
         )}
         onMouseEnter={() => setIsDropdownActive(true)}
         onMouseLeave={() => setIsDropdownActive(false)}
@@ -139,10 +139,6 @@ const SiteNavigationProfile = () => {
               context: getPageContext(),
             })
           }
-          // Prevent the log-in link from shifting when we activate the right hand border for the dropdown.
-          css={css`
-            ${isDropdownActive ? 'margin-right: -1px;' : ''}
-          `}
         >
           Log In
         </a>
