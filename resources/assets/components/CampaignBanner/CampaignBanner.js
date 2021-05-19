@@ -6,7 +6,6 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 
 import Modal from '../utilities/Modal/Modal';
-import { siteConfig } from '../../helpers/env';
 import ContentfulEntry from '../ContentfulEntry';
 import partnerScholarshipQuizPaths from './config';
 import Spinner from '../artifacts/Spinner/Spinner';
@@ -14,13 +13,12 @@ import { isCurrentPathInPaths } from '../../helpers/url';
 import CampaignHeader from '../utilities/CampaignHeader';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import CoverImage from '../utilities/CoverImage/CoverImage';
-import { getGoalInfo } from '../../helpers/voter-registration';
-import ProgressBar from '../utilities/ProgressBar/ProgressBar';
 import TextContent from '../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
 import CampaignInfoBlock from '../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
+import CampaignProgressBar from '../utilities/CampaignProgressBar/CampaignProgressBar';
 import ScholarshipInfoBlock from '../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import CampaignSignupFormContainer from '../CampaignSignupForm/CampaignSignupFormContainer';
 import {
@@ -37,6 +35,17 @@ const CAMPAIGN_BANNER_QUERY = gql`
       groupType {
         id
         filterByLocation
+      }
+      endDate
+      isOpen
+      actions {
+        id
+        actionLabel
+        postType
+        timeCommitmentLabel
+        scholarshipEntry
+        reportback
+        volunteerCredit
       }
     }
   }
@@ -84,12 +93,24 @@ const CampaignBanner = ({
   }
 
   const groupType = get(data, 'campaign.groupType', null);
-  const impactGoal = Number(siteConfig('go_greener_campaign_goal', null));
-  const currentImpactTotal = Number(
-    siteConfig('go_greener_campaign_quantity', 0),
-  );
+  const endDate = get(data, 'campaign.endDate', null);
+  const actions = get(data, 'campaign.actions', []);
+  const isOpen = get(data, 'campaign.isOpen', null);
 
-  const { goal, percentage } = getGoalInfo(impactGoal, currentImpactTotal);
+  // Decide which action to display
+  let actionItem;
+  if (actions.length) {
+    if (actionIdToDisplay) {
+      actionItem = actions.find(action => action.id === actionIdToDisplay);
+    } else {
+      actionItem = actions.find(
+        action => action.reportback && action.scholarshipEntry,
+      );
+    }
+    if (!actionItem) {
+      actionItem = actions.find(action => action.reportback);
+    }
+  }
 
   return (
     <>
@@ -112,17 +133,8 @@ const CampaignBanner = ({
             data-testid="campaign-banner-primary-content"
             className="grid-wide-7/10 mb-6"
           >
-            {numCampaignId === 9109 || numCampaignId === 9001 ? (
-              <div className="mb-6">
-                <ProgressBar percentage={percentage} />
-                <p className="text-lg">
-                  <span className="font-bold">
-                    {`${currentImpactTotal.toLocaleString()}`} lbs of CO2 saved
-                    so far.
-                  </span>
-                  {` `}Help us get to {`${goal.toLocaleString()}`}!
-                </p>
-              </div>
+            {!loading && actionItem.postType === 'photo' ? (
+              <CampaignProgressBar actionId={actionItem.id} />
             ) : null}
             <TextContent>{content}</TextContent>
 
@@ -169,11 +181,14 @@ const CampaignBanner = ({
             ) : null}
 
             <CampaignInfoBlock
+              actionItem={actionItem}
               campaignId={numCampaignId}
+              endDate={endDate}
+              isOpen={isOpen}
+              loading={loading}
               scholarshipAmount={scholarshipAmount}
               scholarshipDeadline={scholarshipDeadline}
               showModal={() => setShowScholarshipModal(true)}
-              actionIdToDisplay={actionIdToDisplay}
             />
           </div>
         </div>

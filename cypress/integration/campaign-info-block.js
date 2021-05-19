@@ -35,7 +35,7 @@ describe('Campaign Info Block', () => {
 
   /** @test */
   it('Displays the reportback & scholarship action data', () => {
-    cy.mockGraphqlOp('CampaignInfoQuery', {
+    cy.mockGraphqlOp('CampaignBannerQuery', {
       campaign: (root, { campaignId }) => ({
         id: campaignId,
         actions: () => [
@@ -57,7 +57,7 @@ describe('Campaign Info Block', () => {
 
   /** @test */
   it('defaults to the first reportback action if there is no scholarship', () => {
-    cy.mockGraphqlOp('CampaignInfoQuery', {
+    cy.mockGraphqlOp('CampaignBannerQuery', {
       campaign: (root, { campaignId }) => ({
         id: campaignId,
         actions: () => [reportbackActionOne, reportbackActionTwo, plainAction],
@@ -74,7 +74,7 @@ describe('Campaign Info Block', () => {
 
   /** @test */
   it('Displays a Scholarship Amount if there is one for the campaign', () => {
-    cy.mockGraphqlOp('CampaignInfoQuery', {
+    cy.mockGraphqlOp('CampaignBannerQuery', {
       campaign: (root, { campaignId }) => ({
         id: campaignId,
         actions: () => [scholarshipAndReportbackAction],
@@ -93,7 +93,7 @@ describe('Campaign Info Block', () => {
     context('when the action qualifies for volunteer credit', () => {
       /** @test */
       it('Displays Yes and surfaces the correct tooltip info', () => {
-        cy.mockGraphqlOp('CampaignInfoQuery', {
+        cy.mockGraphqlOp('CampaignBannerQuery', {
           campaign: (root, { campaignId }) => ({
             id: campaignId,
             actions: () => [
@@ -131,7 +131,7 @@ describe('Campaign Info Block', () => {
     context('When the action does not qualify for volunteer credit', () => {
       /** @test */
       it('Displays No and surfaces the correct tooltip content', () => {
-        cy.mockGraphqlOp('CampaignInfoQuery', {
+        cy.mockGraphqlOp('CampaignBannerQuery', {
           campaign: (root, { campaignId }) => ({
             id: campaignId,
             actions: () => [

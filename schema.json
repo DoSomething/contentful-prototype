@@ -3484,6 +3484,18 @@
             "deprecationReason": null
           },
           {
+            "name": "impactGoal",
+            "description": "The Impact Goal for this action, e.g. 4000.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "noun",
             "description": "The noun for this action, e.g. 'cards' or 'jeans'.",
             "args": [],
@@ -3588,6 +3600,18 @@
                 "name": "SchoolActionStat",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "currentImpactQuantity",
+            "description": "The Current Total Impact of this action (amount reached toward the impact goal).",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -15781,32 +15805,24 @@
             "description": "Template that asks user to reply with a photo caption.",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Field no longer displayed or asked for in user flow."
           },
           {
             "name": "invalidCaption",
             "description": "Template that asks user to resend a message with a valid photo caption.",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Field no longer displayed or asked for in user flow."
           },
           {
             "name": "askWhyParticipated",
@@ -16031,8 +16047,8 @@
               "name": "String",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "No longer displaying this field."
           },
           {
             "name": "captionFieldPlaceholderMessage",
@@ -16043,8 +16059,8 @@
               "name": "String",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "No longer displaying this field."
           },
           {
             "name": "showQuantityField",
