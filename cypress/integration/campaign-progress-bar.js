@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
-// import { userFactory } from '../fixtures/user';
 
 describe('Campaign Progress Bar', () => {
   const scholarshipAndReportbackAction = {
@@ -46,12 +45,8 @@ describe('Campaign Progress Bar', () => {
     cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('campaign-progress-bar-container').within(() => {
-      cy.contains(
-        `${scholarshipAndReportbackAction.currentImpactQuantity.toLocaleString()} ${
-          scholarshipAndReportbackAction.noun
-        } ${scholarshipAndReportbackAction.verb}.`,
-      );
-      cy.contains(`Help us get to 3,000!`);
+      cy.contains('1,200 petitions signed.');
+      cy.contains('Help us get to 3,000!');
     });
   });
 
@@ -74,11 +69,7 @@ describe('Campaign Progress Bar', () => {
     cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('campaign-progress-bar-container').within(() => {
-      cy.contains(
-        `${scholarshipAndReportbackAction.currentImpactQuantity.toLocaleString()} ${
-          scholarshipAndReportbackAction.noun
-        } ${scholarshipAndReportbackAction.verb}.`,
-      );
+      cy.contains('1,200 petitions signed.');
       cy.contains(`Help us get to 2,000!`);
     });
   });
@@ -102,11 +93,7 @@ describe('Campaign Progress Bar', () => {
     cy.anonVisitCampaign(exampleCampaign);
 
     cy.findByTestId('campaign-progress-bar-container').within(() => {
-      cy.contains(
-        `${scholarshipAndReportbackAction.currentImpactQuantity.toLocaleString()} ${
-          scholarshipAndReportbackAction.noun
-        } ${scholarshipAndReportbackAction.verb}.`,
-      );
+      cy.contains('1,200 petitions signed.');
       cy.contains(`Help us get to 2,000!`);
     });
   });
