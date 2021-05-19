@@ -224,7 +224,7 @@ describe('Site Navigation', () => {
       cy.findByTestId('profile-dropdown').should('have.length', 0);
     });
 
-    it.only('toggles the profile dropdown when hovering over the login icon', () => {
+    it.only('toggles the profile dropdown when hovering over the login link', () => {
       const user = userFactory();
 
       // Set the viewport:
