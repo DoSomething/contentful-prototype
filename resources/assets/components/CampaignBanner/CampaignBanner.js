@@ -133,7 +133,7 @@ const CampaignBanner = ({
             data-testid="campaign-banner-primary-content"
             className="grid-wide-7/10 mb-6"
           >
-            {!loading && actionItem.postType === 'photo' ? (
+            {!loading && actionItem && actionItem.postType === 'photo' ? (
               <CampaignProgressBar actionId={actionItem.id} />
             ) : null}
             <TextContent>{content}</TextContent>
