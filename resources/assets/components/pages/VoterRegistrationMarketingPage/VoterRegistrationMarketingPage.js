@@ -90,7 +90,7 @@ const VoterRegistrationMarketingPageTemplate = ({
             {logo.url ? (
               <img
                 data-testid="vr-marketing-page-banner-logo"
-                className="m-auto"
+                className="m-auto pb-3"
                 src={contentfulImageUrl(logo.url, '250', '60')}
                 alt={logo.description || ''}
               />
