@@ -15,6 +15,7 @@ import {
 } from '../../../helpers/analytics';
 
 const SingleEmailSubscriptionForm = ({
+  className,
   emailSubscriptionTopic,
   submissionSourceDetails,
 }) => {
@@ -109,7 +110,7 @@ const SingleEmailSubscriptionForm = ({
       </p>
     </div>
   ) : (
-    <form onSubmit={handleSubmit}>
+    <form className={className} onSubmit={handleSubmit}>
       <div
         className={classnames('md:flex md:max-w-xl mt-8 mx-auto', {
           'pb-10': get(errors, 'fields.email', null),
@@ -151,8 +152,13 @@ const SingleEmailSubscriptionForm = ({
 };
 
 SingleEmailSubscriptionForm.propTypes = {
+  className: PropTypes.string,
   emailSubscriptionTopic: PropTypes.string.isRequired,
   submissionSourceDetails: PropTypes.string.isRequired,
+};
+
+SingleEmailSubscriptionForm.defaultProps = {
+  className: null,
 };
 
 export default SingleEmailSubscriptionForm;

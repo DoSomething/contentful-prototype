@@ -63,8 +63,6 @@ const ToggleSubscriptionButton = ({ topic }) => {
       isLoading={loading || modifying}
       isToggled={topics.includes(selectedTopic)}
       onClick={() => {
-        console.log([topics, selectedTopic, !topics.includes(selectedTopic)]);
-
         updateSubscription({
           variables: {
             topic: selectedTopic,
