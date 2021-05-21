@@ -126,6 +126,9 @@ const EmailSubscriptionForm = ({ className }) => {
               topic={EMAIL_SUBSCRIPTION_TOPICS[key]}
             >
               <EmailSubscriptionFormInput
+                attributes={{
+                  'data-testid': `${EMAIL_SUBSCRIPTION_TOPICS[key]}-newsletter-subscription`,
+                }}
                 topic={EMAIL_SUBSCRIPTION_TOPICS[key]}
                 updateSubscriptions={updateSubscriptions}
               />
