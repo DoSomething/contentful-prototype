@@ -1,4 +1,5 @@
 import Media from 'react-media';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import classNames from 'classnames';
 import React, { useState } from 'react';
@@ -23,10 +24,38 @@ const dropdownList = [
   { copy: 'My Profile', slug: '' },
 ];
 
+const DropdownLink = ({ href, copy }) => (
+  <a
+    data-testid="profile-dropdown-link"
+    className="block px-6 py-2 text-black no-underline hover:text-black hover:underline"
+    href={href}
+    css={css`
+      :hover {
+        text-decoration-color: ${tailwind('colors.black')};
+      }
+    `}
+    onClick={() =>
+      trackAnalyticsEvent(`clicked_subnav_link_profile_${copy}`, {
+        action: 'link_clicked',
+        category: EVENT_CATEGORIES.navigation,
+        label: `profile_${copy}`,
+        context: getPageContext(),
+      })
+    }
+  >
+    {copy}
+  </a>
+);
+
+DropdownLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  copy: PropTypes.string.isRequired,
+};
+
 const DropdownMenu = () => (
   <div
     className={classNames(
-      'bg-white absolute border-l border-solid border-gray-300 w-48 right-0',
+      'bg-white absolute border-l border-b border-solid border-gray-300 w-48 right-0',
       { 'border-r': !isAuthenticated() },
     )}
     css={css`
@@ -46,35 +75,16 @@ const DropdownMenu = () => (
     <ul className="py-4">
       {dropdownList.map(({ copy, slug }) => (
         <li key={slug}>
-          <a
-            data-testid="profile-dropdown-link"
-            className="block px-6 py-2 text-black no-underline hover:text-black hover:underline"
-            href={`/us/account/${slug}`}
-            css={css`
-              :hover {
-                text-decoration-color: ${tailwind('colors.black')};
-              }
-            `}
-          >
-            {copy}
-          </a>
+          <DropdownLink href={`/us/account/${slug}`} copy={copy} />
         </li>
       ))}
 
       {!isAuthenticated() ? (
         <li>
-          <a
-            data-testid="profile-dropdown-link"
-            className="block px-6 py-2 text-black no-underline hover:text-black hover:underline"
+          <DropdownLink
             href={buildAuthRedirectUrl({ mode: 'login' })}
-            css={css`
-              :hover {
-                text-decoration-color: ${tailwind('colors.black')};
-              }
-            `}
-          >
-            Log In
-          </a>
+            copy="Log In"
+          />
         </li>
       ) : null}
     </ul>
