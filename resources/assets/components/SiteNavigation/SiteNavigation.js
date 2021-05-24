@@ -337,7 +337,7 @@ class SiteNavigation extends React.Component {
 
             <li className="menu-nav__item">
               <a
-                href="us/about/donate"
+                href="/us/about/donate"
                 onClick={() =>
                   this.handleOnClickLink({
                     name: 'clicked_nav_link_donate',
