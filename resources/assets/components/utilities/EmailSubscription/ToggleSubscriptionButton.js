@@ -35,7 +35,7 @@ export const EMAIL_SUBSCRIPTION_MUTATION = gql`
   }
 `;
 
-const ToggleSubscriptionButton = ({ topic }) => {
+const ToggleSubscriptionButton = ({ attributes, topic }) => {
   const selectedTopic = upperCase(topic);
 
   const options = { variables: { userId: getUserId() } };
@@ -56,15 +56,14 @@ const ToggleSubscriptionButton = ({ topic }) => {
 
   return (
     <ToggleButton
-      className="mt-4"
       activateText="Subscribe"
+      attributes={attributes}
+      className="mt-4"
       deactivateText="Unsubscribe"
       isDisabled={loading || modifying}
       isLoading={loading || modifying}
       isToggled={topics.includes(selectedTopic)}
       onClick={() => {
-        console.log([topics, selectedTopic, !topics.includes(selectedTopic)]);
-
         updateSubscription({
           variables: {
             topic: selectedTopic,
@@ -77,9 +76,12 @@ const ToggleSubscriptionButton = ({ topic }) => {
 };
 
 ToggleSubscriptionButton.propTypes = {
+  attributes: PropTypes.object,
   topic: PropTypes.oneOf(Object.keys(EMAIL_SUBSCRIPTION_TOPICS)).isRequired,
 };
 
-ToggleSubscriptionButton.defaultProps = {};
+ToggleSubscriptionButton.defaultProps = {
+  attributes: null,
+};
 
 export default ToggleSubscriptionButton;

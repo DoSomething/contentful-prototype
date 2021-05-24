@@ -1,6 +1,7 @@
 /* global window */
 
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import React, { useState } from 'react';
 import { RestApiClient } from '@dosomething/gateway';
@@ -18,7 +19,7 @@ import {
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 
-const EmailSubscriptionForm = () => {
+const EmailSubscriptionForm = ({ className }) => {
   const [subscriptions, setSubscriptions] = useState([]);
 
   const [emailValue, setEmailValue] = useState('');
@@ -116,7 +117,7 @@ const EmailSubscriptionForm = () => {
       </p>
     </div>
   ) : (
-    <form onSubmit={handleSubmit}>
+    <form className={className} onSubmit={handleSubmit}>
       <div className="newsletter-gallery mt-0 gap-8 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-4">
         {Object.keys(EMAIL_SUBSCRIPTION_TOPICS).map(key => {
           return (
@@ -125,6 +126,9 @@ const EmailSubscriptionForm = () => {
               topic={EMAIL_SUBSCRIPTION_TOPICS[key]}
             >
               <EmailSubscriptionFormInput
+                attributes={{
+                  'data-testid': `${EMAIL_SUBSCRIPTION_TOPICS[key]}-newsletter-subscription`,
+                }}
                 topic={EMAIL_SUBSCRIPTION_TOPICS[key]}
                 updateSubscriptions={updateSubscriptions}
               />
@@ -176,6 +180,14 @@ const EmailSubscriptionForm = () => {
       )}
     </form>
   );
+};
+
+EmailSubscriptionForm.propTypes = {
+  className: PropTypes.string,
+};
+
+EmailSubscriptionForm.defaultProps = {
+  className: null,
 };
 
 export default EmailSubscriptionForm;

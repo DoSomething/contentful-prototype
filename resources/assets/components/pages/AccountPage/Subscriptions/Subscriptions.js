@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CancelEmailSubscription from './CancelEmailSubscription';
-import LegacyEmailSubscriptions from '../../../utilities/EmailSubscription/LegacyEmailSubscriptions';
+import EmailSubscriptionForm from '../../../utilities/EmailSubscription/EmailSubscriptionForm';
 
 const Subscriptions = props => (
   <div className="grid-wide">
@@ -13,7 +13,7 @@ const Subscriptions = props => (
       help you win scholarships.
     </p>
 
-    <LegacyEmailSubscriptions {...props} />
+    <EmailSubscriptionForm className="my-6" />
 
     <CancelEmailSubscription {...props} />
   </div>

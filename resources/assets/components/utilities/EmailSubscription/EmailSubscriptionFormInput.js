@@ -6,9 +6,13 @@ import { isAuthenticated } from '../../../helpers/auth';
 import ToggleSubscriptionButton from './ToggleSubscriptionButton';
 import ToggleSubscriptionCheckbox from './ToggleSubscriptionCheckbox';
 
-const EmailSubscriptionFormInput = ({ topic, updateSubscriptions }) =>
+const EmailSubscriptionFormInput = ({
+  attributes,
+  topic,
+  updateSubscriptions,
+}) =>
   isAuthenticated() ? (
-    <ToggleSubscriptionButton topic={topic} />
+    <ToggleSubscriptionButton attributes={attributes} topic={topic} />
   ) : (
     <ToggleSubscriptionCheckbox
       topic={topic}
@@ -17,8 +21,13 @@ const EmailSubscriptionFormInput = ({ topic, updateSubscriptions }) =>
   );
 
 EmailSubscriptionFormInput.propTypes = {
+  attributes: PropTypes.object,
   topic: PropTypes.oneOf(Object.keys(EMAIL_SUBSCRIPTION_TOPICS)).isRequired,
   updateSubscriptions: PropTypes.func.isRequired,
+};
+
+EmailSubscriptionFormInput.defaultProps = {
+  attributes: null,
 };
 
 export default EmailSubscriptionFormInput;
