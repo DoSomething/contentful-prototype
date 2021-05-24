@@ -34,6 +34,14 @@ const DropdownLink = ({ href, copy }) => (
         text-decoration-color: ${tailwind('colors.black')};
       }
     `}
+    onClick={() =>
+      trackAnalyticsEvent(`clicked_subnav_link_profile_${copy}`, {
+        action: 'link_clicked',
+        category: EVENT_CATEGORIES.navigation,
+        label: `profile_${copy}`,
+        context: getPageContext(),
+      })
+    }
   >
     {copy}
   </a>
