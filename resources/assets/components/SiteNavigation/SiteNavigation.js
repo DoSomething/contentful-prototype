@@ -337,17 +337,17 @@ class SiteNavigation extends React.Component {
 
             <li className="menu-nav__item">
               <a
-                href="/us/articles"
+                href="/us/about/donate"
                 onClick={() =>
                   this.handleOnClickLink({
-                    name: 'clicked_nav_link_articles',
+                    name: 'clicked_nav_link_donate',
                     action: 'link_clicked',
                     category: EVENT_CATEGORIES.navigation,
-                    label: 'articles',
+                    label: 'donate',
                   })
                 }
               >
-                Articles
+                Donate
               </a>
             </li>
 
