@@ -47,7 +47,7 @@ DropdownLink.propTypes = {
 const DropdownMenu = () => (
   <div
     className={classNames(
-      'bg-white absolute border-l border-solid border-gray-300 w-48 right-0',
+      'bg-white absolute border-l border-b border-solid border-gray-300 w-48 right-0',
       { 'border-r': !isAuthenticated() },
     )}
     css={css`
