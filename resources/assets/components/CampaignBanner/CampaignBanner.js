@@ -42,6 +42,7 @@ const CAMPAIGN_BANNER_QUERY = gql`
         id
         actionLabel
         postType
+        currentImpactQuantity
         timeCommitmentLabel
         scholarshipEntry
         reportback
@@ -112,6 +113,10 @@ const CampaignBanner = ({
     }
   }
 
+  const showProgressBar =
+    actionItem &&
+    actionItem.postType === 'photo' &&
+    actionItem.currentImpactQuantity;
   return (
     <>
       <CoverImage coverImage={coverImage} />
@@ -133,7 +138,7 @@ const CampaignBanner = ({
             data-testid="campaign-banner-primary-content"
             className="grid-wide-7/10 mb-6"
           >
-            {!loading && actionItem && actionItem.postType === 'photo' ? (
+            {!loading && showProgressBar ? (
               <CampaignProgressBar actionId={actionItem.id} />
             ) : null}
             <TextContent>{content}</TextContent>
