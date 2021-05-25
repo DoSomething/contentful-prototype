@@ -57,11 +57,9 @@ const CampaignProgressBar = ({ actionId }) => {
     currentImpactTotal,
   );
 
-  return (
+  const ProgressBarDisplay = () => (
     <>
-      {loading ? (
-        <Spinner className="flex justify-center p-6" />
-      ) : (
+      {currentImpactTotal ? (
         <div className="mb-6" data-testid="campaign-progress-bar-container">
           <ProgressBar percentage={percentage} />
           <p className="text-lg">
@@ -71,6 +69,16 @@ const CampaignProgressBar = ({ actionId }) => {
             {` `}Help us get to {`${goal.toLocaleString()}`}!
           </p>
         </div>
+      ) : null}
+    </>
+  );
+
+  return (
+    <>
+      {loading ? (
+        <Spinner className="flex justify-center p-6" />
+      ) : (
+        <ProgressBarDisplay />
       )}
     </>
   );
