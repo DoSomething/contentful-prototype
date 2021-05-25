@@ -110,7 +110,7 @@ describe('Campaign Progress Bar', () => {
   });
 
   /** @test */
-  it('Displays default goal of 1000 with 0 current impact quantity', () => {
+  it('Does not display if progress quantity is 0 or null', () => {
     cy.mockGraphqlOp('CampaignBannerQuery', {
       campaign: (root, { campaignId }) => ({
         id: campaignId,
@@ -126,10 +126,7 @@ describe('Campaign Progress Bar', () => {
 
     cy.anonVisitCampaign(exampleCampaign);
 
-    cy.findByTestId('campaign-progress-bar-container').within(() => {
-      cy.contains('0 petitions signed.');
-      cy.contains('Help us get to 1,000!');
-    });
+    cy.findByTestId('campaign-progress-bar-container').should('have.length', 0);
   });
 
   /** @test */
