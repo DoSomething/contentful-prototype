@@ -42,7 +42,6 @@ const CAMPAIGN_BANNER_QUERY = gql`
         id
         actionLabel
         postType
-        currentImpactQuantity
         timeCommitmentLabel
         scholarshipEntry
         reportback
@@ -113,10 +112,7 @@ const CampaignBanner = ({
     }
   }
 
-  const showProgressBar =
-    actionItem &&
-    actionItem.postType === 'photo' &&
-    actionItem.currentImpactQuantity;
+  const showProgressBar = actionItem && actionItem.postType === 'photo';
   return (
     <>
       <CoverImage coverImage={coverImage} />
