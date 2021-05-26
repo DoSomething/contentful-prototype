@@ -137,9 +137,9 @@ class AuthController extends Controller
         // "Log In" in the top navigation), or to the path defined in the $redirectTo property.
         $defaultIntended = is_same_domain(url()->previous()) ? url()->previous() : $this->redirectTo;
 
-        // The post-login redirect will be to the intended page (if logging in to view a page
-        // protected by the 'auth' middleware), or to the default path determined above.
-        $intended = session()->pull('url.intended', $defaultIntended);
+        // The post-login redirect will be to the custom 'destination', or the intended page (if logging in
+        // to view a page protected by the 'auth' middleware), or to the default path determined above.
+        $intended = Arr::get($queryParams, 'destination') ?: session()->pull('url.intended', $defaultIntended);
 
         session(['login.intended' => $intended]);
 
