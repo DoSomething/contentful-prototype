@@ -82,7 +82,7 @@ const DropdownMenu = () => (
       {!isAuthenticated() ? (
         <li>
           <DropdownLink
-            href={buildAuthRedirectUrl({ mode: 'login' })}
+            href={buildAuthRedirectUrl({ options: { mode: 'login' } })}
             copy="Log In"
           />
         </li>
@@ -141,7 +141,7 @@ const SiteNavigationProfile = () => {
         <a
           className="whitespace-no-wrap"
           id="utility-nav__auth"
-          href={buildAuthRedirectUrl({ mode: 'login' })}
+          href={buildAuthRedirectUrl({ options: { mode: 'login' } })}
           onClick={() =>
             trackAnalyticsEvent('clicked_nav_link_log_in', {
               action: 'link_clicked',
