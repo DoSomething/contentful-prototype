@@ -122,6 +122,21 @@ class AuthController extends Controller
     }
 
     /**
+     * Get custom destination URL (redirect for post authentication) from query params, and parse out
+     * the relative path to avoid melicious redirects.
+     *
+     * @param array $queryParams
+     * @return string|null
+     *
+     */
+     protected function getCustomDestination($queryParams = [])
+     {
+        $customDestination = Arr::get($queryParams, 'destination');
+
+        return $customDestination ? parse_url($customDestination, PHP_URL_PATH) : null;
+     }
+
+    /**
      * Set session data used post-login and once user returns, redirected back to intended page.
      *
      * @param array $queryParams
@@ -139,7 +154,7 @@ class AuthController extends Controller
 
         // The post-login redirect will be to the custom 'destination', or the intended page (if logging in
         // to view a page protected by the 'auth' middleware), or to the default path determined above.
-        $intended = Arr::get($queryParams, 'destination') ?: session()->pull('url.intended', $defaultIntended);
+        $intended = $this->getCustomDestination($queryParams) ?: session()->pull('url.intended', $defaultIntended);
 
         session(['login.intended' => $intended]);
 
