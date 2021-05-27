@@ -17,6 +17,7 @@ import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import RecommendedCampaignsGallery from './RecommendedCampaignsGallery';
+import BannerCallToAction from '../../utilities/CallToAction/BannerCallToAction';
 import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
 import ShortLinkShareContainer from '../../utilities/ShortLinkShare/ShortLinkShareContainer';
 import { CONTENTFUL_BLOCK_QUERY } from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
@@ -155,6 +156,12 @@ const ShowSubmissionPage = ({ match }) => {
             />
           </div>
         </div>
+
+        <BannerCallToAction
+          text="Refer a friend to this campaign, and you'll *both* earn a $5 gift card! Learn More"
+          title="Benefits with Friends"
+          stacked
+        />
       </main>
 
       <SiteFooter />
