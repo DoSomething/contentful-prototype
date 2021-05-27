@@ -127,10 +127,9 @@ class AuthController extends Controller
      *
      * @param array $queryParams
      * @return string|null
-     *
      */
-     protected function getCustomDestination($queryParams = [])
-     {
+    protected function getCustomDestination($queryParams = [])
+    {
         $customDestination = Arr::get($queryParams, 'destination');
 
         if (! $customDestination) {
@@ -140,8 +139,8 @@ class AuthController extends Controller
         $path = parse_url($customDestination, PHP_URL_PATH);
         $query = parse_url($customDestination, PHP_URL_QUERY);
 
-        return $path . (!empty($query) ? '?' . $query : '');
-     }
+        return $path . (! empty($query) ? '?' . $query : '');
+    }
 
     /**
      * Set session data used post-login and once user returns, redirected back to intended page.
