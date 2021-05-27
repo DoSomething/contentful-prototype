@@ -133,7 +133,14 @@ class AuthController extends Controller
      {
         $customDestination = Arr::get($queryParams, 'destination');
 
-        return $customDestination ? parse_url($customDestination, PHP_URL_PATH) : null;
+        if (! $customDestination) {
+            return null;
+        }
+
+        $path = parse_url($customDestination, PHP_URL_PATH);
+        $query = parse_url($customDestination, PHP_URL_QUERY);
+
+        return $path . (!empty($query) ? '?' . $query : '');
      }
 
     /**
