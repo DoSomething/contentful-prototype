@@ -17,7 +17,7 @@ const requiresAuthenticationMiddleware = () => next => action => {
     const actionId = `auth:${Date.now()}`;
 
     localforage.setItem(actionId, action).then(() => {
-      const redirectUrl = buildAuthRedirectUrl(null, actionId);
+      const redirectUrl = buildAuthRedirectUrl({ actionId });
       redirect(redirectUrl);
     });
 

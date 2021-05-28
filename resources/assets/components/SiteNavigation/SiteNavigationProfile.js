@@ -75,14 +75,24 @@ const DropdownMenu = () => (
     <ul className="py-4">
       {dropdownList.map(({ copy, slug }) => (
         <li key={slug}>
-          <DropdownLink href={`/us/account/${slug}`} copy={copy} />
+          <DropdownLink
+            href={
+              isAuthenticated()
+                ? `/us/account/${slug}`
+                : buildAuthRedirectUrl({
+                    options: { mode: 'login' },
+                    destination: `/us/account/${slug}`,
+                  })
+            }
+            copy={copy}
+          />
         </li>
       ))}
 
       {!isAuthenticated() ? (
         <li>
           <DropdownLink
-            href={buildAuthRedirectUrl({ mode: 'login' })}
+            href={buildAuthRedirectUrl({ options: { mode: 'login' } })}
             copy="Log In"
           />
         </li>
@@ -141,7 +151,7 @@ const SiteNavigationProfile = () => {
         <a
           className="whitespace-no-wrap"
           id="utility-nav__auth"
-          href={buildAuthRedirectUrl({ mode: 'login' })}
+          href={buildAuthRedirectUrl({ options: { mode: 'login' } })}
           onClick={() =>
             trackAnalyticsEvent('clicked_nav_link_log_in', {
               action: 'link_clicked',
