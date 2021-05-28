@@ -4,21 +4,24 @@ import { snakeCase } from 'lodash';
 import classnames from 'classnames';
 
 import AnalyticsWaypoint from '../AnalyticsWaypoint/AnalyticsWaypoint';
+import ShortLinkShareContainer from '../ShortLinkShare/ShortLinkShareContainer';
 
 const BannerReferFriends = ({
   attributes,
   children,
   colorClasses,
   stacked,
+  referralLink,
   text,
   title,
   waypointName,
 }) => {
+  console.log('referralLink', referralLink);
   return (
     <article
       className={classnames(
         'base-12-grid py-16 relative',
-        colorClasses.background || 'bg-yellow-500',
+        colorClasses.background || 'bg-purple-500',
       )}
       {...attributes}
     >
@@ -54,6 +57,8 @@ const BannerReferFriends = ({
           >
             {text}
           </p>
+
+          <ShortLinkShareContainer link={referralLink} />
         </div>
 
         <div className={classnames({ 'flex-grow': !stacked })}>{children}</div>
@@ -74,6 +79,7 @@ BannerReferFriends.propTypes = {
     background: PropTypes.string,
     text: PropTypes.string,
   }),
+  referralLink: PropTypes.string.isRequired,
   stacked: PropTypes.bool,
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

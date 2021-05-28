@@ -18,8 +18,7 @@ import SiteNavigation from '../../SiteNavigation/SiteNavigation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import RecommendedCampaignsGallery from './RecommendedCampaignsGallery';
 import BannerReferFriends from '../../utilities/CallToAction/BannerCallToAction';
-import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
-import ShortLinkShareContainer from '../../utilities/ShortLinkShare/ShortLinkShareContainer';
+import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 import { CONTENTFUL_BLOCK_QUERY } from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const POST_QUERY = gql`
@@ -32,6 +31,13 @@ const POST_QUERY = gql`
     }
   }
 `;
+
+export const getReferFriendsLink = (usersId, referralCampaignId) => {
+  if (!usersId || !referralCampaignId) {
+    return undefined;
+  }
+  return `${window.location.origin}/us/join?user_id=${usersId}&campaign_id=${referralCampaignId}`;
+};
 
 const ShowSubmissionPage = ({ match }) => {
   const id = query('submissionActionId');
@@ -46,13 +52,6 @@ const ShowSubmissionPage = ({ match }) => {
   });
 
   const { url: postImageUrl, campaignId, userId } = get(postData, 'post') || {};
-
-  const getSixPackReferFriendsLink = (usersId, referralCampaignId) => {
-    if (!usersId || !referralCampaignId) {
-      return undefined;
-    }
-    return `${window.location.origin}/us/join?user_id=${usersId}&campaign_id=${referralCampaignId}`;
-  };
 
   if (loading) {
     return <Placeholder />;
@@ -107,22 +106,6 @@ const ShowSubmissionPage = ({ match }) => {
                 We Got Your Submission
               </h1>
 
-              {
-                <SixpackExperiment
-                  internalTitle="thank you page engagement"
-                  convertableActions={['galleryBlockClick']}
-                  control={
-                    <ShortLinkShareContainer
-                      testName="with social share container"
-                      link={getSixPackReferFriendsLink(userId, campaignId)}
-                    />
-                  }
-                  alternatives={[
-                    <span testName="without social share container" />,
-                  ]}
-                />
-              }
-
               {id ? (
                 <Query
                   query={CONTENTFUL_BLOCK_QUERY}
@@ -158,6 +141,7 @@ const ShowSubmissionPage = ({ match }) => {
         </div>
 
         <BannerReferFriends
+          referralLink={getReferFriendsLink(userId, campaignId)}
           text="Refer a friend to this campaign, and you'll *both* earn a $5 gift card! Learn More"
           title="Benefits with Friends"
           colorClasses={{
@@ -165,8 +149,9 @@ const ShowSubmissionPage = ({ match }) => {
             text: 'text-white',
           }}
         >
-          <ShortLinkShareContainer
-            link={getSixPackReferFriendsLink(userId, campaignId)}
+          <div
+            className="bg-no-repeat bg-cover bg-center z-1000"
+            style={{ backgroundImage: `url(${ScholarshipMoneyHand})` }}
           />
         </BannerReferFriends>
       </main>
