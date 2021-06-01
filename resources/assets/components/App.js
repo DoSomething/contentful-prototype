@@ -85,8 +85,8 @@ const App = ({ store, history }) => {
               <Route
                 path="/us/account"
                 render={() => (
-                    <AccountQuery />
                   <AuthGate mode="login">
+                    <AccountQuery />
                   </AuthGate>
                 )}
               />
