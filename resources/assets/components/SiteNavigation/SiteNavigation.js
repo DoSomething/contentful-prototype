@@ -13,7 +13,7 @@ import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
 import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
 import BenefitsGallery from './BenefitsGallery/BenefitsGallery';
-import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
+import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingPrideLogo'; // @TODO: Change back to DoSomethingLogo after Pride month.
 import { query } from '../../helpers/url';
 import {
   EVENT_CATEGORIES,
