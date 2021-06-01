@@ -71,11 +71,11 @@ const AccountLandingPage = () => (
     <main>
       <article>
         <div className="base-12-grid bg-gray-100 pt-8 md:py-16">
-          <div className="pb-3 md:pb-0 md:pr-8 order-last md:order-first col-span-4 lg:col-start-2">
+          <div className="pb-3 md:pb-0 md:pr-8 lg:pr-4 order-last md:order-first col-span-4 lg:col-start-2">
             <img src={letsDoThis} alt="Let's Do This!" />
           </div>
 
-          <div className="col-span-4 md:col-span-4 lg:col-span-6 lg:pl-8">
+          <div className="col-span-4 md:col-span-4 lg:col-span-6 lg:pl-4">
             <Query query={USERNAME_QUERY} variables={{ userId: getUserId() }}>
               {({ user }) => (
                 <h1
