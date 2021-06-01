@@ -83,15 +83,13 @@ export function getDataForAuthRedirect() {
  *
  * @param  {Undefined|Object} options
  * @param  {Undefined|String} actionId
- * @param  {Undefined|String} destination
  * @return {String}
  */
-export function buildAuthRedirectUrl({ options, actionId, destination } = {}) {
+export function buildAuthRedirectUrl({ options, actionId } = {}) {
   const params = queryString.stringify(
     withoutValueless({
       actionId,
       options: JSON.stringify({ ...getDataForAuthRedirect(), ...options }),
-      destination,
     }),
   );
 
