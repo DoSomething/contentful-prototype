@@ -34,6 +34,19 @@ const Account = props => (
             'bg-white': !featureFlag('account_landing_page'),
           })}
         >
+          {/* Account landing page breadcrumb link: */}
+          {featureFlag('account_landing_page') ? (
+            <div className="grid-wide-2/3 pb-1">
+              <Link
+                to="/us/account"
+                className="font-bold no-underline hover:no-underline"
+              >
+                My Profile
+              </Link>{' '}
+              <span className="font-bold">/</span>
+            </div>
+          ) : null}
+
           <AccountRoute {...props} />
         </div>
       </article>
