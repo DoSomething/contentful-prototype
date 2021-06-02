@@ -41,7 +41,7 @@ const Account = props => (
                 to="/us/account"
                 className="font-bold no-underline hover:no-underline"
               >
-                My Profile
+                My Account
               </Link>{' '}
               <span className="font-bold">/</span>
             </div>
