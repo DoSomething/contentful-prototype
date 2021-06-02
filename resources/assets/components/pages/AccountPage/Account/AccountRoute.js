@@ -49,9 +49,9 @@ const AccountRoute = props => (
 
     <Route
       path={
-        !featureFlag('account_landing_page')
-          ? '/us/account'
-          : '/us/account/profile'
+        featureFlag('account_landing_page')
+          ? '/us/account/profile'
+          : '/us/account'
       }
       render={() => <Profile {...props} />}
     />
