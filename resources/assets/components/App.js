@@ -29,6 +29,7 @@ import AlphaReferralPage from './pages/ReferralPage/Alpha/AlphaPage';
 import DelayedElement from './utilities/DelayedElement/DelayedElement';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
 import ShowSubmissionPage from './pages/ShowSubmissionPage/ShowSubmissionPage';
+import AccountLandingPage from './pages/AccountLandingPage/AccountLandingPage';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import PopoverDispatcher from './utilities/PopoverDispatcher/PopoverDispatcher';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
@@ -83,13 +84,22 @@ const App = ({ store, history }) => {
               ) : null}
 
               <Route
+                exact={featureFlag('account_landing_page')}
                 path="/us/account"
                 render={() => (
                   <AuthGate mode="login">
-                    <AccountQuery />
+                    {featureFlag('account_landing_page') ? (
+                      <AccountLandingPage />
+                    ) : (
+                      <AccountQuery />
+                    )}
                   </AuthGate>
                 )}
               />
+
+              {featureFlag('account_landing_page') ? (
+                <Route path="/us/account/:slug" component={AccountQuery} />
+              ) : null}
 
               <Route path="/us/blocks/:id" component={BlockPage} />
 

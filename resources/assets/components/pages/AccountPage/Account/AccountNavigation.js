@@ -19,8 +19,12 @@ const AccountNavigation = () => (
   <nav className="base-12-grid page-navigation py-3 md:py-6 -no-fade">
     <div className="grid-wide nav-items -mx-3">
       <NavigationLink
-        exact
-        to="/us/account"
+        exact={!featureFlag('account_landing_page')}
+        to={
+          featureFlag('account_landing_page')
+            ? '/us/account/profile'
+            : '/us/account'
+        }
         onClick={() => handleAccountNavTabClick('account')}
       >
         Account
