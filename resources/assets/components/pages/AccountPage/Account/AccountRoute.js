@@ -49,7 +49,7 @@ const AccountRoute = props => (
 
     <Route
       path={
-        featureFlag('account_landing_page')
+        !featureFlag('account_landing_page')
           ? '/us/account'
           : '/us/account/profile'
       }
