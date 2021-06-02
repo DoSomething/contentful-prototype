@@ -15,7 +15,7 @@ import {
 const Profile = props => (
   <React.Fragment>
     <div className="grid-wide">
-      <h1 className="text-xl">Account</h1>
+      <h1 className="text-xl">Profile</h1>
       <p className="text-gray-600">
         Update your personal information and manage your account.
       </p>
