@@ -55,8 +55,8 @@ const accountLinks = [
   },
 ];
 
-const USERNAME_QUERY = gql`
-  query UsernameQuery($userId: String!) {
+const USER_NAME_QUERY = gql`
+  query UserNameQuery($userId: String!) {
     user(id: $userId) {
       id
       firstName
@@ -76,7 +76,7 @@ const AccountLandingPage = () => (
           </div>
 
           <div className="col-span-4 md:col-span-4 lg:col-span-6 lg:pl-4">
-            <Query query={USERNAME_QUERY} variables={{ userId: getUserId() }}>
+            <Query query={USER_NAME_QUERY} variables={{ userId: getUserId() }}>
               {({ user }) => (
                 <h1
                   data-testid="account-landing-page-user-welcome"

@@ -10,7 +10,7 @@ describe('User Account Landing Page', () => {
     // This user is just for auth purposes
     const user = userFactory();
 
-    cy.mockGraphqlOp('UsernameQuery', {
+    cy.mockGraphqlOp('UserNameQuery', {
       user: {
         firstName: 'Puppet',
       },
