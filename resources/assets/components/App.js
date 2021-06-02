@@ -87,7 +87,7 @@ const App = ({ store, history }) => {
                 exact={featureFlag('account_landing_page')}
                 path="/us/account"
                 render={() => (
-                  <AuthGate>
+                  <AuthGate mode="login">
                     {featureFlag('account_landing_page') ? (
                       <AccountLandingPage />
                     ) : (
