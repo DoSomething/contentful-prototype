@@ -29,6 +29,7 @@ import AlphaReferralPage from './pages/ReferralPage/Alpha/AlphaPage';
 import DelayedElement from './utilities/DelayedElement/DelayedElement';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
 import ShowSubmissionPage from './pages/ShowSubmissionPage/ShowSubmissionPage';
+import AccountLandingPage from './pages/AccountLandingPage/AccountLandingPage';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import PopoverDispatcher from './utilities/PopoverDispatcher/PopoverDispatcher';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
@@ -86,7 +87,11 @@ const App = ({ store, history }) => {
                 path="/us/account"
                 render={() => (
                   <AuthGate>
-                    <AccountQuery />
+                    {featureFlag('account_landing_page') ? (
+                      <AccountLandingPage />
+                    ) : (
+                      <AccountQuery />
+                    )}
                   </AuthGate>
                 )}
               />
