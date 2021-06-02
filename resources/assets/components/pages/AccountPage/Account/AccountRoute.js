@@ -47,7 +47,14 @@ const AccountRoute = props => (
 
     <Route path="/us/account/refer-friends" component={ReferFriendsTab} />
 
-    <Route path="/us/account" render={() => <Profile {...props} />} />
+    <Route
+      path={
+        featureFlag('account_landing_page')
+          ? '/us/account'
+          : '/us/account/profile'
+      }
+      render={() => <Profile {...props} />}
+    />
   </Switch>
 );
 

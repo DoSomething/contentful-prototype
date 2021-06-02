@@ -84,6 +84,7 @@ const App = ({ store, history }) => {
               ) : null}
 
               <Route
+                exact={featureFlag('account_landing_page')}
                 path="/us/account"
                 render={() => (
                   <AuthGate>
@@ -95,6 +96,10 @@ const App = ({ store, history }) => {
                   </AuthGate>
                 )}
               />
+
+              {featureFlag('account_landing_page') ? (
+                <Route path="/us/account/:slug" component={AccountQuery} />
+              ) : null}
 
               <Route path="/us/blocks/:id" component={BlockPage} />
 

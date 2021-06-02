@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { css } from '@emotion/core';
+import { Link } from 'react-router-dom';
 
 import Query from '../../Query';
 import letsDoThis from './lets-do-this.png';
@@ -88,11 +89,11 @@ const AccountLandingPage = () => (
             </Query>
 
             {accountLinks.map(({ title, subTitle, slug, icon }) => (
-              <a
+              <Link
                 data-testid="account-landing-page-navigation-link"
                 key={title}
                 className="my-1 p-4 rounded bg-white border border-solid border-gray-300 hover:border-blurple-500 no-underline hover:no-underline flex items-center"
-                href={`/us/account/${slug}`}
+                to={`/us/account/${slug}`}
                 css={css`
                   :hover {
                     > svg {
@@ -110,7 +111,7 @@ const AccountLandingPage = () => (
                     <div className="text-sm text-gray-500">{subTitle}</div>
                   ) : null}
                 </div>
-              </a>
+              </Link>
             ))}
 
             <a
