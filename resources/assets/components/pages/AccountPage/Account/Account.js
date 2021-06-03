@@ -9,6 +9,10 @@ import { featureFlag } from '../../../../helpers/env';
 import ScrollConcierge from '../../../ScrollConcierge';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import SiteNavigation from '../../../SiteNavigation/SiteNavigation';
+import {
+  trackAnalyticsEvent,
+  EVENT_CATEGORIES,
+} from '../../../../helpers/analytics';
 
 const Account = props => (
   <>
@@ -43,6 +47,16 @@ const Account = props => (
               <Link
                 to="/us/account"
                 className="font-bold no-underline hover:no-underline"
+                onClick={() =>
+                  trackAnalyticsEvent('clicked_breadcrumb_link_my_account', {
+                    action: 'link_clicked',
+                    category: EVENT_CATEGORIES.navigation,
+                    label: 'breadcrumb_my_account',
+                    context: {
+                      url: `${window.location.origin}/us/account`,
+                    },
+                  })
+                }
               >
                 My Account
               </Link>{' '}
