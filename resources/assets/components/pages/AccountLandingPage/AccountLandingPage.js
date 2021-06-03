@@ -16,6 +16,10 @@ import SubscriptionsIcon from './icons/SubscriptionsIcon';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import VolunteerCreditsIcon from './icons/VolunteerCreditsIcon';
 import SiteNavigation from '../../SiteNavigation/SiteNavigation';
+import {
+  trackAnalyticsEvent,
+  EVENT_CATEGORIES,
+} from '../../../helpers/analytics';
 
 const accountLinks = [
   {
@@ -94,6 +98,13 @@ const AccountLandingPage = () => (
                 key={title}
                 className="my-1 p-4 rounded bg-white border border-solid border-gray-300 hover:border-blurple-500 no-underline hover:no-underline flex items-center"
                 to={`/us/account/${slug}`}
+                onClick={() =>
+                  trackAnalyticsEvent(`clicked_account_nav_link_${slug}}`, {
+                    action: 'link_clicked',
+                    category: EVENT_CATEGORIES.navigation,
+                    label: `account_${slug}`,
+                  })
+                }
                 css={css`
                   :hover {
                     > svg {
