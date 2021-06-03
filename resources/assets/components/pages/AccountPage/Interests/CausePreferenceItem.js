@@ -50,7 +50,7 @@ const CausePreferenceItem = ({ attributes, cause, description, title }) => {
   const causes = get(data, 'user.causes', []);
 
   return (
-    <div className="border border-solid border-gray-300 p-4 rounded-md flex">
+    <div className="bg-white border border-solid border-gray-300 p-4 rounded-md flex">
       <div className="w-2/3 lg:w-3/4 pr-4">
         <h1 className="text-blurple-500 text-base text-bold">{title}</h1>
 
