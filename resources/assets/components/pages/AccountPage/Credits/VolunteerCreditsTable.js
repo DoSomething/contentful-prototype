@@ -14,7 +14,7 @@ const VolunteerCreditsTable = ({ certificatePosts }) =>
   certificatePosts.length ? (
     <table
       data-testid="user-credits-table"
-      className="border border-solid border-gray-200 border-collapse w-full"
+      className="bg-white border border-solid border-gray-200 border-collapse w-full"
     >
       <thead>
         <tr>
