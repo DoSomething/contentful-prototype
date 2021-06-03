@@ -50,7 +50,7 @@ const accountLinks = [
     icon: SubscriptionsIcon,
   },
   {
-    title: 'My Account',
+    title: 'My Profile',
     slug: 'profile',
     icon: AccountIcon,
   },
