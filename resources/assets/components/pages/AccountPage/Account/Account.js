@@ -6,11 +6,14 @@ import { Link } from 'react-router-dom';
 import AccountRoute from './AccountRoute';
 import AccountNavigation from './AccountNavigation';
 import { featureFlag } from '../../../../helpers/env';
+import ScrollConcierge from '../../../ScrollConcierge';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import SiteNavigation from '../../../SiteNavigation/SiteNavigation';
 
 const Account = props => (
   <>
+    <ScrollConcierge />
+
     <SiteNavigation />
 
     <main>
