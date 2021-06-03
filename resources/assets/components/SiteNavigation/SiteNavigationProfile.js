@@ -75,7 +75,10 @@ const DropdownMenu = () => (
     <ul className="py-4">
       {dropdownList.map(({ copy, slug }) => (
         <li key={slug}>
-          <DropdownLink href={`/us/account/${slug}`} copy={copy} />
+          <DropdownLink
+            href={`/us/account${slug ? `/${slug}` : ''}`}
+            copy={copy}
+          />
         </li>
       ))}
 
