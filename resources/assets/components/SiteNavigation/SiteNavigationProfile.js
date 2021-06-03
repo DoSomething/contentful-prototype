@@ -21,7 +21,7 @@ const dropdownList = [
   { copy: 'Refer A Friend', slug: 'refer-friends' },
   { copy: 'My Interests', slug: 'interests' },
   { copy: 'My Subscriptions', slug: 'subscriptions' },
-  { copy: 'My Profile', slug: '' },
+  { copy: 'My Profile', slug: 'profile' },
 ];
 
 const DropdownLink = ({ href, copy }) => (
