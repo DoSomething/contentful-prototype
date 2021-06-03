@@ -55,6 +55,10 @@ const AccountRoute = props => (
       }
       render={() => <Profile {...props} />}
     />
+
+    {featureFlag('account_landing_page') ? null : (
+      <Redirect from="/us/account/profile" to="/us/account" />
+    )}
   </Switch>
 );
 
