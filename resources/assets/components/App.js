@@ -98,9 +98,14 @@ const App = ({ store, history }) => {
               />
 
               {featureFlag('account_landing_page') ? (
-                <AuthGate mode="login">
-                  <Route path="/us/account/:slug" component={AccountQuery} />
-                </AuthGate>
+                <Route
+                  path="/us/account/:slug"
+                  render={() => (
+                    <AuthGate mode="login">
+                      <AccountQuery />
+                    </AuthGate>
+                  )}
+                />
               ) : null}
 
               <Route path="/us/blocks/:id" component={BlockPage} />
