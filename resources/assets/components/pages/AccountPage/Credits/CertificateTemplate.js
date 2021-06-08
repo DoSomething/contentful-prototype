@@ -274,9 +274,11 @@ const CertificateTemplate = ({ certificatePost }) => {
             <View style={[styles.flex, { lineHeight: 1.1 }]}>
               <View style={{ width: '50%' }}>
                 <Text style={{ marginTop: 10, fontWeight: 'bold' }}>
-                  DeNora M. Getachew, Chief Executive Officer
+                  DeNora M. Getachew
                 </Text>
-                <Text style={{ fontStyle: 'italic' }}>Editor-in-chief</Text>
+                <Text style={{ fontStyle: 'italic' }}>
+                  Chief Executive Officer
+                </Text>
               </View>
 
               <View style={{ width: '50%' }}>
