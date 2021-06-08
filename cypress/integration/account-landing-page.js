@@ -17,9 +17,7 @@ describe('User Account Landing Page', () => {
     });
 
     // Log in & visit the account page:
-    cy.login(user)
-      .withFeatureFlags({ account_landing_page: true })
-      .visit('/us/account');
+    cy.login(user).visit('/us/account');
 
     cy.findByTestId('account-landing-page-user-welcome').contains('Puppet');
   });
@@ -28,9 +26,7 @@ describe('User Account Landing Page', () => {
     const user = userFactory();
 
     // Log in & visit the account page:
-    cy.login(user)
-      .withFeatureFlags({ account_landing_page: true })
-      .visit('/us/account');
+    cy.login(user).visit('/us/account');
 
     cy.findAllByTestId('account-landing-page-navigation-link').should(
       'have.length',

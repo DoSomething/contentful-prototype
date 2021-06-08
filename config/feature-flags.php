@@ -14,7 +14,6 @@ return [
     |
     */
 
-    'account_landing_page' => env('DS_ENABLE_ACCOUNT_LANDING_PAGE', false),
     'algolia_campaigns_search' => env('DS_ENABLE_ALGOLIA_CAMPAIGNS_SEARCH', false),
     'hours_spent_in_vc_certificates' => env('DS_ENABLE_HOURS_SPENT_IN_VC_CERTIFICATES', false),
     'nps_survey' => env('DS_ENABLE_NPS_SURVEY', false),

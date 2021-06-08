@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Credits from '../Credits/Credits';
 import Profile from '../Profile/Profile';
+import NotFound from '../../../NotFound';
 import RewardsTab from '../Rewards/RewardsTab';
 import Interests from '../Interests/Interests';
 import { featureFlag } from '../../../../helpers/env';
@@ -47,18 +48,15 @@ const AccountRoute = props => (
 
     <Route path="/us/account/refer-friends" component={ReferFriendsTab} />
 
-    <Route
-      path={
-        featureFlag('account_landing_page')
-          ? '/us/account/profile'
-          : '/us/account'
-      }
-      render={() => <Profile {...props} />}
-    />
+    <Route path="/us/account/profile" render={() => <Profile {...props} />} />
 
-    {featureFlag('account_landing_page') ? null : (
-      <Redirect from="/us/account/profile" to="/us/account" />
-    )}
+    <Route
+      render={() => (
+        <div className="col-span-6 md:col-start-2 lg:col-start-4 p-8">
+          <NotFound />
+        </div>
+      )}
+    />
   </Switch>
 );
 
