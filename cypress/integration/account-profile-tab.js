@@ -16,7 +16,7 @@ describe('User Account Profile Tab', () => {
       },
     });
     cy.login(user);
-    cy.visit(`/us/account`);
+    cy.visit(`/us/account/profile/profile`);
     cy.findByTestId('user-email').should('contain', 'tester@mail.com');
     cy.findByTestId('user-name').should('contain', `${user.firstName} Tester`);
     cy.findByTestId('user-birthdate').should('contain', '1994-10-12');
@@ -24,7 +24,7 @@ describe('User Account Profile Tab', () => {
 
   /** @test */
   it('Does not render user Profile Tab if not logged in', () => {
-    cy.visit(`/us/account`);
+    cy.visit(`/us/account/profile`);
     cy.findByTestId('user-email').should('have.length', 0);
   });
 
@@ -39,7 +39,7 @@ describe('User Account Profile Tab', () => {
     });
 
     cy.login(user);
-    cy.visit(`/us/account`);
+    cy.visit(`/us/account/profile`);
     cy.findByTestId('unregistered-voting-status').should('have.length', 1);
   });
 
@@ -54,7 +54,7 @@ describe('User Account Profile Tab', () => {
     });
 
     cy.login(user);
-    cy.visit(`/us/account`);
+    cy.visit(`/us/account/profile`);
     cy.findByTestId('complete-registration-status').should('have.length', 1);
   });
 
@@ -69,7 +69,7 @@ describe('User Account Profile Tab', () => {
     });
 
     cy.login(user);
-    cy.visit(`/us/account`);
+    cy.visit(`/us/account/profile`);
     cy.findByTestId('uncertain-registration-status').should('have.length', 1);
   });
 });
