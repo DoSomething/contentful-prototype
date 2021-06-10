@@ -22,8 +22,7 @@ describe('User Account Email Subscriptions Tab', () => {
     // Log in & visit the subscription center:
     cy.login(user).visit('/us/account/subscriptions');
 
-    // We should see the user's name and the correct subscription topics checked
-    cy.contains('Welcome, Delilah!');
+    // We should see the user's correct subscription topics checked
     cy.findByTestId('community-newsletter-subscription').should(
       'contain',
       'Unsubscribe',

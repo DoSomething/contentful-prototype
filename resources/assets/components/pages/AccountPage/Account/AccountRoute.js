@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Credits from '../Credits/Credits';
 import Profile from '../Profile/Profile';
+import NotFound from '../../../NotFound';
 import RewardsTab from '../Rewards/RewardsTab';
 import Interests from '../Interests/Interests';
 import { featureFlag } from '../../../../helpers/env';
@@ -15,6 +16,7 @@ import ReferFriendsTab from '../ReferFriends/ReferFriendsTab';
 const AccountRoute = props => (
   <Switch>
     <Route
+      exact
       path="/us/account/campaigns"
       render={() => <UserPostsQuery userId={props.userId} />}
     />
@@ -23,6 +25,7 @@ const AccountRoute = props => (
     ) : null}
 
     <Route
+      exact
       path={
         featureFlag('rewards_levels')
           ? '/us/account/rewards'
@@ -31,34 +34,38 @@ const AccountRoute = props => (
       render={() => <RewardsTab {...props} />}
     />
 
-    <Route path="/us/account/credits" component={Credits} />
+    <Route exact path="/us/account/credits" component={Credits} />
 
-    <Route path="/us/account/interests" render={() => <Interests />} />
+    <Route exact path="/us/account/interests" render={() => <Interests />} />
 
     <Route
+      exact
       path="/us/account/subscriptions"
       render={() => <Subscriptions {...props} />}
     />
 
     <Route
+      exact
       path="/us/account/delete"
       render={() => <DeleteAccountTab {...props} />}
     />
 
-    <Route path="/us/account/refer-friends" component={ReferFriendsTab} />
+    <Route exact path="/us/account/refer-friends" component={ReferFriendsTab} />
 
     <Route
-      path={
-        featureFlag('account_landing_page')
-          ? '/us/account/profile'
-          : '/us/account'
-      }
+      exact
+      path="/us/account/profile"
       render={() => <Profile {...props} />}
     />
 
-    {featureFlag('account_landing_page') ? null : (
-      <Redirect from="/us/account/profile" to="/us/account" />
-    )}
+    <Route
+      exact
+      render={() => (
+        <div className="col-span-6 md:col-start-2 lg:col-start-4 p-8">
+          <NotFound />
+        </div>
+      )}
+    />
   </Switch>
 );
 
