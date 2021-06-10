@@ -16,7 +16,7 @@ describe('User Account Profile Tab', () => {
       },
     });
     cy.login(user);
-    cy.visit(`/us/account/profile/profile`);
+    cy.visit(`/us/account/profile`);
     cy.findByTestId('user-email').should('contain', 'tester@mail.com');
     cy.findByTestId('user-name').should('contain', `${user.firstName} Tester`);
     cy.findByTestId('user-birthdate').should('contain', '1994-10-12');
