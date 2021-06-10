@@ -16,6 +16,7 @@ import ReferFriendsTab from '../ReferFriends/ReferFriendsTab';
 const AccountRoute = props => (
   <Switch>
     <Route
+      exact
       path="/us/account/campaigns"
       render={() => <UserPostsQuery userId={props.userId} />}
     />
@@ -24,6 +25,7 @@ const AccountRoute = props => (
     ) : null}
 
     <Route
+      exact
       path={
         featureFlag('rewards_levels')
           ? '/us/account/rewards'
@@ -32,25 +34,32 @@ const AccountRoute = props => (
       render={() => <RewardsTab {...props} />}
     />
 
-    <Route path="/us/account/credits" component={Credits} />
+    <Route exact path="/us/account/credits" component={Credits} />
 
-    <Route path="/us/account/interests" render={() => <Interests />} />
+    <Route exact path="/us/account/interests" render={() => <Interests />} />
 
     <Route
+      exact
       path="/us/account/subscriptions"
       render={() => <Subscriptions {...props} />}
     />
 
     <Route
+      exact
       path="/us/account/delete"
       render={() => <DeleteAccountTab {...props} />}
     />
 
-    <Route path="/us/account/refer-friends" component={ReferFriendsTab} />
-
-    <Route path="/us/account/profile" render={() => <Profile {...props} />} />
+    <Route exact path="/us/account/refer-friends" component={ReferFriendsTab} />
 
     <Route
+      exact
+      path="/us/account/profile"
+      render={() => <Profile {...props} />}
+    />
+
+    <Route
+      exact
       render={() => (
         <div className="col-span-6 md:col-start-2 lg:col-start-4 p-8">
           <NotFound />
