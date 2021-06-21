@@ -88,15 +88,20 @@ const UserCampaigns = () => (
           return (
             <>
               <nav
-                className="page-navigation pt-3 md:pt-6 -no-fade"
+                className="base-12-grid page-navigation pt-3 md:pt-6 -no-fade"
                 css={css`
                   border-bottom-width: 2px;
                   // offset some assigned styles for the .page-navigation class:
                   background-color: ${tailwind('colors.gray.100')};
                   border-top: 0;
+                  padding-left: 0;
+                  padding-right: 0;
                 `}
               >
-                <div className="nav-items -mx-3" style={{ float: 'none' }}>
+                <div
+                  className="grid-wide md:col-start-1 nav-items -mx-3"
+                  style={{ float: 'none' }}
+                >
                   <NavigationLink to="/us/account/campaigns/incomplete">
                     Incomplete ({get(groupedSignups, 'incomplete', []).length})
                   </NavigationLink>
