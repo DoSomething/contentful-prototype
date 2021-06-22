@@ -69,7 +69,7 @@ const PopoverDispatcher = () => {
           <DelayedElement delay={3}>
             <CtaPopover
               title="The Boost"
-              content="Sign up for our weekly newsletter of stories of incredible young people and actionable how-tos."
+              content="Sign up for our biweekly newsletter of stories of incredible young people and actionable how-tos."
               handleClose={handleClose}
             >
               <CtaPopoverEmailForm
