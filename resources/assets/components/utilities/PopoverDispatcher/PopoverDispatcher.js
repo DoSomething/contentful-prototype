@@ -179,7 +179,7 @@ const PopoverDispatcher = () => {
           contextSource="volunteer_hours"
           cta="Get Started"
           link="/us/about/volunteer-hours"
-          description="Earn verified volunteer hours and the chance to win a $1,000 scholarship!"
+          description="Sign up for these campaigns and earn verified volunteer hours (and a signed certificate!)"
           handleClose={handleClose}
           handleComplete={handleComplete}
         />
