@@ -34,7 +34,7 @@ export const EMAIL_SUBSCRIPTION_TEXT = {
       'A roundup of photos, writing, and stories of impact from the DoSomething community and members like you.',
   },
   [EMAIL_SUBSCRIPTION_TOPICS.lifestyle]: {
-    subtitle: 'Sent every Thursday',
+    subtitle: 'Sent every other Thursday',
     title: 'The Boost',
     description:
       'Stories of incredible young people, actionable how-tos, inspirational playlists, and other content to live your best life and help others do the same.',
