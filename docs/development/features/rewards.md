@@ -61,11 +61,11 @@ In this version _badges are not stored anywhere_. Each time we display a badge, 
 
 There is currently no easy way for an admin to see which badges a user has, though they can see if users are getting the badges experience or not.
 
-### Badges Version 1.2 (current version)
+### Badges Version 1.2
 
 In this version all users are able to see badges within their profile, but the other aspects of version 1 remain in tact (calculating on the fly, etc).
 
-### Badges Version 2 aka Levels
+### Badges Version 2 aka Levels (current version)
 
 In the next iteration of badges, we are also rolling out different levels of membership that users can reach! Because of this, we're considering the "badges" tab the "rewards" tab. Users can now use the badges they accumulate to get special rewards to use on our site. In this first iteration of "rewards," users will gain additional scholarship entries on campaigns they participate in that have a scholarhsip attached.
 
