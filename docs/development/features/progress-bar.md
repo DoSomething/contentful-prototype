@@ -8,13 +8,13 @@ This is a feature built out to showcase a campaign or actions progress on our si
 
 ### Progress Bar
 
-The `ProgressBar` component is a **base** component for any use case and if used on it's own it will output a basic progress bar.
+The `ProgressBar` component is a **base** component for any use case and if used on its own it will output a basic progress bar.
 
 It will have set styling with _tailwind yellow_ as the bar color.
 
 This component has one required property:
 
--   `percentage`: a number for the bar to use as the width
+-   `percentage`: a number for the bar to use as the amount filled in (it is assigned to a width property)
 
 Example component use:
 
@@ -43,7 +43,7 @@ Example HTML output:
 
 The `MultiLevelProgressBar` component is another **base** component for any use case that requires more than one percentage to be displayed.
 
-The syling of the component itself is set, but it's child components, the `SingleLevel` can be customized using TailWind and EmotionJS.
+The syling of the component itself is set, but its child components - the `SingleLevel` - can be customized using TailWind and EmotionJS.
 
 This component has two required properties:
 
@@ -143,7 +143,7 @@ Currently the Progress bar is used in 3 different places.
 
 ### Rewards Tab
 
-On the rewards tab of each users account, a progress bar is displayed to indicate what level they have reached as a user. This is implemented with the `RewardsProgressBar`, which uses the `MultiLevelProgressBar` as a base.
+On the rewards tab of each user's account, a progress bar is displayed to indicate what level they have reached as a user. This is implemented with the `RewardsProgressBar`, which uses the `MultiLevelProgressBar` as a base.
 
 ![Levels Progress Bar Example](../../.gitbook/assets/levels-progress-bar.png)
 
@@ -155,7 +155,7 @@ A progress bar will be displayed on a campaign landing page if the campaigns mai
 
 ### OVRD Referral Pages
 
-In this case, we are directly using the `ProgressBar` to display the goal of how many people have been registered to vote either by a group (College Board etc) or an individual. These registrations are tracked as referrals and the progress bar shows how many have been recieved vs the final goal number. This is still implemented in code but not in use actively on the site since it was part of a GOTV specific initiative in 2020.
+In this case, we are directly using the `ProgressBar` to display the goal of how many people have been registered to vote either by a group (College Board etc) or an individual. These registrations are tracked as referrals and the progress bar shows how many have been recieved versus the final goal number. This is still implemented in code but not in use actively on the site since it was part of a GOTV specific initiative in 2020.
 
 ![OVRD Progress Bar Example](../../.gitbook/assets/OVRD-progress-bar.png)
 
