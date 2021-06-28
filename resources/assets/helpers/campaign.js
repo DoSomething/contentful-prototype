@@ -1,9 +1,9 @@
 /* global window */
 
 import { join } from 'path';
-import { find, get } from 'lodash';
 import gql from 'graphql-tag';
 import { isBefore } from 'date-fns';
+import { find, get, groupBy } from 'lodash';
 
 import { getUserId } from './auth';
 
@@ -137,6 +137,64 @@ export function prepareCampaignPageSlug(campaignSlug, pageSlug) {
   }
 
   return join('/us/campaigns', pageSlug);
+}
+
+/**
+ * Groups a users signups (input with accompanying campaigns, actions, and posts)
+ * into "complete", "incomplete", and "expired" categories.
+ *
+ * @param  {Array} signups
+ * @param  {Array} signups.posts
+ * @param  {Array} signups.campaigns
+ * @param  {Array} signups.campaigns.actions
+ * @return {Object}
+ */
+export function groupUserCampaignSignups(signups) {
+  return groupBy(signups, signup => {
+    const actions = get(signup, 'campaign.actions', []);
+    const posts = get(signup, 'posts', []);
+
+    // Does this signup's campaign have an *reportback* Action qualifying for a scholarship entry?
+    const campaignHasScholarshipAction = actions.find(
+      action => action.scholarshipEntry && action.reportback,
+    );
+
+    // Does this user have a pending or accepted Post
+    // for a *reportback* Action on this signup's campaign qualifying for a scholarship entry?
+    const userHasScholarshipReportback = posts.find(
+      post =>
+        post.actionDetails.scholarshipEntry &&
+        post.actionDetails.reportback &&
+        ['PENDING', 'ACCEPTED'].includes(post.status),
+    );
+
+    // Does this user have a pending or accepted Post for a *reportback* Action on this signup's campaign?
+    const userHasReportback = posts.find(
+      post =>
+        post.actionDetails.reportback &&
+        ['PENDING', 'ACCEPTED'].includes(post.status),
+    );
+
+    // If the user has a relavant reportback for this signup's campaign, mark as "complete".
+    if (
+      (campaignHasScholarshipAction && userHasScholarshipReportback) ||
+      userHasReportback
+    ) {
+      return 'complete';
+    }
+
+    // If the user doesn't have a relavant reportback - as long as the campaign is "evergreen" or still open,
+    // mark as "incomplete".
+    if (
+      !signup.campaign.endDate ||
+      !isCampaignClosed(signup.campaign.endDate)
+    ) {
+      return 'incomplete';
+    }
+
+    // Otherwise (the haven't reported back, and this campaign is closed so) mark as "expired".
+    return 'expired';
+  });
 }
 
 export default null;

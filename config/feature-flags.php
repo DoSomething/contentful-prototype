@@ -23,4 +23,5 @@ return [
     'sitewide_nps_survey' => env('DS_ENABLE_SITEWIDE_NPS_SURVEY', false),
     'rewards_levels' => env('DS_ENABLE_REWARDS_LEVELS', false),
     'new_articles_page' => env('DS_ENABLE_NEW_ARTICLES_PAGE', false),
+    'user_campaigns' => env('DS_ENABLE_USER_CAMPAIGNS', false),
 ];
