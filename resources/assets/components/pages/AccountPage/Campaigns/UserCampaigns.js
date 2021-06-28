@@ -74,11 +74,9 @@ UserCampaignsGallery.defaultProps = {
 
 const UserCampaigns = () => (
   <>
-    <div className="grid-wide pb-3">
-      <SectionHeader title="Campaigns" />
-    </div>
-
     <div className="grid-wide">
+      <SectionHeader title="Campaigns" />
+
       <Query query={USER_CAMPAIGNS_QUERY} variables={{ userId: getUserId() }}>
         {({ paginatedSignups }) => {
           const groupedSignups = groupUserCampaignSignups(
