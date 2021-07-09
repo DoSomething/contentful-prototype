@@ -56,6 +56,7 @@
         -   [Testing Tips](development/features/sixpack/sixpack-testing-tips.md)
     -   [Tooltip](development/features/tooltip.md)
     -   [Traffic Distribution](development/features/traffic-distribution.md)
+    -   [User Campaigns Page](development/features/user-campaigns-page.md)
     -   [Volunteer Credits](development/features/volunteer-credits.md)
     -   [Voter Registration](development/features/voter-registration.md)
     -   [Zendesk Form](development/features/zendesk-form.md)
