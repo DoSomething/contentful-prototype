@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import FormItem from './FormItem';
 import { env } from '../../../../helpers/env';
 import VoterRegStatusBlock from '../VoterReg/VoterRegStatusBlock';
+import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 import {
   EVENT_CATEGORIES,
   getPageContext,
@@ -15,10 +16,9 @@ import {
 const Profile = props => (
   <React.Fragment>
     <div className="grid-wide">
-      <h1 className="text-xl">Profile</h1>
-      <p className="text-gray-600">
-        Update your personal information and manage your account.
-      </p>
+      <SectionHeader title="Profile" />
+
+      <p>Update your personal information and manage your account.</p>
     </div>
     <div className="grid-wide-2/3 my-6">
       <h2 className="text-lg">Profile Info</h2>
