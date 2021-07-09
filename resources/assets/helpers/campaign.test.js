@@ -1,4 +1,5 @@
-import { getCampaignFaqPath } from './campaign';
+import userCampaignSignups from './__mocks__/userCampaignSignups';
+import { getCampaignFaqPath, groupUserCampaignSignups } from './campaign';
 
 describe('getCampaignFaqPath', () => {
   global.STATE = {
@@ -24,5 +25,23 @@ describe('getCampaignFaqPath', () => {
     global.STATE = {};
 
     expect(getCampaignFaqPath()).toBeUndefined();
+  });
+});
+
+describe('groupUserCampaignSignups', () => {
+  /** @test */
+  it('groups signups correctly into the three expected categories', () => {
+    const groupedSignups = groupUserCampaignSignups(
+      userCampaignSignups.edges.map(edge => edge.node),
+    );
+
+    expect(groupedSignups.complete).toMatchObject([{ id: 3682 }, { id: 1488 }]);
+
+    expect(groupedSignups.incomplete).toMatchObject([
+      { id: 1530 },
+      { id: 1474 },
+    ]);
+
+    expect(groupedSignups.expired).toMatchObject([{ id: 1476 }]);
   });
 });

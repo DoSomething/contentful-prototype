@@ -103,16 +103,25 @@ const UserCampaigns = () => (
                   className="grid-wide md:col-start-1 nav-items -mx-3"
                   style={{ float: 'none' }}
                 >
-                  <NavigationLink to="/us/account/campaigns/incomplete">
+                  <NavigationLink
+                    data-testid="incomplete-campaigns-tab"
+                    to="/us/account/campaigns/incomplete"
+                  >
                     Incomplete ({get(groupedSignups, 'incomplete', []).length})
                   </NavigationLink>
 
-                  <NavigationLink to="/us/account/campaigns/complete">
+                  <NavigationLink
+                    data-testid="complete-campaigns-tab"
+                    to="/us/account/campaigns/complete"
+                  >
                     Complete ({get(groupedSignups, 'complete', []).length})
                   </NavigationLink>
 
                   {groupedSignups.expired ? (
-                    <NavigationLink to="/us/account/campaigns/expired">
+                    <NavigationLink
+                      data-testid="expired-campaigns-tab"
+                      to="/us/account/campaigns/expired"
+                    >
                       Expired ({groupedSignups.expired.length})
                     </NavigationLink>
                   ) : null}
