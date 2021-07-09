@@ -52,9 +52,11 @@ const USER_CAMPAIGNS_QUERY = gql`
   ${campaignCardFragment}
 `;
 
-const UserCampaignsGallery = ({ signups }) => (
-  <div className="grid-wide py-3">
-    <ul className="gap-8 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-3">
+const UserCampaignsGallery = ({ description, signups }) => (
+  <div className="grid-wide">
+    <p className="py-4">{description}</p>
+
+    <ul className="gap-8 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-3 mt-0">
       {signups.map(signup => (
         <li key={signup.id}>
           <CampaignCard campaign={signup.campaign.campaignWebsite} />
@@ -65,6 +67,7 @@ const UserCampaignsGallery = ({ signups }) => (
 );
 
 UserCampaignsGallery.propTypes = {
+  description: PropTypes.string.isRequired,
   signups: PropTypes.arrayOf(PropTypes.object),
 };
 
@@ -120,7 +123,10 @@ const UserCampaigns = () => (
                 <Route
                   path="/us/account/campaigns/incomplete"
                   render={() => (
-                    <UserCampaignsGallery signups={groupedSignups.incomplete} />
+                    <UserCampaignsGallery
+                      signups={groupedSignups.incomplete}
+                      description="Make sure to complete these campaigns before they end!"
+                    />
                   )}
                 />
 
@@ -142,6 +148,16 @@ const UserCampaigns = () => (
                           Date.parse(signupB.posts[0]) -
                           Date.parse(signupA.posts[0]),
                       )}
+                      description={
+                        <>
+                          Congrats on completing these campaigns! Check out all
+                          your{' '}
+                          <a href="/us/account/credits">
+                            campaigns offering volunteer credits
+                          </a>
+                          .
+                        </>
+                      }
                     />
                   )}
                 />
@@ -150,7 +166,10 @@ const UserCampaigns = () => (
                   <Route
                     path="/us/account/campaigns/expired"
                     render={() => (
-                      <UserCampaignsGallery signups={groupedSignups.expired} />
+                      <UserCampaignsGallery
+                        signups={groupedSignups.expired}
+                        description="Sometimes campaigns end because our goal is met (yea!) or the scholarship ends."
+                      />
                     )}
                   />
                 ) : null}
