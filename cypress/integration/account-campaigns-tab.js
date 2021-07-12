@@ -1,4 +1,5 @@
 /// <reference types="Cypress" />
+import { cloneDeep } from 'lodash';
 
 import { userFactory } from '../fixtures/user';
 import userCampaignSignups from '../../resources/assets/helpers/__mocks__/userCampaignSignups';
@@ -125,7 +126,7 @@ describe('User Account Campaigns Tab', () => {
       const user = userFactory();
 
       // Mark the expired campaign fixture as 'evergreen'.
-      const withoutExpiredCampaigns = Object.assign({}, userCampaignSignups);
+      const withoutExpiredCampaigns = cloneDeep(userCampaignSignups);
       withoutExpiredCampaigns.edges[3].node.campaign.endDate = null;
 
       cy.mockGraphqlOp('UserCampaignsQuery', {
