@@ -3,7 +3,7 @@ import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
@@ -161,9 +161,9 @@ const UserCampaigns = () => (
                         <>
                           Congrats on completing these campaigns! Check out all
                           your{' '}
-                          <a href="/us/account/credits">
+                          <Link to="/us/account/credits">
                             campaigns offering volunteer credits
-                          </a>
+                          </Link>
                           .
                         </>
                       }
