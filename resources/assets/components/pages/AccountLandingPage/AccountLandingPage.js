@@ -128,6 +128,13 @@ const AccountLandingPage = () => (
             <a
               className="block mt-5 text-black mb-10 md:mb-0"
               href="/deauthorize"
+              onClick={() =>
+                trackAnalyticsEvent(`clicked_account_nav_link_log_out`, {
+                  action: 'link_clicked',
+                  category: EVENT_CATEGORIES.navigation,
+                  label: 'account_log_out',
+                })
+              }
             >
               Log Out
             </a>
