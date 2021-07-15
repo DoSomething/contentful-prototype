@@ -1,9 +1,9 @@
-import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import AccountRoute from './AccountRoute';
-import ScrollConcierge from '../../../ScrollConcierge';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import SiteNavigation from '../../../SiteNavigation/SiteNavigation';
 import {
@@ -11,42 +11,50 @@ import {
   EVENT_CATEGORIES,
 } from '../../../../helpers/analytics';
 
-const Account = props => (
-  <>
-    <ScrollConcierge />
+const Account = props => {
+  const location = useLocation();
 
-    <SiteNavigation />
+  useEffect(() => {
+    if (get(location, 'state.scrollToTop')) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
 
-    <main>
-      <article className="account-page base-12-grid py-3 md:py-6">
-        {/* Account landing page breadcrumb link: */}
-        <div className="grid-wide-2/3 pb-1">
-          <Link
-            to="/us/account"
-            className="font-bold no-underline hover:no-underline"
-            onClick={() =>
-              trackAnalyticsEvent('clicked_breadcrumb_link_my_account', {
-                action: 'link_clicked',
-                category: EVENT_CATEGORIES.navigation,
-                label: 'breadcrumb_my_account',
-                context: {
-                  url: `${window.location.origin}/us/account`,
-                },
-              })
-            }
-          >
-            My Account
-          </Link>{' '}
-          <span className="font-bold">/</span>
-        </div>
+  return (
+    <>
+      <SiteNavigation />
 
-        <AccountRoute {...props} />
-      </article>
-    </main>
+      <main>
+        <article className="account-page base-12-grid py-3 md:py-6">
+          {/* Account landing page breadcrumb link: */}
+          <div className="grid-wide-2/3 pb-1">
+            <Link
+              to="/us/account"
+              className="font-bold no-underline hover:no-underline"
+              onClick={() =>
+                trackAnalyticsEvent('clicked_breadcrumb_link_my_account', {
+                  action: 'link_clicked',
+                  category: EVENT_CATEGORIES.navigation,
+                  label: 'breadcrumb_my_account',
+                  context: {
+                    url: `${window.location.origin}/us/account`,
+                  },
+                })
+              }
+            >
+              My Account
+            </Link>{' '}
+            <span className="font-bold">/</span>
+          </div>
 
-    <SiteFooter />
-  </>
-);
+          <AccountRoute {...props} />
+        </article>
+      </main>
+
+      <SiteFooter />
+    </>
+  );
+};
 
 Account.propTypes = {
   user: PropTypes.shape({
