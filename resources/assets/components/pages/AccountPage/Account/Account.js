@@ -1,9 +1,9 @@
-import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import AccountRoute from './AccountRoute';
-import ScrollConcierge from '../../../ScrollConcierge';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import SiteNavigation from '../../../SiteNavigation/SiteNavigation';
 import {
@@ -12,10 +12,16 @@ import {
 } from '../../../../helpers/analytics';
 
 const Account = props => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (get(location, 'state.scrollToTop')) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   return (
     <>
-      <ScrollConcierge />
-
       <SiteNavigation />
 
       <main>

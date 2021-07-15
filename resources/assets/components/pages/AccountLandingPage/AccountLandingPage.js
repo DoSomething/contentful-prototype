@@ -97,7 +97,10 @@ const AccountLandingPage = () => (
                 data-testid="account-landing-page-navigation-link"
                 key={title}
                 className="my-1 p-4 rounded bg-white border border-solid border-gray-300 hover:border-blurple-500 no-underline hover:no-underline flex items-center"
-                to={`/us/account/${slug}`}
+                to={{
+                  pathname: `/us/account/${slug}`,
+                  state: { scrollToTop: true },
+                }}
                 onClick={() =>
                   trackAnalyticsEvent(`clicked_account_nav_link_${slug}}`, {
                     action: 'link_clicked',
