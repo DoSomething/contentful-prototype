@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import { get, set } from '../../../helpers/storage';
@@ -18,9 +17,7 @@ const TrafficDistribution = ({ percentage, feature, children }) => {
     shouldSeeFeature = storedValue.showFeature;
   }
 
-  return shouldSeeFeature ? (
-    <div className="traffic-distribution">{children}</div>
-  ) : null;
+  return shouldSeeFeature ? children : null;
 };
 
 TrafficDistribution.propTypes = {
