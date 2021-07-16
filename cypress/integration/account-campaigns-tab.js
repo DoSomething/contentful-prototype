@@ -140,5 +140,27 @@ describe('User Account Campaigns Tab', () => {
 
       cy.findByTestId('expired-campaigns-tab').should('have.length', 0);
     });
+
+    /** @test */
+    it('Displays the empty state when there are no signups', () => {
+      const user = userFactory();
+
+      cy.mockGraphqlOp('UserCampaignsQuery', {
+        paginatedSignups: { edges: [] },
+      });
+
+      cy.login(user);
+      cy.withFeatureFlags({ user_campaigns: true }).visit(
+        `/us/account/campaigns`,
+      );
+
+      cy.findByTestId('incomplete-campaigns-tab').contains('Incomplete (0)');
+      cy.findByTestId('complete-campaigns-tab').contains('Complete (0)');
+
+      cy.findByTestId('user-campaigns-gallery-empty-state');
+
+      cy.findByTestId('complete-campaigns-tab').click();
+      cy.findByTestId('user-campaigns-gallery-empty-state');
+    });
   });
 });

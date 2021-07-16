@@ -8,9 +8,12 @@ import { Link, Switch, Route, Redirect } from 'react-router-dom';
 import Query from '../../../Query';
 import { getUserId } from '../../../../helpers/auth';
 import { tailwind } from '../../../../helpers/display';
+import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import { groupUserCampaignSignups } from '../../../../helpers/campaign';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 import NavigationLink from '../../../utilities/NavigationLink/NavigationLink';
+import completeCampaignsEmptyState from './complete-campaigns-empty-state.svg';
+import incompleteCampaignsEmptyState from './incomplete-campaigns-empty-state.svg';
 import CampaignCard, {
   campaignCardFragment,
 } from '../../../utilities/CampaignCard/CampaignCard';
@@ -52,22 +55,48 @@ const USER_CAMPAIGNS_QUERY = gql`
   ${campaignCardFragment}
 `;
 
-const UserCampaignsGallery = ({ description, signups }) => (
-  <div className="grid-wide">
-    <p className="py-4">{description}</p>
+const UserCampaignsGallery = ({ description, signups, emptyStateImg }) => {
+  if (!signups.length) {
+    return (
+      <div
+        className="grid-wide pt-6"
+        data-testid="user-campaigns-gallery-empty-state"
+      >
+        <img
+          alt="No campaigns to display"
+          className="max-w-3xl"
+          src={emptyStateImg}
+        />
 
-    <ul className="gap-8 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-3 mt-0">
-      {signups.map(signup => (
-        <li key={signup.id}>
-          <CampaignCard campaign={signup.campaign.campaignWebsite} />
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+        <div className="flex justify-center lg:justify-start">
+          <PrimaryButton
+            className="mt-4"
+            text="Explore Campaigns"
+            href="/us/campaigns"
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid-wide">
+      <p className="py-4">{description}</p>
+
+      <ul className="gap-8 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-3 mt-0">
+        {signups.map(signup => (
+          <li key={signup.id}>
+            <CampaignCard campaign={signup.campaign.campaignWebsite} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 UserCampaignsGallery.propTypes = {
   description: PropTypes.string.isRequired,
+  emptyStateImg: PropTypes.node.isRequired,
   signups: PropTypes.arrayOf(PropTypes.object),
 };
 
@@ -135,6 +164,7 @@ const UserCampaigns = () => (
                     <UserCampaignsGallery
                       signups={groupedSignups.incomplete}
                       description="Make sure to complete these campaigns before they end!"
+                      emptyStateImg={incompleteCampaignsEmptyState}
                     />
                   )}
                 />
@@ -167,6 +197,7 @@ const UserCampaigns = () => (
                           .
                         </>
                       }
+                      emptyStateImg={completeCampaignsEmptyState}
                     />
                   )}
                 />
