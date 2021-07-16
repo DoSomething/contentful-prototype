@@ -52,19 +52,21 @@ const USER_CAMPAIGNS_QUERY = gql`
   ${campaignCardFragment}
 `;
 
-const UserCampaignsGallery = ({ description, signups }) => (
-  <div className="grid-wide">
-    <p className="py-4">{description}</p>
+const UserCampaignsGallery = ({ description, signups }) => {
+  return (
+    <div className="grid-wide">
+      <p className="py-4">{description}</p>
 
-    <ul className="gap-8 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-3 mt-0">
-      {signups.map(signup => (
-        <li key={signup.id}>
-          <CampaignCard campaign={signup.campaign.campaignWebsite} />
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+      <ul className="gap-8 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-3 mt-0">
+        {signups.map(signup => (
+          <li key={signup.id}>
+            <CampaignCard campaign={signup.campaign.campaignWebsite} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 UserCampaignsGallery.propTypes = {
   description: PropTypes.string.isRequired,
